@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Equipment Packs</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Pack</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>No Equipment Packs exist yet - create one in the Equipment Packs tab first.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Max sidearm bulk:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>The same cap Auto-assign's own sidearm picker uses - a full-size battle rifle shouldn't get handed out as anyone's "backup" weapon just because it scored well. Weapons bulkier than this are hidden from this list too (a ticked one always stays visible; explosives and shields are never capped). Editing it here changes the actual setting, not a separate copy.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Close</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Copy</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>Copied {0} {1} selection(s) - paste onto other colonists' own {1} cell.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Copied an empty {0} selection - paste onto other colonists' own {0} cell to clear it.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Copy this exact tick selection so it can be pasted onto other colonists straight from their own cell, without reopening this checklist each time.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Nothing ticked - copies an empty selection, which clears whatever you paste it onto.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>No matches for "{0}".</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} hidden - weapon bulk above the max sidearm bulk of {1}. Raise the value to see them.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Every candidate is hidden by the max sidearm bulk of {0}. Raise the value to see them.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Score</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Avail</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>All types</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Show: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Which weapons the list offers at all: everything, only researched ones, or only what the colony already owns. Applies to the weapon section.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Type: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Narrows the list to one kind: ranged, melee, other equipment, hand-built loadouts, or roles.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Others</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Vanilla loadouts</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Roles</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>Copied '{0}' from {1}. Paste it in Equip Colonists: the "Paste" column at the far right of each colonist's row.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Copy this colonist's current weapon assignment. A "Paste" column then appears at the far right of every colonist's row in Equip Colonists - one click puts the same weapon on them.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Delete own loadouts ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>Delete all {0} hand-built loadouts? Roles are untouched; colonists using one of these fall back to no loadout. This cannot be undone.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Deletes every hand-built (vanilla) loadout - roles stay.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Lock this weapon: auto-assign will never hand it out, and it drops greyed to the end of its group. Click the mark again to unlock.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Locked - auto-assign never picks this weapon. Click to unlock.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Lock this entry: auto-assign will never hand out this role or loadout, and it drops greyed to the end of its group. Click the mark again to unlock.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Locked - auto-assign never picks this role or loadout. Click to unlock.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} colonist(s) are still assigned a weapon you locked. Reassign them now? Everyone else keeps their gear.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Contents</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Mass / Bulk</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Production cost</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(empty)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Nothing of this type here. Pick another entry in the "Type" list above.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

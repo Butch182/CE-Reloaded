@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>新增其他物品</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - 為其個人裝備清單新增任意物品，涵蓋彈藥、裝備包與副武器尚未涵蓋的內容。</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>搜尋物品...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>沒有符合「{0}」的物品。</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>從該殖民者身上移除（目前有 {0} 個）。移除數量取輸入框裡的數字。</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>該物品不在這名殖民者的個人清單上，沒有可移除的內容。</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>已從 {2} 移除 {0}x {1}。</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>物品</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>已分配</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>數量</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>已將{0}x{1}新增給{2}。</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>關閉</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>複製</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>把這名殖民者的其他物品複製到剪貼簿。透過 裝備殖民者 頁籤中的貼上欄，可貼到另一名殖民者身上（取代其其他物品）。空清單也可以複製——貼上後會清空目標。</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>已從 {1} 複製 {0} 種物品——請使用 裝備殖民者 頁籤中的貼上欄。</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>已從 {0} 複製空物品清單——貼上後會清空目標的其他物品。</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_CombatReadinessAlerts_NoLoadout>Nie przypisano zestawu</CER_CombatReadinessAlerts_NoLoadout>
+	<CER_CombatReadinessAlerts_WeaponWithoutAmmo>Zestaw bez amunicji</CER_CombatReadinessAlerts_WeaponWithoutAmmo>
+	<CER_CombatReadinessAlerts_AmmoNotProduced>Amunicja nie jest produkowana</CER_CombatReadinessAlerts_AmmoNotProduced>
+	<CER_CombatReadinessAlerts_WeaponUnavailable>Broń z zestawu niedostępna</CER_CombatReadinessAlerts_WeaponUnavailable>
+	<CER_CombatReadinessAlerts_LowAmmo>Mało amunicji</CER_CombatReadinessAlerts_LowAmmo>
+	<CER_CombatReadinessAlerts_Overloaded>Przeciążony</CER_CombatReadinessAlerts_Overloaded>
+	<CER_CombatReadinessAlerts_CapacityBlocked>Zbyt obciążony, by pobrać zestaw</CER_CombatReadinessAlerts_CapacityBlocked>
+	<CER_CombatReadinessAlerts_AssignedNotCarried>Broń przydzielona, nie nosi żadnej</CER_CombatReadinessAlerts_AssignedNotCarried>
+	<CER_CombatReadinessAlerts_Label>Gotowość bojowa</CER_CombatReadinessAlerts_Label>
+	<CER_CombatReadinessAlerts_LabelWithIssueSingular>Gotowosc bojowa: {0} kolonista wymaga uwagi</CER_CombatReadinessAlerts_LabelWithIssueSingular>
+	<CER_CombatReadinessAlerts_LabelWithIssuePlural>Gotowosc bojowa: {0} kolonistow wymaga uwagi</CER_CombatReadinessAlerts_LabelWithIssuePlural>
+	<CER_CombatReadinessAlerts_ExplanationHeader>Koloniści z problemem gotowości bojowej:</CER_CombatReadinessAlerts_ExplanationHeader>
+	<CER_CombatReadinessAlerts_CategoryLine>{0} ({1}): {2}</CER_CombatReadinessAlerts_CategoryLine>
+	<CER_CombatReadinessAlerts_AndOthers> i {0} innych</CER_CombatReadinessAlerts_AndOthers>
+
+</LanguageData>

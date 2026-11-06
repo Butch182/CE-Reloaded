@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_CombatReadinessAlerts_NoLoadout>No loadout assigned</CER_CombatReadinessAlerts_NoLoadout>
+	<CER_CombatReadinessAlerts_WeaponWithoutAmmo>Loadout without ammo</CER_CombatReadinessAlerts_WeaponWithoutAmmo>
+	<CER_CombatReadinessAlerts_AmmoNotProduced>Ammo not in production</CER_CombatReadinessAlerts_AmmoNotProduced>
+	<CER_CombatReadinessAlerts_WeaponUnavailable>Loadout weapon unavailable</CER_CombatReadinessAlerts_WeaponUnavailable>
+	<CER_CombatReadinessAlerts_LowAmmo>Low on ammo</CER_CombatReadinessAlerts_LowAmmo>
+	<CER_CombatReadinessAlerts_Overloaded>Overloaded</CER_CombatReadinessAlerts_Overloaded>
+	<CER_CombatReadinessAlerts_CapacityBlocked>Too full to fetch loadout</CER_CombatReadinessAlerts_CapacityBlocked>
+	<CER_CombatReadinessAlerts_AssignedNotCarried>Assigned a weapon, carrying none</CER_CombatReadinessAlerts_AssignedNotCarried>
+	<CER_CombatReadinessAlerts_Label>Combat readiness</CER_CombatReadinessAlerts_Label>
+	<CER_CombatReadinessAlerts_LabelWithIssueSingular>Combat readiness: {0} colonist needs attention</CER_CombatReadinessAlerts_LabelWithIssueSingular>
+	<CER_CombatReadinessAlerts_LabelWithIssuePlural>Combat readiness: {0} colonists need attention</CER_CombatReadinessAlerts_LabelWithIssuePlural>
+	<CER_CombatReadinessAlerts_ExplanationHeader>Colonists with a combat-readiness issue:</CER_CombatReadinessAlerts_ExplanationHeader>
+	<CER_CombatReadinessAlerts_CategoryLine>{0} ({1}): {2}</CER_CombatReadinessAlerts_CategoryLine>
+	<CER_CombatReadinessAlerts_AndOthers> and {0} others</CER_CombatReadinessAlerts_AndOthers>
+
+</LanguageData>

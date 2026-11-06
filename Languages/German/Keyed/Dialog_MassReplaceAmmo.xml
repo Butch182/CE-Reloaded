@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MassReplaceAmmo_Title>Munition in Beladungen massenhaft ersetzen</CER_MassReplaceAmmo_Title>
+	<CER_MassReplaceAmmo_AmmoLabel>Munition:</CER_MassReplaceAmmo_AmmoLabel>
+	<CER_MassReplaceAmmo_FilterAll>Alle Munition</CER_MassReplaceAmmo_FilterAll>
+	<CER_MassReplaceAmmo_ChoicesCount>{0} von {1} Munitionssorten waehlbar</CER_MassReplaceAmmo_ChoicesCount>
+	<CER_MassReplaceAmmo_NoSearchHits>Keine Zeile passt zu "{0}".</CER_MassReplaceAmmo_NoSearchHits>
+	<CER_MassReplaceAmmo_NothingToReplace>Keine Vorlage hat einen Munitions-Eintrag zum Ersetzen.</CER_MassReplaceAmmo_NothingToReplace>
+	<CER_MassReplaceAmmo_BetterAmmoHint>{0} Vorlagen koennten neu erforschte Munition nutzen - sie sind unten hervorgehoben.</CER_MassReplaceAmmo_BetterAmmoHint>
+	<CER_MassReplaceAmmo_FilterResearched>Erforschte Munition</CER_MassReplaceAmmo_FilterResearched>
+	<CER_MassReplaceAmmo_FilterAvailable>Verfügbare Munition</CER_MassReplaceAmmo_FilterAvailable>
+	<CER_MassReplaceAmmo_RowLabel>{0} - {1}</CER_MassReplaceAmmo_RowLabel>
+	<CER_MassReplaceAmmo_IndicatorUnchanged>=</CER_MassReplaceAmmo_IndicatorUnchanged>
+	<CER_MassReplaceAmmo_IndicatorChanged>✔</CER_MassReplaceAmmo_IndicatorChanged>
+	<CER_MassReplaceAmmo_KeepGeneric>↺ {0} behalten (generisch)</CER_MassReplaceAmmo_KeepGeneric>
+	<CER_MassReplaceAmmo_KeepConcrete>↺ {0} behalten</CER_MassReplaceAmmo_KeepConcrete>
+	<CER_MassReplaceAmmo_AnyAmmoFor>Beliebige Munition für {0}</CER_MassReplaceAmmo_AnyAmmoFor>
+	<CER_MassReplaceAmmo_NoValidAmmo>Keine gültige Munition gefunden</CER_MassReplaceAmmo_NoValidAmmo>
+	<CER_MassReplaceAmmo_CancelButton>Abbrechen</CER_MassReplaceAmmo_CancelButton>
+	<CER_MassReplaceAmmo_ApplyButton>Anwenden</CER_MassReplaceAmmo_ApplyButton>
+	<CER_MassReplaceAmmo_UpdatedMessage>Munition in {0} Beladungen aktualisiert.</CER_MassReplaceAmmo_UpdatedMessage>
+
+</LanguageData>

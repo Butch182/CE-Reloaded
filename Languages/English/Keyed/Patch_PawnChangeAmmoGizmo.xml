@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Ammo Loadouts</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>See and change the extra ammo the selected colonist(s) carry beyond their weapon's default ammo - filtered to what actually fits their gear, not every ammo type in the game.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

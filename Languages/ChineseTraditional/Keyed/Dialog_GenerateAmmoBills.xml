@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateAmmoBills_BenchLabelNone>無</CER_GenerateAmmoBills_BenchLabelNone>
+	<CER_GenerateAmmoBills_ToggleToAmmoBills>&lt; 彈藥訂單</CER_GenerateAmmoBills_ToggleToAmmoBills>
+	<CER_GenerateAmmoBills_ToggleToWeaponBills>武器訂單 &gt;</CER_GenerateAmmoBills_ToggleToWeaponBills>
+	<CER_GenerateAmmoBills_DefaultBatchesLabel>預設批次：</CER_GenerateAmmoBills_DefaultBatchesLabel>
+	<CER_GenerateAmmoBills_WorkbenchLabel>工作台：</CER_GenerateAmmoBills_WorkbenchLabel>
+	<CER_GenerateAmmoBills_AllBenchesOption>所有工作台</CER_GenerateAmmoBills_AllBenchesOption>
+	<CER_GenerateAmmoBills_AmmunitionLabel>彈藥：</CER_GenerateAmmoBills_AmmunitionLabel>
+	<CER_GenerateAmmoBills_AbAssignedLoadouts>已分配配裝</CER_GenerateAmmoBills_AbAssignedLoadouts>
+	<CER_GenerateAmmoBills_AbAvailableWeapons>可用武器</CER_GenerateAmmoBills_AbAvailableWeapons>
+	<CER_GenerateAmmoBills_AbActiveBills>進行中訂單</CER_GenerateAmmoBills_AbActiveBills>
+	<CER_GenerateAmmoBills_AbAllAmmunition>已研究彈藥</CER_GenerateAmmoBills_AbAllAmmunition>
+	<CER_GenerateAmmoBills_HideDuplicateBenches>隱藏重複工作台</CER_GenerateAmmoBills_HideDuplicateBenches>
+	<CER_GenerateAmmoBills_ColName>名稱</CER_GenerateAmmoBills_ColName>
+	<CER_GenerateAmmoBills_ColSpecial>特殊</CER_GenerateAmmoBills_ColSpecial>
+	<CER_GenerateAmmoBills_ColAssig>可用性</CER_GenerateAmmoBills_ColAssig>
+	<CER_GenerateAmmoBills_ColIngredients>原料</CER_GenerateAmmoBills_ColIngredients>
+	<CER_GenerateAmmoBills_ColGenerateOn>生成於……</CER_GenerateAmmoBills_ColGenerateOn>
+	<CER_GenerateAmmoBills_ColLoadouts>配裝</CER_GenerateAmmoBills_ColLoadouts>
+	<CER_GenerateAmmoBills_UnneededBillTooltip>目前沒有任何殖民者已分配的配裝需要這種彈藥 - 進行中的訂單其實是在為沒有人生產。</CER_GenerateAmmoBills_UnneededBillTooltip>
+	<CER_GenerateAmmoBills_ActiveBillsNone>無</CER_GenerateAmmoBills_ActiveBillsNone>
+	<CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>在 {0} 生成一筆訂單。</CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>
+	<CER_GenerateAmmoBills_JumpToWorkbenchTooltip>跳到這個工作台。</CER_GenerateAmmoBills_JumpToWorkbenchTooltip>
+	<CER_GenerateAmmoBills_NoBench>無工作台</CER_GenerateAmmoBills_NoBench>
+	<CER_GenerateAmmoBills_NotResearched>尚未研究</CER_GenerateAmmoBills_NotResearched>
+	<CER_GenerateAmmoBills_LoadoutsNone>無</CER_GenerateAmmoBills_LoadoutsNone>
+	<CER_GenerateAmmoBills_DeleteAllBillsButton>刪除所有彈藥訂單</CER_GenerateAmmoBills_DeleteAllBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllBillsConfirm>刪除每個工作台上的所有彈藥生產訂單？此動作無法復原。</CER_GenerateAmmoBills_DeleteAllBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsSingular>已刪除 {0} 筆彈藥訂單。</CER_GenerateAmmoBills_DeletedAmmoBillsSingular>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsPlural>已刪除 {0} 筆彈藥訂單。</CER_GenerateAmmoBills_DeletedAmmoBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllBillsTooltip>從每個工作台移除所有彈藥生產訂單。</CER_GenerateAmmoBills_DeleteAllBillsTooltip>
+	<CER_GenerateAmmoBills_RemoveUnneededButton>移除不需要的訂單（{0}）</CER_GenerateAmmoBills_RemoveUnneededButton>
+	<CER_GenerateAmmoBills_PruneConfirm>刪除所有目前已分配對象都不再需要其彈藥的訂單？仍在滿足實際需求的訂單將維持不動。此動作無法復原。</CER_GenerateAmmoBills_PruneConfirm>
+	<CER_GenerateAmmoBills_RemovedUnneededSingular>已移除 {0} 筆不需要的彈藥訂單。</CER_GenerateAmmoBills_RemovedUnneededSingular>
+	<CER_GenerateAmmoBills_RemovedUnneededPlural>已移除 {0} 筆不需要的彈藥訂單。</CER_GenerateAmmoBills_RemovedUnneededPlural>
+	<CER_GenerateAmmoBills_PruneTooltip>目前仍在生產,但沒有任何殖民者已分配配裝需要的彈藥訂單 - 在配裝被編輯/刪除或殖民者被重新分配後，生產仍持續進行。仍在滿足實際需求的訂單絕不會被觸動。</CER_GenerateAmmoBills_PruneTooltip>
+	<CER_GenerateAmmoBills_AutoGenerateButton>最佳化彈藥訂單</CER_GenerateAmmoBills_AutoGenerateButton>
+	<CER_GenerateAmmoBills_AutoGenerateTooltip>一次檢查所有彈藥類型：缺少的會新建訂單，沒人再需要的訂單會列出供你取消。確認前不會有任何改動，進行中的生產不受影響。</CER_GenerateAmmoBills_AutoGenerateTooltip>
+	<CER_GenerateAmmoBills_NoAmmoSelected>未選擇任何彈藥以供生成。</CER_GenerateAmmoBills_NoAmmoSelected>
+	<CER_GenerateAmmoBills_WeaponsLabel>武器：</CER_GenerateAmmoBills_WeaponsLabel>
+	<CER_GenerateAmmoBills_WovAssignedLoadouts>已分配配裝</CER_GenerateAmmoBills_WovAssignedLoadouts>
+	<CER_GenerateAmmoBills_WovAvailableWeapons>可用武器</CER_GenerateAmmoBills_WovAvailableWeapons>
+	<CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>只包含你的殖民地實際擁有的武器。</CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovResearchedWeapons>已研究武器</CER_GenerateAmmoBills_WovResearchedWeapons>
+	<CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>每一件製作配方已研究的武器（無論你是否擁有）。</CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovActiveBills>進行中訂單</CER_GenerateAmmoBills_WovActiveBills>
+	<CER_GenerateAmmoBills_WovColWeapon>武器</CER_GenerateAmmoBills_WovColWeapon>
+	<CER_GenerateAmmoBills_WovColScore>分數</CER_GenerateAmmoBills_WovColScore>
+	<CER_GenerateAmmoBills_WovColSpecial>特殊</CER_GenerateAmmoBills_WovColSpecial>
+	<CER_GenerateAmmoBills_WovColIngredients>原料</CER_GenerateAmmoBills_WovColIngredients>
+	<CER_GenerateAmmoBills_WovColOwned>可用性</CER_GenerateAmmoBills_WovColOwned>
+	<CER_GenerateAmmoBills_WovQueuedMsg>已在{2}下單 {0}x {1}。</CER_GenerateAmmoBills_WovQueuedMsg>
+	<CER_GenerateAmmoBills_WovMaterialTip>此訂單的材料：{0}。點擊可更改——訂單會限定為該材料。</CER_GenerateAmmoBills_WovMaterialTip>
+	<CER_GenerateAmmoBills_WovCountTip>要製造的數量。點擊 Produce 就按這個數量下單——預設為 1。</CER_GenerateAmmoBills_WovCountTip>
+	<CER_GenerateAmmoBills_WovColMaterial>材料</CER_GenerateAmmoBills_WovColMaterial>
+	<CER_GenerateAmmoBills_ScoreBarLabel>分數：{0}</CER_GenerateAmmoBills_ScoreBarLabel>
+	<CER_GenerateAmmoBills_PlusMatLabel>+原料</CER_GenerateAmmoBills_PlusMatLabel>
+	<CER_GenerateAmmoBills_MaterialTooltip>還需要一種原料（鋼鐵、木材……），於生產時選擇。</CER_GenerateAmmoBills_MaterialTooltip>
+	<CER_GenerateAmmoBills_WovNotResearched>尚未研究</CER_GenerateAmmoBills_WovNotResearched>
+	<CER_GenerateAmmoBills_WovNoBench>無工作台</CER_GenerateAmmoBills_WovNoBench>
+	<CER_GenerateAmmoBills_WovNotResearchedTooltip>無法生產：其製作配方尚未研究。</CER_GenerateAmmoBills_WovNotResearchedTooltip>
+	<CER_GenerateAmmoBills_WovNoBenchTooltip>無法生產：此地圖上未建造合適的工作台。</CER_GenerateAmmoBills_WovNoBenchTooltip>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>刪除所有武器訂單</CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>刪除每個工作台上的所有武器生產訂單？此動作無法復原。</CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsSingular>已刪除 {0} 筆武器訂單。</CER_GenerateAmmoBills_DeletedWeaponBillsSingular>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsPlural>已刪除 {0} 筆武器訂單。</CER_GenerateAmmoBills_DeletedWeaponBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>從每個工作台移除所有武器生產訂單。</CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>
+	<CER_GenerateAmmoBills_ProduceSelectedCount>生產所選（{0}）</CER_GenerateAmmoBills_ProduceSelectedCount>
+	<CER_GenerateAmmoBills_ProduceSelectedLabel>生產所選</CER_GenerateAmmoBills_ProduceSelectedLabel>
+	<CER_GenerateAmmoBills_HiddenWeaponsMessage>{0} 件被目前篩選器隱藏的所選武器未被生產。</CER_GenerateAmmoBills_HiddenWeaponsMessage>
+	<CER_GenerateAmmoBills_NoWeaponsSelected>未選擇任何武器。</CER_GenerateAmmoBills_NoWeaponsSelected>
+	<CER_GenerateAmmoBills_AddedUpdatedBillsMessage>已新增/更新 {0} 筆訂單。</CER_GenerateAmmoBills_AddedUpdatedBillsMessage>
+	<CER_GenerateAmmoBills_RemovedObsoleteSingular>已移除 {0} 筆過時彈藥訂單。</CER_GenerateAmmoBills_RemovedObsoleteSingular>
+	<CER_GenerateAmmoBills_RemovedObsoletePlural>已移除 {0} 筆過時彈藥訂單。</CER_GenerateAmmoBills_RemovedObsoletePlural>
+	<CER_GenerateAmmoBills_AutoGeneratedBillsMessage>已自動生成 {0} 筆缺少的彈藥訂單。</CER_GenerateAmmoBills_AutoGeneratedBillsMessage>
+
+	<CER_GenerateAmmoBills_ColAmount>數量</CER_GenerateAmmoBills_ColAmount>
+	<CER_GenerateAmmoBills_AmountTooltip>點擊工作台一次會為訂單增加的數量。預設：批次 x 產量（每批 {0}）。</CER_GenerateAmmoBills_AmountTooltip>
+	<CER_GenerateAmmoBills_GenerateAdditiveTooltip>{0}：向 ∞ 訂單（製作直到）增加 {1}。再次點擊可繼續增加。</CER_GenerateAmmoBills_GenerateAdditiveTooltip>
+
+	<CER_GenerateAmmoBills_WovColActiveBills>進行中的訂單</CER_GenerateAmmoBills_WovColActiveBills>
+
+	<CER_GenerateAmmoBills_GenerateOnceTooltip>{0}：一次性訂單 - 製作 {1} 後停止（x1）。</CER_GenerateAmmoBills_GenerateOnceTooltip>
+
+	<CER_GenerateAmmoBills_MasterCheckTip>勾選全部 {0} 個可選列。</CER_GenerateAmmoBills_MasterCheckTip>
+	<CER_GenerateAmmoBills_MasterUncheckTip>全部取消勾選。</CER_GenerateAmmoBills_MasterUncheckTip>
+
+
+	<CER_GenerateAmmoBills_FilterAssignedTip>只顯示殖民者目前實際被指派的內容。最短的清單，也最貼近你的小隊真正會用的東西。</CER_GenerateAmmoBills_FilterAssignedTip>
+	<CER_GenerateAmmoBills_FilterActiveBillsTip>只顯示已在工作台排入訂單的項目。用來查看正在生產什麼。</CER_GenerateAmmoBills_FilterActiveBillsTip>
+	<CER_GenerateAmmoBills_AbAvailableWeaponsTip>殖民地擁有或能製造的每種武器的彈藥——比已指派清單更廣，方便在發放武器前先備貨。</CER_GenerateAmmoBills_AbAvailableWeaponsTip>
+	<CER_GenerateAmmoBills_AbAllAmmunitionTip>所有已研究的彈藥類型，無論此處是否有武器使用。最廣的清單。</CER_GenerateAmmoBills_AbAllAmmunitionTip>
+	<CER_GenerateAmmoBills_HideDuplicateBenchesTip>有多個相同工作台時只顯示一個。讓工作台欄保持簡短；訂單仍會送到空閒的那台。</CER_GenerateAmmoBills_HideDuplicateBenchesTip>
+	<CER_GenerateAmmoBills_NothingMatchesSearch>沒有與「{0}」相符的內容。清空搜尋框即可重新看到完整清單。</CER_GenerateAmmoBills_NothingMatchesSearch>
+	<CER_GenerateAmmoBills_NothingMatchesFilter>目前篩選沒有任何內容。請在上方選擇更寬的篩選——「{0}」始終顯示所有已研究項。</CER_GenerateAmmoBills_NothingMatchesFilter>
+</LanguageData>

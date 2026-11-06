@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- 标题 / 表头 -->
+	<CER_SquadSetup_TitleAssign>分配配装</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>实时预览 - 拖动滑块查看结果。在你按下应用之前不会有任何改变。</CER_SquadSetup_LivePreviewNote>
+
+	<!-- 推荐设置 / 预设 / 模式切换 -->
+	<CER_SquadSetup_UseRecommendedSetup>使用推荐设置</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>将所有滑块重置为默认值，并将武器池/反机械交还给自动系统（材料库存/机械体威胁）。</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>均衡</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>反机械</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>经济</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>最佳装备</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>专注远程</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>全部</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>可用物品</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>详细模式 - 显示每个滑块以供手动调整。\n\n点击切换为简单模式（仅预设）。</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>简单模式 - 仅显示预设，滑块已隐藏。\n\n点击切换为详细模式以手动调整每个滑块。</CER_SquadSetup_SimpleModeTip>
+
+	<!-- 通用 / 滑块标签 -->
+	<CER_SquadSetup_AntiFlesh>反血肉</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>反机械</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>分队应针对何种目标进行武装。\n\n在你手动拖动之前，会根据机械体遭遇次数/殖民地存续时间自动设定初始值。</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>仅一种弹药类型</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>最大灵活性</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>每名殖民者的弹药混合类型的积极程度（例如 FMJ + 一个弹匣的 EMP）。仅在开启"覆盖弹药"时生效。\n\n左：每件武器恰好一种类型。右：最多四种，只要该类型能覆盖尚未覆盖的威胁类型就会加入。总携弹量绝不会增加 - 多样性只是对其进行拆分 - 且每种携弹量至少保留一整个弹匣，因此预算较小时类型数量自然更少。</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>使用现有物品</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>制作新物品</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>分配环节分发你尚未拥有的武器的意愿程度。</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>优先远程</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>优先近战</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>调整谁被视为射手、谁被视为打手。</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>始终使用最优</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>兼顾不同职能</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>左：所有人都获得价值最高的武器。右：分队会避免重复，优先填补经典职能。</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>廉价武器</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>最佳武器</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>仅对需要制作的武器有影响。</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>无副武器</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>始终配备副武器</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>在主武器之外再给一件武器（相反类型 - 远程主武器配备近战备用，反之亦然），与装备包的附加方式相同、实时生效。覆盖分队中的这一比例，优先分配给战斗力最高者。</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>无爆炸物</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>充足爆炸物</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>在主武器之外再给一枚手雷（炸药包、棍状炸弹……），与上方的副武器一同列出，但取自其自身独立的池 - 手雷绝不会将真正的备用武器挤出其槽位。覆盖分队中的这一比例，优先分配给战斗力最高者。从你拥有或可制作的手雷中选取。</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>无装备包</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>充足装备包</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>按必要程度对装备包类型排序，此值越高，纳入的种类越多 - 基础补给（食物/药品）优先，专项内容（医疗/药物/工具）之后叠加。每个符合条件的殖民者都会获得每一种已纳入的装备包类型（以医疗为主的装备包仍只分配给指定医生）- 这与排除某些殖民者无关，只关乎存在哪些装备包类型。携带护盾的装备包不受此滑块影响 - 见下文。</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>无护盾</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>充足护盾</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>将任何包含护盾的装备包（依据实际内容而非名称判断）分发给分队中偏向近战的殖民者的这一比例（若无人偏向近战，则分发给整个分队），优先分配给最强的近战战士 - 与上方的副武器/爆炸物滑块一样是渐进式的，而非全有或全无的档位。</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>重新分配携带的武器：</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>手动拾取的武器会被计为可重新分配。</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>副武器最大体积：</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>自动求解器绝不会选择CE体积值超过此上限的候选武器作为副武器（一把全尺寸步枪不应仅因评分较高就被当作某人的"备用"武器分发）。手动选择的副武器不受此上限约束。与模组设置中"配装默认值"标签页共用同一设置。</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- 仅显示更改 / 保留当前 / 使用职能 -->
+	<CER_SquadSetup_ShowOnlyChanges>仅显示更改：</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>保留当前配装：</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>开启：只有没有配装的殖民者会获得配装；已经装备完毕的殖民者保持不变（以锁形图标显示）。</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>覆盖弹药：</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>在分配时为每位殖民者重新挑选弹药（基于当前库存/研究状态以及反机甲和弹药类型滑块），而不是使用武器的默认弹药。职能永远不受影响 - 其弹药始终来自职能本身。</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- 分节标题 / 底部栏 -->
+	<CER_SquadSetup_BackButton>&lt; 返回</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>返回武装殖民地流程的上一步。已应用的步骤不会被撤销。</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>取消</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>取消固定全部（{0}）</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>移除全部 {0} 个手动固定，并将这些殖民者交还给求解器。</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>没有可应用的内容。</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>跳过</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>跳过此步骤 - 此处不分配任何内容，武装殖民地流程继续下一步。</CER_SquadSetup_SkipButtonTip>
+
+	<!-- 应用 / 生成 按钮标签 -->
+	<CER_SquadSetup_ContinueButton>继续 &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>应用（{0} {1}）</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>应用</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (无可应用)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>项更改</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>项更改</CER_SquadSetup_ChangePlural>
+
+	<!-- 生成列表 -->
+
+	<!-- 生成行 -->
+	<CER_SquadSetup_NotResearchedSuffix>（尚未研究）</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- 分配列表表头 / 空状态 / 成本条 / 问题 -->
+	<CER_SquadSetup_UnlockEveryoneTip>解锁所有人。自动分配将重新为所有殖民者制定计划。</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>锁定所有人。在解锁之前不会重新规划任何人。</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>殖民者</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>远程</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>近战</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>医疗</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>当前</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>计划中的主武器</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>装备包</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>副武器</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>武器</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>装备包</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>弹药</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>当前设置下没有任何更改。</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>预览 - 按组件划分的制作成本（可在下一屏幕中调整）：</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;总计：&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;当前设置存在的问题&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>点击打开“职能”页。</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- 成本类别标签 -->
+	<CER_SquadSetup_CostLabelMain>主武器：</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>副武器：</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>手雷：</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>护盾：</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>弹药：</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>装备包：</CER_SquadSetup_CostLabelPacks>
+
+	<!-- 殖民者行 -->
+	<CER_SquadSetup_CannotFightTip>无法战斗（丧失暴力能力，或是婴儿）- 受保护，永远不会被分配配装。</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>远程评分（射击 x10，根据视觉/操作/特质进行调整）。</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>近战评分（近战 x10，根据移动/操作/特质进行调整）。</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>医疗技能（医疗 x10）- 分队中此评分最高的一部分人将获得以医疗为主的装备包。</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>无</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>无法战斗 - 已跳过</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>该殖民者无法战斗（丧失暴力能力，或是婴儿），永远不会获得武器。</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>你设为跳过</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>你把这名殖民标记为跳过，所以自动分配不会动他。他是能战斗的——这是你的决定，不是角色的限制。点最左边的图标可重新纳入。</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  （保留）</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>无  （保留）</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  （已固定）</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>无配装</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>在当前设置下，无法为该殖民者分配任何配装。</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>放下以与 {0} 交换配装。</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>点击以手动为 {0} 选择武器（会固定该选择 - 滑块变化不会重新调整它）。</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\n当前已固定 - 菜单中提供"自动"选项，可将该殖民者交还给求解器。</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\n拖到另一位殖民者的行上可交换他们计划中的配装。</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- 装备包 / 副武器 单元格 -->
+	<CER_SquadSetup_IncludedInRoleTip>包含于 {0}：\n{1}\n\n已固化到该职能中 - 请在职能标签页中编辑职能本身来更改，而非在此处逐个殖民者修改。</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>该职能不包含任何药品/食物/成瘾品/工具类物品。</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>该职能不包含任何副武器、投掷爆炸物或护盾。</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>已附加装备包：{0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>未附加任何装备包。</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\n随武器一同自动评分。点击可覆盖该殖民者获得哪些装备包 - 这是一个待处理的固定项，与武器单元格类似；在你按下应用之前不会生效。</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - 勾选要计划的装备包。在你按下应用之前不会生效。</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>已附加副武器：{0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>未附加任何副武器。</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\n点击以勾选 {0} 携带哪些武器作为副武器 - 这是一个待处理的固定项，与武器单元格类似；在你按下应用之前不会生效。</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - 勾选要携带为副武器的武器。在你按下应用之前不会生效。</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>副武器</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>没有其他可携带为副武器的武器。</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- 补给需求组 -->
+	<CER_SquadSetup_RoleTagSidearm>（副武器）</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade>（手雷）</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield>（护盾）</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - 一切均已覆盖：\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>就绪</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>生产中</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>缺失</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix>（可制作）</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix>（未建造工作台）</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - 目前够用，但无法再制造（未研究）</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - 目前够用，但无法再制造（没有工作台）</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- 拖拽 / 固定 菜单 -->
+	<CER_SquadSetup_CantSwapCannotFight>无法与无法战斗的殖民者（和平主义者或婴儿）交换。</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>两位殖民者都需要有计划的武器或职能才能交换。</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>两位殖民者已计划相同的配装。</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>已交换计划配装：{0} 与 {1}（已固定）。</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>自动（取消固定 - 交由求解器决定）</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>将当前搭配存为职能……</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}：尚未研究弹药</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix>（无配方）</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>将被规划：自动分配会为这名殖民者挑选一套配装。</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>保持原样：自动分配不会改动这名殖民者的装备。仍可修改——点击武器单元格即可直接更改。</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>将收回配装：应用时 {0} 会失去配装，处于没有配装的状态。装备本身仍留在殖民地。</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>已排除：{0} 没有配装，也不会获得配装。在所有界面中都算作非战斗人员。</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>正常规划。</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>保持原样（不受自动分配影响，仍可修改）。</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>收回配装。</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>左键点击：</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>右键点击：</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>配装已收回</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>你把这名殖民者设为“收回配装”。应用时 {0} 会失去已分配的配装，处于没有配装的状态——装备本身仍留在殖民地。点最左边的图标可撤销。</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

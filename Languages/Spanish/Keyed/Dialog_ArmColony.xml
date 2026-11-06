@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Precavido (solo rellenar huecos)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Normal (reiniciar y reconstruir munición)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Agresivo (reconstrucción completa)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Personalizado (pasos ajustados)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>No hay ningún mapa de colonia activo para armar.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>No hay colonos libres para armar.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>Aún no se puede fabricar ningún arma: no hay ninguna fabricación de armas investigada. Investiga un arma, o coloca un puesto de fabricación para hacer una sencilla.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>No se puede fabricar ningún arma: no existe ninguna mesa de trabajo ni puesto de fabricación capaz de construir un arma en ninguno de los mapas de tu colonia. Basta con un puesto de fabricación sencillo.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Armar mi colonia</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>Una pulsación: reparte armas y equipo según habilidad, pon en cola la munición y ofrece fabricar cualquier arma que no poseas.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Colonos:  {0}   ({1} por armar)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>Equipos de armas hechos a mano:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Paquetes de equipamiento existentes:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>¿Cómo deben equiparse los colonos?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Un arma por colono</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Cada colono recibe el arma que mejor le va - sin roles.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Roles reutilizables</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Revisa/crea Roles primero (el paso 1 se abre en modo Rol), luego asigna a los colonos exclusivamente por Rol (el paso 3 asigna "solo roles", la misma casilla que ya tiene Equipar colonos).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Elige un modo preajustado y luego ajusta cualquier paso con su casilla:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>deja sin asignación a todos los colonos</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>elimina los pedidos de munición que este mod puso en cola</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>elimina todos los pedidos de munición</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>elimina los pedidos de armas que este mod puso en cola</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>elimina todos los pedidos de armas</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>borra equipos de armas hechos a mano</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>elimina paquetes de equipo generados por el asistente</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>elimina todos los paquetes de equipamiento</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>Primero {0} (sin deshacer donde es destructivo). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Nada de lo existente se desasigna, cambia o elimina. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Crea pedidos de munición para lo que falta.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>No crea ningún pedido de munición.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Ajusta cada fila de abajo.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Precavido</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Normal</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Agresivo</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Reiniciar personajes</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Nadie se queda sin asignación.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Desasigna primero a todos los colonos.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Desasigna la equipación de todos los colonos antes de la ejecución, para que "rellenar huecos" replanifique de forma natural toda la colonia.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Eliminar pedidos de munición</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Se conservan los pedidos de municion existentes: aqui no se elimina nada. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Elimina solo las órdenes de munición creadas por el asistente de este mod. Sin deshacer. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Elimina todas las órdenes de munición, incluidas las que pusiste tú. Sin deshacer. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>Ninguno: deja los pedidos de munición intactos. Gestionado: elimina solo los pedidos que creó la propia herramienta de este mod, así que un pedido que hayas configurado tú mismo a mano sobrevive. Todo: elimina todos los pedidos de munición de un tipo reconocido sin importar quién los puso en cola (el comportamiento original, sin matices).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Eliminar pedidos de armas</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Se conservan los pedidos de fabricación de armas. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Elimina solo las órdenes de armas creadas por el asistente de este mod. Sin deshacer. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Elimina todas las órdenes de fabricación de armas, incluidas las tuyas. Sin deshacer. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>Ninguno: deja los pedidos de armas intactos. Gestionado: elimina solo los pedidos que creó la propia herramienta de este mod (cola de producción, no la plantilla de la Equipación), así que un pedido que hayas configurado tú mismo a mano sobrevive. Todo: elimina todos los pedidos de un arma reconocida sin importar quién los puso en cola (el comportamiento original, sin matices).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Borrar equipos de armas hechos a mano</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Los equipos de armas hechos a mano se conservan. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Borra los equipos de armas que construiste tú mismo en el editor de CE. Sin deshacer. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Solo equipos que construiste tú en el editor nativo de CE. Las plantillas ocultas por arma que crea este mod nunca se tocan aquí: la pasada las vuelve a crear para cada arma que reparte. Roles y paquetes tienen sus propios pasos.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Eliminar paquetes de equipamiento</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Los paquetes de equipo existentes se conservan. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Elimina solo los paquetes de equipo que el asistente de ESTE mod generó. Sin deshacer. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Elimina todos los paquetes de equipo, incluidos los creados manualmente. Sin deshacer. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>Ninguno: deja los paquetes de equipo intactos. Gestionado: elimina solo los paquetes que produjo el asistente de generación automática, de modo que uno construido a mano en la pestaña Ingredientes se conserva. Todos: elimina todo paquete de equipo sin importar quién lo creó (el comportamiento original, sin distinción). Los equipos hechos a mano nunca se tocan aquí.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Pedidos de munición</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>No se crea ni elimina ningún pedido de munición.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Crea pedidos de municion para lo que falta.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Desmarcalo para dejar tus pedidos de municion completamente intactos. Marcado: se completan pedidos para los colonos que esta ejecucion NO toca (ya asignados de antes). Aqui nunca se elimina nada: los pedidos obsoletos se te ofrecen para eliminar en la ventana de suministro, cada uno con su casilla.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Todavía no se puede armar la colonia:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Cancelar</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>¡Armar mi colonia!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Ejecuta los pasos exactamente como están marcados en la tabla de arriba. Los modos por botón de radio son solo preajustes para las casillas.\n\nConfiguración actual: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>El armado no puede continuar:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Paso de pedidos de munición omitido por elección.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} rol(es) conservaron su contenido pero perdieron las piezas con las que se compusieron: esas piezas se eliminaron. Los colonos con esos roles siguen equipados; para reajustar un rol, arrástrale piezas nuevas.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>{0} colono desasignado</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>{0} colonos desasignados</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>{0} pedido de munición eliminado</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>{0} pedidos de munición eliminados</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>{0} pedido de arma eliminado</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>{0} pedidos de arma eliminados</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>{0} equipo hecho a mano eliminado</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>{0} equipos hechos a mano eliminados</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>{0} paquete de equipamiento eliminado</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>{0} paquetes de equipamiento eliminados</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Armar mi colonia - reinicio: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>No se elimino nada.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Atrás</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Continuar &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Continuar a pedidos de munición y asignación. Los colonos se asignarán exclusivamente por Rol.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Continuar a pedidos de munición y asignación. Aún no existe ningún rol - crea al menos uno arriba, o no se asignará a nadie.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>Ninguna mesa de trabajo tiene actualmente un pedido para {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Armar mi colonia - Resumen</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Modo: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Ejecución interrumpida; los cambios de abajo se aplicaron antes de detenerse.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Reinicio</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>Los interruptores de reinicio se ejecutaron primero (asignaciones, pedidos, equipaciones) para que la reconstrucción se ajuste exactamente a los requisitos actuales.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Colonos desasignados:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Pedidos de munición eliminados:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Pedidos de producción de armas eliminados:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Equipos hechos a mano eliminados:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Paquetes de equipamiento eliminados:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Generado</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Paquetes de equipamiento generados:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Paleta de paquetes iniciales creada o actualizada en el paso 0 - consulta la pestaña Paquetes de equipamiento.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Pedidos de munición creados:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Escalado según la demanda de lo asignado a los colonos; detallado en Producción en cola más abajo.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>No faltaba nada - toda la munición necesaria ya tenía un pedido.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Asignaciones ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Quién recibió qué equipación. Haz clic en una fila para ir a ese colono en el mapa.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- ninguno aplicado (interrumpido) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- ninguno -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Haz clic para ir a {0} en el mapa.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>{0} colono(s) se quedan sin equipación: el paso de asignación indica el motivo.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Producción en cola ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Armas y munición que esta ejecución puso en tus mesas de trabajo. "Pedidos" va a la mesa de trabajo que lleva el pedido.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- ninguno (interrumpido) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- ninguno necesario -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- faltan {0} objeto(s), pero no se pudo encargar nada (sin mesa de trabajo o receta) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Pedidos</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>{0} copia puesta en cola de fabricación.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>{0} copias puestas en cola de fabricación.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} proy.</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>{0} proyectiles en cola - escalado según la demanda de las equipaciones asignadas.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Materiales totales</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Todo lo que consumirá la producción en cola, sumado en todos los pedidos. Rojo = no hay suficiente en el almacén ahora mismo (lista completa de necesidad/existencias en el texto emergente de la franja).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Notas</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Cerrar</CER_ArmColony_CloseBtn>
+
+</LanguageData>

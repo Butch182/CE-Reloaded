@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateAmmoBills_BenchLabelNone>Нет</CER_GenerateAmmoBills_BenchLabelNone>
+	<CER_GenerateAmmoBills_ToggleToAmmoBills>&lt; Заказы на боеприпасы</CER_GenerateAmmoBills_ToggleToAmmoBills>
+	<CER_GenerateAmmoBills_ToggleToWeaponBills>Заказы на оружие &gt;</CER_GenerateAmmoBills_ToggleToWeaponBills>
+	<CER_GenerateAmmoBills_DefaultBatchesLabel>Партий по умолчанию:</CER_GenerateAmmoBills_DefaultBatchesLabel>
+	<CER_GenerateAmmoBills_WorkbenchLabel>Верстак:</CER_GenerateAmmoBills_WorkbenchLabel>
+	<CER_GenerateAmmoBills_AllBenchesOption>Все верстаки</CER_GenerateAmmoBills_AllBenchesOption>
+	<CER_GenerateAmmoBills_AmmunitionLabel>Боеприпасы:</CER_GenerateAmmoBills_AmmunitionLabel>
+	<CER_GenerateAmmoBills_AbAssignedLoadouts>Назначенные комплекты</CER_GenerateAmmoBills_AbAssignedLoadouts>
+	<CER_GenerateAmmoBills_AbAvailableWeapons>Доступное оружие</CER_GenerateAmmoBills_AbAvailableWeapons>
+	<CER_GenerateAmmoBills_AbActiveBills>Активные заказы</CER_GenerateAmmoBills_AbActiveBills>
+	<CER_GenerateAmmoBills_AbAllAmmunition>Изуч. боеприпасы</CER_GenerateAmmoBills_AbAllAmmunition>
+	<CER_GenerateAmmoBills_HideDuplicateBenches>Скрывать одинаковые верстаки</CER_GenerateAmmoBills_HideDuplicateBenches>
+	<CER_GenerateAmmoBills_ColName>Название</CER_GenerateAmmoBills_ColName>
+	<CER_GenerateAmmoBills_ColSpecial>Особое</CER_GenerateAmmoBills_ColSpecial>
+	<CER_GenerateAmmoBills_ColAssig>Наличие</CER_GenerateAmmoBills_ColAssig>
+	<CER_GenerateAmmoBills_ColIngredients>Ингредиенты</CER_GenerateAmmoBills_ColIngredients>
+	<CER_GenerateAmmoBills_ColGenerateOn>Создать на...</CER_GenerateAmmoBills_ColGenerateOn>
+	<CER_GenerateAmmoBills_ColLoadouts>Комплекты</CER_GenerateAmmoBills_ColLoadouts>
+	<CER_GenerateAmmoBills_UnneededBillTooltip>Ни одному назначенному комплекту сейчас не нужны эти боеприпасы - действующие заказы производят их впустую.</CER_GenerateAmmoBills_UnneededBillTooltip>
+	<CER_GenerateAmmoBills_ActiveBillsNone>Нет</CER_GenerateAmmoBills_ActiveBillsNone>
+	<CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>Создать заказ на {0}.</CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>
+	<CER_GenerateAmmoBills_JumpToWorkbenchTooltip>Перейти к этому верстаку.</CER_GenerateAmmoBills_JumpToWorkbenchTooltip>
+	<CER_GenerateAmmoBills_NoBench>Нет верстака</CER_GenerateAmmoBills_NoBench>
+	<CER_GenerateAmmoBills_NotResearched>Не исследовано</CER_GenerateAmmoBills_NotResearched>
+	<CER_GenerateAmmoBills_LoadoutsNone>Нет</CER_GenerateAmmoBills_LoadoutsNone>
+	<CER_GenerateAmmoBills_DeleteAllBillsButton>Удалить все заказы на боеприпасы</CER_GenerateAmmoBills_DeleteAllBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllBillsConfirm>Удалить все заказы на производство боеприпасов на всех верстаках? Это нельзя отменить.</CER_GenerateAmmoBills_DeleteAllBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsSingular>Удалено заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_DeletedAmmoBillsSingular>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsPlural>Удалено заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_DeletedAmmoBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllBillsTooltip>Удалить все заказы на производство боеприпасов со всех верстаков.</CER_GenerateAmmoBills_DeleteAllBillsTooltip>
+	<CER_GenerateAmmoBills_RemoveUnneededButton>Удалить ненужные заказы ({0})</CER_GenerateAmmoBills_RemoveUnneededButton>
+	<CER_GenerateAmmoBills_PruneConfirm>Удалить все заказы на боеприпасы, которые больше никому из назначенных не нужны? Заказы, всё ещё покрывающие реальную потребность, останутся нетронутыми. Это нельзя отменить.</CER_GenerateAmmoBills_PruneConfirm>
+	<CER_GenerateAmmoBills_RemovedUnneededSingular>Удалено ненужных заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_RemovedUnneededSingular>
+	<CER_GenerateAmmoBills_RemovedUnneededPlural>Удалено ненужных заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_RemovedUnneededPlural>
+	<CER_GenerateAmmoBills_PruneTooltip>Заказы, всё ещё выполняющиеся для боеприпасов, которые больше не нужны ни одному назначенному комплекту - производство продолжалось после изменения/удаления комплекта или переназначения поселенца. Заказы, покрывающие реальную потребность, никогда не затрагиваются.</CER_GenerateAmmoBills_PruneTooltip>
+	<CER_GenerateAmmoBills_AutoGenerateButton>Оптимизировать заказы патронов</CER_GenerateAmmoBills_AutoGenerateButton>
+	<CER_GenerateAmmoBills_AutoGenerateTooltip>Проходит по всем типам патронов сразу: чего не хватает - получает заказ, а ненужные заказы предлагаются к отмене. Ничего не меняется до подтверждения; текущее производство не трогается.</CER_GenerateAmmoBills_AutoGenerateTooltip>
+	<CER_GenerateAmmoBills_NoAmmoSelected>Не выбрано боеприпасов для создания заказов.</CER_GenerateAmmoBills_NoAmmoSelected>
+	<CER_GenerateAmmoBills_WeaponsLabel>Оружие:</CER_GenerateAmmoBills_WeaponsLabel>
+	<CER_GenerateAmmoBills_WovAssignedLoadouts>Назначенные комплекты</CER_GenerateAmmoBills_WovAssignedLoadouts>
+	<CER_GenerateAmmoBills_WovAvailableWeapons>Доступное оружие</CER_GenerateAmmoBills_WovAvailableWeapons>
+	<CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>Только оружие, которым ваша колония действительно владеет.</CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovResearchedWeapons>Изуч. оружие</CER_GenerateAmmoBills_WovResearchedWeapons>
+	<CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>Всё оружие, чей рецепт изготовления исследован (независимо от того, есть ли оно у вас).</CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovActiveBills>Активные заказы</CER_GenerateAmmoBills_WovActiveBills>
+	<CER_GenerateAmmoBills_WovColWeapon>Оружие</CER_GenerateAmmoBills_WovColWeapon>
+	<CER_GenerateAmmoBills_WovColScore>Оценка</CER_GenerateAmmoBills_WovColScore>
+	<CER_GenerateAmmoBills_WovColSpecial>Особое</CER_GenerateAmmoBills_WovColSpecial>
+	<CER_GenerateAmmoBills_WovColIngredients>Ингредиенты</CER_GenerateAmmoBills_WovColIngredients>
+	<CER_GenerateAmmoBills_WovColOwned>Наличие</CER_GenerateAmmoBills_WovColOwned>
+	<CER_GenerateAmmoBills_WovQueuedMsg>{0}x {1} postavleno v ochered' na {2}.</CER_GenerateAmmoBills_WovQueuedMsg>
+	<CER_GenerateAmmoBills_WovMaterialTip>Material dlya etogo zakaza: {0}. Klik - izmenit'; zakaz ogranichen imenno im.</CER_GenerateAmmoBills_WovMaterialTip>
+	<CER_GenerateAmmoBills_WovCountTip>Skol'ko izgotovit'. Odin klik po Produce sozdaet imenno stol'ko - po umolchaniyu 1.</CER_GenerateAmmoBills_WovCountTip>
+	<CER_GenerateAmmoBills_WovColMaterial>Mat.</CER_GenerateAmmoBills_WovColMaterial>
+	<CER_GenerateAmmoBills_ScoreBarLabel>Оценка: {0}</CER_GenerateAmmoBills_ScoreBarLabel>
+	<CER_GenerateAmmoBills_PlusMatLabel>+мат.</CER_GenerateAmmoBills_PlusMatLabel>
+	<CER_GenerateAmmoBills_MaterialTooltip>Также требуется материал (сталь, дерево, ...), который выбирается при производстве.</CER_GenerateAmmoBills_MaterialTooltip>
+	<CER_GenerateAmmoBills_WovNotResearched>Не исследовано</CER_GenerateAmmoBills_WovNotResearched>
+	<CER_GenerateAmmoBills_WovNoBench>Нет верстака</CER_GenerateAmmoBills_WovNoBench>
+	<CER_GenerateAmmoBills_WovNotResearchedTooltip>Невозможно произвести: рецепт изготовления ещё не исследован.</CER_GenerateAmmoBills_WovNotResearchedTooltip>
+	<CER_GenerateAmmoBills_WovNoBenchTooltip>Невозможно произвести: на этой карте не построен подходящий верстак.</CER_GenerateAmmoBills_WovNoBenchTooltip>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>Удалить все заказы на оружие</CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>Удалить все заказы на производство оружия на всех верстаках? Это нельзя отменить.</CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsSingular>Удалено заказов на оружие: {0}.</CER_GenerateAmmoBills_DeletedWeaponBillsSingular>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsPlural>Удалено заказов на оружие: {0}.</CER_GenerateAmmoBills_DeletedWeaponBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>Удалить все заказы на производство оружия со всех верстаков.</CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>
+	<CER_GenerateAmmoBills_ProduceSelectedCount>Произвести выбранное ({0})</CER_GenerateAmmoBills_ProduceSelectedCount>
+	<CER_GenerateAmmoBills_ProduceSelectedLabel>Произвести выбранное</CER_GenerateAmmoBills_ProduceSelectedLabel>
+	<CER_GenerateAmmoBills_HiddenWeaponsMessage>Выбранное оружие, скрытое текущим фильтром ({0}), не было произведено.</CER_GenerateAmmoBills_HiddenWeaponsMessage>
+	<CER_GenerateAmmoBills_NoWeaponsSelected>Оружие не выбрано.</CER_GenerateAmmoBills_NoWeaponsSelected>
+	<CER_GenerateAmmoBills_AddedUpdatedBillsMessage>Добавлено/обновлено заказов: {0}.</CER_GenerateAmmoBills_AddedUpdatedBillsMessage>
+	<CER_GenerateAmmoBills_RemovedObsoleteSingular>Удалено устаревших заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_RemovedObsoleteSingular>
+	<CER_GenerateAmmoBills_RemovedObsoletePlural>Удалено устаревших заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_RemovedObsoletePlural>
+	<CER_GenerateAmmoBills_AutoGeneratedBillsMessage>Автоматически создано недостающих заказов на боеприпасы: {0}.</CER_GenerateAmmoBills_AutoGeneratedBillsMessage>
+
+	<CER_GenerateAmmoBills_ColAmount>Количество</CER_GenerateAmmoBills_ColAmount>
+	<CER_GenerateAmmoBills_AmountTooltip>Сколько добавляет один клик по верстаку. По умолчанию: партии x выход ({0} за партию).</CER_GenerateAmmoBills_AmountTooltip>
+	<CER_GenerateAmmoBills_GenerateAdditiveTooltip>{0}: добавить {1} к заказу ∞ (делать до). Нажмите ещё раз, чтобы добавить больше.</CER_GenerateAmmoBills_GenerateAdditiveTooltip>
+
+	<CER_GenerateAmmoBills_WovColActiveBills>Активные заказы</CER_GenerateAmmoBills_WovColActiveBills>
+
+	<CER_GenerateAmmoBills_GenerateOnceTooltip>{0}: разовый заказ - сделать {1} и остановиться (x1).</CER_GenerateAmmoBills_GenerateOnceTooltip>
+
+	<CER_GenerateAmmoBills_MasterCheckTip>Отметить все доступные строки ({0}).</CER_GenerateAmmoBills_MasterCheckTip>
+	<CER_GenerateAmmoBills_MasterUncheckTip>Снять все отметки.</CER_GenerateAmmoBills_MasterUncheckTip>
+
+
+	<CER_GenerateAmmoBills_FilterAssignedTip>Только то, что колонистам назначено прямо сейчас. Самый короткий список - и тот, что соответствует реальному снаряжению отряда.</CER_GenerateAmmoBills_FilterAssignedTip>
+	<CER_GenerateAmmoBills_FilterActiveBillsTip>Только записи, для которых уже стоит задание у верстака. Удобно проверять, что производится.</CER_GenerateAmmoBills_FilterActiveBillsTip>
+	<CER_GenerateAmmoBills_AbAvailableWeaponsTip>Боеприпасы для каждого оружия, которое колония имеет или может изготовить - шире списка назначенного, чтобы запастись до раздачи оружия.</CER_GenerateAmmoBills_AbAvailableWeaponsTip>
+	<CER_GenerateAmmoBills_AbAllAmmunitionTip>Все изученные типы боеприпасов, независимо от того, использует ли их здешнее оружие. Самый широкий список.</CER_GenerateAmmoBills_AbAllAmmunitionTip>
+	<CER_GenerateAmmoBills_HideDuplicateBenchesTip>При нескольких одинаковых верстаках показывать только один. Столбец остаётся коротким; задание всё равно уйдёт на свободный верстак.</CER_GenerateAmmoBills_HideDuplicateBenchesTip>
+	<CER_GenerateAmmoBills_NothingMatchesSearch>Ничто не соответствует «{0}». Очистите поле поиска, чтобы снова увидеть весь список.</CER_GenerateAmmoBills_NothingMatchesSearch>
+	<CER_GenerateAmmoBills_NothingMatchesFilter>Текущий фильтр ничего не показывает. Выберите более широкий выше - «{0}» всегда показывает всё изученное.</CER_GenerateAmmoBills_NothingMatchesFilter>
+</LanguageData>

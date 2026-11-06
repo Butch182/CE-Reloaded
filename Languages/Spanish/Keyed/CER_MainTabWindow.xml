@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>Planificador de equipaciones</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>Abre el flujo de trabajo de CE Reloaded: Paquetes de equipamiento, Roles, Equipar colonos y Resumen de pedidos.</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>Va a la pestaña Equipar colonos de CE Reloaded, filtrada para este personaje.</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

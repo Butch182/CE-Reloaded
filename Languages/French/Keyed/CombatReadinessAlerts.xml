@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_CombatReadinessAlerts_NoLoadout>Aucune dotation assignée</CER_CombatReadinessAlerts_NoLoadout>
+	<CER_CombatReadinessAlerts_WeaponWithoutAmmo>Dotation sans munitions</CER_CombatReadinessAlerts_WeaponWithoutAmmo>
+	<CER_CombatReadinessAlerts_AmmoNotProduced>Munitions non produites</CER_CombatReadinessAlerts_AmmoNotProduced>
+	<CER_CombatReadinessAlerts_WeaponUnavailable>Arme de la dotation indisponible</CER_CombatReadinessAlerts_WeaponUnavailable>
+	<CER_CombatReadinessAlerts_LowAmmo>Munitions faibles</CER_CombatReadinessAlerts_LowAmmo>
+	<CER_CombatReadinessAlerts_Overloaded>Surchargé</CER_CombatReadinessAlerts_Overloaded>
+	<CER_CombatReadinessAlerts_CapacityBlocked>Trop chargé pour récupérer la dotation</CER_CombatReadinessAlerts_CapacityBlocked>
+	<CER_CombatReadinessAlerts_AssignedNotCarried>Arme assignée, n'en porte aucune</CER_CombatReadinessAlerts_AssignedNotCarried>
+	<CER_CombatReadinessAlerts_Label>Préparation au combat</CER_CombatReadinessAlerts_Label>
+	<CER_CombatReadinessAlerts_LabelWithIssueSingular>Preparation au combat : {0} colon demande attention</CER_CombatReadinessAlerts_LabelWithIssueSingular>
+	<CER_CombatReadinessAlerts_LabelWithIssuePlural>Preparation au combat : {0} colons demandent attention</CER_CombatReadinessAlerts_LabelWithIssuePlural>
+	<CER_CombatReadinessAlerts_ExplanationHeader>Colons ayant un problème de préparation au combat :</CER_CombatReadinessAlerts_ExplanationHeader>
+	<CER_CombatReadinessAlerts_CategoryLine>{0} ({1}) : {2}</CER_CombatReadinessAlerts_CategoryLine>
+	<CER_CombatReadinessAlerts_AndOthers> et {0} autres</CER_CombatReadinessAlerts_AndOthers>
+
+</LanguageData>

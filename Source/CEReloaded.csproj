@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C7C2932-B792-4EC8-AC2D-5BD2333BE3ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEReloaded</RootNamespace>
+    <AssemblyName>CEReloaded</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>default</LangVersion>
+    <!-- Adjust these two paths to your install, or pass them on the command line:
+         dotnet build Source/CEReloaded.csproj -p:RimWorldDir=... -p:WorkshopDir=... -->
+    <RimWorldDir Condition=" '$(RimWorldDir)' == '' ">E:\Games\Steam\SteamApps\common\RimWorld</RimWorldDir>
+    <WorkshopDir Condition=" '$(WorkshopDir)' == '' ">E:\Games\Steam\SteamApps\workshop\content\294100</WorkshopDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\1.6\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(WorkshopDir)\2009463077\1.6\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>$(WorkshopDir)\2890901044\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>$(RimWorldDir)\RimWorldWin64_Data\Managed\netstandard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CEReloadedMain.cs" />
+    <Compile Include="CEReloadedMod.cs" />
+    <Compile Include="CEReloadedSettings.cs" />
+    <Compile Include="LoadoutUtility.cs" />
+    <Compile Include="LoadoutClipboard.cs" />
+    <Compile Include="Patch_ModSettingsSize.cs" />
+    <Compile Include="Patch_ClickThroughGuard.cs" />
+    <Compile Include="ReadoutAwareWindowDrawing.cs" />
+    <Compile Include="Patch_MainTabWindow.cs" />
+    <Compile Include="Patch_VanillaTabHider.cs" />
+    <Compile Include="Compat_BetterPawnControl.cs" />
+    <Compile Include="SaveCleanse.cs" />
+    <Compile Include="FetchGearNow.cs" />
+    <Compile Include="Patch_LoadoutTooltip.cs" />
+    <Compile Include="Patch_SetLoadoutAnchor.cs" />
+    <Compile Include="Patch_LoadoutLifecycle.cs" />
+    <Compile Include="Dialog_GenerateLoadouts.cs" />
+    <Compile Include="Dialog_MassReplaceAmmo.cs" />
+    <Compile Include="Dialog_GenerateAmmoBills.cs" />
+    <Compile Include="Dialog_CEReloadedTabs.cs" />
+    <Compile Include="Dialog_WeaponAudit.cs" />
+    <Compile Include="CombatReadinessAlerts.cs" />
+    <Compile Include="Roles.cs" />
+    <Compile Include="EquipmentPacks.cs" />
+    <Compile Include="GenericIcons.cs" />
+    <Compile Include="MultiParentUtility.cs" />
+    <Compile Include="LoadoutDeletion.cs" />
+    <Compile Include="Patch_LoadoutMultiParent.cs" />
+    <Compile Include="AmmoAssignment.cs" />
+    <Compile Include="SidearmAssignment.cs" />
+    <Compile Include="Dialog_Ingredients.cs" />
+    <Compile Include="Dialog_GenerateEquipmentPack.cs" />
+    <Compile Include="Dialog_ChangeAmmo.cs" />
+    <Compile Include="Dialog_PickPacks.cs" />
+    <Compile Include="Dialog_PickOtherItem.cs" />
+    <Compile Include="Patch_PawnChangeAmmoGizmo.cs" />
+    <Compile Include="UiState.cs" />
+    <Compile Include="Dialog_CERWorkflowGuide.cs" />
+    <Compile Include="Dialog_ArmColony.cs" />
+    <Compile Include="Dialog_AssignLoadouts.cs" />
+    <Compile Include="Patch_LoadoutEditButton.cs" />
+    <Compile Include="AssignPlanner.cs" />
+    <Compile Include="Dialog_SquadSetup.cs" />
+    <Compile Include="Dialog_SupplyLoadouts.cs" />
+    <Compile Include="Dialog_PawnGear.cs" />
+    <Compile Include="Patch_GearTabLoadoutPanel.cs" />
+    <Compile Include="IdleFrameRate.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

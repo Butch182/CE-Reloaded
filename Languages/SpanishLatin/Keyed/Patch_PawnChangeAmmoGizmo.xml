@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Equipos de munición</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Muestra y cambia la munición adicional que llevan los colonos seleccionados más allá de la munición por defecto de su arma - filtrada según lo que encaja con su equipamiento, no todos los tipos de munición del juego.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateAmmoBills_BenchLabelNone>Keine</CER_GenerateAmmoBills_BenchLabelNone>
+	<CER_GenerateAmmoBills_ToggleToAmmoBills>&lt; Munitionsaufträge</CER_GenerateAmmoBills_ToggleToAmmoBills>
+	<CER_GenerateAmmoBills_ToggleToWeaponBills>Waffenaufträge &gt;</CER_GenerateAmmoBills_ToggleToWeaponBills>
+	<CER_GenerateAmmoBills_DefaultBatchesLabel>Standardchargen:</CER_GenerateAmmoBills_DefaultBatchesLabel>
+	<CER_GenerateAmmoBills_WorkbenchLabel>Werkbank:</CER_GenerateAmmoBills_WorkbenchLabel>
+	<CER_GenerateAmmoBills_AllBenchesOption>Alle Werkbänke</CER_GenerateAmmoBills_AllBenchesOption>
+	<CER_GenerateAmmoBills_AmmunitionLabel>Munition:</CER_GenerateAmmoBills_AmmunitionLabel>
+	<CER_GenerateAmmoBills_AbAssignedLoadouts>Zugewiesene Beladungen</CER_GenerateAmmoBills_AbAssignedLoadouts>
+	<CER_GenerateAmmoBills_AbAvailableWeapons>Verfügbare Waffen</CER_GenerateAmmoBills_AbAvailableWeapons>
+	<CER_GenerateAmmoBills_AbActiveBills>Aktive Aufträge</CER_GenerateAmmoBills_AbActiveBills>
+	<CER_GenerateAmmoBills_AbAllAmmunition>Erf. Munition</CER_GenerateAmmoBills_AbAllAmmunition>
+	<CER_GenerateAmmoBills_HideDuplicateBenches>Doppelte Werkbänke ausblenden</CER_GenerateAmmoBills_HideDuplicateBenches>
+	<CER_GenerateAmmoBills_ColName>Name</CER_GenerateAmmoBills_ColName>
+	<CER_GenerateAmmoBills_ColSpecial>Besonderheit</CER_GenerateAmmoBills_ColSpecial>
+	<CER_GenerateAmmoBills_ColAssig>Verfügbarkeit</CER_GenerateAmmoBills_ColAssig>
+	<CER_GenerateAmmoBills_ColIngredients>Zutaten</CER_GenerateAmmoBills_ColIngredients>
+	<CER_GenerateAmmoBills_ColGenerateOn>Generieren auf...</CER_GenerateAmmoBills_ColGenerateOn>
+	<CER_GenerateAmmoBills_ColLoadouts>Beladungen</CER_GenerateAmmoBills_ColLoadouts>
+	<CER_GenerateAmmoBills_UnneededBillTooltip>Keine zugewiesene Beladung eines Kolonisten benötigt derzeit diese Munition - die laufenden Aufträge produzieren für niemanden.</CER_GenerateAmmoBills_UnneededBillTooltip>
+	<CER_GenerateAmmoBills_ActiveBillsNone>Keine</CER_GenerateAmmoBills_ActiveBillsNone>
+	<CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>Einen Auftrag auf {0} erstellen.</CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>
+	<CER_GenerateAmmoBills_JumpToWorkbenchTooltip>Zu dieser Werkbank springen.</CER_GenerateAmmoBills_JumpToWorkbenchTooltip>
+	<CER_GenerateAmmoBills_NoBench>Keine Werkbank</CER_GenerateAmmoBills_NoBench>
+	<CER_GenerateAmmoBills_NotResearched>Nicht erforscht</CER_GenerateAmmoBills_NotResearched>
+	<CER_GenerateAmmoBills_LoadoutsNone>Keine</CER_GenerateAmmoBills_LoadoutsNone>
+	<CER_GenerateAmmoBills_DeleteAllBillsButton>Alle Munitionsaufträge löschen</CER_GenerateAmmoBills_DeleteAllBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllBillsConfirm>Jeden Munitionsproduktionsauftrag auf jeder Werkbank löschen? Das kann nicht rückgängig gemacht werden.</CER_GenerateAmmoBills_DeleteAllBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsSingular>{0} Munitionsauftrag gelöscht.</CER_GenerateAmmoBills_DeletedAmmoBillsSingular>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsPlural>{0} Munitionsaufträge gelöscht.</CER_GenerateAmmoBills_DeletedAmmoBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllBillsTooltip>Entfernt jeden Munitionsproduktionsauftrag von jeder Werkbank.</CER_GenerateAmmoBills_DeleteAllBillsTooltip>
+	<CER_GenerateAmmoBills_RemoveUnneededButton>Unnötige Aufträge entfernen ({0})</CER_GenerateAmmoBills_RemoveUnneededButton>
+	<CER_GenerateAmmoBills_PruneConfirm>Jeden Munitionsauftrag löschen, dessen Munition niemand mehr zugewiesen benötigt? Aufträge, die noch echten Bedarf decken, bleiben unangetastet. Das kann nicht rückgängig gemacht werden.</CER_GenerateAmmoBills_PruneConfirm>
+	<CER_GenerateAmmoBills_RemovedUnneededSingular>{0} unnötigen Munitionsauftrag entfernt.</CER_GenerateAmmoBills_RemovedUnneededSingular>
+	<CER_GenerateAmmoBills_RemovedUnneededPlural>{0} unnötige Munitionsaufträge entfernt.</CER_GenerateAmmoBills_RemovedUnneededPlural>
+	<CER_GenerateAmmoBills_PruneTooltip>Aufträge, die derzeit für Munition laufen, die keine zugewiesene Beladung mehr benötigt - Produktion, die weiterlief, nachdem eine Beladung bearbeitet/gelöscht oder ein Kolonist neu zugewiesen wurde. Aufträge, die noch echten Bedarf decken, werden nie angetastet.</CER_GenerateAmmoBills_PruneTooltip>
+	<CER_GenerateAmmoBills_AutoGenerateButton>Munitionsaufträge optimieren</CER_GenerateAmmoBills_AutoGenerateButton>
+	<CER_GenerateAmmoBills_AutoGenerateTooltip>Geht alle Munitionssorten auf einmal durch: was fehlt, bekommt einen Auftrag, und Aufträge, die niemand mehr braucht, werden zum Abbrechen angeboten. Nichts ändert sich vor dem Bestätigen; laufende Aufträge bleiben unangetastet.</CER_GenerateAmmoBills_AutoGenerateTooltip>
+	<CER_GenerateAmmoBills_NoAmmoSelected>Keine Munition zur Generierung ausgewählt.</CER_GenerateAmmoBills_NoAmmoSelected>
+	<CER_GenerateAmmoBills_WeaponsLabel>Waffen:</CER_GenerateAmmoBills_WeaponsLabel>
+	<CER_GenerateAmmoBills_WovAssignedLoadouts>Zugewiesene Beladungen</CER_GenerateAmmoBills_WovAssignedLoadouts>
+	<CER_GenerateAmmoBills_WovAvailableWeapons>Verfügbare Waffen</CER_GenerateAmmoBills_WovAvailableWeapons>
+	<CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>Nur Waffen, die deine Kolonie tatsächlich besitzt.</CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovResearchedWeapons>Erf. Waffen</CER_GenerateAmmoBills_WovResearchedWeapons>
+	<CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>Jede Waffe, deren Herstellungsrezept erforscht ist (unabhängig davon, ob du eine besitzt).</CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovActiveBills>Aktive Aufträge</CER_GenerateAmmoBills_WovActiveBills>
+	<CER_GenerateAmmoBills_WovColWeapon>Waffe</CER_GenerateAmmoBills_WovColWeapon>
+	<CER_GenerateAmmoBills_WovColScore>Wertung</CER_GenerateAmmoBills_WovColScore>
+	<CER_GenerateAmmoBills_WovColSpecial>Besonderheit</CER_GenerateAmmoBills_WovColSpecial>
+	<CER_GenerateAmmoBills_WovColIngredients>Zutaten</CER_GenerateAmmoBills_WovColIngredients>
+	<CER_GenerateAmmoBills_WovColOwned>Verfügbarkeit</CER_GenerateAmmoBills_WovColOwned>
+	<CER_GenerateAmmoBills_WovQueuedMsg>{0}x {1} an {2} in Auftrag gegeben.</CER_GenerateAmmoBills_WovQueuedMsg>
+	<CER_GenerateAmmoBills_WovMaterialTip>Material fuer diesen Auftrag: {0}. Klicken zum Aendern - der Auftrag wird genau darauf beschraenkt.</CER_GenerateAmmoBills_WovMaterialTip>
+	<CER_GenerateAmmoBills_WovCountTip>Wie viele hergestellt werden. Ein Klick auf Produce legt genau diese Menge an - Vorgabe ist 1.</CER_GenerateAmmoBills_WovCountTip>
+	<CER_GenerateAmmoBills_WovColMaterial>Mat.</CER_GenerateAmmoBills_WovColMaterial>
+	<CER_GenerateAmmoBills_ScoreBarLabel>Wertung: {0}</CER_GenerateAmmoBills_ScoreBarLabel>
+	<CER_GenerateAmmoBills_PlusMatLabel>+Mat.</CER_GenerateAmmoBills_PlusMatLabel>
+	<CER_GenerateAmmoBills_MaterialTooltip>Benötigt zusätzlich ein Material (Stahl, Holz, ...), das bei der Produktion gewählt wird.</CER_GenerateAmmoBills_MaterialTooltip>
+	<CER_GenerateAmmoBills_WovNotResearched>Nicht erforscht</CER_GenerateAmmoBills_WovNotResearched>
+	<CER_GenerateAmmoBills_WovNoBench>Keine Werkbank</CER_GenerateAmmoBills_WovNoBench>
+	<CER_GenerateAmmoBills_WovNotResearchedTooltip>Kann nicht hergestellt werden: Das Herstellungsrezept ist noch nicht erforscht.</CER_GenerateAmmoBills_WovNotResearchedTooltip>
+	<CER_GenerateAmmoBills_WovNoBenchTooltip>Kann nicht hergestellt werden: Auf dieser Karte ist keine geeignete Werkbank gebaut.</CER_GenerateAmmoBills_WovNoBenchTooltip>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>Alle Waffenaufträge löschen</CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>Jeden Waffenproduktionsauftrag auf jeder Werkbank löschen? Das kann nicht rückgängig gemacht werden.</CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsSingular>{0} Waffenauftrag gelöscht.</CER_GenerateAmmoBills_DeletedWeaponBillsSingular>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsPlural>{0} Waffenaufträge gelöscht.</CER_GenerateAmmoBills_DeletedWeaponBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>Entfernt jeden Waffenproduktionsauftrag von jeder Werkbank.</CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>
+	<CER_GenerateAmmoBills_ProduceSelectedCount>Ausgewählte herstellen ({0})</CER_GenerateAmmoBills_ProduceSelectedCount>
+	<CER_GenerateAmmoBills_ProduceSelectedLabel>Ausgewählte herstellen</CER_GenerateAmmoBills_ProduceSelectedLabel>
+	<CER_GenerateAmmoBills_HiddenWeaponsMessage>{0} ausgewählte, vom aktuellen Filter ausgeblendete Waffe(n) wurden nicht hergestellt.</CER_GenerateAmmoBills_HiddenWeaponsMessage>
+	<CER_GenerateAmmoBills_NoWeaponsSelected>Keine Waffen ausgewählt.</CER_GenerateAmmoBills_NoWeaponsSelected>
+	<CER_GenerateAmmoBills_AddedUpdatedBillsMessage>{0} Aufträge hinzugefügt/aktualisiert.</CER_GenerateAmmoBills_AddedUpdatedBillsMessage>
+	<CER_GenerateAmmoBills_RemovedObsoleteSingular>{0} veralteten Munitionsauftrag entfernt.</CER_GenerateAmmoBills_RemovedObsoleteSingular>
+	<CER_GenerateAmmoBills_RemovedObsoletePlural>{0} veraltete Munitionsaufträge entfernt.</CER_GenerateAmmoBills_RemovedObsoletePlural>
+	<CER_GenerateAmmoBills_AutoGeneratedBillsMessage>{0} fehlende(n) Munitionsauftrag/-aufträge automatisch generiert.</CER_GenerateAmmoBills_AutoGeneratedBillsMessage>
+
+	<CER_GenerateAmmoBills_ColAmount>Menge</CER_GenerateAmmoBills_ColAmount>
+	<CER_GenerateAmmoBills_AmountTooltip>Wie viel ein Klick auf eine Werkbank dem Auftrag hinzufügt. Vorgabe: Chargen x Ertrag ({0} je Charge).</CER_GenerateAmmoBills_AmountTooltip>
+	<CER_GenerateAmmoBills_GenerateAdditiveTooltip>{0}: {1} zum ∞-Auftrag (herstellen bis) hinzufügen. Nochmal klicken legt weitere drauf.</CER_GenerateAmmoBills_GenerateAdditiveTooltip>
+
+	<CER_GenerateAmmoBills_WovColActiveBills>Laufende Aufträge</CER_GenerateAmmoBills_WovColActiveBills>
+
+	<CER_GenerateAmmoBills_GenerateOnceTooltip>{0}: Einzelauftrag - {1} herstellen und aufhören (x1).</CER_GenerateAmmoBills_GenerateOnceTooltip>
+
+	<CER_GenerateAmmoBills_MasterCheckTip>Alle {0} anhakbaren Zeilen anhaken.</CER_GenerateAmmoBills_MasterCheckTip>
+	<CER_GenerateAmmoBills_MasterUncheckTip>Alle Haken entfernen.</CER_GenerateAmmoBills_MasterUncheckTip>
+
+
+	<CER_GenerateAmmoBills_FilterAssignedTip>Nur, was Kolonisten gerade wirklich zugewiesen ist. Die kuerzeste Liste - und die, die zu dem passt, was deine Truppe tatsaechlich benutzt.</CER_GenerateAmmoBills_FilterAssignedTip>
+	<CER_GenerateAmmoBills_FilterActiveBillsTip>Nur Eintraege, fuer die schon ein Auftrag an einer Werkbank haengt. Damit siehst du nach, was gerade produziert wird.</CER_GenerateAmmoBills_FilterActiveBillsTip>
+	<CER_GenerateAmmoBills_AbAvailableWeaponsTip>Munition fuer jede Waffe, die die Kolonie besitzt oder bauen kann - weiter als die Zuweisungsliste, damit du vorraetig machen kannst, bevor du die Waffen austeilst.</CER_GenerateAmmoBills_AbAvailableWeaponsTip>
+	<CER_GenerateAmmoBills_AbAllAmmunitionTip>Jede erforschte Munitionssorte, unabhaengig davon, ob eine Waffe hier sie benutzt. Die weiteste Liste.</CER_GenerateAmmoBills_AbAllAmmunitionTip>
+	<CER_GenerateAmmoBills_HideDuplicateBenchesTip>Bei mehreren gleichen Werkbaenken nur eine davon zeigen. Haelt die Bankspalte kurz; der Auftrag geht trotzdem an die Bank, die frei ist.</CER_GenerateAmmoBills_HideDuplicateBenchesTip>
+	<CER_GenerateAmmoBills_NothingMatchesSearch>Nichts passt zu "{0}". Leere das Suchfeld, um wieder alles zu sehen.</CER_GenerateAmmoBills_NothingMatchesSearch>
+	<CER_GenerateAmmoBills_NothingMatchesFilter>Der gewaehlte Filter zeigt nichts. Nimm oben einen weiteren - "{0}" zeigt immer alles Erforschte.</CER_GenerateAmmoBills_NothingMatchesFilter>
+</LanguageData>

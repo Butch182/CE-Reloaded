@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Dodaj inny przedmiot</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - dodaj dowolny przedmiot do osobistego ekwipunku, poza tym, co już obejmują Amunicja, Pakiety i Broń boczna.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Szukaj przedmiotów...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>Brak wyników dla "{0}".</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Usun temu koloniscie (ma obecnie {0}). Liczba w polu okresla ile.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Tego przedmiotu nie ma na osobistej liscie kolonisty, wiec nie ma czego usuwac.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Usunieto {0}x {1} od {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Przedmiot</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Przypisano</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Ilość</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>Dodano {0}x {1} dla {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Zamknij</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Kopiuj</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Kopiuje pozostałe przedmioty tego kolonisty do schowka. Wklej je innemu koloniście przez kolumnę wklejania w zakładce Wyposaż kolonistów (zastępuje jego pozostałe przedmioty). Pustą listę też można skopiować - wklejona czyści cel.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>Skopiowano {0} rodzaj(ów) przedmiotów od {1} - użyj kolumny wklejania w zakładce Wyposaż kolonistów.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Skopiowano pustą listę przedmiotów od {0} - wklejona czyści pozostałe przedmioty celu.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

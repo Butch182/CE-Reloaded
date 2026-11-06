@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_LoadoutUtility_WordEquipped>ausgerüstet</CER_LoadoutUtility_WordEquipped>
+	<CER_LoadoutUtility_WordInStorage>gelagert</CER_LoadoutUtility_WordInStorage>
+	<CER_LoadoutUtility_WordInProduction>in Produktion</CER_LoadoutUtility_WordInProduction>
+	<CER_LoadoutUtility_WordMissing>fehlend - nicht im Besitz, nicht gelagert, nicht in Produktion</CER_LoadoutUtility_WordMissing>
+
+	<CER_LoadoutUtility_LocationTooltipStored>Gelagert:\n{0}</CER_LoadoutUtility_LocationTooltipStored>
+	<CER_LoadoutUtility_LocationTooltipCarried>Mitgeführt von:\n{0}</CER_LoadoutUtility_LocationTooltipCarried>
+	<CER_LoadoutUtility_LocationTooltipAssigned>Zugewiesen an:\n{0}</CER_LoadoutUtility_LocationTooltipAssigned>
+	<CER_LoadoutUtility_LocationTooltipForbidden>Als "nicht aufsammeln" markiert:\n{0}</CER_LoadoutUtility_LocationTooltipForbidden>
+	<CER_LoadoutUtility_ForbiddenOnGround>Auf dem Boden</CER_LoadoutUtility_ForbiddenOnGround>
+	<CER_LoadoutUtility_ForbiddenMarkTip>{0} davon sind als "nicht aufsammeln" markiert. Sie zählen hier mit, sind aber erst benutzbar, wenn du sie freigibst.</CER_LoadoutUtility_ForbiddenMarkTip>
+	<CER_LoadoutUtility_LocationTooltipMaterials>Nach Material:
+{0}</CER_LoadoutUtility_LocationTooltipMaterials>
+
+	<CER_LoadoutUtility_AvailTotal>Gesamt: {0}</CER_LoadoutUtility_AvailTotal>
+	<CER_LoadoutUtility_AvailEquipped>Ausgerüstet: {0}</CER_LoadoutUtility_AvailEquipped>
+	<CER_LoadoutUtility_AvailAvailable>Verfügbar: {0}</CER_LoadoutUtility_AvailAvailable>
+	<CER_LoadoutUtility_AvailAssignedInStore>Zugewiesen, gelagert: {0}</CER_LoadoutUtility_AvailAssignedInStore>
+	<CER_LoadoutUtility_AvailAssignedCarried>Zugewiesen &amp; mitgeführt: {0}</CER_LoadoutUtility_AvailAssignedCarried>
+	<CER_LoadoutUtility_AvailCarriedUnassigned>Mitgeführt ohne Zuweisung: {0}</CER_LoadoutUtility_AvailCarriedUnassigned>
+	<CER_LoadoutUtility_AvailInProduction>In Produktion: {0}</CER_LoadoutUtility_AvailInProduction>
+	<CER_LoadoutUtility_AvailStillMissing>Fehlt: {0}</CER_LoadoutUtility_AvailStillMissing>
+	<CER_LoadoutUtility_AvailForbidden>Als "nicht aufsammeln" markiert: {0}</CER_LoadoutUtility_AvailForbidden>
+	<CER_LoadoutUtility_AvailOnGround>Liegt lose herum: {0}</CER_LoadoutUtility_AvailOnGround>
+	<CER_LoadoutUtility_AndNMoreLine>...und {0} weitere</CER_LoadoutUtility_AndNMoreLine>
+
+	<CER_LoadoutUtility_SearchLabel>Suche:</CER_LoadoutUtility_SearchLabel>
+	<CER_LoadoutUtility_ScrollMore>mehr weiter unten</CER_LoadoutUtility_ScrollMore>
+	<CER_LoadoutUtility_ScrollMoreRows>noch {0} weiter unten</CER_LoadoutUtility_ScrollMoreRows>
+	<CER_LoadoutUtility_ClearButtonX>x</CER_LoadoutUtility_ClearButtonX>
+	<CER_LoadoutUtility_ClearSearchTooltip>Suchfilter leeren.</CER_LoadoutUtility_ClearSearchTooltip>
+
+	<CER_LoadoutUtility_ArmColonyButtonLabel>Kolonie bewaffnen</CER_LoadoutUtility_ArmColonyButtonLabel>
+	<CER_LoadoutUtility_ArmColonyButtonTooltip>Ein Klick: verteilt Waffen nach Fertigkeit, reiht Munition ein und stellt den Waffenfehlbestand her.</CER_LoadoutUtility_ArmColonyButtonTooltip>
+
+	<CER_LoadoutUtility_ModeDetailedTip>Detailmodus - zeigt jeden Filter und jede Spalte.\n\nAnklicken, um zu Einfach zu wechseln.</CER_LoadoutUtility_ModeDetailedTip>
+	<CER_LoadoutUtility_ModeSimpleTip>Einfacher Modus - blendet erweiterte Filter und Spalten für eine übersichtlichere Ansicht aus.\n\nAnklicken, um zu Detail zu wechseln.</CER_LoadoutUtility_ModeSimpleTip>
+
+	<CER_LoadoutUtility_ScoreBarLabel>{0}: {1}</CER_LoadoutUtility_ScoreBarLabel>
+
+	<CER_LoadoutUtility_ReadinessReady>Bereit</CER_LoadoutUtility_ReadinessReady>
+	<CER_LoadoutUtility_ReadinessIssueSingular>{0} braucht Aufmerksamkeit</CER_LoadoutUtility_ReadinessIssueSingular>
+	<CER_LoadoutUtility_ReadinessIssuePlural>{0} brauchen Aufmerksamkeit</CER_LoadoutUtility_ReadinessIssuePlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutOption>Überhaupt keine Beladung ({0})  -  Trupp-Setup öffnen</CER_LoadoutUtility_ReadinessNoLoadoutOption>
+	<CER_LoadoutUtility_ReadinessProdGapsOption>Produktionslücken ({0})  -  Versorgung öffnen</CER_LoadoutUtility_ReadinessProdGapsOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>Wenig Munition ({0})  -  Versorgung öffnen</CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockOption>{0}  (Nachschub im Lager, nicht abgeholt)  -  jetzt holen</CER_LoadoutUtility_ReadinessSuppliesInStockOption>
+	<CER_LoadoutUtility_WhatOverloaded>überladen</CER_LoadoutUtility_WhatOverloaded>
+	<CER_LoadoutUtility_WhatLowAmmo>wenig Munition</CER_LoadoutUtility_WhatLowAmmo>
+	<CER_LoadoutUtility_WhatCapacityBlocked>Kapazität blockiert</CER_LoadoutUtility_WhatCapacityBlocked>
+	<CER_LoadoutUtility_WhatAssignedNotCarried>zugewiesen, aber mit leeren Händen</CER_LoadoutUtility_WhatAssignedNotCarried>
+	<CER_LoadoutUtility_ReadinessGearOption>{0}  ({1})  -  Ausrüstung öffnen</CER_LoadoutUtility_ReadinessGearOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpOption>{0}  (bereits in Produktion)  -  zur Werkbank springen</CER_LoadoutUtility_ReadinessLowAmmoJumpOption>
+	<CER_LoadoutUtility_ReadinessBetterAmmoLine>
+
+Fuer {0} Vorlagen gibt es neu erforschte Munition ({1}). Sie behalten ihre bisherige, bis du sie ersetzt - dafuer gibt es "Munition massenhaft ersetzen" im Reiter Kolonisten ausruesten.</CER_LoadoutUtility_ReadinessBetterAmmoLine>
+	<CER_LoadoutUtility_ReadinessBetterAmmoOption>{0} Vorlagen koennten bessere Munition benutzen  -  Munition ersetzen oeffnen</CER_LoadoutUtility_ReadinessBetterAmmoOption>
+	<CER_LoadoutUtility_LowAmmoPlanTooSmall> (Loadout laesst nur {0} zu, noetig sind {1})</CER_LoadoutUtility_LowAmmoPlanTooSmall>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitOption>{0}  (Nachschub ist unterwegs)  -  Ausruestung oeffnen</CER_LoadoutUtility_ReadinessLowAmmoWaitOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneOption>{0}  (nichts auf Lager, nichts in Arbeit)  -  Ausruestung oeffnen</CER_LoadoutUtility_ReadinessLowAmmoNoneOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoPlanOption>Loadout laesst zu wenig Munition zu ({0})  -  aendern</CER_LoadoutUtility_ReadinessLowAmmoPlanOption>
+	<CER_LoadoutUtility_LowAmmoInStock> ({0} auf Lager)</CER_LoadoutUtility_LowAmmoInStock>
+	<CER_LoadoutUtility_LowAmmoInProduction> (in Produktion)</CER_LoadoutUtility_LowAmmoInProduction>
+	<CER_LoadoutUtility_LowAmmoNoneQueued> (nichts auf Lager, nicht eingereiht)</CER_LoadoutUtility_LowAmmoNoneQueued>
+	<CER_LoadoutUtility_AndNOthers> und {0} weitere</CER_LoadoutUtility_AndNOthers>
+	<CER_LoadoutUtility_ReadinessAllGood>Kampfbereitschaft: alle sind versorgt und bereit.</CER_LoadoutUtility_ReadinessAllGood>
+	<CER_LoadoutUtility_ReadinessHeaderSingular>Gefechtsbereitschaft: {0} Kolonist braucht Aufmerksamkeit. Klicken zum Beheben.\n\n</CER_LoadoutUtility_ReadinessHeaderSingular>
+	<CER_LoadoutUtility_ReadinessHeaderPlural>Gefechtsbereitschaft: {0} Kolonisten brauchen Aufmerksamkeit. Klicken zum Beheben (oeffnet eine Auswahl).\n\nGezaehlt werden Kolonisten, nicht Probleme - wer drei Probleme gleichzeitig hat, ist hier trotzdem einer.\n\n</CER_LoadoutUtility_ReadinessHeaderPlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutLine>{0} haben überhaupt keine Beladung - was sie tragen, wird nicht verwaltet, kein Munitionsnachschub (Trupp-Setup) - {1}\n</CER_LoadoutUtility_ReadinessNoLoadoutLine>
+	<CER_LoadoutUtility_ReadinessProdGapsLine>{0} haben Produktionslücken, {2} zu produzieren (Versorgung) - {1}\n</CER_LoadoutUtility_ReadinessProdGapsLine>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockLine>{0} haben ihre Vorräte bereits auf Lager, aber noch nicht abgeholt (öffnet ihre Ausrüstung) - {1}\n</CER_LoadoutUtility_ReadinessSuppliesInStockLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLine>{0} betroffen von: {1} (öffnet ihre Ausrüstung) - {2}\n</CER_LoadoutUtility_ReadinessOtherIssueLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>{0} betroffen von: {1} - {2}
+</CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>
+
+	<CER_LoadoutUtility_TotalCostLabel>Gesamtkosten:</CER_LoadoutUtility_TotalCostLabel>
+
+	<CER_LoadoutUtility_IngredientQtyMulti>&#160;x{0}&#160;({1}x{2})</CER_LoadoutUtility_IngredientQtyMulti>
+	<CER_LoadoutUtility_IngredientQtySingle>&#160;x{0}</CER_LoadoutUtility_IngredientQtySingle>
+	<CER_LoadoutUtility_GroundInfo>, {0} auf dem Boden</CER_LoadoutUtility_GroundInfo>
+	<CER_LoadoutUtility_InStockSuffix>&#160;&#160;({0}&#160;auf&#160;Lager{1})</CER_LoadoutUtility_InStockSuffix>
+	<CER_LoadoutUtility_InStockSuffixShort>  (&lt;color=#FBCC33&gt;{0} auf Lager{1}&lt;/color&gt;)</CER_LoadoutUtility_InStockSuffixShort>
+
+	<CER_LoadoutUtility_MassLabel>Masse</CER_LoadoutUtility_MassLabel>
+	<CER_LoadoutUtility_LocationOnMap>{0} ({1})</CER_LoadoutUtility_LocationOnMap>
+	<CER_LoadoutUtility_BulkLabel>Sperrigkeit</CER_LoadoutUtility_BulkLabel>
+	<CER_LoadoutUtility_MassValue>{0}/{1} kg</CER_LoadoutUtility_MassValue>
+	<CER_LoadoutUtility_BulkValue>{0}/{1}</CER_LoadoutUtility_BulkValue>
+
+	<CER_LoadoutUtility_AmmoTooltipDamage>\nSchaden: {0}</CER_LoadoutUtility_AmmoTooltipDamage>
+	<CER_LoadoutUtility_AmmoTooltipSharpAP>   Scharfer AP: {0}</CER_LoadoutUtility_AmmoTooltipSharpAP>
+	<CER_LoadoutUtility_AmmoTooltipBluntAP>   Stumpfer AP: {0}</CER_LoadoutUtility_AmmoTooltipBluntAP>
+	<CER_LoadoutUtility_AmmoTooltipEffects>\nEffekte: {0}</CER_LoadoutUtility_AmmoTooltipEffects>
+	<CER_LoadoutUtility_AmmoTooltipCrafts>\n\nStellt {0}x her, Zutaten:</CER_LoadoutUtility_AmmoTooltipCrafts>
+	<CER_LoadoutUtility_AmmoTooltipIngredientLine>\n- {0}x {1}</CER_LoadoutUtility_AmmoTooltipIngredientLine>
+	<CER_LoadoutUtility_AmmoTooltipNoRecipe>\n\n&lt;color=grey&gt;Kein Herstellungsrezept.&lt;/color&gt;</CER_LoadoutUtility_AmmoTooltipNoRecipe>
+
+	<CER_LoadoutUtility_ShieldTooltipScore>\nKampfwertung: {0}/100</CER_LoadoutUtility_ShieldTooltipScore>
+	<CER_LoadoutUtility_ShieldTooltipArmor>\nRüstung scharf: {0}   Rüstung stumpf: {1}</CER_LoadoutUtility_ShieldTooltipArmor>
+	<CER_LoadoutUtility_ShieldTooltipMass>\nMasse: {0} kg</CER_LoadoutUtility_ShieldTooltipMass>
+	<CER_LoadoutUtility_ShieldTooltipBulk>   Sperrigkeit: {0}</CER_LoadoutUtility_ShieldTooltipBulk>
+	<CER_LoadoutUtility_ShieldTooltipMarketValue>\nMarktwert: {0}</CER_LoadoutUtility_ShieldTooltipMarketValue>
+	<CER_LoadoutUtility_ShieldScoreTooltip>&lt;b&gt;Kampfwertung: {0}/100&lt;/b&gt;\nRüstung scharf: {1}   Rüstung stumpf: {2}\nLast (Masse-/Sperrigkeitskosten): x{3}\n&lt;i&gt;Relativ zum besten Schild, den deine aktuellen Mods bieten.&lt;/i&gt;</CER_LoadoutUtility_ShieldScoreTooltip>
+
+	<CER_LoadoutUtility_AbilityEMP>EMP</CER_LoadoutUtility_AbilityEMP>
+	<CER_LoadoutUtility_AbilityConcussive>Wucht</CER_LoadoutUtility_AbilityConcussive>
+	<CER_LoadoutUtility_AbilityFlashDazzle>Blend</CER_LoadoutUtility_AbilityFlashDazzle>
+	<CER_LoadoutUtility_AbilityStun>Betäubung</CER_LoadoutUtility_AbilityStun>
+	<CER_LoadoutUtility_AbilityIncendiary>Brand</CER_LoadoutUtility_AbilityIncendiary>
+	<CER_LoadoutUtility_AbilityToxic>Toxisch</CER_LoadoutUtility_AbilityToxic>
+	<CER_LoadoutUtility_AbilitySmoke>Rauch</CER_LoadoutUtility_AbilitySmoke>
+	<CER_LoadoutUtility_AbilityFragmentation>Splitter</CER_LoadoutUtility_AbilityFragmentation>
+	<CER_LoadoutUtility_AbilityArmorPiercing>Panzerbrechend</CER_LoadoutUtility_AbilityArmorPiercing>
+	<CER_LoadoutUtility_AbilityExplosive>Explosiv</CER_LoadoutUtility_AbilityExplosive>
+	<CER_LoadoutUtility_AbilityExplosiveSecondary>Explosiv (sekundär)</CER_LoadoutUtility_AbilityExplosiveSecondary>
+
+	<CER_LoadoutUtility_DetailRadius>Explosionsradius: {0} Felder</CER_LoadoutUtility_DetailRadius>
+	<CER_LoadoutUtility_DetailBonusDamage>Bonusschaden: {0}</CER_LoadoutUtility_DetailBonusDamage>
+	<CER_LoadoutUtility_DetailFragmentCount>Splitter: {0}</CER_LoadoutUtility_DetailFragmentCount>
+	<CER_LoadoutUtility_DetailShieldBreak>Schild-Durchbruchchance: {0}%</CER_LoadoutUtility_DetailShieldBreak>
+
+	<CER_LoadoutUtility_SpecialLabel>\n&lt;b&gt;Besonderheit:&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialLabel>
+	<CER_LoadoutUtility_SpecialAmmoLabel>\n&lt;b&gt;Spezialmunition:&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialAmmoLabel>
+
+	<CER_LoadoutUtility_ScoreTooltipMelee>&lt;b&gt;Nahkampfwaffe&lt;/b&gt;\nSchaden: {0} pro Treffer  |  DPS: {1}\nScharfer AP: {2}   Stumpfer AP: {3}\n&lt;i&gt;Annäherungsrisiko-Abschlag x0,85 (Distanz unter Beschuss überbrücken).&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipMelee>
+	<CER_LoadoutUtility_ScoreTooltipHybridSuffix>  &lt;i&gt;(hybrid)&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipHybridSuffix>
+	<CER_LoadoutUtility_ScoreTooltipCooldown>\nAngriffs-Abklingzeit: {0}s</CER_LoadoutUtility_ScoreTooltipCooldown>
+	<CER_LoadoutUtility_ScoreTooltipLauncher>&lt;b&gt;Sprengstoffwerfer&lt;/b&gt;\nExplosion: {0} Schaden  |  Radius: {1}\nReichweite: {2}  |  Zyklus: {3}s</CER_LoadoutUtility_ScoreTooltipLauncher>
+	<CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>\nGewichts-/Sperrigkeitsfaktor: x{0}</CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>
+	<CER_LoadoutUtility_ScoreTooltipRanged>&lt;b&gt;Fernkampfwaffe&lt;/b&gt;\nSchaden: {0}  |  Scharfer AP: {1}  (beste Sorte)\nEffektiver DPS: {2}  |  Reichweite: {3}\nSalve: {4}  |  Nachladen: {5}s (Magazin {6})</CER_LoadoutUtility_ScoreTooltipRanged>
+	<CER_LoadoutUtility_ScoreTooltipBestAmmo>
+Beste Sorte: {0}</CER_LoadoutUtility_ScoreTooltipBestAmmo>
+	<CER_LoadoutUtility_ScoreTooltipAmmoVariety>\nMunitionsvielfalt: {0} Kampfsorten  (+{1}% Bonus)</CER_LoadoutUtility_ScoreTooltipAmmoVariety>
+	<CER_LoadoutUtility_ScoreTooltipHandling>\nHandling: Genauigkeit x{0}  |  Gewicht/Sperrigkeit x{1}</CER_LoadoutUtility_ScoreTooltipHandling>
+	<CER_LoadoutUtility_ScoreTooltipSingleUse>\n&lt;i&gt;Einwegartikel: feuert einmal, danach ist der Kolonist unbewaffnet - Wertung x{0}. Als Notfall-Rückversicherung mitführen, nicht als Hauptwaffe.&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSingleUse>
+	<CER_LoadoutUtility_ScoreTooltipSpecialBonus>\n&lt;i&gt;(+{0} für besondere Fähigkeiten)&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSpecialBonus>
+	<CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+
+CE-Daten fehlen: {0} von 5 Quellen. Punkte x{1} - fehlende CE-Daten lesen sich meist als 'kein Nachteil' (kein Rueckstoss, kein Nachladen, keine Sperrigkeit), eine ungepatchte Waffe wuerde sonst eine sauber balancierte schlagen.</CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+	<CER_LoadoutUtility_CeDataBadgeTip>Dieser Waffe fehlen {0} von 5 Combat-Extended-Datenquellen. Die Punktzahl bekommt deshalb einen Abschlag: fehlende Daten lesen sich fast immer als Staerke - kein Rueckstoss, keine Nachladezeit, keine Sperrigkeit, gewichtslose Munition. Die Reihenfolge unter den ungepatchten Waffen bleibt gleich, sie rutschen gemeinsam.</CER_LoadoutUtility_CeDataBadgeTip>
+	<CER_LoadoutUtility_MagazineSuffix>= {0} Mag</CER_LoadoutUtility_MagazineSuffix>
+	<CER_LoadoutUtility_MagazineSuffixTip>Ein Magazin fasst bei dieser Waffe {0} Schuss. Die Schusszahl bleibt die genaue Zahl - das hier ist nur die Lesart 'reicht das fuer einen Kampf' daneben.</CER_LoadoutUtility_MagazineSuffixTip>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMech>\n&lt;b&gt;vs Fleisch:&lt;/b&gt; {0} / 100   &lt;b&gt;vs Maschinoid:&lt;/b&gt; {1} / 100</CER_LoadoutUtility_ScoreTooltipVsFleshMech>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>\n  nur mit erforschter Munition: {0} / {1}  - danach sortiert der Zuweisungs-Regler</CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>
+	<CER_LoadoutUtility_ScoreTooltipFinalScore>\n&lt;b&gt;Wertung: {0} / 100&lt;/b&gt;</CER_LoadoutUtility_ScoreTooltipFinalScore>
+	<CER_LoadoutUtility_ScoreTooltipUtilityExcluded>\n\n&lt;i&gt;(Nützliche Waffe - von der Rangliste ausgeschlossen)&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipUtilityExcluded>
+
+	<CER_LoadoutUtility_LoadoutEmpty>\n(leer)</CER_LoadoutUtility_LoadoutEmpty>
+
+	<CER_LoadoutUtility_AmmoTooltipStock>\nBestand: {0} ({1} im Lager, {2} getragen)</CER_LoadoutUtility_AmmoTooltipStock>
+	<CER_LoadoutUtility_AmmoTooltipInProduction>\nIn Produktion: {0}</CER_LoadoutUtility_AmmoTooltipInProduction>
+	<CER_LoadoutUtility_RoleModeMixed>Rollen und Waffen</CER_LoadoutUtility_RoleModeMixed>
+	<CER_LoadoutUtility_RoleModeRolesOnly>Nur Rollen</CER_LoadoutUtility_RoleModeRolesOnly>
+	<CER_LoadoutUtility_RoleModeNoRoles>Keine Rollen</CER_LoadoutUtility_RoleModeNoRoles>
+	<CER_LoadoutUtility_RoleModeButtonFmt>Zuweisen: {0}</CER_LoadoutUtility_RoleModeButtonFmt>
+	<CER_LoadoutUtility_RoleModeTip>Was die automatische Zuweisung und die Auswahl pro Kolonist austeilen dürfen.\n\nRollen und Waffen: beide treten gegeneinander an - das ist die Vorgabe und das bisherige Verhalten.\nNur Rollen: ausschließlich Rollen.\nKeine Rollen: nur Waffen, Rollen bleiben unangetastet.</CER_LoadoutUtility_RoleModeTip>
+
+	<CER_LoadoutUtility_FetchGearButtonLabel>Ausrüstung jetzt holen</CER_LoadoutUtility_FetchGearButtonLabel>
+	<CER_LoadoutUtility_FetchGearButtonTooltip>Jeder Kolonist mit einer Beladung unterbricht seine Arbeit und holt seine fehlende Ausrüstung sofort - Stück für Stück, bis nichts mehr fehlt.\n\nOhne diesen Knopf lässt CE nur einen Gegenstand je 30 Sekunden holen, und nur zwischen zwei Jobs. Übersprungen werden: eingezogene, kampfunfähige und schlafende Kolonisten, Nervenzusammenbrüche und Jobs, die sich nicht unterbrechen lassen (die holen, sobald der Job endet).</CER_LoadoutUtility_FetchGearButtonTooltip>
+	<CER_LoadoutUtility_FetchGearMsgSent>{0} Kolonisten holen jetzt ihre Ausrüstung.</CER_LoadoutUtility_FetchGearMsgSent>
+	<CER_LoadoutUtility_FetchGearMsgSentOne>1 Kolonist holt jetzt seine Ausruestung.</CER_LoadoutUtility_FetchGearMsgSentOne>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffixOne>Einer davon kann nichts mehr tragen - erst Gewicht oder Sperrigkeit freimachen.</CER_LoadoutUtility_FetchGearMsgFullSuffixOne>
+	<CER_LoadoutUtility_FetchGearMsgNone>Niemand hat noch etwas zu holen (geprueft: {0} mit Beladung, {1} uebersprungen: im Bett, eingezogen, kampfunfaehig oder im Zusammenbruch).</CER_LoadoutUtility_FetchGearMsgNone>
+
+	<CER_LoadoutUtility_ReadinessNoBillOption>Kein Munitionsauftrag läuft ({0}, Bestand reicht vorerst)  -  Auftragsübersicht öffnen</CER_LoadoutUtility_ReadinessNoBillOption>
+	<CER_LoadoutUtility_ReadinessNoBillLine>{0} haben keinen laufenden Munitionsauftrag - der Bestand reicht vorerst (Auftragsübersicht) - {1}\n</CER_LoadoutUtility_ReadinessNoBillLine>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotOption>Waffe ohne Munition in der Beladung ({0})  -  Munitionsfenster öffnen</CER_LoadoutUtility_ReadinessNoAmmoSlotOption>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotLine>{0} haben eine Waffe, aber keine Munition in der Beladung (Munitionsfenster) - {1}\n</CER_LoadoutUtility_ReadinessNoAmmoSlotLine>
+
+	<CER_LoadoutUtility_FetchGearPreviewHeader>Wer was abbricht und was holt:</CER_LoadoutUtility_FetchGearPreviewHeader>
+	<CER_LoadoutUtility_FetchGearPreviewNow>jetzt: {0}</CER_LoadoutUtility_FetchGearPreviewNow>
+	<CER_LoadoutUtility_FetchGearPreviewFinishesFirst> (macht das erst fertig)</CER_LoadoutUtility_FetchGearPreviewFinishesFirst>
+	<CER_LoadoutUtility_FetchGearPreviewFetches>holt: {0}</CER_LoadoutUtility_FetchGearPreviewFetches>
+	<CER_LoadoutUtility_FetchGearPreviewNothingFetchable>gerade nichts holbar - {0}</CER_LoadoutUtility_FetchGearPreviewNothingFetchable>
+	<CER_LoadoutUtility_FetchGearPreviewNotInStock>{0} (nichts im Lager)</CER_LoadoutUtility_FetchGearPreviewNotInStock>
+	<CER_LoadoutUtility_FetchGearPreviewWontFit>{0} (passt nicht mehr - Traglimit erreicht)</CER_LoadoutUtility_FetchGearPreviewWontFit>
+	<CER_LoadoutUtility_FetchGearPreviewMoreItems>+{0} weitere</CER_LoadoutUtility_FetchGearPreviewMoreItems>
+	<CER_LoadoutUtility_FetchGearPreviewSkipped>{0}, übersprungen</CER_LoadoutUtility_FetchGearPreviewSkipped>
+	<CER_LoadoutUtility_FetchGearPreviewIdle>untätig</CER_LoadoutUtility_FetchGearPreviewIdle>
+	<CER_LoadoutUtility_FetchGearPreviewNoLoadouts>Noch hat niemand eine Beladung.</CER_LoadoutUtility_FetchGearPreviewNoLoadouts>
+	<CER_LoadoutUtility_FetchGearPreviewMore>... und {0} weitere Kolonisten</CER_LoadoutUtility_FetchGearPreviewMore>
+	<CER_LoadoutUtility_FetchGearPreviewAllSet>{0} Kolonisten haben schon alles.</CER_LoadoutUtility_FetchGearPreviewAllSet>
+	<CER_LoadoutUtility_FetchGearSkipDowned>kampfunfähig</CER_LoadoutUtility_FetchGearSkipDowned>
+	<CER_LoadoutUtility_FetchGearSkipDrafted>eingezogen</CER_LoadoutUtility_FetchGearSkipDrafted>
+	<CER_LoadoutUtility_FetchGearSkipMental>Nervenzusammenbruch</CER_LoadoutUtility_FetchGearSkipMental>
+	<CER_LoadoutUtility_FetchGearSkipAway>nicht auf der Karte</CER_LoadoutUtility_FetchGearSkipAway>
+	<CER_LoadoutUtility_FetchGearSkipInBed>im Bett</CER_LoadoutUtility_FetchGearSkipInBed>
+
+	<CER_LoadoutUtility_ReadinessFetchOption>{0}  ({1})  -  jetzt holen</CER_LoadoutUtility_ReadinessFetchOption>
+	<CER_LoadoutUtility_FetchGearMsgOne>{0} holt jetzt die Ausrüstung.</CER_LoadoutUtility_FetchGearMsgOne>
+	<CER_LoadoutUtility_FetchGearMsgOneNone>{0}: gerade nichts zu holen.</CER_LoadoutUtility_FetchGearMsgOneNone>
+	<CER_LoadoutUtility_FetchGearMsgOneFull>{0} kann nichts mehr tragen - erst Gewicht oder Sperrigkeit freimachen (etwas ablegen oder einlagern).</CER_LoadoutUtility_FetchGearMsgOneFull>
+	<CER_LoadoutUtility_FetchGearMsgOneBusy>{0} kann gerade nicht losziehen - der Posten ist von jemand anderem reserviert, nicht erreichbar, oder ein anderer Auftrag laeuft. Gleich nochmal versuchen.</CER_LoadoutUtility_FetchGearMsgOneBusy>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffix>{0} davon koennen nichts mehr tragen - erst Gewicht oder Sperrigkeit freimachen.</CER_LoadoutUtility_FetchGearMsgFullSuffix>
+
+	<CER_LoadoutUtility_CarryTipHeaderMass>Tragkraft (Masse): {0} von {1}</CER_LoadoutUtility_CarryTipHeaderMass>
+	<CER_LoadoutUtility_CarryTipHeaderBulk>Tragkraft (Sperrigkeit): {0} von {1}</CER_LoadoutUtility_CarryTipHeaderBulk>
+	<CER_LoadoutUtility_CarryTipBase>Grundwert (dieser Koerper): {0}</CER_LoadoutUtility_CarryTipBase>
+	<CER_LoadoutUtility_CarryTipItem>{0}: {1}</CER_LoadoutUtility_CarryTipItem>
+	<CER_LoadoutUtility_CarryTipOther>Sonstiges (Gesundheit, Eigenschaften, Faktoren): {0}</CER_LoadoutUtility_CarryTipOther>
+	<CER_LoadoutUtility_CarryTipNoneMass>Kein getragener Gegenstand hebt die Massegrenze - ein Exoframe wuerde es.</CER_LoadoutUtility_CarryTipNoneMass>
+	<CER_LoadoutUtility_CarryTipNoneBulk>Kein getragener Gegenstand hebt die Sperrigkeitsgrenze - Rucksack, taktische Weste oder Bandelier wuerden es.</CER_LoadoutUtility_CarryTipNoneBulk>
+
+	<CER_LoadoutUtility_ReadinessFetchAllOption>{0} Kolonisten  ({1})  -  jetzt holen, alle</CER_LoadoutUtility_ReadinessFetchAllOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockOption>{0}  ({1}, nichts Holbares im Lager)  -  Nachschub öffnen</CER_LoadoutUtility_ReadinessFetchNoStockOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockAllOption>{0} Kolonisten  ({1}, nichts Holbares im Lager)  -  Nachschub öffnen</CER_LoadoutUtility_ReadinessFetchNoStockAllOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>{0} Kolonisten  (Nachschub im Lager, nicht abgeholt)  -  jetzt holen, alle</CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>{0} Kolonisten  (Munition schon in Produktion)  -  zur Werkbank springen</CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>{0} Kolonisten  (Nachschub ist unterwegs)  -  Auftragsübersicht öffnen</CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>{0} Kolonisten  (nichts im Lager, nichts in Auftrag)  -  Nachschub öffnen</CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>
+
+
+	<CER_LoadoutUtility_AmmoStatDmg>Schad.</CER_LoadoutUtility_AmmoStatDmg>
+	<CER_LoadoutUtility_AmmoStatSharp>Scharf</CER_LoadoutUtility_AmmoStatSharp>
+	<CER_LoadoutUtility_AmmoStatBlunt>Stumpf</CER_LoadoutUtility_AmmoStatBlunt>
+	<CER_LoadoutUtility_AmmoStatTip>Verglichen innerhalb dieses Kalibers - ein voller Balken ist die beste Sorte dieser Munitionsfamilie.
+
+Schaden je Schuss: {0} (beste: {1})
+Scharfer Durchschlag: {2} (beste: {3})
+Stumpfer Durchschlag: {4} (beste: {5})
+
+Viel Schaden bei wenig scharfem Durchschlag passt gegen ungepanzerte Ziele; viel scharfer Durchschlag kommt durch Panzerung und Mechanoiden. Stumpf ist bei jeder Sorte eines Kalibers gleich - ein Balken, der in allen Zeilen gleich aussieht, hat nichts zu waehlen.</CER_LoadoutUtility_AmmoStatTip>
+</LanguageData>

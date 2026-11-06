@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_CombatReadinessAlerts_NoLoadout>Ingen lastning tilldelad</CER_CombatReadinessAlerts_NoLoadout>
+	<CER_CombatReadinessAlerts_WeaponWithoutAmmo>Lastning utan ammunition</CER_CombatReadinessAlerts_WeaponWithoutAmmo>
+	<CER_CombatReadinessAlerts_AmmoNotProduced>Ammunition tillverkas inte</CER_CombatReadinessAlerts_AmmoNotProduced>
+	<CER_CombatReadinessAlerts_WeaponUnavailable>Lastningens vapen otillgängligt</CER_CombatReadinessAlerts_WeaponUnavailable>
+	<CER_CombatReadinessAlerts_LowAmmo>Låg ammunition</CER_CombatReadinessAlerts_LowAmmo>
+	<CER_CombatReadinessAlerts_Overloaded>Överlastad</CER_CombatReadinessAlerts_Overloaded>
+	<CER_CombatReadinessAlerts_CapacityBlocked>För full för att hämta lastning</CER_CombatReadinessAlerts_CapacityBlocked>
+	<CER_CombatReadinessAlerts_AssignedNotCarried>Vapen tilldelat, bär inget</CER_CombatReadinessAlerts_AssignedNotCarried>
+	<CER_CombatReadinessAlerts_Label>Stridsberedskap</CER_CombatReadinessAlerts_Label>
+	<CER_CombatReadinessAlerts_LabelWithIssueSingular>Stridsberedskap: {0} kolonist behoever uppmaerksamhet</CER_CombatReadinessAlerts_LabelWithIssueSingular>
+	<CER_CombatReadinessAlerts_LabelWithIssuePlural>Stridsberedskap: {0} kolonister behoever uppmaerksamhet</CER_CombatReadinessAlerts_LabelWithIssuePlural>
+	<CER_CombatReadinessAlerts_ExplanationHeader>Kolonister med ett stridsberedskapsproblem:</CER_CombatReadinessAlerts_ExplanationHeader>
+	<CER_CombatReadinessAlerts_CategoryLine>{0} ({1}): {2}</CER_CombatReadinessAlerts_CategoryLine>
+	<CER_CombatReadinessAlerts_AndOthers> och {0} andra</CER_CombatReadinessAlerts_AndOthers>
+
+</LanguageData>

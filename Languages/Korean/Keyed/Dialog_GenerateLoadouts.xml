@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (탄약): 메커노이드에게 피해를 주고 기절시키며, 방어막을 무력화합니다.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>충격탄 (탄약): 광역 둔기 피해, 강한 제압 효과.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>섬광/현혹 (탄약): 대상의 시야를 멀게 하고 방향 감각을 잃게 합니다.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>기절 (탄약): 대상을 잠시 무력화합니다.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>소이탄 (탄약): 대상에 불을 붙이고 공황을 유발합니다.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>독성 (탄약): 독성 축적을 유발합니다.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>연막 (탄약): 시야를 차단합니다.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>파편탄 (탄약): 파편을 흩뿌립니다(대인 광역).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>철갑탄 (탄약): AP 탄환이 중장갑을 관통합니다.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>폭발 (탄약): 실제 폭발 반경, 주변의 모든 것에 피해를 줍니다.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>폭발, 2차 (탄약): 운동 에너지 명중에 작은 고폭탄이 동반됩니다 - 동일 대상, 폭발 반경 없음.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>특수 능력:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>효과 {0}개 더 - 이 열에는 공간이 부족합니다:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: 메커노이드에게 피해를 주고 기절시키며, 방어막을 무력화합니다.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>충격탄: 광역 둔기 피해, 강한 제압 효과.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>섬광/현혹: 대상의 시야를 멀게 하고 방향 감각을 잃게 합니다.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>기절: 대상을 잠시 무력화합니다.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>소이탄: 대상에 불을 붙이고 공황을 유발합니다.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>독성: 독성 축적을 유발합니다.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>연막: 시야를 차단합니다.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>파편탄: 파편을 흩뿌립니다(대인 광역).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>철갑탄: 중장갑을 관통합니다(높은 AP/성형작약).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>폭발: 실제 폭발 반경, 주변의 모든 것에 피해를 줍니다.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>폭발, 2차: 운동 에너지 명중에 작은 고폭탄이 동반됩니다 - 동일 대상, 폭발 반경 없음.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>근접</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>화기</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>중화기</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>기타</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>모든 종류</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>역할</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>무기</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>무기</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>무기를 찾을 수 없습니다.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>내 장비 팩</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>마지막으로 만들기/업데이트를 누렀을 때 이 역할에 복사됨 - 실시간 연결이 아닙니다. 지금 이 항목을 수정해도 이미 이 역할을 사용 중인 정착민에게는 여기서 만들기/업데이트를 다시 누를 때까지 적용되지 않습니다.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>이 구성 요소가 역할의 주 무기를 제공합니다: {0}. 이 역할의 다른 무기는 모두 보조 무기로 간주됩니다 - 하나의 역할은 주 무기와 칼, 수류탄을 함께 묶을 수 있습니다.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>이 장비 팩을 삭제합니다.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>장비 팩 "{0}"을(를) 삭제하시겠습니까? 현재 이를 소지한 정착민은 해당 아이템을 잃게 됩니다.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>역할 위로 끌어다 놓으면 규모를 조정합니다. 내용물은 장비 팩 탭에서 편집하세요.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>아직 장비 팩이 없습니다 - 먼저 장비 팩 탭에서 생성하세요.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>"{0}"과(와) 일치하는 장비 팩이 없습니다.</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>"{0}"와(과) 일치하는 항목이 없습니다.</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>"{0}"와(과) 일치하는 역할이 없습니다.</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>역할</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ 새 역할</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>새 역할</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>이 세이브에만 저장되는 역할을 추가합니다. 전역 역할은 모드 설정 &gt; 역할에 있습니다.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>정착자 {0}명</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>현재 이 역할을 맡은 정착자: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>현재 이 역할을 맡은 정착자가 없습니다. 정착민 장비 지급 탭에서 배정하세요.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>초기화</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>모든 전역 역할을 기본값으로 되돌릴까요? (세이브 전용 역할은 유지됩니다.) 기본값에 없는 이름의 역할은 장비 구성도 함께 사라집니다 - 이를 사용하던 식민지 주민은 배정된 장비 구성이 없는 상태가 되며, 각자의 탄약, 가방, 보조 무기는 유지됩니다.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>전역 역할을 내장 프리셋으로 초기화합니다.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[S]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>세이브 전용 역할: 이 정착지에만 존재합니다. 모든 게임에서 사용할 역할을 만들려면 모드 설정 &gt; 역할에 추가하세요.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>전역 역할: 모든 정착지에서 사용 가능합니다. 모드 설정 &gt; 역할에서 관리하세요.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>이 역할을 삭제합니다.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>"{0}" 역할과 그 뒤의 장비 구성을 삭제하시겠습니까? 이를 사용하던 식민지 주민은 배정된 장비 구성이 없는 상태가 됩니다 - 각자의 탄약, 가방, 보조 무기는 그대로 유지됩니다. 장비 구성을 남겨두면 계속 배정 가능한 템플릿으로 나타납니다.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>이 역할을 복제합니다(이름, 배율, 현재 구성 포함).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● 생성됨</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ 신규</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>이 역할은 저장되어 있습니다 - 카드의 모든 변경 사항이 즉시 기록됩니다.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>비어 있음 - 무기나 팩을 끌어다 놓으세요.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>잠김: 이 역할에는 아직 아무것도 없어 조정할 것이 없습니다. 먼저 무기나 팩을 카드에 끌어다 놓으세요.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>탄</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>의</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>식</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>수</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>탄약 배율(탄): 이 역할의 모든 무기 탄약 수량에 곱합니다. 1 = 모드 설정의 수량, 0.75 = 그 4분의 3, 2 = 두 배, 0 = 탄약 없음.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>의약품 배율(의): 역할 구성 요소의 의약품 수량에 곱합니다. 1 = 그대로, 3 = 세 배, 0 = 없음.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>식량 배율(식): 역할 구성 요소의 식량 수량에 곱합니다. 1 = 그대로, 1.5 = 1.5배, 0 = 없음.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>수류탄 배율(수): 역할 구성 요소의 수류탄과 투척 폭발물 수량에 곱합니다. 1 = 그대로, 3 = 세 배, 0 = 수류탄 없음.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>여기에 무기나 팩을 끌어다 놓으세요</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>{0} 포함 - 다시 구성하려면 여기로 무기나 팩을 끌어다 놓으세요</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>이 직무는 구성 내역이 기록되기 전에 만들어져서 어떤 요소로 조합되었는지는 알 수 없지만, 최종 내용물은 알 수 있습니다. 이 직무를 맡은 정착민은 올바르게 장비되어 있으며, 아래 미리보기에 전부 표시됩니다. 여기로 무기나 팩을 끌어다 놓으면 직무를 새로 구성하며 현재 내용물을 대체합니다.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>무기나 Equipment Pack을 이 줄로 끌어다 놓으면 직무가 만들어집니다. 무언가 올려두는 즉시 자동으로 저장됩니다.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>역할을 선택하고 무기나 팩을 놓으면 결과를 미리 볼 수 있습니다.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>미리보기</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[역할]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(존재함 - 변경분)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(존재함 - 최신)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>자동 저장됨</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>항목</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>기본값 -&gt; 배율 적용</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>이 역할 위에 무기나 팩을 놓으면 결과를 볼 수 있습니다.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;추가됨&lt;/color&gt;  &lt;color=#F2D966&gt;변경됨&lt;/color&gt;  &lt;color=#FF7373&gt;제거됨&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>결과: 스택 {0}개</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>생성할 것이 없습니다.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>다른 역할이 이미 "{0}"라는 이름을 사용 중입니다 - 다른 이름을 선택하세요. 그렇지 않으면 그 역할의 로드아웃이 덮어씌워집니다.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>저장하지 않았습니다: 역할 "{0}"이(가) 완전히 비게 되어 해당 역할의 모든 정착민이 아무것도 갖지 못합니다. 먼저 내용을 다시 넣으세요(무기나 팩을 끌어다 놓기).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>이 역할의 유일한 내용이라 뺄 수 없습니다. "{0}" 역할이 완전히 비게 되어 해당 역할의 모든 정착민이 아무것도 갖지 못합니다. 교체하려면 먼저 대체할 것을 카드에 끌어다 놓은 뒤 이것을 제거하세요. 역할 자체는 카드 오른쪽 위의 x로 삭제합니다.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>이 역할의 유일한 내용이라 뺄 수 없습니다. "{0}" 역할이 완전히 비게 됩니다. 바꾸려면 먼저 대체 항목을 카드에 끌어다 놓은 뒤 이것을 제거하세요. 역할 자체를 없애려면 카드 오른쪽 위의 x를 사용하세요.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>이전에 삭제된 역할에서 남은 “{0}” 이름의 역할 로드아웃이 이미 있고, 정착민 {1}명이 아직 그것을 사용 중입니다. 이 역할을 만들면 그 로드아웃을 가져오고 그들 모두를 한꺼번에 재무장합니다.
+
+계속할까요?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>"{0}"을(를) 생성했습니다.</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>"{0}"(으)로 이름을 변경했습니다.</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>"{0}"(으)로 이름을 변경했습니다:  +{1} 추가,  -{2} 제거,  ~{3} 변경.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" 변경 없음.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>"{0}" 업데이트됨:  +{1} 추가,  -{2} 제거,  ~{3} 변경.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>개인 탄약</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>전체</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>연구됨</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>사용 가능</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>특수</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>결과: {0}개 묶음 (그중 {1}개는 연결된 팩에서)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>기본 역할 복원 ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>삭제한 기본 역할을 원래 자리로 되돌립니다. 빠진 것만 추가되며, 직접 만든 역할과 그 내용은 그대로 남습니다.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>기본 역할 {0}개를 복원했습니다.</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>기본 역할 "{0}"과(와) 그 뒤의 로드아웃을 삭제할까요? 이를 쓰던 정착민은 로드아웃 없음으로 돌아가며, 자신의 탄약·가방·보조 무기는 그대로 유지됩니다. 모든 식민지의 전역 라이브러리에서 사라지며, "기본 역할 복원"이 다른 역할을 건들지 않고 빈 상태로 되돌립니다.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

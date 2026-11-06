@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Боекомплект</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Группировать по типу боеприпасов</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Объединяет поселенцев, которые могут использовать один тип боеприпасов, в одну строку - редактируется сразу для всех, вместо отдельного раздела на каждого поселенца.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - что он носит с собой. Изменение здесь полностью заменяет боеприпасы оружия по умолчанию - вступит в силу при следующей проверке снаряжения.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>Выбрано поселенцев: {0} - что несёт каждый. Изменение полностью заменяет боеприпасы по умолчанию для каждого оружия.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Фильтр (например, FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Закрыть</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Очистить все боеприпасы</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Убрать все типы боеприпасов - {0} не будет носить боеприпасов вообще, даже тех, что заданы для оружия по умолчанию.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Убрать все типы боеприпасов у всех выбранных поселенцев ({0}) - никто из них не будет носить боеприпасов, даже заданных для оружия по умолчанию.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Сбросить</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Копировать</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Копирует выбор боеприпасов этого колониста. Вставьте его другим через столбец вставки в Экипировать колонистов.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>Скопирована запись боеприпасов: {0} (от {1}).</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>Скопировано записей боеприпасов: {0} (от {1}).</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Вернуть боеприпасы всех выбранных поселенцев к тому, что было при открытии этого окна.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  комплект не назначен</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Носит с собой: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} ещё</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Оружие не назначено.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Нет типа боеприпасов, соответствующего "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>Оружие поселенца {0} не использует боеприпасы.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Название</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Особое</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Количество</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Запас</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (не исследовано)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nПрименяется к: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Любые боеприпасы для {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Позволяет игре автоматически выбрать лучшие исследованные боеприпасы для {0} - это то же самое, что уже используют окно снабжения и проверки производства, пока не задан конкретный тип. Нажмите, чтобы вернуть к этому всех подходящих поселенцев.\n\nПрименяется к: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Позволяет игре автоматически выбрать лучшие исследованные боеприпасы для {0} - это то же самое, что уже используют окно снабжения и проверки производства, пока ниже не задан конкретный тип. Нажмите, чтобы вернуться к этому после выбора конкретного типа.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} на складе, {3} свободно).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Нажмите, чтобы открыть его вкладку заказов.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Нажмите, чтобы открыть окно снабжения и поставить производство в очередь.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Ни у кого из выбранных поселенцев оружие не использует боеприпасы.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

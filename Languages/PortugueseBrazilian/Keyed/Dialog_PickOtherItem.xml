@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Adicionar outro item</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - adicione qualquer item ao equipamento pessoal, além do que Munição, Pacotes e Armas secundárias já cobrem.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Buscar itens...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>Nenhum resultado para "{0}".</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Remover deste colono (ele tem {0} no momento). O numero no campo diz quantos.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Este item nao esta na lista pessoal do colono, entao nao ha nada para remover.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Removido {0}x {1} de {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Item</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Atribuído</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Qtd.</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>{0}x {1} adicionado(s) a {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Fechar</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Copiar</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Copia os outros itens deste colono para a área de transferência. Cole-os em outro colono pela coluna de colar da aba Equipar colonos (substitui os outros itens dele). Uma lista vazia também pode ser copiada - colada, ela limpa o destino.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>{0} tipo(s) de item copiado(s) de {1} - use a coluna de colar da aba Equipar colonos.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Lista de itens vazia copiada de {0} - colada, ela limpa os outros itens do destino.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

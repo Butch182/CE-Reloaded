@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>Постачання комплектів</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>Показувати лише те, чого бракує</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>Назва</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>Особливе</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>Призн.</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>Інгредієнти</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>Матеріал</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>Партії</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>Склад</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>Скільки тримати на складі для ВСІЄЇ колонії - ціль замовлення «робити до X». Не на колоніста: те саме слово в редакторі означає протилежне (набої, які носить одна людина).</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>Наявність</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>Верстак</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>Основна зброя</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>Додаткова зброя й гранати</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>Щити</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>Предмети наборів</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>Застарілі замовлення - нікому з призначених не потрібні (видаляються при підтвердженні)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>Перемкнути всі рядки одразу.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>Нікому з призначених колоністів ці предмети не потрібні.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>Усе необхідне вже на складі або у виробництві.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; Назад</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>Повернутися до попереднього кроку. Тут ще нічого не постачено, тож нічого не скасовується.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>Скасувати</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>Закриває вікно, нічого не ставлячи у виробництво. Призначення залишається - пропускається лише виробництво.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>Нічого не виробляти</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>Підтвердити й постачити</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>Постачити обране</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>Боєприпаси</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>У виробництві: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: жоден призначений комплект колоніста більше цього не потребує - замовлення буде видалено після підтвердження.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: збережено - НЕ буде видалено після підтвердження.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>Використовує:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>Не призначено жодному колоністу.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>Жодному колоністу не призначено комплект, що використовує ці боєприпаси.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>Ромб: призначено колоністу зараз. Коло: використовується у збереженому комплекті.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>Не використовується в жодному збереженому комплекті.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>Жоден збережений комплект не використовує ці боєприпаси.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>Додати одну партію ({0}) до цільової кількості.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>Точна цільова кількість.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>Будь-який</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>Потрібно на виготовлення: {0}\nНа складі: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>У виробництві:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ Немає {0} (неможливо створити замовлення)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>Ne pobudovano: {0}</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(авто)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\nАвтоматично визначено із загальної вимоги до боєприпасів на основі вашого типового вподобання щодо вогнепальної зброї.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ Неможливо виготовити (не досліджено)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ Потрібне дослідження: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>Боєприпасам Combat Extended потрібні й рецепт, і верстат, що їх виготовляє. Тут бракує: {0}. Потім збудуйте {1}, і рядок розблокується.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>Змінити...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>Перемкнутися на інший досліджений варіант для цієї зброї.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>Іншого дослідженого варіанту боєприпасів для цієї зброї не існує.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>Перейти до цього верстата.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>Відкрити вкладку замовлень для цього верстата.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>замовлень на зброю: {0}</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>додано замовлень на боєприпаси: {0}</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>оновлено замовлень на боєприпаси: {0}</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>Постачання: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>Нічого не обрано для постачання.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ Потрібне дослідження: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>Рецепт цієї зброї є, але дослідження не завершено. Бракує: {0}. Після завершення рядок розблокується.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- неможливо виготовити (немає рецепта)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>Для цього предмета взагалі немає рецепта виготовлення - його не відкриває жодне дослідження. Отримати можна лише торгівлею, здобиччю або нагородою за завдання.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>створено модом</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>створено вручну</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>Це замовлення створив майстер CE Reloaded, тому воно попередньо позначене для видалення. Зніміть позначку, щоб зберегти його.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>Це замовлення ви створили самі, тому воно НЕ позначене заздалегідь. Воно показане лише тому, що його не потребує жодне поточне спорядження - позначте, якщо справді хочете видалити.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

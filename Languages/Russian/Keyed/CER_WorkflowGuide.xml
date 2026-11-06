@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - краткий курс</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Самый быстрый путь</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Нажмите "Вооружить колонию" (верхняя панель) - выберите Осторожно / Обычно / Агрессивно, нажмите "Вооружить". Готово.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Вкладки</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Наборы снаряжения - многоразовые наборы (медицина, еда, наркотики, утилиты). Необязательно.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Экипировать колонистов - раздаёт оружие и снаряжение по навыкам. Нажмите на ячейку, чтобы выбрать самому.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Роли - сохраните комбинацию поселенца как многоразовый шаблон для многих поселенцев.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Обзор заказов - поддерживает производство боеприпасов. "Автогенерация" сама подбирает размер заказов.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Ключевые возможности</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Индикатор готовности (верхняя панель) - нажмите, чтобы исправить проблему.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Панель на вкладке снаряжения - статус каждого предмета: при себе / на складе / в производстве / отсутствует.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Значок "Боекомплект" (выберите поселенца) - переопределяет только его боеприпасы, общий комплект не затрагивается.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Сохранить как роль" - превращает текущую комбинацию любого поселенца в многоразовый шаблон.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Настройки мода - каждое значение по умолчанию (число боеприпасов, пресеты "Вооружить колонию", ...) настраивается.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Полезно знать</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Новичок в CE? Оставайтесь в простом режиме (значок в правом верхнем углу) и просто используйте "Вооружить колонию".</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Младенцы/пацифисты никогда не получают оружие - но могут нести набор снаряжения.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Открыть планировщик в любой момент: «Планировщик снаряжения» на вкладке «Назначение» (внизу справа) или панель рядом с вкладкой снаряжения колониста.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>«Собрать снаряжение» (рядом с Вооружить колонию) - все бросают работу и сразу идут за своим комплектом. Сам CE берёт один предмет раз в 30 с.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Этот краткий курс показывается один раз. Открыть снова: Настройки мода -> Инструменты.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

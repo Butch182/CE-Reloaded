@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AmmoAssignment_NoneLabel>Нет</CER_AmmoAssignment_NoneLabel>
+	<CER_AmmoAssignment_UnknownLabel>?</CER_AmmoAssignment_UnknownLabel>
+	<CER_AmmoAssignment_ExtraAmmoCount>{0} доп. боеприпасов</CER_AmmoAssignment_ExtraAmmoCount>
+	<CER_AmmoAssignment_MoreSuffix> +{0} ещё</CER_AmmoAssignment_MoreSuffix>
+	<CER_AmmoAssignment_LabelWithExtras>{0} +{1}</CER_AmmoAssignment_LabelWithExtras>
+	<CER_AmmoAssignment_CustomLabelPrefix>Свой набор: {0}</CER_AmmoAssignment_CustomLabelPrefix>
+
+</LanguageData>

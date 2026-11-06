@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AmmoAssignment_NoneLabel>Nenhuma</CER_AmmoAssignment_NoneLabel>
+	<CER_AmmoAssignment_UnknownLabel>?</CER_AmmoAssignment_UnknownLabel>
+	<CER_AmmoAssignment_ExtraAmmoCount>{0} munição extra</CER_AmmoAssignment_ExtraAmmoCount>
+	<CER_AmmoAssignment_MoreSuffix> +{0} a mais</CER_AmmoAssignment_MoreSuffix>
+	<CER_AmmoAssignment_LabelWithExtras>{0} +{1}</CER_AmmoAssignment_LabelWithExtras>
+	<CER_AmmoAssignment_CustomLabelPrefix>Personalizado: {0}</CER_AmmoAssignment_CustomLabelPrefix>
+
+</LanguageData>

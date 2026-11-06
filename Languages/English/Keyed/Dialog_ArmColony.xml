@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Cautious (fill gaps only)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Normal (reset &amp; rebuild ammo)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Aggressive (full clean rebuild)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Custom (fine-tuned steps)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>There is no active colony map to arm.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>There are no free colonists to arm.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>No weapon can be made yet: no weapon crafting is researched. Research a weapon, or place a crafting spot to make a simple one.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>No weapon can be made: no workbench or crafting spot capable of building a weapon exists on any of your colony maps. A simple crafting spot is enough.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Arm my Colony</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>One press: hand out weapons and gear by skill, queue the ammo, and offer to craft any weapons you don't own.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Colonists:  {0}   ({1} to arm)</CER_ArmColony_ColonistsLine>
+	<CER_ArmColony_ExistingLoadoutsLine>Hand-built weapon loadouts:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Existing equipment packs:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>How should colonists be equipped?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Weapon per colonist</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Every colonist gets the weapon that suits them - no roles involved.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Reusable Roles</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Review/build Roles first (step 1 opens in Role Mode), then assign colonists by Role exclusively (step 3 assigns "Roles only", same checkbox Equip Colonists already has).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Pick a mode preset, then fine-tune any step with its checkbox:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>unassigns every colonist</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>deletes ammo bills this mod queued</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>deletes every ammo bill</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>deletes weapon bills this mod queued</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>deletes every weapon bill</CER_ArmColony_DescDeleteWeaponBillsAll>
+	<CER_ArmColony_DescDeleteWeaponLoadouts>deletes hand-built weapon loadouts</CER_ArmColony_DescDeleteWeaponLoadouts>
+	<CER_ArmColony_DescDeleteEquipmentPacksManaged>deletes wizard-generated equipment packs</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+	<CER_ArmColony_DescDeleteEquipmentPacks>deletes every equipment pack</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>First {0} (no undo where destructive). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Nothing existing is unassigned, changed, or deleted. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Creates ammo bills for what's missing.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>Does not create any ammo bills.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Sets every row below.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Cautious</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Normal</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Aggressive</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Reset pawns</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Nobody is unassigned.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Unassigns every colonist first.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Unassign every colonist's loadout before the run, so 'fill gaps' naturally re-plans the whole colony.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Delete ammo bills</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Existing ammo bills are kept - nothing is deleted here. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Deletes only ammo bills this mod's wizard queued. No undo. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Deletes every ammo bill, including the ones you placed yourself. No undo. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>None: leave ammo bills alone. Managed: delete only bills this mod's own tooling created, so a bill you set up by hand yourself survives. All: delete every ammo bill for a recognized type regardless of who queued it (the original, blunt behavior).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Delete weapon bills</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Weapon crafting bills are kept. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Deletes only weapon bills this mod's wizard queued. No undo. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Deletes every weapon crafting bill, including the ones you placed yourself. No undo. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>None: leave weapon bills alone. Managed: delete only bills this mod's own tooling created (production queue, not the Loadout template), so a bill you set up by hand yourself survives. All: delete every weapon bill for a recognized weapon regardless of who queued it (the original, blunt behavior).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Delete hand-built weapon loadouts</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Hand-built weapon loadouts are kept. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Deletes the weapon loadouts you built by hand in CE's own loadout editor. No undo. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Only loadouts you built yourself in CE's native loadout editor. The hidden per-weapon templates this mod creates are never touched here - the run recreates them for every weapon it hands out anyway. Roles and Equipment Packs have their own steps.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Delete equipment packs</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Existing Equipment Packs are kept. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Deletes only Equipment Packs THIS mod's wizard generated. No undo. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Deletes every Equipment Pack, including hand-built ones. No undo. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>None: leave Equipment Packs alone. Managed: delete only packs the Auto-generate wizard produced, so one you built by hand in the Ingredients tab survives. All: delete every Equipment Pack regardless of who made it (the original, blunt behavior). Hand-built loadouts are never touched here.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Ammo bills</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>No ammo bills are created or deleted.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Creates ammo bills for what's missing.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Untick to leave your ammo bills completely alone. Ticked: tops up bills for colonists this run ISN'T touching (already assigned before you clicked Arm my Colony). Nothing is ever deleted here - obsolete bills are offered for removal in the Supply popup, with a checkbox each. Colonists THIS run assigns get their own ammo bills later, from that same popup - so on a brand-new colony's very first run, this step has nothing to do yet.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Can't arm the colony yet:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Cancel</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>Arm my colony!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Runs the steps exactly as ticked in the table above. The mode radios are only presets for the checkboxes.\n\nCurrent setup: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>Arming can't proceed:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Ammo-bill step skipped by choice.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} role(s) kept their contents but lost the building blocks they were assembled from - those blocks were deleted. Colonists on those roles stay equipped; to re-tune a role, drag new parts onto it.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>{0} colonist unassigned</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>{0} colonists unassigned</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>{0} ammo bill deleted</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>{0} ammo bills deleted</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>{0} weapon bill deleted</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>{0} weapon bills deleted</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>{0} hand-built loadout deleted</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>{0} hand-built loadouts deleted</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>{0} equipment pack deleted</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>{0} equipment packs deleted</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Arm my Colony reset: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>Nothing was deleted.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Back</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Continue &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Continue to ammo bills and assignment. Colonists will be assigned by Role exclusively.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Continue to ammo bills and assignment. No roles exist yet - build at least one above, or nobody will be assigned.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>No workbench currently has a bill for {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Arm my Colony - Summary</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Mode: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Run aborted, the changes below were applied before it stopped.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Reset</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>The reset switches ran first (assignments, bills, loadouts) so the rebuild matches the current requirements exactly.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Colonists unassigned:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Ammo bills deleted:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Weapon-production bills deleted:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Hand-built loadouts deleted:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Equipment Packs deleted:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Generated</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Equipment Packs generated:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Starter pack palette created or refreshed in step 0 - see the Equipment Packs tab.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Ammo bills created:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Demand-scaled to what colonists are assigned; itemised under Production queued below.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>Nothing was missing - every needed ammo already had a bill.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Assignments ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Who received which loadout. Click a row to jump to that colonist on the map.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- none applied (aborted) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- none -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Click to jump to {0} on the map.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>{0} colonist(s) left without a loadout - see the Assign step for the reason.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Production queued ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Weapons and ammunition this run put on your workbenches. "Bills" jumps to the workbench that carries the bill.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- none (aborted) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- none needed -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- {0} item(s) needed, but nothing could be queued (no bench or recipe) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Bills</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>{0} copy queued for crafting.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>{0} copies queued for crafting.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} rds</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>{0} rounds queued - demand-scaled to the assigned loadouts.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Total materials</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Everything the queued production will consume, summed over all bills. Red = not enough in storage right now (full need/have list in the strip's tooltip).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Notes</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Close</CER_ArmColony_CloseBtn>
+
+</LanguageData>

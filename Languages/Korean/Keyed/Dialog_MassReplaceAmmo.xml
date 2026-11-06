@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MassReplaceAmmo_Title>로드아웃 탄약 일괄 교체</CER_MassReplaceAmmo_Title>
+	<CER_MassReplaceAmmo_AmmoLabel>탄약:</CER_MassReplaceAmmo_AmmoLabel>
+	<CER_MassReplaceAmmo_FilterAll>모든 탄약</CER_MassReplaceAmmo_FilterAll>
+	<CER_MassReplaceAmmo_ChoicesCount>탄약 종류 {1}개 중 {0}개 선택 가능</CER_MassReplaceAmmo_ChoicesCount>
+	<CER_MassReplaceAmmo_NoSearchHits>"{0}"과(와) 일치하는 항목이 없습니다.</CER_MassReplaceAmmo_NoSearchHits>
+	<CER_MassReplaceAmmo_NothingToReplace>교체할 탄약 항목이 있는 로드아웃이 없습니다.</CER_MassReplaceAmmo_NothingToReplace>
+	<CER_MassReplaceAmmo_BetterAmmoHint>{0}개 로드아웃이 새로 연구된 탄약을 쓸 수 있습니다 - 아래에 강조 표시했습니다.</CER_MassReplaceAmmo_BetterAmmoHint>
+	<CER_MassReplaceAmmo_FilterResearched>연구된 탄약</CER_MassReplaceAmmo_FilterResearched>
+	<CER_MassReplaceAmmo_FilterAvailable>사용 가능한 탄약</CER_MassReplaceAmmo_FilterAvailable>
+	<CER_MassReplaceAmmo_RowLabel>{0} - {1}</CER_MassReplaceAmmo_RowLabel>
+	<CER_MassReplaceAmmo_IndicatorUnchanged>=</CER_MassReplaceAmmo_IndicatorUnchanged>
+	<CER_MassReplaceAmmo_IndicatorChanged>✔</CER_MassReplaceAmmo_IndicatorChanged>
+	<CER_MassReplaceAmmo_KeepGeneric>↺ {0} 유지 (범용)</CER_MassReplaceAmmo_KeepGeneric>
+	<CER_MassReplaceAmmo_KeepConcrete>↺ {0} 유지</CER_MassReplaceAmmo_KeepConcrete>
+	<CER_MassReplaceAmmo_AnyAmmoFor>{0}용 임의 탄약</CER_MassReplaceAmmo_AnyAmmoFor>
+	<CER_MassReplaceAmmo_NoValidAmmo>유효한 탄약을 찾을 수 없음</CER_MassReplaceAmmo_NoValidAmmo>
+	<CER_MassReplaceAmmo_CancelButton>취소</CER_MassReplaceAmmo_CancelButton>
+	<CER_MassReplaceAmmo_ApplyButton>적용</CER_MassReplaceAmmo_ApplyButton>
+	<CER_MassReplaceAmmo_UpdatedMessage>로드아웃 {0}개의 탄약을 업데이트했습니다.</CER_MassReplaceAmmo_UpdatedMessage>
+
+</LanguageData>

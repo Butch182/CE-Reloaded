@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>Equipment Packs</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>Builds a starter supply palette at once - everyday supply, a medic kit, a backpack, combat drugs, a shield. Every item stays editable afterwards: click it to change what it is, edit the count, or drop it. Re-running this later refines a same-named pack in place instead of duplicating it.</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>Use recommended setup</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>Balanced</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>Economy</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>Best Gear</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>Essentials only</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>Resets every slider to its default (Balanced).</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>Detailed mode - every slider is shown for hand-tuning.\n\nClick to switch to Simple (presets only).</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>Simple mode - presets only, the sliders are hidden.\n\nClick to switch to Detailed and hand-tune every slider.</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>Use "Any X" generic types</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>When checked, Medicine/Food/Drugs always pick CE's generic placeholder ("Any Medicine", "Any Perishable Meal", "Any Drug") instead of one concrete item - whatever's in stock counts, nothing to run out of.</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>Cheap</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>Expensive</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>Which specific item each category picks when several qualify - cheap/affordable vs. the best regardless of cost. No effect while "Any X" is checked.</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>Lightweight</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>Heavy</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>How much of each supply a pack carries, and whether the Shield Kit's shield favours mobility or maximum protection.</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>Essential</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>All</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>How many of the templates below default to checked, most essential first (Base Supply, Medic Kit, Shield Kit, Spotter, Tactical Kit, EMP Kit, Combat Drugs Kit last - a deliberate situational choice, never a default). Only affects a row you haven't ticked/unticked yourself.</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; Back</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>Back to the previous step of the Arm-my-Colony flow. Steps that already applied are not undone.</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>Cancel</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>Delete existing equipment packs ({0})</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>Remove every existing Equipment Pack (colonists lose it from their loadout). Every template above then proposes a fresh pack as new.</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>Delete all {0} equipment pack? This cannot be undone.</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>Delete all {0} equipment packs? This cannot be undone.</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>Deleted {0} equipment pack.</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>Deleted {0} equipment packs.</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>Skip</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>Skip this step - nothing is generated here, the Arm-my-Colony flow continues to the next step.</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>Generate checked ({0})</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>Generate {0}, delete {1}</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>Delete {0}</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>Continue (no packs)</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>Skipped (name already used by a hand-built pack, not generated by this wizard): {0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>Pack</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>Contents</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>Availability</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>Materials</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>Mass / Bulk</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>"{0}" already exists - left as-is by default (Filling gaps). Click to include it in this run, or just edit anything below - any change here applies immediately and includes it too.</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>In stock: {0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>Material this will be crafted from: {0}. Click to change.</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>Material this will be crafted from. Click to change.</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>Click to change what this is.</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>This item was already in the pack and the wizard has no alternatives to offer for it, so it cannot be swapped - it is kept as it is. Use the X to remove it.</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>Add another item to this pack.</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>Medicine</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>Food</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>Drug</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>Shield</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>Utility</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}: {1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0} stays exactly as it is. Click to mark it for deletion.</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>{0} will be created when you apply. Click to leave it out.</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>{0} will NOT be created. Click to include it.</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>{0} will be DELETED when you apply. Click to keep it instead.</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>You changed {0} - your version is written when you apply. Click to mark it for deletion instead.</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

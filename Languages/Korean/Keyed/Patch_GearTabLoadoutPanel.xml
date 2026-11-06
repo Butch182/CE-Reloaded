@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GearTabLoadoutPanel_Header>로드아웃</CER_GearTabLoadoutPanel_Header>
+	<CER_GearTabLoadoutPanel_NoLoadoutAssigned>배정된 로드아웃이 없습니다.</CER_GearTabLoadoutPanel_NoLoadoutAssigned>
+	<CER_GearTabLoadoutPanel_NoLoadoutHint>배정을 사용해 무기나 역할을 선택하세요.</CER_GearTabLoadoutPanel_NoLoadoutHint>
+	<CER_GearTabLoadoutPanel_TitleBold>&lt;b&gt;{0}&lt;/b&gt;</CER_GearTabLoadoutPanel_TitleBold>
+	<CER_GearTabLoadoutPanel_ColItem>항목</CER_GearTabLoadoutPanel_ColItem>
+	<CER_GearTabLoadoutPanel_ColHaveNeed>보유/필요</CER_GearTabLoadoutPanel_ColHaveNeed>
+	<CER_GearTabLoadoutPanel_ColStatus>  상태</CER_GearTabLoadoutPanel_ColStatus>
+	<CER_GearTabLoadoutPanel_UnknownItem>?</CER_GearTabLoadoutPanel_UnknownItem>
+	<CER_GearTabLoadoutPanel_StatusOk>OK</CER_GearTabLoadoutPanel_StatusOk>
+	<CER_GearTabLoadoutPanel_StatusInStorage>보관 중</CER_GearTabLoadoutPanel_StatusInStorage>
+	<CER_GearTabLoadoutPanel_StatusInProduction>생산 중</CER_GearTabLoadoutPanel_StatusInProduction>
+	<CER_GearTabLoadoutPanel_StatusMissing>부족</CER_GearTabLoadoutPanel_StatusMissing>
+	<CER_GearTabLoadoutPanel_CarriedOverNeed>{0}/{1}</CER_GearTabLoadoutPanel_CarriedOverNeed>
+	<CER_GearTabLoadoutPanel_NeededCarried>
+필요: {0}   휴대: {1}</CER_GearTabLoadoutPanel_NeededCarried>
+	<CER_GearTabLoadoutPanel_FreeInStorage>
+보관소 여유분: {0}</CER_GearTabLoadoutPanel_FreeInStorage>
+	<CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+작업대에 대기 중입니다.</CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+	<CER_GearTabLoadoutPanel_NotCovered>
+
+충족되지 않음 - 준비 상태 표시등과 보급 흐름에서 대기열에 추가할 수 있습니다.</CER_GearTabLoadoutPanel_NotCovered>
+	<CER_GearTabLoadoutPanel_EditButton>편집...</CER_GearTabLoadoutPanel_EditButton>
+	<CER_GearTabLoadoutPanel_EditTooltipHasLoadout>이 로드아웃을 CE 로드아웃 편집기에서 엽니다.</CER_GearTabLoadoutPanel_EditTooltipHasLoadout>
+	<CER_GearTabLoadoutPanel_EditTooltipNoLoadout>아직 편집할 로드아웃이 없습니다.</CER_GearTabLoadoutPanel_EditTooltipNoLoadout>
+	<CER_GearTabLoadoutPanel_AssignButton>배정...</CER_GearTabLoadoutPanel_AssignButton>
+	<CER_GearTabLoadoutPanel_AssignTooltip>CE Reloaded의 정착민 장비 지급 탭을 엽니다.</CER_GearTabLoadoutPanel_AssignTooltip>
+
+</LanguageData>

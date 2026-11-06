@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Ausrüstungspakete</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Paket</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>Es existieren noch keine Ausrüstungspakete - erstelle zuerst eines im Reiter Ausrüstungspakete.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Max. Sperrigkeit der Zweitwaffe:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>Dieselbe Grenze, die der Zweitwaffen-Picker der Automatik benutzt - ein Sturmgewehr soll niemandem als "Reserve" zugeteilt werden, nur weil es gut bewertet ist. Sperrigere Waffen werden auch in dieser Liste ausgeblendet (eine angehakte bleibt immer sichtbar; Sprengmittel und Schilde sind nie begrenzt). Hier ändern ändert die echte Einstellung, keine Kopie.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Schließen</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Kopieren</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>{0} {1}-Auswahl kopiert - auf die eigene {1}-Zelle anderer Kolonisten einfügen.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Eine leere {0}-Auswahl kopiert - auf die eigene {0}-Zelle anderer Kolonisten einfügen, um sie zu leeren.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Kopiert diese genaue Auswahl, sodass sie direkt aus der eigenen Zelle anderer Kolonisten eingefügt werden kann, ohne diese Liste jedes Mal erneut zu öffnen.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Nichts angekreuzt - kopiert eine leere Auswahl, die alles leert, worauf sie eingefügt wird.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>Keine Treffer für „{0}".</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} ausgeblendet - Waffen-Sperrigkeit über der max. Zweitwaffen-Sperrigkeit von {1}. Wert erhöhen, um sie zu sehen.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Alle Kandidaten sind durch die max. Zweitwaffen-Sperrigkeit von {0} ausgeblendet. Wert erhöhen, um sie zu sehen.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Wertung</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Verf.</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>Alle Typen</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Zeigen: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Welche Waffen die Liste ueberhaupt anbietet: alle, nur erforschte, oder nur die, die die Kolonie schon besitzt. Wirkt auf die Waffen-Sektion.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Typ: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Schraenkt die Liste auf eine Sorte ein: Fernkampf, Nahkampf, sonstige Ausruestung, handgebaute Loadouts oder Rollen.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Sonstige</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Vanilla-Loadouts</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Rollen</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>'{0}' von {1} kopiert. Einfuegen in Kolonisten ausruesten: Spalte "Einfuegen" ganz rechts in der Zeile jedes Kolonisten.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Kopiert die aktuelle Waffenzuweisung dieses Kolonisten. Danach erscheint in Kolonisten ausruesten ganz rechts in jeder Zeile eine Spalte "Einfuegen" - ein Klick gibt demjenigen dieselbe Waffe.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Eigene Loadouts loeschen ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>Alle {0} von Hand gebauten Loadouts loeschen? Rollen bleiben unberuehrt; Kolonisten mit so einem Loadout stehen danach ohne da. Das laesst sich nicht rueckgaengig machen.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Loescht jedes von Hand gebaute (Vanilla-)Loadout - Rollen bleiben.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Waffe sperren: die Automatik vergibt sie nie mehr, sie rutscht ausgegraut ans Ende ihrer Gruppe. Nochmal klicken entsperrt.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Gesperrt - die Automatik vergibt diese Waffe nie. Klick entsperrt.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Diesen Eintrag sperren: die Automatik vergibt diese Rolle bzw. dieses Loadout nie mehr, sie rutscht ausgegraut ans Ende ihrer Gruppe. Nochmal klicken entsperrt.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Gesperrt - die Automatik vergibt diese Rolle bzw. dieses Loadout nie. Klick entsperrt.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} Kolonist(en) tragen laut Zuweisung noch eine gesperrte Waffe. Jetzt neu zuteilen? Alle anderen behalten ihre Ausruestung.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Inhalt</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Masse / Sperrigkeit</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Herstellungskosten</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(leer)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Von dieser Sorte gibt es hier nichts. Nimm oben in der Liste "Typ" einen anderen Eintrag.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

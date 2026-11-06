@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>score-invalide</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>Le score de l'arme est {0} (pas un nombre fini).</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>score-zéro</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>L'arme de combat a des dégâts réels mais un score de 0 - le calcul du score n'a probablement pas pu lire ses statistiques.</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>pas-ce-mais-armée</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>Arme à distance marquée « (Pas CE) » mais possède un ensemble de munitions/projectile - vérifiez la détection.</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>distance-sans-munitions</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>Possède un ensemble de munitions mais la liste de munitions de la dotation est vide - aucun ordre de munitions ne peut être créé.</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>set-munitions-non-resolu</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>Arme a distance marquee compatible CE dont le set de munitions n'a jamais ete resolu - elle ne pourra jamais recevoir de munitions valides.</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>auto-munition-sans-recette</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>L'arme auto-munitionnée (grenade/lancée) n'a pas de recette de fabrication - ne peut pas être produite.</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>exception</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0} : {1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - Audit de compatibilité des armes</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>{0} armes analysées provenant de {1} mods. {2} problème(s).</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>Audit de compatibilité des armes</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>{0} armes analysées provenant de {1} mod(s) actif(s).  {2} problème(s) trouvé(s).</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>Aucun problème trouvé - chaque arme de cette liste de mods est gérée proprement. ✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+Source : {1}
+{2} : {3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>Fermer</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>Copier le rapport dans le presse-papiers</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>Rapport d'audit copié dans le presse-papiers.</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

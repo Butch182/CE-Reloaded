@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: zastosowano {0} zmienioną wartość domyślną w bieżącej grze.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: zastosowano {0} zmienionych wartości domyślnych w bieżącej grze.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>Filtry</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>Zestawy</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>Role</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>Zlecenia amunicji</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>Auto-przypisywanie</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>Presety</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>Alerty</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>Narzędzia</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>Debug</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>Dostrajanie presetów</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>Dokładne wartości suwaków (0..1), jakie każdy przycisk presetu stosuje w podglądzie Auto-przypisywania. Preset to KOMPLETNA konfiguracja - zastosowanie go ustawia każdy suwak, łącznie z Przeciw ciału/Przeciw mechom, więc presety nigdy się nie mieszają połowicznie. "Użyj zalecanych ustawień" pozostaje dynamiczną alternatywą (Anty-mech sterowany przez kolonię).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>Zrównoważony</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>Anty-mech</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>Ekonomiczny</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>Najlepszy sprzęt</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>Nacisk na dystans</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>Wszystko</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>Dostępne przedmioty</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>Przeciw ciału &lt;-&gt; Przeciw mechom</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = dostrojone przeciw ciału, 1 = przeciw mechanoidom. Steruje wyborem amunicji, granatów i broni bocznej oraz oceną celów przy przypisywaniu.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>Jeden typ amunicji &lt;-&gt; maks. elastyczność</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>Jak chętnie Auto-przypisywanie miesza typy amunicji dla jednej broni (przy włączonym „Nadpisz amunicje”). Racje pozostają pełnymi magazynkami, suma nigdy nie rośnie.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>Użyj dostępnych &lt;-&gt; wytwórz nowe</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>Przypisywanie: jak chętnie solver rozdaje broń, którą trzeba wytworzyć.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>Preferuj dystans &lt;-&gt; wręcz</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>Przypisywanie: przesuwa, kto liczy się jako strzelec, a kto jako wojownik wręcz.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>Zawsze najlepsze &lt;-&gt; pokryj role</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>Przypisywanie: 0 = każdy otrzymuje najwyższą wartość, 1 = oddział najpierw wypełnia klasyczne role.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>Tania &lt;-&gt; najlepsza broń (budżet)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>Przypisywanie: ma znaczenie tylko dla broni, którą trzeba wytworzyć.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>Brak pakietów &lt;-&gt; Hojne pakiety</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>Przypisywanie: szereguje typy Pakietów wyposażenia wg niezbędności i stopniowo obejmuje więcej w miarę wzrostu suwaka.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>Resetuj presety do wartości domyślnych</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>Wartości presetów zresetowane do ustawień fabrycznych.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>Presety trybów Uzbrój kolonię</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>Które z 6 przełączników kroków ustawia każdy z trybów Ostrożny/Normalny/Agresywny po wybraniu w Uzbrój kolonię. Gracz wciąż może dostroić poszczególne przełączniki po wybraniu trybu - to tylko punkt STARTOWY każdego trybu.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>Ostrożny</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>Normalny</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>Agresywny</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>Wyłączone</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>Zarządzane</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>Wszystkie</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>Resetuj postacie</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>Usuń zlecenia amunicji</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>Usuń zlecenia broni</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>Usuń ręcznie zbudowane zestawy</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>Usuń pakiety wyposażenia</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>Twórz zlecenia amunicji</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>Resetuj presety Uzbrój kolonię do wartości domyślnych</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>Przełączniki presetów Uzbrój kolonię zresetowane do ustawień fabrycznych.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>Alerty gotowości bojowej</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>Alerty w stylu podstawowej gry (w prawym górnym rogu, obok "Ryzyko poważnego załamania"), które ostrzegają, gdy kolonista nie jest gotowy do walki. Najedź na alert, by zobaczyć szczegóły, kliknij, by przejść do kolonistów.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>Pokazuj alerty gotowości bojowej (przełącznik główny)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>Kolonista nie ma przypisanego żadnego zestawu</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>Wyłącz to, jeśli celowo trzymasz część kolonistów (rzemieślników, lekarzy) nieuzbrojonych - w przeciwnym razie zawsze będą pokazywani jako problem.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>Zestaw bez pasującej amunicji</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>Broń z zestawu niedostępna (brak w magazynie ani w produkcji)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>Mało amunicji (mniej niż 2 przeładowania przy sobie)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>Ostrzegaj ponizej ... magazynkow</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>Przy ilu magazynkach pojawia sie ostrzezenie o malej ilosci amunicji. Domyslnie 2. Spolecznosc CE liczy zwykle 5-6 magazynkow na walke.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>Przeciążony (przekroczona pojemność wagi lub objętości)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>Za pełny, by pobrać zestaw (osiągnięto limit, wciąż brakuje typu amunicji)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>Objętość lub waga są już zapełnione do maksimum, więc kolonista fizycznie nie może podnieść reszty tego, czego wymaga jego zestaw - żadne zlecenie ani zapas nie pomogą, dopóki nie zwolni miejsca.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>Broń przydzielona, ale kolonista jej nie nosi</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>Kolonista ma prawdziwy zestaw z przydzieloną bronią, ale nie nosi niczego - ani w ręku, ani w plecaku. Zwykle po prostu jeszcze jej nie zabrał. Uruchamia się tylko przy całkowicie pustych rękach.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>Amunicja nie jest w produkcji</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...tylko jeśli zapas wynosi mniej niż X naboi (0 = zawsze):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = ostrzega zawsze, gdy żadne zlecenie nie produkuje amunicji do tej broni. Wyższa wartość ostrzega dopiero, gdy zapas tej amunicji spadnie poniżej X naboi, więc duża rezerwa nie będzie ci przeszkadzać.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>Resetuj alerty do wartości domyślnych</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>Narzędzia i diagnostyka</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>Skanuje każdą broń ze wszystkich aktywnych modów i zgłasza te, które CE Reloaded może obsługiwać niepoprawnie (nieprawidłowy wynik, błędna flaga "(Nie CE)", brak amunicji, niemożliwe do wytworzenia rzucane). Niczego nie zmienia, działa wyłącznie do odczytu. Przydatne po dodaniu modów z bronią albo do dołączenia do zgłoszenia błędu.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>Uruchom audyt kompatybilności broni</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>Zapis gry startuje jako kopia tych ustawień moda, a potem pamięta własne modyfikacje (filtry, suwaki, domyślne ustawienia zaopatrzenia). Ten przycisk odrzuca modyfikacje bieżącej gry i stosuje ustawienia moda od nowa.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>Zresetuj bieżącą grę do tych ustawień moda</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>Ponownie inicjuje stan interfejsu bieżącego zapisu wartościami skonfigurowanymi tutaj. Ręczne nadpisania suwaków zostają wyczyszczone, historia walk kolonii zostaje zachowana.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>Dostępne tylko, gdy gra jest wczytana.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>Ustawienia bieżącej gry zostały zresetowane do ustawień moda.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>Debug / audyt zestawów</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>Każdy obiekt Zestawu zarejestrowany w tej chwili - łącznie z ukrytymi kotwicami amunicji, Pakietami wyposażenia i Rolami. Nic tu nie jest przeznaczone do bezpośredniej edycji; służy do sprawdzenia, co faktycznie istnieje.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>Brak aktywnej gry - otwórz zapis, by sprawdzić jego zestawy.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>Wyczyść osierocone kotwice ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>Usunięto {0} osieroconą kotwicę zestawu.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>Usunięto {0} osieroconych kotwic zestawów.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>Usuwa każdą ukrytą kotwicę amunicji przypisaną do postaci, do której nie jest już faktycznie przypisana żadna żywa postać (na żadnej mapie ani w żadnej karawanie). Uruchamia się też automatycznie mniej więcej raz na godzinę gry - ten przycisk to po prostu "zrób to teraz".</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>Przygotuj zapis do odinstalowania...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>Użyj przed usunięciem CE Reloaded z trwającej gry. Każdy kolonista zachowuje dokładnie to, co teraz nosi - broń, broń boczną, pakiety, własną amunicję - ale jako zwykłe zestawy Combat Extended, które działają bez tego moda. Role wchłaniają swoje pakiety, a ukryte zestawy kolonistów są usuwane. Potem: zapisz, wyjdź, usuń mod.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>Przygotować ten zapis do usunięcia CE Reloaded?\n\nKoloniści zachowują dokładnie to, co noszą, ale jako zwykłe zestawy CE: pakiety i broń boczna nie są już współdzielone ani edytowalne na żywo. Nie da się tego cofnąć - najpierw zrób zapis zapasowy.\n\nPotem zapisz grę, wyjdź i usuń mod.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>Zapis przygotowany: kolonistów z powrotem na wspólnym zestawie: {0}, z własnym zestawem: {1}, scalonych ról: {2}, usuniętych ukrytych zestawów: {3}. Teraz zapisz grę, wyjdź i usuń mod.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>Etykieta</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>Kategoria</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>Rodzic</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>Sloty</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>Domyślna</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>Kotwica amunicji</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>Pakiet wyposażenia</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>Rola</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>Zestaw broni</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (osierocone)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>UniqueID: {0}
+OwnSlots: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+Rodzic: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+Dodatkowi rodzice: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+Rozwiązana zawartość ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+Rozwiązana zawartość: brak</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>Role</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>Współczynniki mnożące amunicję / leki / jedzenie / granaty roli.  x1 zachowuje kategorię, x0 ją usuwa.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>Biblioteka globalna</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>Tylko ten zapis</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ Dodaj rolę</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>Nowa rola zapisu</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>Nowa rola</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>Resetuj do presetów</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>Zastępuje globalną listę domyślnymi rolami (Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee). Rola, której nazwy wśród nich nie ma, traci też swój ekwipunek.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>Wczytaj kolonię, by dodawać role istniejące tylko w tym zapisie.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>Nazwa roli</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>Amunicja</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>Leki</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>Jedzenie</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>Granaty</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>Usuń tę rolę.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>Filtry (domyślne)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>Domyślny filtr amunicji:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>Domyślny filtr zleceń amunicji:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>Ukryj powtarzające się stanowiska pracy na listach zleceń</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>Gdy istnieje kilka identycznych stanowisk pracy, wymień każdy typ tylko raz w selektorach stanowisk dla zleceń amunicji. Wyłącz to, jeśli chcesz wskazać konkretne z kilku identycznych stanowisk.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>Uwzględnij otwartą produkcję broni</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>Okienko Zaopatrz odlicza broń już zakolejkowaną na stanowisku pracy od braków: otwarta produkcja jest uwzględniana jako pierwsza i proponowana jest tylko reszta, więc nic nie jest nadprodukowane. Wyłączone: okienko zawsze proponuje pełny brak, niezależnie od tego, co już jest zakolejkowane.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>Resetuj filtry do wartości domyślnych</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>Domyślne ustawienia zestawów</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>Domyślna amunicja broni palnej:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>Który wariant amunicji dostaje domyślnie broń palna. FMJ to klasyczny wszechstronny wybór. Ogólny zachowuje placeholder "Dowolna amunicja do X". Jeśli broń nie ma pasującego wariantu, CE Reloaded wraca do Dowolny/FMJ.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>Karty zaczynają w trybie Szczegółowym</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>Czy własny przełącznik Prosty/Szczegółowy kart Role/Zlecenia amunicji/Wyposaż kolonistów zaczyna w trybie Szczegółowym przy pierwszym otwarciu w sesji. Wyłączone = zaczyna w Prostym. Każda karta zapamiętuje potem twój wybór do końca sesji - to ustawia tylko pierwszy wygląd.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>Brak prefiksu zestawu</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>Wyłączone</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>Brak prefiksu Pakietu wyposażenia</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>Brak prefiksu Roli</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>Maks. objętość broni bocznej:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>Broń boczna - wręcz (dla żołnierzy dystansowych):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>Zasila bonus oceny "uzupełniającej broni zapasowej" dla broni dystansowej. Tylko broń wręcz. Auto = wybierana w grze spośród tego, co posiadasz lub możesz wytworzyć. Brak = nigdy nie liczy się jako posiadanie zapasowej broni wręcz.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>Broń boczna - dystansowa (dla żołnierzy wręcz):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>Zasila bonus oceny "uzupełniającej broni zapasowej" dla broni wręcz. Tylko broń dystansowa. Auto = wybierana w grze spośród tego, co posiadasz lub możesz wytworzyć. Brak = nigdy nie liczy się jako posiadanie zapasowej broni dystansowej.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>Domyślna tarcza:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>Tarcza CE dla kolonistów z jednoręczną bronią główną (broń dwuręczna nie może używać tarczy). Auto = wybierana w grze spośród tego, co posiadasz lub możesz wytworzyć. Brak = brak domyślnej tarczy.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>Te cztery wartości to wartości początkowe dla NOWO utworzonego Equipment Pack. Sama broń nie przynosi posiłków ani medykamentów - od tego są paczki.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>Domyślny posiłek:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>Brak</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>Domyślna liczba posiłków:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>Domyślne leki:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>Domyślna liczba leków:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>Domyślne liczby amunicji (wg typu broni)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>Szturmowa / Pistolet maszynowy:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>Snajperska / Myśliwska:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>Karabiny maszynowe (LMG):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>Strzelby:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>Łuki / Kusze:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>Wyrzutnie / Materiały wybuchowe:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>Inne / Domyślne:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>Oszczepy / rzucana broń wręcz:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>Broń, która sama jest swoją amunicją (oszczepy, piła) - to liczba sztuk, które kolonista nosi przy sobie, nie liczba magazynków. Oddzielone od Granatów poniżej - rozdzielone, bo sensowna liczba oszczepów i sensowna liczba granatów to bardzo różne wartości.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>Granaty / rzucane materiały wybuchowe:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>Rzucane materiały wybuchowe (granaty, ładunki w torbie, ...) - to również własna amunicja jak oszczepy powyżej, ale sensowna jest tu znacznie mniejsza liczba.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>Pistolet:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>Amunicja do pistoletu lub rewolweru. Osobna wartosc, bo pistolet to prawie zawsze bron DODATKOWA: jego amunicja dochodzi do amunicji broni glownej. Dawne wspolne 150 to zapas karabinu szturmowego dla broni zapasowej.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>Resetuj domyślne ustawienia zestawów</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>Zlecenia amunicji (domyślne)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>Domyślne partie amunicji (produkcja):</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>Wymagania umiejętności:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>Umiejętność: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>Resetuj zlecenia amunicji do wartości domyślnych</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>Bufor rezerwy zleceń amunicji</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>Zlecenie amunicji to zlecenie utrzymania ("produkuj, aż będzie X w zapasie"), a nie jednorazowe zamówienie - wymaganie pełnej jednoczesnej rezerwy dla każdego kolonisty dzielącego kaliber przecenia rzeczywistą potrzebę. Pierwszych N kolonistów liczy się z pełną wagą, każdy kolejny kolonista wnosi malejący udział (aż do dolnego progu). Ustaw próg na 100%, aby wrócić do starego zachowania "licz wszystkich z pełną wagą".</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>Koloniści z pełną wagą: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>Ilu kolonistów dzielących ten sam typ amunicji liczy się jako 100% ich własnej skonfigurowanej ilości. Każdy kolejny kolonista liczy się mniej (patrz próg poniżej).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>Dolny próg udziału końcowego: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>Minimalny udział, jaki nadal wnosi kolonista powyżej liczby pełnej wagi (jego udział maleje im dalej na liście, ale nigdy poniżej tego progu). 100% odtwarza stare zachowanie "zsumuj wszystkich".</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>Auto-przypisywanie (domyślne)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>Precyzyjne dostrajanie (użyj istniejących vs wytwórz, przeciw ciału vs przeciw mechom, dystans vs wręcz, różnorodność oddziału) znajduje się w samym okienku Auto-przypisywania i jest zapamiętywane osobno dla każdego zapisu.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>Domyślny filtr broni:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>Jaką broń Auto-przypisywanie może rozdawać:
+Cała broń - niezależnie od tego, co posiadasz lub możesz zbudować.
+Dostępna broń główna - tylko broń, którą już posiadasz.
+Zbadana broń główna - tylko broń, którą posiadasz lub możesz teraz wytworzyć.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>Wymagania umiejętności produkcji broni:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>Resetuj auto-przypisywanie do wartości domyślnych</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>Cała broń</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>Dostępna broń główna</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>Zbadana broń główna</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>Wszystkie</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>Zbadane</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>Dostępne</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>W zestawie</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>Przypisane zestawy</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>Dostępna broń</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>Aktywne zlecenia</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>Zbadana amunicja</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>Auto (zalecane)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>Role przy przydzielaniu</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>Krótki kurs (zwięzły przegląd przepływu pracy) otwiera się raz, przy pierwszym otwarciu CE Reloaded.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>Pokaż krótki kurs</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>Zresetuj pierwsze uruchomienie</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>Zapomina, że krótki kurs już się pokazał - otworzy się ponownie przy następnym otwarciu Planera zestawów lub Uzbrój kolonię. Przydatne do testów.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>Pierwsze uruchomienie zresetowane - krótki kurs otworzy się ponownie następnym razem.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>Przywroc szablony ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>Przywraca usuniete wbudowane role, kazda na jej pierwotne miejsce. Dodawane sa tylko brakujace - inaczej niz „Przywroc domyslne”, twoje wlasne role pozostaja nietkniete.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>Przywrocono wbudowane role: {0}.</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

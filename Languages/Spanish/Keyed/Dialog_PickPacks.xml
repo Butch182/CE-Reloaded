@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Paquetes de equipamiento</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Paquete</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>Aún no existe ningún Paquete de equipamiento - crea uno primero en la pestaña Paquetes de equipamiento.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Volumen máximo de arma secundaria:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>El mismo límite que usa el selector de armas secundarias de la asignación automática: un fusil de combate no debería entregarse como arma "de reserva" solo por puntuar bien. Las armas más voluminosas también se ocultan de esta lista (una marcada siempre sigue visible; explosivos y escudos nunca se limitan). Editarlo aquí cambia el ajuste real, no una copia.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Cerrar</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Copiar</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>Se copió la selección de {1} ({0}) - pégala en la celda de {1} de otros colonos.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Se copió una selección de {0} vacía - pégala en la celda de {0} de otro colono para vaciarla.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Copia esta selección de marcas exacta para poder pegarla en otros colonos directamente desde su propia celda, sin volver a abrir esta lista cada vez.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Nada marcado - copia una selección vacía, que vacía lo que sea que se pegue.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>Sin coincidencias para "{0}".</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} oculto(s): volumen del arma por encima del volumen máx. de arma secundaria de {1}. Sube el valor para verlos.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Todos los candidatos están ocultos por el volumen máx. de arma secundaria de {0}. Sube el valor para verlos.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Puntuación</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Disp.</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>Todos los tipos</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Mostrar: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Qué armas ofrece la lista: todas, solo las investigadas o solo las que la colonia ya posee. Se aplica a la sección de armas.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Tipo: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Limita la lista a una clase: a distancia, cuerpo a cuerpo, otro equipo, equipos hechos a mano o roles.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Otras</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Equipos vanilla</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Roles</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>'{0}' copiada de {1}. Pegala en Equipar colonos: la columna «Pegar» al extremo derecho de la fila de cada colono.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Copia el arma asignada actualmente a este colono. Despues aparece una columna «Pegar» al extremo derecho de cada fila en Equipar colonos: un clic le da la misma arma.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Borrar equipos propios ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>¿Borrar los {0} equipos hechos a mano? Los roles quedan intactos; los colonos afectados se quedan sin equipo. No se puede deshacer.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Borra todos los equipos hechos a mano (vanilla) - los roles quedan.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Bloquear esta arma: la asignación automática no la repartirá más y pasa atenuada al final de su grupo. Vuelve a pulsar para desbloquear.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Bloqueada - la asignación automática nunca la elige. Pulsa para desbloquear.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Bloquear esta entrada: la asignación automática no repartirá más este rol o equipo y pasa atenuado al final de su grupo. Vuelve a pulsar para desbloquear.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Bloqueado - la asignación automática nunca elige este rol o equipo. Pulsa para desbloquear.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} colono(s) siguen con un arma bloqueada asignada. ¿Reasignar ahora? El resto conserva su equipo.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Contenido</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Masa / Volumen</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Coste de producción</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(vacío)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Aqui no hay nada de este tipo. Elige otra entrada en la lista «Tipo» de arriba.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

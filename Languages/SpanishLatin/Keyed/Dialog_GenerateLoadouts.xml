@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (Munición): Daña y aturde a los mecanoides, desactiva escudos.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Concusiva (Munición): Daño de área contundente, gran supresión.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Destello / Deslumbrante (Munición): Ciega objetivos, desorienta.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Aturdidora (Munición): Inmoviliza brevemente al objetivo.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Incendiaria (Munición): Prende fuego a los objetivos, causa pánico.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Tóxica (Munición): Aplica acumulación de toxinas.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Humo (Munición): Bloquea la línea de visión.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Fragmentación (Munición): Esparce metralla (área anti-personal).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Perforante (Munición): La munición AP derrota armaduras pesadas.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Explosivo (Munición): Radio de explosión real, daña todo lo cercano.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Explosivo, secundario (Munición): Una pequeña carga HE acompaña al impacto cinético - mismo objetivo, sin radio de explosión.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Habilidades especiales:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>{0} efecto(s) más: no cabe más en esta columna:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: Daña y aturde a los mecanoides, desactiva escudos.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Concusiva: Daño de área contundente, gran supresión.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Destello / Deslumbrante: Ciega objetivos, desorienta.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Aturdidora: Inmoviliza brevemente al objetivo.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Incendiaria: Prende fuego a los objetivos, causa pánico.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Tóxica: Aplica acumulación de toxinas.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Humo: Bloquea la línea de visión.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Fragmentación: Esparce metralla (área anti-personal).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Perforante: Derrota armaduras pesadas (AP alto / HEAT).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Explosivo: Radio de explosión real, daña todo lo cercano.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Explosivo, secundario: Una pequeña carga HE acompaña al impacto cinético - mismo objetivo, sin radio de explosión.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Cuerpo a cuerpo</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Armas de fuego</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Pesadas</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Otras</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Todos los tipos</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Roles</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Armas</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Armas</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>No se encontraron armas.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Tus Paquetes de Equipo</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Se copió en este rol la última vez que hiciste clic en Crear/Actualizar - no es un enlace en vivo. Editar este artículo ahora no llegará a los colonos que ya usan este rol hasta que vuelvas a hacer clic en Crear/Actualizar aquí.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Esta parte aporta el arma principal del rol: {0}. Cualquier otra arma de este rol cuenta como arma secundaria: un rol puede combinar arma principal, cuchillo y granadas a la vez.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Elimina este Paquete de Equipo.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>¿Eliminar el paquete de equipo "{0}"? Los colonos que lo llevan actualmente perderán esos artículos.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Arrastra sobre un rol para escalarlo. Edita su contenido en la pestaña Paquetes de Equipo.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Todavía no hay Paquetes de Equipo - crea algunos primero en la pestaña Paquetes de Equipo.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Ningún Paquete de Equipo coincide con "{0}".</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Nada coincide con "{0}".</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Ningún rol coincide con "{0}".</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Roles</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Nuevo rol</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Nuevo rol</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Añade un rol guardado solo en ESTA partida. Los roles globales viven en Configuración del mod &gt; Roles.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} colono(s)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Colonos que tienen este rol ahora mismo: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Ningún colono tiene este rol ahora mismo. Asígnalo en la pestaña Equipar colonos.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Restablecer</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>¿Restablecer todos los roles globales a los predefinidos? (Los roles propios de la partida se conservan.) Un rol cuyo nombre no esté entre los predefinidos pierde también su equipo: los colonos que lo usan se quedan sin equipo asignado y conservan su munición, mochilas y armas secundarias.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Restablece los roles globales a los preajustes integrados.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[P]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Rol local de la partida: existe solo en esta colonia. Para crear un rol que se lleve a todas las partidas, añádelo en Configuración del mod &gt; Roles.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Rol global: disponible en todas las colonias. Gestiónalo en Configuración del mod &gt; Roles.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Elimina este rol.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>¿Eliminar el rol "{0}" y el equipo que hay detrás? Los colonos que lo usan se quedan sin equipo asignado; su propia munición, mochilas y armas secundarias se conservan. Si el equipo se quedara, seguiría apareciendo como plantilla asignable.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Duplica este rol (nombre, factores y su composición actual).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● creado</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ nuevo</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Este rol está guardado - cada cambio en la tarjeta se escribe al instante.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Vacío - arrastra un arma o un paquete encima.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Bloqueado: este rol aún no tiene nada, así que no hay nada que escalar. Arrastra primero un arma o un paquete sobre la tarjeta.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Mu</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Me</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>Co</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Gr</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Factor de munición (Mu): multiplica la cantidad de munición de cada arma de este rol. 1 = la cantidad de las opciones del mod, 0,75 = tres cuartos, 2 = el doble, 0 = sin munición.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Factor de medicina (Me): multiplica la cantidad de medicina de las piezas del rol. 1 = sin cambios, 3 = el triple, 0 = ninguna.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Factor de comida (Co): multiplica la cantidad de comida de las piezas del rol. 1 = sin cambios, 1,5 = una vez y media, 0 = ninguna.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Factor de granadas (Gr): multiplica la cantidad de granadas y explosivos arrojadizos de las piezas del rol. 1 = sin cambios, 3 = el triple, 0 = sin granadas.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>arrastra un arma o un paquete aquí</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>contiene {0} - arrastra un arma o un paquete aquí para recomponer</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Este rol se creó antes de que se registrara su composición, así que se desconocen las piezas con las que se formó, pero no su contenido final. Los colonos con este rol están equipados correctamente; la vista previa de abajo lo enumera todo. Arrastrar un arma o un paquete aquí lo recompone y sustituye el contenido actual.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Arrastra un arma o un Equipment Pack a esta fila para construir el rol. Se guarda automáticamente apenas contiene algo.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Selecciona un rol y suelta un arma o un paquete sobre él para previsualizar el resultado.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Vista previa</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Rol]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(existe - diferencia)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(existe - al dia)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>guardado automáticamente</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Artículo</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Predeterminado -&gt; con factor</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Suelta un arma o un paquete sobre este rol para ver el resultado.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;añadido&lt;/color&gt;  &lt;color=#F2D966&gt;cambiado&lt;/color&gt;  &lt;color=#FF7373&gt;eliminado&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Resultado: {0} pilas</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Nada que crear.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>Ya existe otro rol llamado "{0}" - elige un nombre diferente, o se sobrescribiría la carga de ese otro rol.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>No se guardó: el rol "{0}" quedaría completamente vacío y todos los colonos asignados se quedarían sin nada. Vuelve a añadirle contenido primero (arrastra un arma o un paquete).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>El único contenido del rol: no se puede quitar. "{0}" quedaría completamente vacío y todos los colonos con ese rol se quedarían sin nada. Para cambiarlo: arrastra primero el reemplazo a la tarjeta y luego quita este. Para borrar el rol en sí, usa la x de la esquina superior derecha de la tarjeta.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>El único contenido del rol: no se puede quitar. "{0}" quedaría completamente vacío. Para cambiarlo: arrastra primero el reemplazo a la tarjeta y luego quita este. Para eliminar el rol en sí, usa la x arriba a la derecha de la tarjeta.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Ya existe un equipo de rol llamado «{0}» de un rol borrado anteriormente, y {1} colono(s) lo siguen llevando. Crear este rol se apropiara de ese equipo y los reequipara a todos de golpe.
+
+¿Continuar?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>Se creó "{0}".</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Renombrado a "{0}".</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Renombrado a "{0}":  +{1} añadidos,  -{2} eliminados,  ~{3} cambiados.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" sin cambios.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>Se actualizó "{0}":  +{1} añadidos,  -{2} eliminados,  ~{3} cambiados.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Munición personal</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Todas</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Investigadas</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Disponibles</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Especial</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Resultado: {0} pilas ({1} de ellas de paquetes adjuntos)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Restaurar predefinidos ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Recupera los roles integrados que borraste, cada uno en su lugar original. Solo se anaden los que faltan: tus propios roles, sus factores y sus contenidos quedan intactos.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>{0} rol(es) integrado(s) restaurado(s).</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>¿Borrar el rol integrado «{0}» y el equipo detras de el? Los colonos que lo usan vuelven a no tener equipo: su munición, mochilas y armas secundarias siguen con ellos. Esto lo elimina de la biblioteca global para todas las colonias; «Restaurar predefinidos» lo devuelve vacío sin tocar tus otros roles.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

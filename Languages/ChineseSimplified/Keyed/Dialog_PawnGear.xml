@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - 携带装备</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>丢弃 会将物品放到殖民者旁边的地面上 - 搬运工会将其送回仓库。</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>该殖民者当前不在地图上，因此无法丢弃任何物品。</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>装备</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>衣物</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>物品栏</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>丢弃</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- 无 -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>关闭</CER_PawnGear_CloseButton>
+
+</LanguageData>

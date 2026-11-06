@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP（弹药）：对机械体造成伤害并使其眩晕，使护盾失效。</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>震荡（弹药）：钝性范围伤害，强力压制。</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>闪光/眩目（弹药）：致盲目标，使其迷失方向。</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>眩晕（弹药）：短暂使目标无法行动。</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>燃烧（弹药）：使目标着火，引发恐慌。</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>毒性（弹药）：造成毒素积累。</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>烟雾（弹药）：阻挡视线。</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>破片（弹药）：喷射弹片（范围杀伤）。</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>穿甲（弹药）：穿甲弹可击穿重型装甲。</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>爆炸（弹药）：真实爆炸半径，伤害附近的一切。</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>爆炸，次要（弹药）：一个小型高爆装药伴随动能命中 - 同一目标，无爆炸半径。</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>特殊能力：</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>还有 {0} 个效果，本列放不下：</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP：对机械体造成伤害并使其眩晕，使护盾失效。</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>震荡：钝性范围伤害，强力压制。</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>闪光/眩目：致盲目标，使其迷失方向。</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>眩晕：短暂使目标无法行动。</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>燃烧：使目标着火，引发恐慌。</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>毒性：造成毒素积累。</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>烟雾：阻挡视线。</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>破片：喷射弹片（范围杀伤）。</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>穿甲：可击穿重型装甲（高穿甲力/破甲弹）。</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>爆炸（弹药）：真实爆炸半径，伤害附近的一切。</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>爆炸，次要（弹药）：一个小型高爆装药伴随动能命中 - 同一目标，无爆炸半径。</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>近战</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>枪械</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>重型</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>其他</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>全部类型</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>角色</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>武器</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>武器</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>未找到武器。</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>你的装备包</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>上次点击创建/更新时已复制到此角色中 - 这不是实时链接。现在修改此项目不会影响已使用该角色的殖民者，除非再次在此处点击创建/更新。</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>这个组件提供该职位的主武器：{0}。该职位中的其他武器都算作副武器 - 一个职位可以同时包含主武器、匙首和手雷。</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>删除此装备包。</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>删除装备包"{0}"？当前携带该装备包的殖民者将失去这些物品。</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>拖到某个职能上以对其进行缩放。在装备包标签页中编辑其内容。</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>尚无装备包 - 请先在装备包标签页中创建一些。</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>没有与“{0}”匹配的装备包。</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>没有与“{0}”匹配的内容。</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>没有与“{0}”匹配的角色。</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>职能</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ 新建职能</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>新职能</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>添加一个仅存储在本存档中的职能。全局职能存放于 模组设置 &gt; 职能。</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} 名殖民者</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>当前担任此角色的殖民者：{0}。</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>当前没有殖民者担任此角色。请在 装备殖民者 页签中分配。</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>重置</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>将所有全局角色重置为内置预设？（存档专属角色会保留。）名称不在预设中的角色也会失去其装备配置 - 使用它的殖民者将不再有指定的装备配置，但会保留自己的弹药、背包和副武器。</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>将全局职能重置为内置预设。</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[存]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[全]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>存档专属职能：仅存在于本殖民地。若要创建适用于所有游戏的职能，请在 模组设置 &gt; 职能 中添加。</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>全局职能：适用于所有殖民地。请在 模组设置 &gt; 职能 中管理。</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>删除此职能。</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>删除角色“{0}”及其背后的装备配置？使用它的殖民者将不再有指定的装备配置 - 他们自己的弹药、背包和副武器会保留。若保留该装备配置，它会继续作为可分配的模板出现。</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>复制此职能（名称、系数及当前构成）。</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● 已创建</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ 新建</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>该职能已保存 - 卡片上的每项更改都会立即写入。</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>空 - 将武器或装备包拖到上面。</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>已锁定：该职能上还没有任何内容，没有可缩放的东西。请先把武器或装备包拖到卡片上。</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>弹</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>药</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>食</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>手</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>弹药系数（弹）：乘以该职能中每件武器的弹药数量。1 = 模组设置中的数量，0.75 = 四分之三，2 = 两倍，0 = 不带弹药。</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>药品系数（药）：乘以职能组成部件中的药品数量。1 = 不变，3 = 三倍，0 = 不带。</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>食物系数（食）：乘以职能组成部件中的食物数量。1 = 不变，1.5 = 一倍半，0 = 不带。</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>手雷系数（手）：乘以职能组成部件中的手雷和投掷爆炸物数量。1 = 不变，3 = 三倍，0 = 不带手雷。</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>将武器或装备包拖至此处</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>含有 {0} - 将武器或装备包拖到此处可重新组合</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>此职能是在记录组成之前创建的，因此不知道它由哪些部件组合而成，但其最终内容是已知的。担任此职能的殖民者装备正确；下方预览会列出全部内容。将武器或装备包拖到此处会重新组合该职能，并替换当前内容。</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>将武器或装备包（Equipment Pack）拖到此行即可构建职能。只要其中有内容，就会自动保存。</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>选择一个职能并将武器或装备包拖到其上以预览结果。</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>预览</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[职能]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>（已存在 - 差异）</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>（已存在 - 无变化）</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>自动保存</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>物品</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>默认 -&gt; 应用系数后</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>将武器或装备包拖到此职能上以查看结果。</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;新增&lt;/color&gt;  &lt;color=#F2D966&gt;更改&lt;/color&gt;  &lt;color=#FF7373&gt;移除&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>结果：{0} 组</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>没有可创建的内容。</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>已有另一个角色名为“{0}” - 请选择其他名称，否则会覆盖该角色自己的装载。</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>未保存：这会让职能“{0}”变成完全空白，使用该职能的每名殖民者都将一无所有。请先放回内容（把武器或装备包拖到上面）。</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>这是该角色唯一的内容，无法移除。角色“{0}”会变得完全空白，使用它的每名殖民者都将一无所有。要更换：先把替代内容拖到卡片上，再移除这个。要删除角色本身，请用卡片右上角的 x。</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>这是该角色唯一的内容，无法移除。角色“{0}”会变得完全空白。要替换：先把替代项拖到卡片上，再移除这一项。要删除角色本身，请使用卡片右上角的 x。</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>已经存在一个名为“{0}”的角色装备，来自之前删除的角色，而且还有 {1} 名殖民者在使用它。创建这个角色会接管该装备，并一次性给他们全部重新装备。
+
+继续？</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>已创建"{0}"。</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>已重命名为"{0}"。</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>已重命名为"{0}"：  +{1} 新增，  -{2} 移除，  ~{3} 更改。</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" 未更改。</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>已更新"{0}"：  +{1} 新增，  -{2} 移除，  ~{3} 更改。</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>个人弹药</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>全部</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>已研究</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>可用</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>特殊</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>结果：{0} 堆（其中 {1} 堆来自附加的装备包）</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>恢复预设 ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>把你删除的内置角色按原位置拿回来。只补上缺少的——你自己的角色、它们的系数和内容都不受影响。</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>已恢复 {0} 个内置角色。</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>删除内置角色“{0}”及其背后的装备方案？使用它的殖民地居民将回到无方案状态——他们自己的弹药、背包和副武器仍然保留。这会把它从所有殖民地的全局库中移除；“恢复预设”可以在不动其他角色的情况下把它空白地拿回来。</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

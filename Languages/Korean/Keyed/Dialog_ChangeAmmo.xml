@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>탄약 로드아웃</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>탄약 종류별로 그룹화</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>같은 탄약 종류를 사용할 수 있는 주민들을 한 행으로 묶어, 주민별 섹션 대신 한 번에 모두 편집합니다.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - 이들이 휴대하는 것입니다. 이를 편집하면 무기의 기본 탄약을 완전히 대체하며, 다음에 장비를 확인할 때 적용됩니다.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>주민 {0}명 선택됨 - 각자가 휴대하는 것입니다. 편집하면 각 무기의 기본 탄약을 완전히 대체합니다.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>필터 (예: FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>닫기</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>모든 탄약 지우기</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>모든 탄약 종류를 제거합니다 - {0}은(는) 무기의 기본 탄약조차 포함하여 어떤 탄약도 휴대하지 않게 됩니다.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>선택된 주민 {0}명 전원에게서 모든 탄약 종류를 제거합니다 - 무기의 기본 탄약조차 아무도 휴대하지 않게 됩니다.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>초기화</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>복사</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>이 정착민의 탄약 선택을 복사합니다. 정착민 장비 지급의 붙여넣기 열로 다른 정착민에게 적용하세요.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>{1}의 탄약 항목 {0}개를 복사했습니다.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>{1}의 탄약 항목 {0}개를 복사했습니다.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>선택된 모든 주민의 탄약을 이 창을 열었을 때의 상태로 되돌립니다.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  배정된 로드아웃 없음</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>소지 중: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0}개 더</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>배정된 무기가 없습니다.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>"{0}"과(와) 일치하는 탄약 종류가 없습니다.</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>{0}의 무기는 탄약을 사용하지 않습니다.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>이름</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>특수</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>수량</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>재고</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (연구되지 않음)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\n적용 대상: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>{0}용 임의 탄약</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>게임이 {0}에 가장 적합한 연구된 탄약을 자동으로 선택하도록 합니다 - 특정 종류가 설정되지 않은 동안 보급 팝업과 생산 확인이 이미 사용하는 방식입니다. 클릭하면 해당되는 모든 주민을 이 상태로 되돌립니다.\n\n적용 대상: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>게임이 {0}에 가장 적합한 연구된 탄약을 자동으로 선택하도록 합니다 - 아래에 특정 종류가 설정되지 않은 동안 보급 팝업과 생산 확인이 이미 사용하는 방식입니다. 특정 종류를 선택한 후 이 상태로 되돌리려면 클릭하세요.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2}개 재고, {3}개 여유).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> 클릭하면 청구서 탭이 열립니다.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> 클릭하면 보급 팝업이 열리고 생산을 대기열에 넣을 수 있습니다.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>선택된 주민들의 무기 중 탄약을 사용하는 것이 없습니다.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - curso intensivo</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Caminho mais rápido</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Pressione "Armar minha Colônia" (barra superior) - escolha Cauteloso / Normal / Agressivo, pressione Armar. Pronto.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Abas</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Pacotes de Equipamento - kits reutilizáveis (remédio, comida, drogas, utilidades). Opcional.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Equipar colonos - distribui armas e equipamento por habilidade. Clique em uma célula para escolher você mesmo.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Funções - salve a combinação de um colono como modelo reutilizável para vários colonos.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Visão Geral de Encomendas - mantém a produção de munição em andamento. "Gerar automaticamente" dimensiona as encomendas para você.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Recursos principais</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Luz de prontidão (barra superior) - clique para corrigir o que está errado.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Painel na aba de Equipamentos - status por item: carregado / em estoque / em produção / faltando.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Botão "Configurações de Munição" (selecione um colono) - sobrepõe apenas a munição dele, sem alterar a configuração compartilhada.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Salvar como Função" - transforma a combinação atual de qualquer colono em um modelo reutilizável.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Configurações do Mod - todo padrão (quantidades de munição, predefinições de Armar-minha-Colônia, ...) é configurável.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Bom saber</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Novo no CE? Fique no modo Simples (ícone superior direito) e apenas use Armar minha Colônia.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Bebês/pacifistas nunca recebem uma arma - mas ainda podem carregar um Pacote de Equipamento.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Abra este planejador quando quiser: 'Planejador de equipamento' na aba Atribuir (canto inferior direito) ou o painel ao lado da aba Equipamento de um colono.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>'Buscar equipamento agora' (ao lado de Armar minha colônia) - todos largam o trabalho e buscam sua configuração imediatamente. O CE sozinho pega um item a cada 30 s.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Este curso rápido aparece uma vez. Reabra quando quiser: Configurações do mod -> Ferramentas.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

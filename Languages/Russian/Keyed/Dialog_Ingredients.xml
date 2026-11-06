@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_Ingredients_Title>Наборы снаряжения</CER_Ingredients_Title>
+	<CER_Ingredients_Subtitle>Создавайте здесь многоразовые комплекты снаряжения - один комплект может содержать медикаменты, еду, наркотики и полезные вещи вместе. Оружие выбирается для каждого колониста в «Снаряжении колонистов»; там же комплекты прикрепляются к колонистам или ролям.</CER_Ingredients_Subtitle>
+	<CER_Ingredients_AutoGenerateButton>Автогенерация...</CER_Ingredients_AutoGenerateButton>
+	<CER_Ingredients_AutoGenerateTip>Создать сразу целую стартовую палитру - повседневные припасы, медицинский набор, набор со щитом - с ползунками стоимости/веса/угрозы. Каждый предмет можно изменить прямо там перед созданием, а потом снова слева.</CER_Ingredients_AutoGenerateTip>
+	<CER_Ingredients_ListHeader>Наборы снаряжения</CER_Ingredients_ListHeader>
+	<CER_Ingredients_NewButton>+ Новый</CER_Ingredients_NewButton>
+	<CER_Ingredients_NewPackDefaultName>Новый набор снаряжения</CER_Ingredients_NewPackDefaultName>
+	<CER_Ingredients_DeletePackTip>Удалить этот набор снаряжения.</CER_Ingredients_DeletePackTip>
+	<CER_Ingredients_DeletePackConfirm>Удалить снаряжение "{0}"? Колонисты, которые сейчас его несут, потеряют эти предметы.</CER_Ingredients_DeletePackConfirm>
+	<CER_Ingredients_DeleteButtonGlyph>x</CER_Ingredients_DeleteButtonGlyph>
+	<CER_Ingredients_NoPacksYet>Наборов снаряжения пока нет.</CER_Ingredients_NoPacksYet>
+	<CER_Ingredients_SelectPackPrompt>Выберите набор снаряжения слева или создайте новый.</CER_Ingredients_SelectPackPrompt>
+	<CER_Ingredients_NameLabel>Название:</CER_Ingredients_NameLabel>
+	<CER_Ingredients_SectionMedical>Медицина</CER_Ingredients_SectionMedical>
+	<CER_Ingredients_SectionFood>Еда</CER_Ingredients_SectionFood>
+	<CER_Ingredients_SectionDrugs>Наркотики</CER_Ingredients_SectionDrugs>
+	<CER_Ingredients_SectionUtility>Утилиты</CER_Ingredients_SectionUtility>
+	<CER_Ingredients_SectionOther>Прочее</CER_Ingredients_SectionOther>
+	<CER_Ingredients_ItemNounMedicine>медикамент</CER_Ingredients_ItemNounMedicine>
+	<CER_Ingredients_ItemNounFood>еда</CER_Ingredients_ItemNounFood>
+	<CER_Ingredients_ItemNounDrug>наркотик</CER_Ingredients_ItemNounDrug>
+	<CER_Ingredients_ItemNounUtilityItem>утилитарный предмет</CER_Ingredients_ItemNounUtilityItem>
+	<CER_Ingredients_SectionTitleWithCount>{0}  ({1})</CER_Ingredients_SectionTitleWithCount>
+	<CER_Ingredients_AddItemButton>+ Добавить: {0}</CER_Ingredients_AddItemButton>
+	<CER_Ingredients_AllAlreadyAdded>(всё уже добавлено)</CER_Ingredients_AllAlreadyAdded>
+	<CER_Ingredients_NotResearchedSuffix> (не исследовано)</CER_Ingredients_NotResearchedSuffix>
+	<CER_Ingredients_NoneAdded>Ничего не добавлено.</CER_Ingredients_NoneAdded>
+	<CER_Ingredients_OtherSectionHint>Для всего, что не входит в категории выше - открывает собственный редактор комплектов CE для этого набора.</CER_Ingredients_OtherSectionHint>
+	<CER_Ingredients_OpenCELoadoutEditorButton>Открыть редактор комплектов CE</CER_Ingredients_OpenCELoadoutEditorButton>
+
+</LanguageData>

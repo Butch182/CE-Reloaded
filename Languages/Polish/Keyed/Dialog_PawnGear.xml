@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - noszony sprzęt</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>Upuszczenie kładzie przedmiot na ziemi obok postaci - transportowcy odniosą go do magazynu.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Ta postać nie znajduje się teraz na mapie, więc nie można niczego upuścić.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Wyposażenie</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Ubranie</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Ekwipunek</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Upuść</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- brak -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Zamknij</CER_PawnGear_CloseButton>
+
+</LanguageData>

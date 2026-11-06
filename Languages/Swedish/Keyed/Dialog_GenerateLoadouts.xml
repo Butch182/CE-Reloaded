@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (ammunition): Skadar och bedövar mekanoider, inaktiverar sköldar.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Stötvåg (ammunition): Trubbig områdesskada, kraftig nedhållning.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Blixt / bländande (ammunition): Bländar mål, gör dem förvirrade.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Bedövning (ammunition): Immobiliserar målet kort stund.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Brand (ammunition): Sätter eld på mål, orsakar panik.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Gift (ammunition): Orsakar giftuppbyggnad.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Rök (ammunition): Blockerar siktlinjen.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Splitter (ammunition): Sprutar splitter (områdesskada mot personal).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Pansarbrytande (ammunition): AP-projektilen tar sig igenom tung rustning.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Explosiv (Ammunition): Verklig explosionsradie, skadar allt i närheten.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Explosiv, sekundär (Ammunition): En liten sprängladdning följer med den kinetiska träffen - samma mål, ingen explosionsradie.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Specialförmågor:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>{0} effekt(er) till - får inte plats i den här kolumnen:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: Skadar och bedövar mekanoider, inaktiverar sköldar.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Stötvåg: Trubbig områdesskada, kraftig nedhållning.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Blixt / bländande: Bländar mål, gör dem förvirrade.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Bedövning: Immobiliserar målet kort stund.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Brand: Sätter eld på mål, orsakar panik.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Gift: Orsakar giftuppbyggnad.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Rök: Blockerar siktlinjen.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Splitter: Sprutar splitter (områdesskada mot personal).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Pansarbrytande: Tar sig igenom tung rustning (hög AP / HEAT).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Explosiv: Verklig explosionsradie, skadar allt i närheten.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Explosiv, sekundär: En liten sprängladdning följer med den kinetiska träffen - samma mål, ingen explosionsradie.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Närstrid</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Skjutvapen</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Tunga vapen</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Övrigt</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Alla typer</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Roller</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Vapen</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Vapen</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>Inga vapen hittades.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Dina utrustningspaket</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Kopierad till denna roll senast du klickade på Skapa/Uppdatera - ingen live-länk. Att redigera detta föremål nu når inte kolonister som redan använder denna roll förrän du klickar på Skapa/Uppdatera här igen.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Den här delen ger rollens huvudvapen: {0}. Alla andra vapen i rollen räknas som sidovapen - en roll får bunta ihop huvudvapen, kniv och granater på samma gång.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Ta bort detta utrustningspaket.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>Ta bort utrustningspaketet "{0}"? Kolonister som bär det just nu förlorar dessa föremål.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Dra till en roll för att skala det. Redigera dess innehåll i fliken Utrustningspaket.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Inga utrustningspaket än - skapa några i fliken Utrustningspaket först.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Inget utrustningspaket matchar ”{0}”.</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Inget matchar ”{0}”.</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Ingen roll matchar ”{0}”.</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Roller</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Ny roll</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Ny roll</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Lägger till en roll som bara lagras i DENNA sparfil. Globala roller finns under Modinställningar &gt; Roller.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} kolonist(er)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Kolonister som har den här rollen just nu: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Ingen kolonist har den här rollen just nu. Dela ut den i fliken Utrusta kolonister.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Återställ</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>Återställ alla globala roller till förinställningarna? (Sparfilslokala roller behålls.) En roll vars namn inte finns bland förinställningarna förlorar även sin utrustning - kolonister som använder den blir utan tilldelad utrustning och behåller sin egen ammunition, packningar och sidovapen.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Återställ de globala rollerna till de inbyggda förinställningarna.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[S]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Sparfilslokal roll: finns bara i denna koloni. För att skapa en roll som följer med i alla spel, lägg till den under Modinställningar &gt; Roller.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Global roll: tillgänglig i varje koloni. Hantera den under Modinställningar &gt; Roller.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Ta bort denna roll.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>Ta bort rollen "{0}" och utrustningen bakom den? Kolonister som använder den blir utan tilldelad utrustning - deras egen ammunition, packningar och sidovapen behålls. Om utrustningen blev kvar skulle den fortsätta dyka upp som en tilldelningsbar mall.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Duplicera denna roll (namn, faktorer och dess nuvarande sammansättning).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● skapad</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ ny</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Den här rollen är sparad - varje ändring på kortet skrivs direkt.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Tom - dra ett vapen eller ett paket hit.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Låst: rollen har inget på sig än, så det finns inget att skala. Dra först ett vapen eller ett paket till kortet.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Am</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Me</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>Ma</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Gr</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Ammunitionsfaktor (Am): multiplicerar ammunitionsmängden för varje vapen i rollen. 1 = mängden från moddens inställningar, 0,75 = tre fjärdedelar, 2 = dubbelt, 0 = ingen ammunition.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Medicinfaktor (Me): multiplicerar medicinmängden från rollens byggdelar. 1 = oförändrat, 3 = tre gånger så mycket, 0 = ingen.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Matfaktor (Ma): multiplicerar matmängden från rollens byggdelar. 1 = oförändrat, 1,5 = en och en halv gång, 0 = ingen.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Granatfaktor (Gr): multiplicerar mängden granater och kastsprängmedel från rollens byggdelar. 1 = oförändrat, 3 = tre gånger så mycket, 0 = inga granater.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>dra ett vapen eller paket hit</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>innehåller {0} - dra hit ett vapen eller paket för att sätta ihop på nytt</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Den här rollen skapades innan dess sammansättning började sparas, så vilka delar den byggdes av är okänt - men inte dess färdiga innehåll. Kolonister med rollen är korrekt utrustade; förhandsvisningen nedan listar allt. Att dra hit ett vapen eller paket sätter ihop rollen på nytt och ersätter nuvarande innehåll.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Dra ett vapen eller ett Equipment Pack till den här raden för att bygga rollen. Den sparas automatiskt så snart något ligger på den.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Välj en roll och släpp ett vapen eller paket på den för att förhandsgranska resultatet.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Förhandsgranskning</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Roll]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(finns - ändring)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(finns - aktuell)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>sparas automatiskt</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Föremål</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Standard -&gt; med faktor</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Släpp ett vapen eller paket på denna roll för att se resultatet.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;tillagt&lt;/color&gt;  &lt;color=#F2D966&gt;ändrat&lt;/color&gt;  &lt;color=#FF7373&gt;borttaget&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Resultat: {0} staplar</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Inget att skapa.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>En annan roll heter redan "{0}" - välj ett annat namn, annars skulle den rollens egen last skrivas över.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>Sparades inte: rollen ”{0}” skulle bli helt tom och alla kolonister på den skulle stå utan något. Lägg tillbaka innehåll först (dra ett vapen eller ett paket dit).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>Rollens enda innehåll - det går inte att ta bort. ”{0}” skulle bli helt tom och alla kolonister på rollen stå utan något. Byt så här: dra först in ersättaren på kortet och ta sedan bort det här. Själva rollen tas bort med x:et uppe till höger på kortet.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>Rollens enda innehåll - det går inte att ta bort. ”{0}” skulle bli helt tom. För att byta: dra först ersättningen till kortet och ta sedan bort det här. För att ta bort själva rollen, använd x uppe till höger på kortet.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Det finns redan en rollutrustning som heter ”{0}” fraan en tidigare borttagen roll, och {1} kolonist(er) baer den fortfarande. Att skapa den haer rollen tar oever den utrustningen och utrustar om dem allihop paa en gaang.
+
+Fortsaetta?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>Skapade "{0}".</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Bytte namn till "{0}".</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Bytte namn till "{0}":  +{1} tillagt,  -{2} borttaget,  ~{3} ändrat.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" oförändrad.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>Uppdaterade "{0}":  +{1} tillagt,  -{2} borttaget,  ~{3} ändrat.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Personlig ammunition</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Alla</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Forskat</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Tillgängligt</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Speciellt</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Resultat: {0} staplar ({1} av dem fran bifogade paket)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Aterstall mallar ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Hamtar tillbaka de inbyggda rollerna du tagit bort, var och en pa sin ursprungliga plats. Bara de som saknas laggs till - dina egna roller, deras faktorer och innehall ror ingen.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>{0} inbyggd(a) roll(er) aterstalld(a).</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>Ta bort den inbyggda rollen "{0}" och utrustningen bakom den? Kolonister med den star utan mall - deras egen ammunition, ryggsackar och sidovapen stannar hos dem. Den forsvinner ur det globala biblioteket for alla kolonier; "Aterstall mallar" hamtar tillbaka den tom utan att rora dina andra roller.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Вибрати зброю</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - виберіть зброю; типові боєприпаси призначаються автоматично.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - закріпити зброю в цьому плані; «Авто» повертає вибір розв'язувачу.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Вага та громіздкість разом з типовими боєприпасами</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} у колонії</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} з них уже зайняті цим планом</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Можна виготовити зараз</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Нічого не знайдено за пошуком чи фільтром.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Оцінка {0} (проти плоті {1}, проти механоїдів {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

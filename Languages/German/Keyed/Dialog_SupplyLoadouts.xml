@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>Beladungen versorgen</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>Nur Fehlendes anzeigen</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>Name</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>Besonderheit</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>Zugew.</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>Zutaten</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>Material</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>Chargen</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>Lager</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>Wie viele fuer die GANZE Kolonie im Lager liegen sollen - das Ziel eines 'stelle her bis X'-Auftrags. Nicht pro Kolonist: dasselbe Wort im Loadout-Editor bedeutet das Gegenteil (Schuss, die eine Person traegt).</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>Verfügbarkeit</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>Werkbank</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>Hauptwaffen</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>Zweitwaffen &amp; Granaten</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>Schilde</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>Paketgegenstände</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>Veraltete Aufträge - kein Zugewiesener braucht sie (beim Bestätigen entfernt)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>Alle Zeilen auf einmal umschalten.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>Niemand, der gerade zugewiesen ist, braucht diese Gegenstände.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>Alles Benötigte ist bereits auf Lager oder in Produktion.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; Zurück</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>Zurück zum vorherigen Schritt. Hier wurde noch nichts versorgt, also wird nichts rückgängig gemacht.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>Abbrechen</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>Schliesst dieses Fenster, ohne etwas in Auftrag zu geben. Die Zuweisung bleibt bestehen - nur die Produktion faellt aus.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>Nichts herstellen</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>Bestätigen &amp; versorgen</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>Auswahl versorgen</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>Munition</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>In Produktion: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: Die Beladung keines zugewiesenen Kolonisten benötigt dies noch - der Auftrag wird beim Bestätigen gelöscht.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: behalten - wird beim Bestätigen NICHT gelöscht.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>Verwendet von:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>Keinem Kolonisten zugewiesen.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>Keinem Kolonisten ist eine Beladung zugewiesen, die diese Munition verwendet.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>Raute: aktuell einem Kolonisten zugewiesen. Kreis: in einer gespeicherten Beladung verwendet.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>Wird in keiner gespeicherten Beladung verwendet.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>Keine gespeicherte Beladung verwendet diese Munition.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>Eine Charge ({0}) zur Zielanzahl hinzufügen.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>Exakte Zielanzahl.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>Beliebig</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>Benötigt pro Herstellung: {0}\nAuf Lager: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>In Produktion:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ Keine {0} (Auftrag kann nicht erstellt werden)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>Keine {0} gebaut</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(auto)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\nAutomatisch von einer generischen Munitionsanforderung auf deine bevorzugte Standard-Schusswaffenmunition aufgelöst.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ Kann nicht produziert werden (nicht erforscht)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ Braucht Forschung: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>Munition in Combat Extended braucht beides: das Rezept UND eine Werkbank, die es herstellen kann. Hier fehlt noch: {0}. Danach eine {1} bauen, dann wird diese Zeile frei.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>Ändern...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>Zu einer anderen erforschten Variante für diese Waffe wechseln.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>Für diese Waffe existiert keine andere erforschte Munitionsvariante zum Wechseln.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>Zu dieser Werkbank springen.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>Auftragsreiter dieser Werkbank öffnen.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>{0} Waffenauftrag/-aufträge</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>{0} Munitionsauftrag/-aufträge hinzugefügt</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>{0} Munitionsauftrag/-aufträge aktualisiert</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>Versorgung: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>Nichts zum Versorgen ausgewählt.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ Benötigt Forschung: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>Das Rezept für diese Waffe gibt es, aber die Forschung fehlt noch. Es fehlt: {0}. Sobald das erforscht ist, wird diese Zeile freigeschaltet.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- nicht herstellbar (kein Rezept)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>Für diesen Gegenstand gibt es überhaupt kein Herstellungsrezept - keine Forschung schaltet eines frei. Nur über Handel, Beute oder Questbelohnung zu bekommen.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>vom Mod angelegt</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>von Hand angelegt</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>Diesen Auftrag hat der Assistent von CE Reloaded selbst angelegt, deshalb ist er zum Entfernen vorausgewählt. Haken entfernen, um ihn zu behalten.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>Diesen Auftrag hast du selbst angelegt, deshalb ist er NICHT vorausgewählt. Er steht hier nur, weil ihn gerade kein Loadout verlangt - hake ihn an, wenn er wirklich weg soll.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

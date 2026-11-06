@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - szybki kurs</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Najszybsza ścieżka</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Kliknij "Uzbrój kolonię" (górny pasek) - wybierz Ostrożnie / Normalnie / Agresywnie, kliknij Uzbrój. Gotowe.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Zakładki</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Pakiety wyposażenia - wielokrotne zestawy (leki, jedzenie, narkotyki, użytkowe). Opcjonalne.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Wyposaż kolonistów - rozdziela broń i wyposażenie według umiejętności. Kliknij komórkę, by wybrać samemu.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Role - zapisz zestaw kolonisty jako wielokrotny szablon dla wielu kolonistów.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Przegląd zleceń - utrzymuje produkcję amunicji. "Generuj automatycznie" dobiera wielkość zleceń za ciebie.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Kluczowe funkcje</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Kontrolka gotowości (górny pasek) - kliknij, by naprawić problem.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Panel w zakładce ekwipunku - status każdego przedmiotu: noszony / w magazynie / w produkcji / brakujący.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Gadżet "Zestawy amunicji" (zaznacz postać) - nadpisuje tylko jej amunicję, bez zmiany współdzielonego zestawu.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Zapisz jako rolę" - zamień obecny zestaw dowolnego kolonisty w wielokrotny szablon.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Ustawienia moda - każda wartość domyślna (liczba amunicji, presety Uzbrój kolonię, ...) jest konfigurowalna.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Warto wiedzieć</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Nowy w CE? Zostań w trybie prostym (ikona w prawym górnym rogu) i korzystaj z Uzbrój kolonię.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Niemowlęta/pacyfiści nigdy nie dostają broni - ale mogą nosić Pakiet wyposażenia.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Otwórz ten planer w dowolnej chwili: „Planer wyposażenia” w zakładce Przydział (na dole po prawej) lub panel obok zakładki ekwipunku kolonisty.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>„Pobierz sprzęt teraz” (obok Uzbrój kolonię) - wszyscy rzucają pracę i od razu idą po swój zestaw. Samo CE pobiera jeden przedmiot co 30 s.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Ten krótki kurs pokazuje się raz. Otwórz go ponownie: Ustawienia moda -> Narzędzia.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

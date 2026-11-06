@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titles / header -->
+	<CER_SquadSetup_TitleAssign>Назначение комплектов</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>Живой предпросмотр - двигайте ползунки и наблюдайте за результатом. Ничего не изменится, пока вы не нажмёте "Применить".</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Recommended / presets / mode toggle -->
+	<CER_SquadSetup_UseRecommendedSetup>Использовать рекомендуемую настройку</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>Сбрасывает все ползунки к значениям по умолчанию и возвращает Пул/Против механоидов автоматической системе (запасы материалов / угроза механоидов).</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>Сбалансировано</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>Против механоидов</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>Экономично</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>Лучшее снаряжение</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>Упор на дальний бой</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>Всё</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>Доступные предметы</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>Подробный режим - показаны все ползунки для ручной настройки.\n\nНажмите, чтобы переключиться в простой режим (только пресеты).</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>Простой режим - только пресеты, ползунки скрыты.\n\nНажмите, чтобы переключиться в подробный режим и настроить каждый ползунок вручную.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Shared / slider labels -->
+	<CER_SquadSetup_AntiFlesh>Против живой силы</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>Против механоидов</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>Против кого должен быть вооружён отряд.\n\nАвтоматически задаётся по столкновениям с механоидами / возрасту колонии, пока вы не подвинете его сами.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>Один тип боеприпасов</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>Максимальная гибкость</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>Насколько охотно боеприпасы каждого колониста смешивают типы (например, FMJ + магазин ЭМИ). Действует только при включённом «Переопределить боеприпасы».\n\nСлева: ровно один тип на оружие. Справа: до четырёх, когда тип покрывает угрозу, которую ещё ничего не покрывает. Общее количество патронов никогда не растёт - разнообразие лишь делит его, - а каждая порция остаётся не меньше целого магазина, поэтому при малом бюджете типов всё равно будет меньше.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>Использовать имеющееся</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>Изготавливать новое</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>Насколько охотно назначение выдаёт оружие, которым вы ещё не владеете.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>Предпочитать дальний бой</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>Предпочитать ближний бой</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>Смещает, кто считается стрелком, а кто - бойцом ближнего боя.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>Всегда лучшее</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>Покрывать роли</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>Слева: все получают оружие с наивысшей ценностью. Справа: отряд избегает дублей и сначала заполняет классические роли.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>Дешёвое оружие</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>Лучшее оружие</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>Имеет значение только для оружия, которое нужно изготовить.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>Без запасного оружия</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>Всегда запасное оружие</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>Выдаёт второе оружие рядом с основным (противоположного типа - к дальнобойному основному добавляется резерв ближнего боя и наоборот), точно так же, как в реальном времени прикрепляются наборы снаряжения. Покрывает эту долю отряда, сначала лучших по боевому приоритету.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>Без взрывчатки</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>Много взрывчатки</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>Выдаёт гранату (подрывной заряд, палочная бомба, ...) рядом с основным оружием - указывается вместе с запасным оружием выше, но из отдельного пула: граната никогда не вытесняет настоящее запасное оружие из его слота. Покрывает эту долю отряда, сначала лучших по боевому приоритету. Выбирает из гранат, которые у вас есть или можно изготовить.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>Без наборов</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>Щедрые наборы</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>Ранжирует ТИПЫ наборов по важности и постепенно включает больше по мере роста значения - сначала базовые припасы (еда/медицина), затем добавляется специализированное содержимое (медицина/наркотики/утилиты). Каждый подходящий поселенец получает каждый включённый тип набора (наборы с преобладанием медицины всё равно достаются только назначенным медикам) - это НЕ про исключение поселенцев, а только про то, какие типы наборов вообще существуют. Наборы со щитом этим ползунком НЕ охватываются - см. ниже.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>Без щитов</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>Много щитов</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>Выдаёт любой набор, содержащий щит (проверяется по фактическому содержимому, а не по названию), этой доле поселенцев отряда, ориентированных на ближний бой (или всему отряду, если таких нет), сначала лучшим бойцам ближнего боя - постепенно, как ползунки запасного оружия/взрывчатки выше, а не по принципу "всё или ничего".</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>Перераспределять носимое оружие:</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>Оружие, подобранное вручную, тоже считается доступным для перераспределения.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>Макс. объём запасного оружия:</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>Автоматический решатель никогда не выбирает в качестве запасного оружия кандидата с объёмом CE выше этого значения (полноразмерная винтовка не должна выдаваться кому-то как "резерв" только потому, что набрала хорошую оценку). Ручной выбор запасного оружия этим лимитом не ограничен. Общий параметр со вкладкой "Комплекты по умолчанию" в настройках мода.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Diff-only / keep current / use roles -->
+	<CER_SquadSetup_ShowOnlyChanges>Показывать только изменения:</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>Сохранять текущие комплекты:</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>Включено: комплект получают только поселенцы без него; у всех, кто уже экипирован, ничего не меняется (отмечено значком замка).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>Переопределить боеприпасы:</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>Заново выбирает боеприпасы для каждого колониста в момент назначения (текущий запас/исследования + ползунки «Против мехов» и типов боеприпасов) вместо боеприпасов оружия по умолчанию. Роли никогда не затрагиваются - их боеприпасы всегда берутся из самой роли.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- Section headers / bottom bar -->
+	<CER_SquadSetup_BackButton>&lt; Назад</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>Назад к предыдущему шагу процесса "Вооружить колонию". Уже применённые шаги не отменяются.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>Отмена</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>Открепить все ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>Снять все ручные закрепления ({0}) и вернуть этих поселенцев решателю.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>Нечего применять.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>Пропустить</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>Пропустить этот шаг - здесь ничего не назначается, процесс "Вооружить колонию" переходит к следующему шагу.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Apply / Generate button labels -->
+	<CER_SquadSetup_ContinueButton>Продолжить &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>Применить ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>Применить</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (нечего применять)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>изменение</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>изменений</CER_SquadSetup_ChangePlural>
+
+	<!-- Generate list -->
+
+	<!-- Generate row -->
+	<CER_SquadSetup_NotResearchedSuffix> (не исследовано)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- Assign list header / empty state / cost strip / problems -->
+	<CER_SquadSetup_UnlockEveryoneTip>Разблокировать всех. Автоназначение снова планирует всех поселенцев.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>Заблокировать всех. Никто не будет переспланирован, пока не разблокирован.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>Поселенец</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>Дальний бой</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>Ближний бой</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>Медицина</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>Текущее</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>Планируемое основное оружие</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>Набор</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>Запасное оружие</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>Оружие</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>Наборы</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>Боеприпасы</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>Нет изменений при текущих настройках.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>Предпросмотр - стоимость изготовления по компонентам (настройте на следующем экране):</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;Итого:&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;Проблемы с текущими настройками&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>Нажмите, чтобы открыть вкладку Роли.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Cost category labels -->
+	<CER_SquadSetup_CostLabelMain>Основное:</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>Запасное оружие:</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>Гранаты:</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>Щиты:</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>Боеприпасы:</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>Наборы:</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Pawn row -->
+	<CER_SquadSetup_CannotFightTip>Не может сражаться (неспособен к насилию или младенец) - защищён и никогда не получит комплект.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>Оценка дальнего боя (Стрельба x10, с поправкой на зрение/манипуляции/черты).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>Оценка ближнего боя (Ближний бой x10, с поправкой на движение/манипуляции/черты).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>Навык медицины (Медицина x10) - лучшая по этой оценке часть отряда получает наборы снаряжения с преобладанием медицины.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>Нет</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>не может сражаться - пропущен</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>Этот поселенец не может сражаться (неспособен к насилию или младенец) и никогда не получит оружие.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>пропущен вами</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>Вы пометили этого колониста как пропущенного, поэтому автоназначение его не трогает. Он МОЖЕТ сражаться - это ваше решение, а не ограничение персонажа. Нажмите значок слева, чтобы вернуть его.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  (сохранено)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>Нет  (сохранено)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (закреплено)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>нет комплекта</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>С текущими настройками этому поселенцу не удалось назначить комплект.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>Перетащите, чтобы поменяться комплектами с {0}.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>Нажмите, чтобы выбрать оружие для {0} вручную (закрепляет выбор - ползунки не будут его менять).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\nСейчас закреплено - в меню есть пункт "Авто", чтобы вернуть поселенца решателю.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\nПеретащите на строку другого поселенца, чтобы поменять местами их планируемые комплекты.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Pack / sidearm cells -->
+	<CER_SquadSetup_IncludedInRoleTip>Включено в {0}:\n{1}\n\nВстроено в эту роль - изменяйте саму роль (вкладка "Роли"), чтобы это изменить, а не отдельного поселенца здесь.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>Эта роль не включает медицину/еду/наркотики/утилитарные предметы.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>Эта роль не включает запасное оружие, метательную взрывчатку или щит.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>Прикреплено наборов снаряжения: {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>Наборы снаряжения не прикреплены.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\nОценивается автоматически вместе с оружием. Нажмите, чтобы переопределить, какие наборы получит этот поселенец - отложенное закрепление, как и ячейка оружия; ничего не применится, пока вы не нажмёте "Применить".</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - отметьте, какие наборы планировать. Ничего не применится, пока вы не нажмёте "Применить".</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>Прикреплено запасного оружия: {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>Запасное оружие не прикреплено.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\nНажмите, чтобы отметить, какое оружие {0} несёт как запасное - отложенное закрепление, как и ячейка оружия; ничего не применится, пока вы не нажмёте "Применить".</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - отметьте, какое оружие нести как запасное. Ничего не применится, пока вы не нажмёте "Применить".</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>Запасное оружие</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>Нет другого оружия, которое можно нести как запасное.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Supply requirement group -->
+	<CER_SquadSetup_RoleTagSidearm> (запасное оружие)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (граната)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (щит)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - всё покрыто:\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>готово</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>в производстве</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>отсутствует</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (можно изготовить)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (верстак не построен)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - poka khvataet, no izgotovit' zanovo nel'zya (ne izucheno)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - poka khvataet, no izgotovit' zanovo nel'zya (net verstaka)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Drag / pin menu -->
+	<CER_SquadSetup_CantSwapCannotFight>Нельзя поменяться с поселенцем, который не может сражаться (пацифист или младенец).</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>Для обмена обоим поселенцам нужно запланированное оружие или роль.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>Оба поселенца уже планируют один и тот же комплект.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>Поменяны местами планируемые комплекты: {0} и {1} (закреплено).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>Авто (открепить - пусть решает система)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>Сохранить текущую комбинацию как роль...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}: боеприпасы не изучены</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix> (рецепта не существует)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>Будет запланирован: автоназначение подберёт этому поселенцу набор снаряжения.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>Остаётся как есть: автоназначение не трогает снаряжение этого поселенца. Его всё равно можно менять - нажмите на ячейку оружия, чтобы изменить напрямую.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>Набор будет отобран: при применении {0} лишится своего набора и останется без него. Само снаряжение остаётся в колонии.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>Исключён: у {0} нет набора, и он его не получит. Считается небоевым на всех экранах.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>запланировать обычным образом.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>оставить как есть (защищено от автоназначения, всё ещё можно менять).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>отобрать набор.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>Левый клик:</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>Правый клик:</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>набор отобран</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>Вы пометили этого поселенца как "отобрать набор". При применении {0} лишится назначенного набора и останется без него - само снаряжение остаётся в колонии. Нажмите значок слева, чтобы отменить.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

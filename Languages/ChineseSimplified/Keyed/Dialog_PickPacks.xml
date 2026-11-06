@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>装备包</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>装备包</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>尚未创建任何装备包 - 请先在装备包标签页中创建一个。</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>副武器最大体积：</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>与自动分配的副武器选择所用的上限相同——全尺寸战斗步枪不该只因评分高就被当作“备用”武器发放。体积超过此值的武器在此列表中也会被隐藏（已勾选的始终可见；爆炸物和盾牌从不受限）。在此修改的是真实设置，而非副本。</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>关闭</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>复制</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>已复制 {0} 个 {1} 选择项 - 可粘贴到其他殖民者自己的 {1} 单元格中。</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>已复制空的{0}选择 - 粘贴到其他殖民者自己的{0}单元格以清空它。</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>复制这份精确的勾选选择，以便直接粘贴到其他殖民者自己的单元格中，无需每次都重新打开此清单。</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>未勾选任何内容 - 将复制一个空选择，粘贴到任何位置都会清空该处。</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>没有匹配"{0}"的结果。</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>已隐藏 {0} 项——武器体积超过副武器最大体积 {1}。提高该值即可看到。</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>所有候选项都因副武器最大体积 {0} 被隐藏。提高该值即可看到。</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>评分</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>可用</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>所有类型</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>显示：{0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>列表提供哪些武器：全部、仅已研究的，或仅殖民地已拥有的。作用于武器区块。</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>类型：{0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>将列表限定为一类：远程、近战、其他装备、手工搭建的装备配置或角色。</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>其他</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>原版配装</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>角色</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>已从 {1} 复制“{0}”。到“装备殖民者”中粘贴：每位殖民者行最右侧的“粘贴”列。</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>复制该殖民者当前的武器指派。之后“装备殖民者”中每一行的最右侧会出现“粘贴”列——点一下即可给对方同样的武器。</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>删除自建配装 ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>删除全部 {0} 个手建配装？角色不受影响；使用这些配装的殖民者将没有配装。无法撤销。</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>删除所有手建（原版）配装 - 角色保留。</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>锁定此武器：自动分配不再发放，它会置灰并排到组末。再次点击解锁。</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>已锁定 - 自动分配永不选择此武器。点击解锁。</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>锁定此条目：自动分配不再发放该角色或装备配置，它会置灰并排到组末。再次点击解锁。</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>已锁定 - 自动分配永不选择该角色或装备配置。点击解锁。</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} 名殖民者仍被分配着已锁定的武器。现在重新分配吗？其他人保持不变。</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>内容</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>质量 / 体积</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>生产成本</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>（空）</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>这里没有此类型的条目。请在上方的“类型”列表中选择其他项。</CER_PickPacks_NoneOfThisType>
+</LanguageData>

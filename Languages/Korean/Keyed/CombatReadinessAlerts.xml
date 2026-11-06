@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_CombatReadinessAlerts_NoLoadout>배정된 로드아웃 없음</CER_CombatReadinessAlerts_NoLoadout>
+	<CER_CombatReadinessAlerts_WeaponWithoutAmmo>탄약 없는 로드아웃</CER_CombatReadinessAlerts_WeaponWithoutAmmo>
+	<CER_CombatReadinessAlerts_AmmoNotProduced>생산 중이 아닌 탄약</CER_CombatReadinessAlerts_AmmoNotProduced>
+	<CER_CombatReadinessAlerts_WeaponUnavailable>로드아웃 무기 사용 불가</CER_CombatReadinessAlerts_WeaponUnavailable>
+	<CER_CombatReadinessAlerts_LowAmmo>탄약 부족</CER_CombatReadinessAlerts_LowAmmo>
+	<CER_CombatReadinessAlerts_Overloaded>과적 상태</CER_CombatReadinessAlerts_Overloaded>
+	<CER_CombatReadinessAlerts_CapacityBlocked>가득 차서 로드아웃을 가져올 수 없음</CER_CombatReadinessAlerts_CapacityBlocked>
+	<CER_CombatReadinessAlerts_AssignedNotCarried>무기 배정됨, 아무것도 안 들음</CER_CombatReadinessAlerts_AssignedNotCarried>
+	<CER_CombatReadinessAlerts_Label>전투 준비 상태</CER_CombatReadinessAlerts_Label>
+	<CER_CombatReadinessAlerts_LabelWithIssueSingular>전투 준비도: 정착민 {0}명 조치 필요</CER_CombatReadinessAlerts_LabelWithIssueSingular>
+	<CER_CombatReadinessAlerts_LabelWithIssuePlural>전투 준비도: 정착민 {0}명 조치 필요</CER_CombatReadinessAlerts_LabelWithIssuePlural>
+	<CER_CombatReadinessAlerts_ExplanationHeader>전투 준비 상태에 문제가 있는 주민:</CER_CombatReadinessAlerts_ExplanationHeader>
+	<CER_CombatReadinessAlerts_CategoryLine>{0} ({1}): {2}</CER_CombatReadinessAlerts_CategoryLine>
+	<CER_CombatReadinessAlerts_AndOthers> 외 {0}명</CER_CombatReadinessAlerts_AndOthers>
+
+</LanguageData>

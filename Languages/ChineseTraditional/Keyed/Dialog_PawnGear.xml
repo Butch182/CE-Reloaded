@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - 攜帶裝備</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>丟棄會將物品放置在角色旁的地面上 - 搬運工會將其送回儲藏處。</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>這名角色目前不在地圖上，因此無法丟棄任何物品。</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>裝備</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>服裝</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>物品欄</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>丟棄</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- 無 -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>關閉</CER_PawnGear_CloseButton>
+
+</LanguageData>

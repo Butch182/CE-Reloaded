@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - швидкий курс</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Найшвидший шлях</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Натисніть "Озброїти колонію" (верхня панель) - оберіть Обережно / Звичайно / Агресивно, натисніть "Озброїти". Готово.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Вкладки</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Набори спорядження - багаторазові набори (медицина, їжа, наркотики, утиліта). Необов'язково.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Спорядити колоністів - роздає зброю та спорядження за навичками. Натисніть на клітинку, щоб обрати самостійно.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Ролі - зберігає комбінацію колоніста як багаторазовий шаблон для багатьох колоністів.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Огляд замовлень - підтримує виробництво боєприпасів. "Автогенерація" сама підбирає розмір замовлень.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Ключові можливості</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Індикатор готовності (верхня панель) - натисніть, щоб виправити проблеми.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Панель у вкладці спорядження - статус кожного предмета: при собі / на складі / у виробництві / бракує.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Кнопка "Комплекти боєприпасів" (виберіть персонажа) - змінює лише його боєприпаси, не чіпаючи спільний комплект.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Зберегти як роль" - перетворює поточну комбінацію будь-якого колоніста на багаторазовий шаблон.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Налаштування мода - усі значення за замовчуванням (кількість боєприпасів, пресети "Озброїти колонію" тощо) можна налаштувати.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Корисно знати</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Новачок у CE? Залишайтеся в простому режимі (іконка вгорі праворуч) і просто використовуйте "Озброїти колонію".</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Немовлята/пацифісти ніколи не отримують зброю - але можуть нести набір спорядження.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Відкрити планувальник будь-коли: «Планувальник спорядження» у вкладці «Призначення» (внизу праворуч) або панель поруч із вкладкою спорядження колоніста.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>«Зібрати спорядження» (поруч з Озброїти колонію) - усі кидають роботу й одразу йдуть по свій комплект. Сам CE бере один предмет раз на 30 с.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Цей короткий курс показується один раз. Відкрити знову: Налаштування мода -> Інструменти.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

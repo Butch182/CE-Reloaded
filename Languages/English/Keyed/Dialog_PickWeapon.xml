@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Choose a weapon</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - pick a weapon; default ammo is handled automatically.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - pin a weapon for this plan; 'Auto' hands the choice back to the solver.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Weight and bulk including default ammo</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} in the colony</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} of these already claimed by this plan</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Can be crafted now</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Nothing matches the search or filter.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Score {0} (vs flesh {1}, vs mechanoids {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

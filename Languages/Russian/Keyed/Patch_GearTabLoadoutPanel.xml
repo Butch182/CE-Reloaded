@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GearTabLoadoutPanel_Header>Комплект</CER_GearTabLoadoutPanel_Header>
+	<CER_GearTabLoadoutPanel_NoLoadoutAssigned>Комплект не назначен.</CER_GearTabLoadoutPanel_NoLoadoutAssigned>
+	<CER_GearTabLoadoutPanel_NoLoadoutHint>Используйте "Назначить", чтобы выбрать оружие или роль.</CER_GearTabLoadoutPanel_NoLoadoutHint>
+	<CER_GearTabLoadoutPanel_TitleBold>&lt;b&gt;{0}&lt;/b&gt;</CER_GearTabLoadoutPanel_TitleBold>
+	<CER_GearTabLoadoutPanel_ColItem>Предмет</CER_GearTabLoadoutPanel_ColItem>
+	<CER_GearTabLoadoutPanel_ColHaveNeed>Есть/Нужно</CER_GearTabLoadoutPanel_ColHaveNeed>
+	<CER_GearTabLoadoutPanel_ColStatus>  Статус</CER_GearTabLoadoutPanel_ColStatus>
+	<CER_GearTabLoadoutPanel_UnknownItem>?</CER_GearTabLoadoutPanel_UnknownItem>
+	<CER_GearTabLoadoutPanel_StatusOk>ОК</CER_GearTabLoadoutPanel_StatusOk>
+	<CER_GearTabLoadoutPanel_StatusInStorage>на складе</CER_GearTabLoadoutPanel_StatusInStorage>
+	<CER_GearTabLoadoutPanel_StatusInProduction>в производстве</CER_GearTabLoadoutPanel_StatusInProduction>
+	<CER_GearTabLoadoutPanel_StatusMissing>отсутствует</CER_GearTabLoadoutPanel_StatusMissing>
+	<CER_GearTabLoadoutPanel_CarriedOverNeed>{0}/{1}</CER_GearTabLoadoutPanel_CarriedOverNeed>
+	<CER_GearTabLoadoutPanel_NeededCarried>
+Нужно: {0}   При себе: {1}</CER_GearTabLoadoutPanel_NeededCarried>
+	<CER_GearTabLoadoutPanel_FreeInStorage>
+Свободно на складе: {0}</CER_GearTabLoadoutPanel_FreeInStorage>
+	<CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+В очереди на верстаке.</CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+	<CER_GearTabLoadoutPanel_NotCovered>
+
+Не покрыто - индикатор готовности и раздел "Снабжение" могут поставить это в очередь.</CER_GearTabLoadoutPanel_NotCovered>
+	<CER_GearTabLoadoutPanel_EditButton>Изменить...</CER_GearTabLoadoutPanel_EditButton>
+	<CER_GearTabLoadoutPanel_EditTooltipHasLoadout>Открыть этот комплект в редакторе комплектов CE.</CER_GearTabLoadoutPanel_EditTooltipHasLoadout>
+	<CER_GearTabLoadoutPanel_EditTooltipNoLoadout>Пока нечего редактировать - комплекта нет.</CER_GearTabLoadoutPanel_EditTooltipNoLoadout>
+	<CER_GearTabLoadoutPanel_AssignButton>Назначить...</CER_GearTabLoadoutPanel_AssignButton>
+	<CER_GearTabLoadoutPanel_AssignTooltip>Открыть вкладку "Экипировать колонистов" CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
+
+</LanguageData>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Försiktig (fyll bara luckor)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Normal (återställ &amp; bygg om ammunition)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Aggressiv (fullständig ombyggnad)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Anpassad (finjusterade steg)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>Det finns ingen aktiv kolonikarta att beväpna.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>Det finns inga fria kolonister att beväpna.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>Inga vapen kan tillverkas än: ingen vapentillverkning är forskad. Forska ett vapen, eller placera en tillverkningsplats för att göra ett enkelt sådant.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>Inga vapen kan tillverkas: ingen arbetsbänk eller tillverkningsplats som kan bygga vapen finns på någon av dina kolonikartor. En enkel tillverkningsplats räcker.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Beväpna min koloni</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>Ett klick: delar ut vapen och utrustning efter färdighet, köar ammunitionen och erbjuder att tillverka vapen du inte äger.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Kolonister:  {0}   ({1} att bevapna)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>Handbyggda vapenutrustningar:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Befintliga utrustningspaket:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>Hur ska kolonisterna utrustas?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Vapen per kolonist</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Varje kolonist får det vapen som passar dem - utan roller.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Återanvändbara roller</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Granska/bygg roller först (steg 1 öppnas i rolläge), tilldela sedan kolonister enbart efter roll (steg 3 tilldelar "endast roller", samma kryssruta som Utrusta kolonister redan har).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Välj en förinställd lägesnivå, finjustera sedan valfritt steg med dess kryssruta:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>avtilldelar alla kolonister</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>tar bort ammunitionsordrar denna modd köade</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>tar bort alla ammunitionsordrar</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>tar bort vapenordrar denna modd köade</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>tar bort alla vapenordrar</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>tar bort handbyggda vapenutrustningar</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>tar bort guidegenererade utrustningspaket</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>tar bort alla utrustningspaket</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>Först {0} (kan inte ångras där destruktivt). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Inget befintligt avtilldelas, ändras eller tas bort. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Skapar ammunitionsordrar för det som saknas.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>Skapar inga ammunitionsordrar.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Ställer in varje rad nedan.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Försiktig</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Normal</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Aggressiv</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Återställ kolonister</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Ingen avtilldelas.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Avtilldelar alla kolonister först.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Avtilldela varje kolonists lastning innan körningen, så att "fyll luckor" naturligt omplanerar hela kolonin.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Ta bort ammunitionsordrar</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Befintliga ammunitionsordrar behalls - ingenting raderas har. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Tar bara bort ammunitionsorder som modens guide skapat. Kan inte ångras. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Tar bort alla ammunitionsorder, även dina egna. Kan inte ångras. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>Ingen: rör inte ammunitionsordrar. Hanterade: ta bara bort ordrar som denna modds egna verktyg skapat, så en order du satt upp för hand själv överlever. Alla: ta bort varje ammunitionsorder för en igenkänd typ oavsett vem som köade den (det ursprungliga, råa beteendet).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Ta bort vapenordrar</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Vapentillverkningsordrar behålls. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Tar bara bort vapenorder som modens guide skapat. Kan inte ångras. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Tar bort alla vapentillverkningsorder, även dina egna. Kan inte ångras. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>Ingen: rör inte vapenordrar. Hanterade: ta bara bort ordrar som denna modds egna verktyg skapat (tillverkningskön, inte lastningsmallen), så en order du satt upp för hand själv överlever. Alla: ta bort varje vapenorder för ett igenkänt vapen oavsett vem som köade den (det ursprungliga, råa beteendet).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Ta bort handbyggda vapenutrustningar</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Handbyggda vapenutrustningar behålls. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Tar bort de vapenutrustningar du själv byggt i CE:s egen redigerare. Ingen ångra. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Bara utrustningar du själv byggt i CE:s egen redigerare. De dolda mallarna per vapen som den här modden skapar rörs aldrig här - körningen skapar dem ändå på nytt för varje vapen den delar ut. Roller och utrustningspaket har egna steg.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Ta bort utrustningspaket</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Befintliga utrustningspaket behålls. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Tar bort endast utrustningspaket som guiden i DENNA mod genererade. Ingen ångra. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Tar bort alla utrustningspaket, inklusive manuellt skapade. Ingen ångra. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>Ingen: lämna utrustningspaket orörda. Hanterad: tar bort endast paket som auto-genereringsguiden skapade, så ett du byggt för hand i fliken Ingredienser behålls. Alla: tar bort varje utrustningspaket oavsett vem som skapade det (ursprungligt, kompromisslöst beteende). Handbyggda utrustningar rörs aldrig här.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Ammunitionsordrar</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>Inga ammunitionsordrar skapas eller tas bort.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Skapar ammunitionsordrar for det som saknas.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Avmarkera for att lamna dina ammunitionsordrar helt ororda. Markerad: ordrar fylls pa for kolonister som denna korning INTE ror. Har raderas aldrig nagot - inaktuella ordrar erbjuds for borttagning i forsorjningsfonstret, var och en med egen kryssruta.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Kan inte beväpna kolonin än:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Avbryt</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>Beväpna min koloni!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Kör stegen exakt som markerade i tabellen ovan. Lägesknapparna är bara förinställningar för kryssrutorna.\n\nNuvarande inställning: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>Beväpning kan inte fortsätta:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Ammunitionsorder-steget hoppades över efter val.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} roll(er) behöll sitt innehåll men förlorade byggdelarna de sattes ihop av - de delarna togs bort. Kolonister på rollerna förblir utrustade; dra dit nya delar för att justera om.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>{0} kolonist avtilldelad</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>{0} kolonister avtilldelade</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>{0} ammunitionsorder borttagen</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>{0} ammunitionsordrar borttagna</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>{0} vapenorder borttagen</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>{0} vapenordrar borttagna</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>{0} handbyggd utrustning borttagen</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>{0} handbyggda utrustningar borttagna</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>{0} utrustningspaket borttaget</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>{0} utrustningspaket borttagna</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Beväpna min koloni-återställning: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>Inget togs bort.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Tillbaka</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Fortsätt &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Fortsätt till ammunitionsordrar och tilldelning. Kolonister kommer tilldelas enbart efter roll.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Fortsätt till ammunitionsordrar och tilldelning. Det finns ingen roll än - bygg minst en ovan, annars tilldelas ingen.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>Ingen arbetsbänk har för närvarande en order för {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Beväpna min koloni - sammanfattning</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Läge: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Körningen avbröts, ändringarna nedan tillämpades innan den stoppades.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Återställning</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>Återställningsstegen kördes först (tilldelningar, ordrar, lastningar) så att ombyggnaden exakt matchar de nuvarande kraven.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Kolonister avtilldelade:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Ammunitionsordrar borttagna:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Vapentillverkningsordrar borttagna:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Handbyggda utrustningar borttagna:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Utrustningspaket borttagna:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Genererat</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Utrustningspaket genererade:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Startpaketpalett skapad eller uppdaterad i steg 0 - se fliken Utrustningspaket.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Ammunitionsordrar skapade:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Behovsskalat efter vad kolonister är tilldelade; specificerat under Köad tillverkning nedan.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>Inget saknades - all behövd ammunition hade redan en order.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Tilldelningar ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Vem fick vilken lastning. Klicka på en rad för att hoppa till den kolonisten på kartan.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- inget tillämpat (avbrutet) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- inga -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Klicka för att hoppa till {0} på kartan.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>{0} kolonist(er) lämnades utan lastning - tilldelningssteget anger orsaken.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Köad tillverkning ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Vapen och ammunition denna körning lade på dina arbetsbänkar. "Ordrar" hoppar till arbetsbänken som har ordern.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- inga (avbrutet) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- inga behövdes -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- {0} foremal saknas, men inget kunde bestallas (ingen arbetsbank eller recept) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Ordrar</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>{0} exemplar köat för tillverkning.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>{0} exemplar köade för tillverkning.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} skott</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>{0} skott köade - behovsskalat efter de tilldelade lastningarna.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Totalt material</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Allt den köade tillverkningen kommer förbruka, summerat över alla ordrar. Rött = inte tillräckligt i förvaring just nu (fullständig behovs-/tillgångslista i fältets verktygstips).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Anteckningar</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Stäng</CER_ArmColony_CloseBtn>
+
+</LanguageData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Нечего назначать: все поселенцы заблокированы или сохранены. Снимите флажок "Сохранять текущие комплекты" или разблокируйте поселенцев.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>«Только роли» включено, но ни одной роли пока нет. Нажмите, чтобы создать её на вкладке Роли, или выключите опцию.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Невозможно назначить оружие: ничего пригодного нет ни в наличии, ни для изготовления. Сначала добудьте оружие или выберите его колонисту вручную в «Снаряжении колонистов».</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>Поселенцев без оружия: {0} - не хватает оружия в наличии. Сдвиньте ползунок к "Изготавливать новое".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>Поселенцев без оружия: {0} - не хватает имеющегося или доступного для изготовления оружия. Исследуйте или постройте больше типов оружия.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Среди кандидатов нет средств против механоидов: никто не стреляет ЭМИ или бронебойными/подкалиберными. Выдайте такие боеприпасы колонисту в окне боеприпасов или добавьте ЭМИ-гранату как второе оружие.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Среди кандидатов нет отдельного варианта против живой силы: никто не несёт зажигательные/фугасные/осколочные боеприпасы. Обычные патроны всё равно эффективны против живой силы, так что это просто подсказка.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Нет ни одного оружия ближнего боя, поэтому «Предпочитать ближний бой» нечего раздавать. Сначала добудьте такое оружие.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Нет доступного оружия дальнего боя, поэтому "Предпочитать дальний бой" нечего выдавать. Сначала добудьте оружие дальнего боя.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Среди кандидатов всего {0} групп(ы) оружия - разнообразить особо нечем. Исследуйте или постройте больше типов оружия.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>Поселенцев с комплектом, но временно не боеспособных (сбиты с ног, ранены или парализованы): {0} - {1}. Если это надолго, заблокируйте их.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} поселенец(ев) получают набор, который им не по силам ({1}). Они возьмут только то, что помещается, а остальное оставят - набор останется выполненным частично.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>объём {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>вес {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Назначить оружие нельзя: ничего пригодного нет в наличии и нельзя изготовить, а «Без ролей» исключает все роли.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

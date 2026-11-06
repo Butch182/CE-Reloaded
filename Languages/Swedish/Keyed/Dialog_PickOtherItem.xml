@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Lägg till annat föremål</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - lägg till valfritt föremål i den personliga utrustningen, utöver det Ammunition, Paket och Sidovapen redan täcker.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Sök föremål...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>Inga träffar för "{0}".</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Ta bort fraan denna kolonist (har just nu {0}). Siffran i faeltet anger hur maanga.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Det haer foeremaalet finns inte paa kolonistens personliga lista, saa det finns inget att ta bort.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Tog bort {0}x {1} fraan {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Föremål</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Tilldelat</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Antal</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>La till {0}x {1} hos {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Stäng</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Kopiera</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Kopierar den här kolonistens övriga föremål till urklipp. Klistra in dem på en annan kolonist via inklistringskolumnen i fliken Utrusta kolonister (ersätter dennes övriga föremål). En tom lista kan också kopieras - inklistrad rensar den målet.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>Kopierade {0} föremålstyp(er) från {1} - använd inklistringskolumnen i fliken Utrusta kolonister.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Kopierade en tom föremålslista från {0} - inklistrad rensar den målets övriga föremål.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

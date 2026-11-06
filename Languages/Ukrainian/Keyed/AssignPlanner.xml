@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Нема кого призначати: усі колоністи заблоковані або збережені. Зніміть позначку "Зберігати поточні комплекти" або розблокуйте колоністів.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>«Тільки ролі» увімкнено, але жодної ролі ще немає. Натисніть, щоб створити її на вкладці Ролі, або вимкніть опцію.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Неможливо призначити зброю: нічого придатного немає ні в наявності, ні для виготовлення. Спочатку дістаньте зброю або виберіть її колоністу вручну в «Спорядженні колоністів».</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} колоніст(и) не отримають зброю: бракує наявної зброї. Пересуньте повзунок у бік "Виготовляти нові предмети".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} колоніст(и) не отримають зброю: бракує наявної або доступної для виготовлення зброї. Дослідіть або побудуйте більше типів зброї.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Серед кандидатів немає засобів проти механоїдів: ніхто не стріляє ЕМІ або бронебійними/підкаліберними. Видайте такі набої колоністу у вікні набоїв або додайте ЕМІ-гранату як другу зброю.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Серед кандидатів немає спеціалізованого варіанту проти живих цілей: ніхто не несе запальних/HE/осколкових боєприпасів. Звичайні набої все одно діють проти живої плоті, тож це лише підказка.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Немає жодної зброї ближнього бою, тож «Надавати перевагу ближньому бою» нічого роздавати. Спочатку дістаньте таку зброю.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Немає доступної зброї дальнього бою, тож "Перевага дальньому бою" не має чого видавати. Спершу здобудьте зброю дальнього бою.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Серед кандидатів лише {0} груп(и) зброї - урізноманітнювати особливо нічим. Дослідіть або побудуйте більше типів зброї.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} колоніст(и) отримали комплект, але зараз не можуть цілитися чи боротися (збиті з ніг, поранені або паралізовані): {1}. Заблокуйте їх, якщо це постійно.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} колоніст(ів) отримують набір, який їм не підходить ({1}). Вони візьмуть лише те, що вміщується, а решту залишать - набір лишиться виконаним частково.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>об'єм {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>вага {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Призначити зброю неможливо: нічого придатного немає в наявності й не можна виготовити, а «Без ролей» виключає всі ролі.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

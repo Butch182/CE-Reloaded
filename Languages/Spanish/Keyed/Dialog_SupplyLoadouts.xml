@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>Suministrar equipaciones</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>Mostrar solo lo que falta</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>Nombre</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>Especial</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>Asig.</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>Ingredientes</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>Material</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>Lotes</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>Stock</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>Cuantas guardar para TODA la colonia: la meta de un pedido 'fabricar hasta X'. No por colono: la misma palabra en el editor significa lo contrario (balas que lleva una persona).</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>Disponibilidad</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>Mesa de trabajo</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>Armas principales</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>Armas secundarias y granadas</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>Escudos</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>Objetos de paquete</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>Órdenes obsoletas - nadie asignado las necesita (se eliminan al confirmar)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>Alternar todas las filas a la vez.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>Nadie de los actualmente asignados necesita estos objetos.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>Todo lo necesario ya está en existencias o en producción.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; Atrás</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>Vuelve al paso anterior. Aquí aún no se ha suministrado nada, así que no hay nada que deshacer.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>Cancelar</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>Cierra esta ventana sin encargar nada. La asignación se mantiene; solo se omite la producción.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>No producir nada</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>Confirmar y suministrar</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>Suministrar seleccionados</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>Munición</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>En producción: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: ya no lo demanda la equipación asignada de ningún colono - su pedido se eliminará al confirmar.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: conservado - NO se eliminará al confirmar.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>Usado por:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>No asignado a ningún colono.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>Ningún colono tiene asignada una equipación que use esta munición.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>Rombo: actualmente asignado a un colono. Círculo: usado en una equipación guardada.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>No se usa en ninguna equipación guardada.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>Ninguna equipación guardada usa esta munición.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>Añade un lote ({0}) a la cantidad objetivo.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>Cantidad objetivo exacta.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>Cualquiera</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>Necesario por fabricación: {0}\nEn existencias: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>En producción:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ Sin {0} (no se puede crear la orden)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>No hay {0} construida</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(automático)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\nResuelto automáticamente de un requisito de munición genérico a tu preferencia de munición de arma de fuego por defecto.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ No se puede producir (no investigado)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ Requiere investigacion: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>La municion de Combat Extended necesita la receta Y una mesa de trabajo que pueda fabricarla. Aqui falta: {0}. Despues construye un {1} y esta fila se desbloquea.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>Cambiar...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>Cambia a otra variante investigada para esta arma.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>No existe otra variante de munición investigada a la que cambiar para esta arma.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>Ir a esta mesa de trabajo.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>Abrir la pestaña de pedidos de esta mesa de trabajo.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>{0} pedido(s) de arma</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>{0} pedido(s) de munición añadidos</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>{0} pedido(s) de munición actualizados</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>Suministro: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>Nada seleccionado para suministrar.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ Necesita investigación: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>La receta de esta arma existe, pero falta la investigación: {0}. Cuando la completes, esta fila se desbloquea.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- no se puede fabricar (sin receta)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>No existe ninguna receta de fabricación para este objeto: ninguna investigación lo desbloquea. Consíguelo mediante comercio, botín o recompensa de misión.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>creado por el mod</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>creado a mano</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>Este trabajo lo creó el asistente de CE Reloaded, por eso está preseleccionado para eliminarse. Desmárcalo para conservarlo.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>Este trabajo lo creaste tú, por eso NO está preseleccionado. Aparece solo porque ninguna dotación actual lo pide: márcalo si de verdad quieres eliminarlo.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

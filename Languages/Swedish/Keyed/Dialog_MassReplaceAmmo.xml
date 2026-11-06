@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MassReplaceAmmo_Title>Massbyt ammunition i lastningar</CER_MassReplaceAmmo_Title>
+	<CER_MassReplaceAmmo_AmmoLabel>Ammunition:</CER_MassReplaceAmmo_AmmoLabel>
+	<CER_MassReplaceAmmo_FilterAll>All ammunition</CER_MassReplaceAmmo_FilterAll>
+	<CER_MassReplaceAmmo_ChoicesCount>{0} av {1} ammunitionstyper valbara</CER_MassReplaceAmmo_ChoicesCount>
+	<CER_MassReplaceAmmo_NoSearchHits>Ingen rad matchar "{0}".</CER_MassReplaceAmmo_NoSearchHits>
+	<CER_MassReplaceAmmo_NothingToReplace>Ingen utrustning har en ammunitionsplats att ersatta.</CER_MassReplaceAmmo_NothingToReplace>
+	<CER_MassReplaceAmmo_BetterAmmoHint>{0} utrustningar kan anvanda nyutforskad ammunition - de ar markerade nedan.</CER_MassReplaceAmmo_BetterAmmoHint>
+	<CER_MassReplaceAmmo_FilterResearched>Forskad ammunition</CER_MassReplaceAmmo_FilterResearched>
+	<CER_MassReplaceAmmo_FilterAvailable>Tillgänglig ammunition</CER_MassReplaceAmmo_FilterAvailable>
+	<CER_MassReplaceAmmo_RowLabel>{0} - {1}</CER_MassReplaceAmmo_RowLabel>
+	<CER_MassReplaceAmmo_IndicatorUnchanged>=</CER_MassReplaceAmmo_IndicatorUnchanged>
+	<CER_MassReplaceAmmo_IndicatorChanged>✔</CER_MassReplaceAmmo_IndicatorChanged>
+	<CER_MassReplaceAmmo_KeepGeneric>↺ Behåll {0} (generisk)</CER_MassReplaceAmmo_KeepGeneric>
+	<CER_MassReplaceAmmo_KeepConcrete>↺ Behåll {0}</CER_MassReplaceAmmo_KeepConcrete>
+	<CER_MassReplaceAmmo_AnyAmmoFor>Valfri ammunition för {0}</CER_MassReplaceAmmo_AnyAmmoFor>
+	<CER_MassReplaceAmmo_NoValidAmmo>Ingen giltig ammunition hittades</CER_MassReplaceAmmo_NoValidAmmo>
+	<CER_MassReplaceAmmo_CancelButton>Avbryt</CER_MassReplaceAmmo_CancelButton>
+	<CER_MassReplaceAmmo_ApplyButton>Verkställ</CER_MassReplaceAmmo_ApplyButton>
+	<CER_MassReplaceAmmo_UpdatedMessage>Ammunition uppdaterad i {0} lastningar.</CER_MassReplaceAmmo_UpdatedMessage>
+
+</LanguageData>

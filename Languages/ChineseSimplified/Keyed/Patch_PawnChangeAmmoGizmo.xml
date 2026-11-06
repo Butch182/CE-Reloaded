@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>弹药配装</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>查看并修改所选殖民者在武器默认弹药之外额外携带的弹药 - 只显示与其装备实际匹配的类型，而不是游戏中的每一种弹药。</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

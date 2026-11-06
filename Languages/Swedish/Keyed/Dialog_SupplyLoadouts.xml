@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>Försörj lastningar</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>Visa endast det som saknas</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>Namn</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>Speciellt</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>Tilld.</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>Ingredienser</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>Material</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>Omgångar</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>Lager</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>Hur maanga som ska finnas i lager foer HELA kolonin - maalet foer en 'tillverka tills X'-order. Inte per kolonist: samma ord i editorn betyder tvaertom (skott en person baer).</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>Tillgänglighet</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>Arbetsbänk</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>Huvudvapen</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>Sidovapen &amp; granater</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>Sköldar</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>Paketföremål</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>Föråldrade order - ingen tilldelad behöver dem (tas bort vid bekräftelse)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>Växla alla rader på en gång.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>Ingen av de tilldelade kolonisterna behöver de här sakerna.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>Allt som behövs finns redan i lager eller under tillverkning.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; Tillbaka</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>Tillbaka till föregående steg. Inget här har försörjts än, så inget ångras.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>Avbryt</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>Stänger fönstret utan att beställa något. Tilldelningen består - bara tillverkningen hoppas över.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>Tillverka inget</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>Bekräfta &amp; försörj</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>Försörj valda</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>Ammunition</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>Under tillverkning: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: ingen kolonists tilldelade lastning kräver detta längre - dess order tas bort när du bekräftar.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: behålls - kommer INTE att tas bort vid bekräftelse.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>Används av:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>Inte tilldelad någon kolonist.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>Ingen kolonist är tilldelad en lastning som använder denna ammunition.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>Diamant: tilldelad en kolonist just nu. Cirkel: används i en sparad lastning.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>Används inte i någon sparad lastning.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>Ingen sparad lastning använder denna ammunition.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>Lägg till en omgång ({0}) till målantalet.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>Exakt målantal.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>Valfritt</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>Behövs per tillverkning: {0}\nI lager: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>Under tillverkning:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ Ingen {0} (kan inte skapa beställning)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>Ingen {0} byggd</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(auto)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\nAutomatiskt löst från ett generiskt ammunitionskrav till din standardpreferens för skjutvapensammunition.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ Kan inte tillverkas (ej forskat)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ Kraever forskning: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>Ammunition i Combat Extended kraever baade receptet OCH en arbetsbaenk som kan tillverka den. Haer saknas: {0}. Bygg sedan en {1}, saa laases raden upp.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>Ändra...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>Byt till en annan forskad variant för detta vapen.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>Det finns ingen annan forskad ammunitionsvariant att byta till för detta vapen.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>Hoppa till denna arbetsbänk.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>Öppna orderfliken för denna arbetsbänk.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>{0} vapenorder/ordrar</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>{0} ammunitionsorder/ordrar tillagda</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>{0} ammunitionsorder/ordrar uppdaterade</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>Försörjning: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>Inget valt att försörja.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ Kräver forskning: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>Receptet för detta vapen finns, men forskningen är inte klar. Saknas: {0}. När den är klar låses raden upp.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- kan inte tillverkas (inget recept)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>Det finns inget tillverkningsrecept alls för detta föremål - ingen forskning låser upp det. Skaffa det genom handel, byte eller questbelöning.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>skapad av modden</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>skapad för hand</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>Den här ordern skapades av CE Reloadeds egen guide och är därför förvald för borttagning. Avmarkera för att behålla den.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>Den här ordern skapade du själv, därför är den INTE förvald. Den visas bara för att ingen aktuell utrustning efterfrågar den - markera den om du verkligen vill ta bort den.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>Nie znaleziono kolonistów na obecnej mapie.</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>Sortuj wg umiejętności Strzelanie</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>Sortuj wg umiejętności Walka wręcz</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>Widok kompaktowy:</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>Jeden wąski wiersz na kolonistę zamiast pełnych kart. Szczegóły, które się już nie mieszczą, przenoszą się do podpowiedzi.</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>Auto-przypisz...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>Otwórz podgląd auto-przypisywania na żywo: dostrajaj źródło, anty-mech, dystans/wręcz i różnorodność oddziału suwakami i obserwuj wynikowy rozkład przed zastosowaniem.</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>Masowa zmiana amunicji</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>Zmień typ amunicji we wszystkich zestawach naraz (np. wszystkim z FMJ na AP).</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>Automatycznie przypisano {0} kolonistę</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>Automatycznie przypisano {0} kolonistów</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>, {0} bez zestawu</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>Auto-przypisywanie zostało anulowane - role, pakiety i zlecenia amunicji z wcześniejszych kroków zostały zachowane, ale żadne przypisanie nie zostało zastosowane i nie wyprodukowano żadnej broni.</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>Zapisz jako rolę</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>Edytuj rolę</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>Otwiera zakładkę Role z zaznaczoną rolą tego kolonisty - tam edytujesz samą rolę.</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>Rola</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>Otwiera tryb ról z dokładnym obecnym zestawem tej postaci (broń główna, broń boczna/materiały wybuchowe/tarcze, pakiety) wypełnionym jako szkic - sprawdź i kliknij tam Utwórz.</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>Nie przypisano jeszcze zestawu - nie ma czego zapisać.</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>Przydział zastosowany. Produkcja została pominięta na tym etapie - w razie potrzeby zaplanuj ją później w Supply Loadouts.</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+Kliknij, by zobaczyć i edytować noszony sprzęt.</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;Obliczanie wyniku:&lt;/b&gt;
+Obliczane jako poziom umiejętności x 10, modyfikowane przez Wzrok, Manipulację, Ruch i Cechy.
+
+&lt;b&gt;Kolory paska:&lt;/b&gt;
+Pusty = 0
+Ciemna czerwień = Słabo
+Jasna zieleń = Mistrz (Maks. poziom: {0})</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>Broń:</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>Brak</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>Upuść, by zamienić zestawy z {0}.</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>Nie może walczyć (niezdolny do przemocy lub niemowlę), więc nie można przypisać broni. Equipment Pack lub rola bez broni nadal działa.</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> Obecny nadal można wyczyścić.</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+Przeciągnij na przycisk zestawu innego kolonisty, by zamienić.</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>Masa</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>Objętość</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} kg</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;Masa&lt;/b&gt;
+Całkowita waga wszystkiego w zestawie (broń, amunicja, posiłki, leki) w porównaniu do tego, ile może unieść {0}.
+
+Udźwig wynika ze statystyki postaci &lt;b&gt;Udźwig&lt;/b&gt;, która skaluje się z rozmiarem ciała i Manipulacją, więc duży, zdrowy kolonista niesie więcej niż mały lub ranny. Przekroczenie spowalnia postać. Chodzi o limit &lt;b&gt;Carry Weight&lt;/b&gt; z CE, a nie o większy Udźwig samego RimWorlda.</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;Objętość&lt;/b&gt;
+Ile miejsca zajmuje zestaw w porównaniu do statystyki &lt;b&gt;Objętość niesiona&lt;/b&gt; tej postaci (CE). Objętość dotyczy pojemności, nie wagi - dużo luźnej amunicji lub pancerza szybko ją zapełnia. Przekroczenie pogarsza ruch i celność.</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>To się nie mieści. Kolonista nigdy nie zabierze nadmiaru - Combat Extended bierze tylko to, co się mieści, a resztę odrzuca, więc wyposażenie pozostanie niekompletne. Zmniejsz ilość amunicji, usuń przedmiot z zestawu albo wybierz lżejszy sprzęt.</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;Masa&lt;/b&gt;
+Waga zestawu w porównaniu do Udźwigu tej postaci. Przekroczenie spowalnia postać. Chodzi o limit &lt;b&gt;Carry Weight&lt;/b&gt; z CE, a nie o większy Udźwig samego RimWorlda.</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Objętość&lt;/b&gt;
+Objętość zestawu w porównaniu do Objętości niesionej tej postaci (CE). Przekroczenie pogarsza ruch i celność.</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>Brak</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0} nie może walczyć (niezdolny do przemocy lub niemowlę): można przypisać tylko wyposażenie bez broni.</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0} nie może niczego nosić.</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} ma rolę - pakiety, broń boczna i pozostałe przedmioty pochodzą z samej roli (zakładka Roles). Nic nie wklejono.</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>Zapisz obecny zestaw jako rolę...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>Kolonista</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>Dystans</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>Wręcz</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>Broń</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>Amunicja</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>broń główna</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>Cofnij wszystkie przydziały</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>Każdy wolny kolonista traci przydział - dołączone paki i broń zapasowa zostają.</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>Zabrać przydział wszystkim wolnym kolonistom? Dołączone paki i broń zapasowa zostają; niesiony sprzęt nie jest upuszczany.</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>Bez przydziału: {0}.</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>Pakiet</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>Broń boczna</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>Broń boczna</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>Inne</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>Zapisz</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>Zapisz jako rolę
+
+Otwiera tryb ról z dokładnym obecnym zestawem tej postaci (broń główna, broń boczna/materiały wybuchowe/tarcze, pakiety) wypełnionym jako szkic - sprawdź i kliknij tam Utwórz.</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>Zapisz jako rolę
+
+Nie przypisano jeszcze zestawu - nie ma czego zapisać.</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>Wyniki bojowe Dystans i Wręcz (Umiejętność x 10, modyfikowane przez Wzrok, Manipulację, Ruch i Cechy).</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>Dystans</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>Wręcz</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>D</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>W</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>Amunicja: -</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>Brak</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0 typów</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0} typów</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>Amunicja: {0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0} nie nosi broni wymagającej amunicji (broń biała lub tylko granaty) - nie ma tu nic do skonfigurowania.</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>Broń postaci {0} wymaga amunicji, ale żadna nie jest ustawiona - nie będzie miała czym strzelać.</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>Amunicja postaci {0}: {1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+Kliknij, by to zmienić - dotyczy tylko tego jednego kolonisty.</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>Pakiet: -</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>Zawarte w {0}:
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>Ta rola nie zawiera leków/jedzenia/narkotyków/przedmiotów użytkowych.</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>Ta rola nie zawiera broni bocznej, granatu ani tarczy.</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+Pochodzi z tej roli. Pakiety podpiete do roli pozostaja polaczone: zmien pakiet, a wszyscy kolonisci tej roli pojda za tym. Reszta jest wypieczona na stale: zmieniaj w zakladce Role, nie tutaj.</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>Brak</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>Pakiet: {0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>Dołączone Pakiety wyposażenia: {0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>Nie dołączono żadnego Pakietu wyposażenia.</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+Kliknij, by wybrać, które pakiety niesie {0}.</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - zaznacz, które pakiety nosić. Zmiany obowiązują od razu.</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>Wklejono zaznaczenie {0} z "{1}" na {2}.</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>Wklej zaznaczenie {0} skopiowane z "{1}" na {2}.</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>Broń boczna: -</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>Brak</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>Broń boczna: {0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>Dołączona broń boczna: {0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>Nie dołączono broni bocznej.</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+Kliknij, by wybrać, którą broń {0} nosi jako broń boczną.</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - zaznacz, którą broń nosić jako broń boczną. Zmiany obowiązują od razu.</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>Broń boczna</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>Brak innej broni, którą można nosić jako broń boczną.</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>Inne: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>Uwzględnione w tej Roli - edytuj samą Rolę (zakładka Role), aby dodać inne przedmioty, nie tutaj dla pojedynczego kolonisty.</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>Brak</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>Inne: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>Inne przenoszone przedmioty: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>Nie dodano innych przedmiotów.</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+Kliknij, aby dodać inne przedmioty dla {0}.</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>Nie można zamienić z kolonistą, który nie może walczyć (pacyfista lub niemowlę).</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>Żaden z kolonistów nie ma zestawu do zamiany.</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>Obaj koloniści mają już ten sam zestaw.</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>Zamieniono zestawy: {0} i {1}.</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>Obecnie wyposażono: {0}.</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>nic</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> Zakolejkowano na {0} - kliknij, by otworzyć jego zakładkę zleceń.</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;Obecnie wyposażono:&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;Ekwipunek:&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>Nic nie wyposażono.</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;Zdolności bojowe&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;Te zdolności skalują powyższe wyniki Dystans i Wręcz.&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>Celowanie / strzelanie</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>Celność i trafienie wręcz</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>Zbliżanie się do walki wręcz</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}: wynik walki wręcz x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}: wynik walki wręcz x1.25 (zwiększona szansa uniku)</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}: wynik walki wręcz x1.5 (otrzymuje znacznie mniej obrażeń)</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}: wynik walki wręcz x0.1 (pada natychmiast)</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}: wpływa na celność strzelania</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}: wpływa na czas celowania</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>Brak: {0}</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>Brak: {0}: zmniejsza zdolności</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}: modyfikuje zdolności</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;Strzał:&lt;/b&gt; {0} | Wzrok: {1}% | Manip.: {2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;Wręcz:&lt;/b&gt; {0} | Wzrok: {1}% | Ruch: {2}% | Manip.: {3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>Nic nie wklejono: żadna ze skopiowanej amunicji nie pasuje do broni {0}.</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>Wklejono {0} rodzaj(e) amunicji dla {2}. Pominięto {1} - nie pasują do żadnej jego broni.</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>Dla {0} (potrzebuje {1}):</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>Wyposażone: {0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>Przypisane, w magazynie - do pobrania: {0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>W produkcji: {0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>Brakuje: {0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>Cała kolonia:</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>Kolumna Wklej: kliknij ikonę w wierszu kolonisty, aby dać mu skopiowane przypisanie.</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

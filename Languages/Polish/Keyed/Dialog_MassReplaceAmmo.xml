@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MassReplaceAmmo_Title>Masowa zmiana amunicji w zestawach</CER_MassReplaceAmmo_Title>
+	<CER_MassReplaceAmmo_AmmoLabel>Amunicja:</CER_MassReplaceAmmo_AmmoLabel>
+	<CER_MassReplaceAmmo_FilterAll>Cała amunicja</CER_MassReplaceAmmo_FilterAll>
+	<CER_MassReplaceAmmo_ChoicesCount>{0} z {1} rodzajow amunicji do wyboru</CER_MassReplaceAmmo_ChoicesCount>
+	<CER_MassReplaceAmmo_NoSearchHits>Zaden wiersz nie pasuje do "{0}".</CER_MassReplaceAmmo_NoSearchHits>
+	<CER_MassReplaceAmmo_NothingToReplace>Zaden ekwipunek nie ma amunicji do zamiany.</CER_MassReplaceAmmo_NothingToReplace>
+	<CER_MassReplaceAmmo_BetterAmmoHint>{0} zestawow moglaby uzywac nowo zbadanej amunicji - sa wyroznione ponizej.</CER_MassReplaceAmmo_BetterAmmoHint>
+	<CER_MassReplaceAmmo_FilterResearched>Zbadana amunicja</CER_MassReplaceAmmo_FilterResearched>
+	<CER_MassReplaceAmmo_FilterAvailable>Dostępna amunicja</CER_MassReplaceAmmo_FilterAvailable>
+	<CER_MassReplaceAmmo_RowLabel>{0} - {1}</CER_MassReplaceAmmo_RowLabel>
+	<CER_MassReplaceAmmo_IndicatorUnchanged>=</CER_MassReplaceAmmo_IndicatorUnchanged>
+	<CER_MassReplaceAmmo_IndicatorChanged>✔</CER_MassReplaceAmmo_IndicatorChanged>
+	<CER_MassReplaceAmmo_KeepGeneric>↺ Zachowaj {0} (ogólna)</CER_MassReplaceAmmo_KeepGeneric>
+	<CER_MassReplaceAmmo_KeepConcrete>↺ Zachowaj {0}</CER_MassReplaceAmmo_KeepConcrete>
+	<CER_MassReplaceAmmo_AnyAmmoFor>Dowolna amunicja do {0}</CER_MassReplaceAmmo_AnyAmmoFor>
+	<CER_MassReplaceAmmo_NoValidAmmo>Nie znaleziono odpowiedniej amunicji</CER_MassReplaceAmmo_NoValidAmmo>
+	<CER_MassReplaceAmmo_CancelButton>Anuluj</CER_MassReplaceAmmo_CancelButton>
+	<CER_MassReplaceAmmo_ApplyButton>Zastosuj</CER_MassReplaceAmmo_ApplyButton>
+	<CER_MassReplaceAmmo_UpdatedMessage>Zaktualizowano amunicję w {0} zestawach.</CER_MassReplaceAmmo_UpdatedMessage>
+
+</LanguageData>

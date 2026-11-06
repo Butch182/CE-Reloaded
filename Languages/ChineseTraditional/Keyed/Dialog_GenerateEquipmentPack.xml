@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>裝備包</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>一次建立初始物資組合 - 日常補給、醫護包、背包、戰鬥藥物、護盾。每個項目之後仍可編輯：點擊即可變更內容、編輯數量或移除。之後重新執行會就地精修同名的裝備包，而不是重複建立。</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>使用建議設定</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>均衡</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>經濟</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>最佳裝備</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>僅必需品</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>將每個滑桿重設為預設值（平衡）。</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>詳細模式 - 顯示每個滑桿供手動調整。\n\n點擊切換為簡易模式（僅預設組合）。</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>簡易模式 - 僅顯示預設組合，滑桿已隱藏。\n\n點擊切換為詳細模式並手動調整每個滑桿。</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>使用「任意 X」通用類型</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>勾選後，醫療用品/食物/藥物永遠選用 CE 的通用佔位符（「任意醫療用品」、「任意易腐餐點」、「任意藥物」），而非單一具體物品 - 只要庫存中有就算數，不會用盡。</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>便宜</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>昂貴</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>有多個項目符合資格時，每個類別選擇哪一項具體物品 - 便宜/可負擔 vs. 不計成本選最好的。勾選「任意 X」時此設定無效。</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>輕量</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>重型</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>每個包攜帶多少物資，以及護盾包的護盾偏向機動性或最大防護。</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>必要</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>全部</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>下方有多少範本預設會勾選，最必要的優先（基礎補給、醫護包、護盾包、觀察兵、戰術包，EMP 包，戰鬥藥物包最後 - 這是刻意的情境性選擇，絕非預設）。僅影響你尚未自行勾選/取消勾選的列。</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; 返回</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>返回武裝我的殖民地流程的上一個步驟。已套用的步驟不會被復原。</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>取消</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>刪除現有裝備包（{0}）</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>移除所有現有裝備包(殖民者將從配裝中失去它)。上方每個範本接著會再次提議一個新的包。</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>刪除全部 {0} 個裝備包？此動作無法復原。</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>刪除全部 {0} 個裝備包？此動作無法復原。</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>已刪除 {0} 個裝備包。</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>已刪除 {0} 個裝備包。</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>略過</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>略過此步驟 - 這裡不會生成任何內容，武裝我的殖民地流程會繼續到下一步。</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>生成已勾選項目（{0}）</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>生成 {0}，刪除 {1}</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>刪除 {0}</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>繼續（不生成裝備包）</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>已跳過（名稱已被手動建立的裝備包使用，並非本精靈產生）：{0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>裝備包</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>內容物</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>可用性</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>原料</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>質量 / 體積</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>「{0}」已存在 - 預設維持原樣（填補缺口模式）。點擊即可將其納入此次執行,或直接編輯下方任何內容 - 此處的任何變更都會立即套用,並一併納入。</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>庫存：{0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>將以此原料製作：{0}。點擊以變更。</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>將以此原料製作。點擊以變更。</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>點擊以變更這是什麼。</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>這件東西原本就在背包裡，精靈沒有可供替換的選項，因此無法更換，會原樣保留。要移除請點 X。</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>為這個包新增另一項物品。</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>醫療用品</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>食物</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>藥物</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>護盾</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>工具</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}：{1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0} 保持原樣。點擊可標記為刪除。</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>套用時將建立 {0}。點擊以排除。</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>將不會建立 {0}。點擊以包含。</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>套用時將刪除 {0}。點擊可改為保留。</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>你修改了 {0} - 套用時會寫入你的版本。點擊可改為標記刪除。</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

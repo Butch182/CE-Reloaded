@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GearTabLoadoutPanel_Header>配装</CER_GearTabLoadoutPanel_Header>
+	<CER_GearTabLoadoutPanel_NoLoadoutAssigned>未分配配装。</CER_GearTabLoadoutPanel_NoLoadoutAssigned>
+	<CER_GearTabLoadoutPanel_NoLoadoutHint>使用"分配"来选择武器或职能。</CER_GearTabLoadoutPanel_NoLoadoutHint>
+	<CER_GearTabLoadoutPanel_TitleBold>&lt;b&gt;{0}&lt;/b&gt;</CER_GearTabLoadoutPanel_TitleBold>
+	<CER_GearTabLoadoutPanel_ColItem>物品</CER_GearTabLoadoutPanel_ColItem>
+	<CER_GearTabLoadoutPanel_ColHaveNeed>拥有/需要</CER_GearTabLoadoutPanel_ColHaveNeed>
+	<CER_GearTabLoadoutPanel_ColStatus>  状态</CER_GearTabLoadoutPanel_ColStatus>
+	<CER_GearTabLoadoutPanel_UnknownItem>?</CER_GearTabLoadoutPanel_UnknownItem>
+	<CER_GearTabLoadoutPanel_StatusOk>正常</CER_GearTabLoadoutPanel_StatusOk>
+	<CER_GearTabLoadoutPanel_StatusInStorage>库存中</CER_GearTabLoadoutPanel_StatusInStorage>
+	<CER_GearTabLoadoutPanel_StatusInProduction>生产中</CER_GearTabLoadoutPanel_StatusInProduction>
+	<CER_GearTabLoadoutPanel_StatusMissing>缺失</CER_GearTabLoadoutPanel_StatusMissing>
+	<CER_GearTabLoadoutPanel_CarriedOverNeed>{0}/{1}</CER_GearTabLoadoutPanel_CarriedOverNeed>
+	<CER_GearTabLoadoutPanel_NeededCarried>
+需要：{0}   携带：{1}</CER_GearTabLoadoutPanel_NeededCarried>
+	<CER_GearTabLoadoutPanel_FreeInStorage>
+库存空闲：{0}</CER_GearTabLoadoutPanel_FreeInStorage>
+	<CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+已在工作台排队。</CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+	<CER_GearTabLoadoutPanel_NotCovered>
+
+未被覆盖 - 战备指示灯与补给流程可将其加入队列。</CER_GearTabLoadoutPanel_NotCovered>
+	<CER_GearTabLoadoutPanel_EditButton>编辑...</CER_GearTabLoadoutPanel_EditButton>
+	<CER_GearTabLoadoutPanel_EditTooltipHasLoadout>在CE配装编辑器中打开此配装。</CER_GearTabLoadoutPanel_EditTooltipHasLoadout>
+	<CER_GearTabLoadoutPanel_EditTooltipNoLoadout>尚无配装可编辑。</CER_GearTabLoadoutPanel_EditTooltipNoLoadout>
+	<CER_GearTabLoadoutPanel_AssignButton>分配...</CER_GearTabLoadoutPanel_AssignButton>
+	<CER_GearTabLoadoutPanel_AssignTooltip>打开 CE Reloaded 的装备殖民者标签页。</CER_GearTabLoadoutPanel_AssignTooltip>
+
+</LanguageData>

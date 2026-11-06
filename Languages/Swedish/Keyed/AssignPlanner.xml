@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Inget att tilldela: alla kolonister är låsta eller behålls. Avmarkera "Behåll nuvarande lastningar" eller lås upp kolonister.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>"Endast roller" är på, men det finns ingen roll än. Klicka för att skapa en under fliken Roller, eller stäng av alternativet.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Inget vapen kan tilldelas: inget användbart ägs eller kan tillverkas. Skaffa vapen först, eller välj ett för hand åt en kolonist under Utrusta kolonister.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} kolonist(er) får inget vapen: det finns inte tillräckligt med ägda vapen. Flytta reglaget mot "Tillverka nya föremål".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} kolonist(er) får inget vapen: det finns inte tillräckligt med ägda eller tillverkningsbara vapen. Forska fram eller bygg fler vapentyper.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Inget anti-mek-alternativ bland kandidaterna: inget skjuter EMP- eller AP/Sabot-ammunition. Ge en kolonist sådan ammunition i ammunitionsfönstret, eller lägg till en EMP-granat som sidovapen.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Inget dedikerat alternativ mot kött bland kandidaterna: inget bär brand-, sprängverkans- eller splitterammunition. Vanlig ammunition fungerar fortfarande mot kött, så detta är bara en fingervisning.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Inget närstridsvapen finns tillgängligt, så "Föredra närstrid" har inget att dela ut. Skaffa ett närstridsvapen först.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Inget distansvapen är tillgängligt, så "Föredra distans" har inget att dela ut. Skaffa ett distansvapen först.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Bara {0} vapengrupp(er) bland kandidaterna - det finns lite att variera. Forska fram eller bygg fler vapentyper.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} kolonist(er) fick en lastning men kan just nu inte sikta eller slåss (golvade, skadade eller förlamade): {1}. Lås dem om detta är permanent.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} kolonist(er) far en lastning som inte passar dem ({1}). De plockar bara upp det som far plats och lamnar resten - lastningen forblir delvis ouppfylld.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>volym {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>vikt {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Inget vapen kan tilldelas: inget användbart ägs eller kan tillverkas, och "Inga roller" utesluter alla roller.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

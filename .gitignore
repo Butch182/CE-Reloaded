@@ -1,0 +1,8 @@
+# Build output - the assembly is built from Source/ and shipped through the Steam Workshop
+1.6/Assemblies/*.dll
+Source/obj/
+Source/bin/
+*.pdb
+*.user
+.vs/
+.idea/

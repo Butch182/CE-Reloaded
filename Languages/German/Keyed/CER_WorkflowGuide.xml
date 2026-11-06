@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - Schnellkurs</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Schnellster Weg</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>„Kolonie bewaffnen" drücken (obere Leiste) - Vorsichtig / Normal / Aggressiv wählen, Bewaffnen drücken. Fertig.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Reiter</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Ausrüstungspakete - wiederverwendbare Sets (Medizin, Nahrung, Drogen, Sonstiges). Optional.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Kolonisten ausrüsten - verteilt Waffen und Ausrüstung nach Fertigkeit. Eine Zelle anklicken, um selbst zu wählen.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Rollen - speichert die Kombination eines Kolonisten als wiederverwendbare Vorlage für viele Kolonisten.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Auftragsübersicht - hält die Munitionsproduktion am Laufen. „Automatisch generieren" bemisst die Aufträge für dich.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Wichtige Funktionen</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Bereitschaftsampel (obere Leiste) - anklicken, um Probleme zu beheben.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Ausrüstungsreiter-Panel - Status je Gegenstand: mitgeführt / gelagert / in Produktion / fehlend.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>„Munitions-Beladungen"-Symbol (Kolonisten auswählen) - überschreibt nur dessen Munition, die geteilte Beladung bleibt unberührt.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>„Als Rolle speichern" - macht die aktuelle Kombination eines Kolonisten zu einer wiederverwendbaren Vorlage.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Mod-Einstellungen - jeder Standardwert (Munitionsmengen, Voreinstellungen für „Kolonie bewaffnen", ...) ist konfigurierbar.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Gut zu wissen</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Neu bei CE? Bleib im einfachen Modus (Symbol oben rechts) und nutze einfach „Kolonie bewaffnen".</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Babys/Pazifisten erhalten nie eine Waffe - können aber trotzdem ein Ausrüstungspaket tragen.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Diesen Planer jederzeit öffnen: 'Beladungsplaner' im Zuweisungs-Reiter (unten rechts) oder das Feld neben dem Ausrüstungs-Reiter eines Kolonisten.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>'Ausrüstung jetzt holen' (neben Kolonie bewaffnen) - alle lassen ihre Arbeit liegen und holen ihre Beladung sofort. CE allein holt einen Gegenstand je 30 s.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Dieser Crashkurs erscheint einmal. Jederzeit wieder öffnen: Mod-Einstellungen -> Werkzeuge.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

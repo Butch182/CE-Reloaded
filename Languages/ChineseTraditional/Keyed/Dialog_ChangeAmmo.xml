@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>彈藥配裝</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>依彈藥類型分組</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>將可使用相同彈藥類型的殖民者合併成一列，一次編輯全部 - 而不是每位殖民者各佔一個區塊。</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - 攜帶內容。編輯此項會完全取代其武器的預設彈藥 - 下次檢查裝備時生效。</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>已選擇 {0} 名殖民者 - 各自攜帶的內容。編輯會完全取代每把武器的預設彈藥。</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>篩選（例：FMJ）……</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>關閉</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>清除全部彈藥</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>移除所有彈藥類型 - {0} 將完全不攜帶彈藥，包括其武器的預設彈藥。</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>移除所有 {0} 名已選殖民者的全部彈藥類型 - 他們都將不攜帶任何彈藥，包括各自武器的預設彈藥。</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>重設</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>複製</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>複製該殖民者的彈藥選擇。用 裝備殖民者 中的貼上欄套用到其他人。</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>已從 {1} 複製 {0} 條彈藥設定。</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>已從 {1} 複製 {0} 條彈藥設定。</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>將所有選取殖民者的彈藥還原成此視窗開啟時的狀態。</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  未分配配裝</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>攜帶：{0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>，+{0} 更多</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>未分配武器。</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>沒有彈藥類型符合「{0}」。</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>{0} 的武器不需要彈藥。</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>名稱</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>特殊</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>數量</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>庫存</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> （尚未研究）</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\n適用對象：{1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>{0} 的任意彈藥</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>讓遊戲自動為 {0} 選擇已研究的最佳彈藥 - 在未指定特定類型時，補給彈出視窗與生產檢查已經採用此設定。點擊即可將所有適用的殖民者還原成此設定。\n\n適用對象：{1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>讓遊戲自動為 {0} 選擇已研究的最佳彈藥 - 在下方未指定特定類型時，補給彈出視窗與生產檢查已經採用此設定。選擇特定類型後點擊即可還原成此設定。</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}：{1}（庫存 {2}，空閒 {3}）。</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> 點擊以開啟其訂單分頁。</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> 點擊以開啟補給彈出視窗並排入生產。</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>所選殖民者的武器皆不需要彈藥。</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

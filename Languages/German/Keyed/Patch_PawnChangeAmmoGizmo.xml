@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Munitions-Loadouts</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Zeigt und ändert die zusätzliche Munition, die die ausgewählten Kolonisten über die Standardmunition ihrer Waffe hinaus tragen - gefiltert auf das, was zu ihrer Ausrüstung passt, statt auf jede Munitionsart im Spiel.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>Pacotes de Equipamento</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>Monta uma paleta de suprimento inicial de uma vez - suprimento do dia a dia, um kit médico, uma mochila, drogas de combate, um escudo. Todo item continua editável depois: clique nele para mudar o que é, editar a quantidade, ou removê-lo. Rodar isto de novo mais tarde refina um pacote de mesmo nome em vez de duplicá-lo.</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>Usar configuração recomendada</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>Equilibrado</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>Econômico</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>Melhor equipamento</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>Somente o essencial</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>Restaura todo controle deslizante ao seu padrão (Equilibrado).</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>Modo Detalhado - todo controle deslizante é mostrado para ajuste manual.\n\nClique para mudar para Simples (só predefinições).</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>Modo Simples - só predefinições, os controles deslizantes ficam ocultos.\n\nClique para mudar para Detalhado e ajustar manualmente cada controle.</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>Usar tipos genéricos "Qualquer X"</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>Quando marcado, Remédio/Comida/Drogas sempre escolhem o placeholder genérico do CE ("Qualquer Remédio", "Qualquer Refeição Perecível", "Qualquer Droga") em vez de um item concreto - o que estiver em estoque conta, sem risco de faltar.</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>Barato</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>Caro</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>Qual item específico cada categoria escolhe quando vários se qualificam - barato/acessível vs. o melhor independente do custo. Sem efeito enquanto "Qualquer X" estiver marcado.</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>Leve</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>Pesado</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>Quanto de cada suprimento um pacote carrega, e se o escudo do Kit de Escudo favorece mobilidade ou proteção máxima.</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>Essencial</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>Tudo</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>Quantos dos modelos abaixo vêm marcados por padrão, do mais essencial primeiro (Suprimento Base, Kit Médico, Kit de Escudo, Observador, Kit Tático, Kit EMP, Kit de Drogas de Combate por último - uma escolha situacional deliberada, nunca um padrão). Só afeta uma linha que você mesmo não marcou/desmarcou.</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; Voltar</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>Voltar à etapa anterior do fluxo Armar-minha-Colônia. Etapas já aplicadas não são desfeitas.</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>Cancelar</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>Excluir pacotes de equipamento existentes ({0})</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>Remove todo pacote de equipamento existente (colonos o perdem da configuração). Cada modelo acima então propõe um pacote novo.</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>Excluir o {0} pacote de equipamento? Isto não pode ser desfeito.</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>Excluir os {0} pacotes de equipamento? Isto não pode ser desfeito.</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>{0} pacote de equipamento excluído.</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>{0} pacotes de equipamento excluídos.</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>Pular</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>Pular esta etapa - nada é gerado aqui, o fluxo Armar-minha-Colônia continua para a próxima etapa.</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>Gerar marcados ({0})</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>Gerar {0}, excluir {1}</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>Excluir {0}</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>Continuar (sem pacotes)</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>Ignorado (o nome já é usado por um pacote criado manualmente, não gerado por este assistente): {0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>Pacote</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>Conteúdo</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>Disponibilidade</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>Materiais</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>Massa / Volume</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>"{0}" já existe - deixado como está por padrão (Preenchendo lacunas). Clique para incluí-lo nesta execução, ou apenas edite algo abaixo - qualquer mudança aqui se aplica imediatamente e o inclui também.</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>Em estoque: {0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>Material do qual isto será fabricado: {0}. Clique para mudar.</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>Material do qual isto será fabricado. Clique para mudar.</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>Clique para mudar o que isto é.</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>Este item ja estava no pacote e o assistente nao tem alternativas a oferecer, entao nao pode ser trocado e e mantido como esta. Use o X para remover.</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>Adicionar outro item a este pacote.</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>Remédio</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>Comida</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>Droga</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>Escudo</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>Utilidade</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}: {1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0} permanece exatamente como esta. Clique para marcar para exclusao.</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>{0} sera criado ao aplicar. Clique para deixar de fora.</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>{0} NAO sera criado. Clique para incluir.</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>{0} sera EXCLUIDO ao aplicar. Clique para manter.</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>Voce alterou {0} - sua versao sera gravada ao aplicar. Clique para marcar para exclusao.</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

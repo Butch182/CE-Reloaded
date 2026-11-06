@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>Inga kolonister hittades på den aktuella kartan.</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>Sortera efter distansfärdighet</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>Sortera efter närstridsfärdighet</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>Kompakt vy:</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>En smal rad per kolonist i stället för hela korten. Detaljer som inte längre får plats flyttas till verktygstipsen.</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>Tilldela automatiskt...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>Öppna den direktuppdaterade förhandsvisningen för automatisk tilldelning: justera anskaffning, anti-mek, distans/närstrid och truppens mångfald med reglage och se den resulterande fördelningen innan du tillämpar den.</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>Massbyt ammunition</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>Byt ammunitionstyp för alla lastningar samtidigt (t.ex. alla från FMJ till pansarbrytande).</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>Tilldelade automatiskt {0} kolonist</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>Tilldelade automatiskt {0} kolonister</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>, {0} lämnades utan lastning</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>Automatisk tilldelning avbröts - roller, paket och ammunitionsordrar från tidigare steg behölls, men ingen tilldelning tillämpades och inga vapen tillverkades.</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>Spara som roll</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>Redigera roll</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>Öppnar Roller-fliken med den här kolonistens roll vald, så att du kan redigera själva rollen.</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>Roll</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>Öppna rolläget med denna kolonists exakta nuvarande kombination (huvudvapen, sidovapen/sprängmedel/sköldar, paket) förifylld som utkast - granska och tryck Skapa där.</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>Ingen lastning tilldelad än - inget att spara.</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>Tilldelning tillämpad. Produktionen hoppades över i det steget - schemalägg den senare via Supply Loadouts om du fortfarande behöver den.</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+Klicka för att visa och redigera den burna utrustningen.</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;Poängberäkning:&lt;/b&gt;
+Beräknas med Färdighetsnivå x 10, justerat efter syn, manipulation, rörelse och egenskaper.
+
+&lt;b&gt;Fältfärger:&lt;/b&gt;
+Tom = 0
+Djupröd = Dåligt
+Klargrön = Mästare (Maxnivå: {0})</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>Vapen:</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>Ingen</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>Släpp för att byta lastning med {0}.</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>Kan inte strida (oförmögen till våld, eller ett spädbarn), så inget vapen kan tilldelas. Ett Equipment Pack eller en roll utan vapen går fortfarande bra.</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> Den nuvarande kan fortfarande rensas.</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+Dra till en annan kolonists lastningsknapp för att byta.</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>Massa</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>Volym</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} kg</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;Massa&lt;/b&gt;
+Totalvikten av allt i lastningen (vapen, ammunition, måltider, medicin) jämfört med hur mycket {0} kan bära.
+
+Bärkapaciteten kommer från kolonistens &lt;b&gt;bärkapacitet&lt;/b&gt;-värde, som skalar med kroppsstorlek och manipulation, så en stor frisk kolonist bär mer än en liten eller skadad. Att gå över saktar ner kolonisten. Det gäller CE:s gräns &lt;b&gt;Carry Weight&lt;/b&gt;, inte RimWorlds större bärkapacitet.</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;Volym&lt;/b&gt;
+Hur mycket utrymme lastningen tar jämfört med denna kolonists &lt;b&gt;bärvolym&lt;/b&gt;-värde (CE). Volym handlar om utrymme, inte vikt - massor av lös ammunition eller rustning tar snabbt volym. Att överskrida den försämrar rörelse och sikte.</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>Det får inte plats. Kolonisten hämtar aldrig överskottet - Combat Extended tar bara det som ryms och släpper resten, så utrustningen förblir delvis ouppfylld. Minska ammunitionsmängden, ta bort ett föremål ur paketet eller välj lättare utrustning.</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;Massa&lt;/b&gt;
+Lastningens vikt jämfört med denna kolonists bärkapacitet. Att gå över saktar ner kolonisten. Det gäller CE:s gräns &lt;b&gt;Carry Weight&lt;/b&gt;, inte RimWorlds större bärkapacitet.</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Volym&lt;/b&gt;
+Lastningens volym jämfört med denna kolonists bärvolym (CE). Att överskrida den försämrar rörelse och sikte.</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>Ingen</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0} kan inte strida (oförmögen till våld, eller ett spädbarn): endast utrustning utan vapen kan tilldelas.</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0} kan inte bära något.</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} har en roll - paket, sidovapen och övriga föremål kommer från själva rollen (fliken Roles). Inget klistrades in.</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>Spara nuvarande kombination som roll...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>Kolonist</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>Distans</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>Närstrid</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>Vapen</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>Ammunition</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>huvudvapen</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>Ta bort alla tilldelningar</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>Varje ledig kolonist förlorar sin tilldelning - fästa paket och sidovapen står kvar.</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>Ta bort tilldelningen från varje ledig kolonist? Fästa paket och sidovapen står kvar; buret släpps inte.</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>{0} kolonist(er) utan tilldelning.</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>Paket</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>Sidovapen</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>Sidovapen</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>Övrigt</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>Spara</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>Spara som roll
+
+Öppna rolläget med denna kolonists exakta nuvarande kombination (huvudvapen, sidovapen/sprängmedel/sköldar, paket) förifylld som utkast - granska och tryck Skapa där.</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>Spara som roll
+
+Ingen lastning tilldelad än - inget att spara.</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>Stridspoäng för distans och närstrid (Färdighet x 10, justerat efter syn, manipulation, rörelse och egenskaper).</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>Distans</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>Närstrid</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>D</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>N</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>Ammunition: -</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>Ingen</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0 typer</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0} typer</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>Ammunition: {0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0} bär inget ammunitionsbaserat vapen (endast närstrid eller granat) - inget att ställa in här.</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>{0}s vapen tar ammunition, men ingen är inställd - de kommer inte ha något att skjuta med.</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>{0}s ammunition: {1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+Klicka för att ändra den - påverkar bara denna kolonist.</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>Paket: -</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>Ingår i {0}:
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>Denna roll inkluderar inga medicin-, mat-, drog- eller verktygsföremål.</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>Denna roll inkluderar inget sidovapen, kastvapen eller sköld.</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+Kommer fraan den haer rollen. Paket kopplade till en roll foerblir laenkade: aendra paketet saa foeljer alla kolonister med rollen med. Resten aer fast inbakat: aendra i Roll-fliken, inte haer per kolonist.</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>Ingen</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>Paket: {0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>Bifogade utrustningspaket: {0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>Inget utrustningspaket bifogat.</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+Klicka för att välja vilka paket {0} bär.</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - bocka för vilka paket som ska bäras. Ändringar gäller omedelbart.</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>Klistrade in {0}-valet från "{1}" på {2}.</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>Klistra in {0}-valet kopierat från "{1}" på {2}.</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>Sidovapen: -</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>Inget</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>Sidovapen: {0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>Bifogade sidovapen: {0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>Inget sidovapen bifogat.</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+Klicka för att välja vilket/vilka vapen {0} bär som sidovapen.</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - bocka för vilket/vilka vapen som ska bäras som sidovapen. Ändringar gäller omedelbart.</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>Sidovapen</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>Inga andra vapen finns att bära som sidovapen.</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>Övrigt: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>Ingår i den här rollen - redigera rollen själv (fliken Roller) för att lägga till andra föremål, inte här per kolonist.</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>Inga</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>Övrigt: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>Andra medförda föremål: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>Inga andra föremål tillagda.</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+Klicka för att lägga till andra föremål till {0}.</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>Kan inte byta med en kolonist som inte kan slåss (pacifist eller bebis).</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>Ingen av kolonisterna har en lastning att byta.</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>Båda kolonisterna har redan samma lastning.</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>Bytte lastningar: {0} och {1}.</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>Just nu utrustad med: {0}.</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>inget</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> Köad på {0} - klicka för att öppna dess orderflik.</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;Just nu utrustad med:&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;Inventarier:&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>Inget utrustat.</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;Stridsförmågor&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;Dessa förmågor skalar distans- och närstridspoängen ovan.&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>Sikta / skjuta</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>Sikte &amp; närstridsträff</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>Ta sig in i närstrid</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}: Närstridspoäng x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}: Närstridspoäng x1.25 (ökad undvikandechans)</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}: Närstridspoäng x1.5 (tar mycket mindre skada)</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}: Närstridspoäng x0.1 (går ner direkt)</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}: Påverkar distansprecision</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}: Påverkar siktningstid på distans</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>Saknar {0}</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>Saknar {0}: Minskar förmågor</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}: Ändrar förmågor</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;Skjuta:&lt;/b&gt; {0} | Syn: {1}% | Manip: {2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;Närstrid:&lt;/b&gt; {0} | Syn: {1}% | Rörelse: {2}% | Manip: {3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>Inget klistrades in: ingen av den kopierade ammunitionen passar något vapen som {0} bär.</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>{0} ammunitionstyp(er) inklistrade på {2}. {1} utelämnade - de passar inget av vapnen.</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>För {0} (behöver {1}):</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>Utrustad: {0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>Tilldelad, i lager - ska hämtas: {0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>I tillverkning: {0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>Saknas: {0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>Hela kolonin:</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>Klistra in-kolumn: klicka på ikonen i en kolonists rad för att ge hen den kopierade tilldelningen.</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

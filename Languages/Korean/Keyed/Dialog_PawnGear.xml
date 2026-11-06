@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - 휴대 장비</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>놓기를 사용하면 주민 옆 바닥에 항목을 내려놓습니다 - 운반꾼이 보관소로 되돌려 놓습니다.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>이 주민은 현재 맵에 없어 아무것도 내려놓을 수 없습니다.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>장비</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>의복</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>인벤토리</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>놓기</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- 없음 -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>닫기</CER_PawnGear_CloseButton>
+
+</LanguageData>

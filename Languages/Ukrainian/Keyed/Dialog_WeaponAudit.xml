@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>score-invalid</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>Оцінка зброї - {0} (не є скінченним числом).</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>score-zero</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>Бойова зброя має реальний урон, але отримала оцінку 0 - ймовірно, не вдалося прочитати її характеристики.</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>not-ce-but-armed</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>Далекобійна зброя позначена як "(Not CE)", але має ammoSet/снаряд - перевірте виявлення.</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>ranged-no-ammo</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>Має ammoSet, але список боєприпасів комплекту порожній - замовлення на боєприпаси створити неможливо.</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>nabir-boiepripasiv-ne-vyrisheno</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>Дальнобійна зброя, позначена як CE-сумісна, чий набір боєприпасів так і не був визначений - вона ніколи не зможе отримати дійсні боєприпаси.</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>selfammo-no-recipe</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>Зброя із самобоєприпасом (граната/метальна) не має рецепта виготовлення - виробництво неможливе.</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>exception</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}: {1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - Перевірка сумісності зброї</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>Перевірено {0} видів зброї з {1} модів. Проблем: {2}.</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>Перевірка сумісності зброї</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>Перевірено {0} видів зброї з {1} активних модів.  Знайдено проблем: {2}.</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>Проблем не знайдено - уся зброя в цьому списку модів опрацьована коректно. ✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+Джерело: {1}
+{2}: {3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>Закрити</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>Копіювати звіт у буфер обміну</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>Звіт перевірки скопійовано в буфер обміну.</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (Munition): Beschädigt und betäubt Maschinoiden, deaktiviert Schilde.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Wucht (Munition): Stumpfer Flächenschaden, starke Unterdrückung.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Blend (Munition): Blendet Ziele, desorientiert.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Betäubung (Munition): Macht das Ziel kurzzeitig bewegungsunfähig.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Brand (Munition): Setzt Ziele in Brand, verursacht Panik.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Toxisch (Munition): Verursacht toxische Anreicherung.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Rauch (Munition): Blockiert Sichtlinie.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Splitter (Munition): Verstreut Schrapnell (Anti-Personen-Flächenwirkung).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Panzerbrechend (Munition): AP-Geschoss durchdringt schwere Rüstung.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Explosiv (Munition): Echter Explosionsradius, beschädigt alles in der Nähe.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Explosiv, sekundär (Munition): Eine kleine Sprengladung reitet auf dem kinetischen Treffer mit - selbes Ziel, kein Explosionsradius.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Besondere Fähigkeiten:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>{0} weitere Effekt(e) - in dieser Spalte ist kein Platz mehr:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: Beschädigt und betäubt Maschinoiden, deaktiviert Schilde.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Wucht: Stumpfer Flächenschaden, starke Unterdrückung.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Blend: Blendet Ziele, desorientiert.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Betäubung: Macht das Ziel kurzzeitig bewegungsunfähig.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Brand: Setzt Ziele in Brand, verursacht Panik.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Toxisch: Verursacht toxische Anreicherung.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Rauch: Blockiert Sichtlinie.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Splitter: Verstreut Schrapnell (Anti-Personen-Flächenwirkung).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Panzerbrechend: Durchdringt schwere Rüstung (hoher AP-Wert / HEAT).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Explosiv: Echter Explosionsradius, beschädigt alles in der Nähe.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Explosiv, sekundär: Eine kleine Sprengladung reitet auf dem kinetischen Treffer mit - selbes Ziel, kein Explosionsradius.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Nahkampf</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Schusswaffen</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Schwer</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Sonstige</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Alle Typen</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Rollen</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Waffen</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Waffen</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>Keine Waffen gefunden.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Deine Ausrüstungspakete</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Beim letzten Klick auf Erstellen/Aktualisieren in diese Rolle kopiert - keine Live-Verknüpfung. Änderungen an diesem Objekt erreichen Kolonisten, die diese Rolle bereits nutzen, erst wieder, wenn du hier erneut auf Erstellen/Aktualisieren klickst.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Dieser Bestandteil liefert die Hauptwaffe der Rolle: {0}. Jede weitere Waffe dieser Rolle gilt als Zweitwaffe - eine Rolle darf Hauptwaffe, Messer und Granaten zugleich bündeln.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Dieses Ausrüstungspaket löschen.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>Ausrüstungspaket "{0}" löschen? Kolonisten, die es aktuell tragen, verlieren diese Gegenstände.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Auf eine Rolle ziehen, um es zu skalieren. Den Inhalt im Reiter Ausrüstungspakete bearbeiten.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Noch keine Ausrüstungspakete - erstelle zuerst welche im Reiter Ausrüstungspakete.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Kein Ausrüstungspaket passt zu "{0}".</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Nichts passt zu "{0}".</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Keine Rolle passt zu "{0}".</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Rollen</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Neue Rolle</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Neue Rolle</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Fügt eine Rolle hinzu, die nur in DIESEM Spielstand gespeichert wird. Globale Rollen befinden sich unter Mod-Einstellungen &gt; Rollen.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} Kolonist(en)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Kolonisten, die diese Rolle gerade haben: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Kein Kolonist hat diese Rolle gerade. Vergeben im Reiter Kolonisten ausruesten.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Zurücksetzen</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>Alle globalen Rollen auf die Vorgaben zuruecksetzen? (Spielstandlokale Rollen bleiben.) Eine Rolle, deren Name nicht unter den Vorgaben vorkommt, verliert auch ihr Loadout - Kolonisten, die sie tragen, stehen danach ohne Vorlage da und behalten ihre eigene Munition, Packs und Zweitwaffen.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Setzt die globalen Rollen auf die eingebauten Voreinstellungen zurück.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[S]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Spielstand-lokale Rolle: existiert nur in dieser Kolonie. Um eine Rolle zu erstellen, die für alle Spiele gilt, füge sie unter Mod-Einstellungen &gt; Rollen hinzu.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Globale Rolle: in jeder Kolonie verfügbar. Verwalte sie unter Mod-Einstellungen &gt; Rollen.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Diese Rolle löschen.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>Die Rolle "{0}" und das Loadout dahinter löschen? Kolonisten, die sie tragen, stehen danach ohne Vorlage da - ihre eigene Munition, Packs und Zweitwaffen bleiben ihnen erhalten. Bliebe das Loadout stehen, würde es weiter als zuweisbare Vorlage auftauchen.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Diese Rolle duplizieren (Name, Faktoren und aktuelle Zusammensetzung).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● erstellt</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ neu</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Diese Rolle ist gespeichert - jede Änderung auf der Karte wird sofort übernommen.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Leer - eine Waffe oder ein Pack darauf ziehen.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Gesperrt: auf dieser Rolle liegt noch nichts, es gibt also nichts zu skalieren. Zuerst eine Waffe oder ein Pack auf die Karte ziehen.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Mu</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Me</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>Na</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Gr</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Munitionsfaktor (Mu): vervielfacht die Munitionsmenge jeder Waffe dieser Rolle. 1 = die Menge aus den Mod-Einstellungen, 0,75 = drei Viertel davon, 2 = das Doppelte, 0 = keine Munition.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Medizinfaktor (Me): vervielfacht die Medizinmenge aus den Bausteinen der Rolle. 1 = unverändert, 3 = dreimal so viel, 0 = keine.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Nahrungsfaktor (Na): vervielfacht die Nahrungsmenge aus den Bausteinen der Rolle. 1 = unverändert, 1,5 = anderthalbfach, 0 = keine.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Granatenfaktor (Gr): vervielfacht die Menge an Granaten und Wurfsprengstoff aus den Bausteinen der Rolle. 1 = unverändert, 3 = dreimal so viel, 0 = keine Granaten.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>Waffe oder Pack hierher ziehen</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>enthält {0} - für eine neue Zusammensetzung eine Waffe oder ein Pack hierher ziehen</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Diese Rolle wurde erstellt, bevor ihre Zusammensetzung mitgeschrieben wurde. Aus welchen Bausteinen sie entstand, ist deshalb unbekannt - ihr fertiger Inhalt nicht. Kolonisten mit dieser Rolle sind korrekt ausgerüstet; die Vorschau unten listet alles auf. Eine Waffe oder ein Pack hierher zu ziehen setzt sie neu zusammen und ersetzt den bisherigen Inhalt.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Eine Waffe oder ein Equipment Pack auf diese Zeile ziehen, um die Rolle aufzubauen. Sie wird automatisch gespeichert, sobald etwas darauf liegt.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Eine Rolle auswählen und eine Waffe oder ein Pack darauf ablegen, um das Ergebnis in der Vorschau zu sehen.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Vorschau</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Rolle]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(existiert - Änderung)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(existiert - aktuell)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>wird automatisch gespeichert</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Gegenstand</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Standard -&gt; mit Faktor</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Eine Waffe oder ein Pack auf diese Rolle ablegen, um das Ergebnis zu sehen.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;hinzugefügt&lt;/color&gt;  &lt;color=#F2D966&gt;geändert&lt;/color&gt;  &lt;color=#FF7373&gt;entfernt&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Ergebnis: {0} Stapel</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Nichts zu erstellen.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>Eine andere Rolle heißt bereits "{0}" - wähle einen anderen Namen, sonst würde deren eigene Beladung überschrieben.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>Nicht gespeichert: die Rolle "{0}" wäre danach völlig leer, und jeder Kolonist darauf stünde ohne alles da. Lege zuerst wieder Inhalt hinein (eine Waffe oder ein Pack darauf ziehen).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>Der einzige Inhalt der Rolle - er laesst sich nicht wegnehmen. "{0}" stuende danach voellig leer da, und jeder Kolonist auf dieser Rolle ohne alles. Zum Austauschen: erst den Ersatz auf die Karte ziehen, dann diesen entfernen. Die Rolle selbst wird ueber das x oben rechts an der Karte geloescht.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>Der einzige Inhalt der Rolle - er laesst sich nicht wegnehmen. "{0}" stuende danach voellig leer da. Zum Tauschen: erst den Ersatz auf die Karte ziehen, dann diesen entfernen. Um die Rolle selbst loszuwerden, das x oben rechts auf der Karte benutzen.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Es gibt bereits eine Rollen-Beladung namens „{0}“ aus einer frueher geloeschten Rolle, und {1} Kolonist(en) tragen sie noch. Wenn du diese Rolle anlegst, uebernimmt sie diese Beladung und ruestet alle auf einen Schlag um.
+
+Fortfahren?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>„{0}" erstellt.</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Umbenannt in „{0}".</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Umbenannt in „{0}":  +{1} hinzugefügt,  -{2} entfernt,  ~{3} geändert.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>„{0}" unverändert.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>„{0}" aktualisiert:  +{1} hinzugefügt,  -{2} entfernt,  ~{3} geändert.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Persönliche Munition</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Alle</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Erforscht</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Verfügbar</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Besonderheit</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Ergebnis: {0} Stapel (davon {1} aus angehaengten Paketen)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Vorlagen zurueck ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Holt die geloeschten eingebauten Rollen zurueck, jede an ihren urspruenglichen Platz. Nur die fehlenden kommen dazu - deine eigenen Rollen, ihre Faktoren und ihre Inhalte bleiben unangetastet.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>{0} eingebaute Rolle(n) zurueckgeholt.</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>Die eingebaute Rolle "{0}" und das Loadout dahinter loeschen? Kolonisten damit fallen auf keine Vorlage zurueck - ihre eigene Munition, Packs und Zweitwaffen bleiben bei ihnen. Sie verschwindet damit aus der globalen Bibliothek fuer jede Kolonie; "Vorlagen zurueck" holt sie leer wieder, ohne deine anderen Rollen anzufassen.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_EquipmentPacks_CategoryMedical>Medicin</CER_EquipmentPacks_CategoryMedical>
+	<CER_EquipmentPacks_CategoryFood>Mat</CER_EquipmentPacks_CategoryFood>
+	<CER_EquipmentPacks_CategoryDrugs>Droger</CER_EquipmentPacks_CategoryDrugs>
+	<CER_EquipmentPacks_CategoryUtility>Verktyg</CER_EquipmentPacks_CategoryUtility>
+	<CER_EquipmentPacks_CategoryOther>Övrigt</CER_EquipmentPacks_CategoryOther>
+
+</LanguageData>

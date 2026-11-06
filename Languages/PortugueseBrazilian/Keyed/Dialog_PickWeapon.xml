@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Escolher uma arma</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - escolha uma arma; a munição padrão é definida automaticamente.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - fixe uma arma para este plano; 'Auto' devolve a escolha ao planejador.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Peso e volume, incluindo munição padrão</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} na colônia</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} já reservados por este plano</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Pode ser fabricada agora</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Nada corresponde à busca ou ao filtro.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Pontuação {0} (contra carne {1}, contra mecanoides {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

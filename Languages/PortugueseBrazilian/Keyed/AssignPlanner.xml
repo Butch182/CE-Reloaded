@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Nada para atribuir: todo colono está bloqueado ou mantido. Desmarque "Manter configurações atuais" ou desbloqueie os colonos.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>"Somente funções" está ativo, mas ainda não existe nenhuma função. Clique para criar uma na aba Funções, ou desative a opção.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Nenhuma arma pode ser atribuída: nada utilizável está em posse nem é fabricável. Consiga armas primeiro, ou escolha uma à mão para um colono em Equipar colonos.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} colono(s) ficam sem arma: armas possuídas insuficientes. Mova o controle deslizante em direção a "Fabricar novos itens".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} colono(s) ficam sem arma: armas possuídas ou fabricáveis insuficientes. Pesquise ou construa mais tipos de arma.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Nenhuma opção antimecanoide entre os candidatos: nada dispara munição EMP ou AP/Sabot. Dê essa munição a um colono na janela de munição, ou adicione uma granada EMP como arma secundária.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Nenhuma opção dedicada anti-carne entre as candidatas: nada carrega munição incendiária/HE/fragmentação. Munição padrão ainda funciona contra carne, então isso é apenas uma dica.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Nenhuma arma corpo a corpo está disponível, então "Preferir corpo a corpo" não tem o que distribuir. Consiga uma primeiro.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Nenhuma arma à distância está disponível, então "Preferir à distância" não tem nada para distribuir. Consiga primeiro uma arma à distância.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Apenas {0} grupo(s) de arma entre as candidatas - há pouco para diversificar. Pesquise ou construa mais tipos de arma.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} colono(s) receberam uma configuração mas atualmente não conseguem mirar ou lutar (caídos, feridos ou paralisados): {1}. Bloqueie-os se isso for permanente.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} colono(s) recebem uma configuracao que nao cabe neles ({1}). Eles so pegarao o que couber e deixarao o resto - a configuracao fica parcialmente nao cumprida.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>volume {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>peso {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Nenhuma arma pode ser atribuída: nada utilizável é possuído ou fabricável, e "Sem funções" deixa todas as funções de fora.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

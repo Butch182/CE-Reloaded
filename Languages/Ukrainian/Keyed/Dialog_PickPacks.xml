@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Набори спорядження</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Набір</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>Наборів спорядження ще не існує - спершу створіть один у вкладці "Набори спорядження".</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Макс. об'єм додаткової зброї:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>Та сама межа, яку використовує підбір запасної зброї при автопризначенні - бойову гвинтівку не варто видавати як «запасну» зброю лише тому, що вона добре оцінена. Об'ємніша зброя приховується і з цього списку (відмічена завжди лишається видимою; вибухівка та щити ніколи не обмежуються). Правка тут змінює справжнє налаштування, а не копію.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Закрити</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Копіювати</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>Скопійовано вибір {0} {1} - вставте у власну клітинку {1} інших колоністів.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Скопійовано порожній вибір {0} - вставте в комірку {0} іншого поселенця, щоб очистити її.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Копіює саме цей набір позначок, щоб вставити його іншим колоністам прямо з їхньої власної клітинки, не відкриваючи цей список щоразу.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Нічого не позначено - копіюється порожній вибір, який очищає те, куди ви його вставите.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>Немає збігів для "{0}".</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} приховано - об'єм зброї вищий за макс. об'єм запасної зброї {1}. Збільште значення, щоб їх побачити.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Усі кандидати приховані макс. об'ємом запасної зброї {0}. Збільште значення, щоб їх побачити.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Оцінка</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Доступно</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>Усі типи</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Показувати: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Яку зброю список взагалі пропонує: всю, лише досліджену або лише ту, що колонія вже має. Діє на секцію зброї.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Тип: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Звужує список до одного виду: дальнобійна, ближнього бою, інше спорядження, зібрані вручну набори або ролі.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Інше</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Звичайні набори</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Ролі</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>«{0}» скопійовано у {1}. Вставте у «Спорядження колоністів»: стовпець «Вставити» праворуч у рядку кожного колоніста.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Копіює поточно призначену зброю цього колоніста. Після цього у «Спорядженні колоністів» праворуч у кожному рядку з'являється стовпець «Вставити» - один клік дає ту саму зброю.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Видалити власні набори ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>Видалити всі {0} ручних наборів? Ролі залишаються; колоністи з таким набором залишаться без нього. Скасувати неможливо.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Видаляє всі ручні (звичайні) набори - ролі залишаються.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Заблокувати зброю: авторозподіл більше її не видає, вона сірою йде в кінець групи. Повторний клік розблоковує.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Заблоковано - авторозподіл цю зброю не обирає. Клік - розблокувати.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Заблокувати запис: авторозподіл більше не видає цю роль чи спорядження, запис сірим іде в кінець групи. Повторний клік розблоковує.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Заблоковано - авторозподіл цю роль чи спорядження не обирає. Клік - розблокувати.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} колоніст(ів) досі носять заблоковану зброю. Перепризначити зараз? Решта зберігає спорядження.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Вміст</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Маса / Об'єм</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Вартість виробництва</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(порожньо)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Нічого такого типу тут немає. Виберіть інший пункт у списку «Тип» вище.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

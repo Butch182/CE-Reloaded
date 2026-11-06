@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Ammunitionsuppsättningar</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Visar och ändrar den extra ammunition som de valda kolonisterna bär utöver vapnets standardammunition - filtrerad efter vad som faktiskt passar deras utrustning, inte varje ammunitionstyp i spelet.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

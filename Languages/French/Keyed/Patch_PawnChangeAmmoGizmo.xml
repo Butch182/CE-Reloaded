@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Chargements de munitions</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Affiche et modifie les munitions supplémentaires que les colons sélectionnés transportent en plus des munitions par défaut de leur arme - filtrées selon leur équipement réel, pas tous les types de munitions du jeu.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

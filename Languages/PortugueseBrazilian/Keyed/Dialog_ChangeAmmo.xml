@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Configurações de Munição</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Agrupar por tipo de munição</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Combina colonos que podem usar o mesmo tipo de munição em uma linha, editada para todos de uma vez - em vez de uma seção por colono.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - o que carregam. Editar isto substitui completamente a munição padrão da arma - vale a partir da próxima vez que verificarem o equipamento.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>{0} colonos selecionados - o que cada um carrega. Editar substitui completamente a munição padrão de cada arma.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Filtrar (ex.: FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Fechar</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Limpar toda munição</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Remove todo tipo de munição - {0} não carregará munição nenhuma, nem mesmo a padrão da arma.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Remove todo tipo de munição dos {0} colonos selecionados - nenhum deles carregará munição alguma, nem mesmo a padrão da arma.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Restaurar</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Copiar</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Copia a escolha de munição deste colono. Cole em outros com a coluna de colagem em Equipar colonos.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>{0} entrada de munição copiada de {1}.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>{0} entradas de munição copiadas de {1}.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Reverte a munição de todo colono selecionado para como estava quando esta janela foi aberta.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  nenhuma configuração atribuída</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Carrega: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} mais</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Nenhuma arma atribuída.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Nenhum tipo de munição corresponde a "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>As armas de {0} não usam munição.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Nome</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Especial</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Quantidade</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Estoque</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (não pesquisada)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nAplica-se a: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Qualquer munição para {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Deixa o jogo escolher automaticamente a melhor munição pesquisada para {0} - é isso que o popup de Abastecimento e as verificações de produção já usam enquanto nenhum tipo específico está definido. Clique para reverter todo colono aplicável de volta para isso.\n\nAplica-se a: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Deixa o jogo escolher automaticamente a melhor munição pesquisada para {0} - é isso que o popup de Abastecimento e as verificações de produção já usam enquanto nenhum tipo específico está definido abaixo. Clique para reverter para isso depois de escolher um tipo específico.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} em estoque, {3} livre).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Clique para abrir a aba de Encomendas dela.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Clique para abrir o popup de Abastecimento e colocar a produção na fila.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Nenhuma arma dos colonos selecionados usa munição.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>Loadout Planner</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>Open the CE Reloaded workflow: Equipment Packs, Roles, Equip Colonists, and Bill Overview.</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>Jumps to the CE Reloaded Equip Colonists tab, filtered to this pawn.</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

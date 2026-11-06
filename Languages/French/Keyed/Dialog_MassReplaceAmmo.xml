@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MassReplaceAmmo_Title>Remplacer les munitions en masse dans les dotations</CER_MassReplaceAmmo_Title>
+	<CER_MassReplaceAmmo_AmmoLabel>Munitions :</CER_MassReplaceAmmo_AmmoLabel>
+	<CER_MassReplaceAmmo_FilterAll>Toutes les munitions</CER_MassReplaceAmmo_FilterAll>
+	<CER_MassReplaceAmmo_ChoicesCount>{0} sur {1} types de munitions selectionnables</CER_MassReplaceAmmo_ChoicesCount>
+	<CER_MassReplaceAmmo_NoSearchHits>Aucune ligne ne correspond a "{0}".</CER_MassReplaceAmmo_NoSearchHits>
+	<CER_MassReplaceAmmo_NothingToReplace>Aucun equipement n'a d'emplacement de munitions a remplacer.</CER_MassReplaceAmmo_NothingToReplace>
+	<CER_MassReplaceAmmo_BetterAmmoHint>{0} loadouts pourraient utiliser des munitions nouvellement recherchees - ils sont surlignes ci-dessous.</CER_MassReplaceAmmo_BetterAmmoHint>
+	<CER_MassReplaceAmmo_FilterResearched>Munitions recherchées</CER_MassReplaceAmmo_FilterResearched>
+	<CER_MassReplaceAmmo_FilterAvailable>Munitions disponibles</CER_MassReplaceAmmo_FilterAvailable>
+	<CER_MassReplaceAmmo_RowLabel>{0} - {1}</CER_MassReplaceAmmo_RowLabel>
+	<CER_MassReplaceAmmo_IndicatorUnchanged>=</CER_MassReplaceAmmo_IndicatorUnchanged>
+	<CER_MassReplaceAmmo_IndicatorChanged>✔</CER_MassReplaceAmmo_IndicatorChanged>
+	<CER_MassReplaceAmmo_KeepGeneric>↺ Garder {0} (générique)</CER_MassReplaceAmmo_KeepGeneric>
+	<CER_MassReplaceAmmo_KeepConcrete>↺ Garder {0}</CER_MassReplaceAmmo_KeepConcrete>
+	<CER_MassReplaceAmmo_AnyAmmoFor>N'importe quelle munition pour {0}</CER_MassReplaceAmmo_AnyAmmoFor>
+	<CER_MassReplaceAmmo_NoValidAmmo>Aucune munition valide trouvée</CER_MassReplaceAmmo_NoValidAmmo>
+	<CER_MassReplaceAmmo_CancelButton>Annuler</CER_MassReplaceAmmo_CancelButton>
+	<CER_MassReplaceAmmo_ApplyButton>Appliquer</CER_MassReplaceAmmo_ApplyButton>
+	<CER_MassReplaceAmmo_UpdatedMessage>Munitions mises à jour dans {0} dotations.</CER_MassReplaceAmmo_UpdatedMessage>
+
+</LanguageData>

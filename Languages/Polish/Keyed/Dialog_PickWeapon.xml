@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Wybierz broń</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - wybierz broń; domyślna amunicja jest ustawiana automatycznie.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - przypnij broń do tego planu; 'Auto' oddaje wybór solverowi.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Masa i objętość razem z domyślną amunicją</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} w kolonii</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} z nich już zajęte przez ten plan</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Można teraz wytworzyć</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Nic nie pasuje do wyszukiwania ani filtra.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Ocena {0} (przeciw ciału {1}, przeciw mechanoidom {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

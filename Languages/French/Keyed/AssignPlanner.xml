@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Rien à assigner : tous les colons sont verrouillés ou conservés. Décochez « Conserver les dotations actuelles » ou déverrouillez des colons.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>« Rôles uniquement » est activé, mais aucun rôle n'existe encore. Cliquez pour en créer un dans l'onglet Rôles, ou désactivez l'option.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Aucune arme ne peut être assignée : rien d'utilisable n'est possédé ni fabricable. Procurez-vous des armes d'abord, ou choisissez-en une à la main pour un colon dans Équiper les colons.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} colon(s) ne reçoivent aucune arme : pas assez d'armes possédées. Déplacez le curseur vers « Fabriquer de nouveaux objets ».</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} colon(s) ne reçoivent aucune arme : pas assez d'armes possédées ou fabricables. Recherchez ou construisez plus de types d'armes.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Aucune option anti-mécanoïde parmi les candidats : rien ne tire de munitions EMP ou AP/Sabot. Donnez ces munitions à un colon dans la fenêtre Munitions, ou ajoutez une grenade EMP comme arme secondaire.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Aucune option dédiée anti-chair parmi les candidates : rien ne transporte de munitions incendiaires/HE/à fragmentation. Les munitions standard restent efficaces contre la chair, ceci n'est donc qu'une suggestion.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Aucune arme de mêlée n'est disponible, « Préférer la mêlée » n'a donc rien à distribuer. Procurez-vous d'abord une arme de mêlée.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Aucune arme à distance n'est disponible, « Préférer à distance » n'a donc rien à distribuer. Procurez-vous d'abord une arme à distance.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Seulement {0} groupe(s) d'armes parmi les candidates - il y a peu de quoi diversifier. Recherchez ou construisez plus de types d'armes.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} colon(s) ont reçu une dotation mais ne peuvent actuellement ni viser ni combattre (à terre, blessés ou paralysés) : {1}. Verrouillez-les si c'est permanent.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} colon(s) recoivent une dotation qui ne leur convient pas ({1}). Ils ne prendront que ce qui rentre et laisseront le reste - la dotation reste partiellement non remplie.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>volume {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>poids {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Aucune arme ne peut être assignée : rien d'utilisable n'est possédé ou fabricable, et « Aucun rôle » écarte tous les rôles.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

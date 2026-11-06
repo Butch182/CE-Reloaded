@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Nothing to assign: every colonist is locked or kept. Uncheck "Keep current loadouts" or unlock colonists.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>"Roles only" is on, but no roles exist yet. Click to create one in the Roles tab, or switch the setting off.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>No weapon can be assigned: nothing usable is owned or craftable. Get weapons first, or pick one for a colonist by hand in Equip Colonists.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} colonist(s) get no weapon: not enough owned weapons. Move the slider toward "Craft new items".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} colonist(s) get no weapon: not enough owned or craftable weapons. Research or build more weapon types.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>No anti-mech option among the candidates: nothing fires EMP or AP/Sabot ammunition. Give a colonist such ammo in the Ammo window, or add an EMP grenade as a sidearm.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>No dedicated anti-flesh option among the candidates: nothing carries incendiary/HE/frag ammunition. Standard rounds still work against flesh, so this is only a hint.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>No melee weapon is available, so "Prefer melee" has nothing to hand out. Get a melee weapon first.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>No ranged weapon is available, so "Prefer ranged" has nothing to hand out. Get a ranged weapon first.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Only {0} weapon group(s) among the candidates - there is little to diversify. Research or build more weapon types.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} colonist(s) got a loadout but currently can't aim or fight (downed, injured or paralysed): {1}. Lock them if this is permanent.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} colonist(s) get a loadout that does not fit them ({1}). They will only pick up what fits and leave the rest - the loadout stays partly unfulfilled.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>bulk {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>weight {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>No weapon can be assigned: nothing usable is owned or craftable, and "No roles" leaves out every role.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

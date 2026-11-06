@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>На текущей карте поселенцы не найдены.</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>Сортировать по навыку дальнего боя</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>Сортировать по навыку ближнего боя</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>Компактный вид:</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>Одна узкая строка на поселенца вместо полных карточек. Детали, которые больше не помещаются, переносятся во всплывающие подсказки.</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>Автоназначение...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>Открыть живой предпросмотр автоназначения: настройте источники, против механоидов, дальний/ближний бой и разнообразие отряда ползунками и посмотрите итоговое распределение перед применением.</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>Массовая замена боеприпасов</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>Заменить тип боеприпасов сразу во всех комплектах (например, у всех с FMJ на AP).</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>Автоназначено поселенцев: {0}</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>Автоназначено поселенцев: {0}</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>, {0} остались без комплекта</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>Автоназначение отменено - роли, наборы и заказы на боеприпасы с предыдущих шагов сохранены, но назначение не было применено, и оружие не было изготовлено.</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>Сохранить как роль</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>Изменить роль</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>Открывает вкладку ролей с выбранной ролью этого поселенца - там роль и редактируется.</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>Роль</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>Открыть режим ролей с текущей комбинацией этого поселенца (основное оружие, запасное оружие/взрывчатка/щиты, наборы), предзаполненной как черновик - просмотрите и нажмите там "Создать".</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>Комплект пока не назначен - нечего сохранять.</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>Назначение применено. Производство на этом шаге было пропущено - при необходимости запланируйте его позже через Supply Loadouts.</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+Нажмите, чтобы просмотреть и отредактировать носимое снаряжение.</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;Расчёт оценки:&lt;/b&gt;
+Вычисляется как Уровень навыка x 10, с поправкой на Зрение, Манипуляции, Движение и Черты.
+
+&lt;b&gt;Цвета шкалы:&lt;/b&gt;
+Пусто = 0
+Тёмно-красный = Плохо
+Ярко-зелёный = Мастер (макс. уровень: {0})</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>Оружие:</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>Нет</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>Перетащите, чтобы поменяться комплектами с {0}.</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>Не может сражаться (неспособен к насилию или младенец), поэтому оружие назначить нельзя. Equipment Pack или роль без оружия по-прежнему возможны.</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> Текущий всё ещё можно очистить.</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+Перетащите на кнопку комплекта другого поселенца, чтобы поменяться.</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>Масса</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>Объём</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} кг</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;Масса&lt;/b&gt;
+Общий вес всего в комплекте (оружие, боеприпасы, еда, медикаменты) относительно того, сколько может нести {0}.
+
+Грузоподъёмность берётся из характеристики поселенца &lt;b&gt;Грузоподъёмность&lt;/b&gt;, которая зависит от размера тела и Манипуляции, поэтому крупный здоровый поселенец несёт больше, чем маленький или раненый. Превышение замедляет поселенца. Имеется в виду предел &lt;b&gt;Carry Weight&lt;/b&gt; из CE, а не большая «грузоподъёмность» самой RimWorld.</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;Объём&lt;/b&gt;
+Сколько места занимает комплект относительно характеристики поселенца &lt;b&gt;Переносимый объём&lt;/b&gt; (CE). Объём - это про габариты, а не вес: много рассыпных боеприпасов или брони быстро съедает объём. Превышение вредит движению и точности.</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>Это не помещается. Колонист никогда не заберёт излишек: Combat Extended берёт только то, что влезает, и сбрасывает лишнее, поэтому снаряжение так и останется наполовину невыданным. Уменьшите количество патронов, уберите предмет из набора или выберите более лёгкое снаряжение.</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;Масса&lt;/b&gt;
+Вес комплекта относительно Грузоподъёмности поселенца. Превышение замедляет поселенца. Имеется в виду предел &lt;b&gt;Carry Weight&lt;/b&gt; из CE, а не большая «грузоподъёмность» самой RimWorld.</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Объём&lt;/b&gt;
+Объём комплекта относительно Переносимого объёма поселенца (CE). Превышение вредит движению и точности.</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>Нет</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0} не может сражаться (неспособен к насилию или младенец): можно назначить только снаряжение без оружия.</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0} не может ничего нести.</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} на роли - наборы, запасное оружие и прочие предметы задаются самой ролью (вкладка Roles). Ничего не вставлено.</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>Сохранить текущую комбинацию как роль...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>Поселенец</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>Дальний бой</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>Ближний бой</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>Оружие</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>Боеприпасы</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>основное оружие</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>Снять все назначения</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>Каждый свободный колонист теряет назначение - прикреплённые наборы и запасное оружие остаются.</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>Снять назначение со всех свободных колонистов? Прикреплённое остаётся; ноша не выбрасывается.</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>Без назначения: {0}.</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>Набор</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>Запасное оружие</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>Запасное оружие</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>Другое</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>Сохранить</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>Сохранить как роль
+
+Открыть режим ролей с текущей комбинацией этого поселенца (основное оружие, запасное оружие/взрывчатка/щиты, наборы), предзаполненной как черновик - просмотрите и нажмите там "Создать".</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>Сохранить как роль
+
+Комплект пока не назначен - нечего сохранять.</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>Оценки дальнего и ближнего боя (Навык x 10, с поправкой на Зрение, Манипуляции, Движение и Черты).</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>Дальний бой</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>Ближний бой</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>Д</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>Б</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>Боеприпасы: -</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>Нет</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0 типов</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0} типов</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>Боеприпасы: {0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0} не несёт оружия на боеприпасах (только ближний бой или только гранаты) - здесь нечего настраивать.</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>Оружие {0} использует боеприпасы, но они не настроены - им нечем будет стрелять.</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>Боеприпасы {0}: {1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+Нажмите, чтобы изменить - это повлияет только на этого поселенца.</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>Набор: -</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>Включено в {0}:
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>Эта роль не включает медицину/еду/наркотики/утилитарные предметы.</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>Эта роль не включает запасное оружие, метательную взрывчатку или щит.</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+Из этой роли. Наборы, привязанные к роли, остаются связанными: измените набор - и все колонисты этой роли подхватят. Остальное зафиксировано: меняйте во вкладке ролей.</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>Нет</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>Набор: {0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>Прикреплено наборов снаряжения: {0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>Наборы снаряжения не прикреплены.</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+Нажмите, чтобы выбрать, какие наборы несёт {0}.</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - отметьте, какие наборы нести. Изменения применяются немедленно.</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>Вставлен выбор "{0}" из "{1}" в {2}.</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>Вставить выбор "{0}", скопированный из "{1}", в {2}.</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>Запасное оружие: -</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>Нет</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>Запасное оружие: {0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>Прикреплено запасного оружия: {0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>Запасное оружие не прикреплено.</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+Нажмите, чтобы выбрать, какое оружие {0} несёт как запасное.</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - отметьте, какое оружие нести как запасное. Изменения применяются немедленно.</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>Запасное оружие</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>Нет другого оружия, которое можно нести как запасное.</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>Другое: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>Включено в эту роль - редактируйте саму роль (вкладка «Роли»), чтобы добавить другие предметы, а не здесь для отдельного поселенца.</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>Нет</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>Другое: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>Другие переносимые предметы: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>Другие предметы не добавлены.</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+Нажмите, чтобы добавить другие предметы поселенцу {0}.</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>Нельзя поменяться с поселенцем, который не может сражаться (пацифист или младенец).</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>Ни у одного из поселенцев нет комплекта для обмена.</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>У обоих поселенцев уже один и тот же комплект.</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>Поменяны местами комплекты: {0} и {1}.</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>Сейчас экипировано: {0}.</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>ничего</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> В очереди на {0} - нажмите, чтобы открыть его вкладку заказов.</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;Сейчас экипировано:&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;Инвентарь:&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>Ничего не экипировано.</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;Боевые возможности&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;Эти способности масштабируют оценки дальнего и ближнего боя выше.&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>Прицеливание / стрельба</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>Точность и удар в ближнем бою</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>Сближение для ближнего боя</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}: оценка ближнего боя x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}: оценка ближнего боя x1.25 (повышенный шанс уклонения)</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}: оценка ближнего боя x1.5 (получает значительно меньше урона)</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}: оценка ближнего боя x0.1 (падает мгновенно)</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}: влияет на точность дальнего боя</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}: влияет на время прицеливания</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>Отсутствует {0}</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>Отсутствует {0}: снижает способности</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}: влияет на способности</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;Стрельба:&lt;/b&gt; {0} | Зрение: {1}% | Манип.: {2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;Ближний бой:&lt;/b&gt; {0} | Зрение: {1}% | Движ.: {2}% | Манип.: {3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>Ничего не вставлено: ни один из скопированных боеприпасов не подходит к оружию {0}.</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>Вставлено типов боеприпасов: {0} для {2}. Пропущено: {1} - они не подходят ни к одному его оружию.</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>Для {0} (нужно {1}):</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>Экипировано: {0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>Назначено, на складе - ещё забрать: {0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>В производстве: {0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>Не хватает: {0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>По всей колонии:</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>Столбец «Вставить»: нажмите на значок в строке колониста, чтобы дать ему скопированное назначение.</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

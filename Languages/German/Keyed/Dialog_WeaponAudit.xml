@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>score-invalid</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>Waffenwertung ist {0} (keine endliche Zahl).</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>score-zero</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>Kampfwaffe hat echten Schaden, wurde aber mit 0 bewertet - die Wertung konnte ihre Werte wahrscheinlich nicht auslesen.</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>not-ce-but-armed</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>Fernkampfwaffe ist als „(Nicht CE)" markiert, hat aber ein ammoSet/Projektil - Erkennung prüfen.</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>ranged-no-ammo</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>Hat ein ammoSet, aber die Munitionsliste der Beladung ist leer - es kann kein Munitionsauftrag erstellt werden.</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>Munitionsset-nicht-aufgeloest</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>Als CE-kompatibel erkannte Fernkampfwaffe, deren Munitionsset nie aufgeloest wurde - sie kann niemals gueltige Munition erhalten.</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>selfammo-no-recipe</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>Waffe mit Eigenmunition (Granate/Wurfwaffe) hat kein Herstellungsrezept - kann nicht produziert werden.</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>exception</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}: {1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - Waffen-Kompatibilitätsprüfung</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>{0} Waffen aus {1} Mods durchsucht. {2} Problem(e).</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>Waffen-Kompatibilitätsprüfung</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>{0} Waffen aus {1} aktiven Mod(s) durchsucht.  {2} Problem(e) gefunden.</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>Keine Probleme gefunden - jede Waffe in dieser Modliste wird sauber behandelt. ✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+Quelle: {1}
+{2}: {3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>Schließen</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>Bericht in die Zwischenablage kopieren</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>Prüfbericht in die Zwischenablage kopiert.</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

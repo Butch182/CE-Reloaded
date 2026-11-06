@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>选择武器</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - 选择一件武器;默认弹药会自动设置。</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - 为该方案固定一件武器;'自动'将选择交还给求解器。</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>重量与体积(含默认弹药)</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>殖民地拥有 {0}</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>其中 {0} 已被该方案占用</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>现在可制作</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>没有符合搜索或筛选的结果。</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>评分 {0}(对血肉 {1},对机械体 {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

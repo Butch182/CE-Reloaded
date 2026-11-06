@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Kits d'équipement</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Kit</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>Aucun kit d'équipement n'existe encore - créez-en un d'abord dans l'onglet Kits d'équipement.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Encombrement max. de l'arme secondaire :</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>La même limite que le sélecteur d'armes secondaires de l'attribution automatique - un fusil de combat ne devrait pas être donné comme arme « de secours » juste parce qu'il est bien noté. Les armes plus encombrantes sont aussi masquées de cette liste (une arme cochée reste toujours visible ; explosifs et boucliers ne sont jamais limités). Modifier ici change le vrai réglage, pas une copie.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Fermer</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Copier</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>{0} sélection(s) de {1} copiée(s) - collez-les dans la cellule {1} d'autres colons.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Sélection {0} vide copiée - collez-la sur la cellule {0} d'un autre colon pour la vider.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Copier exactement cette sélection de cases cochées pour pouvoir la coller sur d'autres colons directement depuis leur propre cellule, sans rouvrir cette liste à chaque fois.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Rien de coché - copie une sélection vide, ce qui videra tout ce sur quoi vous la collez.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>Aucun résultat pour « {0} ».</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} masqué(s) - encombrement de l'arme au-dessus de l'encombrement max d'arme secondaire de {1}. Augmentez la valeur pour les voir.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Tous les candidats sont masqués par l'encombrement max d'arme secondaire de {0}. Augmentez la valeur pour les voir.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Score</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Dispo</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>Tous types</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Afficher : {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Quelles armes la liste propose : toutes, seulement celles recherchées, ou seulement celles que la colonie possède déjà. S'applique à la section des armes.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Type : {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Restreint la liste à une catégorie : à distance, mêlée, autre équipement, équipements créés à la main ou rôles.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Autres</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Équipements vanilla</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Rôles</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>'{0}' copie depuis {1}. Collez-le dans Equiper les colons : la colonne « Coller » tout a droite de la ligne de chaque colon.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Copie l'arme actuellement assignee a ce colon. Une colonne « Coller » apparait alors tout a droite de chaque ligne dans Equiper les colons - un clic donne la meme arme.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Supprimer les équipements perso ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>Supprimer les {0} équipements faits main ? Les rôles restent ; les colons concernés se retrouvent sans équipement. Irréversible.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Supprime chaque équipement fait main (vanilla) - les rôles restent.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Verrouiller cette arme : l'attribution automatique ne la distribuera plus, elle passe grisée en fin de groupe. Recliquez pour déverrouiller.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Verrouillée - jamais choisie par l'attribution automatique. Cliquez pour déverrouiller.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Verrouiller cette entrée : l'attribution automatique ne distribuera plus ce rôle ou cet équipement, il passe grisé en fin de groupe. Recliquez pour déverrouiller.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Verrouillé - jamais choisi par l'attribution automatique. Cliquez pour déverrouiller.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} colon(s) portent encore une arme verrouillée. Réattribuer maintenant ? Les autres gardent leur équipement.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Contenu</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Masse / Encombrement</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Coût de production</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(vide)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Rien de ce type ici. Choisissez une autre entree dans la liste « Type » ci-dessus.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

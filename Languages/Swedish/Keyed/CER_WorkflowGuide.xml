@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - snabbkurs</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Snabbaste vägen</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Tryck på "Beväpna min koloni" (i toppmenyn) - välj Försiktig / Normal / Aggressiv, tryck Beväpna. Klart.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Flikar</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Utrustningspaket - återanvändbara paket (medicin, mat, droger, verktyg). Valfritt.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Utrusta kolonister - delar ut vapen och utrustning efter färdighet. Klicka på en cell för att välja själv.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Roller - spara en kolonists kombination som en återanvändbar mall för många kolonister.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Orderöversikt - håller ammunitionstillverkningen igång. "Generera automatiskt" storleksanpassar orderna åt dig.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Nyckelfunktioner</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Beredskapslampa (toppmenyn) - klicka för att åtgärda det som är fel.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Panel i utrustningsfliken - status per föremål: buret / lagrat / under tillverkning / saknas.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Verktyget "Ammunitionslastningar" (välj en kolonist) - ändra bara deras ammunition utan att röra den delade lastningen.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Spara som roll" - gör vilken kolonists nuvarande kombination som helst till en återanvändbar mall.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Modinställningar - alla standardvärden (ammunitionsmängder, förinställningar för Beväpna min koloni, ...) kan anpassas.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Bra att veta</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>Ny på CE? Stanna i enkelt läge (ikonen uppe till höger) och använd bara Beväpna min koloni.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Bebisar/pacifister får aldrig ett vapen - men kan fortfarande bära ett utrustningspaket.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Öppna planeraren när som helst: ”Utrustningsplanerare” i fliken Tilldela (nere till höger) eller panelen bredvid en kolonists utrustningsflik.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>'Hämta utrustning nu' (bredvid Beväpna kolonin) - alla släpper sitt arbete och hämtar sin lastning direkt. CE ensamt hämtar en sak var 30:e sekund.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Den här snabbkursen visas en gång. Öppna den igen när som helst: Modinställningar -> Verktyg.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

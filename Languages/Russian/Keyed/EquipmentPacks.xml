@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_EquipmentPacks_CategoryMedical>Медицина</CER_EquipmentPacks_CategoryMedical>
+	<CER_EquipmentPacks_CategoryFood>Еда</CER_EquipmentPacks_CategoryFood>
+	<CER_EquipmentPacks_CategoryDrugs>Наркотики</CER_EquipmentPacks_CategoryDrugs>
+	<CER_EquipmentPacks_CategoryUtility>Утилиты</CER_EquipmentPacks_CategoryUtility>
+	<CER_EquipmentPacks_CategoryOther>Прочее</CER_EquipmentPacks_CategoryOther>
+
+</LanguageData>

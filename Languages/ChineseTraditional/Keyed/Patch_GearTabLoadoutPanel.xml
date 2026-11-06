@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GearTabLoadoutPanel_Header>配裝</CER_GearTabLoadoutPanel_Header>
+	<CER_GearTabLoadoutPanel_NoLoadoutAssigned>未分配配裝。</CER_GearTabLoadoutPanel_NoLoadoutAssigned>
+	<CER_GearTabLoadoutPanel_NoLoadoutHint>使用「分配」來選擇武器或職業。</CER_GearTabLoadoutPanel_NoLoadoutHint>
+	<CER_GearTabLoadoutPanel_TitleBold>&lt;b&gt;{0}&lt;/b&gt;</CER_GearTabLoadoutPanel_TitleBold>
+	<CER_GearTabLoadoutPanel_ColItem>物品</CER_GearTabLoadoutPanel_ColItem>
+	<CER_GearTabLoadoutPanel_ColHaveNeed>擁有/需求</CER_GearTabLoadoutPanel_ColHaveNeed>
+	<CER_GearTabLoadoutPanel_ColStatus>  狀態</CER_GearTabLoadoutPanel_ColStatus>
+	<CER_GearTabLoadoutPanel_UnknownItem>?</CER_GearTabLoadoutPanel_UnknownItem>
+	<CER_GearTabLoadoutPanel_StatusOk>正常</CER_GearTabLoadoutPanel_StatusOk>
+	<CER_GearTabLoadoutPanel_StatusInStorage>已儲存</CER_GearTabLoadoutPanel_StatusInStorage>
+	<CER_GearTabLoadoutPanel_StatusInProduction>生產中</CER_GearTabLoadoutPanel_StatusInProduction>
+	<CER_GearTabLoadoutPanel_StatusMissing>缺少</CER_GearTabLoadoutPanel_StatusMissing>
+	<CER_GearTabLoadoutPanel_CarriedOverNeed>{0}/{1}</CER_GearTabLoadoutPanel_CarriedOverNeed>
+	<CER_GearTabLoadoutPanel_NeededCarried>
+需求：{0}   攜帶：{1}</CER_GearTabLoadoutPanel_NeededCarried>
+	<CER_GearTabLoadoutPanel_FreeInStorage>
+儲藏中空閒：{0}</CER_GearTabLoadoutPanel_FreeInStorage>
+	<CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+已排入工作台生產。</CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+	<CER_GearTabLoadoutPanel_NotCovered>
+
+尚未涵蓋 - 戰備燈號與補給流程可將其排入生產。</CER_GearTabLoadoutPanel_NotCovered>
+	<CER_GearTabLoadoutPanel_EditButton>編輯……</CER_GearTabLoadoutPanel_EditButton>
+	<CER_GearTabLoadoutPanel_EditTooltipHasLoadout>在 CE 配裝編輯器中開啟這個配裝。</CER_GearTabLoadoutPanel_EditTooltipHasLoadout>
+	<CER_GearTabLoadoutPanel_EditTooltipNoLoadout>尚無配裝可供編輯。</CER_GearTabLoadoutPanel_EditTooltipNoLoadout>
+	<CER_GearTabLoadoutPanel_AssignButton>分配……</CER_GearTabLoadoutPanel_AssignButton>
+	<CER_GearTabLoadoutPanel_AssignTooltip>開啟 CE Reloaded 的裝備殖民者分頁。</CER_GearTabLoadoutPanel_AssignTooltip>
+
+</LanguageData>

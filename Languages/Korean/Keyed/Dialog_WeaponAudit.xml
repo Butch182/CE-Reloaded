@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>score-invalid</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>무기 점수가 {0}입니다(유한한 숫자가 아님).</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>score-zero</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>전투 무기에 실제 피해량이 있지만 점수가 0으로 계산되었습니다 - 점수 계산이 스탯을 제대로 읽지 못했을 가능성이 큽니다.</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>not-ce-but-armed</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>원거리 무기가 "(CE 아님)"으로 표시되었지만 ammoSet/투사체를 가지고 있습니다 - 감지 로직을 확인하세요.</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>ranged-no-ammo</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>ammoSet은 있지만 로드아웃 탄약 목록이 비어 있습니다 - 탄약 청구서를 생성할 수 없습니다.</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>탄약세트-미해결</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>CE 호환 대대 무기로 표시되었지만 탄약 세트가 전혀 해결되지 않은 무기입니다 - 이 무기는 유효한 탄약을 절대 받을 수 없습니다.</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>selfammo-no-recipe</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>자체 탄약 무기(수류탄/투척)에 제작 레시피가 없습니다 - 생산할 수 없습니다.</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>exception</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}: {1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - 무기 호환성 검사</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>{1}개 모드에서 무기 {0}개를 검사했습니다. 문제 {2}건.</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>무기 호환성 검사</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>{1}개 활성 모드에서 무기 {0}개를 검사했습니다.  문제 {2}건 발견.</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>문제가 발견되지 않았습니다 - 이 모드 목록의 모든 무기가 깔끔하게 처리됩니다. ✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+출처: {1}
+{2}: {3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>닫기</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>보고서를 클립보드에 복사</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>검사 보고서를 클립보드에 복사했습니다.</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

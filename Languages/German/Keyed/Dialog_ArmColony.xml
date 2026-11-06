@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Vorsichtig (nur Lücken füllen)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Normal (Munition zurücksetzen &amp; neu aufbauen)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Aggressiv (vollständiger Neuaufbau)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Benutzerdefiniert (fein abgestimmte Schritte)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>Es gibt keine aktive Koloniekarte zum Bewaffnen.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>Es gibt keine freien Kolonisten zum Bewaffnen.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>Es kann noch keine Waffe hergestellt werden: Keine Waffenherstellung ist erforscht. Erforsche eine Waffe oder platziere einen Handwerksplatz, um eine einfache herzustellen.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>Es kann keine Waffe hergestellt werden: Auf keiner deiner Koloniekarten existiert eine Werkbank oder ein Handwerksplatz, der Waffen bauen kann. Ein einfacher Handwerksplatz genügt.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Kolonie bewaffnen</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>Ein Klick: verteilt Waffen und Ausrüstung nach Fertigkeit, reiht die Munition ein und bietet an, alle Waffen herzustellen, die du nicht besitzt.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Kolonisten:  {0}   ({1} zu bewaffnen)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>Von Hand gebaute Waffen-Loadouts:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Vorhandene Ausrüstungspakete:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>Wie sollen die Kolonisten ausgerüstet werden?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Waffe pro Kolonist</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Jeder Kolonist bekommt die Waffe, die zu ihm passt - ohne Rollen.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Wiederverwendbare Rollen</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Zuerst Rollen prüfen/erstellen (Schritt 1 öffnet im Rollenmodus), dann Kolonisten ausschließlich nach Rolle zuweisen (Schritt 3 weist „Nur Rollen" zu, dieselbe Checkbox, die „Kolonisten ausruesten" bereits hat).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Wähle eine Modus-Voreinstellung und stimme dann jeden Schritt über seine Checkbox fein ab:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>weist jeden Kolonisten ab</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>löscht Munitionsaufträge, die dieser Mod eingereiht hat</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>löscht jeden Munitionsauftrag</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>löscht Waffenaufträge, die dieser Mod eingereiht hat</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>löscht jeden Waffenauftrag</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>loescht von Hand gebaute Waffen-Loadouts</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>löscht vom Assistenten generierte Ausrüstungspakete</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>löscht jedes Ausrüstungspaket</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>Zuerst {0} (kein Rückgängig bei destruktiven Schritten). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Nichts Vorhandenes wird abgewiesen, geändert oder gelöscht. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Erstellt Munitionsaufträge für das Fehlende.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>Erstellt keine Munitionsaufträge.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Setzt jede Zeile unten.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Vorsichtig</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Normal</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Aggressiv</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Kolonisten zurücksetzen</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Niemand wird abgewiesen.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Weist zuerst jeden Kolonisten ab.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Weist vor dem Durchlauf die Beladung jedes Kolonisten ab, sodass „Lücken füllen" die gesamte Kolonie automatisch neu plant.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Munitionsaufträge löschen</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Vorhandene Munitionsauftraege bleiben erhalten - hier wird nichts geloescht. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Löscht nur Munitionsaufträge, die der Assistent dieses Mods angelegt hat. Kein Zurück. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Löscht jeden Munitionsauftrag, auch die von dir selbst gesetzten. Kein Zurück. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>Keine: Munitionsaufträge unangetastet lassen. Verwaltet: löscht nur Aufträge, die von den eigenen Werkzeugen dieses Mods erstellt wurden, sodass ein von dir selbst manuell eingerichteter Auftrag erhalten bleibt. Alle: löscht jeden Munitionsauftrag eines erkannten Typs, unabhängig davon, wer ihn eingereiht hat (das ursprüngliche, kompromisslose Verhalten).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Waffenaufträge löschen</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Waffenherstellungsaufträge bleiben erhalten. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Löscht nur Waffenaufträge, die der Assistent dieses Mods angelegt hat. Kein Zurück. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Löscht jeden Waffen-Herstellungsauftrag, auch die von dir selbst gesetzten. Kein Zurück. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>Keine: Waffenaufträge unangetastet lassen. Verwaltet: löscht nur Aufträge, die von den eigenen Werkzeugen dieses Mods erstellt wurden (Produktionswarteschlange, nicht die Beladungsvorlage), sodass ein von dir selbst manuell eingerichteter Auftrag erhalten bleibt. Alle: löscht jeden Waffenauftrag einer erkannten Waffe, unabhängig davon, wer ihn eingereiht hat (das ursprüngliche, kompromisslose Verhalten).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Von Hand gebaute Waffen-Loadouts loeschen</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Von Hand gebaute Waffen-Loadouts bleiben. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Loescht die Waffen-Loadouts, die du selbst in CEs eigenem Editor gebaut hast. Kein Rueckgaengig. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Nur Loadouts, die du selbst in CEs eigenem Loadout-Editor gebaut hast. Die unsichtbaren Vorlagen je Waffe, die dieser Mod anlegt, werden hier nie angefasst - der Lauf legt sie fuer jede vergebene Waffe ohnehin neu an. Rollen und Ausruestungspakete haben eigene Schritte.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Ausrüstungspakete löschen</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Vorhandene Ausrüstungspakete bleiben erhalten. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Löscht nur Ausrüstungspakete, die der Assistent DIESES Mods generiert hat. Kein Rückgängig. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Löscht jedes Ausrüstungspaket, einschließlich manuell erstellter. Kein Rückgängig. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>Keine: Ausrüstungspakete unangetastet lassen. Verwaltet: löscht nur Pakete, die der Auto-Generieren-Assistent erzeugt hat, sodass eines, das du manuell im Zutaten-Tab gebaut hast, erhalten bleibt. Alle: löscht jedes Ausrüstungspaket, unabhängig davon, wer es erstellt hat (das ursprüngliche, kompromisslose Verhalten). Von Hand gebaute Loadouts werden hier nie berührt.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Munitionsaufträge</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>Es werden keine Munitionsaufträge erstellt oder gelöscht.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Erstellt Munitionsauftraege fuer das, was fehlt.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Deaktivieren, um deine Munitionsauftraege vollstaendig unangetastet zu lassen. Aktiviert: Auftraege werden fuer Kolonisten aufgestockt, die dieser Lauf NICHT anfasst (also schon vorher zugewiesen waren). Hier wird nie etwas geloescht - veraltete Auftraege bietet dir der Nachschub-Dialog zum Entfernen an, jeder mit eigenem Kaestchen. Kolonisten, die DIESER Lauf zuweist, bekommen ihre Munitionsauftraege spaeter aus demselben Dialog - bei einer brandneuen Kolonie hat dieser Schritt beim ersten Lauf also noch nichts zu tun.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Kolonie kann noch nicht bewaffnet werden:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Abbrechen</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>Kolonie bewaffnen!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Führt die Schritte genau so aus, wie oben in der Tabelle angehakt. Die Modus-Radios sind nur Voreinstellungen für die Checkboxen.\n\nAktuelles Setup: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>Bewaffnung kann nicht fortgesetzt werden:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Munitionsauftrag-Schritt bewusst übersprungen.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} Rolle(n) haben ihren Inhalt behalten, aber die Bausteine verloren, aus denen sie zusammengesetzt waren - diese Bausteine wurden gelöscht. Kolonisten auf diesen Rollen bleiben ausgerüstet; zum Nachjustieren zieh neue Teile darauf.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>{0} Kolonist abgewiesen</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>{0} Kolonisten abgewiesen</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>{0} Munitionsauftrag gelöscht</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>{0} Munitionsaufträge gelöscht</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>{0} Waffenauftrag gelöscht</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>{0} Waffenaufträge gelöscht</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>{0} von Hand gebautes Loadout gelöscht</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>{0} von Hand gebaute Loadouts gelöscht</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>{0} Ausrüstungspaket gelöscht</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>{0} Ausrüstungspakete gelöscht</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Kolonie-bewaffnen-Zurücksetzung: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>Nichts wurde geloescht.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Zurück</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Weiter &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Weiter zu Munitionsaufträgen und Zuweisung. Kolonisten werden ausschließlich nach Rolle zugewiesen.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Weiter zu Munitionsaufträgen und Zuweisung. Es gibt noch keine Rolle - erstelle oben mindestens eine, sonst wird niemand zugewiesen.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>Derzeit hat keine Werkbank einen Auftrag für {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Kolonie bewaffnen - Zusammenfassung</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Modus: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Durchlauf abgebrochen, die unten stehenden Änderungen wurden vor dem Stopp angewendet.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Zurücksetzen</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>Die Zurücksetzen-Schalter liefen zuerst (Zuweisungen, Aufträge, Beladungen), sodass der Neuaufbau exakt den aktuellen Anforderungen entspricht.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Kolonisten abgewiesen:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Munitionsaufträge gelöscht:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Waffenproduktionsaufträge gelöscht:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Von Hand gebaute Loadouts gelöscht:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Ausrüstungspakete gelöscht:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Generiert</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Ausrüstungspakete generiert:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Starterpaket-Palette in Schritt 0 erstellt oder aktualisiert - siehe Reiter Ausrüstungspakete.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Munitionsaufträge erstellt:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Bedarfsgerecht auf die Zuweisungen der Kolonisten skaliert; aufgeschlüsselt unten unter Eingereihte Produktion.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>Nichts hat gefehlt - für jede benötigte Munition existierte bereits ein Auftrag.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Zuweisungen ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Wer welche Beladung erhalten hat. Eine Zeile anklicken, um zu diesem Kolonisten auf der Karte zu springen.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- keine angewendet (abgebrochen) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- keine -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Anklicken, um zu {0} auf der Karte zu springen.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>{0} Kolonist(en) ohne Beladung übrig - den Grund nennt der Zuweisen-Schritt.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Eingereihte Produktion ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Waffen und Munition, die dieser Durchlauf auf deinen Werkbänken eingereiht hat. „Aufträge" springt zur Werkbank, die den Auftrag trägt.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- keine (abgebrochen) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- keine nötig -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- {0} Posten fehlen, aber nichts liess sich beauftragen (keine Werkbank oder kein Rezept) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Aufträge</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>{0} Exemplar zur Herstellung eingereiht.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>{0} Exemplare zur Herstellung eingereiht.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} Schuss</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>{0} Schuss eingereiht - bedarfsgerecht auf die zugewiesenen Beladungen skaliert.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Gesamtmaterial</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Alles, was die eingereihte Produktion verbrauchen wird, summiert über alle Aufträge. Rot = derzeit nicht genug im Lager (vollständige Bedarf/Bestand-Liste in der Kurzinfo der Leiste).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Hinweise</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Schließen</CER_ArmColony_CloseBtn>
+
+</LanguageData>

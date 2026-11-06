@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_LoadoutUtility_WordEquipped>已裝備</CER_LoadoutUtility_WordEquipped>
+	<CER_LoadoutUtility_WordInStorage>已儲存</CER_LoadoutUtility_WordInStorage>
+	<CER_LoadoutUtility_WordInProduction>生產中</CER_LoadoutUtility_WordInProduction>
+	<CER_LoadoutUtility_WordMissing>缺少 - 未擁有、未儲存、未在生產中</CER_LoadoutUtility_WordMissing>
+
+	<CER_LoadoutUtility_LocationTooltipStored>儲存於：\n{0}</CER_LoadoutUtility_LocationTooltipStored>
+	<CER_LoadoutUtility_LocationTooltipCarried>攜帶者：\n{0}</CER_LoadoutUtility_LocationTooltipCarried>
+	<CER_LoadoutUtility_LocationTooltipAssigned>分配對象：\n{0}</CER_LoadoutUtility_LocationTooltipAssigned>
+	<CER_LoadoutUtility_LocationTooltipForbidden>標記為「禁止拾取」：\n{0}</CER_LoadoutUtility_LocationTooltipForbidden>
+	<CER_LoadoutUtility_ForbiddenOnGround>在地面上</CER_LoadoutUtility_ForbiddenOnGround>
+	<CER_LoadoutUtility_ForbiddenMarkTip>其中 {0} 被標記為「禁止拾取」。這裡已計入，但必須先解除標記才能使用。</CER_LoadoutUtility_ForbiddenMarkTip>
+	<CER_LoadoutUtility_LocationTooltipMaterials>按材質：
+{0}</CER_LoadoutUtility_LocationTooltipMaterials>
+
+	<CER_LoadoutUtility_AvailTotal>總計：{0}</CER_LoadoutUtility_AvailTotal>
+	<CER_LoadoutUtility_AvailEquipped>已裝備：{0}</CER_LoadoutUtility_AvailEquipped>
+	<CER_LoadoutUtility_AvailAvailable>可用：{0}</CER_LoadoutUtility_AvailAvailable>
+	<CER_LoadoutUtility_AvailAssignedInStore>已分配，儲存中：{0}</CER_LoadoutUtility_AvailAssignedInStore>
+	<CER_LoadoutUtility_AvailAssignedCarried>已分配 &amp; 已攜帶：{0}</CER_LoadoutUtility_AvailAssignedCarried>
+	<CER_LoadoutUtility_AvailCarriedUnassigned>攜帶但未分配：{0}</CER_LoadoutUtility_AvailCarriedUnassigned>
+	<CER_LoadoutUtility_AvailInProduction>生產中：{0}</CER_LoadoutUtility_AvailInProduction>
+	<CER_LoadoutUtility_AvailStillMissing>缺少：{0}</CER_LoadoutUtility_AvailStillMissing>
+	<CER_LoadoutUtility_AvailForbidden>標記為「禁止拾取」：{0}</CER_LoadoutUtility_AvailForbidden>
+	<CER_LoadoutUtility_AvailOnGround>散落在地上：{0}</CER_LoadoutUtility_AvailOnGround>
+	<CER_LoadoutUtility_AndNMoreLine>...還有 {0} 個</CER_LoadoutUtility_AndNMoreLine>
+
+	<CER_LoadoutUtility_SearchLabel>搜尋：</CER_LoadoutUtility_SearchLabel>
+	<CER_LoadoutUtility_ScrollMore>下方還有內容</CER_LoadoutUtility_ScrollMore>
+	<CER_LoadoutUtility_ScrollMoreRows>下方還有 {0} 列</CER_LoadoutUtility_ScrollMoreRows>
+	<CER_LoadoutUtility_ClearButtonX>x</CER_LoadoutUtility_ClearButtonX>
+	<CER_LoadoutUtility_ClearSearchTooltip>清除搜尋篩選。</CER_LoadoutUtility_ClearSearchTooltip>
+
+	<CER_LoadoutUtility_ArmColonyButtonLabel>武裝我的殖民地</CER_LoadoutUtility_ArmColonyButtonLabel>
+	<CER_LoadoutUtility_ArmColonyButtonTooltip>一鍵完成：依技能發放武器、排入彈藥生產，並製作缺少的武器。</CER_LoadoutUtility_ArmColonyButtonTooltip>
+
+	<CER_LoadoutUtility_ModeDetailedTip>詳細模式 - 顯示每個篩選器與欄位。\n\n點擊切換為簡易模式。</CER_LoadoutUtility_ModeDetailedTip>
+	<CER_LoadoutUtility_ModeSimpleTip>簡易模式 - 隱藏進階篩選器與欄位，畫面更簡潔。\n\n點擊切換為詳細模式。</CER_LoadoutUtility_ModeSimpleTip>
+
+	<CER_LoadoutUtility_ScoreBarLabel>{0}：{1}</CER_LoadoutUtility_ScoreBarLabel>
+
+	<CER_LoadoutUtility_ReadinessReady>就緒</CER_LoadoutUtility_ReadinessReady>
+	<CER_LoadoutUtility_ReadinessIssueSingular>{0} 人需要處理</CER_LoadoutUtility_ReadinessIssueSingular>
+	<CER_LoadoutUtility_ReadinessIssuePlural>{0} 人需要處理</CER_LoadoutUtility_ReadinessIssuePlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutOption>完全沒有配裝（{0}）  -  開啟小隊設定</CER_LoadoutUtility_ReadinessNoLoadoutOption>
+	<CER_LoadoutUtility_ReadinessProdGapsOption>生產缺口（{0}）  -  開啟補給</CER_LoadoutUtility_ReadinessProdGapsOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>彈藥不足（{0}）  -  開啟補給</CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockOption>{0}（補給在庫，未領取）  -  立即去取</CER_LoadoutUtility_ReadinessSuppliesInStockOption>
+	<CER_LoadoutUtility_WhatOverloaded>負重過量</CER_LoadoutUtility_WhatOverloaded>
+	<CER_LoadoutUtility_WhatLowAmmo>彈藥不足</CER_LoadoutUtility_WhatLowAmmo>
+	<CER_LoadoutUtility_WhatCapacityBlocked>負重阻塞</CER_LoadoutUtility_WhatCapacityBlocked>
+	<CER_LoadoutUtility_WhatAssignedNotCarried>已分配但兩手空空</CER_LoadoutUtility_WhatAssignedNotCarried>
+	<CER_LoadoutUtility_ReadinessGearOption>{0}  （{1}）  -  開啟裝備</CER_LoadoutUtility_ReadinessGearOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpOption>{0}  （已在生產中）  -  跳轉到工作台</CER_LoadoutUtility_ReadinessLowAmmoJumpOption>
+	<CER_LoadoutUtility_ReadinessBetterAmmoLine>
+
+有 {0} 個裝備方案可用新研究的彈藥（{1}）。在你替換之前它們會保留目前彈藥——請使用「裝備殖民者」頁的「批量替換彈藥」。</CER_LoadoutUtility_ReadinessBetterAmmoLine>
+	<CER_LoadoutUtility_ReadinessBetterAmmoOption>{0} 個裝備方案可以換用更好的彈藥  -  開啟批次更換彈藥</CER_LoadoutUtility_ReadinessBetterAmmoOption>
+	<CER_LoadoutUtility_LowAmmoPlanTooSmall>（裝備方案只允許 {0}，需要 {1}）</CER_LoadoutUtility_LowAmmoPlanTooSmall>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitOption>{0}（補給正在路上）  -  開啟裝備</CER_LoadoutUtility_ReadinessLowAmmoWaitOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneOption>{0}（無庫存，未在生產）  -  開啟裝備</CER_LoadoutUtility_ReadinessLowAmmoNoneOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoPlanOption>裝備方案允許的彈藥太少（{0}）  -  修改</CER_LoadoutUtility_ReadinessLowAmmoPlanOption>
+	<CER_LoadoutUtility_LowAmmoInStock> （庫存 {0}）</CER_LoadoutUtility_LowAmmoInStock>
+	<CER_LoadoutUtility_LowAmmoInProduction> （生產中）</CER_LoadoutUtility_LowAmmoInProduction>
+	<CER_LoadoutUtility_LowAmmoNoneQueued> （無庫存，未排入生產）</CER_LoadoutUtility_LowAmmoNoneQueued>
+	<CER_LoadoutUtility_AndNOthers> 及其他 {0} 位</CER_LoadoutUtility_AndNOthers>
+	<CER_LoadoutUtility_ReadinessAllGood>戰備狀態：所有人皆已補給並就緒。</CER_LoadoutUtility_ReadinessAllGood>
+	<CER_LoadoutUtility_ReadinessHeaderSingular>戰鬥準備度：{0} 名殖民者需要處理。點擊修復。\n\n</CER_LoadoutUtility_ReadinessHeaderSingular>
+	<CER_LoadoutUtility_ReadinessHeaderPlural>戰鬥準備度：{0} 名殖民者需要處理。點擊修復（會開啟選擇框）。\n\n統計的是殖民者人數，不是問題數量 - 一個人同時有三個問題，在這裡仍然算一個。\n\n</CER_LoadoutUtility_ReadinessHeaderPlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutLine>{0} 位完全沒有配裝 - 所攜帶的物品不受管理，無彈藥補給（小隊設定） - {1}\n</CER_LoadoutUtility_ReadinessNoLoadoutLine>
+	<CER_LoadoutUtility_ReadinessProdGapsLine>{0} 位有生產缺口，{2} 項待生產（補給） - {1}\n</CER_LoadoutUtility_ReadinessProdGapsLine>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockLine>{0} 位物資已在庫存中，只是尚未拾取（開啟裝備） - {1}\n</CER_LoadoutUtility_ReadinessSuppliesInStockLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLine>{0} 受影響於：{1}（打開裝備） - {2}\n</CER_LoadoutUtility_ReadinessOtherIssueLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>{0} 受影響於：{1} - {2}
+</CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>
+
+	<CER_LoadoutUtility_TotalCostLabel>總成本：</CER_LoadoutUtility_TotalCostLabel>
+
+	<CER_LoadoutUtility_IngredientQtyMulti>&#160;x{0}&#160;（{1}x{2}）</CER_LoadoutUtility_IngredientQtyMulti>
+	<CER_LoadoutUtility_IngredientQtySingle>&#160;x{0}</CER_LoadoutUtility_IngredientQtySingle>
+	<CER_LoadoutUtility_GroundInfo>，{0} 在地面上</CER_LoadoutUtility_GroundInfo>
+	<CER_LoadoutUtility_InStockSuffix>&#160;&#160;（庫存&#160;{0}{1}）</CER_LoadoutUtility_InStockSuffix>
+	<CER_LoadoutUtility_InStockSuffixShort>  （&lt;color=#FBCC33&gt;庫存 {0}{1}&lt;/color&gt;）</CER_LoadoutUtility_InStockSuffixShort>
+
+	<CER_LoadoutUtility_MassLabel>質量</CER_LoadoutUtility_MassLabel>
+	<CER_LoadoutUtility_LocationOnMap>{0} ({1})</CER_LoadoutUtility_LocationOnMap>
+	<CER_LoadoutUtility_BulkLabel>體積</CER_LoadoutUtility_BulkLabel>
+	<CER_LoadoutUtility_MassValue>{0}/{1} 公斤</CER_LoadoutUtility_MassValue>
+	<CER_LoadoutUtility_BulkValue>{0}/{1}</CER_LoadoutUtility_BulkValue>
+
+	<CER_LoadoutUtility_AmmoTooltipDamage>\n傷害：{0}</CER_LoadoutUtility_AmmoTooltipDamage>
+	<CER_LoadoutUtility_AmmoTooltipSharpAP>   銳器穿甲：{0}</CER_LoadoutUtility_AmmoTooltipSharpAP>
+	<CER_LoadoutUtility_AmmoTooltipBluntAP>   鈍器穿甲：{0}</CER_LoadoutUtility_AmmoTooltipBluntAP>
+	<CER_LoadoutUtility_AmmoTooltipEffects>\n效果：{0}</CER_LoadoutUtility_AmmoTooltipEffects>
+	<CER_LoadoutUtility_AmmoTooltipCrafts>\n\n製作 {0} 發，所需原料：</CER_LoadoutUtility_AmmoTooltipCrafts>
+	<CER_LoadoutUtility_AmmoTooltipIngredientLine>\n- {0}x {1}</CER_LoadoutUtility_AmmoTooltipIngredientLine>
+	<CER_LoadoutUtility_AmmoTooltipNoRecipe>\n\n&lt;color=grey&gt;無製作配方。&lt;/color&gt;</CER_LoadoutUtility_AmmoTooltipNoRecipe>
+
+	<CER_LoadoutUtility_ShieldTooltipScore>\n戰鬥分數：{0}/100</CER_LoadoutUtility_ShieldTooltipScore>
+	<CER_LoadoutUtility_ShieldTooltipArmor>\n護甲（銳器）：{0}   護甲（鈍器）：{1}</CER_LoadoutUtility_ShieldTooltipArmor>
+	<CER_LoadoutUtility_ShieldTooltipMass>\n質量：{0} 公斤</CER_LoadoutUtility_ShieldTooltipMass>
+	<CER_LoadoutUtility_ShieldTooltipBulk>   體積：{0}</CER_LoadoutUtility_ShieldTooltipBulk>
+	<CER_LoadoutUtility_ShieldTooltipMarketValue>\n市場價值：{0}</CER_LoadoutUtility_ShieldTooltipMarketValue>
+	<CER_LoadoutUtility_ShieldScoreTooltip>&lt;b&gt;戰鬥分數：{0}/100&lt;/b&gt;\n護甲（銳器）：{1}   護甲（鈍器）：{2}\n負擔（質量/體積成本）：x{3}\n&lt;i&gt;相對於你目前模組提供的最佳護盾。&lt;/i&gt;</CER_LoadoutUtility_ShieldScoreTooltip>
+
+	<CER_LoadoutUtility_AbilityEMP>EMP</CER_LoadoutUtility_AbilityEMP>
+	<CER_LoadoutUtility_AbilityConcussive>震盪</CER_LoadoutUtility_AbilityConcussive>
+	<CER_LoadoutUtility_AbilityFlashDazzle>閃光 / 眩目</CER_LoadoutUtility_AbilityFlashDazzle>
+	<CER_LoadoutUtility_AbilityStun>眩暈</CER_LoadoutUtility_AbilityStun>
+	<CER_LoadoutUtility_AbilityIncendiary>燃燒</CER_LoadoutUtility_AbilityIncendiary>
+	<CER_LoadoutUtility_AbilityToxic>毒性</CER_LoadoutUtility_AbilityToxic>
+	<CER_LoadoutUtility_AbilitySmoke>煙霧</CER_LoadoutUtility_AbilitySmoke>
+	<CER_LoadoutUtility_AbilityFragmentation>破片</CER_LoadoutUtility_AbilityFragmentation>
+	<CER_LoadoutUtility_AbilityArmorPiercing>穿甲</CER_LoadoutUtility_AbilityArmorPiercing>
+	<CER_LoadoutUtility_AbilityExplosive>爆炸</CER_LoadoutUtility_AbilityExplosive>
+	<CER_LoadoutUtility_AbilityExplosiveSecondary>爆炸（次要）</CER_LoadoutUtility_AbilityExplosiveSecondary>
+
+	<CER_LoadoutUtility_DetailRadius>爆炸半徑：{0} 格</CER_LoadoutUtility_DetailRadius>
+	<CER_LoadoutUtility_DetailBonusDamage>額外傷害：{0}</CER_LoadoutUtility_DetailBonusDamage>
+	<CER_LoadoutUtility_DetailFragmentCount>破片：{0}</CER_LoadoutUtility_DetailFragmentCount>
+	<CER_LoadoutUtility_DetailShieldBreak>護盾破除機率：{0}%</CER_LoadoutUtility_DetailShieldBreak>
+
+	<CER_LoadoutUtility_SpecialLabel>\n&lt;b&gt;特殊：&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialLabel>
+	<CER_LoadoutUtility_SpecialAmmoLabel>\n&lt;b&gt;特殊彈藥：&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialAmmoLabel>
+
+	<CER_LoadoutUtility_ScoreTooltipMelee>&lt;b&gt;近戰武器&lt;/b&gt;\n傷害：每擊 {0}  |  DPS：{1}\n銳器穿甲：{2}   鈍器穿甲：{3}\n&lt;i&gt;接近風險折扣 x0.85（在敵火下拉近距離）。&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipMelee>
+	<CER_LoadoutUtility_ScoreTooltipHybridSuffix>  &lt;i&gt;（混合型）&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipHybridSuffix>
+	<CER_LoadoutUtility_ScoreTooltipCooldown>\n攻擊冷卻：{0} 秒</CER_LoadoutUtility_ScoreTooltipCooldown>
+	<CER_LoadoutUtility_ScoreTooltipLauncher>&lt;b&gt;爆炸發射器&lt;/b&gt;\n爆炸：{0} 傷害  |  範圍：{1}\n射程：{2}  |  週期：{3} 秒</CER_LoadoutUtility_ScoreTooltipLauncher>
+	<CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>\n重量/體積係數：x{0}</CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>
+	<CER_LoadoutUtility_ScoreTooltipRanged>&lt;b&gt;遠程武器&lt;/b&gt;\n傷害：{0}  |  銳器穿甲：{1}（最佳彈種）\n有效 DPS：{2}  |  射程：{3}\n連發：{4}  |  裝填：{5} 秒（彈匣 {6}）</CER_LoadoutUtility_ScoreTooltipRanged>
+	<CER_LoadoutUtility_ScoreTooltipBestAmmo>
+最佳彈種：{0}</CER_LoadoutUtility_ScoreTooltipBestAmmo>
+	<CER_LoadoutUtility_ScoreTooltipAmmoVariety>\n彈藥多樣性：{0} 種戰鬥彈（加成 +{1}%）</CER_LoadoutUtility_ScoreTooltipAmmoVariety>
+	<CER_LoadoutUtility_ScoreTooltipHandling>\n操控：精準度 x{0}  |  重量/體積 x{1}</CER_LoadoutUtility_ScoreTooltipHandling>
+	<CER_LoadoutUtility_ScoreTooltipSingleUse>\n&lt;i&gt;一次性：發射一次後殖民者即無武裝 - 分數 x{0}。應作為緊急備援攜帶，而非主武器。&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSingleUse>
+	<CER_LoadoutUtility_ScoreTooltipSpecialBonus>\n&lt;i&gt;（特殊能力 +{0}）&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSpecialBonus>
+	<CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+
+缺少 CE 資料：5 項中缺 {0} 項。評分 x{1} - 缺失的資料大多會被讀成「沒有缺點」（沒有後座力、不用換彈、沒有體積）。</CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+	<CER_LoadoutUtility_CeDataBadgeTip>這把武器缺少 5 項 Combat Extended 資料中的 {0} 項。評分因此打了折扣：缺失的資料幾乎總是被讀成優點 - 沒有後座力、沒有換彈時間、沒有體積、彈藥不佔重量。</CER_LoadoutUtility_CeDataBadgeTip>
+	<CER_LoadoutUtility_MagazineSuffix>= {0} 彈匣</CER_LoadoutUtility_MagazineSuffix>
+	<CER_LoadoutUtility_MagazineSuffixTip>這把武器一個彈匣裝 {0} 發。發數仍是精確數字，這裡只是「夠不夠打一場」的讀法。</CER_LoadoutUtility_MagazineSuffixTip>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMech>\n&lt;b&gt;對血肉：&lt;/b&gt; {0} / 100   &lt;b&gt;對機械：&lt;/b&gt; {1} / 100</CER_LoadoutUtility_ScoreTooltipVsFleshMech>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>\n  僅計已研發彈藥：{0} / {1} －分配滑塊用的是這個</CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>
+	<CER_LoadoutUtility_ScoreTooltipFinalScore>\n&lt;b&gt;分數：{0} / 100&lt;/b&gt;</CER_LoadoutUtility_ScoreTooltipFinalScore>
+	<CER_LoadoutUtility_ScoreTooltipUtilityExcluded>\n\n&lt;i&gt;（工具武器 - 不列入排名）&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipUtilityExcluded>
+
+	<CER_LoadoutUtility_LoadoutEmpty>\n（空）</CER_LoadoutUtility_LoadoutEmpty>
+
+	<CER_LoadoutUtility_AmmoTooltipStock>\n庫存：{0}（{1} 倉儲，{2} 攜帶）</CER_LoadoutUtility_AmmoTooltipStock>
+	<CER_LoadoutUtility_AmmoTooltipInProduction>\n生產中：{0}</CER_LoadoutUtility_AmmoTooltipInProduction>
+	<CER_LoadoutUtility_RoleModeMixed>職業與武器</CER_LoadoutUtility_RoleModeMixed>
+	<CER_LoadoutUtility_RoleModeRolesOnly>僅限職業配裝</CER_LoadoutUtility_RoleModeRolesOnly>
+	<CER_LoadoutUtility_RoleModeNoRoles>不使用職業</CER_LoadoutUtility_RoleModeNoRoles>
+	<CER_LoadoutUtility_RoleModeButtonFmt>分配：{0}</CER_LoadoutUtility_RoleModeButtonFmt>
+	<CER_LoadoutUtility_RoleModeTip>自動分配和單一殖民者選擇器可以發放的內容。\n\n職業與武器：兩者共同競爭——這是預設值，也是一直以來的行為。\n僅限職業配裝：只使用職業。\n不使用職業：只使用武器，職業保持不變。</CER_LoadoutUtility_RoleModeTip>
+
+	<CER_LoadoutUtility_FetchGearButtonLabel>立即取裝備</CER_LoadoutUtility_FetchGearButtonLabel>
+	<CER_LoadoutUtility_FetchGearButtonTooltip>每個有配裝的殖民者會放下手邊的事，立即去取缺少的裝備——一件接一件，直到不再缺少。\n\n沒有此按鈕時，CE 每 30 秒只取一件，且只在兩項工作之間。跳過：已徵召、倒地、臥床、精神崩潰或正在進行無法打斷的工作的殖民者（該工作結束後立即去取）。</CER_LoadoutUtility_FetchGearButtonTooltip>
+	<CER_LoadoutUtility_FetchGearMsgSent>{0} 名殖民者正在取裝備。</CER_LoadoutUtility_FetchGearMsgSent>
+	<CER_LoadoutUtility_FetchGearMsgSentOne>1 名殖民者正在去取裝備。</CER_LoadoutUtility_FetchGearMsgSentOne>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffixOne>其中一人已經拿不下了——請先騰出重量或容量。</CER_LoadoutUtility_FetchGearMsgFullSuffixOne>
+	<CER_LoadoutUtility_FetchGearMsgNone>沒有人還有東西要取（已檢查：{0} 名有裝備配置，{1} 名跳過：在床上、已徵召、失去行動能力或精神崩潰）。</CER_LoadoutUtility_FetchGearMsgNone>
+
+	<CER_LoadoutUtility_ReadinessNoBillOption>無彈藥生產訂單（{0}，庫存暫時夠用）  -  開啟訂單總覽</CER_LoadoutUtility_ReadinessNoBillOption>
+	<CER_LoadoutUtility_ReadinessNoBillLine>{0} 位無彈藥生產訂單 - 庫存暫時夠用（訂單總覽） - {1}\n</CER_LoadoutUtility_ReadinessNoBillLine>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotOption>配裝中的武器缺少彈藥（{0}）  -  開啟彈藥視窗</CER_LoadoutUtility_ReadinessNoAmmoSlotOption>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotLine>{0} 位有武器但配裝中無彈藥（彈藥視窗） - {1}\n</CER_LoadoutUtility_ReadinessNoAmmoSlotLine>
+
+	<CER_LoadoutUtility_FetchGearPreviewHeader>誰會放下什麼、去取什麼：</CER_LoadoutUtility_FetchGearPreviewHeader>
+	<CER_LoadoutUtility_FetchGearPreviewNow>目前：{0}</CER_LoadoutUtility_FetchGearPreviewNow>
+	<CER_LoadoutUtility_FetchGearPreviewFinishesFirst>（先完成此事）</CER_LoadoutUtility_FetchGearPreviewFinishesFirst>
+	<CER_LoadoutUtility_FetchGearPreviewFetches>去取：{0}</CER_LoadoutUtility_FetchGearPreviewFetches>
+	<CER_LoadoutUtility_FetchGearPreviewNothingFetchable>目前無可取物品 - {0}</CER_LoadoutUtility_FetchGearPreviewNothingFetchable>
+	<CER_LoadoutUtility_FetchGearPreviewNotInStock>{0}（無庫存）</CER_LoadoutUtility_FetchGearPreviewNotInStock>
+	<CER_LoadoutUtility_FetchGearPreviewWontFit>{0}（裝不下了 - 已達攜帶上限）</CER_LoadoutUtility_FetchGearPreviewWontFit>
+	<CER_LoadoutUtility_FetchGearPreviewMoreItems>+{0} 項</CER_LoadoutUtility_FetchGearPreviewMoreItems>
+	<CER_LoadoutUtility_FetchGearPreviewSkipped>{0}，跳過</CER_LoadoutUtility_FetchGearPreviewSkipped>
+	<CER_LoadoutUtility_FetchGearPreviewIdle>閒置</CER_LoadoutUtility_FetchGearPreviewIdle>
+	<CER_LoadoutUtility_FetchGearPreviewNoLoadouts>還沒有人擁有配裝。</CER_LoadoutUtility_FetchGearPreviewNoLoadouts>
+	<CER_LoadoutUtility_FetchGearPreviewMore>……以及另外 {0} 名殖民者</CER_LoadoutUtility_FetchGearPreviewMore>
+	<CER_LoadoutUtility_FetchGearPreviewAllSet>{0} 名殖民者已經齊備。</CER_LoadoutUtility_FetchGearPreviewAllSet>
+	<CER_LoadoutUtility_FetchGearSkipDowned>倒地</CER_LoadoutUtility_FetchGearSkipDowned>
+	<CER_LoadoutUtility_FetchGearSkipDrafted>已徵召</CER_LoadoutUtility_FetchGearSkipDrafted>
+	<CER_LoadoutUtility_FetchGearSkipMental>精神崩潰</CER_LoadoutUtility_FetchGearSkipMental>
+	<CER_LoadoutUtility_FetchGearSkipAway>不在地圖上</CER_LoadoutUtility_FetchGearSkipAway>
+	<CER_LoadoutUtility_FetchGearSkipInBed>臥床</CER_LoadoutUtility_FetchGearSkipInBed>
+
+	<CER_LoadoutUtility_ReadinessFetchOption>{0}（{1}）  -  立即去取</CER_LoadoutUtility_ReadinessFetchOption>
+	<CER_LoadoutUtility_FetchGearMsgOne>{0} 正在去取裝備。</CER_LoadoutUtility_FetchGearMsgOne>
+	<CER_LoadoutUtility_FetchGearMsgOneNone>{0}：目前無可取物品。</CER_LoadoutUtility_FetchGearMsgOneNone>
+	<CER_LoadoutUtility_FetchGearMsgOneFull>{0}無法再攜帶更多 - 請先騰出重量或體積（放下或存放物品）。</CER_LoadoutUtility_FetchGearMsgOneFull>
+	<CER_LoadoutUtility_FetchGearMsgOneBusy>{0} 現在無法前去取回 - 物品已被他人預訂、無法到達，或正在執行其他工作。請稍後再試。</CER_LoadoutUtility_FetchGearMsgOneBusy>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffix>其中{0}人無法再攜帶更多 - 請先騰出重量或體積。</CER_LoadoutUtility_FetchGearMsgFullSuffix>
+
+	<CER_LoadoutUtility_CarryTipHeaderMass>負重（質量）：{0} / {1}</CER_LoadoutUtility_CarryTipHeaderMass>
+	<CER_LoadoutUtility_CarryTipHeaderBulk>負重（體積）：{0} / {1}</CER_LoadoutUtility_CarryTipHeaderBulk>
+	<CER_LoadoutUtility_CarryTipBase>基礎（此身體）：{0}</CER_LoadoutUtility_CarryTipBase>
+	<CER_LoadoutUtility_CarryTipItem>{0}：{1}</CER_LoadoutUtility_CarryTipItem>
+	<CER_LoadoutUtility_CarryTipOther>其他（健康、特性、係數）：{0}</CER_LoadoutUtility_CarryTipOther>
+	<CER_LoadoutUtility_CarryTipNoneMass>沒有穿戴的裝備能提高質量上限 - 外骨骼可以。</CER_LoadoutUtility_CarryTipNoneMass>
+	<CER_LoadoutUtility_CarryTipNoneBulk>沒有穿戴的裝備能提高體積上限 - 背包、戰術背心或彈藥帶可以。</CER_LoadoutUtility_CarryTipNoneBulk>
+
+	<CER_LoadoutUtility_ReadinessFetchAllOption>{0} 名殖民者（{1}）- 立即全部去取</CER_LoadoutUtility_ReadinessFetchAllOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockOption>{0}（{1}，庫存中無可取物品）- 開啟補給</CER_LoadoutUtility_ReadinessFetchNoStockOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockAllOption>{0} 名殖民者（{1}，庫存中無可取物品）- 開啟補給</CER_LoadoutUtility_ReadinessFetchNoStockAllOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>{0} 名殖民者（補給在庫，未領取）- 立即全部去取</CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>{0} 名殖民者（彈藥已在生產中）- 跳轉到工作台</CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>{0} 名殖民者（補給在路上）- 開啟工單總覽</CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>{0} 名殖民者（無庫存，無排隊）- 開啟補給</CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>
+
+
+	<CER_LoadoutUtility_AmmoStatDmg>傷害</CER_LoadoutUtility_AmmoStatDmg>
+	<CER_LoadoutUtility_AmmoStatSharp>銳穿</CER_LoadoutUtility_AmmoStatSharp>
+	<CER_LoadoutUtility_AmmoStatBlunt>鈍穿</CER_LoadoutUtility_AmmoStatBlunt>
+	<CER_LoadoutUtility_AmmoStatTip>在同一口徑內比較——滿條表示該彈藥系列中的最佳型號。
+
+單發傷害：{0}（最高：{1}）
+銳器護甲穿透：{2}（最高：{3}）
+鈍器護甲穿透：{4}（最高：{5}）
+
+傷害高而銳穿低適合無甲目標；銳穿高才能穿透護甲和機械體。鈍穿在同一口徑的所有彈種中相同——各列看起來一樣的條沒有可選之處。</CER_LoadoutUtility_AmmoStatTip>
+</LanguageData>

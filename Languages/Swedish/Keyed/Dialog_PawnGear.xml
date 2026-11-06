@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - buren utrustning</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>Släpp lägger föremålet på marken bredvid kolonisten - hämtare för tillbaka det till förvaring.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Denna kolonist är inte på kartan just nu, så inget kan släppas.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Utrustning</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Kläder</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Inventarier</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Släpp</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- ingen -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Stäng</CER_PawnGear_CloseButton>
+
+</LanguageData>

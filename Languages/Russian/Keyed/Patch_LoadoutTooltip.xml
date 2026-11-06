@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_LoadoutTooltip_SaveComboAsRole>Сохранить текущую комбинацию как роль...</CER_LoadoutTooltip_SaveComboAsRole>
+	<CER_LoadoutTooltip_NoneEquipped>Нет</CER_LoadoutTooltip_NoneEquipped>
+	<CER_LoadoutTooltip_CurrentlyAssigned>Сейчас назначено: &lt;b&gt;{0}&lt;/b&gt;</CER_LoadoutTooltip_CurrentlyAssigned>
+	<CER_LoadoutTooltip_CurrentlyEquipped>Сейчас экипировано: &lt;b&gt;{0}&lt;/b&gt;</CER_LoadoutTooltip_CurrentlyEquipped>
+	<CER_LoadoutTooltip_CombatSkills>Боевые навыки:
+- Стрельба: {0}
+- Ближний бой: {1}</CER_LoadoutTooltip_CombatSkills>
+	<CER_LoadoutTooltip_AvailabilityHeader>Доступность:</CER_LoadoutTooltip_AvailabilityHeader>
+	<CER_LoadoutTooltip_AvailabilityLine>- {0}: доступно {1} (на складе: {2}, назначено, но ещё не получено: {3})</CER_LoadoutTooltip_AvailabilityLine>
+	<CER_LoadoutTooltip_InProduction> - в производстве: {0}</CER_LoadoutTooltip_InProduction>
+	<CER_LoadoutTooltip_InProductionMissing> - в производстве: {0}, всё ещё не хватает: {1}</CER_LoadoutTooltip_InProductionMissing>
+	<CER_LoadoutTooltip_ForbiddenNearby>({0} помечено «не подбирать»)</CER_LoadoutTooltip_ForbiddenNearby>
+
+</LanguageData>

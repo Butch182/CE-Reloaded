@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>No se encontraron colonos en el mapa actual.</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>Ordenar por habilidad a distancia</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>Ordenar por habilidad cuerpo a cuerpo</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>Vista compacta:</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>Una fila delgada por colono en vez de las tarjetas completas. Los detalles que ya no caben pasan a los tooltips.</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>Auto-asignar...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>Abre la vista previa en vivo de auto-asignación: ajusta origen, anti-mecanoide, a distancia/cuerpo a cuerpo y diversidad del escuadrón con controles deslizantes y observa la distribución resultante antes de aplicarla.</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>Reemplazar munición en masa</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>Cambia el tipo de munición en todas las cargas a la vez (p. ej. todos de FMJ a AP).</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>Auto-asignado {0} colono</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>Auto-asignados {0} colonos</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>, {0} se quedaron sin carga</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>Se canceló Autoasignar - se conservaron los roles, paquetes y pedidos de munición de los pasos anteriores, pero no se aplicó ninguna asignación ni se produjo ninguna arma.</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>Guardar como Rol</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>Editar rol</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>Abre la pestaña Roles con el rol de este colono seleccionado, para editar el rol mismo.</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>Rol</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>Abre el Modo Rol con la combinación exacta actual de este personaje (arma principal, arma secundaria/explosivos/escudos, paquetes) precargada como borrador - revísala y presiona Crear ahí.</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>Todavía no hay ninguna carga asignada - nada que guardar.</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>Asignación aplicada. La producción se omitió en ese paso - prográmala más tarde desde Supply Loadouts si todavía la necesitas.</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+Haz clic para ver y editar el equipo llevado.</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;Cálculo de puntuación:&lt;/b&gt;
+Calculada con Nivel de Habilidad x 10, modificado por Vista, Manipulación, Movimiento y Rasgos.
+
+&lt;b&gt;Colores de la barra:&lt;/b&gt;
+Vacía = 0
+Rojo intenso = Malo
+Verde brillante = Maestro (Nivel máximo: {0})</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>Arma:</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>Ninguna</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>Suelta para intercambiar cargas con {0}.</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>No puede combatir (incapaz de violencia, o un bebé), así que no se le puede asignar ningún arma. Un Equipment Pack o un rol sin arma sí es posible.</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> La actual todavía se puede borrar.</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+Arrastra sobre el botón de carga de otro colono para intercambiarlas.</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>Masa</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>Volumen</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} kg</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;Masa&lt;/b&gt;
+Peso total de todo lo que hay en la carga (armas, munición, comidas, medicina) frente a cuánto puede llevar {0}.
+
+La capacidad de carga proviene de la estadística de &lt;b&gt;Capacidad de Carga&lt;/b&gt; del personaje, que escala con el tamaño corporal y la Manipulación, así que un colono grande y sano lleva más que uno pequeño o herido. Excederla ralentiza al personaje. Se trata del límite &lt;b&gt;Carry Weight&lt;/b&gt; de CE, no de la Capacidad de carga mayor de RimWorld.</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;Volumen&lt;/b&gt;
+Cuánto espacio ocupa la carga frente a la estadística de &lt;b&gt;Volumen de Carga&lt;/b&gt; de este personaje (CE). El volumen es cuestión de espacio, no de peso - mucha munición suelta o armadura consume volumen rápido. Excederlo perjudica el movimiento y la puntería.</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>Esto no cabe. El colono nunca recogerá el excedente: Combat Extended solo toma lo que cabe y suelta lo que sobra, así que el equipo queda a medias. Reduce la cantidad de munición, quita un objeto del paquete o elige equipo más liviano.</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;Masa&lt;/b&gt;
+Peso de la carga frente a la Capacidad de Carga de este personaje. Excederla ralentiza al personaje. Se trata del límite &lt;b&gt;Carry Weight&lt;/b&gt; de CE, no de la Capacidad de carga mayor de RimWorld.</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Volumen&lt;/b&gt;
+Volumen de la carga frente al Volumen de Carga de este personaje (CE). Excederlo perjudica el movimiento y la puntería.</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>Ninguna</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0} no puede combatir (incapaz de violencia, o un bebé): solo se le puede asignar equipo sin arma.</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0} no puede llevar nada.</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} tiene un rol: los packs, armas secundarias y otros objetos vienen del propio rol (pestaña Roles). No se pegó nada.</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>Guardar combinación actual como Rol...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>Colono</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>A distancia</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>Cuerpo a cuerpo</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>Arma</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>Munición</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>arma principal</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>Desasignar todo</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>Cada colono libre pierde su asignación - los packs y armas secundarias adjuntos permanecen.</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>¿Quitar la asignación a todos los colonos libres? Packs y armas secundarias adjuntos permanecen; nada se suelta al suelo.</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>{0} colono(s) sin asignación.</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>Paquete</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>Arma secundaria</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>Armas secundarias</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>Otro</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>Guardar</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>Guardar como Rol
+
+Abre el Modo Rol con la combinación exacta actual de este personaje (arma principal, arma secundaria/explosivos/escudos, paquetes) precargada como borrador - revísala y presiona Crear ahí.</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>Guardar como Rol
+
+Todavía no hay ninguna carga asignada - nada que guardar.</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>Puntuaciones de combate a distancia y cuerpo a cuerpo (Habilidad x 10, ajustada por Vista, Manipulación, Movimiento y Rasgos).</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>A distancia</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>Cuerpo a cuerpo</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>D</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>C</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>Munición: -</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>Ninguna</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0 tipos</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0} tipos</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>Munición: {0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0} no lleva ningún arma que use munición (cuerpo a cuerpo o solo granadas) - nada que configurar aquí.</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>El arma de {0} usa munición, pero no hay ninguna configurada - no llevará nada con qué disparar.</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>Munición de {0}: {1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+Haz clic para cambiarla - solo afecta a este colono.</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>Paquete: -</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>Incluido en {0}:
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>Este Rol no incluye artículos de medicina/comida/droga/utilidad.</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>Este Rol no incluye ningún arma secundaria, explosivo arrojadizo o escudo.</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+Viene de este rol. Los packs adjuntos a un rol siguen enlazados: cambia el pack y todos los colonos de ese rol le siguen. El resto esta fijado: cambialo en la pestana de Roles, no aqui por colono.</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>Ninguno</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>Paquete: {0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>Paquetes de Equipo adjuntos: {0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>Ningún Paquete de Equipo adjunto.</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+Haz clic para elegir qué paquetes lleva {0}.</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - marca qué paquetes llevar. Los cambios se aplican de inmediato.</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>Se pegó la selección de {0} de "{1}" en {2}.</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>Pega la selección de {0} copiada de "{1}" en {2}.</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>Arma secundaria: -</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>Ninguna</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>Arma secundaria: {0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>Armas secundarias adjuntas: {0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>Ninguna arma secundaria adjunta.</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+Haz clic para elegir qué arma(s) lleva {0} como arma secundaria.</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - marca qué arma(s) llevar como arma secundaria. Los cambios se aplican al instante.</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>Armas secundarias</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>No hay otras armas disponibles para llevar como arma secundaria.</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>Otro: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>Incluido en este Rol - edita el Rol en sí (pestaña Roles) para añadir otros objetos, no aquí por colono.</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>Ninguno</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>Otro: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>Otros objetos llevados: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>No se ha añadido ningún otro objeto.</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+Haz clic para añadir otros objetos a {0}.</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>No se puede intercambiar con un colono que no puede pelear (pacifista o bebé).</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>Ninguno de los dos colonos tiene una carga para intercambiar.</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>Ambos colonos ya tienen la misma carga.</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>Cargas intercambiadas: {0} y {1}.</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>Equipado actualmente: {0}.</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>nada</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> En cola en {0} - haz clic para abrir su pestaña de Pedidos.</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;Equipado actualmente:&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;Inventario:&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>Nada equipado.</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;Capacidades de combate&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;Estas capacidades escalan las puntuaciones a Distancia y Cuerpo a Cuerpo de arriba.&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>Apuntar / disparar</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>Puntería y golpe cuerpo a cuerpo</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>Acercarse al cuerpo a cuerpo</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}: Puntuación cuerpo a cuerpo x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}: Puntuación cuerpo a cuerpo x1.25 (mayor probabilidad de esquivar)</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}: Puntuación cuerpo a cuerpo x1.5 (recibe mucho menos daño)</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}: Puntuación cuerpo a cuerpo x0.1 (cae al instante)</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}: Afecta la precisión a distancia</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}: Afecta el tiempo de apuntado a distancia</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>Falta {0}</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>Falta {0}: Reduce las capacidades</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}: Modifica las capacidades</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;Disparo:&lt;/b&gt; {0} | Vista: {1}% | Manip: {2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;Cuerpo a cuerpo:&lt;/b&gt; {0} | Vista: {1}% | Mov: {2}% | Manip: {3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>No se pegó nada: ninguna de las municiones copiadas sirve para las armas de {0}.</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>Se pegaron {0} tipo(s) de munición en {2}. Se omitieron {1}: no sirven para ninguna de sus armas.</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>Para {0} (necesita {1}):</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>Equipado: {0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>Asignado, en almacén - falta buscar: {0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>En producción: {0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>Falta: {0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>Toda la colonia:</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>Columna Pegar: haz clic en el ícono de la fila de un colono para darle la asignación copiada.</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

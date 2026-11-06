@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>puntuación-inválida</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>La puntuación del arma es {0} (no es un número finito).</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>puntuación-cero</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>El arma de combate tiene daño real pero puntuó 0 - la puntuación probablemente no pudo leer sus estadísticas.</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>no-ce-pero-armada</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>El arma a distancia está marcada "(No CE)" pero tiene un ammoSet/proyectil - revisa la detección.</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>a-distancia-sin-municion</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>Tiene un ammoSet pero la lista de munición de la carga está vacía - no se puede crear ningún pedido de munición.</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>set-municion-no-resuelto</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>Arma a distancia marcada como compatible con CE cuyo set de municion nunca se resolvio - nunca podra recibir municion valida.</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>municion-propia-sin-receta</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>El arma de munición propia (granada/arrojadiza) no tiene receta de fabricación - no se puede producir.</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>excepción</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}: {1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - Auditoría de compatibilidad de armas</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>Se escanearon {0} armas de {1} mods. {2} problema(s).</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>Auditoría de compatibilidad de armas</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>Se escanearon {0} armas de {1} mod(s) activo(s).  {2} problema(s) encontrado(s).</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>No se encontraron problemas - cada arma de esta lista de mods se maneja correctamente. ✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+Fuente: {1}
+{2}: {3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>Cerrar</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>Copiar informe al portapapeles</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>Informe de auditoría copiado al portapapeles.</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

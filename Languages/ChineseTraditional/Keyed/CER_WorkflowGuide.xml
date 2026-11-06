@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - 速成課程</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>最快捷徑</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>按下「武裝我的殖民地」（上方工具列）- 選擇謹慎／一般／積極，按下武裝。完成。</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>分頁</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. 裝備包 - 可重複使用的套組（醫療、食物、藥物、工具）。非必要。</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. 裝備殖民者 - 依技能發放武器和裝備。點擊欄位可自行選擇。</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. 職業 - 將某位殖民者的組合儲存為可重複使用的範本，套用給多位殖民者。</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>訂單總覽 - 維持彈藥生產運作。「自動生成」會為你調整訂單規模。</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>主要功能</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>戰備燈號（上方工具列）- 點擊即可修正問題所在。</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>裝備分頁面板 - 逐項顯示攜帶／庫存／生產中／缺少的狀態。</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>「彈藥配裝」按鈕（選取一名角色）- 僅覆寫其彈藥，不影響共用配裝。</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>「另存為職業」- 將任一殖民者目前的組合轉換成可重複使用的範本。</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>模組設定 - 每項預設值（彈藥數量、武裝殖民地預設組合……）皆可調整。</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>小提醒</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>剛接觸 CE？請留在簡易模式（右上角圖示），直接使用「武裝我的殖民地」即可。</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>嬰兒／和平主義者永遠不會獲得武器 - 但仍可攜帶裝備包。</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>隨時開啟此規劃器：分配標籤頁右下角的「裝備規劃器」，或殖民者裝備標籤頁旁邊的面板。</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>「立即取裝備」（在「武裝殖民地」旁）——所有人放下工作，立即去取自己的配裝。僅靠 CE 每 30 秒只取一件。</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>此速成教學只顯示一次。隨時重新開啟：模組設定 -> 工具。</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

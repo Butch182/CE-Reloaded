@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - équipement porté</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>Déposer place l'objet au sol à côté du personnage - les transporteurs le ramèneront au stockage.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Ce personnage n'est pas sur la carte actuellement, donc rien ne peut être déposé.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Équipement</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Vêtements</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Inventaire</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Déposer</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- aucun -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Fermer</CER_PawnGear_CloseButton>
+
+</LanguageData>

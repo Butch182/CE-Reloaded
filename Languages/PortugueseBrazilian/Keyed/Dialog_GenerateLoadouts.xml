@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (Munição): Danifica e atordoa mecanoides, desativa escudos.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Concussiva (Munição): Dano de área contuso, supressão pesada.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Flash / Ofuscante (Munição): Cega alvos, desorienta.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Atordoante (Munição): Imobiliza brevemente o alvo.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Incendiária (Munição): Incendeia alvos, causa pânico.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Tóxica (Munição): Aplica acúmulo de toxinas.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Fumaça (Munição): Bloqueia linha de visão.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Fragmentação (Munição): Espalha estilhaços (área antipessoal).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Perfurante (Munição): Munição AP vence blindagem pesada.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Explosivo (Munição): Raio de explosão real, danifica tudo nas proximidades.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Explosivo, secundário (Munição): Uma pequena carga HE acompanha o impacto cinético - mesmo alvo, sem raio de explosão.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Habilidades Especiais:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>Mais {0} efeito(s) - não cabe mais nesta coluna:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: Danifica e atordoa mecanoides, desativa escudos.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Concussiva: Dano de área contuso, supressão pesada.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Flash / Ofuscante: Cega alvos, desorienta.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Atordoante: Imobiliza brevemente o alvo.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Incendiária: Incendeia alvos, causa pânico.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Tóxica: Aplica acúmulo de toxinas.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Fumaça: Bloqueia linha de visão.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Fragmentação: Espalha estilhaços (área antipessoal).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Perfurante: Vence blindagem pesada (AP / HEAT alto).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Explosivo: Raio de explosão real, danifica tudo nas proximidades.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Explosivo, secundário: Uma pequena carga HE acompanha o impacto cinético - mesmo alvo, sem raio de explosão.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Corpo a corpo</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Armas de fogo</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Pesadas</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Outras</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Todos os tipos</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Funções</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Armas</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Armas</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>Nenhuma arma encontrada.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Seus Pacotes de Equipamento</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Copiado para este Papel na última vez que você clicou em Criar/Atualizar - não é um vínculo ao vivo. Editar este item agora não chegará aos colonos que já usam este Papel até que você clique em Criar/Atualizar aqui novamente.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Esta parte fornece a arma principal da função: {0}. Qualquer outra arma desta função conta como arma secundária - uma função pode reunir arma principal, faca e granadas ao mesmo tempo.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Excluir este Pacote de Equipamento.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>Excluir o pacote de equipamento "{0}"? Colonos que o estão carregando atualmente perderão esses itens.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Arraste até uma função para escaloná-lo. Edite o conteúdo na aba Pacotes de Equipamento.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Ainda não há Pacotes de Equipamento - crie alguns na aba Pacotes de Equipamento primeiro.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Nenhum Pacote de Equipamento corresponde a "{0}".</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Nada corresponde a "{0}".</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Nenhuma função corresponde a "{0}".</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Funções</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Nova função</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Nova função</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Adiciona uma função armazenada somente NESTE save. Funções globais ficam em Configurações do Mod &gt; Funções.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} colono(s)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Colonos que estão com esta função agora: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Nenhum colono está com esta função agora. Distribua-a na aba Equipar colonos.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Restaurar</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>Redefinir todas as funções globais para as predefinições? (Funções locais do save são mantidas.) Uma função cujo nome não esteja entre as predefinições também perde seu equipamento - colonos que a usam ficam sem equipamento atribuído e mantêm sua munição, mochilas e armas secundárias.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Restaurar as funções globais para as predefinições integradas.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[S]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Função local do save: existe somente nesta colônia. Para criar uma função que vale em todos os jogos, adicione-a em Configurações do Mod &gt; Funções.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Função global: disponível em toda colônia. Gerencie em Configurações do Mod &gt; Funções.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Excluir esta função.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>Excluir a função "{0}" e o equipamento por trás dela? Colonos que a usam ficam sem equipamento atribuído - sua própria munição, mochilas e armas secundárias permanecem com eles. Se o equipamento ficasse, continuaria aparecendo como modelo atribuível.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Duplicar esta função (nome, fatores, e sua composição atual).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● criada</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ nova</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Esta função está salva - cada mudança no cartão é gravada na hora.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Vazia - arraste uma arma ou um pacote para ela.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Bloqueado: esta função ainda não tem nada, então não há nada a escalar. Arraste primeiro uma arma ou um pacote para o cartão.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Mu</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Re</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>Co</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Gr</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Fator de munição (Mu): multiplica a quantidade de munição de cada arma desta função. 1 = a quantidade das opções do mod, 0,75 = três quartos, 2 = o dobro, 0 = sem munição.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Fator de remédios (Re): multiplica a quantidade de remédios das peças da função. 1 = inalterado, 3 = o triplo, 0 = nenhum.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Fator de comida (Co): multiplica a quantidade de comida das peças da função. 1 = inalterado, 1,5 = uma vez e meia, 0 = nenhuma.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Fator de granadas (Gr): multiplica a quantidade de granadas e explosivos de arremesso das peças da função. 1 = inalterado, 3 = o triplo, 0 = sem granadas.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>arraste uma arma ou um pacote aqui</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>contém {0} - arraste uma arma ou um pacote aqui para recompor</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Esta função foi criada antes de sua composição ser registrada, então as peças que a formaram são desconhecidas - mas não o seu conteúdo final. Os colonos com esta função estão equipados corretamente; a prévia abaixo lista tudo. Arrastar uma arma ou um pacote aqui a recompõe e substitui o conteúdo atual.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Arraste uma arma ou um Equipment Pack para esta linha para montar a função. Ela é salva automaticamente assim que houver algo nela.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Selecione uma função e solte uma arma ou um pacote nela para pré-visualizar o resultado.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Pré-visualização</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Função]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(existe - diferença)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(existe - atualizado)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>salvo automaticamente</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Item</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Padrão -&gt; com fator</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Solte uma arma ou um pacote nesta função para ver o resultado.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;adicionado&lt;/color&gt;  &lt;color=#F2D966&gt;alterado&lt;/color&gt;  &lt;color=#FF7373&gt;removido&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Resultado: {0} pilhas</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Nada para criar.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>Já existe outra função chamada "{0}" - escolha um nome diferente, ou a configuração dessa outra função seria sobrescrita.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>Não salvo: a função "{0}" ficaria completamente vazia e todos os colonos nela ficariam sem nada. Coloque conteúdo de volta primeiro (arraste uma arma ou um pacote).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>O único conteúdo da função - não dá para removê-lo. "{0}" ficaria completamente vazia e todos os colonos nela ficariam sem nada. Para trocar: arraste primeiro o substituto para o cartão e depois remova este. Para apagar a própria função, use o x no canto superior direito do cartão.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>O único conteúdo da função - não dá para removê-lo. "{0}" ficaria completamente vazia. Para trocar: arraste primeiro o substituto para o cartão e depois remova este. Para excluir a própria função, use o x no canto superior direito do cartão.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Ja existe um equipamento de função chamado «{0}» de uma função excluída antes, e {1} colono(s) ainda o usam. Criar esta função vai assumir esse equipamento e reequipar todos de uma vez.
+
+Continuar?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>"{0}" criada.</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Renomeada para "{0}".</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Renomeada para "{0}":  +{1} adicionados,  -{2} removidos,  ~{3} alterados.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" inalterada.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>"{0}" atualizada:  +{1} adicionados,  -{2} removidos,  ~{3} alterados.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Munição pessoal</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Tudo</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Pesquisadas</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Disponíveis</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Especial</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Resultado: {0} pilhas ({1} delas de pacotes anexados)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Restaurar predefinidos ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Traz de volta os papeis embutidos que voce apagou, cada um no seu lugar original. Apenas os que faltam sao adicionados - seus proprios papeis, seus fatores e conteudos ficam intactos.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>{0} papel(eis) embutido(s) restaurado(s).</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>Apagar o papel embutido "{0}" e o loadout por tras dele? Colonos que o usam voltam a ficar sem loadout - a munição, mochilas e armas secundarias deles permanecem. Isso o remove da biblioteca global de todas as colonias; "Restaurar predefinidos" o traz de volta vazio sem mexer nos seus outros papeis.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

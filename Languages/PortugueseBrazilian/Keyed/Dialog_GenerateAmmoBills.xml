@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateAmmoBills_BenchLabelNone>Nenhuma</CER_GenerateAmmoBills_BenchLabelNone>
+	<CER_GenerateAmmoBills_ToggleToAmmoBills>&lt; Encomendas de munição</CER_GenerateAmmoBills_ToggleToAmmoBills>
+	<CER_GenerateAmmoBills_ToggleToWeaponBills>Encomendas de arma &gt;</CER_GenerateAmmoBills_ToggleToWeaponBills>
+	<CER_GenerateAmmoBills_DefaultBatchesLabel>Lotes padrão:</CER_GenerateAmmoBills_DefaultBatchesLabel>
+	<CER_GenerateAmmoBills_WorkbenchLabel>Bancada de trabalho:</CER_GenerateAmmoBills_WorkbenchLabel>
+	<CER_GenerateAmmoBills_AllBenchesOption>Todas as bancadas</CER_GenerateAmmoBills_AllBenchesOption>
+	<CER_GenerateAmmoBills_AmmunitionLabel>Munição:</CER_GenerateAmmoBills_AmmunitionLabel>
+	<CER_GenerateAmmoBills_AbAssignedLoadouts>Configurações atribuídas</CER_GenerateAmmoBills_AbAssignedLoadouts>
+	<CER_GenerateAmmoBills_AbAvailableWeapons>Armas disponíveis</CER_GenerateAmmoBills_AbAvailableWeapons>
+	<CER_GenerateAmmoBills_AbActiveBills>Encomendas ativas</CER_GenerateAmmoBills_AbActiveBills>
+	<CER_GenerateAmmoBills_AbAllAmmunition>Mun. pesquisada</CER_GenerateAmmoBills_AbAllAmmunition>
+	<CER_GenerateAmmoBills_HideDuplicateBenches>Ocultar bancadas duplicadas</CER_GenerateAmmoBills_HideDuplicateBenches>
+	<CER_GenerateAmmoBills_ColName>Nome</CER_GenerateAmmoBills_ColName>
+	<CER_GenerateAmmoBills_ColSpecial>Especial</CER_GenerateAmmoBills_ColSpecial>
+	<CER_GenerateAmmoBills_ColAssig>Disponibilidade</CER_GenerateAmmoBills_ColAssig>
+	<CER_GenerateAmmoBills_ColIngredients>Ingredientes</CER_GenerateAmmoBills_ColIngredients>
+	<CER_GenerateAmmoBills_ColGenerateOn>Gerar em...</CER_GenerateAmmoBills_ColGenerateOn>
+	<CER_GenerateAmmoBills_ColLoadouts>Configurações</CER_GenerateAmmoBills_ColLoadouts>
+	<CER_GenerateAmmoBills_UnneededBillTooltip>Nenhuma configuração atribuída de colono precisa desta munição atualmente - a(s) encomenda(s) em andamento estão produzindo para ninguém.</CER_GenerateAmmoBills_UnneededBillTooltip>
+	<CER_GenerateAmmoBills_ActiveBillsNone>Nenhuma</CER_GenerateAmmoBills_ActiveBillsNone>
+	<CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>Gerar uma encomenda em {0}.</CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>
+	<CER_GenerateAmmoBills_JumpToWorkbenchTooltip>Ir para esta bancada de trabalho.</CER_GenerateAmmoBills_JumpToWorkbenchTooltip>
+	<CER_GenerateAmmoBills_NoBench>Sem bancada</CER_GenerateAmmoBills_NoBench>
+	<CER_GenerateAmmoBills_NotResearched>Não pesquisada</CER_GenerateAmmoBills_NotResearched>
+	<CER_GenerateAmmoBills_LoadoutsNone>Nenhuma</CER_GenerateAmmoBills_LoadoutsNone>
+	<CER_GenerateAmmoBills_DeleteAllBillsButton>Excluir todas as encomendas de munição</CER_GenerateAmmoBills_DeleteAllBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllBillsConfirm>Excluir toda encomenda de produção de munição em toda bancada de trabalho? Isto não pode ser desfeito.</CER_GenerateAmmoBills_DeleteAllBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsSingular>{0} encomenda de munição excluída.</CER_GenerateAmmoBills_DeletedAmmoBillsSingular>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsPlural>{0} encomendas de munição excluídas.</CER_GenerateAmmoBills_DeletedAmmoBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllBillsTooltip>Remover toda encomenda de produção de munição de toda bancada de trabalho.</CER_GenerateAmmoBills_DeleteAllBillsTooltip>
+	<CER_GenerateAmmoBills_RemoveUnneededButton>Remover encomendas desnecessárias ({0})</CER_GenerateAmmoBills_RemoveUnneededButton>
+	<CER_GenerateAmmoBills_PruneConfirm>Excluir toda encomenda de munição que ninguém atualmente atribuído ainda precisa? Encomendas que ainda cobrem demanda real são deixadas intactas. Isto não pode ser desfeito.</CER_GenerateAmmoBills_PruneConfirm>
+	<CER_GenerateAmmoBills_RemovedUnneededSingular>{0} encomenda de munição desnecessária removida.</CER_GenerateAmmoBills_RemovedUnneededSingular>
+	<CER_GenerateAmmoBills_RemovedUnneededPlural>{0} encomendas de munição desnecessárias removidas.</CER_GenerateAmmoBills_RemovedUnneededPlural>
+	<CER_GenerateAmmoBills_PruneTooltip>Encomendas atualmente em andamento para munição que nenhuma configuração atribuída de colono ainda demanda - a produção continuou depois que uma configuração foi editada/excluída ou um colono foi reatribuído. Encomendas que ainda cobrem demanda real nunca são tocadas.</CER_GenerateAmmoBills_PruneTooltip>
+	<CER_GenerateAmmoBills_AutoGenerateButton>Otimizar ordens de munição</CER_GenerateAmmoBills_AutoGenerateButton>
+	<CER_GenerateAmmoBills_AutoGenerateTooltip>Percorre todos os tipos de munição de uma vez: o que falta recebe uma ordem e as ordens que ninguém precisa mais são oferecidas para cancelamento. Nada muda antes da confirmação; a produção em curso fica intacta.</CER_GenerateAmmoBills_AutoGenerateTooltip>
+	<CER_GenerateAmmoBills_NoAmmoSelected>Nenhuma munição selecionada para geração.</CER_GenerateAmmoBills_NoAmmoSelected>
+	<CER_GenerateAmmoBills_WeaponsLabel>Armas:</CER_GenerateAmmoBills_WeaponsLabel>
+	<CER_GenerateAmmoBills_WovAssignedLoadouts>Configurações atribuídas</CER_GenerateAmmoBills_WovAssignedLoadouts>
+	<CER_GenerateAmmoBills_WovAvailableWeapons>Armas disponíveis</CER_GenerateAmmoBills_WovAvailableWeapons>
+	<CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>Somente armas que a sua colônia realmente possui.</CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovResearchedWeapons>Armas pesq.</CER_GenerateAmmoBills_WovResearchedWeapons>
+	<CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>Toda arma cuja receita de fabricação está pesquisada (possuindo uma ou não).</CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovActiveBills>Encomendas ativas</CER_GenerateAmmoBills_WovActiveBills>
+	<CER_GenerateAmmoBills_WovColWeapon>Arma</CER_GenerateAmmoBills_WovColWeapon>
+	<CER_GenerateAmmoBills_WovColScore>Pontuação</CER_GenerateAmmoBills_WovColScore>
+	<CER_GenerateAmmoBills_WovColSpecial>Especial</CER_GenerateAmmoBills_WovColSpecial>
+	<CER_GenerateAmmoBills_WovColIngredients>Ingredientes</CER_GenerateAmmoBills_WovColIngredients>
+	<CER_GenerateAmmoBills_WovColOwned>Disponibilidade</CER_GenerateAmmoBills_WovColOwned>
+	<CER_GenerateAmmoBills_WovQueuedMsg>{0}x {1} enfileirado em {2}.</CER_GenerateAmmoBills_WovQueuedMsg>
+	<CER_GenerateAmmoBills_WovMaterialTip>Material deste pedido: {0}. Clique para mudar - o pedido fica restrito a ele.</CER_GenerateAmmoBills_WovMaterialTip>
+	<CER_GenerateAmmoBills_WovCountTip>Quantos fabricar. Um clique em Produce enfileira exatamente essa quantidade - padrao 1.</CER_GenerateAmmoBills_WovCountTip>
+	<CER_GenerateAmmoBills_WovColMaterial>Mat.</CER_GenerateAmmoBills_WovColMaterial>
+	<CER_GenerateAmmoBills_ScoreBarLabel>Pontuação: {0}</CER_GenerateAmmoBills_ScoreBarLabel>
+	<CER_GenerateAmmoBills_PlusMatLabel>+mat.</CER_GenerateAmmoBills_PlusMatLabel>
+	<CER_GenerateAmmoBills_MaterialTooltip>Também precisa de um material (aço, madeira, ...), escolhido quando você a produz.</CER_GenerateAmmoBills_MaterialTooltip>
+	<CER_GenerateAmmoBills_WovNotResearched>Não pesquisada</CER_GenerateAmmoBills_WovNotResearched>
+	<CER_GenerateAmmoBills_WovNoBench>Sem bancada</CER_GenerateAmmoBills_WovNoBench>
+	<CER_GenerateAmmoBills_WovNotResearchedTooltip>Não pode ser produzida: sua receita de fabricação ainda não foi pesquisada.</CER_GenerateAmmoBills_WovNotResearchedTooltip>
+	<CER_GenerateAmmoBills_WovNoBenchTooltip>Não pode ser produzida: nenhuma bancada de trabalho adequada está construída neste mapa.</CER_GenerateAmmoBills_WovNoBenchTooltip>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>Excluir todas as encomendas de arma</CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>Excluir toda encomenda de produção de arma em toda bancada de trabalho? Isto não pode ser desfeito.</CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsSingular>{0} encomenda de arma excluída.</CER_GenerateAmmoBills_DeletedWeaponBillsSingular>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsPlural>{0} encomendas de arma excluídas.</CER_GenerateAmmoBills_DeletedWeaponBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>Remover toda encomenda de produção de arma de toda bancada de trabalho.</CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>
+	<CER_GenerateAmmoBills_ProduceSelectedCount>Produzir selecionadas ({0})</CER_GenerateAmmoBills_ProduceSelectedCount>
+	<CER_GenerateAmmoBills_ProduceSelectedLabel>Produzir selecionadas</CER_GenerateAmmoBills_ProduceSelectedLabel>
+	<CER_GenerateAmmoBills_HiddenWeaponsMessage>{0} arma(s) selecionada(s) ocultas pelo filtro atual não foram produzidas.</CER_GenerateAmmoBills_HiddenWeaponsMessage>
+	<CER_GenerateAmmoBills_NoWeaponsSelected>Nenhuma arma selecionada.</CER_GenerateAmmoBills_NoWeaponsSelected>
+	<CER_GenerateAmmoBills_AddedUpdatedBillsMessage>{0} encomendas adicionadas/atualizadas.</CER_GenerateAmmoBills_AddedUpdatedBillsMessage>
+	<CER_GenerateAmmoBills_RemovedObsoleteSingular>{0} encomenda de munição obsoleta removida.</CER_GenerateAmmoBills_RemovedObsoleteSingular>
+	<CER_GenerateAmmoBills_RemovedObsoletePlural>{0} encomendas de munição obsoletas removidas.</CER_GenerateAmmoBills_RemovedObsoletePlural>
+	<CER_GenerateAmmoBills_AutoGeneratedBillsMessage>{0} encomenda(s) de munição faltante(s) gerada(s) automaticamente.</CER_GenerateAmmoBills_AutoGeneratedBillsMessage>
+
+	<CER_GenerateAmmoBills_ColAmount>Quantidade</CER_GenerateAmmoBills_ColAmount>
+	<CER_GenerateAmmoBills_AmountTooltip>O que um clique em uma bancada adiciona à ordem. Padrão: lotes x rendimento ({0} por lote).</CER_GenerateAmmoBills_AmountTooltip>
+	<CER_GenerateAmmoBills_GenerateAdditiveTooltip>{0}: adicionar {1} à ordem ∞ (produzir até). Clique de novo para adicionar mais.</CER_GenerateAmmoBills_GenerateAdditiveTooltip>
+
+	<CER_GenerateAmmoBills_WovColActiveBills>Ordens ativas</CER_GenerateAmmoBills_WovColActiveBills>
+
+	<CER_GenerateAmmoBills_GenerateOnceTooltip>{0}: ordem única - produzir {1} e parar (x1).</CER_GenerateAmmoBills_GenerateOnceTooltip>
+
+	<CER_GenerateAmmoBills_MasterCheckTip>Marcar as {0} linhas selecionáveis.</CER_GenerateAmmoBills_MasterCheckTip>
+	<CER_GenerateAmmoBills_MasterUncheckTip>Desmarcar tudo.</CER_GenerateAmmoBills_MasterUncheckTip>
+
+
+	<CER_GenerateAmmoBills_FilterAssignedTip>Somente o que os colonos têm atribuído agora. A lista mais curta e a que corresponde ao que seu esquadrão realmente usará.</CER_GenerateAmmoBills_FilterAssignedTip>
+	<CER_GenerateAmmoBills_FilterActiveBillsTip>Somente entradas que já têm um trabalho na fila de uma bancada. Use para revisar o que está sendo produzido.</CER_GenerateAmmoBills_FilterActiveBillsTip>
+	<CER_GenerateAmmoBills_AbAvailableWeaponsTip>Munição para cada arma que a colônia possui ou pode fabricar - mais ampla que a lista atribuída, para estocar antes de distribuir as armas.</CER_GenerateAmmoBills_AbAvailableWeaponsTip>
+	<CER_GenerateAmmoBills_AbAllAmmunitionTip>Todo tipo de munição pesquisado, use ou não alguma arma daqui. A lista mais ampla.</CER_GenerateAmmoBills_AbAllAmmunitionTip>
+	<CER_GenerateAmmoBills_HideDuplicateBenchesTip>Com várias bancadas idênticas, mostrar apenas uma. Mantém a coluna curta; o trabalho vai para a bancada livre de qualquer forma.</CER_GenerateAmmoBills_HideDuplicateBenchesTip>
+	<CER_GenerateAmmoBills_NothingMatchesSearch>Nada corresponde a "{0}". Limpe o campo de busca para ver a lista completa.</CER_GenerateAmmoBills_NothingMatchesSearch>
+	<CER_GenerateAmmoBills_NothingMatchesFilter>O filtro atual não mostra nada. Escolha um mais amplo acima - "{0}" sempre mostra tudo o que foi pesquisado.</CER_GenerateAmmoBills_NothingMatchesFilter>
+</LanguageData>

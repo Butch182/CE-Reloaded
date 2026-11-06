@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_LoadoutUtility_WordEquipped>장착됨</CER_LoadoutUtility_WordEquipped>
+	<CER_LoadoutUtility_WordInStorage>보관 중</CER_LoadoutUtility_WordInStorage>
+	<CER_LoadoutUtility_WordInProduction>생산 중</CER_LoadoutUtility_WordInProduction>
+	<CER_LoadoutUtility_WordMissing>부족 - 보유하지 않음, 보관되지 않음, 생산 중이 아님</CER_LoadoutUtility_WordMissing>
+
+	<CER_LoadoutUtility_LocationTooltipStored>보관 중:\n{0}</CER_LoadoutUtility_LocationTooltipStored>
+	<CER_LoadoutUtility_LocationTooltipCarried>휴대 중인 주민:\n{0}</CER_LoadoutUtility_LocationTooltipCarried>
+	<CER_LoadoutUtility_LocationTooltipAssigned>배정 대상:\n{0}</CER_LoadoutUtility_LocationTooltipAssigned>
+	<CER_LoadoutUtility_LocationTooltipForbidden>"줍지 않음" 표시됨:\n{0}</CER_LoadoutUtility_LocationTooltipForbidden>
+	<CER_LoadoutUtility_ForbiddenOnGround>바닥</CER_LoadoutUtility_ForbiddenOnGround>
+	<CER_LoadoutUtility_ForbiddenMarkTip>이 재고 중 {0}개가 "줍지 않음"으로 표시되어 있습니다. 여기에는 포함되지만, 표시를 해제해야 사용할 수 있습니다.</CER_LoadoutUtility_ForbiddenMarkTip>
+	<CER_LoadoutUtility_LocationTooltipMaterials>재질별:
+{0}</CER_LoadoutUtility_LocationTooltipMaterials>
+
+	<CER_LoadoutUtility_AvailTotal>총계: {0}</CER_LoadoutUtility_AvailTotal>
+	<CER_LoadoutUtility_AvailEquipped>장착됨: {0}</CER_LoadoutUtility_AvailEquipped>
+	<CER_LoadoutUtility_AvailAvailable>사용 가능: {0}</CER_LoadoutUtility_AvailAvailable>
+	<CER_LoadoutUtility_AvailAssignedInStore>배정됨, 보관 중: {0}</CER_LoadoutUtility_AvailAssignedInStore>
+	<CER_LoadoutUtility_AvailAssignedCarried>배정 &amp; 휴대 중: {0}</CER_LoadoutUtility_AvailAssignedCarried>
+	<CER_LoadoutUtility_AvailCarriedUnassigned>배정 없이 휴대 중: {0}</CER_LoadoutUtility_AvailCarriedUnassigned>
+	<CER_LoadoutUtility_AvailInProduction>생산 중: {0}</CER_LoadoutUtility_AvailInProduction>
+	<CER_LoadoutUtility_AvailStillMissing>부족: {0}</CER_LoadoutUtility_AvailStillMissing>
+	<CER_LoadoutUtility_AvailForbidden>"줍지 않음" 표시됨: {0}</CER_LoadoutUtility_AvailForbidden>
+	<CER_LoadoutUtility_AvailOnGround>바닥에 놓여 있음: {0}</CER_LoadoutUtility_AvailOnGround>
+	<CER_LoadoutUtility_AndNMoreLine>...외 {0}개 더</CER_LoadoutUtility_AndNMoreLine>
+
+	<CER_LoadoutUtility_SearchLabel>검색:</CER_LoadoutUtility_SearchLabel>
+	<CER_LoadoutUtility_ScrollMore>아래에 더 있음</CER_LoadoutUtility_ScrollMore>
+	<CER_LoadoutUtility_ScrollMoreRows>아래에 {0}개 더</CER_LoadoutUtility_ScrollMoreRows>
+	<CER_LoadoutUtility_ClearButtonX>x</CER_LoadoutUtility_ClearButtonX>
+	<CER_LoadoutUtility_ClearSearchTooltip>검색 필터를 지웁니다.</CER_LoadoutUtility_ClearSearchTooltip>
+
+	<CER_LoadoutUtility_ArmColonyButtonLabel>정착지 무장하기</CER_LoadoutUtility_ArmColonyButtonLabel>
+	<CER_LoadoutUtility_ArmColonyButtonTooltip>한 번의 클릭: 기술에 따라 무기를 나눠주고, 탄약을 대기열에 넣고, 부족한 무기를 제작합니다.</CER_LoadoutUtility_ArmColonyButtonTooltip>
+
+	<CER_LoadoutUtility_ModeDetailedTip>상세 모드 - 모든 필터와 열을 표시합니다.\n\n클릭하면 간단 모드로 전환됩니다.</CER_LoadoutUtility_ModeDetailedTip>
+	<CER_LoadoutUtility_ModeSimpleTip>간단 모드 - 고급 필터와 열을 숨겨 더 깔끔한 화면을 보여줍니다.\n\n클릭하면 상세 모드로 전환됩니다.</CER_LoadoutUtility_ModeSimpleTip>
+
+	<CER_LoadoutUtility_ScoreBarLabel>{0}: {1}</CER_LoadoutUtility_ScoreBarLabel>
+
+	<CER_LoadoutUtility_ReadinessReady>준비됨</CER_LoadoutUtility_ReadinessReady>
+	<CER_LoadoutUtility_ReadinessIssueSingular>{0}명 조치 필요</CER_LoadoutUtility_ReadinessIssueSingular>
+	<CER_LoadoutUtility_ReadinessIssuePlural>{0}명 조치 필요</CER_LoadoutUtility_ReadinessIssuePlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutOption>로드아웃 전혀 없음 ({0})  -  분대 설정 열기</CER_LoadoutUtility_ReadinessNoLoadoutOption>
+	<CER_LoadoutUtility_ReadinessProdGapsOption>생산 공백 ({0})  -  보급 열기</CER_LoadoutUtility_ReadinessProdGapsOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>탄약 부족 ({0})  -  보급 열기</CER_LoadoutUtility_ReadinessLowAmmoSupplyOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockOption>{0}  (보급품 재고 있음, 미수령)  -  지금 가져오기</CER_LoadoutUtility_ReadinessSuppliesInStockOption>
+	<CER_LoadoutUtility_WhatOverloaded>과적</CER_LoadoutUtility_WhatOverloaded>
+	<CER_LoadoutUtility_WhatLowAmmo>탄약 부족</CER_LoadoutUtility_WhatLowAmmo>
+	<CER_LoadoutUtility_WhatCapacityBlocked>적재량 초과</CER_LoadoutUtility_WhatCapacityBlocked>
+	<CER_LoadoutUtility_WhatAssignedNotCarried>배정됐지만 맨손</CER_LoadoutUtility_WhatAssignedNotCarried>
+	<CER_LoadoutUtility_ReadinessGearOption>{0}  ({1})  -  장비 열기</CER_LoadoutUtility_ReadinessGearOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpOption>{0}  (이미 생산 중)  -  작업대로 이동</CER_LoadoutUtility_ReadinessLowAmmoJumpOption>
+	<CER_LoadoutUtility_ReadinessBetterAmmoLine>
+
+로드아웃 {0}개에 새로 연구된 탄약({1})을 쓸 수 있습니다. 교체하기 전까지는 기존 탄약을 유지합니다. 정착민 장비 탭의 "탄약 일괄 교체"를 사용하세요.</CER_LoadoutUtility_ReadinessBetterAmmoLine>
+	<CER_LoadoutUtility_ReadinessBetterAmmoOption>{0}개 로드아웃이 더 나은 탄약을 쓸 수 있음  -  탄약 일괄 교체 열기</CER_LoadoutUtility_ReadinessBetterAmmoOption>
+	<CER_LoadoutUtility_LowAmmoPlanTooSmall> (로드아웃은 {0}만 허용, {1} 필요)</CER_LoadoutUtility_LowAmmoPlanTooSmall>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitOption>{0}  (보급이 오는 중)  -  장비 열기</CER_LoadoutUtility_ReadinessLowAmmoWaitOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneOption>{0}  (재고 없음, 생산 중이 아님)  -  장비 열기</CER_LoadoutUtility_ReadinessLowAmmoNoneOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoPlanOption>로드아웃이 허용하는 탄약이 너무 적음 ({0})  -  변경</CER_LoadoutUtility_ReadinessLowAmmoPlanOption>
+	<CER_LoadoutUtility_LowAmmoInStock> ({0}개 재고 있음)</CER_LoadoutUtility_LowAmmoInStock>
+	<CER_LoadoutUtility_LowAmmoInProduction> (생산 중)</CER_LoadoutUtility_LowAmmoInProduction>
+	<CER_LoadoutUtility_LowAmmoNoneQueued> (재고 없음, 대기열에 없음)</CER_LoadoutUtility_LowAmmoNoneQueued>
+	<CER_LoadoutUtility_AndNOthers> 외 {0}명</CER_LoadoutUtility_AndNOthers>
+	<CER_LoadoutUtility_ReadinessAllGood>전투 준비 상태: 모두 보급받고 준비되었습니다.</CER_LoadoutUtility_ReadinessAllGood>
+	<CER_LoadoutUtility_ReadinessHeaderSingular>전투 준비도: 정착민 {0}명에게 조치가 필요합니다. 클릭하면 수정합니다.\n\n</CER_LoadoutUtility_ReadinessHeaderSingular>
+	<CER_LoadoutUtility_ReadinessHeaderPlural>전투 준비도: 정착민 {0}명에게 조치가 필요합니다. 클릭하면 수정합니다 (선택 창이 열립니다).\n\n문제 수가 아니라 정착민 수입니다 - 한 사람이 문제 셋을 가져도 여기서는 하나입니다.\n\n</CER_LoadoutUtility_ReadinessHeaderPlural>
+	<CER_LoadoutUtility_ReadinessNoLoadoutLine>{0}명이 로드아웃이 전혀 없음 - 소지품이 관리되지 않음, 탄약 재보급 없음 (분대 설정) - {1}\n</CER_LoadoutUtility_ReadinessNoLoadoutLine>
+	<CER_LoadoutUtility_ReadinessProdGapsLine>{0}명이 생산 공백 있음, 생산할 항목 {2}개 (보급) - {1}\n</CER_LoadoutUtility_ReadinessProdGapsLine>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockLine>{0}명이 이미 보급품이 재고에 있지만 아직 픽업하지 않음 (장비 열림) - {1}\n</CER_LoadoutUtility_ReadinessSuppliesInStockLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLine>{0}명이 다음으로 인해 영향받음: {1} (장비 창 열기) - {2}\n</CER_LoadoutUtility_ReadinessOtherIssueLine>
+	<CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>{0}명이 다음으로 인해 영향받음: {1} - {2}
+</CER_LoadoutUtility_ReadinessOtherIssueLineNoAction>
+
+	<CER_LoadoutUtility_TotalCostLabel>총 비용:</CER_LoadoutUtility_TotalCostLabel>
+
+	<CER_LoadoutUtility_IngredientQtyMulti>&#160;x{0}&#160;({1}x{2})</CER_LoadoutUtility_IngredientQtyMulti>
+	<CER_LoadoutUtility_IngredientQtySingle>&#160;x{0}</CER_LoadoutUtility_IngredientQtySingle>
+	<CER_LoadoutUtility_GroundInfo>, 바닥에 {0}개</CER_LoadoutUtility_GroundInfo>
+	<CER_LoadoutUtility_InStockSuffix>&#160;&#160;({0}&#160;재고&#160;있음{1})</CER_LoadoutUtility_InStockSuffix>
+	<CER_LoadoutUtility_InStockSuffixShort>  (&lt;color=#FBCC33&gt;{0}개 재고 있음{1}&lt;/color&gt;)</CER_LoadoutUtility_InStockSuffixShort>
+
+	<CER_LoadoutUtility_MassLabel>질량</CER_LoadoutUtility_MassLabel>
+	<CER_LoadoutUtility_LocationOnMap>{0} ({1})</CER_LoadoutUtility_LocationOnMap>
+	<CER_LoadoutUtility_BulkLabel>부피</CER_LoadoutUtility_BulkLabel>
+	<CER_LoadoutUtility_MassValue>{0}/{1} kg</CER_LoadoutUtility_MassValue>
+	<CER_LoadoutUtility_BulkValue>{0}/{1}</CER_LoadoutUtility_BulkValue>
+
+	<CER_LoadoutUtility_AmmoTooltipDamage>\n피해: {0}</CER_LoadoutUtility_AmmoTooltipDamage>
+	<CER_LoadoutUtility_AmmoTooltipSharpAP>   예리 관통력: {0}</CER_LoadoutUtility_AmmoTooltipSharpAP>
+	<CER_LoadoutUtility_AmmoTooltipBluntAP>   둔기 관통력: {0}</CER_LoadoutUtility_AmmoTooltipBluntAP>
+	<CER_LoadoutUtility_AmmoTooltipEffects>\n효과: {0}</CER_LoadoutUtility_AmmoTooltipEffects>
+	<CER_LoadoutUtility_AmmoTooltipCrafts>\n\n{0}회 제작, 재료:</CER_LoadoutUtility_AmmoTooltipCrafts>
+	<CER_LoadoutUtility_AmmoTooltipIngredientLine>\n- {0}x {1}</CER_LoadoutUtility_AmmoTooltipIngredientLine>
+	<CER_LoadoutUtility_AmmoTooltipNoRecipe>\n\n&lt;color=grey&gt;제작 레시피 없음.&lt;/color&gt;</CER_LoadoutUtility_AmmoTooltipNoRecipe>
+
+	<CER_LoadoutUtility_ShieldTooltipScore>\n전투 점수: {0}/100</CER_LoadoutUtility_ShieldTooltipScore>
+	<CER_LoadoutUtility_ShieldTooltipArmor>\n방어력(예리): {0}   방어력(둔기): {1}</CER_LoadoutUtility_ShieldTooltipArmor>
+	<CER_LoadoutUtility_ShieldTooltipMass>\n질량: {0} kg</CER_LoadoutUtility_ShieldTooltipMass>
+	<CER_LoadoutUtility_ShieldTooltipBulk>   부피: {0}</CER_LoadoutUtility_ShieldTooltipBulk>
+	<CER_LoadoutUtility_ShieldTooltipMarketValue>\n시장 가치: {0}</CER_LoadoutUtility_ShieldTooltipMarketValue>
+	<CER_LoadoutUtility_ShieldScoreTooltip>&lt;b&gt;전투 점수: {0}/100&lt;/b&gt;\n방어력(예리): {1}   방어력(둔기): {2}\n부담(질량/부피 비용): x{3}\n&lt;i&gt;현재 모드가 제공하는 최고의 방패를 기준으로 한 상대값입니다.&lt;/i&gt;</CER_LoadoutUtility_ShieldScoreTooltip>
+
+	<CER_LoadoutUtility_AbilityEMP>EMP</CER_LoadoutUtility_AbilityEMP>
+	<CER_LoadoutUtility_AbilityConcussive>충격탄</CER_LoadoutUtility_AbilityConcussive>
+	<CER_LoadoutUtility_AbilityFlashDazzle>섬광/현혹</CER_LoadoutUtility_AbilityFlashDazzle>
+	<CER_LoadoutUtility_AbilityStun>기절</CER_LoadoutUtility_AbilityStun>
+	<CER_LoadoutUtility_AbilityIncendiary>소이탄</CER_LoadoutUtility_AbilityIncendiary>
+	<CER_LoadoutUtility_AbilityToxic>독성</CER_LoadoutUtility_AbilityToxic>
+	<CER_LoadoutUtility_AbilitySmoke>연막</CER_LoadoutUtility_AbilitySmoke>
+	<CER_LoadoutUtility_AbilityFragmentation>파편탄</CER_LoadoutUtility_AbilityFragmentation>
+	<CER_LoadoutUtility_AbilityArmorPiercing>철갑탄</CER_LoadoutUtility_AbilityArmorPiercing>
+	<CER_LoadoutUtility_AbilityExplosive>폭발</CER_LoadoutUtility_AbilityExplosive>
+	<CER_LoadoutUtility_AbilityExplosiveSecondary>폭발 (2차)</CER_LoadoutUtility_AbilityExplosiveSecondary>
+
+	<CER_LoadoutUtility_DetailRadius>폭발 반경: {0}칸</CER_LoadoutUtility_DetailRadius>
+	<CER_LoadoutUtility_DetailBonusDamage>추가 피해: {0}</CER_LoadoutUtility_DetailBonusDamage>
+	<CER_LoadoutUtility_DetailFragmentCount>파편: {0}</CER_LoadoutUtility_DetailFragmentCount>
+	<CER_LoadoutUtility_DetailShieldBreak>방패 파괴 확률: {0}%</CER_LoadoutUtility_DetailShieldBreak>
+
+	<CER_LoadoutUtility_SpecialLabel>\n&lt;b&gt;특수:&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialLabel>
+	<CER_LoadoutUtility_SpecialAmmoLabel>\n&lt;b&gt;특수 탄약:&lt;/b&gt; {0}</CER_LoadoutUtility_SpecialAmmoLabel>
+
+	<CER_LoadoutUtility_ScoreTooltipMelee>&lt;b&gt;근접 무기&lt;/b&gt;\n타격당 피해: {0}  |  DPS: {1}\n예리 관통력: {2}   둔기 관통력: {3}\n&lt;i&gt;접근 위험 할인 x0.85 (사격을 받으며 거리를 좁히는 것).&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipMelee>
+	<CER_LoadoutUtility_ScoreTooltipHybridSuffix>  &lt;i&gt;(하이브리드)&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipHybridSuffix>
+	<CER_LoadoutUtility_ScoreTooltipCooldown>\n공격 쿨다운: {0}초</CER_LoadoutUtility_ScoreTooltipCooldown>
+	<CER_LoadoutUtility_ScoreTooltipLauncher>&lt;b&gt;폭발물 발사기&lt;/b&gt;\n폭발: {0} 피해  |  반경: {1}\n사거리: {2}  |  주기: {3}초</CER_LoadoutUtility_ScoreTooltipLauncher>
+	<CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>\n무게/부피 계수: x{0}</CER_LoadoutUtility_ScoreTooltipWeightBulkFactor>
+	<CER_LoadoutUtility_ScoreTooltipRanged>&lt;b&gt;원거리 무기&lt;/b&gt;\n피해: {0}  |  예리 관통력: {1}  (최고 탄종)\n유효 DPS: {2}  |  사거리: {3}\n연사: {4}  |  재장전: {5}초 (탄창 {6})</CER_LoadoutUtility_ScoreTooltipRanged>
+	<CER_LoadoutUtility_ScoreTooltipBestAmmo>
+최고 탄종: {0}</CER_LoadoutUtility_ScoreTooltipBestAmmo>
+	<CER_LoadoutUtility_ScoreTooltipAmmoVariety>\n탄약 다양성: 전투용 {0}종  (+{1}% 보너스)</CER_LoadoutUtility_ScoreTooltipAmmoVariety>
+	<CER_LoadoutUtility_ScoreTooltipHandling>\n핸들링: 정확도 x{0}  |  무게/부피 x{1}</CER_LoadoutUtility_ScoreTooltipHandling>
+	<CER_LoadoutUtility_ScoreTooltipSingleUse>\n&lt;i&gt;일회용: 한 번 발사하면 주민이 무장 해제됨 - 점수 x{0}. 주무기가 아니라 비상용 백업으로 휴대하세요.&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSingleUse>
+	<CER_LoadoutUtility_ScoreTooltipSpecialBonus>\n&lt;i&gt;(특수 능력으로 +{0})&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipSpecialBonus>
+	<CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+
+CE 데이터 누락: 5개 중 {0}개. 점수 x{1} - 누락된 데이터는 대부분 '단점 없음'으로 읽힙니다 (반동 없음, 재장전 없음, 부피 없음).</CER_LoadoutUtility_ScoreTooltipCeDataMissing>
+	<CER_LoadoutUtility_CeDataBadgeTip>이 무기는 Combat Extended 데이터 5개 중 {0}개가 없습니다. 없는 데이터는 거의 항상 강점으로 읽히기 때문에 점수를 낮췄습니다: 반동 없음, 재장전 시간 없음, 부피 없음, 무게 없는 탄약.</CER_LoadoutUtility_CeDataBadgeTip>
+	<CER_LoadoutUtility_MagazineSuffix>= {0}탄창</CER_LoadoutUtility_MagazineSuffix>
+	<CER_LoadoutUtility_MagazineSuffixTip>이 무기의 탄창 하나는 {0}발입니다. 발수는 정확한 숫자 그대로이고, 이건 '한 번의 전투에 충분한가'를 읽기 위한 표시입니다.</CER_LoadoutUtility_MagazineSuffixTip>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMech>\n&lt;b&gt;대인간:&lt;/b&gt; {0} / 100   &lt;b&gt;대메커노이드:&lt;/b&gt; {1} / 100</CER_LoadoutUtility_ScoreTooltipVsFleshMech>
+	<CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>\n  연구된 탄약만: {0} / {1}  - 배치 슬라이더가 쓰는 값</CER_LoadoutUtility_ScoreTooltipVsFleshMechResearched>
+	<CER_LoadoutUtility_ScoreTooltipFinalScore>\n&lt;b&gt;점수: {0} / 100&lt;/b&gt;</CER_LoadoutUtility_ScoreTooltipFinalScore>
+	<CER_LoadoutUtility_ScoreTooltipUtilityExcluded>\n\n&lt;i&gt;(유틸리티 무기 - 순위에서 제외됨)&lt;/i&gt;</CER_LoadoutUtility_ScoreTooltipUtilityExcluded>
+
+	<CER_LoadoutUtility_LoadoutEmpty>\n(비어 있음)</CER_LoadoutUtility_LoadoutEmpty>
+
+	<CER_LoadoutUtility_AmmoTooltipStock>\n보유량: {0} ({1} 창고, {2} 휴대)</CER_LoadoutUtility_AmmoTooltipStock>
+	<CER_LoadoutUtility_AmmoTooltipInProduction>\n생산 중: {0}</CER_LoadoutUtility_AmmoTooltipInProduction>
+	<CER_LoadoutUtility_RoleModeMixed>역할과 무기</CER_LoadoutUtility_RoleModeMixed>
+	<CER_LoadoutUtility_RoleModeRolesOnly>역할만 사용</CER_LoadoutUtility_RoleModeRolesOnly>
+	<CER_LoadoutUtility_RoleModeNoRoles>역할 사용 안 함</CER_LoadoutUtility_RoleModeNoRoles>
+	<CER_LoadoutUtility_RoleModeButtonFmt>배정: {0}</CER_LoadoutUtility_RoleModeButtonFmt>
+	<CER_LoadoutUtility_RoleModeTip>자동 배정과 개별 정착민 선택기가 나눠줄 수 있는 대상입니다.\n\n역할과 무기: 둘 다 경쟁합니다 - 기본값이며 지금까지의 동작입니다.\n역할만 사용: 역할만 사용합니다.\n역할 사용 안 함: 무기만 사용하고 역할은 건드리지 않습니다.</CER_LoadoutUtility_RoleModeTip>
+
+	<CER_LoadoutUtility_FetchGearButtonLabel>지금 장비 가져오기</CER_LoadoutUtility_FetchGearButtonLabel>
+	<CER_LoadoutUtility_FetchGearButtonTooltip>로드아웃이 있는 모든 정착민이 하던 일을 멈추고 부족한 장비를 즉시 가져옵니다 - 하나씩, 더 이상 부족한 것이 없을 때까지.\n\n이 버튼이 없으면 CE는 작업 사이에 30초마다 하나만 가져옵니다. 제외: 징집됨, 쓰러짐, 침대에 있음, 정신 붕괴 중, 또는 중단할 수 없는 작업 중 (그 작업이 끝나는 대로 가져옵니다).</CER_LoadoutUtility_FetchGearButtonTooltip>
+	<CER_LoadoutUtility_FetchGearMsgSent>정착민 {0}명이 지금 장비를 가져오는 중입니다.</CER_LoadoutUtility_FetchGearMsgSent>
+	<CER_LoadoutUtility_FetchGearMsgSentOne>식민지 주민 1명이 지금 장비를 가지러 갑니다.</CER_LoadoutUtility_FetchGearMsgSentOne>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffixOne>그중 한 명은 더 들 수 없습니다 - 먼저 무게나 부피를 비우세요.</CER_LoadoutUtility_FetchGearMsgFullSuffixOne>
+	<CER_LoadoutUtility_FetchGearMsgNone>더 가져올 것이 있는 사람이 없습니다 (확인: 장비 구성이 있는 {0}명, 건너뜀 {1}명: 침대, 징집, 무력화 또는 정신 붕괴).</CER_LoadoutUtility_FetchGearMsgNone>
+
+	<CER_LoadoutUtility_ReadinessNoBillOption>탄약 작업 지시 없음 ({0}, 당분간 재고 충분)  -  작업 개요 열기</CER_LoadoutUtility_ReadinessNoBillOption>
+	<CER_LoadoutUtility_ReadinessNoBillLine>{0}명이 탄약 작업 지시 없음 - 당분간 재고로 충분 (작업 개요) - {1}\n</CER_LoadoutUtility_ReadinessNoBillLine>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotOption>로드아웃에 탄약 없는 무기 ({0})  -  탄약 창 열기</CER_LoadoutUtility_ReadinessNoAmmoSlotOption>
+	<CER_LoadoutUtility_ReadinessNoAmmoSlotLine>{0}명이 무기는 있으나 로드아웃에 탄약 없음 (탄약 창) - {1}\n</CER_LoadoutUtility_ReadinessNoAmmoSlotLine>
+
+	<CER_LoadoutUtility_FetchGearPreviewHeader>누가 무엇을 멈추고 무엇을 가져오는지:</CER_LoadoutUtility_FetchGearPreviewHeader>
+	<CER_LoadoutUtility_FetchGearPreviewNow>지금: {0}</CER_LoadoutUtility_FetchGearPreviewNow>
+	<CER_LoadoutUtility_FetchGearPreviewFinishesFirst> (이 일을 먼저 끝냄)</CER_LoadoutUtility_FetchGearPreviewFinishesFirst>
+	<CER_LoadoutUtility_FetchGearPreviewFetches>가져옴: {0}</CER_LoadoutUtility_FetchGearPreviewFetches>
+	<CER_LoadoutUtility_FetchGearPreviewNothingFetchable>지금 가져올 것 없음 - {0}</CER_LoadoutUtility_FetchGearPreviewNothingFetchable>
+	<CER_LoadoutUtility_FetchGearPreviewNotInStock>{0} (재고 없음)</CER_LoadoutUtility_FetchGearPreviewNotInStock>
+	<CER_LoadoutUtility_FetchGearPreviewWontFit>{0} (더 이상 들 수 없음 - 운반 한계 도달)</CER_LoadoutUtility_FetchGearPreviewWontFit>
+	<CER_LoadoutUtility_FetchGearPreviewMoreItems>+{0}개 더</CER_LoadoutUtility_FetchGearPreviewMoreItems>
+	<CER_LoadoutUtility_FetchGearPreviewSkipped>{0}, 건너뜀</CER_LoadoutUtility_FetchGearPreviewSkipped>
+	<CER_LoadoutUtility_FetchGearPreviewIdle>대기 중</CER_LoadoutUtility_FetchGearPreviewIdle>
+	<CER_LoadoutUtility_FetchGearPreviewNoLoadouts>아직 로드아웃을 가진 사람이 없습니다.</CER_LoadoutUtility_FetchGearPreviewNoLoadouts>
+	<CER_LoadoutUtility_FetchGearPreviewMore>... 외 정착민 {0}명</CER_LoadoutUtility_FetchGearPreviewMore>
+	<CER_LoadoutUtility_FetchGearPreviewAllSet>정착민 {0}명은 이미 모두 갖추고 있습니다.</CER_LoadoutUtility_FetchGearPreviewAllSet>
+	<CER_LoadoutUtility_FetchGearSkipDowned>쓰러짐</CER_LoadoutUtility_FetchGearSkipDowned>
+	<CER_LoadoutUtility_FetchGearSkipDrafted>징집됨</CER_LoadoutUtility_FetchGearSkipDrafted>
+	<CER_LoadoutUtility_FetchGearSkipMental>정신 붕괴</CER_LoadoutUtility_FetchGearSkipMental>
+	<CER_LoadoutUtility_FetchGearSkipAway>지도에 없음</CER_LoadoutUtility_FetchGearSkipAway>
+	<CER_LoadoutUtility_FetchGearSkipInBed>침대에 있음</CER_LoadoutUtility_FetchGearSkipInBed>
+
+	<CER_LoadoutUtility_ReadinessFetchOption>{0}  ({1})  -  지금 가져오기</CER_LoadoutUtility_ReadinessFetchOption>
+	<CER_LoadoutUtility_FetchGearMsgOne>{0}이(가) 지금 장비를 가져옵니다.</CER_LoadoutUtility_FetchGearMsgOne>
+	<CER_LoadoutUtility_FetchGearMsgOneNone>{0}: 지금 가져올 것 없음.</CER_LoadoutUtility_FetchGearMsgOneNone>
+	<CER_LoadoutUtility_FetchGearMsgOneFull>{0}은(는) 더 이상 들 수 없습니다 - 먼저 무게나 부피를 비우세요(무언가를 내려놓거나 보관).</CER_LoadoutUtility_FetchGearMsgOneFull>
+	<CER_LoadoutUtility_FetchGearMsgOneBusy>{0}이(가) 지금은 가지러 갈 수 없습니다 - 다른 사람이 예약했거나, 닿을 수 없거나, 다른 작업이 진행 중입니다. 잠시 후 다시 시도하세요.</CER_LoadoutUtility_FetchGearMsgOneBusy>
+	<CER_LoadoutUtility_FetchGearMsgFullSuffix>그중 {0}명은 더 이상 들 수 없습니다 - 먼저 무게나 부피를 비우세요.</CER_LoadoutUtility_FetchGearMsgFullSuffix>
+
+	<CER_LoadoutUtility_CarryTipHeaderMass>운반 무게: {0} / {1}</CER_LoadoutUtility_CarryTipHeaderMass>
+	<CER_LoadoutUtility_CarryTipHeaderBulk>운반 부피: {0} / {1}</CER_LoadoutUtility_CarryTipHeaderBulk>
+	<CER_LoadoutUtility_CarryTipBase>기본 (이 신체): {0}</CER_LoadoutUtility_CarryTipBase>
+	<CER_LoadoutUtility_CarryTipItem>{0}: {1}</CER_LoadoutUtility_CarryTipItem>
+	<CER_LoadoutUtility_CarryTipOther>기타 (건강, 특성, 배율): {0}</CER_LoadoutUtility_CarryTipOther>
+	<CER_LoadoutUtility_CarryTipNoneMass>무게 한도를 높이는 착용 장비가 없습니다 - 외골격이면 가능합니다.</CER_LoadoutUtility_CarryTipNoneMass>
+	<CER_LoadoutUtility_CarryTipNoneBulk>부피 한도를 높이는 착용 장비가 없습니다 - 배낭, 전술 조끼, 탄띠면 가능합니다.</CER_LoadoutUtility_CarryTipNoneBulk>
+
+	<CER_LoadoutUtility_ReadinessFetchAllOption>식민지 주민 {0}명  ({1})  -  지금 모두 가져오기</CER_LoadoutUtility_ReadinessFetchAllOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockOption>{0}  ({1}, 창고에 가져올 것 없음)  -  보급 열기</CER_LoadoutUtility_ReadinessFetchNoStockOption>
+	<CER_LoadoutUtility_ReadinessFetchNoStockAllOption>식민지 주민 {0}명  ({1}, 창고에 가져올 것 없음)  -  보급 열기</CER_LoadoutUtility_ReadinessFetchNoStockAllOption>
+	<CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>식민지 주민 {0}명  (보급품이 창고에 있음, 미수령)  -  지금 모두 가져오기</CER_LoadoutUtility_ReadinessSuppliesInStockAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>식민지 주민 {0}명  (탄약 이미 생산 중)  -  작업대로 이동</CER_LoadoutUtility_ReadinessLowAmmoJumpAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>식민지 주민 {0}명  (보급품 오는 중)  -  작업 개요 열기</CER_LoadoutUtility_ReadinessLowAmmoWaitAllOption>
+	<CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>식민지 주민 {0}명  (재고 없음, 대기열 없음)  -  보급 열기</CER_LoadoutUtility_ReadinessLowAmmoNoneAllOption>
+
+
+	<CER_LoadoutUtility_AmmoStatDmg>피해</CER_LoadoutUtility_AmmoStatDmg>
+	<CER_LoadoutUtility_AmmoStatSharp>관통</CER_LoadoutUtility_AmmoStatSharp>
+	<CER_LoadoutUtility_AmmoStatBlunt>둔기</CER_LoadoutUtility_AmmoStatBlunt>
+	<CER_LoadoutUtility_AmmoStatTip>같은 구경 안에서 비교합니다. 꽉 찬 막대는 이 탄약군에서 가장 좋은 종류입니다.
+
+발당 피해: {0} (최고: {1})
+예리 방어구 관통: {2} (최고: {3})
+둔기 방어구 관통: {4} (최고: {5})
+
+피해가 높고 예리 관통이 낮으면 비무장 대상에 맞고, 예리 관통이 높으면 방어구와 기계체를 뚫습니다. 둔기 관통은 같은 구경의 모든 탄에서 동일합니다. 모든 줄에서 똑같아 보이는 막대는 고를 것이 없다는 뜻입니다.</CER_LoadoutUtility_AmmoStatTip>
+</LanguageData>

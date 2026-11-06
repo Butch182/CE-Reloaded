@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>Supply Loadouts</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>Show only what's missing</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>Name</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>Special</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>Assig.</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>Ingredients</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>Material</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>Batches</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>Stock</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>How many to keep in storage for the WHOLE colony - the target of a make-until-X bill. Not per colonist: the same word in the loadout editor means the opposite (rounds one person carries).</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>Availability</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>Workbench</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>Main weapons</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>Sidearms &amp; grenades</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>Shields</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>Pack items</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>Obsolete bills - nobody assigned needs these (removed on confirm)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>Toggle every row at once.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>Nobody currently assigned needs these items.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>Everything needed is already in stock or in production.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; Back</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>Back to the previous step. Nothing here has been supplied yet, so nothing is undone.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>Cancel</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>Closes this window without queueing anything. The assignment itself stays - only production is skipped.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>Supply nothing</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>Confirm &amp; supply</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>Supply selected</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>Ammunition</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>In production: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: no colonist's assigned loadout demands this anymore - its bill will be deleted when you confirm.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: kept - it will NOT be deleted when you confirm.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>Used by:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>Not assigned to any colonist.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>No colonist is assigned a loadout that uses this ammo.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>Diamond: assigned to a colonist right now. Circle: used in a saved Loadout template.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>Not used in any saved loadout.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>No saved loadout uses this ammo.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>Add one batch ({0}) to the target count.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>Exact target count.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>Any</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>Needed per craft: {0}\nIn stock: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>In production:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ No {0} (can't create bill)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>No {0} built</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(auto)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\nAuto-resolved from a generic ammo requirement to your default firearm ammo preference.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ Can't be produced (not researched)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ Needs research: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>Combat Extended ammo needs both the recipe AND a workbench that can make it. Still missing here: {0}. Once that is done, build a {1} and this row unlocks.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>Change...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>Switch to a different researched variant for this weapon.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>No other researched ammo variant exists for this weapon to switch to.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>Jump to this workbench.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>Open bills tab for this workbench.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>{0} weapon bill(s)</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>{0} ammo bill(s) added</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>{0} ammo bill(s) updated</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>Supply: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>Nothing selected to supply.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ Needs research: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>The recipe for this weapon exists, but the research is not finished. Still missing: {0}. Once that is done, this row unlocks.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- can't be crafted (no recipe)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>There is no crafting recipe for this item at all - no research unlocks it. Get it by trade, raid loot or a quest reward.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>queued by the mod</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>created by hand</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>This bill was queued by CE Reloaded's own wizard, so it is pre-selected for removal. Untick it to keep it.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>You created this bill yourself, so it is NOT pre-selected. It is only listed because no current loadout asks for it - tick it if you really want it gone.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

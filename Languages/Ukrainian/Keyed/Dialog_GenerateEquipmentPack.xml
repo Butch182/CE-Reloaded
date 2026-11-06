@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>Набори спорядження</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>Одразу створює стартову палітру запасів - повсякденні запаси, медичний набір, рюкзак, бойові наркотики, щит. Кожен предмет залишається редагованим потім: натисніть, щоб змінити, що це таке, відредагувати кількість або прибрати. Повторний запуск пізніше вдосконалює набір з такою самою назвою на місці, а не дублює його.</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>Використати рекомендоване налаштування</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>Збалансовано</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>Ощадливо</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>Найкраще спорядження</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>Лише необхідне</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>Скидає всі повзунки до значень за замовчуванням (Збалансовано).</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>Детальний режим - показані всі повзунки для ручного налаштування.\n\nНатисніть, щоб перейти в простий режим (лише пресети).</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>Простий режим - лише пресети, повзунки приховані.\n\nНатисніть, щоб перейти в детальний режим і налаштувати кожен повзунок вручну.</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>Використовувати загальні типи "Будь-який X"</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>Коли увімкнено, Медицина/Їжа/Наркотики завжди обирають загальний плейсхолдер CE ("Будь-які ліки", "Будь-яка непсувна їжа", "Будь-який наркотик") замість конкретного предмета - враховується все, що є в наявності, тож нічого не скінчиться.</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>Дешево</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>Дорого</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>Який саме предмет обирає кожна категорія, коли підходить кілька - дешевий/доступний чи найкращий незалежно від вартості. Не впливає, поки увімкнено "Будь-який X".</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>Легкий</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>Важкий</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>Скільки запасів несе набір, і чи щит з набору щитів надає перевагу мобільності чи максимальному захисту.</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>Необхідне</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>Все</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>Скільки з шаблонів нижче за замовчуванням позначені, від найважливіших (Базові запаси, Медичний набір, Набір щитів, Спостерігач, Тактичний набір, Набір EMP, Набір бойових наркотиків - останній, свідомий ситуативний вибір, ніколи не за замовчуванням). Впливає лише на рядок, який ви самі не позначали/не знімали.</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; Назад</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>Повернутися до попереднього кроку процесу "Озброїти колонію". Вже застосовані кроки не скасовуються.</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>Скасувати</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>Видалити наявні набори спорядження ({0})</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>Видаляє кожен наявний набір спорядження (колоністи втратять його з комплекту). Кожен шаблон вище потім знову запропонує новий набір.</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>Видалити {0} набір спорядження? Це неможливо скасувати.</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>Видалити всі набори спорядження ({0})? Це неможливо скасувати.</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>Видалено {0} набір спорядження.</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>Видалено наборів спорядження: {0}.</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>Пропустити</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>Пропустити цей крок - тут нічого не створюється, процес "Озброїти колонію" переходить до наступного кроку.</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>Створити позначене ({0})</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>Створити {0}, видалити {1}</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>Видалити {0}</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>Продовжити (без наборів)</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>Пропущено (назва вже використовується набором, створеним вручну, а не цим майстром): {0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>Набір</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>Вміст</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>Наявність</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>Матеріали</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>Маса / Об'єм</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>"{0}" вже існує - за замовчуванням залишено без змін (заповнення прогалин). Натисніть, щоб включити його в цей запуск, або просто відредагуйте щось нижче - будь-яка зміна тут застосовується одразу й теж включає його.</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>На складі: {0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>Матеріал, з якого це буде виготовлено: {0}. Натисніть, щоб змінити.</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>Матеріал, з якого це буде виготовлено. Натисніть, щоб змінити.</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>Натисніть, щоб змінити, що це таке.</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>Цей предмет уже був у наборі, і майстер не має чим його замінити - він зберігається як є. Щоб видалити, натисніть X.</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>Додати ще один предмет до цього набору.</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>Медикаменти</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>Їжа</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>Наркотик</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>Щит</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>Утиліта</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}: {1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0} залишається без змін. Натисніть, щоб позначити на видалення.</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>{0} буде створено під час застосування. Натисніть, щоб виключити.</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>{0} НЕ буде створено. Натисніть, щоб додати.</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>{0} буде ВИДАЛЕНО під час застосування. Натисніть, щоб зберегти.</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>Ви змінили {0} - ваша версія буде записана під час застосування. Натисніть, щоб позначити на видалення.</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

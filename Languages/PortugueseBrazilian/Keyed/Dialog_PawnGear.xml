@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - equipamento carregado</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>Soltar coloca o item no chão perto do colono - carregadores o devolvem ao armazenamento.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Este colono não está no mapa agora, então nada pode ser solto.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Equipamento</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Vestimenta</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Inventário</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Soltar</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- nenhum -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Fechar</CER_PawnGear_CloseButton>
+
+</LanguageData>

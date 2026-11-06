@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Add Other Item</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - add any item to their personal loadout beyond what Ammo, Packs and Sidearms already cover.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Search items...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>No items match "{0}".</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Remove {0} from this colonist (they currently have {0}). The number in the field says how many.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Nothing of this item is on this colonist's personal list, so there is nothing to remove.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Removed {0}x {1} from {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Item</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Assigned</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Qty</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>Added {0}x {1} to {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Close</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Copy</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Copies this colonist's other items to the clipboard. Paste them onto another colonist via the paste column in Equip Colonists (replaces that colonist's other items). An empty list can be copied too - pasting it clears the target.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>Copied {0} item type(s) from {1} - use the paste column in Equip Colonists.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Copied an empty item list from {0} - pasting it clears the target's other items.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

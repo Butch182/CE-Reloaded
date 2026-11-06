@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Nie ma nic do przypisania: każdy kolonista jest zablokowany lub zachowany. Odznacz "Zachowaj obecne zestawy" albo odblokuj kolonistów.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>„Tylko role” jest włączone, ale nie ma jeszcze żadnej roli. Kliknij, by utworzyć ją w zakładce Role, albo wyłącz opcję.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Nie można przypisać żadnej broni: nie ma nic użytecznego w posiadaniu ani do wytworzenia. Najpierw zdobądź broń albo wybierz ją koloniście ręcznie w Wyposaż kolonistów.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>Kolonistów bez broni: {0} - za mało posiadanej broni. Przesuń suwak w stronę "Wytwórz nowe przedmioty".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>Kolonistów bez broni: {0} - za mało posiadanej lub możliwej do wytworzenia broni. Zbadaj lub zbuduj więcej typów broni.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Brak opcji przeciw mechanoidom wśród kandydatów: nic nie strzela amunicją EMP ani AP/Sabot. Daj koloniście taką amunicję w oknie amunicji albo dodaj granat EMP jako broń boczną.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Brak dedykowanej opcji przeciw ciału wśród kandydatów: żaden nie ma amunicji zapalającej/HE/odłamkowej. Standardowe naboje wciąż działają przeciw ciału, więc to tylko wskazówka.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Nie ma dostępnej broni białej, więc „Preferuj walkę wręcz” nie ma czego rozdać. Najpierw zdobądź broń białą.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Brak dostępnej broni dystansowej, więc "Preferuj dystans" nie ma czego rozdać. Najpierw zdobądź broń dystansową.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Grup broni wśród kandydatów: {0} - niewiele można zróżnicować. Zbadaj lub zbuduj więcej typów broni.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>Kolonistów z zestawem, którzy obecnie nie mogą celować ani walczyć (powaleni, ranni lub sparaliżowani): {0} - {1}. Zablokuj ich, jeśli to stan trwały.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} kolonista(ow) dostaje zestaw, ktory sie na nich nie miesci ({1}). Wezma tylko to, co sie zmiesci, a reszte zostawia - zestaw pozostanie czesciowo niezrealizowany.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>objętość {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>masa {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Nie można przypisać broni: nic użytecznego nie jest posiadane ani możliwe do wytworzenia, a „Bez ról” pomija wszystkie role.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

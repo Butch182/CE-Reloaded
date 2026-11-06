@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>현재 맵에서 주민을 찾을 수 없습니다.</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>원거리 기술로 정렬</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>근접 기술로 정렬</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>간략 보기:</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>전체 카드 대신 주민마다 한 줄의 얇은 행으로 표시합니다. 더 이상 들어가지 않는 세부 정보는 툴팁으로 이동합니다.</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>자동 배정...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>실시간 자동 배정 미리보기를 엽니다: 슬라이더로 조달 방식, 대메커노이드, 원거리/근접, 분대 다양성을 조정하고 적용하기 전에 결과 분포를 확인하세요.</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>탄약 일괄 교체</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>모든 로드아웃의 탄약 종류를 한 번에 교체합니다(예: 전원 FMJ에서 AP로).</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>주민 {0}명 자동 배정됨</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>주민 {0}명 자동 배정됨</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>, {0}명은 로드아웃 없이 남음</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>자동 배정이 취소되었습니다 - 이전 단계의 역할, 팩, 탄약 청구서는 유지되지만, 배정이 적용되지 않았고 무기도 생산되지 않았습니다.</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>역할로 저장</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>역할 편집</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>역할 탭을 열고 이 주민의 역할을 선택합니다. 거기서 역할 자체를 편집하세요.</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>편집</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>이 주민의 현재 조합(주무기, 보조무기/폭발물/방패, 팩)이 초안으로 미리 채워진 상태로 역할 모드를 엽니다 - 검토 후 그곳에서 생성을 누르세요.</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>아직 로드아웃이 배정되지 않았습니다 - 저장할 것이 없습니다.</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>배정이 적용되었습니다. 이 단계에서 생산은 건너뛰었습니다 - 필요하면 나중에 Supply Loadouts에서 예약하세요.</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+클릭하면 휴대 중인 장비를 보고 편집할 수 있습니다.</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;점수 계산:&lt;/b&gt;
+기술 레벨 x 10을 기준으로 계산되며, 시야, 조작, 이동, 특성에 따라 조정됩니다.
+
+&lt;b&gt;막대 색상:&lt;/b&gt;
+비어있음 = 0
+짙은 빨강 = 나쁨
+밝은 초록 = 마스터 (최대 레벨: {0})</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>무기:</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>없음</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>놓으면 {0}과(와) 로드아웃을 교환합니다.</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>전투가 불가능합니다(폭력 불가 또는 아기). 따라서 무기를 배정할 수 없습니다. Equipment Pack이나 무기 없는 역할은 여전히 가능합니다.</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> 현재 로드아웃은 여전히 지울 수 있습니다.</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+다른 주민의 로드아웃 버튼 위로 끌어놓으면 교환됩니다.</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>질량</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>부피</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} kg</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;질량&lt;/b&gt;
+로드아웃에 포함된 모든 것(무기, 탄약, 식사, 의약품)의 총 무게 대 {0}이(가) 운반할 수 있는 양입니다.
+
+운반 능력은 주민의 &lt;b&gt;운반 능력&lt;/b&gt; 스탯에서 나오며, 체구와 조작 능력에 따라 달라지므로 크고 건강한 주민이 작거나 부상당한 주민보다 더 많이 운반합니다. 초과하면 이동 속도가 느려집니다. 여기서 기준은 CE의 &lt;b&gt;Carry Weight&lt;/b&gt; 한계이며, 더 큰 RimWorld 운반 용량이 아닙니다.</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;부피&lt;/b&gt;
+로드아웃이 차지하는 공간 대 이 주민의 &lt;b&gt;휴대 부피&lt;/b&gt; 스탯(CE)입니다. 부피는 무게가 아니라 부피에 관한 것입니다 - 낱개 탄약이나 방어구가 많으면 부피가 빠르게 소모됩니다. 초과하면 이동과 조준에 영향을 줍니다.</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>들어가지 않습니다. 초과분은 정착민이 절대 가져가지 않습니다 - Combat Extended는 들어가는 만큼만 챙기고 남는 것은 다시 내려놓기 때문에, 장비 지정이 계속 절반만 채워집니다. 탄약 수량을 줄이거나 보급 꾸러미에서 물품을 빼거나 더 가벼운 장비를 고르세요.</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;질량&lt;/b&gt;
+로드아웃 무게 대 이 주민의 운반 능력입니다. 초과하면 이동 속도가 느려집니다. 여기서 기준은 CE의 &lt;b&gt;Carry Weight&lt;/b&gt; 한계이며, 더 큰 RimWorld 운반 용량이 아닙니다.</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;부피&lt;/b&gt;
+로드아웃 부피 대 이 주민의 휴대 부피(CE)입니다. 초과하면 이동과 조준에 영향을 줍니다.</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>없음</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0}은(는) 전투가 불가능합니다(폭력 불가 또는 아기). 무기가 없는 장비만 배정할 수 있습니다.</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0}은(는) 아무것도 지닐 수 없습니다.</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0}은(는) 역할에 배정되어 있습니다. 팩, 보조무기, 기타 아이템은 역할 자체에서 정해집니다(Roles 탭). 아무것도 붙여넣지 않았습니다.</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>현재 조합을 역할로 저장...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>주민</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>원거리</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>근접</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>무기</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>탄약</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>주무기</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>전체 배정 해제</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>모든 자유 정착민의 배정이 해제됩니다 - 부착된 팩과 보조 무기는 유지됩니다.</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>모든 자유 정착민의 배정을 해제할까요? 부착된 팩과 보조 무기는 유지되며, 들고 있는 장비는 떨어뜨리지 않습니다.</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>{0}명의 배정이 해제되었습니다.</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>팩</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>보조무기</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>보조무기</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>기타</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>저장</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>역할로 저장
+
+이 주민의 현재 조합(주무기, 보조무기/폭발물/방패, 팩)이 초안으로 미리 채워진 상태로 역할 모드를 엽니다 - 검토 후 그곳에서 생성을 누르세요.</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>역할로 저장
+
+아직 로드아웃이 배정되지 않았습니다 - 저장할 것이 없습니다.</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>원거리 및 근접 전투 점수(기술 x 10, 시야/조작/이동/특성으로 조정).</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>원거리</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>근접</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>원</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>근</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>탄약: -</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>없음</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0종류</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0}종류</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>탄약: {0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0}은(는) 탄약을 사용하는 무기를 휴대하지 않습니다(근접 또는 수류탄 전용) - 여기서 설정할 것이 없습니다.</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>{0}의 무기는 탄약을 사용하지만 아무것도 설정되어 있지 않습니다 - 쏠 수 있는 것을 아무것도 휴대하지 않게 됩니다.</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>{0}의 탄약: {1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+클릭하면 변경할 수 있습니다 - 이 주민 한 명에게만 영향을 줍니다.</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>팩: -</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>{0}에 포함됨:
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>이 역할에는 의약품/식량/약물/유틸리티 항목이 포함되어 있지 않습니다.</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>이 역할에는 보조무기, 투척 폭발물, 방패가 포함되어 있지 않습니다.</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+이 역할에서 옵니다. 역할에 연결된 팩은 계속 연동됩니다 - 팩을 바꾸면 이 역할의 모든 정착민이 따라갑니다. 나머지는 고정되어 있으니 역할 탭에서 변경하세요.</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>없음</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>팩: {0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>장착된 장비 팩: {0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>장착된 장비 팩이 없습니다.</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+클릭하면 {0}이(가) 휴대할 팩을 선택할 수 있습니다.</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - 휴대할 팩을 선택하세요. 변경 사항은 즉시 적용됩니다.</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>"{1}"의 {0} 선택 항목을 {2}에게 붙여넣었습니다.</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>"{1}"에서 복사한 {0} 선택 항목을 {2}에게 붙여넣습니다.</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>보조무기: -</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>없음</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>보조무기: {0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>장착된 보조무기: {0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>장착된 보조무기가 없습니다.</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+클릭하면 {0}이(가) 보조무기로 휴대할 무기를 선택할 수 있습니다.</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - 보조무기로 휴대할 무기를 선택하세요. 변경 사항은 즉시 적용됩니다.</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>보조무기</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>보조무기로 휴대할 다른 무기가 없습니다.</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>기타: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>이 역할에 포함되어 있습니다 - 개척민별로 여기서가 아니라 역할 자체(역할 탭)를 편집해 다른 아이템을 추가하세요.</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>없음</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>기타: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>휴대 중인 기타 아이템: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>추가된 기타 아이템이 없습니다.</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+클릭하여 {0}에게 다른 아이템을 추가합니다.</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>싸울 수 없는 주민(평화주의자 또는 아기)과는 교환할 수 없습니다.</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>두 주민 모두 교환할 로드아웃이 없습니다.</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>두 주민이 이미 같은 로드아웃을 가지고 있습니다.</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>로드아웃을 교환했습니다: {0}와(과) {1}.</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>현재 장착 중: {0}.</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>없음</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> {0}에 대기 중 - 클릭하면 청구서 탭이 열립니다.</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;현재 장착 중:&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;인벤토리:&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>장착한 것이 없습니다.</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;전투 능력&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;이 능력치들은 위의 원거리 및 근접 점수에 영향을 줍니다.&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>조준 / 사격</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>조준 &amp; 근접 명중</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>근접 거리 좁히기</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}: 근접 점수 x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}: 근접 점수 x1.25 (회피 확률 증가)</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}: 근접 점수 x1.5 (피해를 훨씬 적게 받음)</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}: 근접 점수 x0.1 (즉시 쓰러짐)</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}: 원거리 명중률에 영향</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}: 원거리 조준 시간에 영향</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>{0} 없음</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>{0} 없음: 능력치 감소</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}: 능력치 조정</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;사격:&lt;/b&gt; {0} | 시야: {1}% | 조작: {2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;근접:&lt;/b&gt; {0} | 시야: {1}% | 이동: {2}% | 조작: {3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>붙여넣지 않았습니다: 복사한 탄약 중 {0}의 무기에 맞는 것이 없습니다.</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>{2}에게 탄약 {0}종을 적용했습니다. {1}종은 제외 - 보유 무기에 맞지 않습니다.</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>{0} 기준 (필요 {1}):</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>장착됨: {0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>배정됨, 창고에 있음 - 가져와야 함: {0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>생산 중: {0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>부족: {0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>식민지 전체:</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>붙여넣기 열: 정착민 행의 아이콘을 클릭하면 복사한 배정을 그 정착민에게 줍니다.</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

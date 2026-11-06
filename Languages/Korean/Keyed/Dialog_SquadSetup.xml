@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titles / header -->
+	<CER_SquadSetup_TitleAssign>로드아웃 배정</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>실시간 미리보기 - 슬라이더를 끌며 결과를 확인하세요. 적용을 누르기 전까지는 아무것도 변경되지 않습니다.</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Recommended / presets / mode toggle -->
+	<CER_SquadSetup_UseRecommendedSetup>권장 설정 사용</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>모든 슬라이더를 기본값으로 초기화하고 풀/대메커노이드를 자동 시스템(재료 재고 / 메커노이드 위협)에 되돌립니다.</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>균형</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>대메커노이드</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>경제형</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>최고급 장비</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>원거리 집중</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>전체</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>사용 가능한 항목</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>상세 모드 - 모든 슬라이더가 수동 조정을 위해 표시됩니다.\n\n클릭하면 간단 모드(프리셋만)로 전환됩니다.</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>간단 모드 - 프리셋만 표시되고 슬라이더는 숨겨집니다.\n\n클릭하면 상세 모드로 전환되어 모든 슬라이더를 직접 조정할 수 있습니다.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Shared / slider labels -->
+	<CER_SquadSetup_AntiFlesh>대인간</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>대메커노이드</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>분대가 무엇에 대비해 무장해야 하는지입니다.\n\n직접 조작하기 전까지는 메커노이드 조우 / 정착지 나이에 따라 자동으로 초기화됩니다.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>탄약 종류 하나만</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>최대 유연성</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>각 주민의 탄약이 종류를 얼마나 적극적으로 섞을지입니다(예: FMJ + EMP 탄창 하나). "탄약 재정의"가 켜져 있을 때만 적용됩니다.\n\n왼쪽: 무기당 정확히 한 종류. 오른쪽: 아직 아무것도 대비하지 못한 위협을 어떤 종류가 커버할 때마다 최대 네 종류까지. 총 발수는 절대 늘어나지 않습니다 - 다양성은 그것을 나눌 뿐입니다 - 그리고 모든 휴대량은 최소 한 탄창을 유지하므로, 소량 예산은 어차피 더 적은 종류를 유지합니다.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>사용 가능한 항목 사용</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>새 항목 제작</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>배정이 아직 보유하지 않은 무기를 얼마나 기꺼이 지급할지입니다.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>원거리 선호</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>근접 선호</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>누구를 사수로, 누구를 근접 전투원으로 취급할지 조정합니다.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>항상 최고 사용</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>다양한 역할 커버</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>왼쪽: 모두가 가장 가치 높은 무기를 받습니다. 오른쪽: 분대가 중복을 피하고 고전적인 역할을 먼저 채웁니다.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>저렴한 무기</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>최고의 무기</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>제작해야 하는 무기에만 영향을 줍니다.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>보조무기 없음</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>항상 보조무기</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>주무기 옆에 두 번째 무기를 줍니다(반대 유형 - 원거리 주무기는 근접 백업을, 그 반대도 마찬가지), 장비 팩이 장착되는 것과 같은 실시간 방식입니다. 분대의 이 비율만큼 커버하며, 전투 우선순위가 높은 순서대로 적용됩니다.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>폭발물 없음</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>넉넉한 폭발물</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>주무기 옆에 수류탄(새첼 폭탄, 막대 폭탄 등)을 주며, 위의 보조무기와 함께 표시되지만 별도의 독립된 풀에서 선택됩니다 - 수류탄이 실제 백업 무기를 자리에서 밀어내는 일은 없습니다. 분대의 이 비율만큼 커버하며, 전투 우선순위가 높은 순서대로 적용됩니다. 보유 중이거나 제작 가능한 수류탄에서 선택합니다.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>팩 없음</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>넉넉한 팩</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>팩 유형을 필수도 순으로 정렬하며, 값이 커질수록 점점 더 많이 포함시킵니다 - 기본 보급품(식량/의약품)이 먼저, 전문화된 내용(의료/약물/유틸리티)이 그 뒤에 추가됩니다. 자격이 있는 모든 주민은 포함된 모든 팩 유형을 받습니다(의료 중심 팩은 여전히 지정된 의무병에게만 지급됨) - 이것은 주민을 제외하는 것이 아니라, 어떤 팩 유형이 아예 존재하는지에 관한 것입니다. 방패를 포함한 팩은 이 슬라이더의 대상이 아닙니다 - 아래를 참고하세요.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>방패 없음</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>넉넉한 방패</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>방패가 포함된 모든 팩(이름이 아니라 실제 내용물로 확인)을 분대의 근접 지향적인 주민 중 이 비율만큼(근접 지향적인 주민이 없다면 분대 전체)에게 지급하며, 최고의 근접 전투원부터 우선합니다 - 위의 보조무기/폭발물 슬라이더처럼 점진적이며, 전부 아니면 전무 방식이 아닙니다.</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>휴대 중인 무기 재분배:</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>수동으로 주운 무기는 재분배 가능한 것으로 취급됩니다.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>보조무기 최대 부피:</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>자동 해결기는 이 CE 부피 값을 초과하는 후보를 보조무기로 절대 선택하지 않습니다(완전한 소총이 단지 점수가 좋다는 이유로 누군가의 "백업"으로 지급되어서는 안 됩니다). 수동으로 선택한 보조무기는 이 제한을 받지 않습니다. 모드 설정의 로드아웃 기본값 탭과 공유됩니다.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Diff-only / keep current / use roles -->
+	<CER_SquadSetup_ShowOnlyChanges>변경 사항만 표시:</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>현재 로드아웃 유지:</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>켬: 로드아웃이 없는 주민만 하나를 받습니다; 이미 장착한 모든 주민은 그대로 유지됩니다(자물쇠로 표시됨).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>탄약 재정의:</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>무기의 기본 탄약을 쓰는 대신, 배정 시점에 각 주민의 탄약을 새로 선택합니다(현재 재고/연구 + 대메커노이드 및 탄약 종류 슬라이더). 역할은 절대 영향을 받지 않습니다 - 그들의 탄약은 항상 역할 자체에서 나옵니다.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- Section headers / bottom bar -->
+	<CER_SquadSetup_BackButton>&lt; 뒤로</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>정착지 무장하기 흐름의 이전 단계로 돌아갑니다. 이미 적용된 단계는 취소되지 않습니다.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>취소</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>모두 고정 해제 ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>수동 고정 {0}개를 모두 제거하고 해당 주민들을 해결기에게 돌려줍니다.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>적용할 것이 없습니다.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>건너뛰기</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>이 단계를 건너뜁니다 - 여기서는 아무것도 배정되지 않으며, 정착지 무장하기 흐름이 다음 단계로 이어집니다.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Apply / Generate button labels -->
+	<CER_SquadSetup_ContinueButton>계속 &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>적용 ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>적용</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (적용할 것 없음)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>변경</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>변경</CER_SquadSetup_ChangePlural>
+
+	<!-- Generate list -->
+
+	<!-- Generate row -->
+	<CER_SquadSetup_NotResearchedSuffix> (연구되지 않음)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- Assign list header / empty state / cost strip / problems -->
+	<CER_SquadSetup_UnlockEveryoneTip>모두 잠금 해제합니다. 자동 배정이 모든 주민을 다시 계획합니다.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>모두 잠급니다. 잠금이 해제될 때까지 아무도 다시 계획되지 않습니다.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>주민</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>원거리</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>근접</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>의료</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>현재</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>계획된 주무기</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>팩</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>보조무기</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>무기</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>팩</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>탄약</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>현재 설정으로는 변경 사항이 없습니다.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>미리보기 - 구성 요소별 제작 비용 (다음 화면에서 조정 가능):</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;합계:&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;현재 설정의 문제점&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>클릭하면 역할 탭이 열립니다.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Cost category labels -->
+	<CER_SquadSetup_CostLabelMain>주무기:</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>보조무기:</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>수류탄:</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>방패:</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>탄약:</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>팩:</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Pawn row -->
+	<CER_SquadSetup_CannotFightTip>싸울 수 없음(폭력 무능력자 또는 아기) - 보호되며 로드아웃을 절대 배정받지 않습니다.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>원거리 점수 (사격 x10, 시야/조작/특성으로 조정).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>근접 점수 (근접 x10, 이동/조작/특성으로 조정).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>의료 기술 (의학 x10) - 이 점수 기준으로 상위 비율의 분대원이 의료 중심 장비 팩을 받습니다.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>없음</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>싸울 수 없음 - 건너뜀</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>이 주민은 싸울 수 없으며(폭력 무능력자 또는 아기) 절대 무기를 받지 않습니다.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>사용자가 제외함</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>이 정착자를 제외로 표시했기 때문에 자동 배치가 건드리지 않습니다. 이 정착자는 싸울 수 있습니다 - 캐릭터의 한계가 아니라 당신의 결정입니다. 다시 포함하려면 맨 왼쪽 아이콘을 클릭하세요.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  (유지됨)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>없음  (유지됨)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (고정됨)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>로드아웃 없음</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>현재 설정으로는 이 주민에게 배정할 수 있는 로드아웃이 없습니다.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>놓으면 {0}와(과) 로드아웃을 교환합니다.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>클릭하면 {0}의 무기를 수동으로 선택합니다(선택을 고정합니다 - 슬라이더가 다시 섞지 않습니다).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\n현재 고정됨 - 메뉴에서 자동을 선택하면 주민을 해결기에게 돌려줍니다.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\n다른 주민의 행 위로 끌면 계획된 로드아웃을 교환합니다.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Pack / sidearm cells -->
+	<CER_SquadSetup_IncludedInRoleTip>{0}에 포함됨:\n{1}\n\n이 역할에 고정되어 있습니다 - 여기서 주민별로가 아니라 역할 자체(역할 탭)를 편집해서 변경하세요.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>이 역할에는 의약품/식량/약물/유틸리티 항목이 포함되어 있지 않습니다.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>이 역할에는 보조무기, 투척 폭발물, 방패가 포함되어 있지 않습니다.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>장착된 장비 팩: {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>장착된 장비 팩이 없습니다.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\n무기와 함께 자동으로 채점됩니다. 클릭하면 이 주민이 받을 팩을 재정의할 수 있습니다 - 무기 칸처럼 보류 중인 고정입니다; 적용을 누르기 전까지는 아무것도 적용되지 않습니다.</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - 계획할 팩을 선택하세요. 적용을 누르기 전까지는 아무것도 적용되지 않습니다.</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>장착된 보조무기: {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>장착된 보조무기가 없습니다.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\n클릭하면 {0}이(가) 보조무기로 휴대할 무기를 선택할 수 있습니다 - 무기 칸처럼 보류 중인 고정입니다; 적용을 누르기 전까지는 아무것도 적용되지 않습니다.</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - 보조무기로 휴대할 무기를 선택하세요. 적용을 누르기 전까지는 아무것도 적용되지 않습니다.</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>보조무기</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>보조무기로 휴대할 다른 무기가 없습니다.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Supply requirement group -->
+	<CER_SquadSetup_RoleTagSidearm> (보조무기)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (수류탄)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (방패)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - 모두 충족됨:\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>준비됨</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>생산 중</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>부족</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (제작 가능)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (작업대 없음)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - 지금은 충분하지만 다시 만들 수 없음 (연구 안 됨)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - 지금은 충분하지만 다시 만들 수 없음 (작업대 없음)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Drag / pin menu -->
+	<CER_SquadSetup_CantSwapCannotFight>싸울 수 없는 주민(평화주의자 또는 아기)과는 교환할 수 없습니다.</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>교환하려면 두 주민 모두 계획된 무기나 역할이 있어야 합니다.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>두 주민 모두 이미 같은 로드아웃을 계획하고 있습니다.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>계획된 로드아웃을 교환했습니다: {0}와(과) {1} (고정됨).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>자동 (고정 해제 - 해결기가 결정하도록 함)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>현재 조합을 역할로 저장...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}: 연구된 탄약 없음</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix> (제작법 없음)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>배정 예정: 자동 배정이 이 정착자에게 로드아웃을 골라줍니다.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>그대로 둠: 자동 배정이 이 정착자의 장비를 건드리지 않습니다. 여전히 수정 가능 - 무기 칸을 클릭하면 직접 바꿀 수 있습니다.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>로드아웃을 회수함: 적용하면 {0}의 로드아웃이 사라지고 아무것도 없는 상태가 됩니다. 장비 자체는 정착지에 남습니다.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>제외됨: {0}에게는 로드아웃이 없으며 받지도 않습니다. 모든 화면에서 비전투원으로 취급됩니다.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>정상적으로 배정.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>그대로 두기(자동 배정으로부터 보호, 계속 수정 가능).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>로드아웃 회수.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>좌클릭:</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>우클릭:</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>로드아웃 회수됨</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>이 정착자를 "로드아웃 회수"로 설정했습니다. 적용하면 {0}에게 배정된 로드아웃이 사라지고 아무것도 없는 상태가 됩니다 - 장비 자체는 정착지에 남습니다. 되돌리려면 맨 왼쪽 아이콘을 클릭하세요.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

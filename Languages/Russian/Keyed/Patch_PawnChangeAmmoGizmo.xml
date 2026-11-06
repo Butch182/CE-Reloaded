@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Наборы боеприпасов</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Показывает и изменяет дополнительные боеприпасы, которые выбранные колонисты несут сверх боеприпасов своего оружия по умолчанию - с фильтром по тому, что подходит их снаряжению, а не по всем типам боеприпасов в игре.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

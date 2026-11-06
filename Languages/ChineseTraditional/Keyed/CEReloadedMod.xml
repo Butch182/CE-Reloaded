@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded：已將 {0} 項變更的預設值套用到目前遊戲。</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded：已將 {0} 項變更的預設值套用到目前遊戲。</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>篩選器</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>配裝</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>職業</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>彈藥訂單</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>自動分配</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>預設組合</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>警報</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>工具</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>除錯</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>預設組合調整</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>每個預設按鈕在自動分配預覽中套用的確切滑桿數值（0 到 1）。預設組合是「完整」的設定 - 套用一個會設定每個滑桿，包括反血肉/反機械，因此預設組合絕不會半套混用。「使用建議設定」仍是動態替代方案（由殖民地狀況驅動反機械數值）。</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>平衡</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>反機械</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>經濟</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>最佳裝備</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>專注遠程</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>全部</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>可用物品</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>反血肉 &lt;-&gt; 反機械</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = 針對血肉目標調整，1 = 針對機械族調整。影響彈藥、手榴彈與副武器的選擇，以及分配時的目標評分。</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>單一彈藥類型 &lt;-&gt; 最大靈活性</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>自動分配為每把武器混用彈藥類型的積極程度（開啟「覆蓋彈藥」時）。攜彈量始終為整彈匣，總量絕不會增加。</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>使用現有 &lt;-&gt; 製作新品</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>分配：求解器願意發放需要製作的武器的程度。</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>偏好遠程 &lt;-&gt; 近戰</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>分配：調整誰被視為射手、誰被視為打手。</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>永遠最佳 &lt;-&gt; 涵蓋各職能</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>分配：0 = 所有人都拿到最高價值的裝備，1 = 小隊優先填滿各類經典職能。</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>便宜 &lt;-&gt; 最佳武器（預算）</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>分配：僅對需要製作的武器有效。</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>無裝備包 &lt;-&gt; 豐富裝備包</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>分配：依重要程度為裝備包類型排序，數值越高涵蓋越多類型。</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>將預設組合重設為預設值</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>預設組合數值已重設為出廠預設。</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>武裝我的殖民地模式預設組合</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>在「武裝我的殖民地」中選擇謹慎/一般/積極時，這 6 個步驟開關各自會設成什麼。玩家選定模式後仍可個別微調各開關 - 這些只是每種模式的「起始」設定。</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>謹慎</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>一般</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>積極</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>關閉</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>本模組管理</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>全部</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>重設殖民者</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>刪除彈藥訂單</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>刪除武器訂單</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>刪除手動建立的配裝</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>刪除裝備包</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>建立彈藥訂單</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>將武裝殖民地預設組合重設為預設值</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>武裝我的殖民地預設開關已重設為出廠預設。</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>戰備狀態警報</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>原生風格的警報（右上角，緊鄰「精神崩潰風險」）,在殖民者未達戰備狀態時發出警示。滑鼠懸停可查看詳情，點擊可跳到相關殖民者。</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>顯示戰備狀態警報（總開關）</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>殖民者完全未分配配裝</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>如果你刻意讓某些殖民者（工匠、醫生）不佩戴武器，請關閉此項 - 否則他們會一直顯示為問題。</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>配裝缺少對應彈藥</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>配裝武器無法取得（未儲存或未生產）</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>彈藥不足（攜帶不到 2 次裝填量）</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>低於此彈匣數時警告</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>攜帶彈匣少於多少時彈藥不足警告。預設 2。CE 社群通常按每場戰鬥 5-6 個彈匣計算。</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>負重過量（超過重量或體積上限）</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>容量已滿，無法取得配裝（已達上限，仍缺少某彈藥類型）</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>體積或重量已達上限，殖民者實際上無法再拿取配裝要求的其餘物品 - 在他們騰出空間前，任何訂單或庫存調整都無濟於事。</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>已分配武器但未攜帶</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>該殖民有真正的裝備方案且其中包含武器，但手上和背包裡都沒有。通常是還沒去取。僅在完全空手時觸發。</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>彈藥未在生產中</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ……僅在庫存少於 X 發時才警示（0 = 永遠警示）：</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = 只要沒有訂單在生產此武器的彈藥就警示。設定較高的數值後，只有當該彈藥的庫存低於 X 發時才會警示，龐大的庫存就不會被打擾。</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>將警報重設為預設值</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>工具 &amp; 診斷</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>掃描所有啟用模組中的每件武器，並回報 CE Reloaded 可能處理錯誤的項目（分數無效、錯誤的「(非 CE)」標記、缺少彈藥、無法生產的投擲物）。不會變更任何內容，純粹唯讀。適合在加入武器模組後使用，或附加於錯誤回報中。</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>執行武器相容性檢測</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>存檔一開始會複製這些模組設定，之後便記住自己的調整（篩選器、滑桿、補給預設值）。此按鈕會捨棄目前遊戲的調整，重新套用模組設定。</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>將目前遊戲重設為這些模組設定</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>依此處設定的數值重新填入目前存檔的介面狀態。手動的滑桿覆寫會被清除，殖民地的戰鬥歷史則會保留。</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>僅在載入遊戲時可用。</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>目前遊戲的設定已重設為模組設定。</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>配裝除錯 / 檢測</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>目前已註冊的每個配裝物件 - 包含隱藏彈藥錨點、裝備包與職業。此處內容並非用於直接編輯，僅供檢查實際存在的內容。</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>沒有進行中的遊戲 - 請開啟存檔以檢視其配裝。</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>清理孤立錨點（{0}）</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>已移除 {0} 個孤立配裝錨點。</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>已移除 {0} 個孤立配裝錨點。</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>移除每個隱藏的殖民者專屬彈藥錨點，只要沒有任何存活角色（無論在任何地圖或商隊中）仍被分配使用。每約一遊戲小時也會自動執行一次 - 此按鈕只是「立即執行」。</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>為解除安裝準備存檔……</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>在從進行中的存檔移除 CE Reloaded 之前使用。每名殖民者都會保留目前攜帶的全部內容——武器、副武器、裝備包、個人彈藥——但會變成不需本模組即可運作的一般 Combat Extended 配裝。職業會併入其裝備包，每名殖民者的隱藏配裝會被刪除。之後：儲存、離開、移除模組。</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>要為移除 CE Reloaded 準備此存檔嗎？\n\n殖民者會保留目前攜帶的全部內容，但會變成一般 CE 配裝：裝備包和副武器將不再共用，也無法即時編輯。此操作無法復原——請先備份存檔。\n\n之後請儲存遊戲、離開並移除模組。</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>存檔已準備好：{0} 名殖民者回到共用配裝，{1} 名取得獨立配裝，合併了 {2} 個職業，刪除了 {3} 個隱藏配裝。現在請儲存遊戲、離開並移除模組。</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>標籤</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>類別</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>上層</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>欄位</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>預設</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>彈藥錨點</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>裝備包</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>職業</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>武器配裝</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> （孤立）</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>唯一識別碼：{0}
+自有欄位：{1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+上層：{0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+額外上層：{0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+已解析內容（{0}）：
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+已解析內容：無</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>職業</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>用於乘算職業彈藥/藥品/食物/手榴彈數量的係數。x1 保留該類別，x0 移除該類別。</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>全域資料庫</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>僅限此存檔</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ 新增職業</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>新存檔職業</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>新職業</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>重設為預設組合</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>以內建預設（Assault、Marksman、Support、Breacher、Grenadier、Medic、Melee）取代全域清單。名稱不在其中的角色也會失去其裝備配置。</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>載入殖民地後即可新增僅存在於該存檔中的職業。</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>職業名稱</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>彈藥</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>醫療用品</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>食物</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>手榴彈</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>刪除這個職業。</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>篩選器（預設值）</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>預設彈藥篩選器：</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>預設彈藥訂單篩選器：</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>在訂單清單中隱藏重複工作台</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>當存在數台相同的工作台時，彈藥訂單工作台選單只列出每種類型一次。若要指定多台相同工作台中的特定一台，請關閉此項。</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>認列既有的武器生產</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>補給彈出視窗會將工作台上已排入生產的武器計入缺口：先認列既有生產，只建議剩餘的部分，避免過度生產。關閉時：彈出視窗會忽略已排入的生產，永遠建議完整的缺口數量。</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>將篩選器重設為預設值</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>配裝預設值</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>預設槍械彈藥：</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>槍械預設取得的彈藥變體。FMJ 是經典的全能選擇。通用會保留「X 的任意彈藥」佔位符。若某武器沒有對應變體，CE Reloaded 會回退至通用/FMJ。</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>標籤頁以詳細模式啟動</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>職業/彈藥訂單/裝備殖民者標籤頁自身的簡單/詳細切換在本次工作階段中首次開啟時是否預設為詳細模式。關閉 = 以簡單模式啟動。之後每個標籤頁會在本次工作階段剩餘時間內記住你自己的選擇 - 這只設定最初的外觀。</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>無配裝前綴</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>已停用</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>無裝備包前綴</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>無角色前綴</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>副武器最大體積：</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>副武器 - 近戰（供遠程部隊使用）：</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>為遠程武器提供「互補備援」評分加成。僅限近戰武器。自動 = 依遊戲內擁有或負擔得起製作的物品挑選。無 = 永遠不計為擁有近戰備援。</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>副武器 - 遠程（供近戰部隊使用）：</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>為近戰武器提供「互補備援」評分加成。僅限遠程武器。自動 = 依遊戲內擁有或負擔得起製作的物品挑選。無 = 永遠不計為擁有遠程備援。</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>預設護盾：</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>給使用單手主武器的殖民者配備的 CE 護盾（雙手武器無法使用護盾）。自動 = 依遊戲內擁有或負擔得起製作的物品挑選。無 = 不設預設護盾。</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>這四項是新生成的裝備包（Equipment Pack）的初始值。單靠武器不會帶上食物和藥品——那是裝備包的職責。</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>預設餐點：</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>無</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>預設餐點數量：</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>預設醫療用品：</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>預設醫療用品數量：</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>預設彈藥數量（依武器類型）</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>突擊步槍 / 衝鋒槍：</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>狙擊 / 獵槍：</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>機槍（LMG）：</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>散彈槍：</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>弓 / 弩：</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>發射器 / 爆炸物：</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>其他 / 預設：</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>標槍 / 投擲近戰武器：</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>自身即為彈藥的武器（標槍、投槍）- 此為殖民者攜帶的數量，並非彈匣數量。與下方的手榴彈不同 - 分開設定，因為合理的標槍數量與合理的手榴彈數量差異甚大。</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>手榴彈 / 投擲式爆炸物：</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>投擲式爆炸物（手榴彈、包裹炸彈……）- 與上方的標槍一樣屬於自身彈藥，但此處適合的數字要小得多。</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>手槍：</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>手槍或左輪的彈藥數。單獨設定，因為手槍幾乎總是副武器，它的彈藥會疊加在主武器之上。舊的通用預設值 150 相當於給備用槍配了突擊步槍的攜彈量。</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>將配裝預設值重設為預設值</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>彈藥訂單（預設值）</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>預設彈藥批次（生產）：</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>技能需求：</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>技能：{0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>將彈藥訂單重設為預設值</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>彈藥訂單儲備緩衝</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>彈藥訂單是一種維持性訂單("生產直到庫存達到X"),而不是一次性訂單——要求為每位共用同一口徑的殖民者同時準備完整儲備會高估實際需求。前N名殖民者按滿權重計算,之後每名殖民者貢獻的比例遞減(直到一個下限)。將下限設為100%即可恢復舊的"所有人滿權重相加"行為。</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>滿權重殖民者數量:{0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>共用同一彈藥類型的殖民者中,有多少人按其自身設定數量的100%計算。之後每名殖民者計算比例更低(見下方下限)。</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>遞減份額下限:{0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>超過滿權重人數的殖民者仍然貢獻的最小比例(在清單中排位越靠後比例越小,但永遠不會低於此下限)。100%可還原舊的"所有人相加"行為。</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>自動分配（預設值）</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>細部調整（使用現有裝備或製作、反血肉或反機械、遠程或近戰、小隊多樣性）位於自動分配彈出視窗本身，並依存檔各自記憶。</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>預設武器篩選器：</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>自動分配可發放哪些武器：
+所有武器 - 不論擁有或可製作與否。
+可用主武器 - 只限已擁有的武器。
+已研究主武器 - 只限擁有或目前可製作的武器。</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>武器生產技能需求：</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>將自動分配重設為預設值</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>所有武器</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>可用主武器</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>已研究主武器</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>全部</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>已研究</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>可用</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>已在配裝中</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>已分配配裝</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>可用武器</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>進行中訂單</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>已研究彈藥</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>自動（建議）</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>分配時的職業處理</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>速成教學（工作流程簡介）在首次開啟 CE Reloaded 時顯示一次。</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>顯示速成教學</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>重設首次啟動提示</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>忘記速成教學已經顯示過——下次開啟配裝規劃或武裝殖民地時會再次顯示。便於測試。</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>首次啟動提示已重設——下次會再次顯示。</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>恢復預設 ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>把刪除的內建角色按原位置拿回來。只補上缺少的——與「恢復預設值」不同，你自己的角色不受影響。</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>已恢復 {0} 個內建角色。</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

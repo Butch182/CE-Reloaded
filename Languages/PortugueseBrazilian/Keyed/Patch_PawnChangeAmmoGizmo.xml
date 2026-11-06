@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Kits de munição</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Mostra e altera a munição extra que os colonos selecionados carregam além da munição padrão da arma - filtrada pelo que realmente serve ao equipamento deles, não por todos os tipos de munição do jogo.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

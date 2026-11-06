@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: tillämpade {0} ändrad standardinställning på det aktuella spelet.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: tillämpade {0} ändrade standardinställningar på det aktuella spelet.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>Filter</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>Lastningar</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>Roller</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>Ammunitionsordrar</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>Autotilldela</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>Förinställningar</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>Varningar</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>Verktyg</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>Felsökning</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>Förinställningsjustering</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>De exakta reglagevärdena (0..1) som varje förinställningsknapp tillämpar i förhandsvisningen för Autotilldela. En förinställning är en KOMPLETT konfiguration - att tillämpa en ställer in varje reglage, inklusive Anti-kött/Anti-mek, så förinställningar blandas aldrig halvvägs. "Använd rekommenderad uppsättning" förblir det dynamiska alternativet (koloni-styrd anti-mek).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>Balanserad</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>Anti-mek</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>Ekonomi</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>Bästa utrustning</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>Fokus distans</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>Alla</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>Tillgängliga föremål</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>Anti-kött &lt;-&gt; Anti-mek</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = anpassat mot kött, 1 = mot mekanoider. Styr val av ammunition, granater och sidovapen samt tilldelningens målpoäng.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>En ammunitionstyp &lt;-&gt; max flexibilitet</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>Hur ivrigt Autotilldela blandar ammunitionstyper per vapen (med "Åsidosätt ammunition" på). Fördelningen håller sig till hela magasin, totalen växer aldrig.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>Använd tillgängligt &lt;-&gt; tillverka nytt</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>Tilldela: hur villig lösaren är att dela ut vapen som måste tillverkas.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>Föredra distans &lt;-&gt; närstrid</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>Tilldela: skiftar vem som räknas som skytt kontra slagskämpe.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>Alltid bäst &lt;-&gt; täck roller</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>Tilldela: 0 = alla får det högsta värdet, 1 = truppen fyller klassiska roller först.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>Billigt &lt;-&gt; bästa vapnet (budget)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>Tilldela: spelar bara roll för vapen som måste tillverkas.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>Inga paket &lt;-&gt; Generösa paket</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>Tilldela: rankar utrustningspakettyper efter hur nödvändiga de är och inkluderar gradvis fler ju högre detta är.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>Återställ förinställningar till standard</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>Förinställningsvärden återställda till fabriksinställningar.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>Lägesförinställningar för Beväpna min koloni</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>Vilka av de 6 stegbrytarna Försiktig/Normal/Aggressiv var och en ställer in när de väljs i Beväpna min koloni. En spelare kan fortfarande finjustera enskilda brytare efter att ha valt ett läge - dessa är bara vad varje läge STARTAR från.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>Försiktig</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>Normal</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>Aggressiv</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>Av</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>Hanterad</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>Alla</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>Återställ kolonister</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>Ta bort ammunitionsordrar</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>Ta bort vapenordrar</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>Ta bort handbyggda utrustningar</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>Ta bort utrustningspaket</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>Skapa ammunitionsordrar</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>Återställ förinställningar för Beväpna koloni till standard</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>Brytarna för Beväpna-min-koloni-förinställningar återställda till fabriksinställningar.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>Stridsberedskapsvarningar</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>Varningar i vanilla-stil (uppe till höger, bredvid "Stor risk för sammanbrott") som varnar när en kolonist inte är stridsklar. Håll muspekaren över en varning för detaljer, klicka på den för att hoppa till kolonisterna.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>Visa stridsberedskapsvarningar (huvudbrytare)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>Kolonisten har ingen lastning tilldelad alls</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>Stäng av detta om du medvetet håller vissa kolonister (hantverkare, läkare) obeväpnade - annars visas de alltid som ett problem.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>Lastning utan matchande ammunition</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>Lastningens vapen otillgängligt (varken i förvaring eller under tillverkning)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>Låg ammunition (mindre än 2 omladdningar burna)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>Varna under ... magasin</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>Vid hur faa magasin varningen foer laag ammunition slaar till. Standard 2. CE-communityt raeknar oftast med 5-6 magasin per strid.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>Överlastad (över kapacitet för vikt eller volym)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>För full för att hämta lastning (vid kapacitetstaket, saknar ändå en ammunitionstyp)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>Volym eller vikt är redan maxad, så kolonisten kan fysiskt inte plocka upp resten av det lastningen vill ha - varken en order eller ett lagerfix hjälper förrän de frigör utrymme.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>Vapen tilldelat men bär inget</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>Kolonisten har en riktig utrustning som tilldelar ett vapen, men bär ingenting alls - varken i handen eller i ryggsäcken. Oftast har de bara inte hämtat det än. Utlöses bara vid helt tomma händer.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>Ammunition tillverkas inte</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...bara om färre än X skott finns i lager (0 = alltid):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = varna närhelst ingen order tillverkar detta vapens ammunition. Ett högre värde varnar bara när ditt lager av den ammunitionen sjunker under X skott, så en stor reserv tjatar inte.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>Återställ varningar till standard</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>Verktyg &amp; diagnostik</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>Skannar varje vapen från alla aktiva moddar och rapporterar de som CE Reloaded eventuellt hanterar felaktigt (ogiltig poäng, fel "(Not CE)"-flagga, saknad ammunition, ej tillverkningsbara kastvapen). Ändrar ingenting, helt skrivskyddat. Användbart efter att ha lagt till vapenmoddar, eller för att bifoga till en felrapport.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>Kör kompatibilitetsgranskning av vapen</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>Ett sparat spel börjar som en kopia av dessa modinställningar och kommer sedan ihåg sina egna justeringar (filter, reglage, försörjningsstandarder). Denna knapp kastar bort det aktuella spelets justeringar och tillämpar modinställningarna på nytt.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>Återställ aktuellt spel till dessa modinställningar</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>Återställer det pågående sparfilens UI-tillstånd från värdena konfigurerade här. Manuella reglageöverstyrningar rensas, koloniens stridshistorik behålls.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>Endast tillgängligt medan ett spel är laddat.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>Det aktuella spelets inställningar återställdes till modinställningarna.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>Felsökning/granskning av lastningar</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>Varje lastningsobjekt registrerat just nu - dolda ammunitionsankare, utrustningspaket och roller inkluderade. Inget här är tänkt att redigeras direkt; det är för att kontrollera vad som faktiskt finns.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>Inget aktivt spel - öppna en sparfil för att granska dess lastningar.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>Städa bort föräldralösa ankare ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>Tog bort {0} föräldralöst lastningsankare.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>Tog bort {0} föräldralösa lastningsankare.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>Tar bort varje dolt ammunitionsankare per kolonist som ingen levande kolonist (på någon karta eller i någon karavan) längre faktiskt är tilldelad. Körs också automatiskt ungefär en gång per speltimme - denna knapp är bara "gör det nu".</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>Förbered sparfil för avinstallation...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>Använd detta innan du tar bort CE Reloaded från ett pågående spel. Varje kolonist behåller exakt det de bär nu - vapen, sidovapen, paket, personlig ammunition - men som vanliga Combat Extended-utrustningar som fungerar utan den här moden. Roller får sina paket inbakade, och de dolda utrustningarna per kolonist tas bort. Därefter: spara, avsluta, ta bort moden.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>Förbereda denna sparfil för att ta bort CE Reloaded?\n\nKolonisterna behåller exakt det de bär, men som vanliga CE-utrustningar: paket och sidovapen delas inte längre och kan inte ändras direkt. Kan inte ångras - gör en reservsparning först.\n\nSpara sedan spelet, avsluta och ta bort moden.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>Sparfil förberedd: {0} kolonist(er) tillbaka på sin delade utrustning, {1} med egen utrustning, {2} roll(er) sammanslagna, {3} dold(a) utrustning(ar) borttagna. Spara nu spelet, avsluta och ta bort moden.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>Etikett</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>Kategori</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>Förälder</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>Platser</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>Standard</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>Ammunitionsankare</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>Utrustningspaket</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>Roll</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>Vapenlastning</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (föräldralös)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>UniktID: {0}
+Egna platser: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+Förälder: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+Extra-föräldrar: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+Löst innehåll ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+Löst innehåll: inget</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>Roller</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>Faktorer som multiplicerar en rolls ammunition/medicin/mat/granater.  x1 behåller en kategori, x0 tar bort den.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>Globalt bibliotek</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>Endast denna sparfil</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ Lägg till roll</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>Ny sparfilsroll</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>Ny roll</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>Återställ till förinställningar</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>Ersätter den globala listan med förinställningarna (Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee). En roll vars namn inte finns bland dem förlorar även sin utrustning.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>Ladda en koloni för att lägga till roller som bara finns i den sparfilen.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>Rollnamn</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>Ammunition</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>Medicin</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>Mat</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>Granater</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>Ta bort denna roll.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>Filter (standard)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>Standard ammunitionsfilter:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>Standardfilter för ammunitionsordrar:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>Dölj dubbletter av arbetsbänkar i orderlistor</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>När flera identiska arbetsbänkar finns, lista varje typ bara en gång i arbetsbänksväljarna för ammunitionsordrar. Stäng av detta om du vill rikta in dig på en specifik av flera identiska bänkar.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>Räkna öppen vapentillverkning</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>Försörjningspopupen räknar vapen som redan köats på en arbetsbänk mot underskottet: öppen tillverkning räknas av först och bara resten föreslås, så inget övertillverkas. Av: popupen föreslår alltid hela underskottet oavsett vad som redan är köat.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>Återställ filter till standard</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>Standardvärden för utrustning</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>Standard skjutvapensammunition:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>Vilken ammunitionsvariant ett skjutvapen får som standard. FMJ är den klassiska allroundern. Generisk behåller en "Valfri ammunition för X"-platshållare. Om ett vapen saknar en matchande variant faller CE Reloaded tillbaka på Valfri/FMJ.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>Flikar startar i Detaljerat läge</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>Om flikarnas egna Enkel/Detaljerat-omkopplare för Roller/Ammunitionsorder/Utrusta kolonister startar i Detaljerat läge första gången den öppnas under en session. Av = startar Enkelt. Varje flik kommer sedan ihåg ditt eget val resten av sessionen - detta anger bara det allra första utseendet.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>Inget lastningsprefix</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>Inaktiverat</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>Inget utrustningspaketprefix</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>Inget rollprefix</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>Max volym för sidovapen:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>Sidovapen - närstrid (för distanstrupper):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>Ger poängbonusen "kompletterande reserv" för distansvapen. Endast närstridsvapen. Auto = väljs i spelet från vad du äger eller har råd att tillverka. Ingen = räknas aldrig som att ha en närstridsreserv.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>Sidovapen - distans (för närstridstrupper):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>Ger poängbonusen "kompletterande reserv" för närstridsvapen. Endast distansvapen. Auto = väljs i spelet från vad du äger eller har råd att tillverka. Ingen = räknas aldrig som att ha en distansreserv.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>Standardsköld:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>En CE-sköld för kolonister med ett enhandsvapen som huvudvapen (tvåhandsvapen kan inte använda en sköld). Auto = väljs i spelet från vad du äger eller har råd att tillverka. Ingen = ingen standardsköld.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>Dessa fyra är startvärden för ett NYSKAPAT Equipment Pack. Ett vapen ensamt har varken måltider eller medicin med sig - det är vad packen är till för.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>Standardmåltid:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>Ingen</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>Standardantal måltider:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>Standardmedicin:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>Standardantal medicin:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>Standardammunitionsantal (efter vapentyp)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>Stormgevär / kpist:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>Prickskytte / Jakt:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>Kulsprutor (LMG):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>Hagelgevär:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>Bågar / Armborst:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>Granatgevär / Sprängmedel:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>Övrigt / Standard:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>Spjut / kastvapen för närstrid:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>Vapen som är sin egen ammunition (spjut, pila) - detta är hur många kolonisten bär, inte ett magasinsantal. Skilt från Granater nedan - separerat eftersom ett rimligt spjutantal och ett rimligt granatantal är väldigt olika tal.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>Granater / kastbara sprängmedel:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>Kastbara sprängmedel (granater, sprängladdningar, ...) - också självammunition som spjuten ovan, men ett mycket mindre antal är rimligt här.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>Pistol:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>Ammunition till pistol eller revolver. Eget varde eftersom en pistol nastan alltid ar SEKUNDARvapnet: dess ammunition laggs ovanpa huvudvapnets. Det gamla gemensamma vardet 150 var automatkarbinsmangd for ett reservvapen.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>Återställ lastningsstandard till standard</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>Ammunitionsordrar (standard)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>Standardomgångar ammunition (tillverkning):</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>Färdighetskrav:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>Färdighet: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>Återställ ammunitionsordrar till standard</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>Reservbuffert för ammunitionsordrar</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>En ammunitionsorder är en underhållsorder ("tillverka tills X finns i lager"), inte en engångsbeställning - att kräva en full samtidig reserv för varje kolonist som delar en kaliber överskattar det verkliga behovet. De första N kolonisterna räknas med full vikt, varje kolonist därutöver bidrar med en krympande andel (ner till ett golv). Sätt golvet till 100% för att återgå till det gamla beteendet "summera alla med full vikt".</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>Kolonister med full vikt: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>Hur många kolonister som delar samma ammunitionstyp räknas som 100% av sin egen konfigurerade mängd. Varje kolonist därutöver räknas mindre (se golvet nedan).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>Golv för resterande andel: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>Den minsta andel som en kolonist utöver antalet med full vikt fortfarande bidrar med (andelen krymper ju längre ner i listan de är, men aldrig under detta golv). 100% återger det gamla beteendet "summera alla".</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>Autotilldela (standard)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>Finjusteringen (använd befintligt kontra tillverka, anti-kött kontra anti-mek, distans kontra närstrid, truppens mångfald) finns i själva Autotilldela-popupen och kommas ihåg per sparfil.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>Standard vapenfilter:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>Vilka vapen Autotilldela får dela ut:
+Alla vapen - oavsett vad du äger eller kan bygga.
+Tillgängligt huvudvapen - endast vapen du redan äger.
+Forskat huvudvapen - endast vapen du äger eller kan tillverka nu.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>Färdighetskrav för vapentillverkning:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>Återställ autotilldelning till standard</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>Alla vapen</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>Tillgängligt huvudvapen</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>Forskat huvudvapen</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>Alla</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>Forskat</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>Tillgängligt</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>I lastning</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>Tilldelade lastningar</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>Tillgängliga vapen</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>Aktiva ordrar</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>Utforskad ammo</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>Auto (rekommenderat)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>Roller vid tilldelning</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>Snabbkursen (en kort översikt av arbetsflödet) öppnas en gång, första gången CE Reloaded öppnas.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>Visa snabbkurs</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>Återställ första start</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>Glömmer att snabbkursen redan visats - den öppnas igen nästa gång Lastningsplaneraren eller Beväpna kolonin öppnas. Praktiskt vid tester.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>Första start återställd - snabbkursen öppnas igen nästa gång.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>Aterstall mallar ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>Hamtar tillbaka borttagna inbyggda roller, var och en pa sin ursprungliga plats. Bara de som saknas laggs till - till skillnad fran "Aterstall standard" ror det inte dina egna roller.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>{0} inbyggd(a) roll(er) aterstalld(a).</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

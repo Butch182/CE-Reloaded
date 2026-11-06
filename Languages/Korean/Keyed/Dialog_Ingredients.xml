@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_Ingredients_Title>장비 팩</CER_Ingredients_Title>
+	<CER_Ingredients_Subtitle>여기서 재사용 가능한 장비 팩을 만드세요. 한 팩에 의약품, 음식, 약물, 유틸리티 아이템을 함께 넣을 수 있습니다. 무기는 정착민 장비 탭에서 정착민별로 고르며, 팩이 생기면 그곳에서 정착민이나 역할에 붙입니다.</CER_Ingredients_Subtitle>
+	<CER_Ingredients_AutoGenerateButton>자동 생성...</CER_Ingredients_AutoGenerateButton>
+	<CER_Ingredients_AutoGenerateTip>일상 보급품, 의료 키트, 방패 키트 등 전체 초기 구성을 슬라이더로 비용/무게/위협을 조정하며 한 번에 만듭니다. 모든 항목은 생성하기 전에 그 자리에서 편집할 수 있고, 이후에도 왼쪽에서 다시 편집할 수 있습니다.</CER_Ingredients_AutoGenerateTip>
+	<CER_Ingredients_ListHeader>장비 팩</CER_Ingredients_ListHeader>
+	<CER_Ingredients_NewButton>+ 새로 만들기</CER_Ingredients_NewButton>
+	<CER_Ingredients_NewPackDefaultName>새 장비 팩</CER_Ingredients_NewPackDefaultName>
+	<CER_Ingredients_DeletePackTip>이 장비 팩을 삭제합니다.</CER_Ingredients_DeletePackTip>
+	<CER_Ingredients_DeletePackConfirm>장비 팩 "{0}"을(를) 삭제하시겠습니까? 현재 이를 소지한 정착민은 해당 아이템을 잃게 됩니다.</CER_Ingredients_DeletePackConfirm>
+	<CER_Ingredients_DeleteButtonGlyph>x</CER_Ingredients_DeleteButtonGlyph>
+	<CER_Ingredients_NoPacksYet>아직 장비 팩이 없습니다.</CER_Ingredients_NoPacksYet>
+	<CER_Ingredients_SelectPackPrompt>왼쪽에서 장비 팩을 선택하거나 새로 만드세요.</CER_Ingredients_SelectPackPrompt>
+	<CER_Ingredients_NameLabel>이름:</CER_Ingredients_NameLabel>
+	<CER_Ingredients_SectionMedical>의약품</CER_Ingredients_SectionMedical>
+	<CER_Ingredients_SectionFood>식량</CER_Ingredients_SectionFood>
+	<CER_Ingredients_SectionDrugs>약물</CER_Ingredients_SectionDrugs>
+	<CER_Ingredients_SectionUtility>유틸리티</CER_Ingredients_SectionUtility>
+	<CER_Ingredients_SectionOther>기타</CER_Ingredients_SectionOther>
+	<CER_Ingredients_ItemNounMedicine>의약품</CER_Ingredients_ItemNounMedicine>
+	<CER_Ingredients_ItemNounFood>식량</CER_Ingredients_ItemNounFood>
+	<CER_Ingredients_ItemNounDrug>약물</CER_Ingredients_ItemNounDrug>
+	<CER_Ingredients_ItemNounUtilityItem>유틸리티 항목</CER_Ingredients_ItemNounUtilityItem>
+	<CER_Ingredients_SectionTitleWithCount>{0}  ({1})</CER_Ingredients_SectionTitleWithCount>
+	<CER_Ingredients_AddItemButton>+ {0} 추가</CER_Ingredients_AddItemButton>
+	<CER_Ingredients_AllAlreadyAdded>(모두 이미 추가됨)</CER_Ingredients_AllAlreadyAdded>
+	<CER_Ingredients_NotResearchedSuffix> (연구되지 않음)</CER_Ingredients_NotResearchedSuffix>
+	<CER_Ingredients_NoneAdded>추가된 것이 없습니다.</CER_Ingredients_NoneAdded>
+	<CER_Ingredients_OtherSectionHint>위 분류에 속하지 않는 모든 것에 사용합니다 - 이 팩을 위한 CE 자체 로드아웃 편집기를 엽니다.</CER_Ingredients_OtherSectionHint>
+	<CER_Ingredients_OpenCELoadoutEditorButton>CE 로드아웃 편집기 열기</CER_Ingredients_OpenCELoadoutEditorButton>
+
+</LanguageData>

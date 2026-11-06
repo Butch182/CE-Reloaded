@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - спорядження при собі</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>"Скинути" кладе предмет на землю біля персонажа - носії віднесуть його на склад.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Цього персонажа зараз немає на карті, тому нічого скинути не можна.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Спорядження</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Одяг</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Інвентар</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Скинути</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- немає -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Закрити</CER_PawnGear_CloseButton>
+
+</LanguageData>

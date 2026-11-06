@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>장비 팩</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>기본 보급 팔레트를 한 번에 구성합니다 - 일상 보급품, 의료 키트, 배낭, 전투 약물, 방패. 모든 항목은 이후에도 편집 가능합니다: 클릭해서 종류를 바꾸거나, 수량을 편집하거나, 제거할 수 있습니다. 나중에 다시 실행하면 같은 이름의 팩을 중복 생성하지 않고 그 자리에서 다듬습니다.</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>권장 설정 사용</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>균형</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>절약</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>최고 장비</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>필수품만</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>모든 슬라이더를 기본값(균형)으로 초기화합니다.</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>상세 모드 - 모든 슬라이더가 표시되어 직접 조정할 수 있습니다.\n\n클릭하면 간단 모드(프리셋만)로 전환됩니다.</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>간단 모드 - 프리셋만 표시되고 슬라이더는 숨겨져 있습니다.\n\n클릭하면 상세 모드로 전환되어 모든 슬라이더를 직접 조정할 수 있습니다.</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>"임의의 X" 범용 종류 사용</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>체크하면 의약품/식량/약물이 특정 항목 대신 항상 CE의 범용 자리표시자("임의의 의약품", "임의의 부패성 식사", "임의의 약물")를 선택합니다 - 재고에 있는 것이면 무엇이든 인정되어 떨어질 걱정이 없습니다.</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>저렴함</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>고가</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>여러 항목이 조건을 만족할 때 각 분류가 어떤 특정 항목을 선택할지입니다 - 저렴하고 감당할 수 있는 것 대 비용과 무관하게 최고인 것. "임의의 X"가 체크되어 있으면 영향이 없습니다.</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>경량</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>중량</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>팩이 각 보급품을 얼마나 휴대할지, 그리고 방패 키트의 방패가 기동성과 최대 보호력 중 무엇을 우선할지입니다.</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>필수</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>전체</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>아래 템플릿 중 몇 개가 기본으로 체크될지이며, 필수도가 높은 순서입니다(기본 보급, 의료 키트, 방패 키트, 관측병, 전술 키트, EMP 키트, 전투 약물 키트는 마지막 - 상황에 따른 선택이며 기본값이 아닙니다). 직접 체크/해제하지 않은 행에만 영향을 줍니다.</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; 뒤로</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>정착지 무장하기 흐름의 이전 단계로 돌아갑니다. 이미 적용된 단계는 취소되지 않습니다.</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>취소</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>기존 장비 팩 삭제 ({0})</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>기존 장비 팩을 모두 제거합니다 (식민지 주민의 로드아웃에서 사라집니다). 위의 각 템플릿은 이후 다시 새 팩을 제안합니다.</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>장비 팩 {0}개를 모두 삭제하시겠습니까? 되돌릴 수 없습니다.</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>장비 팩 {0}개를 모두 삭제하시겠습니까? 되돌릴 수 없습니다.</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>장비 팩 {0}개를 삭제했습니다.</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>장비 팩 {0}개를 삭제했습니다.</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>건너뛰기</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>이 단계를 건너뜁니다 - 여기서 아무것도 생성되지 않고, 정착지 무장하기 흐름이 다음 단계로 이어집니다.</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>체크한 항목 생성 ({0})</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>{0}개 생성, {1}개 삭제</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>{0}개 삭제</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>계속 (팩 없음)</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>건너뜀 (이름이 이미 수동으로 만든 팩에서 사용 중이며, 이 마법사가 생성한 것이 아님): {0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>팩</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>내용물</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>가용성</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>재료</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>질량 / 부피</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>"{0}"은(는) 이미 존재합니다 - 기본적으로 그대로 둡니다(빈틈 채우기). 클릭하면 이번 실행에 포함시킬 수 있으며, 아래에서 무엇이든 편집해도 됩니다 - 여기서의 모든 변경은 즉시 적용되고 함께 포함됩니다.</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>재고: {0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>제작에 사용될 재료: {0}. 클릭하면 변경할 수 있습니다.</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>제작에 사용될 재료입니다. 클릭하면 변경할 수 있습니다.</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>클릭하면 종류를 변경할 수 있습니다.</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>이 품목은 이미 팩에 있었고 마법사가 대안을 제공할 수 없어 교체할 수 없습니다. 그대로 유지됩니다. 제거하려면 X를 누르세요.</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>이 팩에 다른 항목을 추가합니다.</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>의약품</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>식량</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>약물</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>방패</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>유틸리티</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}: {1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0}은(는) 그대로 유지됩니다. 클릭하면 삭제 대상으로 표시합니다.</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>적용 시 {0}이(가) 생성됩니다. 제외하려면 클릭하세요.</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>{0}은(는) 생성되지 않습니다. 포함하려면 클릭하세요.</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>적용 시 {0}이(가) 삭제됩니다. 클릭하면 유지합니다.</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>{0}을(를) 변경했습니다 - 적용 시 변경본이 기록됩니다. 클릭하면 대신 삭제 대상으로 표시합니다.</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

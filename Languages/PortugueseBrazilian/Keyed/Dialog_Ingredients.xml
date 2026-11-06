@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_Ingredients_Title>Pacotes de Equipamento</CER_Ingredients_Title>
+	<CER_Ingredients_Subtitle>Monte aqui pacotes de equipamento reutilizáveis - um pacote pode reunir medicamentos, comida, drogas e itens utilitários. As armas são escolhidas por colono em Equipar colonos; lá você anexa pacotes a colonos ou papéis quando tiver algum.</CER_Ingredients_Subtitle>
+	<CER_Ingredients_AutoGenerateButton>Gerar automaticamente...</CER_Ingredients_AutoGenerateButton>
+	<CER_Ingredients_AutoGenerateTip>Monte uma paleta inicial completa de uma vez - suprimento do dia a dia, um kit médico, um kit de escudo - com controles deslizantes de custo/peso/ameaça. Cada item é editável ali mesmo antes de gerar, e novamente depois, à esquerda.</CER_Ingredients_AutoGenerateTip>
+	<CER_Ingredients_ListHeader>Pacotes de Equipamento</CER_Ingredients_ListHeader>
+	<CER_Ingredients_NewButton>+ Novo</CER_Ingredients_NewButton>
+	<CER_Ingredients_NewPackDefaultName>Novo Pacote de Equipamento</CER_Ingredients_NewPackDefaultName>
+	<CER_Ingredients_DeletePackTip>Excluir este Pacote de Equipamento.</CER_Ingredients_DeletePackTip>
+	<CER_Ingredients_DeletePackConfirm>Excluir o pacote de equipamento "{0}"? Colonos que o estão carregando atualmente perderão esses itens.</CER_Ingredients_DeletePackConfirm>
+	<CER_Ingredients_DeleteButtonGlyph>x</CER_Ingredients_DeleteButtonGlyph>
+	<CER_Ingredients_NoPacksYet>Ainda não há Pacotes de Equipamento.</CER_Ingredients_NoPacksYet>
+	<CER_Ingredients_SelectPackPrompt>Selecione um Pacote de Equipamento à esquerda, ou crie um novo.</CER_Ingredients_SelectPackPrompt>
+	<CER_Ingredients_NameLabel>Nome:</CER_Ingredients_NameLabel>
+	<CER_Ingredients_SectionMedical>Médico</CER_Ingredients_SectionMedical>
+	<CER_Ingredients_SectionFood>Comida</CER_Ingredients_SectionFood>
+	<CER_Ingredients_SectionDrugs>Drogas</CER_Ingredients_SectionDrugs>
+	<CER_Ingredients_SectionUtility>Utilidade</CER_Ingredients_SectionUtility>
+	<CER_Ingredients_SectionOther>Outro</CER_Ingredients_SectionOther>
+	<CER_Ingredients_ItemNounMedicine>remédio</CER_Ingredients_ItemNounMedicine>
+	<CER_Ingredients_ItemNounFood>comida</CER_Ingredients_ItemNounFood>
+	<CER_Ingredients_ItemNounDrug>droga</CER_Ingredients_ItemNounDrug>
+	<CER_Ingredients_ItemNounUtilityItem>item utilitário</CER_Ingredients_ItemNounUtilityItem>
+	<CER_Ingredients_SectionTitleWithCount>{0}  ({1})</CER_Ingredients_SectionTitleWithCount>
+	<CER_Ingredients_AddItemButton>+ Adicionar {0}</CER_Ingredients_AddItemButton>
+	<CER_Ingredients_AllAlreadyAdded>(todos já adicionados)</CER_Ingredients_AllAlreadyAdded>
+	<CER_Ingredients_NotResearchedSuffix> (Não pesquisado)</CER_Ingredients_NotResearchedSuffix>
+	<CER_Ingredients_NoneAdded>Nenhum adicionado.</CER_Ingredients_NoneAdded>
+	<CER_Ingredients_OtherSectionHint>Para qualquer coisa fora das categorias acima - abre o próprio editor de configurações do CE para este pacote.</CER_Ingredients_OtherSectionHint>
+	<CER_Ingredients_OpenCELoadoutEditorButton>Abrir editor de configurações do CE</CER_Ingredients_OpenCELoadoutEditorButton>
+
+</LanguageData>

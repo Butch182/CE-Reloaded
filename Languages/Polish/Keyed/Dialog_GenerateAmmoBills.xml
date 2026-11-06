@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateAmmoBills_BenchLabelNone>Brak</CER_GenerateAmmoBills_BenchLabelNone>
+	<CER_GenerateAmmoBills_ToggleToAmmoBills>&lt; Zlecenia amunicji</CER_GenerateAmmoBills_ToggleToAmmoBills>
+	<CER_GenerateAmmoBills_ToggleToWeaponBills>Zlecenia broni &gt;</CER_GenerateAmmoBills_ToggleToWeaponBills>
+	<CER_GenerateAmmoBills_DefaultBatchesLabel>Domyślne partie:</CER_GenerateAmmoBills_DefaultBatchesLabel>
+	<CER_GenerateAmmoBills_WorkbenchLabel>Stanowisko pracy:</CER_GenerateAmmoBills_WorkbenchLabel>
+	<CER_GenerateAmmoBills_AllBenchesOption>Wszystkie stanowiska</CER_GenerateAmmoBills_AllBenchesOption>
+	<CER_GenerateAmmoBills_AmmunitionLabel>Amunicja:</CER_GenerateAmmoBills_AmmunitionLabel>
+	<CER_GenerateAmmoBills_AbAssignedLoadouts>Przypisane zestawy</CER_GenerateAmmoBills_AbAssignedLoadouts>
+	<CER_GenerateAmmoBills_AbAvailableWeapons>Dostępna broń</CER_GenerateAmmoBills_AbAvailableWeapons>
+	<CER_GenerateAmmoBills_AbActiveBills>Aktywne zlecenia</CER_GenerateAmmoBills_AbActiveBills>
+	<CER_GenerateAmmoBills_AbAllAmmunition>Zbadana amunicja</CER_GenerateAmmoBills_AbAllAmmunition>
+	<CER_GenerateAmmoBills_HideDuplicateBenches>Ukryj powtarzające się stanowiska</CER_GenerateAmmoBills_HideDuplicateBenches>
+	<CER_GenerateAmmoBills_ColName>Nazwa</CER_GenerateAmmoBills_ColName>
+	<CER_GenerateAmmoBills_ColSpecial>Specjalne</CER_GenerateAmmoBills_ColSpecial>
+	<CER_GenerateAmmoBills_ColAssig>Dostępność</CER_GenerateAmmoBills_ColAssig>
+	<CER_GenerateAmmoBills_ColIngredients>Składniki</CER_GenerateAmmoBills_ColIngredients>
+	<CER_GenerateAmmoBills_ColGenerateOn>Generuj na...</CER_GenerateAmmoBills_ColGenerateOn>
+	<CER_GenerateAmmoBills_ColLoadouts>Zestawy</CER_GenerateAmmoBills_ColLoadouts>
+	<CER_GenerateAmmoBills_UnneededBillTooltip>Żaden przypisany zestaw kolonisty obecnie nie potrzebuje tej amunicji - działające zlecenia produkują na próżno.</CER_GenerateAmmoBills_UnneededBillTooltip>
+	<CER_GenerateAmmoBills_ActiveBillsNone>Brak</CER_GenerateAmmoBills_ActiveBillsNone>
+	<CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>Wygeneruj zlecenie na {0}.</CER_GenerateAmmoBills_GenerateBillOnBenchTooltip>
+	<CER_GenerateAmmoBills_JumpToWorkbenchTooltip>Przejdź do tego stanowiska pracy.</CER_GenerateAmmoBills_JumpToWorkbenchTooltip>
+	<CER_GenerateAmmoBills_NoBench>Brak stanowiska</CER_GenerateAmmoBills_NoBench>
+	<CER_GenerateAmmoBills_NotResearched>Niezbadane</CER_GenerateAmmoBills_NotResearched>
+	<CER_GenerateAmmoBills_LoadoutsNone>Brak</CER_GenerateAmmoBills_LoadoutsNone>
+	<CER_GenerateAmmoBills_DeleteAllBillsButton>Usuń wszystkie zlecenia amunicji</CER_GenerateAmmoBills_DeleteAllBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllBillsConfirm>Usunąć każde zlecenie produkcji amunicji na każdym stanowisku pracy? Tej operacji nie można cofnąć.</CER_GenerateAmmoBills_DeleteAllBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsSingular>Usunięto {0} zlecenie amunicji.</CER_GenerateAmmoBills_DeletedAmmoBillsSingular>
+	<CER_GenerateAmmoBills_DeletedAmmoBillsPlural>Usunięto {0} zleceń amunicji.</CER_GenerateAmmoBills_DeletedAmmoBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllBillsTooltip>Usuń każde zlecenie produkcji amunicji z każdego stanowiska pracy.</CER_GenerateAmmoBills_DeleteAllBillsTooltip>
+	<CER_GenerateAmmoBills_RemoveUnneededButton>Usuń niepotrzebne zlecenia ({0})</CER_GenerateAmmoBills_RemoveUnneededButton>
+	<CER_GenerateAmmoBills_PruneConfirm>Usunąć każde zlecenie amunicji, której nikt obecnie przypisany już nie potrzebuje? Zlecenia wciąż pokrywające realne zapotrzebowanie pozostaną nietknięte. Tej operacji nie można cofnąć.</CER_GenerateAmmoBills_PruneConfirm>
+	<CER_GenerateAmmoBills_RemovedUnneededSingular>Usunięto {0} niepotrzebne zlecenie amunicji.</CER_GenerateAmmoBills_RemovedUnneededSingular>
+	<CER_GenerateAmmoBills_RemovedUnneededPlural>Usunięto {0} niepotrzebnych zleceń amunicji.</CER_GenerateAmmoBills_RemovedUnneededPlural>
+	<CER_GenerateAmmoBills_PruneTooltip>Zlecenia wciąż działające dla amunicji, której żaden przypisany zestaw kolonisty już nie wymaga - produkcja trwała dalej po edycji/usunięciu zestawu lub przypisaniu kolonisty gdzie indziej. Zlecenia wciąż pokrywające realne zapotrzebowanie nigdy nie są ruszane.</CER_GenerateAmmoBills_PruneTooltip>
+	<CER_GenerateAmmoBills_AutoGenerateButton>Optymalizuj zlecenia amunicji</CER_GenerateAmmoBills_AutoGenerateButton>
+	<CER_GenerateAmmoBills_AutoGenerateTooltip>Przechodzi przez wszystkie rodzaje amunicji naraz: czego brakuje, dostaje zlecenie, a niepotrzebne zlecenia są proponowane do anulowania. Nic się nie zmienia przed potwierdzeniem; trwająca produkcja pozostaje nietknięta.</CER_GenerateAmmoBills_AutoGenerateTooltip>
+	<CER_GenerateAmmoBills_NoAmmoSelected>Nie zaznaczono amunicji do wygenerowania.</CER_GenerateAmmoBills_NoAmmoSelected>
+	<CER_GenerateAmmoBills_WeaponsLabel>Broń:</CER_GenerateAmmoBills_WeaponsLabel>
+	<CER_GenerateAmmoBills_WovAssignedLoadouts>Przypisane zestawy</CER_GenerateAmmoBills_WovAssignedLoadouts>
+	<CER_GenerateAmmoBills_WovAvailableWeapons>Dostępna broń</CER_GenerateAmmoBills_WovAvailableWeapons>
+	<CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>Tylko broń, którą faktycznie posiada kolonia.</CER_GenerateAmmoBills_WovAvailableWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovResearchedWeapons>Zbadana broń</CER_GenerateAmmoBills_WovResearchedWeapons>
+	<CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>Każda broń, której receptura wytwarzania jest zbadana (niezależnie od tego, czy kolonia ją posiada).</CER_GenerateAmmoBills_WovResearchedWeaponsTooltip>
+	<CER_GenerateAmmoBills_WovActiveBills>Aktywne zlecenia</CER_GenerateAmmoBills_WovActiveBills>
+	<CER_GenerateAmmoBills_WovColWeapon>Broń</CER_GenerateAmmoBills_WovColWeapon>
+	<CER_GenerateAmmoBills_WovColScore>Wynik</CER_GenerateAmmoBills_WovColScore>
+	<CER_GenerateAmmoBills_WovColSpecial>Specjalne</CER_GenerateAmmoBills_WovColSpecial>
+	<CER_GenerateAmmoBills_WovColIngredients>Składniki</CER_GenerateAmmoBills_WovColIngredients>
+	<CER_GenerateAmmoBills_WovColOwned>Dostępność</CER_GenerateAmmoBills_WovColOwned>
+	<CER_GenerateAmmoBills_WovQueuedMsg>Zlecono {0}x {1} przy {2}.</CER_GenerateAmmoBills_WovQueuedMsg>
+	<CER_GenerateAmmoBills_WovMaterialTip>Material tego zlecenia: {0}. Kliknij, aby zmienic - zlecenie zostanie do niego ograniczone.</CER_GenerateAmmoBills_WovMaterialTip>
+	<CER_GenerateAmmoBills_WovCountTip>Ile wytworzyc. Jedno klikniecie Produce dodaje dokladnie tyle - domyslnie 1.</CER_GenerateAmmoBills_WovCountTip>
+	<CER_GenerateAmmoBills_WovColMaterial>Mat.</CER_GenerateAmmoBills_WovColMaterial>
+	<CER_GenerateAmmoBills_ScoreBarLabel>Wynik: {0}</CER_GenerateAmmoBills_ScoreBarLabel>
+	<CER_GenerateAmmoBills_PlusMatLabel>+mat.</CER_GenerateAmmoBills_PlusMatLabel>
+	<CER_GenerateAmmoBills_MaterialTooltip>Wymaga też materiału (stal, drewno, ...), wybieranego przy produkcji.</CER_GenerateAmmoBills_MaterialTooltip>
+	<CER_GenerateAmmoBills_WovNotResearched>Niezbadane</CER_GenerateAmmoBills_WovNotResearched>
+	<CER_GenerateAmmoBills_WovNoBench>Brak stanowiska</CER_GenerateAmmoBills_WovNoBench>
+	<CER_GenerateAmmoBills_WovNotResearchedTooltip>Nie można wyprodukować: jej receptura wytwarzania nie jest jeszcze zbadana.</CER_GenerateAmmoBills_WovNotResearchedTooltip>
+	<CER_GenerateAmmoBills_WovNoBenchTooltip>Nie można wyprodukować: na tej mapie nie zbudowano odpowiedniego stanowiska pracy.</CER_GenerateAmmoBills_WovNoBenchTooltip>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>Usuń wszystkie zlecenia broni</CER_GenerateAmmoBills_DeleteAllWeaponBillsButton>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>Usunąć każde zlecenie produkcji broni na każdym stanowisku pracy? Tej operacji nie można cofnąć.</CER_GenerateAmmoBills_DeleteAllWeaponBillsConfirm>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsSingular>Usunięto {0} zlecenie broni.</CER_GenerateAmmoBills_DeletedWeaponBillsSingular>
+	<CER_GenerateAmmoBills_DeletedWeaponBillsPlural>Usunięto {0} zleceń broni.</CER_GenerateAmmoBills_DeletedWeaponBillsPlural>
+	<CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>Usuń każde zlecenie produkcji broni z każdego stanowiska pracy.</CER_GenerateAmmoBills_DeleteAllWeaponBillsTooltip>
+	<CER_GenerateAmmoBills_ProduceSelectedCount>Produkuj zaznaczone ({0})</CER_GenerateAmmoBills_ProduceSelectedCount>
+	<CER_GenerateAmmoBills_ProduceSelectedLabel>Produkuj zaznaczone</CER_GenerateAmmoBills_ProduceSelectedLabel>
+	<CER_GenerateAmmoBills_HiddenWeaponsMessage>Ukryta przez obecny filtr zaznaczona broń ({0}) nie została wyprodukowana.</CER_GenerateAmmoBills_HiddenWeaponsMessage>
+	<CER_GenerateAmmoBills_NoWeaponsSelected>Nie zaznaczono broni.</CER_GenerateAmmoBills_NoWeaponsSelected>
+	<CER_GenerateAmmoBills_AddedUpdatedBillsMessage>Dodano/zaktualizowano zleceń: {0}.</CER_GenerateAmmoBills_AddedUpdatedBillsMessage>
+	<CER_GenerateAmmoBills_RemovedObsoleteSingular>Usunięto {0} nieaktualne zlecenie amunicji.</CER_GenerateAmmoBills_RemovedObsoleteSingular>
+	<CER_GenerateAmmoBills_RemovedObsoletePlural>Usunięto {0} nieaktualnych zleceń amunicji.</CER_GenerateAmmoBills_RemovedObsoletePlural>
+	<CER_GenerateAmmoBills_AutoGeneratedBillsMessage>Automatycznie wygenerowano {0} brakujących zleceń amunicji.</CER_GenerateAmmoBills_AutoGeneratedBillsMessage>
+
+	<CER_GenerateAmmoBills_ColAmount>Ilość</CER_GenerateAmmoBills_ColAmount>
+	<CER_GenerateAmmoBills_AmountTooltip>Ile jedno kliknięcie stołu dodaje do zlecenia. Domyślnie: partie x wydajność ({0} na partię).</CER_GenerateAmmoBills_AmountTooltip>
+	<CER_GenerateAmmoBills_GenerateAdditiveTooltip>{0}: dodaj {1} do zlecenia ∞ (rób do). Kliknij ponownie, aby dodać więcej.</CER_GenerateAmmoBills_GenerateAdditiveTooltip>
+
+	<CER_GenerateAmmoBills_WovColActiveBills>Aktywne zlecenia</CER_GenerateAmmoBills_WovColActiveBills>
+
+	<CER_GenerateAmmoBills_GenerateOnceTooltip>{0}: zlecenie jednorazowe - wykonać {1} i skończyć (x1).</CER_GenerateAmmoBills_GenerateOnceTooltip>
+
+	<CER_GenerateAmmoBills_MasterCheckTip>Zaznacz wszystkie {0} zaznaczalne wiersze.</CER_GenerateAmmoBills_MasterCheckTip>
+	<CER_GenerateAmmoBills_MasterUncheckTip>Odznacz wszystko.</CER_GenerateAmmoBills_MasterUncheckTip>
+
+
+	<CER_GenerateAmmoBills_FilterAssignedTip>Tylko to, co osadnicy mają aktualnie przypisane. Najkrótsza lista i ta, która odpowiada temu, czego oddział naprawdę użyje.</CER_GenerateAmmoBills_FilterAssignedTip>
+	<CER_GenerateAmmoBills_FilterActiveBillsTip>Tylko pozycje, które mają już zlecenie w kolejce przy stole. Przydatne do przeglądu produkcji.</CER_GenerateAmmoBills_FilterActiveBillsTip>
+	<CER_GenerateAmmoBills_AbAvailableWeaponsTip>Amunicja do każdej broni, którą kolonia ma lub może zbudować - szersze niż lista przypisanych, by zrobić zapas przed rozdaniem broni.</CER_GenerateAmmoBills_AbAvailableWeaponsTip>
+	<CER_GenerateAmmoBills_AbAllAmmunitionTip>Każdy zbadany rodzaj amunicji, niezależnie od tego, czy używa go tu jakaś broń. Najszersza lista.</CER_GenerateAmmoBills_AbAllAmmunitionTip>
+	<CER_GenerateAmmoBills_HideDuplicateBenchesTip>Przy kilku identycznych stołach pokazuj tylko jeden. Skraca kolumnę; zlecenie i tak trafi na wolny stół.</CER_GenerateAmmoBills_HideDuplicateBenchesTip>
+	<CER_GenerateAmmoBills_NothingMatchesSearch>Nic nie pasuje do „{0}”. Wyczyść pole wyszukiwania, aby zobaczyć całą listę.</CER_GenerateAmmoBills_NothingMatchesSearch>
+	<CER_GenerateAmmoBills_NothingMatchesFilter>Bieżący filtr nic nie pokazuje. Wybierz szerszy powyżej - „{0}” zawsze pokazuje wszystko zbadane.</CER_GenerateAmmoBills_NothingMatchesFilter>
+</LanguageData>

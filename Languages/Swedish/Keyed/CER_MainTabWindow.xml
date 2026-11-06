@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>Lastningsplanerare</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>Öppna CE Reloaded-arbetsflödet: Utrustningspaket, Roller, Utrusta kolonister och Orderöversikt.</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>Hoppar till CE Reloadeds flik Utrusta kolonister, filtrerad till denna kolonist.</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Добавить другой предмет</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - добавьте любой предмет в личное снаряжение, сверх того, что уже покрывают Боеприпасы, Наборы и Запасное оружие.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Поиск предметов...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>Нет совпадений для «{0}».</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Убрать у этого колониста (сейчас у него {0}). Число в поле задаёт количество.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Этого предмета нет в личном списке колониста, убирать нечего.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Убрано {0}x {1} у {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Предмет</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Назначено</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Кол.</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>{0}x {1} добавлено поселенцу {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Закрыть</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Копировать</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Копирует прочие предметы этого поселенца в буфер обмена. Вставьте их другому поселенцу через столбец вставки на вкладке Экипировать колонистов (заменяет его прочие предметы). Пустой список тоже можно скопировать - при вставке он очищает цель.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>Скопировано {0} тип(ов) предметов у {1} - используйте столбец вставки на вкладке Экипировать колонистов.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Скопирован пустой список предметов у {0} - при вставке он очищает прочие предметы цели.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

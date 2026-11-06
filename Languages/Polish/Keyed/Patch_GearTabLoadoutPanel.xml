@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GearTabLoadoutPanel_Header>Zestaw</CER_GearTabLoadoutPanel_Header>
+	<CER_GearTabLoadoutPanel_NoLoadoutAssigned>Nie przypisano zestawu.</CER_GearTabLoadoutPanel_NoLoadoutAssigned>
+	<CER_GearTabLoadoutPanel_NoLoadoutHint>Użyj Przypisz, by wybrać broń lub rolę.</CER_GearTabLoadoutPanel_NoLoadoutHint>
+	<CER_GearTabLoadoutPanel_TitleBold>&lt;b&gt;{0}&lt;/b&gt;</CER_GearTabLoadoutPanel_TitleBold>
+	<CER_GearTabLoadoutPanel_ColItem>Przedmiot</CER_GearTabLoadoutPanel_ColItem>
+	<CER_GearTabLoadoutPanel_ColHaveNeed>Mam/Potrzeba</CER_GearTabLoadoutPanel_ColHaveNeed>
+	<CER_GearTabLoadoutPanel_ColStatus>  Status</CER_GearTabLoadoutPanel_ColStatus>
+	<CER_GearTabLoadoutPanel_UnknownItem>?</CER_GearTabLoadoutPanel_UnknownItem>
+	<CER_GearTabLoadoutPanel_StatusOk>OK</CER_GearTabLoadoutPanel_StatusOk>
+	<CER_GearTabLoadoutPanel_StatusInStorage>w magazynie</CER_GearTabLoadoutPanel_StatusInStorage>
+	<CER_GearTabLoadoutPanel_StatusInProduction>w produkcji</CER_GearTabLoadoutPanel_StatusInProduction>
+	<CER_GearTabLoadoutPanel_StatusMissing>brakuje</CER_GearTabLoadoutPanel_StatusMissing>
+	<CER_GearTabLoadoutPanel_CarriedOverNeed>{0}/{1}</CER_GearTabLoadoutPanel_CarriedOverNeed>
+	<CER_GearTabLoadoutPanel_NeededCarried>
+Potrzeba: {0}   Niesie: {1}</CER_GearTabLoadoutPanel_NeededCarried>
+	<CER_GearTabLoadoutPanel_FreeInStorage>
+Wolne w magazynie: {0}</CER_GearTabLoadoutPanel_FreeInStorage>
+	<CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+W kolejce na stanowisku pracy.</CER_GearTabLoadoutPanel_QueuedOnWorkbench>
+	<CER_GearTabLoadoutPanel_NotCovered>
+
+Nie pokryte - kontrolka gotowości i proces Zaopatrzenia mogą to zakolejkować.</CER_GearTabLoadoutPanel_NotCovered>
+	<CER_GearTabLoadoutPanel_EditButton>Edytuj...</CER_GearTabLoadoutPanel_EditButton>
+	<CER_GearTabLoadoutPanel_EditTooltipHasLoadout>Otwórz ten zestaw w edytorze zestawów CE.</CER_GearTabLoadoutPanel_EditTooltipHasLoadout>
+	<CER_GearTabLoadoutPanel_EditTooltipNoLoadout>Nie ma jeszcze zestawu do edycji.</CER_GearTabLoadoutPanel_EditTooltipNoLoadout>
+	<CER_GearTabLoadoutPanel_AssignButton>Przypisz...</CER_GearTabLoadoutPanel_AssignButton>
+	<CER_GearTabLoadoutPanel_AssignTooltip>Otwórz zakładkę Wyposaż kolonistów w CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
+
+</LanguageData>

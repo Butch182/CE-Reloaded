@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Välj ett vapen</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - välj ett vapen; standardammunition hanteras automatiskt.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - fäst ett vapen för den här planen; 'Auto' lämnar tillbaka valet till lösaren.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Vikt och skrymmande inklusive standardammunition</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} i kolonin</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} av dem redan upptagna av planen</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Kan tillverkas nu</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Inget matchar sökningen eller filtret.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Poäng {0} (mot kött {1}, mot mekanoider {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

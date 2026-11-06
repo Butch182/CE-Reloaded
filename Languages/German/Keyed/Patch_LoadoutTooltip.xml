@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_LoadoutTooltip_SaveComboAsRole>Aktuelle Kombination als Rolle speichern...</CER_LoadoutTooltip_SaveComboAsRole>
+	<CER_LoadoutTooltip_NoneEquipped>Keine</CER_LoadoutTooltip_NoneEquipped>
+	<CER_LoadoutTooltip_CurrentlyAssigned>Aktuell zugewiesen: &lt;b&gt;{0}&lt;/b&gt;</CER_LoadoutTooltip_CurrentlyAssigned>
+	<CER_LoadoutTooltip_CurrentlyEquipped>Aktuell ausgerüstet: &lt;b&gt;{0}&lt;/b&gt;</CER_LoadoutTooltip_CurrentlyEquipped>
+	<CER_LoadoutTooltip_CombatSkills>Kampffertigkeiten:
+- Schießen: {0}
+- Nahkampf: {1}</CER_LoadoutTooltip_CombatSkills>
+	<CER_LoadoutTooltip_AvailabilityHeader>Verfügbarkeit:</CER_LoadoutTooltip_AvailabilityHeader>
+	<CER_LoadoutTooltip_AvailabilityLine>- {0}: {1} verfügbar ({2} gelagert, {3} zugewiesen, aber noch nicht ausgerüstet)</CER_LoadoutTooltip_AvailabilityLine>
+	<CER_LoadoutTooltip_InProduction> - {0} in Produktion</CER_LoadoutTooltip_InProduction>
+	<CER_LoadoutTooltip_InProductionMissing> - {0} in Produktion, {1} noch fehlend</CER_LoadoutTooltip_InProductionMissing>
+	<CER_LoadoutTooltip_ForbiddenNearby>({0} als "nicht aufsammeln" markiert)</CER_LoadoutTooltip_ForbiddenNearby>
+
+</LanguageData>

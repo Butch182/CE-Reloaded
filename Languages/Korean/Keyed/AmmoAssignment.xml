@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AmmoAssignment_NoneLabel>없음</CER_AmmoAssignment_NoneLabel>
+	<CER_AmmoAssignment_UnknownLabel>?</CER_AmmoAssignment_UnknownLabel>
+	<CER_AmmoAssignment_ExtraAmmoCount>여분 탄약 {0}개</CER_AmmoAssignment_ExtraAmmoCount>
+	<CER_AmmoAssignment_MoreSuffix> +{0}개 더</CER_AmmoAssignment_MoreSuffix>
+	<CER_AmmoAssignment_LabelWithExtras>{0} +{1}</CER_AmmoAssignment_LabelWithExtras>
+	<CER_AmmoAssignment_CustomLabelPrefix>사용자 지정: {0}</CER_AmmoAssignment_CustomLabelPrefix>
+
+</LanguageData>

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: applied {0} changed default to the current game.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: applied {0} changed defaults to the current game.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>Filters</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>Loadouts</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>Roles</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>Ammo bills</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>Auto-assign</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>Presets</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>Alerts</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>Tools</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>Debug</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>Preset tuning</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>The exact slider values (0..1) each preset button applies in the Auto-assign preview. A preset is a COMPLETE configuration - applying one sets every slider, Anti-flesh/Anti-mech included, so presets never half-mix. "Use recommended setup" remains the dynamic alternative (colony-driven Anti-mech).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>Balanced</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>Anti-Mech</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>Economy</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>Best Gear</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>Focus Ranged</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>All</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>Available items</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>Anti-flesh &lt;-&gt; Anti-mech</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = tuned against flesh, 1 = against mechanoids. Drives ammo, grenade and sidearm picks and the assign target scoring.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>One ammo type &lt;-&gt; max flexibility</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>How eagerly Auto-assign mixes ammo types per weapon (with "Override ammo" on). Rations stay whole magazines, the total never grows.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>Use available &lt;-&gt; craft new</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>Assign: how willing the solver is to hand out weapons that must be crafted.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>Prefer ranged &lt;-&gt; melee</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>Assign: shifts who counts as a shooter vs a brawler.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>Always best &lt;-&gt; cover roles</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>Assign: 0 = everyone gets the highest value, 1 = the squad fills classic roles first.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>Cheap &lt;-&gt; best weapon (budget)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>Assign: only matters for weapons that must be crafted.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>No packs &lt;-&gt; Generous packs</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>Assign: ranks Equipment Pack types by essentialness and includes progressively more as this rises.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>Reset presets to defaults</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>Preset values reset to factory defaults.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>Arm my Colony mode presets</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>Which of the 6 step switches Cautious/Normal/Aggressive each set when picked in Arm my Colony. A player can still fine-tune individual switches after picking a mode - these are just what each mode STARTS from.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>Cautious</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>Normal</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>Aggressive</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>Off</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>Managed</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>All</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>Reset pawns</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>Delete ammo bills</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>Delete weapon bills</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>Delete hand-built loadouts</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>Delete equipment packs</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>Create ammo bills</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>Reset Arm-Colony presets to defaults</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>Arm-my-Colony preset switches reset to factory defaults.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>Combat readiness alerts</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>Vanilla-style alerts (top-right, next to "Major break risk") that warn when a colonist isn't combat-ready. Hover an alert for details, click it to jump to the colonists.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>Show combat-readiness alerts (master switch)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>Colonist has no loadout assigned at all</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>Turn this off if you deliberately keep some colonists (crafters, doctors) unarmed - they'll otherwise always show as an issue.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>Loadout without matching ammo</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>Loadout weapon unavailable (not in storage or production)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>Low on ammo (less than 2 reloads carried)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>Warn below ... magazines</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>How few magazines a colonist must be carrying before the low-ammo warning fires. Default 2. The CE community usually reckons 5-6 magazines per fight, so raise it if you want to be warned earlier - the cost is more yellow warnings.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>Overloaded (over weight or bulk capacity)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>Too full to fetch loadout (at capacity, still short an ammo type)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>Bulk or weight is already maxed, so the colonist physically can't pick up the rest of what their loadout wants - no bill or stock fix helps until they free up room.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>Assigned a weapon but carrying none</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>The colonist has a real loadout that assigns a weapon, but is carrying nothing at all - not in hand and not in the backpack. Usually means they have not fetched it yet. Fires only on completely empty hands, never on 'one more item still missing', or it would be on permanently.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>Ammo not in production</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...only if fewer than X rounds are stockpiled (0 = always):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = warn whenever no bill is producing this weapon's ammo. A higher value only warns once your stockpile of that ammo drops below X rounds, so a big reserve won't nag you.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>Reset alerts to defaults</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>Tools &amp; Diagnostics</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>Scans every weapon from all active mods and reports any that CE Reloaded may handle incorrectly (invalid score, wrong "(Not CE)" flag, missing ammo, un-producible throwables). It changes nothing, purely read-only. Useful after adding weapon mods, or to attach to a bug report.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>Run weapon compatibility audit</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>A savegame starts as a copy of these mod settings, then remembers its own tweaks (filters, sliders, supply defaults). This button throws the current game's tweaks away and applies the mod settings fresh.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>Reset current game to these mod settings</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>Reseeds the running save's UI state from the values configured here. Manual slider overrides are cleared, the colony's combat history is kept.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>Only available while a game is loaded.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>Current game's settings were reset to the mod settings.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>Loadout debug / audit</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>Every Loadout object registered right now - hidden ammo anchors, Equipment Packs and Roles included. Nothing here is meant to be edited directly; it's for checking what actually exists.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>No active game - open a save to inspect its loadouts.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>Clean up orphaned anchors ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>Removed {0} orphaned loadout anchor.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>Removed {0} orphaned loadout anchors.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>Removes every hidden per-pawn ammo anchor that no live pawn (on any map or in any caravan) is actually assigned to anymore. Also runs automatically about once per in-game hour - this button is just "do it now".</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>Prepare save for uninstall...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>Use this before removing CE Reloaded from a running save. Every colonist keeps exactly the gear assigned to them now - weapon, sidearms, packs, personal ammo - but as plain Combat Extended loadouts that work without this mod. Roles get their packs merged in, and the hidden per-colonist loadouts are deleted. Afterwards: save, quit, remove the mod.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>Prepare this save for removing CE Reloaded?\n\nColonists keep exactly the gear assigned to them now, but as plain CE loadouts: packs and sidearms are no longer shared or live-editable. This cannot be undone - make a backup save first.\n\nAfterwards save the game, quit, and remove the mod.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>Save prepared: {0} colonist(s) back on their shared loadout, {1} got their own plain loadout, {2} role(s) merged, {3} hidden loadout(s) deleted. Now save the game, quit, and remove the mod.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>Label</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>Category</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>Parent</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>Slots</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>Default</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>Ammo anchor</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>Equipment Pack</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>Role</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>Weapon Loadout</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (orphan)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>UniqueID: {0}
+OwnSlots: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+Parent: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+Extra-parents: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+Resolved contents ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+Resolved contents: none</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>Roles</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>Factors multiplying a role's ammo / medicine / food / grenades.  x1 keeps a category, x0 removes it.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>Global library</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>This save only</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ Add role</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>New save role</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>New role</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>Reset to presets</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>Replace the global list with the built-in presets (Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee). A role whose name is not among them loses its loadout as well.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>Load a colony to add roles that live only in that save.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>Role name</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>Ammo</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>Medicine</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>Food</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>Grenades</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>Delete this role.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>Filters (defaults)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>Default ammo filter:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>Default ammo bill filter:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>Hide duplicate workbenches in bill lists</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>When several identical workbenches exist, list each type only once in the ammo-bill workbench pickers. Turn this off if you want to target a specific one of several identical benches.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>Claim open weapon production</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>The Supply popup counts weapons already queued on a workbench against the shortfall: open production is claimed first and only the remainder is suggested, so nothing is over-produced. Off: the popup always suggests the full shortfall regardless of what's already queued.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>Reset filters to defaults</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>Loadout defaults</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>Default firearm ammo:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>Which ammo variant a firearm gets by default. FMJ is the classic all-rounder. Generic keeps an "Any Ammo for X" placeholder. If a weapon has no matching variant, CE Reloaded falls back to Any/FMJ.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>Tabs start in Detailed mode</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>Whether the Roles/Ammo Bills/Equip Colonists tabs' own Simple/Detailed toggle defaults to Detailed the first time each is opened in a session. Off = starts Simple. Each tab remembers your own choice for the rest of the session either way - this only sets the very first look.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>No loadout prefix</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>Disabled</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>No Equipment Pack prefix</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>No Role prefix</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>Sidearm max bulk:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>Sidearm - melee (for ranged troops):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>Feeds the "complementary backup" scoring bonus for ranged weapons. Only melee weapons. Auto = picked in-game from what you own or can afford to craft. None = never counts as having a melee backup.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>Sidearm - ranged (for melee troops):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>Feeds the "complementary backup" scoring bonus for melee weapons. Only ranged weapons. Auto = picked in-game from what you own or can afford to craft. None = never counts as having a ranged backup.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>Default shield:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>A CE shield for colonists with a one-handed main weapon (two-handed weapons can't use a shield). Auto = picked in-game from what you own or can afford to craft. None = no default shield.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>These four are the starting values for a NEWLY generated Equipment Pack. A weapon alone brings no meals or medicine - that is what packs are for.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>Default meal:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>None</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>Default meal count:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>Default medicine:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>Default medicine count:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>Default ammo counts (by weapon type)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>Assault / SMG:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>Sniper / Hunting:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>Machine guns (LMG):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>Shotguns:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>Bows / Crossbows:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>Launchers / Explosives:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>Other / Default:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>Javelins / thrown melee:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>Weapons that are their own ammo (javelins, pila) - this is how many the colonist carries, not a magazine count. Distinct from Grenades below - split out since a sensible javelin count and a sensible grenade count are very different numbers.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>Grenades / thrown explosives:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>Thrown explosives (grenades, satchel charges, ...) - also self-ammo like javelins above, but a much smaller number makes sense here.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>Pistol:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>Rounds for a pistol or revolver. Kept separate because a pistol is almost always the SECONDARY weapon, so its ammo is carried on top of the main weapon's - the old shared default of 150 was assault-rifle weight for a backup gun.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>Reset loadout defaults to defaults</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>Ammo bills (defaults)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>Default ammo batches (production):</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>Skill requirements:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>Skill: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>Reset ammo bills to defaults</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>Ammo bill reserve buffer</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>An ammo bill is a maintenance bill ("craft until X in stock"), not a one-shot order - requiring a full simultaneous reserve for every single colonist sharing a caliber overstates the real need. The first N colonists count at full weight, every colonist beyond that contributes a shrinking share (down to a floor). Set the floor to 100% to go back to the old "sum everyone at full weight" behavior.</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>Colonists at full weight: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>How many colonists sharing the same ammo type count at 100% of their own configured count. Every colonist beyond this counts less (see the floor below).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>Trailing share floor: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>The minimum share a colonist beyond the full-weight count still contributes (their share shrinks the further down the list they are, but never below this floor). 100% reproduces the old "sum everyone" behavior.</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>Auto-assign (defaults)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>The fine-tuning (use existing vs craft, anti-flesh vs anti-mech, ranged vs melee, squad diversity) lives in the Auto-assign popup itself and is remembered per save.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>Default weapons filter:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>Which weapons Auto-assign may hand out:
+All weapons - regardless of what you own or can build.
+Available main weapon - only weapons you already own.
+Researched main weapon - only weapons you own or can craft now.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>Weapon production skill requirements:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>Reset auto-assign to defaults</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>All weapons</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>Available main weapon</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>Researched main weapon</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>All</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>Researched</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>Available</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>In loadout</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>Assigned loadouts</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>Available weapons</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>Active bills</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>Res. ammo</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>Auto (recommended)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>Roles in auto-assign</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>The crash course (a short overview of the workflow) opens once, the first time CE Reloaded is opened.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>Show crash course</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>Reset first-start guide</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>Forget that the crash course was already shown - it opens again the next time the Loadout Planner or Arm my Colony is opened. Useful for testing.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>First-start guide reset - it will open again next time.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>Restore presets ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>Bring back the built-in roles you deleted, each in its original place. Only the missing ones are added - unlike "Reset to presets", your own roles are untouched.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>{0} built-in role(s) restored.</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

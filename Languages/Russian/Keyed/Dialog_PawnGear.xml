@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PawnGear_Title>{0} - снаряжение при себе</CER_PawnGear_Title>
+	<CER_PawnGear_CanDropHint>Сброс кладёт предмет на землю рядом с поселенцем - носильщики отнесут его на склад.</CER_PawnGear_CanDropHint>
+	<CER_PawnGear_CannotDropHint>Этот поселенец сейчас не на карте, поэтому ничего нельзя сбросить.</CER_PawnGear_CannotDropHint>
+	<CER_PawnGear_HeaderEquipment>Снаряжение</CER_PawnGear_HeaderEquipment>
+	<CER_PawnGear_HeaderApparel>Одежда</CER_PawnGear_HeaderApparel>
+	<CER_PawnGear_HeaderInventory>Инвентарь</CER_PawnGear_HeaderInventory>
+	<CER_PawnGear_DropButton>Сбросить</CER_PawnGear_DropButton>
+	<CER_PawnGear_EmptyRow>- нет -</CER_PawnGear_EmptyRow>
+	<CER_PawnGear_CloseButton>Закрыть</CER_PawnGear_CloseButton>
+
+</LanguageData>

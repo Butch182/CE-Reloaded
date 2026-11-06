@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>다른 아이템 추가</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - 탄약, 팝, 보조무기가 이미 다루는 것 외에 개인 로드아웃에 원하는 아이템을 추가합니다.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>아이템 검색...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>"{0}"에 대한 검색 결과가 없습니다.</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>이 정착민에게서 제거합니다 (현재 {0}개 보유). 칸에 적힌 숫자만큼 제거합니다.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>이 물품은 정착민의 개인 목록에 없으므로 제거할 것이 없습니다.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>{2}에게서 {1} {0}개를 제거했습니다.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>아이템</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>할당됨</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>수량</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>{2}에게 {1} {0}개를 추가했습니다.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>닫기</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>복사</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>이 정착자의 기타 아이템을 클립보드에 복사합니다. 정착민 장비 지급 탭의 붙여넣기 열을 통해 다른 정착자에게 붙여넣을 수 있습니다(해당 정착자의 기타 아이템을 대체). 빈 목록도 복사할 수 있으며, 붙여넣으면 대상의 목록이 비워집니다.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>{1}의 아이템 {0}종을 복사했습니다. 정착민 장비 지급 탭의 붙여넣기 열을 사용하세요.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>{0}의 빈 아이템 목록을 복사했습니다. 붙여넣으면 대상의 기타 아이템이 비워집니다.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>没有可分配的对象：所有殖民者都已锁定或保留原配装。取消勾选"保留当前配装"，或解锁殖民者。</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>“仅职能”已开启，但还没有任何职能。点击可在“职能”页创建一个，或关闭该选项。</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>无法分配任何武器：既没有可用的武器，也无法制作。请先获取武器，或在“装备殖民者”中手动为殖民者选择一把。</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} 名殖民者未获得武器：拥有的武器数量不足。请将滑块调向"制作新物品"。</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} 名殖民者未获得武器：拥有或可制作的武器数量不足。请研究或建造更多武器类型。</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>候选中没有反机械体选项：没有任何武器发射 EMP 或 AP/脱壳弹。请在弹药窗口中给殖民者配发这类弹药，或添加 EMP 手雷作为副武器。</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>候选配装中没有专门的反血肉选项：没有任何配装携带燃烧/高爆/破片弹药。标准弹药对血肉目标仍然有效，这只是一个提示。</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>没有可用的近战武器，“优先近战”无物可分。请先获取一把近战武器。</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>没有可用的远程武器，因此"优先远程"没有可分发的内容。请先获取一把远程武器。</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>候选中只有 {0} 个武器组 - 可分散的余地很小。请研究或建造更多武器类型。</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} 名殖民者已获得配装，但目前无法瞄准或战斗（倒地、受伤或麻痹）：{1}。如果这是永久性的，请锁定他们。</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} 名殖民者拿到了他们装不下的配装（{1}）。他们只会拿走装得下的部分，其余留下——配装始终只能部分满足。</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>体积 {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>重量 {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>无法分配任何武器：没有拥有或可制作的可用武器，而“不使用职能”排除了所有职能。</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

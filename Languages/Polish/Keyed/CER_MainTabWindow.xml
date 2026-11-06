@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>Planer zestawów</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>Otwórz proces CE Reloaded: Pakiety wyposażenia, Role, Wyposaż kolonistów i Przegląd zleceń.</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>Przechodzi do zakładki Wyposaż kolonistów w CE Reloaded, przefiltrowanej do tej postaci.</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

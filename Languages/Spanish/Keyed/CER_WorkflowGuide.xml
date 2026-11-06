@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - curso rápido</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>El camino más rápido</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Pulsa "Armar mi colonia" (barra superior) - elige Precavido / Normal / Agresivo, pulsa Armar. Listo.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Pestañas</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Paquetes de equipamiento - kits reutilizables (medicina, comida, drogas, utilidad). Opcional.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Equipar colonos - reparte armas y equipo según habilidad. Haz clic en una celda para elegir tú mismo.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Roles - guarda la combinación de un colono como plantilla reutilizable para muchos colonos.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Resumen de pedidos - mantiene la producción de munición en marcha. "Autogenerar" calcula el tamaño de los pedidos por ti.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Funciones clave</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Luz de preparación (barra superior) - haz clic para arreglar lo que falla.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Panel de la pestaña de equipo - estado de cada objeto: llevado / almacenado / en producción / faltante.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>Gizmo "Equipación de munición" (selecciona un personaje) - anula solo su munición, sin tocar la equipación compartida.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Guardar como Rol" - convierte la combinación actual de cualquier colono en una plantilla reutilizable.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Ajustes del mod - cada valor por defecto (cantidades de munición, preajustes de Armar-mi-colonia, ...) es configurable.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Bueno saberlo</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>¿Nuevo en CE? Quédate en el modo Simple (icono superior derecho) y usa solo Armar mi colonia.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Los bebés/pacifistas nunca reciben un arma - pero sí pueden llevar un Paquete de equipamiento.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Abre este planificador cuando quieras: 'Planificador de equipo' en la pestaña Asignar (abajo a la derecha) o el panel junto a la pestaña Equipo de un colono.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>«Recoger equipo ahora» (junto a Armar mi colonia) - todos dejan su trabajo y recogen su equipación de inmediato. CE por sí solo recoge un objeto cada 30 s.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>Este curso rápido se muestra una vez. Vuelve a abrirlo cuando quieras: Opciones del mod -> Herramientas.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

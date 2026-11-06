@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateEquipmentPack_Title>Utrustningspaket</CER_GenerateEquipmentPack_Title>
+	<CER_GenerateEquipmentPack_Intro>Bygger en hel startpalett med förnödenheter på en gång - vardagsförnödenheter, ett sjukvårdskit, en ryggsäck, stridsdroger, en sköld. Varje föremål förblir redigerbart efteråt: klicka på det för att ändra vad det är, redigera antalet, eller ta bort det. Att köra detta igen senare förfinar ett likanämnt paket på plats i stället för att duplicera det.</CER_GenerateEquipmentPack_Intro>
+
+	<CER_GenerateEquipmentPack_RecommendedBtn>Använd rekommenderad uppsättning</CER_GenerateEquipmentPack_RecommendedBtn>
+	<CER_GenerateEquipmentPack_PresetBalanced>Balanserad</CER_GenerateEquipmentPack_PresetBalanced>
+	<CER_GenerateEquipmentPack_PresetEconomy>Ekonomisk</CER_GenerateEquipmentPack_PresetEconomy>
+	<CER_GenerateEquipmentPack_PresetBestGear>Bästa utrustning</CER_GenerateEquipmentPack_PresetBestGear>
+	<CER_GenerateEquipmentPack_PresetEssentialsOnly>Endast nödvändigt</CER_GenerateEquipmentPack_PresetEssentialsOnly>
+	<CER_GenerateEquipmentPack_RecommendedTip>Återställer varje reglage till standardvärdet (Balanserad).</CER_GenerateEquipmentPack_RecommendedTip>
+	<CER_GenerateEquipmentPack_DetailedTip>Detaljerat läge - varje reglage visas för finjustering för hand.\n\nKlicka för att växla till Enkelt (endast förinställningar).</CER_GenerateEquipmentPack_DetailedTip>
+	<CER_GenerateEquipmentPack_SimpleTip>Enkelt läge - endast förinställningar, reglagen är dolda.\n\nKlicka för att växla till Detaljerat och finjustera varje reglage för hand.</CER_GenerateEquipmentPack_SimpleTip>
+
+	<CER_GenerateEquipmentPack_UseAnyTypesLabel>Använd generiska "Valfri X"-typer</CER_GenerateEquipmentPack_UseAnyTypesLabel>
+	<CER_GenerateEquipmentPack_UseAnyTypesTip>När markerad väljer Medicin/Mat/Droger alltid CE:s generiska platshållare ("Valfri medicin", "Valfri färskvarumåltid", "Valfri drog") i stället för ett konkret föremål - allt som finns i lager räknas, inget att ta slut på.</CER_GenerateEquipmentPack_UseAnyTypesTip>
+
+	<CER_GenerateEquipmentPack_CheapLabel>Billigt</CER_GenerateEquipmentPack_CheapLabel>
+	<CER_GenerateEquipmentPack_ExpensiveLabel>Dyrt</CER_GenerateEquipmentPack_ExpensiveLabel>
+	<CER_GenerateEquipmentPack_CostTip>Vilket specifikt föremål varje kategori väljer när flera kvalificerar sig - billigt/överkomligt kontra det bästa oavsett kostnad. Ingen effekt när "Valfri X" är markerad.</CER_GenerateEquipmentPack_CostTip>
+	<CER_GenerateEquipmentPack_LightweightLabel>Lätt</CER_GenerateEquipmentPack_LightweightLabel>
+	<CER_GenerateEquipmentPack_HeavyLabel>Tungt</CER_GenerateEquipmentPack_HeavyLabel>
+	<CER_GenerateEquipmentPack_WeightTip>Hur mycket av varje förnödenhet ett paket bär, och om skölden i sköldkitet prioriterar rörlighet eller maximalt skydd.</CER_GenerateEquipmentPack_WeightTip>
+	<CER_GenerateEquipmentPack_EssentialLabel>Nödvändigt</CER_GenerateEquipmentPack_EssentialLabel>
+	<CER_GenerateEquipmentPack_AllLabel>Allt</CER_GenerateEquipmentPack_AllLabel>
+	<CER_GenerateEquipmentPack_CoverageTip>Hur många av mallarna nedan som är förmarkerade som standard, mest nödvändiga först (Basförnödenheter, Sjukvårdskit, Sköldkit, Spanare, Taktiskt kit, EMP-kit, Stridsdrogskit sist - ett medvetet situationsbetingat val, aldrig en standard). Påverkar bara en rad du inte själv har bockat/avbockat.</CER_GenerateEquipmentPack_CoverageTip>
+
+	<CER_GenerateEquipmentPack_BackBtn>&lt; Tillbaka</CER_GenerateEquipmentPack_BackBtn>
+	<CER_GenerateEquipmentPack_BackTip>Tillbaka till föregående steg i Beväpna-min-koloni-flödet. Steg som redan tillämpats ångras inte.</CER_GenerateEquipmentPack_BackTip>
+	<CER_GenerateEquipmentPack_CancelBtn>Avbryt</CER_GenerateEquipmentPack_CancelBtn>
+	<CER_GenerateEquipmentPack_DeleteExistingButton>Ta bort befintliga utrustningspaket ({0})</CER_GenerateEquipmentPack_DeleteExistingButton>
+	<CER_GenerateEquipmentPack_DeleteExistingTip>Tar bort varje befintligt utrustningspaket (kolonister förlorar det från sin lastning). Varje mall ovan föreslår därefter ett nytt paket igen.</CER_GenerateEquipmentPack_DeleteExistingTip>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>Ta bort alla {0} utrustningspaket? Detta kan inte ångras.</CER_GenerateEquipmentPack_DeleteExistingConfirmSingular>
+	<CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>Ta bort alla {0} utrustningspaket? Detta kan inte ångras.</CER_GenerateEquipmentPack_DeleteExistingConfirmPlural>
+	<CER_GenerateEquipmentPack_DeletedExistingSingular>Tog bort {0} utrustningspaket.</CER_GenerateEquipmentPack_DeletedExistingSingular>
+	<CER_GenerateEquipmentPack_DeletedExistingPlural>Tog bort {0} utrustningspaket.</CER_GenerateEquipmentPack_DeletedExistingPlural>
+	<CER_GenerateEquipmentPack_SkipBtn>Hoppa över</CER_GenerateEquipmentPack_SkipBtn>
+	<CER_GenerateEquipmentPack_SkipTip>Hoppa över detta steg - inget genereras här, Beväpna-min-koloni-flödet fortsätter till nästa steg.</CER_GenerateEquipmentPack_SkipTip>
+	<CER_GenerateEquipmentPack_GenerateBtn>Generera markerade ({0})</CER_GenerateEquipmentPack_GenerateBtn>
+	<CER_GenerateEquipmentPack_GenerateAndDeleteBtn>Skapa {0}, ta bort {1}</CER_GenerateEquipmentPack_GenerateAndDeleteBtn>
+	<CER_GenerateEquipmentPack_DeleteOnlyBtn>Ta bort {0}</CER_GenerateEquipmentPack_DeleteOnlyBtn>
+	<CER_GenerateEquipmentPack_ContinueBtn>Fortsätt (inga paket)</CER_GenerateEquipmentPack_ContinueBtn>
+	<CER_GenerateEquipmentPack_NameCollisionSkipped>Hoppade över (namnet används redan av ett manuellt byggt paket, inte genererat av den här guiden): {0}</CER_GenerateEquipmentPack_NameCollisionSkipped>
+
+	<CER_GenerateEquipmentPack_ColHeaderPack>Paket</CER_GenerateEquipmentPack_ColHeaderPack>
+	<CER_GenerateEquipmentPack_ColHeaderContents>Innehåll</CER_GenerateEquipmentPack_ColHeaderContents>
+	<CER_GenerateEquipmentPack_ColHeaderAvailability>Tillgänglighet</CER_GenerateEquipmentPack_ColHeaderAvailability>
+	<CER_GenerateEquipmentPack_ColHeaderMaterials>Material</CER_GenerateEquipmentPack_ColHeaderMaterials>
+	<CER_GenerateEquipmentPack_ColHeaderMassBulk>Massa / Volym</CER_GenerateEquipmentPack_ColHeaderMassBulk>
+
+	<CER_GenerateEquipmentPack_ProtectedTip>"{0}" finns redan - lämnas orörd som standard (Fyller luckor). Klicka för att inkludera det i denna körning, eller redigera vad som helst nedan - varje ändring här gäller omedelbart och inkluderar det också.</CER_GenerateEquipmentPack_ProtectedTip>
+	<CER_GenerateEquipmentPack_InStockTip>I lager: {0}</CER_GenerateEquipmentPack_InStockTip>
+	<CER_GenerateEquipmentPack_MaterialTipWithStuff>Material detta kommer tillverkas av: {0}. Klicka för att ändra.</CER_GenerateEquipmentPack_MaterialTipWithStuff>
+	<CER_GenerateEquipmentPack_MaterialTipNoStuff>Material detta kommer tillverkas av. Klicka för att ändra.</CER_GenerateEquipmentPack_MaterialTipNoStuff>
+	<CER_GenerateEquipmentPack_UnknownMark>?</CER_GenerateEquipmentPack_UnknownMark>
+	<CER_GenerateEquipmentPack_ChangeItemTip>Klicka för att ändra vad detta är.</CER_GenerateEquipmentPack_ChangeItemTip>
+	<CER_GenerateEquipmentPack_KeptItemTip>Det har foremalet fanns redan i packen och guiden har inga alternativ att erbjuda - det kan inte bytas ut och behalls som det ar. Anvand X for att ta bort det.</CER_GenerateEquipmentPack_KeptItemTip>
+	<CER_GenerateEquipmentPack_DeleteBtn>x</CER_GenerateEquipmentPack_DeleteBtn>
+	<CER_GenerateEquipmentPack_AddItemTip>Lägg till ytterligare ett föremål i detta paket.</CER_GenerateEquipmentPack_AddItemTip>
+	<CER_GenerateEquipmentPack_AddBtn>+</CER_GenerateEquipmentPack_AddBtn>
+
+	<CER_GenerateEquipmentPack_CategoryMedicine>Medicin</CER_GenerateEquipmentPack_CategoryMedicine>
+	<CER_GenerateEquipmentPack_CategoryFood>Mat</CER_GenerateEquipmentPack_CategoryFood>
+	<CER_GenerateEquipmentPack_CategoryDrug>Drog</CER_GenerateEquipmentPack_CategoryDrug>
+	<CER_GenerateEquipmentPack_CategoryShield>Sköld</CER_GenerateEquipmentPack_CategoryShield>
+	<CER_GenerateEquipmentPack_CategoryUtility>Verktyg</CER_GenerateEquipmentPack_CategoryUtility>
+	<CER_GenerateEquipmentPack_CategoryOption>{0}: {1}</CER_GenerateEquipmentPack_CategoryOption>
+
+	<CER_GenerateEquipmentPack_StatePinnedTip>{0} forblir exakt som det ar. Klicka for att markera for borttagning.</CER_GenerateEquipmentPack_StatePinnedTip>
+	<CER_GenerateEquipmentPack_StateWillCreateTip>{0} skapas nar du verkstaller. Klicka for att utesluta.</CER_GenerateEquipmentPack_StateWillCreateTip>
+	<CER_GenerateEquipmentPack_StateWontCreateTip>{0} skapas INTE. Klicka for att inkludera.</CER_GenerateEquipmentPack_StateWontCreateTip>
+	<CER_GenerateEquipmentPack_StateDeleteTip>{0} kommer att TAS BORT vid tillampning. Klicka for att behalla det.</CER_GenerateEquipmentPack_StateDeleteTip>
+	<CER_GenerateEquipmentPack_StateEditedTip>Du andrade {0} - din version skrivs vid tillampning. Klicka for att markera for borttagning istallet.</CER_GenerateEquipmentPack_StateEditedTip>
+</LanguageData>

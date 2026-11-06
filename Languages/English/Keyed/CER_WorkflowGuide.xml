@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - crash course</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>Fastest path</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>Press "Arm my Colony" (top bar) - pick Cautious / Normal / Aggressive, press Arm. Done.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>Tabs</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. Equipment Packs - reusable kits (medicine, food, drugs, utility). Optional.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. Equip Colonists - hands out weapons and gear by skill. Click a cell to pick one yourself.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. Roles - save a colonist's combo as a reusable template for many colonists.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>Bill Overview - keeps ammo production running. "Auto-generate" sizes bills for you.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>Key features</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>Readiness light (top bar) - click it to fix what's wrong.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>Gear tab panel - per-item carried / stored / in production / missing status.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>"Ammo Loadouts" gizmo (select a pawn) - override just their ammo, no shared loadout touched.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"Save as Role" - turn any colonist's current combo into a reusable template.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>Mod Settings - every default (ammo counts, Arm-my-Colony presets, ...) is configurable.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>Good to know</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>New to CE? Stay in Simple mode (top-right icon) and just use Arm my Colony.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>Babies/pacifists never get a weapon - but can still carry an Equipment Pack.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>Open this planner any time: 'Loadout Planner' in the Assign tab (bottom right), or the panel beside a colonist's Gear tab.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>'Fetch gear now' (next to Arm my Colony) - everyone drops their work and collects their loadout right away. CE alone fetches one item every 30 s.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>This crash course shows once. Reopen it any time: Mod Settings -> Tools.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Nichts zuzuweisen: Jeder Kolonist ist gesperrt oder wird beibehalten. „Aktuelle Beladungen beibehalten" deaktivieren oder Kolonisten entsperren.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>„Nur Rollen“ ist aktiviert, aber es gibt noch keine Rolle. Klicken, um im Reiter Rollen eine zu erstellen, oder die Option ausschalten.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>Es kann keine Waffe zugewiesen werden: Nichts Brauchbares ist vorhanden oder herstellbar. Beschaffe zuerst Waffen, oder wähle einem Kolonisten unter Kolonisten ausrüsten eine von Hand.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} Kolonist(en) erhalten keine Waffe: nicht genug eigene Waffen vorhanden. Schieberegler in Richtung „Neue Gegenstände herstellen“ bewegen.</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} Kolonist(en) erhalten keine Waffe: nicht genug eigene oder herstellbare Waffen. Erforsche oder baue weitere Waffentypen.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Keine Option gegen Maschinoiden unter den Kandidaten: Nichts verschießt EMP- oder AP/Sabot-Munition. Gib einem Kolonisten solche Munition im Munitionsfenster, oder hänge eine EMP-Granate als Zweitwaffe an.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>Keine eigene Option gegen Fleisch unter den Kandidaten: Nichts führt Brand-, Spreng- oder Splittermunition mit. Standardmunition wirkt weiterhin gegen Fleisch, das ist also nur ein Hinweis.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>Es ist keine Nahkampfwaffe verfügbar, daher hat „Nahkampf bevorzugen“ nichts zu verteilen. Beschaffe zuerst eine Nahkampfwaffe.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>Keine Fernkampfwaffe verfügbar, „Fernkampf bevorzugen“ hat also nichts zu verteilen. Beschaffe zuerst eine Fernkampfwaffe.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Nur {0} Waffengruppe(n) unter den Kandidaten - es gibt kaum Spielraum für Vielfalt. Erforsche oder baue weitere Waffentypen.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} Kolonist(en) haben eine Beladung erhalten, können derzeit aber nicht zielen oder kämpfen (kampfunfähig, verletzt oder gelähmt): {1}. Sperre sie, falls das dauerhaft ist.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} Kolonist(en) bekommen eine Beladung, die nicht auf sie passt ({1}). Sie holen nur, was hineingeht, und lassen den Rest liegen - die Beladung bleibt teilweise unerfuellt.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>Sperrigkeit {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>Gewicht {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>Keine Waffe zuweisbar: nichts Brauchbares ist vorhanden oder herstellbar, und „Keine Rollen“ lässt jede Rolle weg.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

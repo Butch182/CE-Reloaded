@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Ammo Loadouts</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Group by ammo type</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Combine colonists who can use the same ammo type into one row, edited for all of them at once - instead of one section per colonist.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - what they carry. Editing this fully replaces their weapon's default ammo - takes effect the next time they check their gear.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>{0} colonists selected - what each carries. Editing fully replaces the default ammo of each weapon.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Filter (e.g. FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Close</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Clear all ammo</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Remove every ammo type - {0} will carry no ammo at all, not even their weapon's default.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Remove every ammo type from all {0} selected colonists - none of them will carry any ammo, not even their weapon's default.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Reset</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Copy</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Copies this colonist's ammo choice. Paste it onto others with the paste column in Equip Colonists.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>Copied {0} ammo entry from {1}.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>Copied {0} ammo entries from {1}.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Revert every selected colonist's ammo back to what it was when this window was opened.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  no loadout assigned</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Carries: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} more</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>No weapon assigned.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>No ammo type matches "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>{0}'s weapons don't take ammo.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Name</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Special</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Count</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Stock</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (not researched)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nApplies to: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Any ammo for {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Let the game auto-pick the best researched ammo for {0} - this is what the Supply popup and production checks already use while no specific type is set. Click to revert every applicable colonist back to this.\n\nApplies to: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Let the game auto-pick the best researched ammo for {0} - this is what the Supply popup and production checks already use while no specific type is set below. Click to revert back to this after picking a specific type.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} in stock, {3} free).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Click to open its Bills tab.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Click to open the Supply popup and queue production for it.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>None of the selected colonists' weapons take ammo.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

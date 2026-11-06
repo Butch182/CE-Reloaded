@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Ostrożny (tylko uzupełnia braki)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Normalny (reset i przebudowa amunicji)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Agresywny (pełna przebudowa od zera)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Niestandardowy (dostrojone kroki)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>Nie ma aktywnej mapy kolonii do uzbrojenia.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>Nie ma wolnych kolonistów do uzbrojenia.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>Nie można jeszcze wytworzyć żadnej broni: nie zbadano wytwarzania broni. Zbadaj broń albo postaw stanowisko rzemieślnicze, by zrobić prostą.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>Nie można wytworzyć żadnej broni: na żadnej mapie kolonii nie ma stanowiska pracy ani miejsca rzemieślniczego zdolnego do budowy broni. Wystarczy proste miejsce rzemieślnicze.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Uzbrój kolonię</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>Jedno kliknięcie: rozdziela broń i wyposażenie wg umiejętności, kolejkuje amunicję i proponuje wytworzenie brakującej broni.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Koloniści:  {0}   ({1} do uzbrojenia)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>Ręcznie zbudowane wyposażenia broni:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Istniejące pakiety wyposażenia:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>Jak wyposażyć kolonistów?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Broń dla każdego kolonisty</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Każdy kolonista dostaje broń, która mu pasuje - bez ról.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Wielokrotne role</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Najpierw przejrzyj/zbuduj role (krok 1 otwiera się w trybie ról), potem przypisz kolonistów wyłącznie wg roli (krok 3 przypisuje "Tylko role", to samo pole wyboru co już ma Wyposaż kolonistów).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Wybierz preset trybu, a następnie dostrój dowolny krok jego polem wyboru:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>usuwa przypisanie każdego kolonisty</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>usuwa zlecenia amunicji zakolejkowane przez ten mod</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>usuwa każde zlecenie amunicji</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>usuwa zlecenia broni zakolejkowane przez ten mod</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>usuwa każde zlecenie broni</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>usuwa ręcznie zbudowane wyposażenia broni</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>usuwa pakiety wyposażenia wygenerowane przez kreatora</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>usuwa każdy pakiet wyposażenia</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>Najpierw {0} (bez cofania tam, gdzie destrukcyjne). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Nic istniejącego nie zostaje odznaczone, zmienione ani usunięte. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Tworzy zlecenia amunicji na to, czego brakuje.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>Nie tworzy żadnych zleceń amunicji.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Ustawia każdy wiersz poniżej.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Ostrożny</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Normalny</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Agresywny</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Resetuj postacie</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Nikomu nie usuwa się przypisania.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Najpierw usuwa przypisanie każdemu koloniście.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Usuń przypisanie zestawu każdemu koloniście przed uruchomieniem, aby "uzupełnianie braków" naturalnie przeplanowało całą kolonię.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Usuń zlecenia amunicji</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Istniejace zlecenia amunicji sa zachowywane - nic tu nie jest usuwane. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Usuwa tylko zlecenia amunicji utworzone przez kreator tego moda. Bez cofania. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Usuwa wszystkie zlecenia amunicji, także te dodane przez ciebie. Bez cofania. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>Brak: nie rusza zleceń amunicji. Zarządzane: usuwa tylko zlecenia utworzone przez narzędzia tego moda, więc zlecenie ustawione ręcznie przetrwa. Wszystkie: usuwa każde zlecenie amunicji rozpoznanego typu bez względu na to, kto je zakolejkował (pierwotne, radykalne zachowanie).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Usuń zlecenia broni</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Zlecenia wytwarzania broni są zachowywane. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Usuwa tylko zlecenia broni utworzone przez kreator tego moda. Bez cofania. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Usuwa wszystkie zlecenia wytwarzania broni, także twoje. Bez cofania. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>Brak: nie rusza zleceń broni. Zarządzane: usuwa tylko zlecenia utworzone przez narzędzia tego moda (kolejka produkcji, nie szablon zestawu), więc zlecenie ustawione ręcznie przetrwa. Wszystkie: usuwa każde zlecenie rozpoznanej broni bez względu na to, kto je zakolejkował (pierwotne, radykalne zachowanie).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Usuń ręcznie zbudowane wyposażenia broni</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Ręcznie zbudowane wyposażenia broni zostają. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Usuwa wyposażenia broni, które sam zbudowałeś w edytorze CE. Bez cofania. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Tylko wyposażenia zbudowane przez ciebie w natywnym edytorze CE. Ukryte szablony na broń, które tworzy ten mod, nie są tu ruszane - przebieg i tak tworzy je na nowo dla każdej rozdanej broni. Role i pakiety mają własne kroki.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Usuń pakiety wyposażenia</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Istniejące pakiety wyposażenia są zachowywane. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Usuwa tylko pakiety wyposażenia wygenerowane przez kreatora TEGO moda. Bez cofania. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Usuwa każdy pakiet wyposażenia, w tym utworzone ręcznie. Bez cofania. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>Brak: pozostaw pakiety wyposażenia bez zmian. Zarządzane: usuwa tylko pakiety utworzone przez kreatora automatycznego generowania, więc pakiet zbudowany ręcznie w zakładce Składniki zostaje zachowany. Wszystkie: usuwa każdy pakiet wyposażenia bez względu na to, kto go utworzył (pierwotne, bezwzględne zachowanie). Ręcznie zbudowane zestawy nigdy nie są tu naruszane.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Zlecenia amunicji</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>Żadne zlecenia amunicji nie są tworzone ani usuwane.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Tworzy zlecenia amunicji na to, czego brakuje.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Odznacz, by calkowicie nie ruszac zlecen amunicji. Zaznaczone: zlecenia sa uzupelniane dla kolonistow, ktorych ten przebieg NIE dotyka. Nic tu nigdy nie jest usuwane - nieaktualne zlecenia sa proponowane do usuniecia w oknie zaopatrzenia, kazde z wlasnym polem wyboru.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Nie można jeszcze uzbroić kolonii:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Anuluj</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>Uzbrój kolonię!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Wykonuje kroki dokładnie tak, jak zaznaczono w tabeli powyżej. Przełączniki trybu to tylko presety dla pól wyboru.\n\nObecne ustawienia: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>Nie można kontynuować uzbrajania:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Krok zleceń amunicji pominięty celowo.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} rol(e) zachowały swoją zawartość, ale straciły elementy, z których je złożono - te elementy zostały usunięte. Koloniści z tymi rolami pozostają wyposażeni; aby dostroić rolę, przeciągnij na nią nowe elementy.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>odznaczono {0} kolonistę</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>odznaczono {0} kolonistów</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>usunięto {0} zlecenie amunicji</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>usunięto {0} zleceń amunicji</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>usunięto {0} zlecenie broni</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>usunięto {0} zleceń broni</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>usunięto {0} ręcznie zbudowany zestaw</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>usunięto {0} ręcznie zbudowanych zestawów</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>usunięto {0} pakiet wyposażenia</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>usunięto {0} pakietów wyposażenia</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Reset Uzbrój kolonię: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>Niczego nie usunieto.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Wstecz</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Dalej &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Przejdź do zleceń amunicji i przypisywania. Koloniści zostaną przypisani wyłącznie wg roli.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Przejdź do zleceń amunicji i przypisywania. Nie istnieje jeszcze żadna rola - zbuduj co najmniej jedną powyżej, w przeciwnym razie nikt nie zostanie przypisany.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>Żadne stanowisko pracy nie ma obecnie zlecenia na {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Uzbrój kolonię - podsumowanie</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Tryb: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Uruchomienie przerwane, poniższe zmiany zostały zastosowane przed zatrzymaniem.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Reset</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>Przełączniki resetu zadziałały jako pierwsze (przypisania, zlecenia, zestawy), aby przebudowa dokładnie odpowiadała obecnym wymaganiom.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Kolonistów odznaczonych:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Usuniętych zleceń amunicji:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Usuniętych zleceń produkcji broni:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Usuniętych ręcznie zbudowanych zestawów:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Usuniętych Pakietów wyposażenia:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Wygenerowano</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Wygenerowanych Pakietów wyposażenia:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Startowa paleta pakietów utworzona lub odświeżona w kroku 0 - zobacz zakładkę Pakiety wyposażenia.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Utworzonych zleceń amunicji:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Skalowane do zapotrzebowania wg przypisanych kolonistów; wyszczególnione poniżej pod Zakolejkowana produkcja.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>Niczego nie brakowało - każda potrzebna amunicja miała już zlecenie.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Przypisania ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Kto otrzymał jaki zestaw. Kliknij wiersz, by przejść do tego kolonisty na mapie.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- nic nie zastosowano (przerwano) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- brak -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Kliknij, by przejść do {0} na mapie.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>Kolonistów bez zestawu: {0} - powód podaje krok przydzielania.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Zakolejkowana produkcja ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Broń i amunicja, które to uruchomienie umieściło na stanowiskach pracy. "Zlecenia" przenosi do stanowiska pracy, na którym znajduje się zlecenie.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- brak (przerwano) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- nic nie potrzeba -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- brakuje {0} przedmiotow, ale nic nie mozna bylo zlecic (brak stolu lub receptury) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Zlecenia</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>Zakolejkowano {0} egzemplarz do wytworzenia.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>Zakolejkowano {0} egzemplarzy do wytworzenia.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} naboi</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>Zakolejkowano {0} naboi - skalowane do zapotrzebowania przypisanych zestawów.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Materiały łącznie</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Wszystko, co zużyje zakolejkowana produkcja, zsumowane ze wszystkich zleceń. Czerwony = obecnie za mało w magazynie (pełna lista potrzeba/posiadane w podpowiedzi paska).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Uwagi</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Zamknij</CER_ArmColony_CloseBtn>
+
+</LanguageData>

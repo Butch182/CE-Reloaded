@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>장비 팩</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>팩</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>아직 장비 팩이 없습니다 - 먼저 장비 팩 탭에서 하나를 만드세요.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>보조무기 최대 부피:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>자동 배정의 보조무기 선택이 사용하는 것과 같은 제한입니다. 점수가 높다는 이유만으로 대형 전투소총이 "예비" 무기로 배정되어서는 안 됩니다. 부피가 이보다 큰 무기는 이 목록에서도 숨겨집니다(체크된 항목은 항상 표시되며, 폭발물과 방패는 제한되지 않습니다). 여기서 수정하면 별도 사본이 아니라 실제 설정이 바뀝니다.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>닫기</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>복사</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>{0}개의 {1} 선택 항목을 복사했습니다 - 다른 주민의 {1} 칸에 붙여넣으세요.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>빈 {0} 선택 항목을 복사했습니다 - 다른 주민의 {0} 칸에 붙여넣으면 비워집니다.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>이 정확한 체크 선택 항목을 복사하여, 매번 이 체크리스트를 다시 열지 않고도 다른 주민의 칸에서 바로 붙여넣을 수 있게 합니다.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>체크된 것이 없습니다 - 빈 선택 항목을 복사하며, 붙여넣는 대상을 비웁니다.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>"{0}"과(와) 일치하는 항목이 없습니다.</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0}개 숨김 - 무기 부피가 최대 보조무기 부피 {1}을(를) 초과합니다. 값을 올리면 표시됩니다.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>모든 후보가 최대 보조무기 부피 {0}에 의해 숨겨졌습니다. 값을 올리면 표시됩니다.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>점수</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>가용</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>모든 유형</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>표시: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>목록이 어떤 무기를 제시할지: 전체, 연구된 것만, 또는 식민지가 이미 보유한 것만. 무기 구역에 적용됩니다.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>종류: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>목록을 한 종류로 좁힙니다: 원거리, 근접, 기타 장비, 직접 만든 장비 구성 또는 역할.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>기타</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>바닐라 장비 세트</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>역할</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>{1}의 '{0}'을(를) 복사했습니다. 정착민 장비 탭에서 각 줄 맨 오른쪽의 "붙여넣기" 열로 붙여넣으세요.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>이 정착민에게 현재 지정된 무기를 복사합니다. 그러면 정착민 장비 탭의 각 줄 맨 오른쪽에 "붙여넣기" 열이 나타나며, 한 번 누르면 같은 무기가 지정됩니다.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>내 장비 세트 삭제 ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>직접 만든 장비 세트 {0}개를 모두 삭제할까요? 역할은 그대로이며, 해당 세트를 쓰던 정착민은 배정 없이 남습니다. 되돌릴 수 없습니다.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>직접 만든(바닐라) 장비 세트를 모두 삭제합니다 - 역할은 남습니다.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>무기 잠금: 자동 배정이 더 이상 나누어 주지 않으며, 회색으로 그룹 맨 뒤로 내려갑니다. 다시 클릭하면 해제됩니다.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>잠김 - 자동 배정이 이 무기를 선택하지 않습니다. 클릭하면 해제됩니다.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>이 항목 잠금: 자동 배정이 이 역할이나 장비 구성을 더 이상 나누어 주지 않으며, 회색으로 그룹 맨 뒤로 내려갑니다. 다시 클릭하면 해제됩니다.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>잠김 - 자동 배정이 이 역할이나 장비 구성을 선택하지 않습니다. 클릭하면 해제됩니다.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0}명의 정착민이 아직 잠긴 무기를 배정받고 있습니다. 지금 재배정할까요? 나머지는 장비를 유지합니다.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>내용물</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>질량 / 부피</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>생산 비용</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(비어 있음)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>이 종류는 여기에 없습니다. 위의 "종류" 목록에서 다른 항목을 고르세요.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AmmoAssignment_NoneLabel>无</CER_AmmoAssignment_NoneLabel>
+	<CER_AmmoAssignment_UnknownLabel>?</CER_AmmoAssignment_UnknownLabel>
+	<CER_AmmoAssignment_ExtraAmmoCount>{0} 份额外弹药</CER_AmmoAssignment_ExtraAmmoCount>
+	<CER_AmmoAssignment_MoreSuffix> +{0}</CER_AmmoAssignment_MoreSuffix>
+	<CER_AmmoAssignment_LabelWithExtras>{0} +{1}</CER_AmmoAssignment_LabelWithExtras>
+	<CER_AmmoAssignment_CustomLabelPrefix>自定义：{0}</CER_AmmoAssignment_CustomLabelPrefix>
+
+</LanguageData>

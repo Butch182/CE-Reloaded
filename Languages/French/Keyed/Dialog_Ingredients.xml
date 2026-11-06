@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_Ingredients_Title>Kits d'équipement</CER_Ingredients_Title>
+	<CER_Ingredients_Subtitle>Créez ici des kits d'équipement réutilisables - un kit peut contenir médicaments, nourriture, drogues et objets utilitaires ensemble. Les armes se choisissent par colon dans Équiper les colons ; c'est là que vous attachez les kits aux colons ou aux rôles une fois que vous en avez.</CER_Ingredients_Subtitle>
+	<CER_Ingredients_AutoGenerateButton>Générer automatiquement...</CER_Ingredients_AutoGenerateButton>
+	<CER_Ingredients_AutoGenerateTip>Construit toute une palette de départ d'un coup - fournitures courantes, kit médical, kit bouclier - avec des curseurs pour le coût/poids/menace. Chaque objet est modifiable directement avant de générer, et à nouveau après sur la gauche.</CER_Ingredients_AutoGenerateTip>
+	<CER_Ingredients_ListHeader>Kits d'équipement</CER_Ingredients_ListHeader>
+	<CER_Ingredients_NewButton>+ Nouveau</CER_Ingredients_NewButton>
+	<CER_Ingredients_NewPackDefaultName>Nouveau kit d'équipement</CER_Ingredients_NewPackDefaultName>
+	<CER_Ingredients_DeletePackTip>Supprimer ce kit d'équipement.</CER_Ingredients_DeletePackTip>
+	<CER_Ingredients_DeletePackConfirm>Supprimer le pack d’équipement « {0} » ? Les colons qui le portent actuellement perdront ces objets.</CER_Ingredients_DeletePackConfirm>
+	<CER_Ingredients_DeleteButtonGlyph>x</CER_Ingredients_DeleteButtonGlyph>
+	<CER_Ingredients_NoPacksYet>Aucun kit d'équipement pour l'instant.</CER_Ingredients_NoPacksYet>
+	<CER_Ingredients_SelectPackPrompt>Sélectionnez un kit d'équipement à gauche, ou créez-en un nouveau.</CER_Ingredients_SelectPackPrompt>
+	<CER_Ingredients_NameLabel>Nom :</CER_Ingredients_NameLabel>
+	<CER_Ingredients_SectionMedical>Médical</CER_Ingredients_SectionMedical>
+	<CER_Ingredients_SectionFood>Nourriture</CER_Ingredients_SectionFood>
+	<CER_Ingredients_SectionDrugs>Drogues</CER_Ingredients_SectionDrugs>
+	<CER_Ingredients_SectionUtility>Utilitaire</CER_Ingredients_SectionUtility>
+	<CER_Ingredients_SectionOther>Autre</CER_Ingredients_SectionOther>
+	<CER_Ingredients_ItemNounMedicine>médicament</CER_Ingredients_ItemNounMedicine>
+	<CER_Ingredients_ItemNounFood>nourriture</CER_Ingredients_ItemNounFood>
+	<CER_Ingredients_ItemNounDrug>drogue</CER_Ingredients_ItemNounDrug>
+	<CER_Ingredients_ItemNounUtilityItem>objet utilitaire</CER_Ingredients_ItemNounUtilityItem>
+	<CER_Ingredients_SectionTitleWithCount>{0}  ({1})</CER_Ingredients_SectionTitleWithCount>
+	<CER_Ingredients_AddItemButton>+ Ajouter {0}</CER_Ingredients_AddItemButton>
+	<CER_Ingredients_AllAlreadyAdded>(déjà tous ajoutés)</CER_Ingredients_AllAlreadyAdded>
+	<CER_Ingredients_NotResearchedSuffix> (Non recherché)</CER_Ingredients_NotResearchedSuffix>
+	<CER_Ingredients_NoneAdded>Aucun ajouté.</CER_Ingredients_NoneAdded>
+	<CER_Ingredients_OtherSectionHint>Pour tout ce qui sort des catégories ci-dessus - ouvre l'éditeur de dotation natif de CE pour ce kit.</CER_Ingredients_OtherSectionHint>
+	<CER_Ingredients_OpenCELoadoutEditorButton>Ouvrir l'éditeur de dotation CE</CER_Ingredients_OpenCELoadoutEditorButton>
+
+</LanguageData>

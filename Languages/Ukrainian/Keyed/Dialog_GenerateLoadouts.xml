@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (боєприпаси): Завдає шкоди й оглушує механоїдів, вимикає щити.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Контузійні (боєприпаси): Тупа шкода по площі, сильне придушення.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Спалах / осліплення (боєприпаси): Засліплює цілі, дезорієнтує.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Оглушення (боєприпаси): Ненадовго знерухомлює ціль.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Запальні (боєприпаси): Підпалюють цілі, викликають паніку.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Токсичні (боєприпаси): Спричиняють накопичення токсинів.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Димові (боєприпаси): Блокують лінію огляду.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Осколкові (боєприпаси): Розкидають шрапнель (площа проти живої сили).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Бронебійні (боєприпаси): AP-набій долає важку броню.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Вибуховий (Боєприпас): справжній радіус вибуху, пошкоджує все поруч.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Вибуховий, вторинний (Боєприпас): невеликий фугасний заряд супроводжує кінетичне влучання - та сама ціль, без радіуса вибуху.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Особливі здібності:</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>Ще ефектів: {0} - у цій колонці більше не вміщається:</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP: Завдає шкоди й оглушує механоїдів, вимикає щити.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Контузійна: Тупа шкода по площі, сильне придушення.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Спалах / осліплення: Засліплює цілі, дезорієнтує.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Оглушення: Ненадовго знерухомлює ціль.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Запальна: Підпалює цілі, викликає паніку.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Токсична: Спричиняє накопичення токсинів.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Димова: Блокує лінію огляду.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Осколкова: Розкидає шрапнель (площа проти живої сили).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Бронебійна: Долає важку броню (висока бронепробивність / кумулятивний заряд).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Вибуховий: справжній радіус вибуху, пошкоджує все поруч.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Вибуховий, вторинний: невеликий фугасний заряд супроводжує кінетичне влучання - та сама ціль, без радіуса вибуху.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Ближній бій</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Вогнепальна зброя</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Важка зброя</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Інше</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Усі типи</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Ролі</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Зброя</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Зброя</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>Зброю не знайдено.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Ваші набори спорядження</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Скопійовано в цю роль під час останнього натискання "Створити/Оновити" - це не жива прив'язка. Редагування цього предмета зараз не дійде до колоністів, які вже використовують цю роль, доки ви знову не натиснете тут "Створити/Оновити".</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Ця частина дає основну зброю ролі: {0}. Будь-яка інша зброя цієї ролі вважається додатковою - роль може поєднувати основну зброю, ніж і гранати водночас.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Видалити цей набір спорядження.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>Видалити спорядження "{0}"? Колоністи, які зараз його несуть, втратять ці предмети.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Перетягніть на роль, щоб масштабувати. Редагуйте вміст у вкладці "Набори спорядження".</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Ще немає наборів спорядження - спершу створіть їх у вкладці "Набори спорядження".</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Жоден набір спорядження не відповідає «{0}».</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Ніщо не відповідає «{0}».</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Жодна роль не відповідає «{0}».</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Ролі</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Нова роль</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Нова роль</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Додає роль, яка зберігається лише в ЦЬОМУ збереженні. Глобальні ролі містяться в Налаштування мода &gt; Ролі.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} колоніст(ів)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Колоністи з цією роллю зараз: {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Зараз ця роль ні в кого. Видайте її на вкладці Спорядити колоністів.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Скинути</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>Скинути всі глобальні ролі до типових? (Локальні для збереження ролі залишаються.) Роль, назви якої немає серед типових, втрачає й своє спорядження - поселенці, які її використовують, залишаться без призначеного спорядження, зберігши власні боєприпаси, рюкзаки та запасну зброю.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Скинути глобальні ролі до вбудованих пресетів.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[З]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[Г]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Роль локальна для збереження: існує лише в цій колонії. Щоб створити роль, яка переноситься між усіма іграми, додайте її в Налаштування мода &gt; Ролі.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Глобальна роль: доступна в кожній колонії. Керуйте нею в Налаштування мода &gt; Ролі.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Видалити цю роль.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>Видалити роль «{0}» та спорядження за нею? Поселенці, які її використовують, залишаться без призначеного спорядження - їхні власні боєприпаси, рюкзаки та запасна зброя залишаться при них. Якщо спорядження залишити, воно й далі з'являтиметься як шаблон для призначення.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Дублювати цю роль (назву, множники та поточний склад).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● створено</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ нове</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Цю роль збережено - кожна зміна на картці записується одразу.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Порожньо - перетягніть сюди зброю або набір.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Заблоковано: на цій ролі ще нічого немає, тож нічого масштабувати. Спершу перетягніть на картку зброю або набір.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Бп</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Мд</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>Їж</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Гр</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Множник боєприпасів (Бп): множить кількість набоїв для кожної зброї цієї ролі. 1 = кількість із налаштувань мода, 0,75 = три чверті, 2 = удвічі більше, 0 = без набоїв.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Множник медикаментів (Мд): множить кількість медикаментів зі складових ролі. 1 = без змін, 3 = утричі більше, 0 = нічого.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Множник їжі (Їж): множить кількість їжі зі складових ролі. 1 = без змін, 1,5 = у півтора раза більше, 0 = нічого.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Множник гранат (Гр): множить кількість гранат і метальної вибухівки зі складових ролі. 1 = без змін, 3 = утричі більше, 0 = без гранат.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>перетягніть сюди зброю або набір</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>містить {0} - перетягніть сюди зброю або набір, щоб зібрати заново</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Цю роль створено до того, як її склад почав записуватися, тому невідомо, з яких частин її зібрано, - але відомий її кінцевий вміст. Колоністи з цією роллю споряджені правильно; попередній перегляд нижче перелічує все. Перетягування зброї або набору сюди збере роль заново та замінить поточний вміст.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Перетягніть на цей рядок зброю або Equipment Pack, щоб побудувати роль. Вона зберігається автоматично, щойно на ній щось є.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Оберіть роль і перетягніть на неї зброю або набір, щоб побачити попередній результат.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Попередній перегляд</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Роль]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(існує - різниця)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(існує - без змін)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>зберігається автоматично</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Предмет</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Типово -&gt; з множником</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Перетягніть зброю або набір на цю роль, щоб побачити результат.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;додано&lt;/color&gt;  &lt;color=#F2D966&gt;змінено&lt;/color&gt;  &lt;color=#FF7373&gt;видалено&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Результат: стосів {0}</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Нема чого створювати.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>Інша роль вже має назву «{0}» - оберіть іншу назву, інакше комплект тієї ролі буде перезаписано.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>Не збережено: роль «{0}» залишилася б повністю порожньою, і всі колоністи з нею залишилися б ні з чим. Спершу поверніть до неї вміст (перетягніть зброю або набір).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>Єдиний вміст ролі - його не можна прибрати. Роль «{0}» залишилася б цілком порожньою, а всі колоністи з нею - ні з чим. Щоб замінити: спершу перетягніть заміну на картку, потім приберіть цей. Саму роль видаляє хрестик у верхньому правому куті картки.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>Єдиний вміст ролі - його не можна прибрати. Роль «{0}» лишилася б зовсім порожньою. Щоб замінити: спочатку перетягніть заміну на картку, потім приберіть цей. Щоб видалити саму роль, натисніть x у правому верхньому куті картки.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Вже є спорядження ролі «{0}» від раніше видаленої ролі, і його ще носять {1} колоніст(ів). Створення цієї ролі перейме його й переозброїть усіх одразу.
+
+Продовжити?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>Створено "{0}".</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Перейменовано на "{0}".</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Перейменовано на "{0}":  +{1} додано,  -{2} видалено,  ~{3} змінено.</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>"{0}" без змін.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>Оновлено "{0}":  +{1} додано,  -{2} видалено,  ~{3} змінено.</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Особисті боєприпаси</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Усі</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Досліджені</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Наявні</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Особливе</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Pidsumok: {0} stosiv (z nykh {1} iz prykriplenykh naboriv)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Повернути шаблони ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Повертає видалені вбудовані ролі, кожну на своє місце. Додаються лише відсутні - ваші власні ролі та їхній вміст не змінюються.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>Відновлено вбудованих ролей: {0}.</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>Видалити вбудовану роль «{0}» і спорядження за нею? Колоністи з нею залишаться без шаблону - їхні боєприпаси, рюкзаки та друга зброя залишаються при них. Вона зникне з глобальної бібліотеки для всіх колоній; «Повернути шаблони» поверне її порожньою, не чіпаючи інших.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Munitions-Beladungen</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Nach Munitionstyp gruppieren</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Fasst Kolonisten, die denselben Munitionstyp verwenden können, in einer Zeile zusammen, die für alle gemeinsam bearbeitet wird - statt einem Abschnitt pro Kolonist.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - was er/sie mit sich führt. Das Bearbeiten ersetzt vollständig die Standardmunition der Waffe - wirksam, sobald die Ausrüstung das nächste Mal geprüft wird.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>{0} Kolonisten ausgewählt - was jeder mit sich führt. Das Bearbeiten ersetzt vollständig die Standardmunition jeder Waffe.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Filter (z. B. FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Schließen</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Gesamte Munition entfernen</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Entfernt jeden Munitionstyp - {0} führt dann überhaupt keine Munition mehr mit, nicht einmal die Standardmunition der Waffe.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Entfernt jeden Munitionstyp bei allen {0} ausgewählten Kolonisten - keiner von ihnen führt dann noch Munition mit, nicht einmal die Standardmunition der Waffe.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Zurücksetzen</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Kopieren</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Kopiert die Munitionswahl dieses Kolonisten. Mit der Einfüge-Spalte in Kolonisten ausruesten auf andere übertragen.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>{0} Munitionseintrag von {1} kopiert.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>{0} Munitionseinträge von {1} kopiert.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Setzt die Munition aller ausgewählten Kolonisten auf den Stand beim Öffnen dieses Fensters zurück.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  keine Beladung zugewiesen</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Trägt: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} weitere</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Keine Waffe zugewiesen.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Kein Munitionstyp entspricht „{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>{0}s Waffen benötigen keine Munition.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Name</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Besonderheit</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Anzahl</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Lagerbestand</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (nicht erforscht)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nGilt für: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Beliebige Munition für {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Überlässt dem Spiel die automatische Wahl der besten erforschten Munition für {0} - das nutzen das Versorgungs-Popup und Produktionsprüfungen bereits, solange kein bestimmter Typ festgelegt ist. Anklicken, um alle betreffenden Kolonisten darauf zurückzusetzen.\n\nGilt für: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Überlässt dem Spiel die automatische Wahl der besten erforschten Munition für {0} - das nutzen das Versorgungs-Popup und Produktionsprüfungen bereits, solange unten kein bestimmter Typ festgelegt ist. Anklicken, um nach der Wahl eines bestimmten Typs wieder hierhin zurückzukehren.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} auf Lager, {3} frei).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Anklicken, um dessen Auftragsreiter zu öffnen.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Anklicken, um das Versorgungs-Popup zu öffnen und die Produktion dafür einzureihen.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Keine der Waffen der ausgewählten Kolonisten benötigt Munition.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

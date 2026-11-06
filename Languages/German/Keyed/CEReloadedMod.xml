@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: {0} geänderten Standardwert auf das aktuelle Spiel angewendet.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: {0} geänderte Standardwerte auf das aktuelle Spiel angewendet.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>Filter</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>Beladungen</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>Rollen</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>Munitionsaufträge</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>Auto-Zuweisung</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>Voreinstellungen</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>Warnungen</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>Werkzeuge</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>Debug</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>Feinabstimmung der Voreinstellungen</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>Die genauen Schieberegler-Werte (0..1), die jede Voreinstellungs-Schaltfläche in der Vorschau der Auto-Zuweisung anwendet. Eine Voreinstellung ist eine VOLLSTÄNDIGE Konfiguration - beim Anwenden werden alle Schieberegler gesetzt, einschließlich Anti-Fleisch/Anti-Maschinoid, Voreinstellungen mischen sich also nie halb. „Empfohlenes Setup verwenden“ bleibt die dynamische Alternative (koloniegesteuertes Anti-Maschinoid).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>Ausgewogen</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>Anti-Maschinoid</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>Sparsam</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>Beste Ausrüstung</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>Fokus Fernkampf</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>Alle</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>Verfügbare Gegenstände</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>Anti-Fleisch &lt;-&gt; Anti-Maschinoid</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = auf Fleisch abgestimmt, 1 = auf Maschinoiden. Beeinflusst die Wahl von Munition, Granaten und Zweitwaffen sowie die Zielwertung bei der Zuweisung.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>Ein Munitionstyp &lt;-&gt; maximale Flexibilität</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>Wie bereitwillig die Auto-Zuweisung Munitionstypen pro Waffe mischt (bei aktivem „Munition überschreiben“). Portionen bleiben ganze Magazine, die Gesamtmenge wächst nie.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>Vorhandenes nutzen &lt;-&gt; Neues herstellen</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>Zuweisen: wie bereitwillig der Löser Waffen vergibt, die erst hergestellt werden müssen.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>Fernkampf bevorzugen &lt;-&gt; Nahkampf</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>Zuweisen: verschiebt, wer als Schütze bzw. als Raufbold zählt.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>Immer das Beste &lt;-&gt; Rollen abdecken</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>Zuweisen: 0 = jeder erhält den höchsten Wert, 1 = der Trupp besetzt zuerst klassische Rollen.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>Günstig &lt;-&gt; beste Waffe (Budget)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>Zuweisen: spielt nur bei Waffen eine Rolle, die hergestellt werden müssen.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>Keine Pakete &lt;-&gt; Großzügige Pakete</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>Zuweisen: bewertet Ausrüstungspaket-Typen nach Wichtigkeit und bezieht mit steigendem Wert schrittweise mehr davon ein.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>Voreinstellungen auf Standard zurücksetzen</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>Voreinstellungswerte auf Werkseinstellungen zurückgesetzt.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>Modusvoreinstellungen für „Kolonie bewaffnen"</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>Wie die 6 Schrittschalter durch Vorsichtig/Normal/Aggressiv jeweils gesetzt werden, wenn sie in „Kolonie bewaffnen" gewählt werden. Nach der Wahl eines Modus lassen sich einzelne Schalter weiterhin fein einstellen - dies ist nur der STARTPUNKT jedes Modus.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>Vorsichtig</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>Normal</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>Aggressiv</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>Aus</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>Verwaltet</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>Alle</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>Kolonisten zurücksetzen</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>Munitionsaufträge löschen</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>Waffenaufträge löschen</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>Von Hand gebaute Loadouts löschen</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>Ausrüstungspakete löschen</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>Munitionsaufträge erstellen</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>Voreinstellungen für „Kolonie bewaffnen" auf Standard zurücksetzen</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>Schalter der Voreinstellungen für „Kolonie bewaffnen" auf Werkseinstellungen zurückgesetzt.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>Kampfbereitschaftsmeldungen</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>Meldungen im Vanilla-Stil (oben rechts, neben „Hohes Risiko eines Nervenzusammenbruchs"), die warnen, wenn ein Kolonist nicht kampfbereit ist. Mit der Maus über eine Meldung fahren für Details, anklicken, um zu den Kolonisten zu springen.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>Kampfbereitschaftsmeldungen anzeigen (Hauptschalter)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>Kolonist hat überhaupt keine Beladung zugewiesen</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>Deaktivieren, wenn bestimmte Kolonisten (Handwerker, Ärzte) absichtlich unbewaffnet bleiben sollen - sonst werden sie immer als Problem angezeigt.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>Beladung ohne passende Munition</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>Beladungswaffe nicht verfügbar (weder gelagert noch in Produktion)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>Wenig Munition (weniger als 2 Nachladungen mitgeführt)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>Warnen unter ... Magazinen</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>Ab wie wenigen Magazinen die Warnung 'wenig Munition' kommt. Vorgabe 2. Die CE-Community rechnet ueblicherweise mit 5-6 Magazinen pro Gefecht - hoeher stellen, wenn du frueher gewarnt werden willst; der Preis sind mehr gelbe Warnungen.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>Überladen (Gewichts- oder Sperrigkeitskapazität überschritten)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>Zu voll, um Beladung zu holen (Kapazität erreicht, ein Munitionstyp fehlt noch)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>Sperrigkeit oder Gewicht sind bereits ausgereizt, sodass der Kolonist den Rest seiner Beladung physisch nicht mehr aufnehmen kann - kein Auftrag und kein Lagerbestand hilft, bis wieder Platz frei wird.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>Waffe zugewiesen, trägt aber keine</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>Der Kolonist hat ein echtes Loadout, das ihm eine Waffe zuweist, trägt aber gar nichts - weder in der Hand noch im Rucksack. Meistens hat er sie schlicht noch nicht geholt. Greift nur bei völlig leeren Händen, nie bei 'ein Teil fehlt noch', sonst wäre die Warnung dauernd an.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>Munition wird nicht produziert</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...nur wenn weniger als X Schuss auf Lager sind (0 = immer):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = warnt immer, wenn kein Auftrag die Munition dieser Waffe produziert. Ein höherer Wert warnt erst, wenn der Lagerbestand dieser Munition unter X Schuss fällt - ein großer Vorrat nervt dich also nicht.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>Warnungen auf Standard zurücksetzen</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>Werkzeuge &amp; Diagnose</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>Durchsucht jede Waffe aus allen aktiven Mods und meldet jene, die CE Reloaded möglicherweise falsch behandelt (ungültige Wertung, falsche „(Nicht CE)"-Markierung, fehlende Munition, nicht herstellbare Wurfwaffen). Ändert nichts, rein lesend. Nützlich nach dem Hinzufügen von Waffen-Mods oder zum Anhängen an einen Fehlerbericht.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>Waffen-Kompatibilitätsprüfung ausführen</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>Ein Spielstand startet als Kopie dieser Mod-Einstellungen und merkt sich danach seine eigenen Anpassungen (Filter, Schieberegler, Versorgungsstandards). Diese Schaltfläche verwirft die Anpassungen des aktuellen Spiels und wendet die Mod-Einstellungen neu an.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>Aktuelles Spiel auf diese Mod-Einstellungen zurücksetzen</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>Setzt den UI-Status des laufenden Spielstands neu, basierend auf den hier konfigurierten Werten. Manuelle Schieberegler-Überschreibungen werden gelöscht, die Kampfhistorie der Kolonie bleibt erhalten.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>Nur verfügbar, während ein Spiel geladen ist.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>Die Einstellungen des aktuellen Spiels wurden auf die Mod-Einstellungen zurückgesetzt.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>Beladungs-Debug / Prüfung</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>Jedes aktuell registrierte Beladungsobjekt - versteckte Munitionsanker, Ausrüstungspakete und Rollen eingeschlossen. Nichts hier ist zur direkten Bearbeitung gedacht; es dient nur zur Überprüfung, was tatsächlich existiert.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>Kein aktives Spiel - einen Spielstand öffnen, um dessen Beladungen zu prüfen.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>Verwaiste Anker bereinigen ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>{0} verwaisten Beladungsanker entfernt.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>{0} verwaiste Beladungsanker entfernt.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>Entfernt jeden versteckten Munitionsanker pro Kolonist, der keinem lebenden Kolonisten (auf keiner Karte und in keiner Karawane) mehr tatsächlich zugewiesen ist. Läuft außerdem automatisch etwa einmal pro Spielstunde - diese Schaltfläche bedeutet nur „jetzt sofort ausführen".</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>Spielstand für Deinstallation vorbereiten...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>Vor dem Entfernen von CE Reloaded aus einem laufenden Spielstand benutzen. Jeder Kolonist behält genau die Ausrüstung, die ihm jetzt zugewiesen ist - Waffe, Zweitwaffen, Packs, persönliche Munition -, aber als gewöhnliche Combat-Extended-Loadouts, die ohne diesen Mod funktionieren. Rollen bekommen ihre Packs eingeschmolzen, die versteckten Loadouts pro Kolonist werden gelöscht. Danach: speichern, beenden, Mod entfernen.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>Diesen Spielstand für das Entfernen von CE Reloaded vorbereiten?\n\nKolonisten behalten genau die Ausrüstung, die ihnen jetzt zugewiesen ist, aber als gewöhnliche CE-Loadouts: Packs und Zweitwaffen sind danach nicht mehr geteilt und nicht mehr live änderbar. Das lässt sich nicht rückgängig machen - vorher ein Backup speichern.\n\nDanach speichern, beenden und den Mod entfernen.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>Spielstand vorbereitet: {0} Kolonist(en) zurück auf ihrem geteilten Loadout, {1} mit eigenem Loadout, {2} Rolle(n) eingeschmolzen, {3} versteckte(s) Loadout(s) gelöscht. Jetzt speichern, beenden und den Mod entfernen.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>Bezeichnung</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>Kategorie</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>Übergeordnet</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>Plätze</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>Standard</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>Munitionsanker</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>Ausrüstungspaket</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>Rolle</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>Waffen-Beladung</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (verwaist)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>UniqueID: {0}
+OwnSlots: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+Übergeordnet: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+Weitere Übergeordnete: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+Aufgelöster Inhalt ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+Aufgelöster Inhalt: keiner</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>Rollen</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>Faktoren, die Munition / Medizin / Nahrung / Granaten einer Rolle multiplizieren.  x1 behält eine Kategorie bei, x0 entfernt sie.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>Globale Bibliothek</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>Nur dieser Spielstand</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ Rolle hinzufügen</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>Neue Spielstand-Rolle</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>Neue Rolle</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>Auf Voreinstellungen zurücksetzen</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>Ersetzt die globale Liste durch die Vorgaben (Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee). Eine Rolle, deren Name nicht darunter ist, verliert auch ihr Loadout.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>Lade eine Kolonie, um Rollen hinzuzufügen, die nur in diesem Spielstand existieren.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>Rollenname</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>Munition</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>Medizin</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>Nahrung</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>Granaten</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>Diese Rolle löschen.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>Filter (Standard)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>Standard-Munitionsfilter:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>Standard-Munitionsauftragsfilter:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>Doppelte Werkbänke in Auftragslisten ausblenden</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>Wenn mehrere identische Werkbänke existieren, wird jeder Typ in der Werkbankauswahl für Munitionsaufträge nur einmal aufgeführt. Deaktivieren, um gezielt eine bestimmte von mehreren identischen Werkbänken anzusprechen.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>Offene Waffenproduktion berücksichtigen</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>Das Versorgungs-Popup rechnet bereits an einer Werkbank eingereihte Waffen auf den Fehlbestand an: Offene Produktion wird zuerst berücksichtigt, nur der Rest wird vorgeschlagen, sodass nichts überproduziert wird. Aus: Das Popup schlägt immer den vollen Fehlbestand vor, unabhängig davon, was bereits eingereiht ist.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>Filter auf Standard zurücksetzen</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>Loadout-Vorgaben</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>Standard-Schusswaffenmunition:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>Welche Munitionsvariante eine Schusswaffe standardmäßig bekommt. FMJ ist der klassische Allrounder. „Generisch“ behält einen Platzhalter „Beliebige Munition für X“. Hat eine Waffe keine passende Variante, weicht CE Reloaded auf Beliebig/FMJ aus.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>Tabs starten im Detail-Modus</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>Ob der eigene Einfach/Detail-Umschalter der Tabs Rollen/Munitionsauftraege/Kolonisten ausruesten beim ersten Oeffnen in einer Sitzung standardmaessig auf Detail steht. Aus = startet Einfach. Jeder Tab merkt sich danach deine eigene Wahl fuer den Rest der Sitzung - das legt nur den allerersten Blick fest.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>Kein Beladungspräfix</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>Deaktiviert</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>Kein Ausrüstungspaket-Präfix</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>Kein Rollen-Präfix</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>Max. Sperrigkeit der Zweitwaffe:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>Zweitwaffe - Nahkampf (für Fernkämpfer):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>Speist den Wertungsbonus „ergänzende Rückversicherung“ für Fernkampfwaffen. Nur Nahkampfwaffen. Auto = wird im Spiel aus dem gewählt, was du besitzt oder herstellen kannst. Keine = zählt nie als vorhandene Nahkampf-Rückversicherung.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>Zweitwaffe - Fernkampf (für Nahkämpfer):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>Speist den Wertungsbonus „ergänzende Rückversicherung“ für Nahkampfwaffen. Nur Fernkampfwaffen. Auto = wird im Spiel aus dem gewählt, was du besitzt oder herstellen kannst. Keine = zählt nie als vorhandene Fernkampf-Rückversicherung.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>Standardschild:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>Ein CE-Schild für Kolonisten mit einhändiger Hauptwaffe (zweihändige Waffen können keinen Schild nutzen). Auto = wird im Spiel aus dem gewählt, was du besitzt oder herstellen kannst. Keine = kein Standardschild.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>Diese vier sind die Startwerte für ein NEU erzeugtes Equipment Pack. Eine Waffe allein bringt keine Mahlzeiten und keine Medizin mit - dafür gibt es die Packs.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>Standardmahlzeit:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>Keine</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>Standard-Mahlzeitenanzahl:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>Standardmedizin:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>Standard-Medizinmenge:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>Standard-Munitionsmengen (nach Waffentyp)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>Sturmgewehr / MP:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>Scharfschützen / Jagd:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>Maschinengewehre (LMG):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>Schrotflinten:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>Bögen / Armbrüste:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>Werfer / Sprengstoff:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>Sonstige / Standard:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>Wurfspeere / geworfene Nahkampfwaffen:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>Waffen, die ihre eigene Munition sind (Wurfspeere, Pila) - dies ist die Anzahl, die der Kolonist mit sich führt, keine Magazinanzahl. Getrennt von Granaten unten - da eine sinnvolle Wurfspeeranzahl und eine sinnvolle Granatenanzahl sehr unterschiedliche Werte sind.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>Granaten / geworfener Sprengstoff:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>Geworfener Sprengstoff (Granaten, Sprengsätze, ...) - ebenfalls Eigenmunition wie die Wurfspeere oben, hier ergibt aber eine deutlich kleinere Zahl Sinn.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>Pistole:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>Schuss fuer Pistole oder Revolver. Eigener Wert, weil eine Pistole fast immer die ZWEITwaffe ist - ihre Munition kommt also oben drauf auf die der Hauptwaffe. Der alte gemeinsame Standardwert von 150 war Sturmgewehr-Menge fuer eine Reservewaffe.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>Beladungsstandards auf Standard zurücksetzen</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>Munitionsaufträge (Standard)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>Standard-Munitionschargen (Produktion):</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>Fertigkeitsanforderungen:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>Fertigkeit: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>Munitionsaufträge auf Standard zurücksetzen</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>Munitions-Auftrag Reservepuffer</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>Ein Munitionsauftrag ist ein Dauerauftrag ("produziere bis X vorrätig"), keine Einmalbestellung - eine volle gleichzeitige Reserve für jeden Kolonisten mit demselben Kaliber zu verlangen überschätzt den echten Bedarf. Die ersten N Kolonisten zählen voll, jeder weitere trägt einen schrumpfenden Anteil bei (bis zu einer Untergrenze). Untergrenze auf 100% setzen, um zum alten "alle voll zählen"-Verhalten zurückzukehren.</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>Kolonisten mit voller Gewichtung: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>Wie viele Kolonisten mit demselben Munitionstyp zu 100% ihrer eigenen konfigurierten Menge zählen. Jeder weitere Kolonist zählt weniger (siehe Untergrenze unten).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>Untergrenze für weitere Kolonisten: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>Der Mindestanteil, den ein Kolonist jenseits der Vollgewichtungs-Anzahl noch beiträgt (der Anteil schrumpft, je weiter hinten er in der Liste steht, aber nie unter diese Untergrenze). 100% reproduziert das alte "alle zusammenzählen"-Verhalten.</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>Auto-Zuweisung (Standard)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>Die Feinabstimmung (Vorhandenes nutzen vs. herstellen, Anti-Fleisch vs. Anti-Maschinoid, Fernkampf vs. Nahkampf, Truppvielfalt) befindet sich im Auto-Zuweisung-Popup selbst und wird pro Spielstand gespeichert.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>Standard-Waffenfilter:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>Welche Waffen die Auto-Zuweisung vergeben darf:
+Alle Waffen - unabhängig davon, was du besitzt oder bauen kannst.
+Verfügbare Hauptwaffe - nur Waffen, die du bereits besitzt.
+Erforschte Hauptwaffe - nur Waffen, die du besitzt oder jetzt herstellen kannst.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>Fertigkeitsanforderungen für Waffenproduktion:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>Auto-Zuweisung auf Standard zurücksetzen</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>Alle Waffen</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>Verfügbare Hauptwaffe</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>Erforschte Hauptwaffe</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>Alle</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>Erforscht</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>Verfügbar</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>In Beladung</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>Zugewiesene Beladungen</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>Verfügbare Waffen</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>Aktive Aufträge</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>Erf. Munition</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>Auto (empfohlen)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>Rollen bei der Zuweisung</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>Der Crashkurs (kurzer Überblick über den Ablauf) öffnet sich einmal, beim ersten Öffnen von CE Reloaded.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>Crashkurs zeigen</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>Erststart-Hinweis zurücksetzen</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>Vergisst, dass der Crashkurs schon gezeigt wurde - er öffnet sich beim nächsten Öffnen des Beladungsplaners oder von Kolonie bewaffnen erneut. Praktisch zum Testen.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>Erststart-Hinweis zurückgesetzt - er erscheint beim nächsten Mal wieder.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>Vorlagen zurueckholen ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>Holt die geloeschten eingebauten Rollen zurueck, jede an ihren urspruenglichen Platz. Nur die fehlenden kommen dazu - anders als "Voreinstellungen zuruecksetzen" bleiben deine eigenen Rollen unangetastet.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>{0} eingebaute Rolle(n) zurueckgeholt.</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

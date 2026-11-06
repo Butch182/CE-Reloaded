@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_GenerateLoadouts_AmmoTipEMP>EMP (Munitions) : Endommage et étourdit les mécanoïdes, désactive les boucliers.</CER_GenerateLoadouts_AmmoTipEMP>
+	<CER_GenerateLoadouts_AmmoTipConcussive>Concussif (Munitions) : Dégâts contondants en zone, forte suppression.</CER_GenerateLoadouts_AmmoTipConcussive>
+	<CER_GenerateLoadouts_AmmoTipFlash>Flash / Éblouissement (Munitions) : Aveugle les cibles, désoriente.</CER_GenerateLoadouts_AmmoTipFlash>
+	<CER_GenerateLoadouts_AmmoTipStun>Étourdissement (Munitions) : Immobilise brièvement la cible.</CER_GenerateLoadouts_AmmoTipStun>
+	<CER_GenerateLoadouts_AmmoTipIncendiary>Incendiaire (Munitions) : Enflamme les cibles, provoque la panique.</CER_GenerateLoadouts_AmmoTipIncendiary>
+	<CER_GenerateLoadouts_AmmoTipToxic>Toxique (Munitions) : Applique une accumulation toxique.</CER_GenerateLoadouts_AmmoTipToxic>
+	<CER_GenerateLoadouts_AmmoTipSmoke>Fumigène (Munitions) : Bloque la ligne de vue.</CER_GenerateLoadouts_AmmoTipSmoke>
+	<CER_GenerateLoadouts_AmmoTipFragment>Fragmentation (Munitions) : Projette des éclats (zone anti-personnel).</CER_GenerateLoadouts_AmmoTipFragment>
+	<CER_GenerateLoadouts_AmmoTipArmorPiercing>Perforant (Munitions) : Une munition AP perce les armures lourdes.</CER_GenerateLoadouts_AmmoTipArmorPiercing>
+	<CER_GenerateLoadouts_AmmoTipExplosive>Explosif (Munition) : Véritable rayon d'explosion, endommage tout ce qui est à proximité.</CER_GenerateLoadouts_AmmoTipExplosive>
+	<CER_GenerateLoadouts_AmmoTipExplosiveSecondary>Explosif, secondaire (Munition) : Une petite charge HE accompagne l'impact cinétique - même cible, pas de rayon d'explosion.</CER_GenerateLoadouts_AmmoTipExplosiveSecondary>
+	<CER_GenerateLoadouts_SpecialAbilitiesHeader>Capacités spéciales :</CER_GenerateLoadouts_SpecialAbilitiesHeader>
+	<CER_GenerateLoadouts_MoreEffectsTip>{0} effet(s) de plus - plus de place dans cette colonne :</CER_GenerateLoadouts_MoreEffectsTip>
+	<CER_GenerateLoadouts_WeaponTipEMP>EMP : Endommage et étourdit les mécanoïdes, désactive les boucliers.</CER_GenerateLoadouts_WeaponTipEMP>
+	<CER_GenerateLoadouts_WeaponTipConcussive>Concussif : Dégâts contondants en zone, forte suppression.</CER_GenerateLoadouts_WeaponTipConcussive>
+	<CER_GenerateLoadouts_WeaponTipFlash>Flash / Éblouissement : Aveugle les cibles, désoriente.</CER_GenerateLoadouts_WeaponTipFlash>
+	<CER_GenerateLoadouts_WeaponTipStun>Étourdissement : Immobilise brièvement la cible.</CER_GenerateLoadouts_WeaponTipStun>
+	<CER_GenerateLoadouts_WeaponTipIncendiary>Incendiaire : Enflamme les cibles, provoque la panique.</CER_GenerateLoadouts_WeaponTipIncendiary>
+	<CER_GenerateLoadouts_WeaponTipToxic>Toxique : Applique une accumulation toxique.</CER_GenerateLoadouts_WeaponTipToxic>
+	<CER_GenerateLoadouts_WeaponTipSmoke>Fumigène : Bloque la ligne de vue.</CER_GenerateLoadouts_WeaponTipSmoke>
+	<CER_GenerateLoadouts_WeaponTipFragment>Fragmentation : Projette des éclats (zone anti-personnel).</CER_GenerateLoadouts_WeaponTipFragment>
+	<CER_GenerateLoadouts_WeaponTipArmorPiercing>Perforant : Perce les armures lourdes (AP élevé / HEAT).</CER_GenerateLoadouts_WeaponTipArmorPiercing>
+	<CER_GenerateLoadouts_WeaponTipExplosive>Explosif : Véritable rayon d'explosion, endommage tout ce qui est à proximité.</CER_GenerateLoadouts_WeaponTipExplosive>
+	<CER_GenerateLoadouts_WeaponTipExplosiveSecondary>Explosif, secondaire : Une petite charge HE accompagne l'impact cinétique - même cible, pas de rayon d'explosion.</CER_GenerateLoadouts_WeaponTipExplosiveSecondary>
+	<CER_GenerateLoadouts_CategoryMelee>Corps à corps</CER_GenerateLoadouts_CategoryMelee>
+	<CER_GenerateLoadouts_CategoryFirearms>Armes à feu</CER_GenerateLoadouts_CategoryFirearms>
+	<CER_GenerateLoadouts_CategoryHeavy>Lourd</CER_GenerateLoadouts_CategoryHeavy>
+	<CER_GenerateLoadouts_CategoryOthers>Autres</CER_GenerateLoadouts_CategoryOthers>
+	<CER_GenerateLoadouts_CategoryAllTypes>Tous les types</CER_GenerateLoadouts_CategoryAllTypes>
+	<CER_GenerateLoadouts_RoleModeTitle>Rôles</CER_GenerateLoadouts_RoleModeTitle>
+	<CER_GenerateLoadouts_YourLoadoutsHeader>Armes</CER_GenerateLoadouts_YourLoadoutsHeader>
+	<CER_GenerateLoadouts_WeaponBlocksHeader>Armes</CER_GenerateLoadouts_WeaponBlocksHeader>
+	<CER_GenerateLoadouts_NoLoadoutsYet>Aucune arme trouvée.</CER_GenerateLoadouts_NoLoadoutsYet>
+	<CER_GenerateLoadouts_YourEquipmentPacksHeader>Vos kits d'équipement</CER_GenerateLoadouts_YourEquipmentPacksHeader>
+	<CER_GenerateLoadouts_RemoveButton>x</CER_GenerateLoadouts_RemoveButton>
+	<CER_GenerateLoadouts_RoleComponentSnapshotTip>Copié dans ce rôle lors du dernier clic sur Créer/Mettre à jour - ce n'est pas un lien direct. Modifier cet objet maintenant n'affectera les colons utilisant déjà ce rôle que si vous cliquez de nouveau ici sur Créer/Mettre à jour.</CER_GenerateLoadouts_RoleComponentSnapshotTip>
+	<CER_GenerateLoadouts_RoleMainWeaponTip>Cet élément fournit l'arme principale du rôle : {0}. Toute autre arme de ce rôle compte comme arme secondaire - un rôle peut regrouper une arme principale, un couteau et des grenades à la fois.</CER_GenerateLoadouts_RoleMainWeaponTip>
+	<CER_GenerateLoadouts_DeletePackTip>Supprimer ce kit d'équipement.</CER_GenerateLoadouts_DeletePackTip>
+	<CER_GenerateLoadouts_DeletePackConfirm>Supprimer le pack d’équipement « {0} » ? Les colons qui le portent actuellement perdront ces objets.</CER_GenerateLoadouts_DeletePackConfirm>
+	<CER_GenerateLoadouts_DragPackTip>Faites glisser sur un rôle pour l'ajuster. Modifiez son contenu dans l'onglet Kits d'équipement.</CER_GenerateLoadouts_DragPackTip>
+	<CER_GenerateLoadouts_NoPacksYet>Aucun kit d'équipement pour l'instant - créez-en d'abord dans l'onglet Kits d'équipement.</CER_GenerateLoadouts_NoPacksYet>
+	<CER_GenerateLoadouts_NoPacksMatchSearch>Aucun kit d'équipement ne correspond à « {0} ».</CER_GenerateLoadouts_NoPacksMatchSearch>
+	<CER_GenerateLoadouts_NoLoadoutsMatchSearch>Rien ne correspond à « {0} ».</CER_GenerateLoadouts_NoLoadoutsMatchSearch>
+	<CER_GenerateLoadouts_NoRolesMatchSearch>Aucun rôle ne correspond a « {0} ».</CER_GenerateLoadouts_NoRolesMatchSearch>
+	<CER_GenerateLoadouts_RolesHeader>Rôles</CER_GenerateLoadouts_RolesHeader>
+	<CER_GenerateLoadouts_NewRoleButton>+ Nouveau rôle</CER_GenerateLoadouts_NewRoleButton>
+	<CER_GenerateLoadouts_NewRoleDefaultName>Nouveau rôle</CER_GenerateLoadouts_NewRoleDefaultName>
+	<CER_GenerateLoadouts_NewRoleTip>Ajoute un rôle stocké uniquement dans CETTE sauvegarde. Les rôles globaux se trouvent dans Paramètres du mod &gt; Rôles.</CER_GenerateLoadouts_NewRoleTip>
+	<CER_GenerateLoadouts_RoleAssignedCountFmt>{0} colon(s)</CER_GenerateLoadouts_RoleAssignedCountFmt>
+	<CER_GenerateLoadouts_RoleAssignedCountTip>Colons ayant ce rôle en ce moment : {0}.</CER_GenerateLoadouts_RoleAssignedCountTip>
+	<CER_GenerateLoadouts_RoleAssignedNoneTip>Aucun colon n'a ce rôle en ce moment. Attribuez-le dans l'onglet Équiper les colons.</CER_GenerateLoadouts_RoleAssignedNoneTip>
+	<CER_GenerateLoadouts_ResetButton>Réinitialiser</CER_GenerateLoadouts_ResetButton>
+	<CER_GenerateLoadouts_ResetRolesConfirm>Réinitialiser tous les rôles globaux aux préréglages ? (Les rôles propres à la partie sont conservés.) Un rôle dont le nom ne figure pas dans les préréglages perd aussi son équipement - les colons qui l'utilisent se retrouvent sans équipement assigné et conservent leurs munitions, sacs et armes secondaires.</CER_GenerateLoadouts_ResetRolesConfirm>
+	<CER_GenerateLoadouts_ResetRolesTip>Réinitialiser les rôles globaux aux préréglages intégrés.</CER_GenerateLoadouts_ResetRolesTip>
+	<CER_GenerateLoadouts_LocalTag>[S]</CER_GenerateLoadouts_LocalTag>
+	<CER_GenerateLoadouts_GlobalTag>[G]</CER_GenerateLoadouts_GlobalTag>
+	<CER_GenerateLoadouts_LocalTagTip>Rôle local à la sauvegarde : n'existe que dans cette colonie. Pour créer un rôle valable dans toutes les parties, ajoutez-le dans Paramètres du mod &gt; Rôles.</CER_GenerateLoadouts_LocalTagTip>
+	<CER_GenerateLoadouts_GlobalTagTip>Rôle global : disponible dans chaque colonie. Gérez-le dans Paramètres du mod &gt; Rôles.</CER_GenerateLoadouts_GlobalTagTip>
+	<CER_GenerateLoadouts_DeleteRoleTip>Supprimer ce rôle.</CER_GenerateLoadouts_DeleteRoleTip>
+	<CER_GenerateLoadouts_DeleteRoleConfirm>Supprimer le rôle "{0}" et l'équipement qui le compose ? Les colons qui l'utilisent se retrouvent sans équipement assigné - leurs propres munitions, sacs et armes secondaires leur restent. Si l'équipement restait, il continuerait d'apparaître comme modèle assignable.</CER_GenerateLoadouts_DeleteRoleConfirm>
+	<CER_GenerateLoadouts_DuplicateRoleTip>Dupliquer ce rôle (nom, facteurs, et sa composition actuelle).</CER_GenerateLoadouts_DuplicateRoleTip>
+	<CER_GenerateLoadouts_BadgeCreated>● créé</CER_GenerateLoadouts_BadgeCreated>
+	<CER_GenerateLoadouts_BadgeNew>○ nouveau</CER_GenerateLoadouts_BadgeNew>
+	<CER_GenerateLoadouts_BadgeCreatedTip>Ce rôle est enregistré - chaque changement sur la carte y est écrit immédiatement.</CER_GenerateLoadouts_BadgeCreatedTip>
+	<CER_GenerateLoadouts_BadgeNewTip>Vide - glissez une arme ou un kit dessus.</CER_GenerateLoadouts_BadgeNewTip>
+	<CER_GenerateLoadouts_FactorLockedTip>Verrouillé : ce rôle ne contient encore rien, il n'y a donc rien à mettre à l'échelle. Glissez d'abord une arme ou un kit sur la carte.</CER_GenerateLoadouts_FactorLockedTip>
+	<CER_GenerateLoadouts_FactorAmLabel>Mu</CER_GenerateLoadouts_FactorAmLabel>
+	<CER_GenerateLoadouts_FactorMeLabel>Mé</CER_GenerateLoadouts_FactorMeLabel>
+	<CER_GenerateLoadouts_FactorFoLabel>No</CER_GenerateLoadouts_FactorFoLabel>
+	<CER_GenerateLoadouts_FactorGrLabel>Gr</CER_GenerateLoadouts_FactorGrLabel>
+	<CER_GenerateLoadouts_AmmoFactorTip>Facteur munitions (Mu) : multiplie la quantité de munitions de chaque arme de ce rôle. 1 = la quantité des options du mod, 0,75 = les trois quarts, 2 = le double, 0 = aucune munition.</CER_GenerateLoadouts_AmmoFactorTip>
+	<CER_GenerateLoadouts_MedicineFactorTip>Facteur médicaments (Mé) : multiplie la quantité de médicaments des éléments du rôle. 1 = inchangé, 3 = trois fois plus, 0 = aucun.</CER_GenerateLoadouts_MedicineFactorTip>
+	<CER_GenerateLoadouts_FoodFactorTip>Facteur nourriture (No) : multiplie la quantité de nourriture des éléments du rôle. 1 = inchangé, 1,5 = une fois et demie, 0 = aucune.</CER_GenerateLoadouts_FoodFactorTip>
+	<CER_GenerateLoadouts_GrenadeFactorTip>Facteur grenades (Gr) : multiplie la quantité de grenades et d'explosifs à lancer des éléments du rôle. 1 = inchangé, 3 = trois fois plus, 0 = aucune grenade.</CER_GenerateLoadouts_GrenadeFactorTip>
+	<CER_GenerateLoadouts_DragLoadoutHerePlaceholder>glissez une arme ou un kit ici</CER_GenerateLoadouts_DragLoadoutHerePlaceholder>
+	<CER_GenerateLoadouts_CreatedRoleContentHintFmt>contient {0} - glissez une arme ou un kit ici pour recomposer</CER_GenerateLoadouts_CreatedRoleContentHintFmt>
+	<CER_GenerateLoadouts_CreatedRoleContentTip>Ce rôle a été créé avant que sa composition ne soit enregistrée : les éléments dont il est issu sont inconnus, mais pas son contenu final. Les colons qui le portent sont correctement équipés ; l'aperçu ci-dessous liste tout. Glisser une arme ou un kit ici le recompose et remplace le contenu actuel.</CER_GenerateLoadouts_CreatedRoleContentTip>
+	<CER_GenerateLoadouts_DragLoadoutHereTip>Glissez une arme ou un Equipment Pack sur cette ligne pour construire le rôle. Il est enregistré automatiquement dès qu'il contient quelque chose.</CER_GenerateLoadouts_DragLoadoutHereTip>
+	<CER_GenerateLoadouts_SelectRolePrompt>Sélectionnez un rôle et déposez une arme ou un kit dessus pour prévisualiser le résultat.</CER_GenerateLoadouts_SelectRolePrompt>
+	<CER_GenerateLoadouts_PreviewLabel>Aperçu</CER_GenerateLoadouts_PreviewLabel>
+	<CER_GenerateLoadouts_RoleTagLabel>[Rôle]</CER_GenerateLoadouts_RoleTagLabel>
+	<CER_GenerateLoadouts_ExistsDeltaLabel>(existe - différence)</CER_GenerateLoadouts_ExistsDeltaLabel>
+	<CER_GenerateLoadouts_ExistsUpToDateLabel>(existe - a jour)</CER_GenerateLoadouts_ExistsUpToDateLabel>
+	<CER_GenerateLoadouts_RoleAutoSavedHint>enregistré automatiquement</CER_GenerateLoadouts_RoleAutoSavedHint>
+	<CER_GenerateLoadouts_ItemColumnHeader>Objet</CER_GenerateLoadouts_ItemColumnHeader>
+	<CER_GenerateLoadouts_DefaultWithFactorHeader>Par défaut -&gt; avec facteur</CER_GenerateLoadouts_DefaultWithFactorHeader>
+	<CER_GenerateLoadouts_DropToSeeResult>Déposez une arme ou un kit sur ce rôle pour voir le résultat.</CER_GenerateLoadouts_DropToSeeResult>
+	<CER_GenerateLoadouts_ResultLegend>   -   &lt;color=#8CE68C&gt;ajouté&lt;/color&gt;  &lt;color=#F2D966&gt;modifié&lt;/color&gt;  &lt;color=#FF7373&gt;retiré&lt;/color&gt;</CER_GenerateLoadouts_ResultLegend>
+	<CER_GenerateLoadouts_ResultStacks>Résultat : {0} piles</CER_GenerateLoadouts_ResultStacks>
+	<CER_GenerateLoadouts_NothingToCreate>Rien à créer.</CER_GenerateLoadouts_NothingToCreate>
+	<CER_GenerateLoadouts_RoleNameCollision>Un autre rôle s'appelle déjà "{0}" - choisissez un nom différent, sinon la dotation de cet autre rôle serait écrasée.</CER_GenerateLoadouts_RoleNameCollision>
+	<CER_GenerateLoadouts_RoleWouldEmpty>Non enregistré : le rôle « {0} » serait alors totalement vide, et chaque colon concerné se retrouverait sans rien. Remets-y d'abord du contenu (glisse une arme ou un kit dessus).</CER_GenerateLoadouts_RoleWouldEmpty>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTip>Le seul contenu du rôle - impossible de le retirer. « {0} » se retrouverait totalement vide, et chaque colon sur ce rôle sans rien. Pour le remplacer : glisse d'abord le remplaçant sur la carte, puis retire celui-ci. Pour supprimer le rôle lui-même, utilise le x en haut à droite de la carte.</CER_GenerateLoadouts_RemoveLastChipBlockedTip>
+	<CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>Le seul contenu du rôle - impossible de le retirer. « {0} » se retrouverait totalement vide. Pour le remplacer : glissez d'abord le remplaçant sur la carte, puis retirez celui-ci. Pour supprimer le rôle lui-même, utilisez le x en haut à droite de la carte.</CER_GenerateLoadouts_RemoveLastChipBlockedTipNoColonists>
+	<CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>Un equipement de role nomme « {0} » existe deja, issu d'un role supprime, et {1} colon(s) le portent encore. Creer ce role reprendra cet equipement et les reequipera tous d'un coup.
+
+Continuer ?</CER_GenerateLoadouts_RoleAdoptsOrphanConfirm>
+	<CER_GenerateLoadouts_CreatedMessage>« {0} » créé.</CER_GenerateLoadouts_CreatedMessage>
+	<CER_GenerateLoadouts_RenamedNoChanges>Renommé en « {0} ».</CER_GenerateLoadouts_RenamedNoChanges>
+	<CER_GenerateLoadouts_RenamedWithChanges>Renommé en « {0} » :  +{1} ajouté(s),  -{2} retiré(s),  ~{3} modifié(s).</CER_GenerateLoadouts_RenamedWithChanges>
+	<CER_GenerateLoadouts_UnchangedMessage>« {0} » inchangé.</CER_GenerateLoadouts_UnchangedMessage>
+	<CER_GenerateLoadouts_UpdatedMessage>« {0} » mis à jour :  +{1} ajouté(s),  -{2} retiré(s),  ~{3} modifié(s).</CER_GenerateLoadouts_UpdatedMessage>
+	<CER_GenerateLoadouts_PersonalAmmoLabel>Munitions personnelles</CER_GenerateLoadouts_PersonalAmmoLabel>
+	<CER_GenerateLoadouts_RadioAll>Tout</CER_GenerateLoadouts_RadioAll>
+	<CER_GenerateLoadouts_RadioResearched>Recherchées</CER_GenerateLoadouts_RadioResearched>
+	<CER_GenerateLoadouts_RadioAvailable>Disponibles</CER_GenerateLoadouts_RadioAvailable>
+	<CER_GenerateLoadouts_ColSpecial>Spécial</CER_GenerateLoadouts_ColSpecial>
+
+	<CER_GenerateLoadouts_ResultStacksWithPacks>Resultat : {0} piles (dont {1} des paquets attaches)</CER_GenerateLoadouts_ResultStacksWithPacks>
+	<CER_GenerateLoadouts_RestorePresetsButton>Restaurer les modeles ({0})</CER_GenerateLoadouts_RestorePresetsButton>
+	<CER_GenerateLoadouts_RestorePresetsTip>Ramene les roles integres que vous avez supprimes, chacun a sa place d'origine. Seuls les manquants sont ajoutes - vos propres roles, leurs facteurs et leurs contenus restent intacts.</CER_GenerateLoadouts_RestorePresetsTip>
+	<CER_GenerateLoadouts_RestoredPresetsMessage>{0} role(s) integre(s) restaure(s).</CER_GenerateLoadouts_RestoredPresetsMessage>
+	<CER_GenerateLoadouts_DeleteRoleConfirmPreset>Supprimer le role integre « {0} » et l'equipement derriere lui ? Les colons qui l'utilisent reviennent a aucun equipement - leurs munitions, sacs et armes secondaires restent avec eux. Cela le retire de la bibliotheque globale pour toutes les colonies ; « Restaurer les modeles » le ramene vide sans toucher a vos autres roles.</CER_GenerateLoadouts_DeleteRoleConfirmPreset>
+</LanguageData>

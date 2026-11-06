@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>配装规划</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>打开 CE Reloaded 工作流程：装备包、职能、装备殖民者、账单总览。</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>跳转到 CE Reloaded 的装备殖民者标签页，并筛选出该殖民者。</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

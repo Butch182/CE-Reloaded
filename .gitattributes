@@ -1,0 +1,10 @@
+# Normalize line endings deterministically.
+#
+# Sources are stored as LF in the repository.
+* text=auto eol=lf
+
+# Binary assets Git must never touch or try to normalize.
+*.png binary
+*.dll binary
+*.exe binary
+*.pdb binary

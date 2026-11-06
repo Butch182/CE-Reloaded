@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>배정할 대상이 없습니다: 모든 주민이 잠겨 있거나 유지 중입니다. "현재 로드아웃 유지"를 해제하거나 주민의 잠금을 해제하세요.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>"역할만 사용"이 켜져 있지만 아직 역할이 없습니다. 클릭하면 역할 탭에서 만들 수 있고, 아니면 옵션을 끄세요.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>지정할 수 있는 무기가 없습니다: 쓸 만한 것을 가지고 있지도, 만들 수도 없습니다. 먼저 무기를 구하거나, 정착민 장비 탭에서 직접 고르세요.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>주민 {0}명이 무기를 받지 못했습니다: 보유한 무기가 부족합니다. 슬라이더를 "새 항목 제작" 쪽으로 옮기세요.</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>주민 {0}명이 무기를 받지 못했습니다: 보유하거나 제작 가능한 무기가 부족합니다. 무기 종류를 더 연구하거나 제작하세요.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>후보 중에 대기계 옵션이 없습니다: EMP나 AP/사보 탄약을 쓰는 것이 없습니다. 탄약 창에서 정착민에게 그런 탄약을 주거나, EMP 수류탄을 보조 무기로 추가하세요.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>후보 중 전용 대인간 옵션이 없습니다: 소이탄/고폭탄/파편탄을 휴대한 로드아웃이 없습니다. 일반 탄환도 생체 대상에는 여전히 효과가 있으므로, 이는 참고 사항일 뿐입니다.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>사용 가능한 근접 무기가 없어 "근접 선호"가 나눠줄 것이 없습니다. 먼저 근접 무기를 구하세요.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>사용 가능한 원거리 무기가 없어 "원거리 선호"가 나눠줄 것이 없습니다. 먼저 원거리 무기를 확보하세요.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>후보 중 무기 그룹이 {0}개뿐입니다 - 다양화할 여지가 거의 없습니다. 무기 종류를 더 연구하거나 제작하세요.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>주민 {0}명이 로드아웃을 받았지만 현재 조준하거나 싸울 수 없습니다(쓰러짐, 부상 또는 마비): {1}. 이 상태가 계속된다면 잠그세요.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0}명의 정착자가 감당할 수 없는 로드아웃을 받습니다({1}). 들어가는 만큼만 가져가고 나머지는 남겨두므로 로드아웃은 부분적으로만 채워집니다.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>부피 {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>무게 {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>배정할 수 있는 무기가 없습니다: 보유하거나 제작 가능한 쓸 만한 무기가 없고, "역할 사용 안 함"은 모든 역할을 제외합니다.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

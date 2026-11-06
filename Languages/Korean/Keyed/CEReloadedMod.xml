@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: 변경된 기본값 {0}개를 현재 게임에 적용했습니다.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: 변경된 기본값 {0}개를 현재 게임에 적용했습니다.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>필터</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>로드아웃</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>역할</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>탄약 청구서</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>자동 배정</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>프리셋</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>알림</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>도구</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>디버그</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>프리셋 조정</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>각 프리셋 버튼이 자동 배정 미리보기에 적용하는 정확한 슬라이더 값(0~1)입니다. 프리셋은 완전한 구성입니다 - 하나를 적용하면 대인간/대메커노이드를 포함한 모든 슬라이더가 설정되므로, 프리셋끼리 절반씩 섞이는 일은 없습니다. "권장 설정 사용"은 여전히 동적인 대안으로 남아 있습니다(정착지 상태에 따른 대메커노이드 설정).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>균형</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>대메커노이드</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>경제형</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>최고급 장비</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>원거리 집중</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>전체</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>사용 가능한 항목</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>대인간 &lt;-&gt; 대메커노이드</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = 생체 대상에 맞춤, 1 = 메커노이드 대상에 맞춤. 탄약, 수류탄, 보조무기 선택과 배정 대상 점수 계산에 영향을 줍니다.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>탄약 종류 하나 &lt;-&gt; 최대 유연성</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>자동 배정이 무기별로 탄약 종류를 얼마나 적극적으로 섞을지("탄약 재정의"가 켜져 있을 때). 휴대량은 항상 탄창 단위를 유지하며, 총량은 늘어나지 않습니다.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>보유분 사용 &lt;-&gt; 새로 제작</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>배정: 제작이 필요한 무기를 얼마나 적극적으로 나눠줄지.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>원거리 선호 &lt;-&gt; 근접 선호</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>배정: 누구를 사수로, 누구를 근접 전투원으로 취급할지 조정합니다.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>항상 최고 &lt;-&gt; 역할 분담</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>배정: 0 = 모두가 최고 가치의 장비를 받음, 1 = 분대가 고전적인 역할 분담을 우선함.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>저렴함 &lt;-&gt; 최고급 무기 (예산)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>배정: 제작이 필요한 무기에만 영향을 줍니다.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>팩 없음 &lt;-&gt; 넉넉한 팩</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>배정: 장비 팩 종류를 필수도 순으로 정렬하며, 값이 커질수록 점점 더 많이 포함시킵니다.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>프리셋을 기본값으로 초기화</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>프리셋 값을 초기 기본값으로 재설정했습니다.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>정착지 무장하기 모드 프리셋</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>정착지 무장하기에서 신중/보통/공격적을 선택했을 때 6개의 단계 스위치가 각각 어떻게 설정되는지입니다. 모드를 선택한 뒤에도 개별 스위치를 세밀하게 조정할 수 있습니다 - 이는 각 모드의 시작 값일 뿐입니다.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>신중</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>보통</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>공격적</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>끔</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>관리 대상만</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>전체</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>주민 초기화</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>탄약 청구서 삭제</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>무기 청구서 삭제</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>직접 만든 로드아웃 삭제</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>장비 팩 삭제</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>탄약 청구서 생성</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>정착지 무장하기 프리셋을 기본값으로 초기화</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>정착지 무장하기 프리셋 스위치를 초기 기본값으로 재설정했습니다.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>전투 준비 상태 알림</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>"심각한 붕괴 위험" 옆(오른쪽 위)에 표시되는 바닐라 스타일 알림으로, 주민이 전투 준비가 안 됐을 때 경고합니다. 알림에 마우스를 올리면 세부 정보가, 클릭하면 해당 주민에게 이동합니다.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>전투 준비 상태 알림 표시 (전체 스위치)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>주민에게 로드아웃이 전혀 배정되지 않음</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>일부 주민(제작자, 의사 등)을 의도적으로 비무장 상태로 두는 경우 이 옵션을 끄세요 - 그렇지 않으면 항상 문제로 표시됩니다.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>일치하는 탄약이 없는 로드아웃</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>로드아웃 무기 사용 불가 (보관 중이거나 생산 중이 아님)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>탄약 부족 (재장전 2회분 미만 휴대)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>이 탄창 수 미만이면 경고</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>탄창이 몇 개 미만일 때 탄약 부족 경고를 띄울지. 기본값 2. CE 커뮤니티는 보통 전투당 5-6탄창으로 잡습니다.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>과적 상태 (무게 또는 부피 용량 초과)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>가득 차서 로드아웃을 가져올 수 없음 (용량이 가득 찼지만 탄약 종류가 부족함)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>부피나 무게가 이미 최대치라서 주민이 로드아웃이 요구하는 나머지를 물리적으로 챙길 수 없습니다 - 공간을 비우기 전에는 청구서나 재고를 손봐도 소용없습니다.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>무기가 배정됐지만 들고 있지 않음</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>정착자에게 무기를 배정하는 실제 로드아웃이 있지만, 손에도 배낭에도 아무것도 없습니다. 보통 아직 가지러 가지 않은 경우입니다. 완전히 빈손일 때만 작동합니다.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>생산 중이 아닌 탄약</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...비축량이 X발 미만일 때만 (0 = 항상):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = 이 무기의 탄약을 생산하는 청구서가 없을 때마다 경고합니다. 값을 높이면 해당 탄약의 비축량이 X발 아래로 떨어졌을 때만 경고하므로, 재고가 넉넉하면 성가시게 굴지 않습니다.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>알림을 기본값으로 초기화</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>도구 &amp; 진단</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>활성화된 모든 모드의 무기를 검사하여 CE Reloaded가 잘못 처리할 가능성이 있는 무기를 보고합니다(잘못된 점수, 잘못된 "(Not CE)" 표시, 탄약 누락, 제작 불가능한 투척 무기). 아무것도 변경하지 않는 순수 읽기 전용 기능입니다. 무기 모드를 추가한 뒤나 버그 리포트에 첨부할 때 유용합니다.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>무기 호환성 검사 실행</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>세이브 게임은 이 모드 설정의 복사본으로 시작한 뒤, 자체적인 조정 사항(필터, 슬라이더, 보급 기본값)을 기억합니다. 이 버튼은 현재 게임의 조정 사항을 버리고 모드 설정을 새로 적용합니다.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>현재 게임을 이 모드 설정으로 초기화</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>실행 중인 세이브의 UI 상태를 여기서 설정한 값으로 다시 초기화합니다. 수동으로 조정한 슬라이더 값은 지워지지만, 정착지의 전투 기록은 유지됩니다.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>게임이 로드되어 있을 때만 사용할 수 있습니다.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>현재 게임의 설정을 모드 설정으로 재설정했습니다.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>로드아웃 디버그 / 검사</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>현재 등록된 모든 로드아웃 객체입니다 - 숨겨진 탄약 앵커, 장비 팩, 역할을 포함합니다. 여기서 직접 수정하는 용도가 아니라, 실제로 무엇이 존재하는지 확인하기 위한 화면입니다.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>활성화된 게임이 없습니다 - 로드아웃을 확인하려면 세이브를 여세요.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>고아 앵커 정리 ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>고아 로드아웃 앵커 {0}개를 제거했습니다.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>고아 로드아웃 앵커 {0}개를 제거했습니다.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>현재 살아있는 어떤 pawn(어느 맵이나 대상단이든)에도 더 이상 배정되지 않은, 숨겨진 pawn별 탄약 앵커를 모두 제거합니다. 게임 내 1시간마다 자동으로도 실행됩니다 - 이 버튼은 그저 "지금 바로 실행"입니다.</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>모드 제거를 위해 저장 파일 준비...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>진행 중인 게임에서 CE Reloaded를 제거하기 전에 사용하세요. 모든 정착민은 지금 휴대한 것 - 무기, 보조무기, 팩, 개인 탄약 - 을 그대로 유지하지만, 이 모드 없이도 작동하는 일반 Combat Extended 로드아웃으로 바뀝니다. 역할에는 팩이 합쳐지고, 정착민별 숨겨진 로드아웃은 삭제됩니다. 그다음: 저장, 종료, 모드 제거.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>CE Reloaded 제거를 위해 이 저장 파일을 준비할까요?\n\n정착민은 지금 휴대한 것을 그대로 유지하지만 일반 CE 로드아웃이 됩니다: 팩과 보조무기는 더 이상 공유되거나 실시간으로 편집되지 않습니다. 되돌릴 수 없습니다 - 먼저 백업 저장을 만드세요.\n\n그다음 게임을 저장하고, 종료한 뒤 모드를 제거하세요.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>저장 파일 준비 완료: 공유 로드아웃으로 되돌린 정착민 {0}명, 자체 로드아웃을 받은 정착민 {1}명, 합쳐진 역할 {2}개, 삭제된 숨겨진 로드아웃 {3}개. 이제 게임을 저장하고, 종료한 뒤 모드를 제거하세요.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>이름</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>분류</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>상위 항목</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>슬롯</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>기본</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>탄약 앵커</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>장비 팩</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>역할</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>무기 로드아웃</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (고아)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>고유 ID: {0}
+자체 슬롯: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+상위 항목: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+추가 상위 항목: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+해석된 내용물 ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+해석된 내용물: 없음</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>역할</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>역할의 탄약 / 의약품 / 식량 / 수류탄 수량에 곱해지는 배율입니다.  x1은 해당 항목을 유지하고, x0은 제거합니다.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>전역 라이브러리</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>이 세이브에서만</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ 역할 추가</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>새 세이브 역할</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>새 역할</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>프리셋으로 초기화</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>전역 목록을 기본 역할(Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee)로 바꿉니다. 그중에 없는 이름의 역할은 장비 구성도 함께 사라집니다.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>해당 세이브에만 있는 역할을 추가하려면 정착지를 불러오세요.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>역할 이름</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>탄약</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>의약품</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>식량</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>수류탄</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>이 역할을 삭제합니다.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>필터 (기본값)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>기본 탄약 필터:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>기본 탄약 청구서 필터:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>청구서 목록에서 중복 작업대 숨기기</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>동일한 작업대가 여러 개 있을 때, 탄약 청구서의 작업대 선택 목록에 종류별로 한 번만 표시합니다. 동일한 작업대 여러 개 중 특정 하나를 지정하려면 이 옵션을 끄세요.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>진행 중인 무기 생산 반영</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>보급 팝업이 작업대에 이미 대기 중인 무기를 부족분에서 차감합니다: 진행 중인 생산을 먼저 반영하고 남은 부분만 제안하므로 과잉 생산이 없습니다. 끄면: 이미 대기 중인 것과 무관하게 팝업이 항상 전체 부족분을 제안합니다.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>필터를 기본값으로 초기화</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>로드아웃 기본값</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>기본 화기 탄약:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>화기가 기본으로 받는 탄약 종류입니다. FMJ는 고전적인 만능형입니다. 범용은 "X용 임의 탄약" 자리표시자를 유지합니다. 무기에 맞는 종류가 없으면 CE Reloaded가 임의/FMJ로 대체합니다.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>탭이 상세 모드로 시작</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>역할/탄약 주문/정착민 장비 지급 탭 자체의 간단/상세 전환이 세션에서 처음 열릴 때 기본으로 상세 모드가 되는지 여부입니다. 꺼짐 = 간단 모드로 시작. 이후 각 탭은 세션이 끝날 때까지 직접 선택한 값을 기억합니다 - 이 설정은 맨 처음 모습만 정합니다.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>로드아웃 접두사 없음</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>사용 안 함</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>장비 팩 접두사 없음</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>역할 접두사 없음</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>보조무기 최대 부피:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>보조무기 - 근접 (원거리 병력용):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>원거리 무기의 "상호 보완 백업" 점수 보너스에 반영됩니다. 근접 무기만 해당합니다. 자동 = 보유 중이거나 제작 가능한 것 중에서 게임 내에서 선택됩니다. 없음 = 근접 백업을 보유한 것으로 절대 취급하지 않습니다.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>보조무기 - 원거리 (근접 병력용):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>근접 무기의 "상호 보완 백업" 점수 보너스에 반영됩니다. 원거리 무기만 해당합니다. 자동 = 보유 중이거나 제작 가능한 것 중에서 게임 내에서 선택됩니다. 없음 = 원거리 백업을 보유한 것으로 절대 취급하지 않습니다.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>기본 방패:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>한 손 주무기를 든 정착민을 위한 CE 방패입니다(두 손 무기는 방패를 사용할 수 없음). 자동 = 보유 중이거나 제작 가능한 것 중에서 게임 내에서 선택됩니다. 없음 = 기본 방패 없음.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>이 네 값은 새로 생성되는 Equipment Pack의 초기값입니다. 무기만으로는 식량과 의약품이 따라오지 않습니다 - 그것이 팩의 역할입니다.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>기본 식사:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>없음</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>기본 식사 수량:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>기본 의약품:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>기본 의약품 수량:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>기본 탄약 수량 (무기 종류별)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>돌격소총 / 기관단총:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>저격 / 사냥용:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>기관총 (LMG):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>산탄총:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>활 / 석궁:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>발사기 / 폭발물:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>기타 / 기본값:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>투창 / 투척 근접무기:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>무기 자체가 탄약인 경우입니다(투창, 필룸) - 이는 탄창 수가 아니라 주민이 휴대하는 개수입니다. 아래의 수류탄과는 별개입니다 - 적정한 투창 개수와 적정한 수류탄 개수는 크게 다르기 때문에 분리했습니다.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>수류탄 / 투척 폭발물:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>투척 폭발물(수류탄, 새첼 폭탄 등)입니다 - 위의 투창처럼 자체 탄약이지만, 여기서는 훨씬 적은 수량이 적절합니다.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>권총:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>권총이나 리볼버용 탄약. 권총은 거의 항상 보조 무기이므로 그 탄약이 주무기 탄약 위에 더해집니다. 그래서 별도 값입니다 - 예전의 공용 기본값 150은 예비 화기에 돌격소총 분량을 지우는 셈이었습니다.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>로드아웃 기본값 초기화</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>탄약 청구서 (기본값)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>기본 탄약 생산 배치 수:</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>기술 요구치:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>기술: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>탄약 청구서를 기본값으로 초기화</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>탄약 청구서 예비 버퍼</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>탄약 청구서는 일회성 주문이 아니라 유지 청구서("재고 X까지 생산")입니다 - 같은 구경을 공유하는 모든 식민지 주민에게 동시에 완전한 예비량을 요구하면 실제 필요량을 과대평가하게 됩니다. 처음 N명의 식민지 주민은 100% 가중치로 계산되고, 그 이후의 각 식민지 주민은 점점 줄어드는 비율로 기여합니다(하한선까지). 하한선을 100%로 설정하면 이전의 "모두 완전 가중치로 합산" 동작으로 돌아갑니다.</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>완전 가중치 식민지 주민 수: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>동일한 탄약 유형을 공유하는 식민지 주민 중 몇 명이 자신의 설정된 수량의 100%로 계산되는지입니다. 이후의 각 식민지 주민은 더 적게 계산됩니다(아래 하한선 참조).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>잔여 비율 하한선: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>완전 가중치 수를 초과하는 식민지 주민이 여전히 기여하는 최소 비율입니다(목록에서 더 아래에 있을수록 비율이 줄어들지만 이 하한선 아래로는 내려가지 않습니다). 100%는 이전의 "모두 합산" 동작을 재현합니다.</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>자동 배정 (기본값)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>세밀한 조정(보유분 사용 대 제작, 대인간 대 대메커노이드, 원거리 대 근접, 분대 다양성)은 자동 배정 팝업 자체에 있으며 세이브별로 기억됩니다.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>기본 무기 필터:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>자동 배정이 나눠줄 수 있는 무기:
+모든 무기 - 보유 여부나 제작 가능 여부와 무관하게.
+사용 가능한 주무기 - 이미 보유한 무기만.
+연구된 주무기 - 보유 중이거나 지금 제작 가능한 무기만.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>무기 생산 기술 요구치:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>자동 배정을 기본값으로 초기화</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>모든 무기</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>사용 가능한 주무기</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>연구된 주무기</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>전체</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>연구됨</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>사용 가능</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>로드아웃에 있음</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>배정된 로드아웃</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>사용 가능한 무기</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>진행 중인 청구서</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>연구된 탄약</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>자동 (권장)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>배정 시 역할 처리</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>속성 강좌(작업 흐름의 짧은 개요)는 CE Reloaded를 처음 열 때 한 번 열립니다.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>속성 강좌 보기</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>첫 실행 안내 초기화</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>속성 강좌가 이미 표시되었다는 기록을 지웁니다 - 다음에 로드아웃 플래너나 식민지 무장을 열면 다시 열립니다. 테스트에 유용합니다.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>첫 실행 안내가 초기화되었습니다 - 다음에 다시 열립니다.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>기본 역할 복원 ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>삭제한 기본 역할을 원래 자리로 되돌립니다. 빠진 것만 추가되며, "기본값으로 초기화"와 달리 직접 만든 역할은 그대로 남습니다.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>기본 역할 {0}개를 복원했습니다.</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

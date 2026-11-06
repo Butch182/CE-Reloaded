@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Zestawy amunicji</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Grupuj wg typu amunicji</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Łączy kolonistów, którzy mogą używać tego samego typu amunicji, w jeden wiersz edytowany dla wszystkich naraz - zamiast osobnej sekcji dla każdego.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - co niesie. Edycja całkowicie zastępuje domyślną amunicję broni - zacznie obowiązywać przy najbliższym sprawdzeniu ekwipunku.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>Wybrano {0} kolonistów - co każdy z nich niesie. Edycja całkowicie zastępuje domyślną amunicję każdej broni.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Filtruj (np. FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Zamknij</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Wyczyść całą amunicję</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Usuwa każdy typ amunicji - {0} nie będzie nosić żadnej amunicji, nawet domyślnej dla swojej broni.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Usuwa każdy typ amunicji u wszystkich {0} wybranych kolonistów - żaden z nich nie będzie nosić amunicji, nawet domyślnej dla swojej broni.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Resetuj</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Kopiuj</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Kopiuje wybór amunicji tego kolonisty. Wklej go innym za pomocą kolumny wklejania w Wyposaż kolonistów.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>Skopiowano {0} wpis amunicji od {1}.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>Skopiowano {0} wpisów amunicji od {1}.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Przywraca amunicję wszystkich wybranych kolonistów do stanu sprzed otwarcia tego okna.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  nie przypisano zestawu</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Nosi: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} więcej</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Nie przypisano broni.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Żaden typ amunicji nie pasuje do "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>Broń postaci {0} nie używa amunicji.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Nazwa</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Specjalne</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Liczba</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Zapas</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (niezbadane)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nDotyczy: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Dowolna amunicja do {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Pozwól grze automatycznie wybrać najlepszą zbadaną amunicję do {0} - tego już używają okno Zaopatrzenia i sprawdzanie produkcji, dopóki nie ustawiono konkretnego typu. Kliknij, by przywrócić to ustawienie u wszystkich pasujących kolonistów.\n\nDotyczy: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Pozwól grze automatycznie wybrać najlepszą zbadaną amunicję do {0} - tego już używają okno Zaopatrzenia i sprawdzanie produkcji, dopóki poniżej nie ustawiono konkretnego typu. Kliknij, by po wybraniu konkretnego typu wrócić do tego ustawienia.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} w zapasie, {3} wolnych).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Kliknij, by otworzyć jego zakładkę zleceń.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Kliknij, by otworzyć okno Zaopatrzenia i zakolejkować produkcję.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Żadna broń wybranych kolonistów nie używa amunicji.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

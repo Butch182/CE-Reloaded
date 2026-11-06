@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PawnChangeAmmoGizmo_Label>Zestawy amunicji</CER_PawnChangeAmmoGizmo_Label>
+	<CER_PawnChangeAmmoGizmo_Desc>Pokazuje i zmienia dodatkową amunicję, którą wybrani koloniści noszą poza domyślną amunicją swojej broni - przefiltrowaną pod kątem tego, co pasuje do ich wyposażenia, a nie wszystkich typów amunicji w grze.</CER_PawnChangeAmmoGizmo_Desc>
+</LanguageData>

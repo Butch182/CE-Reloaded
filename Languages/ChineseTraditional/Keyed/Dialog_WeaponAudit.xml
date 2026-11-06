@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>分數無效</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>武器分數為 {0}（非有限數值）。</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>分數為零</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>此戰鬥武器具有實際傷害，但評分卻為 0 - 評分系統可能未能讀取其數值。</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>標記非CE卻含彈藥設定</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>遠程武器被標記為「(非 CE)」，但具有 ammoSet/projectile 設定 - 請檢查偵測邏輯。</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>遠程武器缺少彈藥</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>具有 ammoSet，但配裝彈藥清單為空 - 無法建立彈藥訂單。</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>彈藥集未解析</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>被標記為 CE 相容的遠程武器，其彈藥集從未解析 - 它永遠無法獲得有效彈藥。</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>自身彈藥武器缺少配方</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>自身即彈藥的武器（手榴彈／投擲類）沒有製作配方 - 無法生產。</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>例外錯誤</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}：{1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - 武器相容性檢測報告</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>已掃描來自 {1} 個模組的 {0} 件武器。發現 {2} 項問題。</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>武器相容性檢測</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>已掃描來自 {1} 個啟用模組的 {0} 件武器。發現 {2} 項問題。</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>沒有發現問題 - 這份模組清單中的每件武器都能正常處理。✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+來源：{1}
+{2}：{3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>關閉</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>複製報告到剪貼簿</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>檢測報告已複製到剪貼簿。</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

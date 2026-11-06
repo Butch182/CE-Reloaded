@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - 속성 강좌</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>가장 빠른 방법</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>"정착지 무장하기"(상단 바)를 누르고 신중 / 보통 / 공격적 중 하나를 선택한 뒤 무장하기를 누르세요. 끝입니다.</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>탭</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. 장비 팩 - 재사용 가능한 세트(의약품, 식량, 약물, 유틸리티). 선택 사항.</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. 정착민 장비 지급 - 기술에 따라 무기와 장비를 나눠줍니다. 직접 고르려면 칸을 클릭하세요.</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. 역할 - 주민의 조합을 여러 주민에게 재사용할 수 있는 템플릿으로 저장합니다.</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>청구서 개요 - 탄약 생산이 계속 돌아가도록 유지합니다. "자동 생성"이 청구서 수량을 알아서 정해줍니다.</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>주요 기능</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>준비 상태 표시등(상단 바) - 클릭하면 문제를 해결할 수 있습니다.</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>장비 탭 패널 - 항목별 휴대 중 / 보관 중 / 생산 중 / 누락 상태를 표시합니다.</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>"탄약 로드아웃" 기즈모(주민 선택 시) - 공유 로드아웃은 건드리지 않고 해당 주민의 탄약만 재정의합니다.</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"역할로 저장" - 주민의 현재 조합을 재사용 가능한 템플릿으로 만듭니다.</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>모드 설정 - 모든 기본값(탄약 수량, 정착지 무장하기 프리셋 등)을 설정할 수 있습니다.</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>알아두면 좋은 점</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>CE가 처음이신가요? 간단 모드(오른쪽 위 아이콘)를 유지하고 정착지 무장하기만 사용해 보세요.</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>아기/평화주의자는 무기를 받지 않지만, 장비 팩은 휴대할 수 있습니다.</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>이 플래너는 언제든 열 수 있습니다: 배정 탭 오른쪽 아래의 'Loadout Planner' 또는 식민지 주민 장비 탭 옆의 패널.</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>'지금 장비 가져오기'(식민지 무장 옆) - 모두가 일을 멈추고 즉시 로드아웃을 가져옵니다. CE만으로는 30초마다 하나씩 가져옵니다.</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>이 속성 강좌는 한 번만 표시됩니다. 다시 열기: 모드 설정 -> 도구.</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

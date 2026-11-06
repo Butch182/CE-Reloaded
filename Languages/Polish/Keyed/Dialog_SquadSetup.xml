@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titles / header -->
+	<CER_SquadSetup_TitleAssign>Przypisz zestawy</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>Podgląd na żywo - przeciągaj suwaki i obserwuj wynik. Nic się nie zmienia, dopóki nie naciśniesz Zastosuj.</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Recommended / presets / mode toggle -->
+	<CER_SquadSetup_UseRecommendedSetup>Użyj zalecanych ustawień</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>Resetuje każdy suwak do wartości domyślnej i oddaje Pulę/Anty-mech automatycznemu systemowi (zapas materiałów / zagrożenie mechanoidami).</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>Zrównoważony</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>Anty-mech</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>Ekonomiczny</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>Najlepszy sprzęt</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>Nacisk na dystans</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>Wszystko</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>Dostępne przedmioty</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>Tryb szczegółowy - widoczne są wszystkie suwaki do ręcznej regulacji.\n\nKliknij, by przełączyć na tryb prosty (tylko presety).</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>Tryb prosty - tylko presety, suwaki są ukryte.\n\nKliknij, by przełączyć na tryb szczegółowy i ręcznie dostosować każdy suwak.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Shared / slider labels -->
+	<CER_SquadSetup_AntiFlesh>Przeciw ciału</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>Przeciw mechom</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>Przeciw czemu ma być uzbrojony oddział.\n\nUstawiane automatycznie na podstawie starć z mechanoidami / wieku kolonii, dopóki sam go nie przesuniesz.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>Tylko jeden typ amunicji</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>Maksymalna elastyczność</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>Jak chętnie amunicja każdego kolonisty miesza typy (np. FMJ + magazynek EMP). Działa tylko przy włączonym „Nadpisz amunicje”.\n\nLewo: dokładnie jeden typ na broń. Prawo: do czterech, gdy dany typ pokrywa zagrożenie, którego nic dotąd spakowanego nie pokrywa. Łączna liczba naboi nigdy nie rośnie - różnorodność ją tylko dzieli - a każda racja zostaje co najmniej pełnym magazynkiem, więc małe budżety i tak zachowują mniej typów.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>Użyj dostępnych przedmiotów</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>Wytwórz nowe przedmioty</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>Jak chętnie przypisywanie rozdaje broń, której jeszcze nie posiadasz.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>Preferuj dystans</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>Preferuj wręcz</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>Przesuwa, kto liczy się jako strzelec, a kto jako wojownik wręcz.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>Zawsze najlepsze</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>Pokryj różne role</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>Lewo: każdy otrzymuje broń o najwyższej wartości. Prawo: oddział unika duplikatów i najpierw wypełnia klasyczne role.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>Tania broń</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>Najlepsza broń</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>Ma znaczenie tylko dla broni, którą trzeba wytworzyć.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>Brak broni bocznej</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>Zawsze broń boczna</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>Daje drugą broń obok głównej (przeciwny typ - broń dystansowa główna otrzymuje zapasową broń wręcz i odwrotnie), tak samo na żywo jak dołączają się Pakiety wyposażenia. Obejmuje tę część oddziału, zaczynając od najlepszych bojowo.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>Brak materiałów wybuchowych</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>Hojne materiały wybuchowe</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>Daje granat (ładunek w torbie, bomba na kiju, ...) obok broni głównej, wymieniany razem z bronią boczną powyżej, ale z własnej, osobnej puli - granat nigdy nie wypiera prawdziwej broni zapasowej z jej miejsca. Obejmuje tę część oddziału, zaczynając od najlepszych bojowo. Wybiera spośród granatów, które posiadasz lub możesz wytworzyć.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>Brak pakietów</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>Hojne pakiety</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>Szereguje TYPY pakietów wg niezbędności i stopniowo obejmuje więcej w miarę wzrostu suwaka - najpierw podstawowe zaopatrzenie (jedzenie/leki), potem dokładana jest specjalistyczna zawartość (medyczna/narkotyki/użytkowa). Każda kwalifikująca się postać otrzymuje każdy uwzględniony typ pakietu (pakiety zdominowane przez zawartość medyczną wciąż trafiają tylko do wyznaczonych medyków) - nie chodzi tu o wykluczanie postaci, tylko o to, jakie typy pakietów w ogóle istnieją. Pakiety z tarczą NIE są objęte tym suwakiem - patrz niżej.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>Brak tarcz</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>Hojne tarcze</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>Rozdaje każdy pakiet zawierający tarczę (sprawdzane po faktycznej zawartości, nie po nazwie) tej części postaci nastawionych na walkę wręcz w oddziale (lub całemu oddziałowi, jeśli nikt nie jest nastawiony na wręcz), zaczynając od najlepszych wojowników wręcz - stopniowo, jak suwaki broni bocznej/materiałów wybuchowych powyżej, a nie na zasadzie wszystko albo nic.</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>Redystrybuuj noszoną broń:</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>Broń podniesiona ręcznie liczy się jako możliwa do redystrybucji.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>Maks. objętość broni bocznej:</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>Auto-solver nigdy nie wybiera jako broni bocznej kandydata powyżej tej wartości Objętości CE (pełnowymiarowy karabin nie powinien trafić komuś jako "zapasowa" broń tylko dlatego, że dobrze wypadł w ocenie). Ręczny wybór broni bocznej nie ma tego limitu. Współdzielone z zakładką Domyślne ustawienia zestawów w ustawieniach moda.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Diff-only / keep current / use roles -->
+	<CER_SquadSetup_ShowOnlyChanges>Pokaż tylko zmiany:</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>Zachowaj obecne zestawy:</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>Włączone: tylko koloniści bez zestawu go otrzymają; każdy już wyposażony pozostaje nietknięty (oznaczony kłódką).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>Nadpisz amunicje:</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>Wybiera amunicję każdego kolonisty na nowo w momencie przydziału (aktualny zapas/badania + suwaki Anti-Mech i typów amunicji), zamiast używać domyślnej amunicji broni. Role nigdy nie są dotknięte - ich amunicja zawsze pochodzi z samej roli.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- Section headers / bottom bar -->
+	<CER_SquadSetup_BackButton>&lt; Wstecz</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>Powrót do poprzedniego kroku procesu Uzbrój kolonię. Kroki już zastosowane nie zostaną cofnięte.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>Anuluj</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>Odepnij wszystkie ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>Usuń wszystkie przypięcia ręczne ({0}) i oddaj tych kolonistów z powrotem solverowi.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>Nic do zastosowania.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>Pomiń</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>Pomiń ten krok - nic tu nie zostanie przypisane, proces Uzbrój kolonię przejdzie do następnego kroku.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Apply / Generate button labels -->
+	<CER_SquadSetup_ContinueButton>Dalej &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>Zastosuj ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>Zastosuj</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (nic do zastosowania)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>zmiana</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>zmian</CER_SquadSetup_ChangePlural>
+
+	<!-- Generate list -->
+
+	<!-- Generate row -->
+	<CER_SquadSetup_NotResearchedSuffix> (niezbadane)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- Assign list header / empty state / cost strip / problems -->
+	<CER_SquadSetup_UnlockEveryoneTip>Odblokuj wszystkich. Auto-przypisywanie ponownie planuje wszystkich kolonistów.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>Zablokuj wszystkich. Nikt nie zostanie przeplanowany, dopóki nie zostanie odblokowany.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>Kolonista</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>Dystans</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>Wręcz</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>Medyczna</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>Obecny</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>Planowana broń główna</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>Pakiet</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>Broń boczna</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>Broń</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>Pakiety</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>Amunicja</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>Brak zmian przy obecnych ustawieniach.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>Podgląd - koszty wytworzenia wg komponentów (dostosuj na następnym ekranie):</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;Łącznie:&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;Problemy z obecnymi ustawieniami&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>Kliknij, aby otworzyć zakładkę Role.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Cost category labels -->
+	<CER_SquadSetup_CostLabelMain>Główna:</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>Broń boczna:</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>Granaty:</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>Tarcze:</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>Amunicja:</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>Pakiety:</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Pawn row -->
+	<CER_SquadSetup_CannotFightTip>Nie może walczyć (niezdolny/a do przemocy lub niemowlę) - chroniony/a i nigdy nie otrzymuje zestawu.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>Wynik dystansowy (Strzelanie x10, modyfikowany przez wzrok/manipulację/cechy).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>Wynik wręcz (Walka wręcz x10, modyfikowany przez ruch/manipulację/cechy).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>Umiejętność medyczna (Medycyna x10) - najlepsza pod tym względem część oddziału otrzymuje Pakiety wyposażenia zdominowane przez zawartość medyczną.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>Brak</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>nie może walczyć - pominięty</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>Ten kolonista nie może walczyć (niezdolny/a do przemocy lub niemowlę) i nigdy nie otrzymuje broni.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>pominięty przez ciebie</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>Oznaczyłeś tego kolonistę jako pominiętego, więc automatyczny przydział go nie rusza. On MOŻE walczyć - to twoja decyzja, nie ograniczenie postaci. Kliknij ikonę po lewej, by go z powrotem uwzględnić.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  (zachowany)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>Brak  (zachowany)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (przypięty)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>brak zestawu</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>Przy obecnych ustawieniach nie udało się przypisać temu koloniście żadnego zestawu.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>Upuść, by zamienić zestawy z {0}.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>Kliknij, by ręcznie wybrać broń dla {0} (przypina wybór - suwaki go nie przetasują).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\nObecnie przypięty - menu oferuje opcję Auto, by oddać kolonistę z powrotem solverowi.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\nPrzeciągnij na wiersz innego kolonisty, by zamienić ich planowane zestawy.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Pack / sidearm cells -->
+	<CER_SquadSetup_IncludedInRoleTip>Zawarte w {0}:\n{1}\n\nWbudowane w tę rolę - by to zmienić, edytuj samą rolę (zakładka Role), nie tutaj dla pojedynczego kolonisty.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>Ta rola nie zawiera leków/jedzenia/narkotyków/przedmiotów użytkowych.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>Ta rola nie zawiera broni bocznej, granatu ani tarczy.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>Dołączone Pakiety wyposażenia: {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>Nie dołączono żadnego Pakietu wyposażenia.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\nOceniane automatycznie razem z bronią. Kliknij, by nadpisać, które pakiety otrzyma ten kolonista - to oczekujące przypięcie, jak komórka broni; nic się nie stosuje, dopóki nie naciśniesz Zastosuj.</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - zaznacz, które pakiety zaplanować. Nic się nie stosuje, dopóki nie naciśniesz Zastosuj.</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>Dołączona broń boczna: {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>Nie dołączono broni bocznej.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\nKliknij, by zaznaczyć, którą broń {0} nosi jako broń boczną - to oczekujące przypięcie, jak komórka broni; nic się nie stosuje, dopóki nie naciśniesz Zastosuj.</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - zaznacz, którą broń nosić jako broń boczną. Nic się nie stosuje, dopóki nie naciśniesz Zastosuj.</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>Broń boczna</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>Brak innej broni, którą można nosić jako broń boczną.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Supply requirement group -->
+	<CER_SquadSetup_RoleTagSidearm> (broń boczna)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (granat)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (tarcza)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - wszystko zabezpieczone:\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>gotowe</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>w produkcji</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>brakuje</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (można wytworzyć)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (nie zbudowano stanowiska)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - na razie wystarczy, ale nie da sie dorobic (brak badan)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - na razie wystarczy, ale nie da sie dorobic (brak stolu)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Drag / pin menu -->
+	<CER_SquadSetup_CantSwapCannotFight>Nie można zamienić z kolonistą, który nie może walczyć (pacyfista lub niemowlę).</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>Obaj koloniści potrzebują zaplanowanej broni lub roli, by się zamienić.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>Obaj koloniści już planują ten sam zestaw.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>Zamieniono planowane zestawy: {0} i {1} (przypięte).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>Auto (odepnij - pozwól solverowi zdecydować)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>Zapisz obecny zestaw jako rolę...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}: brak zbadanej amunicji</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix> (brak receptury)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>Zostanie zaplanowany: automatyczny przydział dobierze temu koloniście zestaw.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>Zostaje bez zmian: automatyczny przydział nie rusza wyposażenia tego kolonisty. Nadal można je zmieniać - kliknij komórkę broni, by zmienić je bezpośrednio.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>Zestaw zostanie zabrany: po zatwierdzeniu {0} traci swój zestaw i zostaje bez niego. Sam sprzęt zostaje w kolonii.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>Pominięty: {0} nie ma zestawu i nie dostanie żadnego. Liczy się jako niewalczący na każdym ekranie.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>zaplanować normalnie.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>zostawić bez zmian (chronione przed automatycznym przydziałem, nadal edytowalne).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>zabrać zestaw.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>Lewy przycisk:</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>Prawy przycisk:</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>zestaw zabrany</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>Ustawiłeś tego kolonistę na "zabrać zestaw". Po zatwierdzeniu {0} traci przydzielony zestaw i zostaje bez niego - sam sprzęt zostaje w kolonii. Kliknij ikonę po lewej, by cofnąć.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

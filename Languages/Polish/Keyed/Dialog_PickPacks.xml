@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickPacks_DefaultTitle>Pakiety wyposażenia</CER_PickPacks_DefaultTitle>
+	<CER_PickPacks_DefaultItemColumnLabel>Pakiet</CER_PickPacks_DefaultItemColumnLabel>
+	<CER_PickPacks_DefaultEmptyMessage>Nie istnieją jeszcze żadne Pakiety wyposażenia - najpierw utwórz jeden w zakładce Pakiety wyposażenia.</CER_PickPacks_DefaultEmptyMessage>
+	<CER_PickPacks_MaxSidearmBulkLabel>Maks. objętość broni bocznej:</CER_PickPacks_MaxSidearmBulkLabel>
+	<CER_PickPacks_SidearmBulkCapTooltip>Ten sam limit, którego używa dobór broni bocznej w automatycznym przydziale - karabin bojowy nie powinien trafiać do nikogo jako broń "zapasowa" tylko dlatego, że dobrze punktuje. Bardziej objętościowa broń jest też ukrywana na tej liście (zaznaczona zawsze pozostaje widoczna; materiały wybuchowe i tarcze nigdy nie są ograniczane). Edycja tutaj zmienia prawdziwe ustawienie, nie kopię.</CER_PickPacks_SidearmBulkCapTooltip>
+	<CER_PickPacks_CloseButton>Zamknij</CER_PickPacks_CloseButton>
+	<CER_PickPacks_CopyButton>Kopiuj</CER_PickPacks_CopyButton>
+	<CER_PickPacks_CopiedMessage>Skopiowano zaznaczenie: {0} {1} - wklej je w komórce {1} u innych kolonistów.</CER_PickPacks_CopiedMessage>
+	<CER_PickPacks_CopiedEmptyMessage>Skopiowano pusty wybór {0} - wklej w komórkę {0} innego osadnika, aby ją wyczyścić.</CER_PickPacks_CopiedEmptyMessage>
+	<CER_PickPacks_CopyTooltip>Skopiuj to dokładne zaznaczenie, aby można je było wkleić innym kolonistom bezpośrednio z ich własnej komórki, bez ponownego otwierania tej listy za każdym razem.</CER_PickPacks_CopyTooltip>
+	<CER_PickPacks_CopyTooltipEmpty>Nic nie zaznaczono - kopiuje pusty wybór, który czyści to, do czego go wkleisz.</CER_PickPacks_CopyTooltipEmpty>
+	<CER_PickPacks_NoMatches>Brak wyników dla "{0}".</CER_PickPacks_NoMatches>
+	<CER_PickPacks_HiddenByBulkCapFmt>{0} ukryto - objętość broni powyżej maks. objętości broni bocznej {1}. Zwiększ wartość, aby je zobaczyć.</CER_PickPacks_HiddenByBulkCapFmt>
+	<CER_PickPacks_AllHiddenByBulkCapFmt>Wszyscy kandydaci są ukryci przez maks. objętość broni bocznej {0}. Zwiększ wartość, aby ich zobaczyć.</CER_PickPacks_AllHiddenByBulkCapFmt>
+	<CER_PickPacks_ScoreColumnHeader>Wynik</CER_PickPacks_ScoreColumnHeader>
+	<CER_PickPacks_AvailColumnHeader>Dost.</CER_PickPacks_AvailColumnHeader>
+	<CER_PickPacks_TypeAll>Wszystkie typy</CER_PickPacks_TypeAll>
+	<CER_PickPacks_FilterShowFmt>Pokaż: {0}</CER_PickPacks_FilterShowFmt>
+	<CER_PickPacks_FilterShowTip>Jaką broń lista w ogóle oferuje: całą, tylko zbadaną albo tylko tę, którą kolonia już ma. Działa na sekcję broni.</CER_PickPacks_FilterShowTip>
+	<CER_PickPacks_FilterTypeFmt>Typ: {0}</CER_PickPacks_FilterTypeFmt>
+	<CER_PickPacks_FilterTypeTip>Zawęża listę do jednego rodzaju: dystansowa, wręcz, inny sprzęt, ręcznie zbudowane ekwipunki albo role.</CER_PickPacks_FilterTypeTip>
+	<CER_PickPacks_TypeOthers>Inne</CER_PickPacks_TypeOthers>
+	<CER_PickPacks_GroupVanilla>Zestawy vanilla</CER_PickPacks_GroupVanilla>
+	<CER_PickPacks_GroupRoles>Role</CER_PickPacks_GroupRoles>
+	<CER_PickPacks_CopiedWeaponMsgFmt>Skopiowano „{0}” od {1}. Wklej w Wyposaz kolonistow: kolumna „Wklej” na prawym koncu wiersza kazdego kolonisty.</CER_PickPacks_CopiedWeaponMsgFmt>
+	<CER_PickPacks_CopyWeaponTip>Kopiuje bron obecnie przypisana temu koloniscie. Potem w Wyposaz kolonistow na prawym koncu kazdego wiersza pojawia sie kolumna „Wklej” - jedno klikniecie daje ta sama bron.</CER_PickPacks_CopyWeaponTip>
+	<CER_PickPacks_DeleteOwnFmt>Usuń własne zestawy ({0})</CER_PickPacks_DeleteOwnFmt>
+	<CER_PickPacks_DeleteOwnConfirmFmt>Usunąć wszystkie {0} ręcznie zbudowane zestawy? Role zostają; dotknięci koloniści zostaną bez zestawu. Nie można tego cofnąć.</CER_PickPacks_DeleteOwnConfirmFmt>
+	<CER_PickPacks_DeleteOwnTip>Usuwa każdy ręcznie zbudowany (vanilla) zestaw - role zostają.</CER_PickPacks_DeleteOwnTip>
+	<CER_PickPacks_LockTip>Zablokuj tę broń: automatyczne przydzielanie już jej nie rozda, a ona szara trafia na koniec grupy. Kliknij ponownie, by odblokować.</CER_PickPacks_LockTip>
+	<CER_PickPacks_UnlockTip>Zablokowana - automat nigdy jej nie wybiera. Kliknij, by odblokować.</CER_PickPacks_UnlockTip>
+	<CER_PickPacks_LockLoadoutTip>Zablokuj ten wpis: automatyczne przydzielanie nie rozda już tej roli ani ekwipunku, a wpis szary trafia na koniec grupy. Kliknij ponownie, by odblokować.</CER_PickPacks_LockLoadoutTip>
+	<CER_PickPacks_UnlockLoadoutTip>Zablokowane - automat nigdy nie wybiera tej roli ani ekwipunku. Kliknij, by odblokować.</CER_PickPacks_UnlockLoadoutTip>
+	<CER_PickPacks_DisabledCarriersConfirm>{0} kolonista/kolonisci wciąż mają przypisaną zablokowaną broń. Przydzielić ponownie teraz? Reszta zachowuje wyposażenie.</CER_PickPacks_DisabledCarriersConfirm>
+	<CER_PickPacks_ContentsColumnHeader>Zawartość</CER_PickPacks_ContentsColumnHeader>
+	<CER_PickPacks_MassBulkColumnHeader>Masa / Objętość</CER_PickPacks_MassBulkColumnHeader>
+	<CER_PickPacks_ProductionCostColumnHeader>Koszt produkcji</CER_PickPacks_ProductionCostColumnHeader>
+	<CER_PickPacks_EmptyContents>(puste)</CER_PickPacks_EmptyContents>
+	<CER_PickPacks_MoreCount>+{0}</CER_PickPacks_MoreCount>
+	<CER_PickPacks_ContentsLine>{0} x{1}</CER_PickPacks_ContentsLine>
+	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
+
+	<CER_PickPacks_NoneOfThisType>Niczego tego typu tu nie ma. Wybierz inna pozycje na liscie „Typ” powyzej.</CER_PickPacks_NoneOfThisType>
+</LanguageData>

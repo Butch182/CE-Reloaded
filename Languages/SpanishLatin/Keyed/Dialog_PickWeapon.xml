@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Elegir un arma</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - elige un arma; la munición por defecto se gestiona automáticamente.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - fija un arma para este plan; 'Auto' devuelve la elección al planificador.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Peso y volumen, munición por defecto incluida</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} en la colonia</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} ya reservados por este plan</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Se puede fabricar ahora</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Nada coincide con la búsqueda o el filtro.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Puntuación {0} (contra carne {1}, contra mecanoides {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WorkflowGuide_Title>CE Reloaded - 速成指南</CER_WorkflowGuide_Title>
+
+	<CER_WorkflowGuide_HeadFastestPath>最快上手方式</CER_WorkflowGuide_HeadFastestPath>
+	<CER_WorkflowGuide_FastestPathLine>点击"武装殖民地"（顶部栏）- 选择 谨慎 / 普通 / 激进，点击 武装。完成。</CER_WorkflowGuide_FastestPathLine>
+
+	<CER_WorkflowGuide_HeadTabs>标签页</CER_WorkflowGuide_HeadTabs>
+	<CER_WorkflowGuide_TabsLine1>1. 装备包 - 可重复使用的套装（医疗、食物、成瘾品、工具）。可选。</CER_WorkflowGuide_TabsLine1>
+	<CER_WorkflowGuide_TabsLine3>3. 装备殖民者 - 按技能分发武器和装备。点击单元格可自行选择。</CER_WorkflowGuide_TabsLine3>
+	<CER_WorkflowGuide_TabsLineRoles>2. 职能 - 将某位殖民者的搭配保存为可供多人使用的可重复模板。</CER_WorkflowGuide_TabsLineRoles>
+	<CER_WorkflowGuide_TabsLineBills>账单总览 - 维持弹药生产运转。"自动生成"会为你调整账单规模。</CER_WorkflowGuide_TabsLineBills>
+
+	<CER_WorkflowGuide_HeadKeyFeatures>主要功能</CER_WorkflowGuide_HeadKeyFeatures>
+	<CER_WorkflowGuide_KeyFeatureReadiness>战备指示灯（顶部栏）- 点击它以修复问题。</CER_WorkflowGuide_KeyFeatureReadiness>
+	<CER_WorkflowGuide_KeyFeatureGearTab>装备标签页面板 - 显示每件物品的携带 / 库存 / 生产中 / 缺失状态。</CER_WorkflowGuide_KeyFeatureGearTab>
+	<CER_WorkflowGuide_KeyFeatureAmmoGizmo>"弹药配装"按钮（选中一名殖民者）- 仅覆盖其个人弹药，不影响共享配装。</CER_WorkflowGuide_KeyFeatureAmmoGizmo>
+	<CER_WorkflowGuide_KeyFeatureSaveAsRole>"存为职能" - 将任意殖民者当前的搭配转为可重复使用的模板。</CER_WorkflowGuide_KeyFeatureSaveAsRole>
+	<CER_WorkflowGuide_KeyFeatureModSettings>模组设置 - 每一项默认值（弹药数量、武装殖民地预设……）均可自定义。</CER_WorkflowGuide_KeyFeatureModSettings>
+
+	<CER_WorkflowGuide_HeadGoodToKnow>小贴士</CER_WorkflowGuide_HeadGoodToKnow>
+	<CER_WorkflowGuide_GoodToKnowNewToCE>初次接触 CE？请保持在简单模式（右上角图标），直接使用"武装殖民地"即可。</CER_WorkflowGuide_GoodToKnowNewToCE>
+	<CER_WorkflowGuide_GoodToKnowBabies>婴儿/和平主义者永远不会获得武器 - 但仍可携带装备包。</CER_WorkflowGuide_GoodToKnowBabies>
+
+	<CER_WorkflowGuide_KeyFeatureOpen>随时打开此规划器：分配标签页右下角的“装备规划器”，或殖民者装备标签页旁边的面板。</CER_WorkflowGuide_KeyFeatureOpen>
+	<CER_WorkflowGuide_KeyFeatureFetchGear>“立即取装备”（在“武装殖民地”旁）——所有人放下工作，立即去取自己的配装。仅靠 CE 每 30 秒只取一件。</CER_WorkflowGuide_KeyFeatureFetchGear>
+	<CER_WorkflowGuide_GoodToKnowReopen>此速成教程只显示一次。随时重新打开：模组设置 -> 工具。</CER_WorkflowGuide_GoodToKnowReopen>
+
+</LanguageData>

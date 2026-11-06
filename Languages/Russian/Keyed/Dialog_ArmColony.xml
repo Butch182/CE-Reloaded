@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>Осторожно (только заполнить пробелы)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>Обычно (сброс и пересборка боеприпасов)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>Агрессивно (полная пересборка с нуля)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>Свой вариант (точная настройка шагов)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>Нет активной карты колонии для вооружения.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>Нет свободных поселенцев для вооружения.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>Пока нельзя изготовить оружие: не исследовано изготовление оружия. Исследуйте оружие или разместите место для изготовления простого.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>Оружие изготовить нельзя: ни на одной из карт вашей колонии нет верстака или места для изготовления, способного создавать оружие. Достаточно простого места для изготовления.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>Вооружить колонию</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>Одно нажатие: раздаст оружие и снаряжение по навыкам, поставит боеприпасы в очередь и предложит изготовить недостающее оружие.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>Колонисты:  {0}   ({1} вооружить)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>Снаряжения оружия, собранные вручную:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>Существующих наборов снаряжения:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>Как экипировать колонистов?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>Оружие для каждого поселенца</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>Каждый колонист получает подходящее ему оружие - без ролей.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>Многоразовые роли</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>Сначала просмотрите/создайте роли (шаг 1 откроется в режиме ролей), затем назначайте поселенцев исключительно по ролям (шаг 3 назначает "только роли" - тот же флажок, что уже есть на вкладке "Экипировать колонистов").</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>Выберите пресет режима, затем точно настройте любой шаг его флажком:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>снимает назначение со всех поселенцев</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>удаляет заказы на боеприпасы, поставленные этим модом</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>удаляет все заказы на боеприпасы</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>удаляет заказы на оружие, поставленные этим модом</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>удаляет все заказы на оружие</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>удаляет собранные вручную снаряжения оружия</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>удаляет наборы снаряжения, созданные мастером</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>удаляет все наборы снаряжения</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>Сначала {0} (без отмены там, где это разрушительно). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>Ничего существующего не снимается, не меняется и не удаляется. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>Создаёт заказы на боеприпасы для недостающего.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>Не создаёт заказов на боеприпасы.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> Задаёт все строки ниже.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>Осторожно</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>Обычно</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>Агрессивно</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>Сброс поселенцев</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>Ни у кого не снимается назначение.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>Сначала снимает назначение со всех поселенцев.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>Снять назначенный комплект со всех поселенцев перед запуском, чтобы «заполнение пробелов» естественным образом перепланировало всю колонию.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>Удаление заказов на боеприпасы</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>Существующие заказы на боеприпасы сохраняются - здесь ничего не удаляется. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>Удаляет только заказы патронов, созданные мастером этого мода. Без отмены. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>Удаляет все заказы патронов, включая созданные вами. Без отмены. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>Нет: не трогать заказы на боеприпасы. Управляемые: удалять только заказы, созданные инструментами этого мода, - заказ, настроенный вами вручную, сохранится. Все: удалять все заказы на распознанные типы боеприпасов независимо от того, кто их поставил (исходное, грубое поведение).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>Удаление заказов на оружие</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>Заказы на изготовление оружия сохраняются. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>Удаляет только оружейные заказы, созданные мастером этого мода. Без отмены. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>Удаляет все заказы на изготовление оружия, включая ваши. Без отмены. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>Нет: не трогать заказы на оружие. Управляемые: удалять только заказы, созданные инструментами этого мода (очередь производства, а не шаблон комплекта), - заказ, настроенный вами вручную, сохранится. Все: удалять все заказы на распознанное оружие независимо от того, кто их поставил (исходное, грубое поведение).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>Удалить собранные вручную снаряжения оружия</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>Собранные вручную снаряжения оружия сохраняются. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>Удаляет снаряжения оружия, которые вы собрали сами в редакторе CE. Без отмены. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>Только снаряжения, собранные вами в родном редакторе CE. Скрытые шаблоны на каждое оружие, которые создаёт этот мод, здесь не трогаются - проход всё равно создаёт их заново для каждого выданного оружия. Роли и комплекты имеют свои шаги.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>Удаление наборов снаряжения</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>Существующие наборы снаряжения сохраняются. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>Удаляет только наборы снаряжения, созданные мастером ЭТОГО мода. Без отмены. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>Удаляет все наборы снаряжения, включая созданные вручную. Без отмены. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>Нет: не трогать наборы снаряжения. Управляемые: удаляются только наборы, созданные мастером автогенерации, поэтому созданный вами вручную во вкладке Ингредиенты сохраняется. Все: удаляются все наборы снаряжения независимо от того, кто их создал (исходное, безусловное поведение). Комплекты, собранные вручную, здесь никогда не затрагиваются.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>Заказы на боеприпасы</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>Заказы на боеприпасы не создаются и не удаляются.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>Создаёт заказы на боеприпасы для того, чего не хватает.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>Снимите флажок, чтобы полностью не трогать заказы на боеприпасы. Отмечено: заказы пополняются для колонистов, которых этот запуск НЕ трогает. Здесь ничего не удаляется - устаревшие заказы предлагаются к удалению в окне снабжения, каждый со своим флажком.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>Пока нельзя вооружить колонию:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>Отмена</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>Вооружить колонию!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>Выполняет шаги точно так, как отмечено в таблице выше. Переключатели режима - это лишь пресеты для флажков.\n\nТекущая настройка: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>Вооружение невозможно продолжить:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>Шаг заказов на боеприпасы пропущен по выбору.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0} рол(ей) сохранили своё содержимое, но потеряли составные части - эти части были удалены. Колонисты с этими ролями остаются экипированными; чтобы перенастроить роль, перетащите на неё новые части.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>Снято назначение с поселенцев: {0}</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>Снято назначение с поселенцев: {0}</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>Удалено заказов на боеприпасы: {0}</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>Удалено заказов на боеприпасы: {0}</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>Удалено заказов на оружие: {0}</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>Удалено заказов на оружие: {0}</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>Удалено комплектов, собранных вручную: {0}</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>Удалено комплектов, собранных вручную: {0}</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>Удалено наборов снаряжения: {0}</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>Удалено наборов снаряжения: {0}</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>Сброс перед вооружением колонии: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>Ничего не было удалено.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; Назад</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>Продолжить &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>Продолжить к заказам на боеприпасы и назначению. Поселенцы будут назначаться исключительно по ролям.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>Продолжить к заказам на боеприпасы и назначению. Пока нет ни одной роли - создайте хотя бы одну выше, иначе никто не будет назначен.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>Сейчас ни на одном верстаке нет заказа на {0}.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>Вооружить колонию - итоги</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>Режим: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>Выполнение прервано, изменения ниже были применены до остановки.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>Сброс</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>Переключатели сброса сработали первыми (назначения, заказы, комплекты), чтобы пересборка точно соответствовала текущим требованиям.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>Поселенцев без назначения:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>Удалено заказов на боеприпасы:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>Удалено заказов на производство оружия:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>Удалено комплектов, собранных вручную:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>Удалено наборов снаряжения:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>Создано</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>Создано наборов снаряжения:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>Стартовая палитра наборов создана или обновлена на шаге 0 - см. вкладку "Наборы снаряжения".</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>Создано заказов на боеприпасы:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>Масштабировано под потребности назначенных поселенцев; подробности в разделе "Поставлено в производство" ниже.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>Ничего не отсутствовало - для всех нужных боеприпасов уже был заказ.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>Назначения ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>Кто какой комплект получил. Нажмите на строку, чтобы перейти к этому поселенцу на карте.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- ничего не применено (прервано) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- нет -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>Нажмите, чтобы перейти к {0} на карте.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>Поселенцев осталось без комплекта: {0} - причину указывает шаг назначения.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>Поставлено в производство ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>Оружие и боеприпасы, поставленные этим запуском на ваши верстаки. "Заказы" переходит к верстаку с этим заказом.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- нет (прервано) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- ничего не нужно -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- не хватает {0} предмет(ов), но ничего нельзя заказать (нет верстака или рецепта) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>Заказы</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>В очередь на изготовление поставлено копий: {0}.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>В очередь на изготовление поставлено копий: {0}.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0} патр.</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>В очереди патронов: {0} - масштабировано под назначенные комплекты.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>Всего материалов</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>Всё, что потребит запланированное производство, суммарно по всем заказам. Красным - не хватает на складе прямо сейчас (полный список нужно/есть во всплывающей подсказке полосы).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>Примечания</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>Закрыть</CER_ArmColony_CloseBtn>
+
+</LanguageData>

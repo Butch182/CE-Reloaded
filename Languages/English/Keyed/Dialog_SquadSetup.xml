@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titles / header -->
+	<CER_SquadSetup_TitleAssign>Assign Loadouts</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>Live preview - drag the sliders and watch the result. Nothing changes until you press Apply.</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Recommended / presets / mode toggle -->
+	<CER_SquadSetup_UseRecommendedSetup>Use recommended setup</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>Resets every slider to its default and hands Pool/Anti-mech back to the automatic system (material stock / mechanoid threat).</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>Balanced</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>Anti-Mech</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>Economy</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>Best Gear</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>Focus Ranged</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>All</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>Available items</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>Detailed mode - every slider is shown for hand-tuning.\n\nClick to switch to Simple (presets only).</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>Simple mode - presets only, the sliders are hidden.\n\nClick to switch to Detailed and hand-tune every slider.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Shared / slider labels -->
+	<CER_SquadSetup_AntiFlesh>Anti-flesh</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>Anti-mech</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>What the squad should be armed against.\n\nSeeded automatically from mechanoid encounters / colony age, until you drag it yourself.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>Only one ammo type</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>Maximum flexibility</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>How eagerly each colonist's ammo mixes types (e.g. FMJ + a magazine of EMP). Only applies with "Override ammo" on.\n\nLeft: exactly one type per weapon. Right: up to four, whenever a type covers a threat nothing packed yet covers. The total round count never grows - variety splits it - and every ration stays at least a full magazine, so small budgets keep fewer types regardless.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>Use available items</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>Craft new items</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>How willing the assignment is to hand out weapons you don't own yet.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>Prefer ranged</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>Prefer melee</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>Shifts who counts as a shooter vs a brawler.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>Always use best</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>Cover different roles</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>Left: everyone gets the highest-value weapon. Right: the squad avoids duplicates and fills classic roles first.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>Cheap weapons</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>Best weapon</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>Only matters for weapons that must be crafted.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>No sidearm</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>Always sidearm</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>Adds a second weapon alongside the main one (opposite type - a ranged main gets a melee backup and vice versa), the same live way Equipment Packs attach. Covers this fraction of the squad, best combat priority first.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>No explosives</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>Generous explosives</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>Adds a grenade (satchel charge, stick bomb, ...) alongside the main weapon, listed together with the sidearm above but from its own separate pool - a grenade never bumps a real backup weapon out of its slot. Covers this fraction of the squad, best combat priority first. Picks from grenades you own or can craft.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>No packs</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>Generous packs</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>Ranks pack TYPES by essentialness and includes progressively more as this rises - basic supply (food/medicine) first, specialized content (medical/drugs/utility) layered on after. Every eligible pawn gets every included pack type (Medical-dominant packs still only go to designated medics) - this is NOT about excluding pawns, only about which pack types exist at all. Shield-bearing packs are NOT covered by this slider - see below.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>No shields</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>Generous shields</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>Hands out any pack containing a shield (checked by its actual contents, not its name) to this fraction of the squad's melee-oriented pawns (or the whole squad if nobody is melee-oriented), best melee fighters first - gradually, like the sidearm/explosives sliders above, not an all-or-nothing tier.</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>Redistribute carried weapons:</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>Weapons picked up manually count as redistributable.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>Max sidearm bulk:</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>The auto-solver never picks a candidate above this CE Bulk value as a sidearm (a full rifle shouldn't be handed out as someone's "backup" just because it scores well). Manual sidearm picks aren't capped. Shared with the mod settings' Loadout Defaults tab.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Diff-only / keep current / use roles -->
+	<CER_SquadSetup_ShowOnlyChanges>Show only changes:</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>Keep current loadouts:</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>On: only colonists without a loadout get one; everyone already equipped is left untouched (shown with a lock).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>Override ammo:</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>Re-pick each colonist's ammo fresh at assign time (current stock/research + the Anti-mech and ammo-type sliders) instead of using the weapon's default ammo. Roles are never affected - their ammo always comes from the Role itself.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- Section headers / bottom bar -->
+	<CER_SquadSetup_BackButton>&lt; Back</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>Back to the previous step of the Arm-my-Colony flow. Steps that already applied are not undone.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>Cancel</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>Unpin all ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>Remove all {0} manual pin(s) and hand those colonists back to the solver.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>Nothing to apply.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>Skip</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>Skip this step - nothing is assigned here, the Arm-my-Colony flow continues to the next step.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Apply / Generate button labels -->
+	<CER_SquadSetup_ContinueButton>Continue &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>Apply ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>Apply</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ChangeSingular>change</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>changes</CER_SquadSetup_ChangePlural>
+
+	<!-- Generate list -->
+
+	<!-- Generate row -->
+	<CER_SquadSetup_NotResearchedSuffix> (not researched)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- Assign list header / empty state / cost strip / problems -->
+	<CER_SquadSetup_UnlockEveryoneTip>Unlock everyone. The auto-assign plans all colonists again.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>Lock everyone. Nobody is re-planned until unlocked.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>Colonist</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>Ranged</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>Melee</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>Medical</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>Current</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>Planned main weapon</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>Pack</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>Sidearm</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>Main</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>Packs</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>Ammo</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>No changes with the current settings.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>Preview - crafting costs by component (adjust in the next screen):</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;Total:&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;Problems with the current settings&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>Click to open the Roles tab.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Cost category labels -->
+	<CER_SquadSetup_CostLabelMain>Main:</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>Sidearms:</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>Grenades:</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>Shields:</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>Ammo:</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>Packs:</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Pawn row -->
+	<CER_SquadSetup_CannotFightTip>Cannot fight (incapable of violence, or a baby) - protected and never assigned a loadout.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>Ranged score (Shooting x10, adjusted by sight/manipulation/traits).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>Melee score (Melee x10, adjusted by moving/manipulation/traits).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>Medical skill (Medicine x10) - the top share of the squad by this score gets Medical-dominant Equipment Packs.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>None</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>can't fight - skipped</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>This colonist cannot fight (incapable of violence, or a baby) and never gets a weapon.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_KeptSuffix>  (kept)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>None  (kept)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (pinned)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>no loadout</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>No loadout could be assigned to this colonist with the current settings.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>Drop to swap loadouts with {0}.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>Click to pick a weapon for {0} manually (pins the choice - sliders won't reshuffle it).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\nCurrently pinned - the menu offers Auto to hand the colonist back to the solver.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\nDrag onto another colonist's row to swap their planned loadouts.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Pack / sidearm cells -->
+	<CER_SquadSetup_IncludedInRoleTip>Included in {0}:\n{1}\n\nBaked into this Role - edit the Role itself (Roles tab) to change it, not per-colonist here.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>This Role includes no medicine/food/drug/utility items.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>This Role includes no sidearm, thrown explosive, or shield.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>Equipment Packs attached: {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>No Equipment Pack attached.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\nScored automatically alongside the weapon. Click to override which packs this colonist gets - a pending pin, like the weapon cell; nothing applies until you press Apply.</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - tick which packs to plan. Nothing applies until you press Apply.</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>Sidearms attached: {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>No sidearm attached.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\nClick to tick which weapon(s) {0} carries as a sidearm - a pending pin, like the weapon cell; nothing applies until you press Apply.</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - tick which weapon(s) to carry as a sidearm. Nothing applies until you press Apply.</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>Sidearms</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>No other weapons available to carry as a sidearm.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Supply requirement group -->
+	<CER_SquadSetup_RoleTagSidearm> (sidearm)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (grenade)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (shield)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - everything covered:\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>ready</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>in production</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>missing</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (can be crafted)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (no bench built)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - covered for now, can't be re-made (not researched)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - covered for now, can't be re-made (no bench built)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Drag / pin menu -->
+	<CER_SquadSetup_CantSwapCannotFight>Can't swap onto a colonist who can't fight (pacifist or baby).</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>Both colonists need a planned weapon or role to swap.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>Both colonists already plan the same loadout.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>Swapped planned loadouts: {0} and {1} (pinned).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>Auto (unpin - let the solver decide)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>Save current combo as Role...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}: no ammo researched yet</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_ApplyNothingSuffix> (nothing to apply)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_SkippedByYou>skipped by you</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>You set this colonist to "skipped", so auto-assign leaves them alone. They CAN fight - this is your decision, not a trait of the pawn. Click the icon on the far left to include them again.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_NoRecipeSuffix> (no recipe exists)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>Will be planned: the auto-assign picks a loadout for this colonist.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>Kept as is: the auto-assign leaves this colonist's loadout alone. Still fully editable - click the weapon cell any time to change it directly.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>Loadout will be taken away: on Apply, {0} loses their loadout and stands there with none. The gear itself stays in the colony.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>Left out: {0} has no loadout and will not be given one. They count as a non-combatant on every screen.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>plan normally.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>leave as is (protected from the auto-assign, still editable).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>take the loadout away.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>Left-click:</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>Right-click:</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>loadout taken away</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>You set this colonist to "take the loadout away". On Apply, {0} loses their assigned loadout and stands there with none - the gear itself stays in the colony. Click the icon on the far left to undo.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

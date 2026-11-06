@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_PickOtherItem_Title>Añadir otro objeto</CER_PickOtherItem_Title>
+	<CER_PickOtherItem_Subtitle>{0} - añade cualquier objeto a su equipo personal, además de lo que ya cubren Munición, Paquetes y Armas secundarias.</CER_PickOtherItem_Subtitle>
+	<CER_PickOtherItem_SearchPlaceholder>Buscar objetos...</CER_PickOtherItem_SearchPlaceholder>
+	<CER_PickOtherItem_NoMatches>No hay coincidencias para "{0}".</CER_PickOtherItem_NoMatches>
+	<CER_PickOtherItem_AddButton>+</CER_PickOtherItem_AddButton>
+	<CER_PickOtherItem_RemoveButton>-</CER_PickOtherItem_RemoveButton>
+	<CER_PickOtherItem_RemoveTip>Quitar de este colono (actualmente tiene {0}). El numero del campo indica cuantos.</CER_PickOtherItem_RemoveTip>
+	<CER_PickOtherItem_RemoveNothingTip>Este objeto no esta en la lista personal del colono, asi que no hay nada que quitar.</CER_PickOtherItem_RemoveNothingTip>
+	<CER_PickOtherItem_RemovedMsg>Se quitaron {0}x {1} de {2}.</CER_PickOtherItem_RemovedMsg>
+	<CER_PickOtherItem_NameHeader>Objeto</CER_PickOtherItem_NameHeader>
+	<CER_PickOtherItem_AssignedHeader>Asignado</CER_PickOtherItem_AssignedHeader>
+	<CER_PickOtherItem_QtyHeader>Cant.</CER_PickOtherItem_QtyHeader>
+	<CER_PickOtherItem_AddedMsg>Se añadió {0}x {1} a {2}.</CER_PickOtherItem_AddedMsg>
+	<CER_PickOtherItem_CloseButton>Cerrar</CER_PickOtherItem_CloseButton>
+	<CER_PickOtherItem_CopyButton>Copiar</CER_PickOtherItem_CopyButton>
+	<CER_PickOtherItem_CopyTip>Copia los otros objetos de este colono al portapapeles. Pégalos en otro colono mediante la columna de pegado de la pestaña Equipar colonos (sustituye sus otros objetos). También se puede copiar una lista vacía: al pegarla, vacía el destino.</CER_PickOtherItem_CopyTip>
+	<CER_PickOtherItem_CopiedMsg>{0} tipo(s) de objeto copiado(s) de {1}: usa la columna de pegado de la pestaña Equipar colonos.</CER_PickOtherItem_CopiedMsg>
+	<CER_PickOtherItem_CopiedEmptyMsg>Lista de objetos vacía copiada de {0}: al pegarla, vacía los otros objetos del destino.</CER_PickOtherItem_CopiedEmptyMsg>
+
+</LanguageData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignPlanner_NothingToAssign>Nada que asignar: todos los colonos están bloqueados o conservados. Desmarca "Conservar cargas actuales" o desbloquea colonos.</CER_AssignPlanner_NothingToAssign>
+	<CER_AssignPlanner_RolesOnlyNoRoles>«Solo Roles» está activado, pero aún no existe ningún rol. Haz clic para crear uno en la pestaña Roles, o desactiva la opción.</CER_AssignPlanner_RolesOnlyNoRoles>
+	<CER_AssignPlanner_NoLoadoutsExist>No se puede asignar ninguna arma: no hay nada utilizable en propiedad ni fabricable. Consigue armas primero, o elige una a mano para un colono en Equipar colonos.</CER_AssignPlanner_NoLoadoutsExist>
+	<CER_AssignPlanner_UnassignedNoOwned>{0} colono(s) se quedan sin arma: no hay suficientes armas en propiedad. Mueve el control deslizante hacia "Fabricar artículos nuevos".</CER_AssignPlanner_UnassignedNoOwned>
+	<CER_AssignPlanner_UnassignedNoProducible>{0} colono(s) se quedan sin arma: no hay suficientes armas en propiedad o fabricables. Investiga o construye más tipos de arma.</CER_AssignPlanner_UnassignedNoProducible>
+	<CER_AssignPlanner_NoAntiMechOption>Ninguna opción antimecanoide entre los candidatos: nada dispara munición EMP ni AP/Sabot. Da esa munición a un colono en la ventana de munición, o añade una granada EMP como arma secundaria.</CER_AssignPlanner_NoAntiMechOption>
+	<CER_AssignPlanner_NoAntiFleshOption>No hay ninguna opción dedicada anti-orgánico entre las candidatas: nada lleva munición incendiaria/HE/fragmentación. La munición estándar igual funciona contra objetivos orgánicos, así que esto es solo un aviso.</CER_AssignPlanner_NoAntiFleshOption>
+	<CER_AssignPlanner_NoMeleeLoadouts>No hay ningún arma cuerpo a cuerpo disponible, así que «Preferir cuerpo a cuerpo» no tiene nada que repartir. Consigue una primero.</CER_AssignPlanner_NoMeleeLoadouts>
+	<CER_AssignPlanner_NoRangedLoadouts>No hay ningún arma a distancia disponible, así que "Preferir a distancia" no tiene nada que repartir. Consigue primero un arma a distancia.</CER_AssignPlanner_NoRangedLoadouts>
+	<CER_AssignPlanner_FewWeaponGroups>Solo {0} grupo(s) de armas entre las candidatas - hay poco margen para diversificar. Investiga o construye más tipos de arma.</CER_AssignPlanner_FewWeaponGroups>
+	<CER_AssignPlanner_WeakColonistsProblem>{0} colono(s) recibieron una carga pero ahora mismo no pueden apuntar ni pelear (derribados, heridos o paralizados): {1}. Bloquéalos si esto es permanente.</CER_AssignPlanner_WeakColonistsProblem>
+
+	<CER_AssignPlanner_OverloadedProblem>{0} colono(s) reciben una carga que no les cabe ({1}). Solo recogeran lo que quepa y dejaran el resto: la carga queda parcialmente sin cumplir.</CER_AssignPlanner_OverloadedProblem>
+	<CER_AssignPlanner_OverloadBulk>volumen {0}/{1}</CER_AssignPlanner_OverloadBulk>
+	<CER_AssignPlanner_OverloadMass>peso {0}/{1}</CER_AssignPlanner_OverloadMass>
+	<CER_AssignPlanner_NoRolesNoPlain>No se puede asignar ningún arma: no hay nada utilizable en propiedad ni fabricable, y "Sin Roles" deja fuera todos los roles.</CER_AssignPlanner_NoRolesNoPlain>
+</LanguageData>

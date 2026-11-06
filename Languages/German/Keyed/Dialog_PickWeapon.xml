@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Waffe wählen</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - Waffe wählen; Munitionsvorgaben werden automatisch gesetzt.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - Waffe für diesen Plan anheften; 'Auto' gibt die Wahl an den Löser zurück.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Gewicht und Sperrigkeit inklusive Standard-Munition</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} in der Kolonie</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} davon bereits in diesem Plan verplant</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Kann jetzt hergestellt werden</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Nichts passt zu Suche oder Filter.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Wertung {0} (gegen Fleisch {1}, gegen Mechanoiden {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

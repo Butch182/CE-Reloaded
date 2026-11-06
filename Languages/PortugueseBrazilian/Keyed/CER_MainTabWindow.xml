@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_MainTabWindow_OpenButton>Planejador de configurações</CER_MainTabWindow_OpenButton>
+	<CER_MainTabWindow_OpenWorkflowTip>Abrir o fluxo de trabalho do CE Reloaded: Pacotes de Equipamento, Funções, Equipar colonos e Visão Geral de Encomendas.</CER_MainTabWindow_OpenWorkflowTip>
+	<CER_LoadoutEditButton_Tip>Vai para a aba Equipar colonos do CE Reloaded, filtrada para este colono.</CER_LoadoutEditButton_Tip>
+
+</LanguageData>

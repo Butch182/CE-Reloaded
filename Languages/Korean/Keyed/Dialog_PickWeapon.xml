@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>무기 선택</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - 무기를 선택하세요. 기본 탄약은 자동으로 설정됩니다.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - 이 계획에 무기를 고정합니다. '자동'은 선택을 자동 배정에 되돌립니다.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>기본 탄약을 포함한 무게와 부피</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>식민지 보유: {0}</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>이 계획에서 이미 배정됨: {0}</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>지금 제작 가능</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>검색어나 필터에 맞는 항목이 없습니다.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>점수 {0} (대 생체 {1}, 대 기계 {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titlar / rubrik -->
+	<CER_SquadSetup_TitleAssign>Tilldela lastningar</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>Direktuppdaterad förhandsvisning - dra i reglagen och se resultatet. Inget ändras förrän du trycker Tillämpa.</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Rekommenderat / förinställningar / lägesväxling -->
+	<CER_SquadSetup_UseRecommendedSetup>Använd rekommenderad uppsättning</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>Återställer varje reglage till standardvärdet och lämnar tillbaka Pool/Anti-mek till det automatiska systemet (materiallager / mekanoidhot).</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>Balanserad</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>Anti-mek</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>Ekonomi</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>Bästa utrustning</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>Fokus distans</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>Alla</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>Tillgängliga föremål</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>Detaljerat läge - varje reglage visas för finjustering för hand.\n\nKlicka för att växla till Enkelt (endast förinställningar).</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>Enkelt läge - endast förinställningar, reglagen är dolda.\n\nKlicka för att växla till Detaljerat och finjustera varje reglage för hand.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Delade / reglageetiketter -->
+	<CER_SquadSetup_AntiFlesh>Anti-kött</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>Anti-mek</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>Vad truppen ska beväpnas mot.\n\nFylls i automatiskt utifrån mekanoidmöten / koloniålder, tills du drar i det själv.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>Endast en ammunitionstyp</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>Maximal flexibilitet</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>Hur ivrigt varje kolonists ammunition blandar typer (t.ex. FMJ + ett magasin EMP). Gäller bara med "Åsidosätt ammunition" på.\n\nVänster: exakt en typ per vapen. Höger: upp till fyra, närhelst en typ täcker ett hot som inget redan packat täcker. Det totala antalet skott växer aldrig - mångfalden delar bara upp det - och varje ranson förblir minst ett fullt magasin, så små budgetar behåller ändå färre typer.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>Använd tillgängliga föremål</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>Tillverka nya föremål</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>Hur villig tilldelningen är att dela ut vapen du inte äger än.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>Föredra distans</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>Föredra närstrid</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>Skiftar vem som räknas som skytt kontra slagskämpe.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>Alltid bäst</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>Täck olika roller</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>Vänster: alla får det mest högvärdiga vapnet. Höger: truppen undviker dubbletter och fyller klassiska roller först.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>Billiga vapen</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>Bästa vapnet</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>Spelar bara roll för vapen som måste tillverkas.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>Inget sidovapen</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>Alltid sidovapen</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>Ger ett andra vapen vid sidan av huvudvapnet (motsatt typ - ett distanshuvudvapen får en närstridsreserv och tvärtom), på samma direktuppdaterade sätt som utrustningspaket bifogas. Täcker denna andel av truppen, bästa stridsprioritet först.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>Inga sprängmedel</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>Generösa sprängmedel</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>Ger en granat (sprängladdning, stångbomb, ...) vid sidan av huvudvapnet, listad tillsammans med sidovapnet ovan men från sin egen separata pool - en granat tränger aldrig undan ett riktigt reservvapen från dess plats. Täcker denna andel av truppen, bästa stridsprioritet först. Väljer bland granater du äger eller kan tillverka.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>Inga paket</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>Generösa paket</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>Rankar pakettyper efter hur nödvändiga de är och inkluderar gradvis fler ju högre detta är - grundförnödenheter (mat/medicin) först, specialiserat innehåll (medicinskt/droger/verktyg) läggs på efteråt. Varje kvalificerad kolonist får varje inkluderad pakettyp (medicindominerade paket går ändå bara till utsedda sjukvårdare) - detta handlar INTE om att utesluta kolonister, bara om vilka pakettyper som finns alls. Sköldbärande paket täcks INTE av detta reglage - se nedan.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>Inga sköldar</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>Generösa sköldar</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>Delar ut varje paket som innehåller en sköld (kontrollerat via dess faktiska innehåll, inte dess namn) till denna andel av truppens närstridsinriktade kolonister (eller hela truppen om ingen är närstridsinriktad), bästa närstridskämpar först - gradvis, precis som reglagen för sidovapen/sprängmedel ovan, inte allt-eller-inget.</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>Omfördela burna vapen:</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>Vapen som plockats upp manuellt räknas som omfördelningsbara.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>Max sidovapenvolym:</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>Auto-tilldelningen väljer aldrig en kandidat över detta CE-volymvärde som sidovapen (ett fullstort gevär ska inte delas ut som någons "reserv" bara för att det får bra poäng). Manuella sidovapenval har inget tak. Delas med fliken Lastningsstandard i modinställningarna.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Endast ändringar / behåll nuvarande / använd roller -->
+	<CER_SquadSetup_ShowOnlyChanges>Visa endast ändringar:</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>Behåll nuvarande lastningar:</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>På: bara kolonister utan lastning får en; alla som redan är utrustade lämnas orörda (visas med ett lås).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>Åsidosätt ammunition:</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>Väljer om varje kolonists ammunition på nytt vid tilldelningstillfället (aktuellt lager/forskning + reglagen för Anti-mech och ammunitionstyper) istället för att använda vapnets standardammunition. Roller påverkas aldrig - deras ammunition kommer alltid från själva rollen.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- Sektionsrubriker / nedre raden -->
+	<CER_SquadSetup_BackButton>&lt; Tillbaka</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>Tillbaka till föregående steg i Beväpna-min-koloni-flödet. Steg som redan tillämpats ångras inte.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>Avbryt</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>Lossa alla ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>Ta bort alla {0} manuella nål(ar) och lämna tillbaka dessa kolonister till auto-tilldelningen.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>Inget att tillämpa.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>Hoppa över</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>Hoppa över detta steg - inget tilldelas här, Beväpna-min-koloni-flödet fortsätter till nästa steg.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Tillämpa/Generera-knappetiketter -->
+	<CER_SquadSetup_ContinueButton>Fortsätt &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>Tillämpa ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>Tillämpa</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (inget att tillämpa)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>ändring</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>ändringar</CER_SquadSetup_ChangePlural>
+
+	<!-- Genereringslista -->
+
+	<!-- Genereringsrad -->
+	<CER_SquadSetup_NotResearchedSuffix> (ej forskat)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- Tilldelningslistans rubrik / tomt tillstånd / kostnadsrad / problem -->
+	<CER_SquadSetup_UnlockEveryoneTip>Lås upp alla. Autotilldelningen planerar alla kolonister igen.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>Lås alla. Ingen planeras om förrän de låses upp.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>Kolonist</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>Distans</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>Närstrid</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>Medicin</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>Nuvarande</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>Planerat huvudvapen</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>Paket</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>Sidovapen</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>Vapen</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>Paket</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>Ammunition</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>Inga ändringar med de nuvarande inställningarna.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>Förhandsgranskning - tillverkningskostnader per komponent (justera på nästa skärm):</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;Totalt:&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;Problem med de nuvarande inställningarna&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>Klicka för att öppna fliken Roller.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Kostnadskategorietiketter -->
+	<CER_SquadSetup_CostLabelMain>Huvudvapen:</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>Sidovapen:</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>Granater:</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>Sköldar:</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>Ammunition:</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>Paket:</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Kolonistrad -->
+	<CER_SquadSetup_CannotFightTip>Kan inte slåss (oförmögen till våld, eller en bebis) - skyddad och tilldelas aldrig en lastning.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>Distanspoäng (Skjutning x10, justerat efter syn/manipulation/egenskaper).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>Närstridspoäng (Närstrid x10, justerat efter rörelse/manipulation/egenskaper).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>Medicinsk skicklighet (Medicin x10) - den främsta andelen av truppen efter denna poäng får medicindominerade utrustningspaket.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>Ingen</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>kan inte slåss - överhoppad</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>Denna kolonist kan inte slåss (oförmögen till våld, eller en bebis) och får aldrig ett vapen.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>överhoppad av dig</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>Du har markerat den här kolonisten som överhoppad, så automatisk tilldelning lämnar honom i fred. Han KAN slåss - det är ditt beslut, inte en begränsning hos figuren. Klicka på ikonen längst till vänster för att ta med honom igen.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  (behållen)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>Ingen  (behållen)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (nålad)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>ingen lastning</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>Ingen lastning kunde tilldelas denna kolonist med de nuvarande inställningarna.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>Släpp för att byta lastning med {0}.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>Klicka för att välja ett vapen åt {0} manuellt (nålar fast valet - reglagen kommer inte att blanda om det).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\nFör närvarande nålad - menyn erbjuder Auto för att lämna tillbaka kolonisten till autotilldelningen.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\nDra till en annan kolonists rad för att byta deras planerade lastningar.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Paket-/sidovapenceller -->
+	<CER_SquadSetup_IncludedInRoleTip>Ingår i {0}:\n{1}\n\nInbakat i denna roll - redigera rollen själv (fliken Roller) för att ändra det, inte per kolonist här.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>Denna roll inkluderar inga medicin-, mat-, drog- eller verktygsföremål.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>Denna roll inkluderar inget sidovapen, kastvapen eller sköld.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>Bifogade utrustningspaket: {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>Inget utrustningspaket bifogat.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\nPoängsätts automatiskt tillsammans med vapnet. Klicka för att åsidosätta vilka paket denna kolonist får - en väntande nål, precis som vapencellen; inget tillämpas förrän du trycker Tillämpa.</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - bocka för vilka paket som ska planeras. Inget tillämpas förrän du trycker Tillämpa.</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>Bifogade sidovapen: {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>Inget sidovapen bifogat.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\nKlicka för att bocka för vilket/vilka vapen {0} bär som sidovapen - en väntande nål, precis som vapencellen; inget tillämpas förrän du trycker Tillämpa.</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - bocka för vilket/vilka vapen som ska bäras som sidovapen. Inget tillämpas förrän du trycker Tillämpa.</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>Sidovapen</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>Inga andra vapen finns att bära som sidovapen.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Försörjningskravsgrupp -->
+	<CER_SquadSetup_RoleTagSidearm> (sidovapen)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (granat)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (sköld)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - allt täckt:\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>klar</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>under tillverkning</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>saknas</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (kan tillverkas)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (ingen arbetsbänk byggd)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - racker tills vidare, men kan inte tillverkas igen (ej utforskat)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - racker tills vidare, men kan inte tillverkas igen (ingen arbetsbank)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Dra-/nålmeny -->
+	<CER_SquadSetup_CantSwapCannotFight>Kan inte byta med en kolonist som inte kan slåss (pacifist eller bebis).</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>Båda kolonisterna behöver ett planerat vapen eller en planerad roll för att byta.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>Båda kolonisterna planerar redan samma lastning.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>Bytte planerade lastningar: {0} och {1} (nålade).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>Auto (lossa nål - låt autotilldelningen bestämma)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>Spara nuvarande kombination som roll...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0}: ingen ammunition utforskad</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix> (inget recept finns)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>Kommer att planeras: autotilldelningen väljer en lastning åt denna kolonist.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>Lämnas som den är: autotilldelningen rör inte denna kolonists utrustning. Den går fortfarande att ändra - klicka på vapencellen för att ändra den direkt.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>Lastningen tas bort: vid Verkställ förlorar {0} sin lastning och står utan. Själva utrustningen stannar i kolonin.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>Utelämnad: {0} har ingen lastning och kommer inte att få någon. Räknas som icke-stridande på alla skärmar.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>planera normalt.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>lämna som den är (skyddad från autotilldelningen, går fortfarande att ändra).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>ta bort lastningen.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>Vänsterklick:</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>Högerklick:</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>lastningen borttagen</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>Du satte denna kolonist till "ta bort lastningen". Vid Verkställ förlorar {0} sin tilldelade lastning och står utan - själva utrustningen stannar i kolonin. Klicka på ikonen längst till vänster för att ångra.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

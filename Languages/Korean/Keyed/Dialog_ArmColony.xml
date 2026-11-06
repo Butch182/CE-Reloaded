@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ArmColony_ModeCautious>신중 (빈틈만 채우기)</CER_ArmColony_ModeCautious>
+	<CER_ArmColony_ModeNormal>보통 (초기화 &amp; 탄약 재구축)</CER_ArmColony_ModeNormal>
+	<CER_ArmColony_ModeAggressive>공격적 (완전 초기화 후 재구축)</CER_ArmColony_ModeAggressive>
+	<CER_ArmColony_ModeCustom>사용자 지정 (세부 단계 조정)</CER_ArmColony_ModeCustom>
+
+	<CER_ArmColony_NoActiveMap>무장시킬 활성 정착지 맵이 없습니다.</CER_ArmColony_NoActiveMap>
+	<CER_ArmColony_NoFreeColonists>무장시킬 자유 주민이 없습니다.</CER_ArmColony_NoFreeColonists>
+	<CER_ArmColony_NoWeaponResearched>아직 만들 수 있는 무기가 없습니다: 무기 제작이 연구되지 않았습니다. 무기를 연구하거나, 간단한 무기를 만들 수 있는 제작 장소를 설치하세요.</CER_ArmColony_NoWeaponResearched>
+	<CER_ArmColony_NoWeaponBench>만들 수 있는 무기가 없습니다: 어떤 정착지 맵에도 무기를 만들 수 있는 작업대나 제작 장소가 없습니다. 간단한 제작 장소만 있어도 충분합니다.</CER_ArmColony_NoWeaponBench>
+
+	<CER_ArmColony_Title>정착지 무장하기</CER_ArmColony_Title>
+	<CER_ArmColony_Intro>한 번의 클릭으로: 기술에 따라 무기와 장비를 나눠주고, 탄약을 생산 대기열에 넣고, 보유하지 않은 무기의 제작을 제안합니다.</CER_ArmColony_Intro>
+	<CER_ArmColony_ColonistsLine>정착민:  {0}   (무장 대상 {1}명)</CER_ArmColony_ColonistsLine>
+		<CER_ArmColony_ExistingLoadoutsLine>직접 만든 무기 로드아웃:  {0}</CER_ArmColony_ExistingLoadoutsLine>
+	<CER_ArmColony_ExistingPacksLine>기존 장비 팩:  {0}</CER_ArmColony_ExistingPacksLine>
+
+	<CER_ArmColony_StructureHeader>정착민을 어떻게 무장시킬까요?</CER_ArmColony_StructureHeader>
+	<CER_ArmColony_AdHocLabel>주민별 무기</CER_ArmColony_AdHocLabel>
+	<CER_ArmColony_AdHocTip>각 정착민이 자신에게 맞는 무기를 받습니다 - 역할 없이.</CER_ArmColony_AdHocTip>
+	<CER_ArmColony_RolesLabel>재사용 가능한 역할</CER_ArmColony_RolesLabel>
+	<CER_ArmColony_RolesTip>먼저 역할을 검토/구성합니다(1단계가 역할 모드로 열림), 그런 다음 오직 역할로만 주민을 배정합니다(3단계에서 "역할만 사용"을 배정, 정착민 장비 지급에 이미 있는 것과 같은 체크박스).</CER_ArmColony_RolesTip>
+
+	<CER_ArmColony_PickModeHeader>모드 프리셋을 선택한 뒤, 각 단계의 체크박스로 세부 조정하세요:</CER_ArmColony_PickModeHeader>
+
+	<CER_ArmColony_DescUnassign>모든 주민의 배정을 해제합니다</CER_ArmColony_DescUnassign>
+	<CER_ArmColony_DescDeleteAmmoManaged>이 모드가 대기열에 넣은 탄약 청구서를 삭제합니다</CER_ArmColony_DescDeleteAmmoManaged>
+	<CER_ArmColony_DescDeleteAmmoAll>모든 탄약 청구서를 삭제합니다</CER_ArmColony_DescDeleteAmmoAll>
+	<CER_ArmColony_DescDeleteWeaponBillsManaged>이 모드가 대기열에 넣은 무기 청구서를 삭제합니다</CER_ArmColony_DescDeleteWeaponBillsManaged>
+	<CER_ArmColony_DescDeleteWeaponBillsAll>모든 무기 청구서를 삭제합니다</CER_ArmColony_DescDeleteWeaponBillsAll>
+<CER_ArmColony_DescDeleteWeaponLoadouts>직접 만든 무기 로드아웃을 삭제</CER_ArmColony_DescDeleteWeaponLoadouts>
+		<CER_ArmColony_DescDeleteEquipmentPacksManaged>마법사가 생성한 장비 팩 삭제</CER_ArmColony_DescDeleteEquipmentPacksManaged>
+<CER_ArmColony_DescDeleteEquipmentPacks>모든 장비 팩을 삭제합니다</CER_ArmColony_DescDeleteEquipmentPacks>
+	<CER_ArmColony_DescDestructivePrefix>먼저 {0} (되돌릴 수 없는 파괴적 작업 포함). </CER_ArmColony_DescDestructivePrefix>
+	<CER_ArmColony_DescNothing>기존 항목은 배정 해제, 변경, 삭제되지 않습니다. </CER_ArmColony_DescNothing>
+	<CER_ArmColony_DescAmmoCreate>부족한 탄약의 청구서를 생성합니다.</CER_ArmColony_DescAmmoCreate>
+	<CER_ArmColony_DescAmmoNone>탄약 청구서를 생성하지 않습니다.</CER_ArmColony_DescAmmoNone>
+	<CER_ArmColony_DescSuffix> 아래의 모든 항목을 설정합니다.</CER_ArmColony_DescSuffix>
+
+	<CER_ArmColony_RadioCautious>신중</CER_ArmColony_RadioCautious>
+	<CER_ArmColony_RadioNormal>보통</CER_ArmColony_RadioNormal>
+	<CER_ArmColony_RadioAggressive>공격적</CER_ArmColony_RadioAggressive>
+
+	<CER_ArmColony_StepResetPawns>주민 초기화</CER_ArmColony_StepResetPawns>
+	<CER_ArmColony_ResetPawnsOff>아무도 배정 해제되지 않습니다.</CER_ArmColony_ResetPawnsOff>
+	<CER_ArmColony_ResetPawnsOn>먼저 모든 주민의 배정을 해제합니다.</CER_ArmColony_ResetPawnsOn>
+	<CER_ArmColony_ResetPawnsTip>실행 전에 모든 주민의 로드아웃 배정을 해제하여, '빈틈 채우기'가 정착지 전체를 자연스럽게 다시 계획하도록 합니다.</CER_ArmColony_ResetPawnsTip>
+
+	<CER_ArmColony_StepDeleteAmmoBills>탄약 청구서 삭제</CER_ArmColony_StepDeleteAmmoBills>
+	<CER_ArmColony_DeleteAmmoNone>기존 탄약 청구서는 유지됩니다 - 여기서는 아무것도 삭제되지 않습니다. ({0})</CER_ArmColony_DeleteAmmoNone>
+	<CER_ArmColony_DeleteAmmoManaged>이 모드의 마법사가 만든 탄약 작업 지시만 삭제합니다. 되돌릴 수 없습니다. ({0})</CER_ArmColony_DeleteAmmoManaged>
+	<CER_ArmColony_DeleteAmmoAll>직접 만든 것을 포함해 모든 탄약 작업 지시를 삭제합니다. 되돌릴 수 없습니다. ({0})</CER_ArmColony_DeleteAmmoAll>
+	<CER_ArmColony_DeleteAmmoTip>없음: 탄약 청구서를 그대로 둡니다. 관리 대상만: 이 모드의 도구가 만든 청구서만 삭제하므로, 직접 설정한 청구서는 남습니다. 전체: 누가 대기열에 넣었는지와 무관하게 인식된 종류의 모든 탄약 청구서를 삭제합니다(원래의 단순한 동작).</CER_ArmColony_DeleteAmmoTip>
+
+	<CER_ArmColony_StepDeleteWeaponBills>무기 청구서 삭제</CER_ArmColony_StepDeleteWeaponBills>
+	<CER_ArmColony_DeleteWeaponBillsNone>무기 제작 청구서는 유지됩니다. ({0})</CER_ArmColony_DeleteWeaponBillsNone>
+	<CER_ArmColony_DeleteWeaponBillsManaged>이 모드의 마법사가 만든 무기 작업 지시만 삭제합니다. 되돌릴 수 없습니다. ({0})</CER_ArmColony_DeleteWeaponBillsManaged>
+	<CER_ArmColony_DeleteWeaponBillsAll>직접 만든 것을 포함해 모든 무기 제작 지시를 삭제합니다. 되돌릴 수 없습니다. ({0})</CER_ArmColony_DeleteWeaponBillsAll>
+	<CER_ArmColony_DeleteWeaponBillsTip>없음: 무기 청구서를 그대로 둡니다. 관리 대상만: 이 모드의 도구가 만든 청구서만 삭제합니다(로드아웃 템플릿이 아닌 생산 대기열), 직접 설정한 청구서는 남습니다. 전체: 누가 대기열에 넣었는지와 무관하게 인식된 무기의 모든 청구서를 삭제합니다(원래의 단순한 동작).</CER_ArmColony_DeleteWeaponBillsTip>
+
+	<CER_ArmColony_StepDeleteWeaponLoadouts>직접 만든 무기 로드아웃 삭제</CER_ArmColony_StepDeleteWeaponLoadouts>
+	<CER_ArmColony_DeleteWeaponLoadoutsNone>직접 만든 무기 로드아웃은 유지됩니다. ({0})</CER_ArmColony_DeleteWeaponLoadoutsNone>
+	<CER_ArmColony_DeleteWeaponLoadoutsAll>CE 편집기에서 직접 만든 무기 로드아웃을 삭제합니다. 되돌릴 수 없습니다. ({0})</CER_ArmColony_DeleteWeaponLoadoutsAll>
+	<CER_ArmColony_DeleteWeaponLoadoutsTip>CE 기본 편집기에서 직접 만든 로드아웃만 해당합니다. 이 모드가 무기마다 만드는 숨겨진 템플릿은 여기서 건드리지 않습니다. 실행 시 나눠주는 무기마다 어차피 새로 만듭니다. 역할과 장비 팩은 각자 단계가 있습니다.</CER_ArmColony_DeleteWeaponLoadoutsTip>
+
+	<CER_ArmColony_StepDeleteEquipmentPacks>장비 팩 삭제</CER_ArmColony_StepDeleteEquipmentPacks>
+	<CER_ArmColony_DeleteEquipmentPacksNone>기존 장비 팩을 유지합니다. ({0})</CER_ArmColony_DeleteEquipmentPacksNone>
+	<CER_ArmColony_DeleteEquipmentPacksManaged>이 모드의 마법사가 생성한 장비 팩만 삭제합니다. 취소 불가. ({0})</CER_ArmColony_DeleteEquipmentPacksManaged>
+	<CER_ArmColony_DeleteEquipmentPacksAll>수동으로 만든 것을 포함해 모든 장비 팩을 삭제합니다. 취소 불가. ({0})</CER_ArmColony_DeleteEquipmentPacksAll>
+	<CER_ArmColony_DeleteEquipmentPacksTip>없음: 장비 팩을 그대로 둡니다. 관리됨: 자동 생성 마법사가 만든 팩만 삭제하므로, 재료 탭에서 직접 만든 것은 유지됩니다. 전체: 누가 만들었든 모든 장비 팩을 삭제합니다(원래의 무조건적인 동작). 직접 만든 로드아웃은 여기서 건드리지 않습니다.</CER_ArmColony_DeleteEquipmentPacksTip>
+
+	<CER_ArmColony_StepAmmoBills>탄약 청구서</CER_ArmColony_StepAmmoBills>
+	<CER_ArmColony_AmmoBillsOff>탄약 청구서를 생성하거나 삭제하지 않습니다.</CER_ArmColony_AmmoBillsOff>
+	<CER_ArmColony_AmmoBillsOn>부족한 분의 탄약 청구서를 생성합니다.</CER_ArmColony_AmmoBillsOn>
+	<CER_ArmColony_AmmoBillsTip>체크 해제 시 탄약 청구서를 완전히 그대로 둡니다. 체크 시: 이번 실행이 건드리지 않는 정착자의 청구서를 보충합니다. 여기서는 아무것도 삭제되지 않습니다 - 불필요한 청구서는 보급 창에서 각각 체크박스와 함께 제안됩니다.</CER_ArmColony_AmmoBillsTip>
+
+	<CER_ArmColony_BlockersHeader>아직 정착지를 무장시킬 수 없습니다:</CER_ArmColony_BlockersHeader>
+	<CER_ArmColony_BlockerBullet>   -  {0}</CER_ArmColony_BlockerBullet>
+
+	<CER_ArmColony_CancelBtn>취소</CER_ArmColony_CancelBtn>
+	<CER_ArmColony_GoBtn>정착지 무장하기!</CER_ArmColony_GoBtn>
+	<CER_ArmColony_GoTip>위 표에 체크된 대로 정확히 단계를 실행합니다. 모드 라디오 버튼은 체크박스를 위한 프리셋일 뿐입니다.\n\n현재 설정: {0}</CER_ArmColony_GoTip>
+	<CER_ArmColony_CantProceed>무장을 진행할 수 없습니다:\n\n{0}</CER_ArmColony_CantProceed>
+	<CER_ArmColony_CantProceedBullet>-  {0}</CER_ArmColony_CantProceedBullet>
+
+	<CER_ArmColony_NoteAmmoSkipped>탄약 청구서 단계를 선택적으로 건너뛰었습니다.</CER_ArmColony_NoteAmmoSkipped>
+	<CER_ArmColony_NoteRolesLoseComposition>{0}개 역할은 내용은 유지했지만 구성에 사용된 요소를 잃었습니다 - 그 요소들이 삭제되었습니다. 해당 역할의 정착민은 그대로 장비를 유지합니다; 역할을 다시 조정하려면 새 부품을 끌어다 놓으세요.</CER_ArmColony_NoteRolesLoseComposition>
+
+	<CER_ArmColony_ResetColonistSingular>주민 {0}명 배정 해제됨</CER_ArmColony_ResetColonistSingular>
+	<CER_ArmColony_ResetColonistPlural>주민 {0}명 배정 해제됨</CER_ArmColony_ResetColonistPlural>
+	<CER_ArmColony_ResetAmmoBillSingular>탄약 청구서 {0}개 삭제됨</CER_ArmColony_ResetAmmoBillSingular>
+	<CER_ArmColony_ResetAmmoBillPlural>탄약 청구서 {0}개 삭제됨</CER_ArmColony_ResetAmmoBillPlural>
+	<CER_ArmColony_ResetWeaponBillSingular>무기 청구서 {0}개 삭제됨</CER_ArmColony_ResetWeaponBillSingular>
+	<CER_ArmColony_ResetWeaponBillPlural>무기 청구서 {0}개 삭제됨</CER_ArmColony_ResetWeaponBillPlural>
+	<CER_ArmColony_ResetLoadoutSingular>직접 만든 로드아웃 {0}개 삭제됨</CER_ArmColony_ResetLoadoutSingular>
+	<CER_ArmColony_ResetLoadoutPlural>직접 만든 로드아웃 {0}개 삭제됨</CER_ArmColony_ResetLoadoutPlural>
+	<CER_ArmColony_ResetPackSingular>장비 팩 {0}개 삭제됨</CER_ArmColony_ResetPackSingular>
+	<CER_ArmColony_ResetPackPlural>장비 팩 {0}개 삭제됨</CER_ArmColony_ResetPackPlural>
+	<CER_ArmColony_ResetSummary>정착지 무장하기 초기화: {0}.</CER_ArmColony_ResetSummary>
+	<CER_ArmColony_ResetNothing>삭제된 항목이 없습니다.</CER_ArmColony_ResetNothing>
+
+	<CER_ArmColony_BackBtn>&lt; 뒤로</CER_ArmColony_BackBtn>
+	<CER_ArmColony_ContinueBtn>계속 &gt;</CER_ArmColony_ContinueBtn>
+	<CER_ArmColony_ContinueTipHasRoles>탄약 청구서와 배정 단계로 계속합니다. 주민은 오직 역할로만 배정됩니다.</CER_ArmColony_ContinueTipHasRoles>
+	<CER_ArmColony_ContinueTipNoRoles>탄약 청구서와 배정 단계로 계속합니다. 아직 역할이 없습니다 - 위에서 최소 하나를 만들지 않으면 아무도 배정되지 않습니다.</CER_ArmColony_ContinueTipNoRoles>
+
+	<CER_ArmColony_NoBillFor>현재 {0}에 대한 청구서가 있는 작업대가 없습니다.</CER_ArmColony_NoBillFor>
+	<CER_ArmColony_ReportTitle>정착지 무장하기 - 요약</CER_ArmColony_ReportTitle>
+	<CER_ArmColony_ReportModeLine>모드: {0}</CER_ArmColony_ReportModeLine>
+	<CER_ArmColony_UnknownMark>?</CER_ArmColony_UnknownMark>
+	<CER_ArmColony_ArrowMark>-&gt;</CER_ArmColony_ArrowMark>
+	<CER_ArmColony_AbortedNote>실행이 중단되었습니다. 아래 변경 사항은 중단되기 전에 적용된 것입니다.</CER_ArmColony_AbortedNote>
+
+	<CER_ArmColony_ReportResetHeader>초기화</CER_ArmColony_ReportResetHeader>
+	<CER_ArmColony_ReportResetTip>초기화 스위치가 먼저 실행되어(배정, 청구서, 로드아웃) 재구축이 현재 요구 사항과 정확히 일치하도록 합니다.</CER_ArmColony_ReportResetTip>
+	<CER_ArmColony_ReportPawnsUnassigned>배정 해제된 주민:  {0}</CER_ArmColony_ReportPawnsUnassigned>
+	<CER_ArmColony_ReportAmmoBillsDeleted>삭제된 탄약 청구서:  {0}</CER_ArmColony_ReportAmmoBillsDeleted>
+	<CER_ArmColony_ReportWeaponBillsDeleted>삭제된 무기 생산 청구서:  {0}</CER_ArmColony_ReportWeaponBillsDeleted>
+	<CER_ArmColony_ReportLoadoutsDeleted>삭제된 직접 만든 로드아웃:  {0}</CER_ArmColony_ReportLoadoutsDeleted>
+	<CER_ArmColony_ReportPacksDeleted>삭제된 장비 팩:  {0}</CER_ArmColony_ReportPacksDeleted>
+
+	<CER_ArmColony_ReportGeneratedHeader>생성됨</CER_ArmColony_ReportGeneratedHeader>
+	<CER_ArmColony_ReportPacksGenerated>생성된 장비 팩:  {0}</CER_ArmColony_ReportPacksGenerated>
+	<CER_ArmColony_ReportPacksGeneratedTip>0단계에서 초기 팩 팔레트가 생성되거나 갱신되었습니다 - 장비 팩 탭을 확인하세요.</CER_ArmColony_ReportPacksGeneratedTip>
+	<CER_ArmColony_ReportAmmoBillsCreated>생성된 탄약 청구서:  {0}</CER_ArmColony_ReportAmmoBillsCreated>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipSome>배정된 주민 수요에 맞게 조정되었습니다. 아래 생산 대기열 항목에 세부 목록이 있습니다.</CER_ArmColony_ReportAmmoBillsCreatedTipSome>
+	<CER_ArmColony_ReportAmmoBillsCreatedTipNone>부족한 것이 없었습니다 - 필요한 모든 탄약에 이미 청구서가 있었습니다.</CER_ArmColony_ReportAmmoBillsCreatedTipNone>
+
+	<CER_ArmColony_ReportAssignmentsHeader>배정 ({0})</CER_ArmColony_ReportAssignmentsHeader>
+	<CER_ArmColony_ReportAssignmentsTip>누가 어떤 로드아웃을 받았는지입니다. 행을 클릭하면 맵에서 해당 주민에게 이동합니다.</CER_ArmColony_ReportAssignmentsTip>
+	<CER_ArmColony_ReportNoneAborted>- 적용된 항목 없음 (중단됨) -</CER_ArmColony_ReportNoneAborted>
+	<CER_ArmColony_ReportNone>- 없음 -</CER_ArmColony_ReportNone>
+	<CER_ArmColony_JumpTip>클릭하면 맵에서 {0}에게 이동합니다.</CER_ArmColony_JumpTip>
+	<CER_ArmColony_ReportPawnsLeftUnassigned>주민 {0}명이 로드아웃을 받지 못했습니다 - 이유는 할당 단계에서 확인하세요.</CER_ArmColony_ReportPawnsLeftUnassigned>
+
+	<CER_ArmColony_ReportProductionHeader>생산 대기열 ({0})</CER_ArmColony_ReportProductionHeader>
+	<CER_ArmColony_ReportProductionTip>이번 실행으로 작업대에 등록된 무기와 탄약입니다. "청구서"를 클릭하면 해당 청구서가 있는 작업대로 이동합니다.</CER_ArmColony_ReportProductionTip>
+	<CER_ArmColony_ReportNoneAbortedProd>- 없음 (중단됨) -</CER_ArmColony_ReportNoneAbortedProd>
+	<CER_ArmColony_ReportNoneNeeded>- 필요 없음 -</CER_ArmColony_ReportNoneNeeded>
+	<CER_ArmColony_ReportNoneBlockedProd>- {0}개가 부족하지만 아무것도 대기열에 넣을 수 없습니다 (작업대 또는 제작법 없음) -</CER_ArmColony_ReportNoneBlockedProd>
+	<CER_ArmColony_BillsBtn>청구서</CER_ArmColony_BillsBtn>
+	<CER_ArmColony_CountMultiplier>x{0}</CER_ArmColony_CountMultiplier>
+	<CER_ArmColony_CopyQueuedSingular>{0}개가 제작 대기열에 등록되었습니다.</CER_ArmColony_CopyQueuedSingular>
+	<CER_ArmColony_CopyQueuedPlural>{0}개가 제작 대기열에 등록되었습니다.</CER_ArmColony_CopyQueuedPlural>
+	<CER_ArmColony_RoundsAmount>{0}발</CER_ArmColony_RoundsAmount>
+	<CER_ArmColony_RoundsQueuedTip>{0}발이 대기열에 등록되었습니다 - 배정된 로드아웃 수요에 맞춰 조정됨.</CER_ArmColony_RoundsQueuedTip>
+
+	<CER_ArmColony_ReportTotalMaterialsHeader>총 재료</CER_ArmColony_ReportTotalMaterialsHeader>
+	<CER_ArmColony_ReportTotalMaterialsTip>대기열에 등록된 생산이 소비할 모든 재료를 모든 청구서에 걸쳐 합산한 것입니다. 빨간색 = 현재 보관량이 부족함(전체 필요/보유 목록은 막대의 툴팁에서 확인).</CER_ArmColony_ReportTotalMaterialsTip>
+	<CER_ArmColony_ReportNotesHeader>참고 사항</CER_ArmColony_ReportNotesHeader>
+	<CER_ArmColony_CloseBtn>닫기</CER_ArmColony_CloseBtn>
+
+</LanguageData>

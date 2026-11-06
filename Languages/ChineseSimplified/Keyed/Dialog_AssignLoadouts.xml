@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_AssignLoadouts_NoColonists>当前地图上未找到殖民者。</CER_AssignLoadouts_NoColonists>
+	<CER_AssignLoadouts_SortByRanged>按远程技能排序</CER_AssignLoadouts_SortByRanged>
+	<CER_AssignLoadouts_SortByMelee>按近战技能排序</CER_AssignLoadouts_SortByMelee>
+	<CER_AssignLoadouts_CompactViewLabel>紧凑视图：</CER_AssignLoadouts_CompactViewLabel>
+	<CER_AssignLoadouts_CompactViewTip>每位殖民者显示为一行精简条目，而非完整卡片。放不下的细节会移入提示框。</CER_AssignLoadouts_CompactViewTip>
+	<CER_AssignLoadouts_AutoAssignBtn>自动分配...</CER_AssignLoadouts_AutoAssignBtn>
+	<CER_AssignLoadouts_AutoAssignBtnTip>打开实时自动分配预览：使用滑块调整来源、反机械、远程/近战以及分队多样性，并在应用前查看结果分布。</CER_AssignLoadouts_AutoAssignBtnTip>
+	<CER_AssignLoadouts_MassReplaceAmmoBtn>批量替换弹药</CER_AssignLoadouts_MassReplaceAmmoBtn>
+	<CER_AssignLoadouts_MassReplaceAmmoBtnTip>一次性替换所有配装中的弹药类型（例如所有人从 FMJ 换成 AP）。</CER_AssignLoadouts_MassReplaceAmmoBtnTip>
+
+	<CER_AssignLoadouts_AutoAssignedSingular>已自动分配 {0} 名殖民者</CER_AssignLoadouts_AutoAssignedSingular>
+	<CER_AssignLoadouts_AutoAssignedPlural>已自动分配 {0} 名殖民者</CER_AssignLoadouts_AutoAssignedPlural>
+	<CER_AssignLoadouts_LeftWithoutLoadout>，{0} 名未获得配装</CER_AssignLoadouts_LeftWithoutLoadout>
+	<CER_AssignLoadouts_ArmCancelledNote>自动分配已取消 - 前面步骤的职能、装备包和弹药账单已保留，但分配未被应用，也未生产任何武器。</CER_AssignLoadouts_ArmCancelledNote>
+
+	<CER_AssignLoadouts_SaveAsRoleBtn>存为职能</CER_AssignLoadouts_SaveAsRoleBtn>
+	<CER_AssignLoadouts_EditRoleBtn>编辑角色</CER_AssignLoadouts_EditRoleBtn>
+	<CER_AssignLoadouts_EditRoleTip>打开角色标签页并选中该殖民者的角色，可直接编辑该角色。</CER_AssignLoadouts_EditRoleTip>
+	<CER_AssignLoadouts_EditBtnCompact>编辑</CER_AssignLoadouts_EditBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipHas>打开职能模式，并预填该殖民者当前的精确搭配（主武器、副武器/爆炸物/护盾、装备包）作为草稿 - 在那里查看后点击创建。</CER_AssignLoadouts_SaveRoleTipHas>
+	<CER_AssignLoadouts_SaveRoleTipNone>尚未分配配装 - 没有可保存的内容。</CER_AssignLoadouts_SaveRoleTipNone>
+	<CER_AssignLoadouts_ProduceSkippedNote>分配已应用。该步骤跳过了生产 - 如仍需要，请稍后在 Supply Loadouts 中排产。</CER_AssignLoadouts_ProduceSkippedNote>
+	<CER_AssignLoadouts_ClickToViewEditGear>
+
+点击以查看和编辑携带的装备。</CER_AssignLoadouts_ClickToViewEditGear>
+	<CER_AssignLoadouts_ScoreCalcTooltip>&lt;b&gt;评分计算：&lt;/b&gt;
+使用 技能等级 x 10 计算，并根据视觉、操作、移动和特质进行修正。
+
+&lt;b&gt;条形颜色：&lt;/b&gt;
+空 = 0
+深红 = 差
+亮绿 = 大师（最高等级：{0}）</CER_AssignLoadouts_ScoreCalcTooltip>
+	<CER_AssignLoadouts_WeaponLabel>武器：</CER_AssignLoadouts_WeaponLabel>
+	<CER_AssignLoadouts_NoneLoadout>无</CER_AssignLoadouts_NoneLoadout>
+	<CER_AssignLoadouts_DropSwapTip>放下以与 {0} 交换配装。</CER_AssignLoadouts_DropSwapTip>
+	<CER_AssignLoadouts_CannotFightTip>无法战斗（无法使用暴力，或是婴儿），因此不能分配武器。装备包（Equipment Pack）或不含武器的职能仍然可以分配。</CER_AssignLoadouts_CannotFightTip>
+	<CER_AssignLoadouts_CannotFightClearSuffix> 当前的配装仍可清除。</CER_AssignLoadouts_CannotFightClearSuffix>
+	<CER_AssignLoadouts_DragToSwapSuffix>
+
+拖动到另一位殖民者的配装按钮上以交换。</CER_AssignLoadouts_DragToSwapSuffix>
+
+	<CER_AssignLoadouts_MassLabel>质量</CER_AssignLoadouts_MassLabel>
+	<CER_AssignLoadouts_BulkLabel>体积</CER_AssignLoadouts_BulkLabel>
+	<CER_AssignLoadouts_MassBarFmt>{0}/{1} 千克</CER_AssignLoadouts_MassBarFmt>
+	<CER_AssignLoadouts_MassTip>&lt;b&gt;质量&lt;/b&gt;
+配装中所有物品的总重量（武器、弹药、餐食、药品）相对于 {0} 能携带的重量。
+
+携带能力来自殖民者的 &lt;b&gt;携带能力&lt;/b&gt; 属性，随体型和操作能力变化，因此健康的大个子殖民者比瘦小或受伤的殖民者能携带更多。超出会减慢殖民者的速度。 这里的上限是 CE 的&lt;b&gt;负重&lt;/b&gt;，不是 RimWorld 更大的携带容量。</CER_AssignLoadouts_MassTip>
+	<CER_AssignLoadouts_BulkTip>&lt;b&gt;体积&lt;/b&gt;
+配装占用的空间相对于该殖民者的 &lt;b&gt;携带体积&lt;/b&gt;（CE）属性。体积关乎容积而非重量 - 大量散装弹药或护甲会迅速占满体积。超出会损害移动和瞄准。</CER_AssignLoadouts_BulkTip>
+	<CER_AssignLoadouts_OverCapacityTip>装不下。超出的部分殖民者永远不会去取——Combat Extended 只会拿装得下的部分，多余的会被丢掉，因此这套配装会一直只完成一半。请减少弹药数量、去掉背包中的一件物品，或改用更轻的装备。</CER_AssignLoadouts_OverCapacityTip>
+	<CER_AssignLoadouts_MassTipCompact>&lt;b&gt;质量&lt;/b&gt;
+配装重量相对于该殖民者的携带能力。超出会减慢殖民者的速度。 这里的上限是 CE 的&lt;b&gt;负重&lt;/b&gt;，不是 RimWorld 更大的携带容量。</CER_AssignLoadouts_MassTipCompact>
+	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;体积&lt;/b&gt;
+配装体积相对于该殖民者的携带体积（CE）。超出会损害移动和瞄准。</CER_AssignLoadouts_BulkTipCompact>
+
+	<CER_AssignLoadouts_NoneMenuOption>无</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_CannotFightMsg>{0}无法战斗（无法使用暴力，或是婴儿），只能分配不含武器的装备。</CER_AssignLoadouts_CannotFightMsg>
+	<CER_AssignLoadouts_CannotCarryMsg>{0} 无法携带任何东西。</CER_AssignLoadouts_CannotCarryMsg>
+	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} 担任着角色——装备包、副武器和其他物品由角色本身决定（Roles 页签）。未粘贴任何内容。</CER_AssignLoadouts_PasteRoleRejectMsg>
+	<CER_AssignLoadouts_SaveComboAsRoleOption>将当前搭配存为职能...</CER_AssignLoadouts_SaveComboAsRoleOption>
+
+	<CER_AssignLoadouts_ColonistHeader>殖民者</CER_AssignLoadouts_ColonistHeader>
+	<CER_AssignLoadouts_RangedHeader>远程</CER_AssignLoadouts_RangedHeader>
+	<CER_AssignLoadouts_MeleeHeader>近战</CER_AssignLoadouts_MeleeHeader>
+	<CER_AssignLoadouts_WeaponHeader>武器</CER_AssignLoadouts_WeaponHeader>
+	<CER_AssignLoadouts_LabelAmmo>弹药</CER_AssignLoadouts_LabelAmmo>
+	<CER_AssignLoadouts_LabelMainWeapon>主武器</CER_AssignLoadouts_LabelMainWeapon>
+	<CER_AssignLoadouts_UnassignAllBtn>全部取消分配</CER_AssignLoadouts_UnassignAllBtn>
+	<CER_AssignLoadouts_UnassignAllBtnTip>每个空闲殖民者失去其配装分配 - 附加的补给包和副武器保留。</CER_AssignLoadouts_UnassignAllBtnTip>
+	<CER_AssignLoadouts_UnassignAllConfirm>取消所有空闲殖民者的配装分配？附加的补给包和副武器保留；携带的装备不会丢弃。</CER_AssignLoadouts_UnassignAllConfirm>
+	<CER_AssignLoadouts_UnassignAllDoneFmt>已取消 {0} 名殖民者的分配。</CER_AssignLoadouts_UnassignAllDoneFmt>
+	<CER_AssignLoadouts_LabelPack>装备包</CER_AssignLoadouts_LabelPack>
+	<CER_AssignLoadouts_LabelSidearm>副武器</CER_AssignLoadouts_LabelSidearm>
+	<CER_AssignLoadouts_LabelSidearmsPlural>副武器</CER_AssignLoadouts_LabelSidearmsPlural>
+	<CER_AssignLoadouts_LabelOther>其他</CER_AssignLoadouts_LabelOther>
+
+	<CER_AssignLoadouts_SaveBtnCompact>保存</CER_AssignLoadouts_SaveBtnCompact>
+	<CER_AssignLoadouts_SaveRoleTipCompactHas>存为职能
+
+打开职能模式，并预填该殖民者当前的精确搭配（主武器、副武器/爆炸物/护盾、装备包）作为草稿 - 在那里查看后点击创建。</CER_AssignLoadouts_SaveRoleTipCompactHas>
+	<CER_AssignLoadouts_SaveRoleTipCompactNone>存为职能
+
+尚未分配配装 - 没有可保存的内容。</CER_AssignLoadouts_SaveRoleTipCompactNone>
+	<CER_AssignLoadouts_RangedMeleeScoreTip>远程和近战战斗评分（技能 x 10，根据视觉、操作、移动和特质进行修正）。</CER_AssignLoadouts_RangedMeleeScoreTip>
+	<CER_AssignLoadouts_RangedLabel>远程</CER_AssignLoadouts_RangedLabel>
+	<CER_AssignLoadouts_MeleeLabel>近战</CER_AssignLoadouts_MeleeLabel>
+	<CER_AssignLoadouts_RangedAbbrev>远</CER_AssignLoadouts_RangedAbbrev>
+	<CER_AssignLoadouts_MeleeAbbrev>近</CER_AssignLoadouts_MeleeAbbrev>
+
+	<CER_AssignLoadouts_DashPlaceholder>-</CER_AssignLoadouts_DashPlaceholder>
+	<CER_AssignLoadouts_AmmoDashLabel>弹药：-</CER_AssignLoadouts_AmmoDashLabel>
+	<CER_AssignLoadouts_AmmoSummaryNone>无</CER_AssignLoadouts_AmmoSummaryNone>
+	<CER_AssignLoadouts_ZeroTypesLabel>0 种</CER_AssignLoadouts_ZeroTypesLabel>
+	<CER_AssignLoadouts_TypesCountFmt>{0} 种</CER_AssignLoadouts_TypesCountFmt>
+	<CER_AssignLoadouts_AmmoPrefixFmt>弹药：{0}</CER_AssignLoadouts_AmmoPrefixFmt>
+	<CER_AssignLoadouts_AmmoTipNoWeapon>{0} 未携带使用弹药的武器（近战或仅手雷）- 此处无需配置。</CER_AssignLoadouts_AmmoTipNoWeapon>
+	<CER_AssignLoadouts_AmmoTipNoneSetup>{0} 的武器使用弹药，但尚未设置 - 他们将没有弹药可用。</CER_AssignLoadouts_AmmoTipNoneSetup>
+	<CER_AssignLoadouts_AmmoTipList>{0} 的弹药：{1}</CER_AssignLoadouts_AmmoTipList>
+	<CER_AssignLoadouts_AmmoTipClickSuffix>
+
+点击以更改 - 仅影响此殖民者。</CER_AssignLoadouts_AmmoTipClickSuffix>
+
+	<CER_AssignLoadouts_OverflowCountFmt>+{0}</CER_AssignLoadouts_OverflowCountFmt>
+
+	<CER_AssignLoadouts_PackDashLabel>装备包：-</CER_AssignLoadouts_PackDashLabel>
+	<CER_AssignLoadouts_RoleIncludedInFmt>包含于 {0}：
+{1}</CER_AssignLoadouts_RoleIncludedInFmt>
+	<CER_AssignLoadouts_RoleNoPackItems>该职能不包含任何医疗/食物/成瘾品/工具类物品。</CER_AssignLoadouts_RoleNoPackItems>
+	<CER_AssignLoadouts_RoleNoSidearmItems>该职能不包含任何副武器、投掷爆炸物或护盾。</CER_AssignLoadouts_RoleNoSidearmItems>
+	<CER_AssignLoadouts_RoleBakedSuffix>
+
+来自这个角色。挂在角色上的装备包保持连动 - 改动装备包，该角色的所有殖民者都会跟着变。其余内容是固定的：请在角色页修改。</CER_AssignLoadouts_RoleBakedSuffix>
+	<CER_AssignLoadouts_PackNoneLabel>无</CER_AssignLoadouts_PackNoneLabel>
+	<CER_AssignLoadouts_PackPrefixFmt>装备包：{0}</CER_AssignLoadouts_PackPrefixFmt>
+	<CER_AssignLoadouts_PackAttachedFmt>已附加装备包：{0}</CER_AssignLoadouts_PackAttachedFmt>
+	<CER_AssignLoadouts_PackNoneAttached>未附加任何装备包。</CER_AssignLoadouts_PackNoneAttached>
+	<CER_AssignLoadouts_PackClickChooseFmt>
+
+点击以选择 {0} 携带哪些装备包。</CER_AssignLoadouts_PackClickChooseFmt>
+	<CER_AssignLoadouts_PickPacksTitleFmt>{0} - 勾选要携带的装备包。更改立即生效。</CER_AssignLoadouts_PickPacksTitleFmt>
+
+	<CER_AssignLoadouts_PastedMsgFmt>已将来自"{1}"的 {0} 选择粘贴到 {2}。</CER_AssignLoadouts_PastedMsgFmt>
+	<CER_AssignLoadouts_PasteTipFmt>将从"{1}"复制的 {0} 选择粘贴到 {2}。</CER_AssignLoadouts_PasteTipFmt>
+
+	<CER_AssignLoadouts_SidearmDashLabel>副武器：-</CER_AssignLoadouts_SidearmDashLabel>
+	<CER_AssignLoadouts_SidearmNoneLabel>无</CER_AssignLoadouts_SidearmNoneLabel>
+	<CER_AssignLoadouts_SidearmPrefixFmt>副武器：{0}</CER_AssignLoadouts_SidearmPrefixFmt>
+	<CER_AssignLoadouts_SidearmAttachedFmt>已附加副武器：{0}</CER_AssignLoadouts_SidearmAttachedFmt>
+	<CER_AssignLoadouts_SidearmNoneAttached>未附加任何副武器。</CER_AssignLoadouts_SidearmNoneAttached>
+	<CER_AssignLoadouts_SidearmClickChooseFmt>
+
+点击以选择 {0} 携带哪些武器作为副武器。</CER_AssignLoadouts_SidearmClickChooseFmt>
+	<CER_AssignLoadouts_PickSidearmsTitleFmt>{0} - 勾选要携带为副武器的武器。更改立即生效。</CER_AssignLoadouts_PickSidearmsTitleFmt>
+	<CER_AssignLoadouts_WeaponLoadoutsWindowTitle>副武器</CER_AssignLoadouts_WeaponLoadoutsWindowTitle>
+	<CER_AssignLoadouts_NoOtherLoadoutsMsg>没有其他可携带为副武器的武器。</CER_AssignLoadouts_NoOtherLoadoutsMsg>
+	<CER_AssignLoadouts_QuestionMarkFallback>?</CER_AssignLoadouts_QuestionMarkFallback>
+
+	<CER_AssignLoadouts_OtherDashLabel>其他: -</CER_AssignLoadouts_OtherDashLabel>
+	<CER_AssignLoadouts_OtherRoleNotice>已包含在该角色中 - 请编辑角色本身（角色标签页）以添加其他物品，而不是在此处针对单个殖民者操作。</CER_AssignLoadouts_OtherRoleNotice>
+	<CER_AssignLoadouts_OtherNoneLabel>无</CER_AssignLoadouts_OtherNoneLabel>
+	<CER_AssignLoadouts_OtherPrefixFmt>其他: {0}</CER_AssignLoadouts_OtherPrefixFmt>
+	<CER_AssignLoadouts_OtherAttachedFmt>携带的其他物品: {0}</CER_AssignLoadouts_OtherAttachedFmt>
+	<CER_AssignLoadouts_OtherNoneAttached>尚未添加其他物品。</CER_AssignLoadouts_OtherNoneAttached>
+	<CER_AssignLoadouts_OtherClickChooseFmt>
+
+点击为{0}添加其他物品。</CER_AssignLoadouts_OtherClickChooseFmt>
+
+	<CER_AssignLoadouts_SwapCannotFightMsg>无法与无法战斗的殖民者（和平主义者或婴儿）交换。</CER_AssignLoadouts_SwapCannotFightMsg>
+	<CER_AssignLoadouts_SwapNeitherHasLoadout>两位殖民者都没有可交换的配装。</CER_AssignLoadouts_SwapNeitherHasLoadout>
+	<CER_AssignLoadouts_SwapSameLoadout>两位殖民者已拥有相同的配装。</CER_AssignLoadouts_SwapSameLoadout>
+	<CER_AssignLoadouts_SwappedMsgFmt>已交换配装：{0} 与 {1}。</CER_AssignLoadouts_SwappedMsgFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedFmt>当前已装备：{0}。</CER_AssignLoadouts_CurrentlyEquippedFmt>
+	<CER_AssignLoadouts_NothingEquipped>无</CER_AssignLoadouts_NothingEquipped>
+	<CER_AssignLoadouts_QueuedOnBenchFmt> 已在 {0} 上排队 - 点击以打开其账单标签页。</CER_AssignLoadouts_QueuedOnBenchFmt>
+
+	<CER_AssignLoadouts_CurrentlyEquippedHeader>&lt;b&gt;当前已装备：&lt;/b&gt;</CER_AssignLoadouts_CurrentlyEquippedHeader>
+	<CER_AssignLoadouts_InventoryHeader>
+&lt;b&gt;物品栏：&lt;/b&gt;</CER_AssignLoadouts_InventoryHeader>
+	<CER_AssignLoadouts_NothingEquippedMsg>未装备任何物品。</CER_AssignLoadouts_NothingEquippedMsg>
+
+	<CER_AssignLoadouts_CombatCapabilitiesHeader>&lt;b&gt;战斗能力&lt;/b&gt;
+</CER_AssignLoadouts_CombatCapabilitiesHeader>
+	<CER_AssignLoadouts_CapacitiesSubheader>&lt;i&gt;这些能力会影响上方的远程和近战评分。&lt;/i&gt;
+</CER_AssignLoadouts_CapacitiesSubheader>
+	<CER_AssignLoadouts_RoleAimingShooting>瞄准 / 射击</CER_AssignLoadouts_RoleAimingShooting>
+	<CER_AssignLoadouts_RoleAimMeleeHit>瞄准与近战命中</CER_AssignLoadouts_RoleAimMeleeHit>
+	<CER_AssignLoadouts_RoleClosingMelee>接近至近战</CER_AssignLoadouts_RoleClosingMelee>
+
+	<CER_AssignLoadouts_TraitBrawlerTip>{0}：近战评分 x1.5</CER_AssignLoadouts_TraitBrawlerTip>
+	<CER_AssignLoadouts_TraitNimbleTip>{0}：近战评分 x1.25（闪避几率提升）</CER_AssignLoadouts_TraitNimbleTip>
+	<CER_AssignLoadouts_TraitToughTip>{0}：近战评分 x1.5（受到的伤害大幅降低）</CER_AssignLoadouts_TraitToughTip>
+	<CER_AssignLoadouts_TraitWimpTip>{0}：近战评分 x0.1（会立刻倒下）</CER_AssignLoadouts_TraitWimpTip>
+	<CER_AssignLoadouts_TraitCarefulShooterTip>{0}：影响远程精度</CER_AssignLoadouts_TraitCarefulShooterTip>
+	<CER_AssignLoadouts_TraitTriggerHappyTip>{0}：影响远程瞄准时间</CER_AssignLoadouts_TraitTriggerHappyTip>
+	<CER_AssignLoadouts_MissingPartFmt>缺失 {0}</CER_AssignLoadouts_MissingPartFmt>
+	<CER_AssignLoadouts_MissingPartTipFmt>缺失 {0}：降低能力</CER_AssignLoadouts_MissingPartTipFmt>
+	<CER_AssignLoadouts_ModifiesCapacitiesTipFmt>{0}：影响能力</CER_AssignLoadouts_ModifiesCapacitiesTipFmt>
+
+	<CER_AssignLoadouts_BreakdownRangedFmt>&lt;b&gt;射击：&lt;/b&gt; {0} | 视觉：{1}% | 操作：{2}%</CER_AssignLoadouts_BreakdownRangedFmt>
+	<CER_AssignLoadouts_BreakdownMeleeFmt>&lt;b&gt;近战：&lt;/b&gt; {0} | 视觉：{1}% | 移动：{2}% | 操作：{3}%</CER_AssignLoadouts_BreakdownMeleeFmt>
+
+	<CER_AssignLoadouts_PasteAmmoNoneFitsFmt>未粘贴：复制的弹药没有一种适合 {0} 携带的武器。</CER_AssignLoadouts_PasteAmmoNoneFitsFmt>
+	<CER_AssignLoadouts_PasteAmmoPartialFmt>已为 {2} 粘贴 {0} 种弹药。略过 {1} 种——不适合其携带的武器。</CER_AssignLoadouts_PasteAmmoPartialFmt>
+
+	<CER_AssignLoadouts_PawnBlockHeader>{0}（需要 {1}）：</CER_AssignLoadouts_PawnBlockHeader>
+	<CER_AssignLoadouts_PawnBlockEquipped>已装备：{0}</CER_AssignLoadouts_PawnBlockEquipped>
+	<CER_AssignLoadouts_PawnBlockToFetch>已分配、在库 - 仍需去取：{0}</CER_AssignLoadouts_PawnBlockToFetch>
+	<CER_AssignLoadouts_PawnBlockInProduction>生产中：{0}</CER_AssignLoadouts_PawnBlockInProduction>
+	<CER_AssignLoadouts_PawnBlockMissing>缺少：{0}</CER_AssignLoadouts_PawnBlockMissing>
+	<CER_AssignLoadouts_ColonyBlockHeader>全殖民地：</CER_AssignLoadouts_ColonyBlockHeader>
+
+	<CER_AssignLoadouts_LabelPasteCol>粘贴列：点击殖民者所在行的图标，即可把已复制的分配交给该殖民者。</CER_AssignLoadouts_LabelPasteCol>
+</LanguageData>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Комплекти боєприпасів</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Групувати за типом боєприпасів</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Об'єднує колоністів, які можуть використовувати той самий тип боєприпасів, в один рядок, що редагується для всіх одразу - замість окремого розділу для кожного колоніста.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - що він несе. Редагування повністю замінює типові боєприпаси зброї - набуває чинності, коли він наступного разу перевірить своє спорядження.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>Обрано колоністів: {0} - що несе кожен. Редагування повністю замінює типові боєприпаси кожної зброї.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Фільтр (напр. FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Закрити</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Прибрати всі боєприпаси</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Прибирає всі типи боєприпасів - {0} не нестиме жодних боєприпасів, навіть типових для своєї зброї.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Прибирає всі типи боєприпасів у всіх {0} обраних колоністів - жоден з них не нестиме боєприпасів, навіть типових для своєї зброї.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Скинути</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Копіювати</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Копіює вибір боєприпасів цього колоніста. Вставте його іншим через стовпець вставки в Спорядити колоністів.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>Скопійовано запис боєприпасів: {0} (від {1}).</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>Скопійовано записів боєприпасів: {0} (від {1}).</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Повертає боєприпаси всіх обраних колоністів до стану на момент відкриття цього вікна.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  комплект не призначено</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Несе з собою: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} ще</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Зброю не призначено.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Жоден тип боєприпасів не відповідає "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>Зброя {0} не потребує боєприпасів.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Назва</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Особливе</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Кількість</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Запас</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (не досліджено)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nЗастосовується до: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Будь-які боєприпаси для {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Дозволяє грі автоматично обрати найкращі досліджені боєприпаси для {0} - саме це вже використовують вікно постачання та перевірки виробництва, поки не встановлено конкретний тип. Натисніть, щоб повернути до цього всіх відповідних колоністів.\n\nЗастосовується до: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Дозволяє грі автоматично обрати найкращі досліджені боєприпаси для {0} - саме це вже використовують вікно постачання та перевірки виробництва, поки нижче не встановлено конкретний тип. Натисніть, щоб повернутися до цього після вибору конкретного типу.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} у запасі, {3} вільно).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Натисніть, щоб відкрити вкладку замовлень.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Натисніть, щоб відкрити вікно постачання та поставити виробництво в чергу.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Жодна зброя обраних колоністів не використовує боєприпаси.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>

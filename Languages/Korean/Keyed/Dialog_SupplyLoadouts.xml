@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_SupplyLoadouts_Title>로드아웃 보급</CER_SupplyLoadouts_Title>
+	<CER_SupplyLoadouts_ShowOnlyMissingCheckbox>부족한 것만 표시</CER_SupplyLoadouts_ShowOnlyMissingCheckbox>
+	<CER_SupplyLoadouts_ColName>이름</CER_SupplyLoadouts_ColName>
+	<CER_SupplyLoadouts_ColSpecial>특수</CER_SupplyLoadouts_ColSpecial>
+	<CER_SupplyLoadouts_ColAssigned>배정</CER_SupplyLoadouts_ColAssigned>
+	<CER_SupplyLoadouts_ColIngredients>재료</CER_SupplyLoadouts_ColIngredients>
+	<CER_SupplyLoadouts_ColMaterial>재료</CER_SupplyLoadouts_ColMaterial>
+	<CER_SupplyLoadouts_ColBatches>배치</CER_SupplyLoadouts_ColBatches>
+	<CER_SupplyLoadouts_ColCount>보관</CER_SupplyLoadouts_ColCount>
+	<CER_SupplyLoadouts_ColCountTip>식민지 전체를 위해 창고에 유지할 수량 - 'X까지 제작' 작업의 목표치입니다. 정착민 1인 기준이 아닙니다: 로드아웃 편집기의 같은 단어는 반대 뜻입니다.</CER_SupplyLoadouts_ColCountTip>
+	<CER_SupplyLoadouts_ColAvailability>가용성</CER_SupplyLoadouts_ColAvailability>
+	<CER_SupplyLoadouts_ColWorkbench>작업대</CER_SupplyLoadouts_ColWorkbench>
+	<CER_SupplyLoadouts_SectionMainWeapons>주무기</CER_SupplyLoadouts_SectionMainWeapons>
+	<CER_SupplyLoadouts_SectionSidearms>보조무기 &amp; 수류탄</CER_SupplyLoadouts_SectionSidearms>
+	<CER_SupplyLoadouts_SectionShields>방패</CER_SupplyLoadouts_SectionShields>
+	<CER_SupplyLoadouts_SectionPackItems>팩 항목</CER_SupplyLoadouts_SectionPackItems>
+	<CER_SupplyLoadouts_ObsoleteSectionTitle>불필요해진 작업 지시 - 배정 인원 중 필요한 사람 없음 (확인 시 제거)</CER_SupplyLoadouts_ObsoleteSectionTitle>
+	<CER_SupplyLoadouts_ObsoleteMasterTip>모든 행을 한 번에 전환합니다.</CER_SupplyLoadouts_ObsoleteMasterTip>
+	<CER_SupplyLoadouts_ObsoleteSectionSubtitle>현재 배정된 누구도 이 물품을 필요로 하지 않습니다.</CER_SupplyLoadouts_ObsoleteSectionSubtitle>
+	<CER_SupplyLoadouts_EverythingCovered>필요한 모든 것이 이미 재고에 있거나 생산 중입니다.</CER_SupplyLoadouts_EverythingCovered>
+	<CER_SupplyLoadouts_BackButton>&lt; 뒤로</CER_SupplyLoadouts_BackButton>
+	<CER_SupplyLoadouts_BackButtonTip>이전 단계로 돌아갑니다. 여기서는 아직 아무것도 보급되지 않았으므로 되돌릴 것도 없습니다.</CER_SupplyLoadouts_BackButtonTip>
+	<CER_SupplyLoadouts_CancelButton>취소</CER_SupplyLoadouts_CancelButton>
+	<CER_SupplyLoadouts_SupplyNothingTip>아무것도 생산 목록에 넣지 않고 창을 닫습니다. 배정은 그대로 유지되고 생산만 건너뜁니다.</CER_SupplyLoadouts_SupplyNothingTip>
+	<CER_SupplyLoadouts_SupplyNothingButton>아무것도 생산 안 함</CER_SupplyLoadouts_SupplyNothingButton>
+	<CER_SupplyLoadouts_ConfirmSupplyButton>확인 &amp; 보급</CER_SupplyLoadouts_ConfirmSupplyButton>
+	<CER_SupplyLoadouts_SupplySelectedButton>선택 항목 보급</CER_SupplyLoadouts_SupplySelectedButton>
+	<CER_SupplyLoadouts_SectionAmmunition>탄약</CER_SupplyLoadouts_SectionAmmunition>
+	<CER_SupplyLoadouts_ObsoleteProdFmt>생산 중: {0}</CER_SupplyLoadouts_ObsoleteProdFmt>
+	<CER_SupplyLoadouts_ObsoleteAmmoTip>{0}: 배정된 어떤 주민의 로드아웃도 더 이상 이것을 요구하지 않습니다 - 확인하면 해당 청구서가 삭제됩니다.</CER_SupplyLoadouts_ObsoleteAmmoTip>
+	<CER_SupplyLoadouts_ObsoleteAmmoKeptTip>{0}: 유지됨 - 확인 시 삭제되지 않습니다.</CER_SupplyLoadouts_ObsoleteAmmoKeptTip>
+	<CER_SupplyLoadouts_UsedByTip>사용 대상:\n{0}</CER_SupplyLoadouts_UsedByTip>
+	<CER_SupplyLoadouts_NotAssignedTip>어떤 주민에게도 배정되지 않았습니다.</CER_SupplyLoadouts_NotAssignedTip>
+	<CER_SupplyLoadouts_NotAssignedAmmoTip>이 탄약을 사용하는 로드아웃이 배정된 주민이 없습니다.</CER_SupplyLoadouts_NotAssignedAmmoTip>
+	<CER_SupplyLoadouts_ColAssignedTip>다이아몬드: 현재 주민에게 배정됨. 원: 저장된 로드아웃에서 사용됨.</CER_SupplyLoadouts_ColAssignedTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutTip>저장된 로드아웃에서 사용되지 않습니다.</CER_SupplyLoadouts_NotUsedInLoadoutTip>
+	<CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>이 탄약을 사용하는 저장된 로드아웃이 없습니다.</CER_SupplyLoadouts_NotUsedInLoadoutAmmoTip>
+	<CER_SupplyLoadouts_BatchAddButton>+{0}</CER_SupplyLoadouts_BatchAddButton>
+	<CER_SupplyLoadouts_BatchAddTip>목표 수량에 배치 1개({0})를 추가합니다.</CER_SupplyLoadouts_BatchAddTip>
+	<CER_SupplyLoadouts_ExactCountTip>정확한 목표 수량.</CER_SupplyLoadouts_ExactCountTip>
+	<CER_SupplyLoadouts_AnyMaterial>임의</CER_SupplyLoadouts_AnyMaterial>
+	<CER_SupplyLoadouts_MaterialStockTip>제작당 필요: {0}\n재고: {1}</CER_SupplyLoadouts_MaterialStockTip>
+	<CER_SupplyLoadouts_NoMaterialDash>-</CER_SupplyLoadouts_NoMaterialDash>
+	<CER_SupplyLoadouts_InProductionTip>생산 중:\n  {0}</CER_SupplyLoadouts_InProductionTip>
+	<CER_SupplyLoadouts_NoBenchWithTypeLabel>⚠ {0} 없음 (청구서를 만들 수 없음)</CER_SupplyLoadouts_NoBenchWithTypeLabel>
+	<CER_SupplyLoadouts_NoBenchRowLabel>{0} 없음</CER_SupplyLoadouts_NoBenchRowLabel>
+	<CER_SupplyLoadouts_AutoTag>  &lt;color=#8CD98C&gt;(자동)&lt;/color&gt;</CER_SupplyLoadouts_AutoTag>
+	<CER_SupplyLoadouts_AutoResolvedTip>\n\n범용 탄약 요구 사항에서 기본 화기 탄약 선호도로 자동 해결됨.</CER_SupplyLoadouts_AutoResolvedTip>
+	<CER_SupplyLoadouts_AmmoNotResearched>⚠ 생산할 수 없음 (연구되지 않음)</CER_SupplyLoadouts_AmmoNotResearched>
+	<CER_SupplyLoadouts_AmmoNeedsResearch>⚠ 연구 필요: {0}</CER_SupplyLoadouts_AmmoNeedsResearch>
+	<CER_SupplyLoadouts_AmmoNeedsResearchTip>Combat Extended 탄약은 제작법과 그것을 만들 수 있는 작업대가 둘 다 필요합니다. 여기서 부족한 것: {0}. 그 다음 {1}을(를) 지으면 이 줄이 풀립니다.</CER_SupplyLoadouts_AmmoNeedsResearchTip>
+	<CER_SupplyLoadouts_ChangeButton>변경...</CER_SupplyLoadouts_ChangeButton>
+	<CER_SupplyLoadouts_SwitchVariantTip>이 무기에 대해 다른 연구된 변형으로 전환합니다.</CER_SupplyLoadouts_SwitchVariantTip>
+	<CER_SupplyLoadouts_NoAlternativeDash>-</CER_SupplyLoadouts_NoAlternativeDash>
+	<CER_SupplyLoadouts_NoAlternativeTip>이 무기에 대해 전환할 다른 연구된 탄약 변형이 없습니다.</CER_SupplyLoadouts_NoAlternativeTip>
+	<CER_SupplyLoadouts_JumpToBenchTip>이 작업대로 이동합니다.</CER_SupplyLoadouts_JumpToBenchTip>
+	<CER_SupplyLoadouts_OpenBillsTip>이 작업대의 청구서 탭을 엽니다.</CER_SupplyLoadouts_OpenBillsTip>
+	<CER_SupplyLoadouts_WeaponBillsAddedPart>무기 청구서 {0}개</CER_SupplyLoadouts_WeaponBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsAddedPart>탄약 청구서 {0}개 추가됨</CER_SupplyLoadouts_AmmoBillsAddedPart>
+	<CER_SupplyLoadouts_AmmoBillsUpdatedPart>탄약 청구서 {0}개 업데이트됨</CER_SupplyLoadouts_AmmoBillsUpdatedPart>
+	<CER_SupplyLoadouts_SupplySummary>보급: {0}.</CER_SupplyLoadouts_SupplySummary>
+	<CER_SupplyLoadouts_NothingSelected>보급할 항목이 선택되지 않았습니다.</CER_SupplyLoadouts_NothingSelected>
+
+	<CER_SupplyLoadouts_WeaponNeedsResearch>⚠ 연구 필요: {0}</CER_SupplyLoadouts_WeaponNeedsResearch>
+	<CER_SupplyLoadouts_WeaponNeedsResearchTip>이 무기의 제작법은 있지만 연구가 끝나지 않았습니다. 부족한 것: {0}. 완료하면 이 줄이 해금됩니다.</CER_SupplyLoadouts_WeaponNeedsResearchTip>
+	<CER_SupplyLoadouts_ItemNoRecipe>- 제작할 수 없음 (제작법 없음)</CER_SupplyLoadouts_ItemNoRecipe>
+	<CER_SupplyLoadouts_ItemNoRecipeTip>이 물품에는 제작법이 전혀 없습니다. 어떤 연구로도 해금되지 않습니다. 교역, 전리품 또는 퀘스트 보상으로만 얻을 수 있습니다.</CER_SupplyLoadouts_ItemNoRecipeTip>
+	<CER_SupplyLoadouts_ObsoleteOriginMod>모드가 등록함</CER_SupplyLoadouts_ObsoleteOriginMod>
+	<CER_SupplyLoadouts_ObsoleteOriginManual>직접 등록함</CER_SupplyLoadouts_ObsoleteOriginManual>
+	<CER_SupplyLoadouts_ObsoleteOriginModTip>이 작업은 CE Reloaded 마법사가 등록했으므로 제거 대상으로 미리 선택됩니다. 유지하려면 체크를 해제하세요.</CER_SupplyLoadouts_ObsoleteOriginModTip>
+	<CER_SupplyLoadouts_ObsoleteOriginManualTip>이 작업은 직접 등록한 것이므로 미리 선택되지 않습니다. 현재 어떤 로드아웃도 요구하지 않아 목록에만 표시됩니다. 정말 삭제하려면 체크하세요.</CER_SupplyLoadouts_ObsoleteOriginManualTip>
+
+
+</LanguageData>

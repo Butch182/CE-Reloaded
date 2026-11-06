@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ModSettings_AppliedChangedDefaultsSingular>CE Reloaded: застосовано {0} змінене типове значення до поточної гри.</CER_ModSettings_AppliedChangedDefaultsSingular>
+	<CER_ModSettings_AppliedChangedDefaultsPlural>CE Reloaded: застосовано змінених типових значень до поточної гри: {0}.</CER_ModSettings_AppliedChangedDefaultsPlural>
+
+	<CER_ModSettings_TabFilters>Фільтри</CER_ModSettings_TabFilters>
+	<CER_ModSettings_TabLoadouts>Комплекти</CER_ModSettings_TabLoadouts>
+	<CER_ModSettings_TabRoles>Ролі</CER_ModSettings_TabRoles>
+	<CER_ModSettings_TabAmmoBills>Замовлення на боєприпаси</CER_ModSettings_TabAmmoBills>
+	<CER_ModSettings_TabAutoAssign>Автопризначення</CER_ModSettings_TabAutoAssign>
+	<CER_ModSettings_TabPresets>Пресети</CER_ModSettings_TabPresets>
+	<CER_ModSettings_TabAlerts>Сповіщення</CER_ModSettings_TabAlerts>
+	<CER_ModSettings_TabTools>Інструменти</CER_ModSettings_TabTools>
+	<CER_ModSettings_TabDebug>Налагодження</CER_ModSettings_TabDebug>
+
+	<CER_ModSettings_PresetTuningHeader>Налаштування пресетів</CER_ModSettings_PresetTuningHeader>
+	<CER_ModSettings_PresetTuningDesc>Точні значення повзунків (0..1), які застосовує кожна кнопка пресету в попередньому перегляді автопризначення. Пресет - це ПОВНА конфігурація: застосування встановлює кожен повзунок, включно з Проти плоті/Проти механоїдів, тож пресети ніколи не змішуються наполовину. "Використати рекомендоване налаштування" залишається динамічною альтернативою (Проти механоїдів визначається станом колонії).</CER_ModSettings_PresetTuningDesc>
+	<CER_ModSettings_PresetBalanced>Збалансовано</CER_ModSettings_PresetBalanced>
+	<CER_ModSettings_PresetAntiMech>Проти механоїдів</CER_ModSettings_PresetAntiMech>
+	<CER_ModSettings_PresetEconomy>Економний</CER_ModSettings_PresetEconomy>
+	<CER_ModSettings_PresetBestGear>Найкраще спорядження</CER_ModSettings_PresetBestGear>
+	<CER_ModSettings_PresetFocusRanged>Фокус на дальньому бою</CER_ModSettings_PresetFocusRanged>
+	<CER_ModSettings_PresetAll>Усі</CER_ModSettings_PresetAll>
+	<CER_ModSettings_PresetAvailableItems>Наявні предмети</CER_ModSettings_PresetAvailableItems>
+
+	<CER_ModSettings_RowMech>Проти плоті &lt;-&gt; Проти механоїдів</CER_ModSettings_RowMech>
+	<CER_ModSettings_RowMechTip>0 = налаштовано проти живої плоті, 1 = проти механоїдів. Визначає вибір боєприпасів, гранат і додаткової зброї, а також оцінку цілей при призначенні.</CER_ModSettings_RowMechTip>
+	<CER_ModSettings_RowAmmoVar>Один тип боєприпасів &lt;-&gt; максимальна гнучкість</CER_ModSettings_RowAmmoVar>
+	<CER_ModSettings_RowAmmoVarTip>Наскільки охоче автопризначення змішує типи боєприпасів для однієї зброї (з увімкненим «Перевизначити боєприпаси»). Порції лишаються цілими магазинами, загальна кількість ніколи не зростає.</CER_ModSettings_RowAmmoVarTip>
+	<CER_ModSettings_RowCraft>Використовувати наявне &lt;-&gt; виготовляти нове</CER_ModSettings_RowCraft>
+	<CER_ModSettings_RowCraftTip>Призначення: наскільки охоче система видає зброю, яку потрібно виготовити.</CER_ModSettings_RowCraftTip>
+	<CER_ModSettings_RowMelee>Перевага дальньому бою &lt;-&gt; ближньому бою</CER_ModSettings_RowMelee>
+	<CER_ModSettings_RowMeleeTip>Призначення: змінює, кого вважати стрільцем, а кого бійцем ближнього бою.</CER_ModSettings_RowMeleeTip>
+	<CER_ModSettings_RowDiversity>Завжди найкраще &lt;-&gt; покриття ролей</CER_ModSettings_RowDiversity>
+	<CER_ModSettings_RowDiversityTip>Призначення: 0 = усі отримують найвищу оцінку, 1 = загін спершу заповнює класичні ролі.</CER_ModSettings_RowDiversityTip>
+	<CER_ModSettings_RowBudget>Дешево &lt;-&gt; найкраща зброя (бюджет)</CER_ModSettings_RowBudget>
+	<CER_ModSettings_RowBudgetTip>Призначення: має значення лише для зброї, яку потрібно виготовити.</CER_ModSettings_RowBudgetTip>
+	<CER_ModSettings_RowPackCoverage>Без наборів &lt;-&gt; Щедрі набори</CER_ModSettings_RowPackCoverage>
+	<CER_ModSettings_RowPackCoverageTip>Призначення: ранжує типи наборів спорядження за важливістю й поступово додає більше з підвищенням значення.</CER_ModSettings_RowPackCoverageTip>
+
+	<CER_ModSettings_ResetPresetsButton>Скинути пресети до типових значень</CER_ModSettings_ResetPresetsButton>
+	<CER_ModSettings_PresetsResetMsg>Значення пресетів скинуто до типових.</CER_ModSettings_PresetsResetMsg>
+
+	<CER_ModSettings_ArmModePresetsHeader>Пресети режимів "Озброїти колонію"</CER_ModSettings_ArmModePresetsHeader>
+	<CER_ModSettings_ArmModePresetsDesc>Які з 6 перемикачів кроків встановлює кожен із режимів Обережний/Звичайний/Агресивний при виборі в "Озброїти колонію". Гравець все одно може тонко налаштувати окремі перемикачі після вибору режиму - це лише те, з чого КОЖЕН режим ПОЧИНАЄ.</CER_ModSettings_ArmModePresetsDesc>
+	<CER_ModSettings_ArmCautious>Обережний</CER_ModSettings_ArmCautious>
+	<CER_ModSettings_ArmNormal>Звичайний</CER_ModSettings_ArmNormal>
+	<CER_ModSettings_ArmAggressive>Агресивний</CER_ModSettings_ArmAggressive>
+	<CER_ModSettings_ScopeOff>Вимкнено</CER_ModSettings_ScopeOff>
+	<CER_ModSettings_ScopeManaged>Кероване</CER_ModSettings_ScopeManaged>
+	<CER_ModSettings_ScopeAll>Усі</CER_ModSettings_ScopeAll>
+	<CER_ModSettings_ArmRowResetPawns>Скинути персонажів</CER_ModSettings_ArmRowResetPawns>
+	<CER_ModSettings_ArmRowDeleteAmmoBills>Видалити замовлення на боєприпаси</CER_ModSettings_ArmRowDeleteAmmoBills>
+	<CER_ModSettings_ArmRowDeleteWeaponBills>Видалити замовлення на зброю</CER_ModSettings_ArmRowDeleteWeaponBills>
+	<CER_ModSettings_ArmRowDeleteWeaponLoadouts>Видалити комплекти, зібрані вручну</CER_ModSettings_ArmRowDeleteWeaponLoadouts>
+	<CER_ModSettings_ArmRowDeleteEquipmentPacks>Видалити набори спорядження</CER_ModSettings_ArmRowDeleteEquipmentPacks>
+	<CER_ModSettings_ArmRowCreateAmmoBills>Створити замовлення на боєприпаси</CER_ModSettings_ArmRowCreateAmmoBills>
+	<CER_ModSettings_ResetArmPresetsButton>Скинути пресети "Озброїти колонію" до типових значень</CER_ModSettings_ResetArmPresetsButton>
+	<CER_ModSettings_ArmPresetsResetMsg>Перемикачі пресетів "Озброїти колонію" скинуто до типових значень.</CER_ModSettings_ArmPresetsResetMsg>
+
+	<CER_ModSettings_AlertsHeader>Сповіщення про бойову готовність</CER_ModSettings_AlertsHeader>
+	<CER_ModSettings_AlertsDesc>Сповіщення у ванільному стилі (згори праворуч, поруч із "Ризик зриву"), що попереджають, коли колоніст не готовий до бою. Наведіть на сповіщення для деталей, натисніть, щоб перейти до колоністів.</CER_ModSettings_AlertsDesc>
+	<CER_ModSettings_AlertMasterSwitch>Показувати сповіщення про бойову готовність (головний перемикач)</CER_ModSettings_AlertMasterSwitch>
+	<CER_ModSettings_AlertNoLoadout>Колоністу взагалі не призначено комплект</CER_ModSettings_AlertNoLoadout>
+	<CER_ModSettings_AlertNoLoadoutTip>Вимкніть, якщо ви навмисно тримаєте деяких колоністів (ремісників, лікарів) неозброєними - інакше вони завжди показуватимуться як проблема.</CER_ModSettings_AlertNoLoadoutTip>
+	<CER_ModSettings_AlertWeaponWithoutAmmo>Комплект без відповідних боєприпасів</CER_ModSettings_AlertWeaponWithoutAmmo>
+	<CER_ModSettings_AlertWeaponUnavailable>Зброя з комплекту недоступна (немає на складі чи у виробництві)</CER_ModSettings_AlertWeaponUnavailable>
+	<CER_ModSettings_AlertLowAmmo>Мало боєприпасів (менше 2 перезарядок при собі)</CER_ModSettings_AlertLowAmmo>
+	<CER_ModSettings_AlertLowAmmoMagsLabel>Попереджати нижче ... магазинів</CER_ModSettings_AlertLowAmmoMagsLabel>
+	<CER_ModSettings_AlertLowAmmoMagsTip>За якої кількості магазинів спрацьовує попередження про брак набоїв. Типово 2. У спільноті CE зазвичай рахують 5-6 магазинів на бій.</CER_ModSettings_AlertLowAmmoMagsTip>
+	<CER_ModSettings_AlertOverloaded>Перевантажено (перевищено вагу чи об'єм)</CER_ModSettings_AlertOverloaded>
+	<CER_ModSettings_AlertCapacityBlocked>Забагато речей, щоб забрати комплект (на межі місткості, все ще бракує типу боєприпасів)</CER_ModSettings_AlertCapacityBlocked>
+	<CER_ModSettings_AlertCapacityBlockedTip>Об'єм або вага вже на максимумі, тож колоніст фізично не може підібрати решту того, що вимагає комплект - жодне виправлення замовлення чи запасів не допоможе, доки він не звільнить місце.</CER_ModSettings_AlertCapacityBlockedTip>
+	<CER_ModSettings_AlertAssignedNotCarried>Зброю призначено, але колоніст її не несе</CER_ModSettings_AlertAssignedNotCarried>
+	<CER_ModSettings_AlertAssignedNotCarriedTip>У колоніста є справжній набір із зброєю, але він не несе нічого - ні в руках, ні в рюкзаку. Зазвичай просто ще не забрав. Спрацьовує лише при цілком порожніх руках.</CER_ModSettings_AlertAssignedNotCarriedTip>
+	<CER_ModSettings_AlertAmmoNotProduced>Боєприпаси не у виробництві</CER_ModSettings_AlertAmmoNotProduced>
+	<CER_ModSettings_AlertAmmoStockThresholdLabel>     ...лише якщо на складі менше X набоїв (0 = завжди):</CER_ModSettings_AlertAmmoStockThresholdLabel>
+	<CER_ModSettings_AlertAmmoStockThresholdTip>0 = попереджати щоразу, коли жодне замовлення не виробляє боєприпаси для цієї зброї. Вище значення попереджає лише тоді, коли запас цих боєприпасів падає нижче X набоїв, тож великий резерв не набридатиме.</CER_ModSettings_AlertAmmoStockThresholdTip>
+	<CER_ModSettings_ResetAlertsButton>Скинути сповіщення до типових значень</CER_ModSettings_ResetAlertsButton>
+
+	<CER_ModSettings_ToolsHeader>Інструменти й діагностика</CER_ModSettings_ToolsHeader>
+	<CER_ModSettings_WeaponAuditDesc>Сканує всю зброю з усіх активних модів і повідомляє про ту, яку CE Reloaded може обробляти некоректно (недійсна оцінка, хибний прапорець "(Не CE)", відсутні боєприпаси, метальна зброя, яку неможливо виготовити). Нічого не змінює, це суто перевірка. Корисно після додавання модів зі зброєю або щоб додати до звіту про помилку.</CER_ModSettings_WeaponAuditDesc>
+	<CER_ModSettings_RunWeaponAuditButton>Запустити перевірку сумісності зброї</CER_ModSettings_RunWeaponAuditButton>
+	<CER_ModSettings_ResetGameDesc>Збереження гри починається як копія цих налаштувань мода, а потім запам'ятовує власні зміни (фільтри, повзунки, типові параметри постачання). Ця кнопка відкидає зміни поточної гри й застосовує налаштування мода наново.</CER_ModSettings_ResetGameDesc>
+	<CER_ModSettings_ResetGameButton>Скинути поточну гру до цих налаштувань мода</CER_ModSettings_ResetGameButton>
+	<CER_ModSettings_ResetGameTipActive>Пересіює стан інтерфейсу поточного збереження зі значень, налаштованих тут. Ручні перевизначення повзунків скидаються, бойова історія колонії зберігається.</CER_ModSettings_ResetGameTipActive>
+	<CER_ModSettings_ResetGameTipInactive>Доступно лише під час завантаженої гри.</CER_ModSettings_ResetGameTipInactive>
+	<CER_ModSettings_GameResetMsg>Налаштування поточної гри скинуто до налаштувань мода.</CER_ModSettings_GameResetMsg>
+
+	<CER_ModSettings_DebugHeader>Налагодження / перевірка комплектів</CER_ModSettings_DebugHeader>
+	<CER_ModSettings_DebugDesc>Кожен об'єкт Loadout, зареєстрований наразі - включно з прихованими якорями боєприпасів, наборами спорядження й ролями. Нічого тут не призначено редагувати напряму; це для перевірки того, що насправді існує.</CER_ModSettings_DebugDesc>
+	<CER_ModSettings_DebugNoGame>Немає активної гри - відкрийте збереження, щоб перевірити його комплекти.</CER_ModSettings_DebugNoGame>
+	<CER_ModSettings_CleanupOrphanedAnchorsButton>Прибрати осиротілі якорі ({0})</CER_ModSettings_CleanupOrphanedAnchorsButton>
+	<CER_ModSettings_RemovedOrphansSingular>Видалено {0} осиротілий якір комплекту.</CER_ModSettings_RemovedOrphansSingular>
+	<CER_ModSettings_RemovedOrphansPlural>Видалено осиротілих якорів комплекту: {0}.</CER_ModSettings_RemovedOrphansPlural>
+	<CER_ModSettings_CleanupOrphanedAnchorsTip>Видаляє кожен прихований якір боєприпасів для окремого персонажа, який жодному живому персонажу (на жодній карті чи в жодному караванi) насправді більше не призначено. Також запускається автоматично приблизно раз на ігрову годину - ця кнопка просто "зробити зараз".</CER_ModSettings_CleanupOrphanedAnchorsTip>
+	<CER_ModSettings_CleanseSaveButton>Підготувати збереження до видалення мода...</CER_ModSettings_CleanseSaveButton>
+	<CER_ModSettings_CleanseSaveTip>Використовуйте перед видаленням CE Reloaded з поточної гри. Кожен колоніст зберігає саме те, що несе зараз - зброю, додаткову зброю, набори, особисті боєприпаси, - але як звичайні комплекти Combat Extended, що працюють без цього мода. Набори вливаються в ролі, приховані комплекти колоністів видаляються. Потім: зберегти, вийти, видалити мод.</CER_ModSettings_CleanseSaveTip>
+	<CER_ModSettings_CleanseSaveConfirm>Підготувати це збереження до видалення CE Reloaded?\n\nКолоністи зберігають саме те, що несуть, але як звичайні комплекти CE: набори й додаткова зброя більше не спільні й не редагуються наживо. Скасувати неможливо - спершу зробіть резервне збереження.\n\nПотім збережіть гру, вийдіть і видаліть мод.</CER_ModSettings_CleanseSaveConfirm>
+	<CER_ModSettings_CleanseSaveDone>Збереження підготовлено: колоністів на спільному комплекті: {0}, з власним комплектом: {1}, об'єднано ролей: {2}, видалено прихованих комплектів: {3}. Тепер збережіть гру, вийдіть і видаліть мод.</CER_ModSettings_CleanseSaveDone>
+	<CER_ModSettings_DebugColLabel>Мітка</CER_ModSettings_DebugColLabel>
+	<CER_ModSettings_DebugColCategory>Категорія</CER_ModSettings_DebugColCategory>
+	<CER_ModSettings_DebugColParent>Джерело</CER_ModSettings_DebugColParent>
+	<CER_ModSettings_DebugColSlots>Слоти</CER_ModSettings_DebugColSlots>
+	<CER_ModSettings_CategoryDefault>Типовий</CER_ModSettings_CategoryDefault>
+	<CER_ModSettings_CategoryAmmoAnchor>Якір боєприпасів</CER_ModSettings_CategoryAmmoAnchor>
+	<CER_ModSettings_CategoryEquipmentPack>Набір спорядження</CER_ModSettings_CategoryEquipmentPack>
+	<CER_ModSettings_CategoryRole>Роль</CER_ModSettings_CategoryRole>
+	<CER_ModSettings_CategoryWeaponLoadout>Комплект зброї</CER_ModSettings_CategoryWeaponLoadout>
+	<CER_ModSettings_OrphanSuffix> (осиротілий)</CER_ModSettings_OrphanSuffix>
+	<CER_ModSettings_DebugTipHeader>Унікальний ID: {0}
+Власні слоти: {1}</CER_ModSettings_DebugTipHeader>
+	<CER_ModSettings_DebugTipParent>
+Джерело: {0}</CER_ModSettings_DebugTipParent>
+	<CER_ModSettings_DebugTipExtraParents>
+Додаткові джерела: {0}</CER_ModSettings_DebugTipExtraParents>
+	<CER_ModSettings_DebugTipResolvedContents>
+
+Обчислений вміст ({0}):
+{1}</CER_ModSettings_DebugTipResolvedContents>
+	<CER_ModSettings_DebugTipResolvedContentsNone>
+
+Обчислений вміст: немає</CER_ModSettings_DebugTipResolvedContentsNone>
+	<CER_ModSettings_DebugTipSlotLine>- {0} x{1}</CER_ModSettings_DebugTipSlotLine>
+
+	<CER_ModSettings_RolesHeader>Ролі</CER_ModSettings_RolesHeader>
+	<CER_ModSettings_RolesDesc>Множники, що впливають на боєприпаси / медикаменти / їжу / гранати ролі. x1 зберігає категорію, x0 прибирає її.</CER_ModSettings_RolesDesc>
+	<CER_ModSettings_RolesScopeGlobal>Глобальна бібліотека</CER_ModSettings_RolesScopeGlobal>
+	<CER_ModSettings_RolesScopeLocal>Лише це збереження</CER_ModSettings_RolesScopeLocal>
+	<CER_ModSettings_AddRoleButton>+ Додати роль</CER_ModSettings_AddRoleButton>
+	<CER_ModSettings_NewSaveRoleName>Нова роль збереження</CER_ModSettings_NewSaveRoleName>
+	<CER_ModSettings_NewRoleName>Нова роль</CER_ModSettings_NewRoleName>
+	<CER_ModSettings_ResetRolesToPresetsButton>Скинути до пресетів</CER_ModSettings_ResetRolesToPresetsButton>
+	<CER_ModSettings_ResetRolesToPresetsTip>Замінює глобальний список типовими ролями (Assault, Marksman, Support, Breacher, Grenadier, Medic, Melee). Роль, назви якої серед них немає, втрачає й своє спорядження.</CER_ModSettings_ResetRolesToPresetsTip>
+	<CER_ModSettings_RolesNoSaveLoaded>Завантажте колонію, щоб додавати ролі, які існують лише в цьому збереженні.</CER_ModSettings_RolesNoSaveLoaded>
+	<CER_ModSettings_RoleColName>Назва ролі</CER_ModSettings_RoleColName>
+	<CER_ModSettings_RoleColAmmo>Боєприпаси</CER_ModSettings_RoleColAmmo>
+	<CER_ModSettings_RoleColMedicine>Медикаменти</CER_ModSettings_RoleColMedicine>
+	<CER_ModSettings_RoleColFood>Їжа</CER_ModSettings_RoleColFood>
+	<CER_ModSettings_RoleColGrenades>Гранати</CER_ModSettings_RoleColGrenades>
+	<CER_ModSettings_DeleteRoleButton>X</CER_ModSettings_DeleteRoleButton>
+	<CER_ModSettings_DeleteRoleTip>Видалити цю роль.</CER_ModSettings_DeleteRoleTip>
+
+	<CER_ModSettings_FiltersHeader>Фільтри (типові значення)</CER_ModSettings_FiltersHeader>
+	<CER_ModSettings_DefaultAmmoFilterLabel>Типовий фільтр боєприпасів:</CER_ModSettings_DefaultAmmoFilterLabel>
+	<CER_ModSettings_DefaultAmmoBillFilterLabel>Типовий фільтр замовлень на боєприпаси:</CER_ModSettings_DefaultAmmoBillFilterLabel>
+	<CER_ModSettings_HideDuplicateBenches>Приховувати однакові верстати у списках замовлень</CER_ModSettings_HideDuplicateBenches>
+	<CER_ModSettings_HideDuplicateBenchesTip>Коли існує декілька однакових верстатів, показувати кожен тип лише раз у виборі верстата для замовлень на боєприпаси. Вимкніть, якщо потрібно націлитися на конкретний з кількох однакових верстатів.</CER_ModSettings_HideDuplicateBenchesTip>
+	<CER_ModSettings_ClaimOpenWeaponProduction>Враховувати відкрите виробництво зброї</CER_ModSettings_ClaimOpenWeaponProduction>
+	<CER_ModSettings_ClaimOpenWeaponProductionTip>Вікно постачання зараховує зброю, вже поставлену в чергу на верстаті, у рахунок нестачі: відкрите виробництво враховується першим, і пропонується лише залишок, тож нічого не перевиробляється. Вимкнено: вікно завжди пропонує повну нестачу незалежно від того, що вже в черзі.</CER_ModSettings_ClaimOpenWeaponProductionTip>
+	<CER_ModSettings_ResetFiltersButton>Скинути фільтри до типових значень</CER_ModSettings_ResetFiltersButton>
+
+	<CER_ModSettings_LoadoutsHeader>Типові значення комплектів</CER_ModSettings_LoadoutsHeader>
+	<CER_ModSettings_DefaultFirearmAmmoLabel>Типові боєприпаси для вогнепальної зброї:</CER_ModSettings_DefaultFirearmAmmoLabel>
+	<CER_ModSettings_FirearmAmmoTip>Який варіант боєприпасів отримує вогнепальна зброя за замовчуванням. FMJ - класичний універсал. "Загальний" зберігає плейсхолдер "Будь-які боєприпаси для X". Якщо для зброї немає відповідного варіанту, CE Reloaded повертається до Будь-яких/FMJ.</CER_ModSettings_FirearmAmmoTip>
+	<CER_ModSettings_StartTabsDetailedLabel>Вкладки відкриваються в детальному режимі</CER_ModSettings_StartTabsDetailedLabel>
+	<CER_ModSettings_StartTabsDetailedTip>Чи перемикач Простий/Детальний вкладок Ролі/Набої/Спорядити колоністів відкривається в детальному режимі при першому відкритті за сесію. Вимкнено = відкривається у простому режимі. Кожна вкладка потім запам'ятовує ваш власний вибір до кінця сесії - це задає лише найперший вигляд.</CER_ModSettings_StartTabsDetailedTip>
+	<CER_ModSettings_NoLoadoutPrefix>Немає префікса комплекту</CER_ModSettings_NoLoadoutPrefix>
+	<CER_ModSettings_DisabledPlaceholder>Вимкнено</CER_ModSettings_DisabledPlaceholder>
+	<CER_ModSettings_NoPackPrefix>Немає префікса набору спорядження</CER_ModSettings_NoPackPrefix>
+	<CER_ModSettings_NoRolePrefix>Немає префікса ролі</CER_ModSettings_NoRolePrefix>
+	<CER_ModSettings_SidearmMaxBulkLabel>Макс. об'єм додаткової зброї:</CER_ModSettings_SidearmMaxBulkLabel>
+	<CER_ModSettings_SidearmMeleeLabel>Додаткова зброя - ближній бій (для стрілецьких загонів):</CER_ModSettings_SidearmMeleeLabel>
+	<CER_ModSettings_SidearmMeleeTip>Живить бонус оцінки "додаткова резервна зброя" для зброї дальнього бою. Лише зброя ближнього бою. Авто = обирається в грі з того, що ви маєте або можете виготовити. Немає = ніколи не рахується як наявність резерву ближнього бою.</CER_ModSettings_SidearmMeleeTip>
+	<CER_ModSettings_SidearmRangedLabel>Додаткова зброя - дальній бій (для загонів ближнього бою):</CER_ModSettings_SidearmRangedLabel>
+	<CER_ModSettings_SidearmRangedTip>Живить бонус оцінки "додаткова резервна зброя" для зброї ближнього бою. Лише зброя дальнього бою. Авто = обирається в грі з того, що ви маєте або можете виготовити. Немає = ніколи не рахується як наявність резерву дальнього бою.</CER_ModSettings_SidearmRangedTip>
+	<CER_ModSettings_DefaultShieldLabel>Типовий щит:</CER_ModSettings_DefaultShieldLabel>
+	<CER_ModSettings_DefaultShieldTip>Щит CE для колоністів з однорукою основною зброєю (дворука зброя не може використовувати щит). Авто = обирається в грі з того, що ви маєте або можете виготовити. Немає = типового щита немає.</CER_ModSettings_DefaultShieldTip>
+	<CER_ModSettings_MealMedicineScopeNote>Ці чотири значення - початкові для ЩОЙНО створеного Equipment Pack. Зброя сама по собі не приносить їжу та медикаменти - для цього є паки.</CER_ModSettings_MealMedicineScopeNote>
+	<CER_ModSettings_DefaultMealLabel>Типова їжа:</CER_ModSettings_DefaultMealLabel>
+	<CER_ModSettings_NoneOption>Немає</CER_ModSettings_NoneOption>
+	<CER_ModSettings_DefaultMealCountLabel>Типова кількість їжі:</CER_ModSettings_DefaultMealCountLabel>
+	<CER_ModSettings_DefaultMedicineLabel>Типові медикаменти:</CER_ModSettings_DefaultMedicineLabel>
+	<CER_ModSettings_DefaultMedicineCountLabel>Типова кількість медикаментів:</CER_ModSettings_DefaultMedicineCountLabel>
+
+	<CER_ModSettings_AmmoCountsHeader>Типова кількість боєприпасів (за типом зброї)</CER_ModSettings_AmmoCountsHeader>
+	<CER_ModSettings_AmmoAssaultLabel>Штурмова / ПП:</CER_ModSettings_AmmoAssaultLabel>
+	<CER_ModSettings_AmmoSniperLabel>Снайперська / мисливська:</CER_ModSettings_AmmoSniperLabel>
+	<CER_ModSettings_AmmoLMGLabel>Кулемети (РКП):</CER_ModSettings_AmmoLMGLabel>
+	<CER_ModSettings_AmmoShotgunLabel>Дробовики:</CER_ModSettings_AmmoShotgunLabel>
+	<CER_ModSettings_AmmoBowLabel>Луки / арбалети:</CER_ModSettings_AmmoBowLabel>
+	<CER_ModSettings_AmmoLauncherLabel>Гранатомети / вибухівка:</CER_ModSettings_AmmoLauncherLabel>
+	<CER_ModSettings_AmmoDefaultLabel>Інше / типове:</CER_ModSettings_AmmoDefaultLabel>
+	<CER_ModSettings_AmmoSelfAmmoLabel>Списи / метальна зброя ближнього бою:</CER_ModSettings_AmmoSelfAmmoLabel>
+	<CER_ModSettings_AmmoSelfAmmoTip>Зброя, що сама є своїм боєприпасом (списи, піла) - це кількість, яку несе колоніст, а не кількість у магазині. Відрізняється від "Гранат" нижче - винесено окремо, бо розумна кількість списів і розумна кількість гранат - це дуже різні числа.</CER_ModSettings_AmmoSelfAmmoTip>
+	<CER_ModSettings_AmmoGrenadeLabel>Гранати / метальна вибухівка:</CER_ModSettings_AmmoGrenadeLabel>
+	<CER_ModSettings_AmmoGrenadeTip>Метальна вибухівка (гранати, торбинні заряди, ...) - теж самобоєприпас, як списи вище, але тут доречне значно менше число.</CER_ModSettings_AmmoGrenadeTip>
+	<CER_ModSettings_AmmoPistolLabel>Пістолет:</CER_ModSettings_AmmoPistolLabel>
+	<CER_ModSettings_AmmoPistolTip>Набої для пістолета або револьвера. Окреме значення, бо пістолет майже завжди ДРУГОРЯДНА зброя: його боєзапас додається до боєзапасу основної. Колишні спільні 150 - це норма штурмової гвинтівки для запасного ствола.</CER_ModSettings_AmmoPistolTip>
+	<CER_ModSettings_ResetLoadoutDefaultsButton>Скинути типові значення комплектів до типових</CER_ModSettings_ResetLoadoutDefaultsButton>
+
+	<CER_ModSettings_AmmoBillsHeader>Замовлення на боєприпаси (типові значення)</CER_ModSettings_AmmoBillsHeader>
+	<CER_ModSettings_DefaultAmmoBatchesLabel>Типові партії боєприпасів (виробництво):</CER_ModSettings_DefaultAmmoBatchesLabel>
+	<CER_ModSettings_SkillRequirementsLabel>Вимоги до навичок:</CER_ModSettings_SkillRequirementsLabel>
+	<CER_ModSettings_SkillRangeFormat>Навичка: {0}</CER_ModSettings_SkillRangeFormat>
+	<CER_ModSettings_ResetAmmoBillsButton>Скинути замовлення на боєприпаси до типових значень</CER_ModSettings_ResetAmmoBillsButton>
+
+	<CER_ModSettings_AmmoReserveHeader>Резервний буфер замовлень на боєприпаси</CER_ModSettings_AmmoReserveHeader>
+	<CER_ModSettings_AmmoReserveHeaderTip>Замовлення на боєприпаси - це замовлення на підтримку запасу ("виробляти, поки не буде X в наявності"), а не разове замовлення - вимога повного одночасного резерву для кожного колоніста, що використовує один калібр, завищує реальну потребу. Перші N колоністів враховуються з повною вагою, кожен наступний колоніст вносить спадаючу частку (до нижньої межі). Встановіть межу на 100%, щоб повернутися до старої поведінки "сумувати всіх з повною вагою".</CER_ModSettings_AmmoReserveHeaderTip>
+	<CER_ModSettings_AmmoReserveFullWeightLabel>Колоністів з повною вагою: {0}</CER_ModSettings_AmmoReserveFullWeightLabel>
+	<CER_ModSettings_AmmoReserveFullWeightTip>Скільки колоністів, що використовують один тип боєприпасів, враховуються як 100% їхньої власної налаштованої кількості. Кожен наступний колоніст враховується менше (див. межу нижче).</CER_ModSettings_AmmoReserveFullWeightTip>
+	<CER_ModSettings_AmmoReserveFloorLabel>Нижня межа залишкової частки: {0}%</CER_ModSettings_AmmoReserveFloorLabel>
+	<CER_ModSettings_AmmoReserveFloorTip>Мінімальна частка, яку все ще вносить колоніст понад кількість з повною вагою (його частка зменшується що далі він у списку, але ніколи не нижче цієї межі). 100% відтворює стару поведінку "сумувати всіх".</CER_ModSettings_AmmoReserveFloorTip>
+
+	<CER_ModSettings_AutoAssignHeader>Автопризначення (типові значення)</CER_ModSettings_AutoAssignHeader>
+	<CER_ModSettings_AutoAssignDesc>Точне налаштування (використовувати наявне чи виготовляти, проти плоті чи проти механоїдів, дальній чи ближній бій, різноманітність загону) знаходиться у вікні автопризначення й запам'ятовується для кожного збереження.</CER_ModSettings_AutoAssignDesc>
+	<CER_ModSettings_DefaultWeaponsFilterLabel>Типовий фільтр зброї:</CER_ModSettings_DefaultWeaponsFilterLabel>
+	<CER_ModSettings_AutoAssignFilterTip>Яку зброю може видавати автопризначення:
+Уся зброя - незалежно від того, що ви маєте чи можете виготовити.
+Наявна основна зброя - лише зброя, яку ви вже маєте.
+Досліджена основна зброя - лише зброя, яку ви маєте або можете виготовити зараз.</CER_ModSettings_AutoAssignFilterTip>
+	<CER_ModSettings_WeaponSkillRequirementsLabel>Вимоги до навичок виробництва зброї:</CER_ModSettings_WeaponSkillRequirementsLabel>
+	<CER_ModSettings_ResetAutoAssignButton>Скинути автопризначення до типових значень</CER_ModSettings_ResetAutoAssignButton>
+
+	<CER_ModSettings_FilterAllLoadouts>Уся зброя</CER_ModSettings_FilterAllLoadouts>
+	<CER_ModSettings_FilterAvailableMainWeapon>Наявна основна зброя</CER_ModSettings_FilterAvailableMainWeapon>
+	<CER_ModSettings_FilterResearchedMainWeapon>Досліджена основна зброя</CER_ModSettings_FilterResearchedMainWeapon>
+
+	<CER_ModSettings_EnumAll>Усі</CER_ModSettings_EnumAll>
+	<CER_ModSettings_EnumResearched>Досліджені</CER_ModSettings_EnumResearched>
+	<CER_ModSettings_EnumAvailable>Наявні</CER_ModSettings_EnumAvailable>
+	<CER_ModSettings_EnumInLoadout>У комплекті</CER_ModSettings_EnumInLoadout>
+	<CER_ModSettings_EnumAssignedLoadouts>Призначені комплекти</CER_ModSettings_EnumAssignedLoadouts>
+	<CER_ModSettings_EnumAvailableWeapons>Наявна зброя</CER_ModSettings_EnumAvailableWeapons>
+	<CER_ModSettings_EnumActiveBills>Активні замовлення</CER_ModSettings_EnumActiveBills>
+	<CER_ModSettings_EnumAllAmmunition>Досл. боєприпаси</CER_ModSettings_EnumAllAmmunition>
+
+	<CER_ModSettings_AutoRecommended>Авто (рекомендовано)</CER_ModSettings_AutoRecommended>
+
+	<CER_ModSettings_RoleModeLabel>Ролі при призначенні</CER_ModSettings_RoleModeLabel>
+
+	<CER_ModSettings_GuideDesc>Короткий курс (стислий огляд робочого процесу) відкривається один раз - при першому відкритті CE Reloaded.</CER_ModSettings_GuideDesc>
+	<CER_ModSettings_ShowGuideButton>Показати короткий курс</CER_ModSettings_ShowGuideButton>
+	<CER_ModSettings_ResetGuideButton>Скинути перший запуск</CER_ModSettings_ResetGuideButton>
+	<CER_ModSettings_ResetGuideTip>Забути, що короткий курс уже показувався - він відкриється знову при наступному відкритті Планувальника комплектів або Озброїти колонію. Зручно для тестів.</CER_ModSettings_ResetGuideTip>
+	<CER_ModSettings_GuideResetMsg>Перший запуск скинуто - короткий курс відкриється знову наступного разу.</CER_ModSettings_GuideResetMsg>
+	<CER_ModSettings_RestorePresetRolesButton>Повернути шаблони ({0})</CER_ModSettings_RestorePresetRolesButton>
+	<CER_ModSettings_RestorePresetRolesTip>Повертає видалені вбудовані ролі на їхні місця. Додаються лише відсутні - на відміну від «Скинути» ваші власні ролі не змінюються.</CER_ModSettings_RestorePresetRolesTip>
+	<CER_ModSettings_RestoredPresetRolesMessage>Відновлено вбудованих ролей: {0}.</CER_ModSettings_RestoredPresetRolesMessage>
+</LanguageData>

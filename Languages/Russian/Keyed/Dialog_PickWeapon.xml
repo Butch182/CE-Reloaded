@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Выбрать оружие</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - выберите оружие; боеприпасы по умолчанию назначаются автоматически.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - закрепить оружие в этом плане; «Авто» возвращает выбор решателю.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Вес и громоздкость с учётом боеприпасов по умолчанию</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} в колонии</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} из них уже заняты этим планом</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Можно изготовить сейчас</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Ничего не найдено по поиску или фильтру.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Оценка {0} (против плоти {1}, против механоидов {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

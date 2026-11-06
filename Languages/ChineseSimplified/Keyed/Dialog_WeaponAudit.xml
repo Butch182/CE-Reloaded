@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_WeaponAudit_CatScoreInvalid>评分无效</CER_WeaponAudit_CatScoreInvalid>
+	<CER_WeaponAudit_DetailScoreInvalid>武器评分为 {0}（不是有限数值）。</CER_WeaponAudit_DetailScoreInvalid>
+	<CER_WeaponAudit_CatScoreZero>评分为零</CER_WeaponAudit_CatScoreZero>
+	<CER_WeaponAudit_DetailScoreZero>该战斗武器具有实际伤害，但评分为 0 - 评分逻辑可能未能正确读取其属性。</CER_WeaponAudit_DetailScoreZero>
+	<CER_WeaponAudit_CatNotCeButArmed>未标记CE却已装弹</CER_WeaponAudit_CatNotCeButArmed>
+	<CER_WeaponAudit_DetailNotCeButArmed>该远程武器被标记为"（非CE）"，但拥有弹药组/弹丸 - 请检查判定逻辑。</CER_WeaponAudit_DetailNotCeButArmed>
+	<CER_WeaponAudit_CatRangedNoAmmo>远程武器无弹药</CER_WeaponAudit_CatRangedNoAmmo>
+	<CER_WeaponAudit_DetailRangedNoAmmo>拥有弹药组，但配装弹药列表为空 - 无法创建弹药账单。</CER_WeaponAudit_DetailRangedNoAmmo>
+	<CER_WeaponAudit_CatAmmoSetUnresolved>弹药集未解析</CER_WeaponAudit_CatAmmoSetUnresolved>
+	<CER_WeaponAudit_DetailAmmoSetUnresolved>被标记为 CE 兼容的远程武器，其弹药集从未解析 - 它永远无法获得有效弹药。</CER_WeaponAudit_DetailAmmoSetUnresolved>
+	<CER_WeaponAudit_CatSelfAmmoNoRecipe>自产弹药无配方</CER_WeaponAudit_CatSelfAmmoNoRecipe>
+	<CER_WeaponAudit_DetailSelfAmmoNoRecipe>自产弹药武器（手雷/投掷物）没有制作配方 - 无法生产。</CER_WeaponAudit_DetailSelfAmmoNoRecipe>
+	<CER_WeaponAudit_CatException>异常</CER_WeaponAudit_CatException>
+	<CER_WeaponAudit_DetailException>{0}：{1}</CER_WeaponAudit_DetailException>
+
+	<CER_WeaponAudit_ReportHeader>CE Reloaded - 武器兼容性审查</CER_WeaponAudit_ReportHeader>
+	<CER_WeaponAudit_ReportSummary>已扫描 {0} 件武器，来自 {1} 个模组。{2} 个问题。</CER_WeaponAudit_ReportSummary>
+
+	<CER_WeaponAudit_DialogTitle>武器兼容性审查</CER_WeaponAudit_DialogTitle>
+	<CER_WeaponAudit_DialogSummary>已扫描 {0} 件武器，来自 {1} 个已启用模组。共发现 {2} 个问题。</CER_WeaponAudit_DialogSummary>
+	<CER_WeaponAudit_NoIssues>未发现问题 - 该模组列表中的所有武器均处理正常。✓</CER_WeaponAudit_NoIssues>
+	<CER_WeaponAudit_RowName>{0}  &lt;color=#999999&gt;({1})&lt;/color&gt;</CER_WeaponAudit_RowName>
+	<CER_WeaponAudit_RowTooltip>{0}
+来源：{1}
+{2}：{3}</CER_WeaponAudit_RowTooltip>
+	<CER_WeaponAudit_CloseButton>关闭</CER_WeaponAudit_CloseButton>
+	<CER_WeaponAudit_CopyReportButton>复制报告到剪贴板</CER_WeaponAudit_CopyReportButton>
+	<CER_WeaponAudit_CopiedMessage>审查报告已复制到剪贴板。</CER_WeaponAudit_CopiedMessage>
+
+</LanguageData>

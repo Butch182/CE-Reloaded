@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<!-- Titres / en-tête -->
+	<CER_SquadSetup_TitleAssign>Assigner les dotations</CER_SquadSetup_TitleAssign>
+	<CER_SquadSetup_LivePreviewNote>Aperçu en direct - faites glisser les curseurs et observez le résultat. Rien ne change avant que vous cliquiez sur Appliquer.</CER_SquadSetup_LivePreviewNote>
+
+	<!-- Recommandé / préréglages / bascule de mode -->
+	<CER_SquadSetup_UseRecommendedSetup>Utiliser la configuration recommandée</CER_SquadSetup_UseRecommendedSetup>
+	<CER_SquadSetup_UseRecommendedSetupTip>Réinitialise chaque curseur à sa valeur par défaut et rend Bassin/Anti-mécanoïde au système automatique (stock de matériaux / menace mécanoïde).</CER_SquadSetup_UseRecommendedSetupTip>
+	<CER_SquadSetup_PresetBalanced>Équilibré</CER_SquadSetup_PresetBalanced>
+	<CER_SquadSetup_PresetAntiMech>Anti-Mécanoïde</CER_SquadSetup_PresetAntiMech>
+	<CER_SquadSetup_PresetEconomy>Économie</CER_SquadSetup_PresetEconomy>
+	<CER_SquadSetup_PresetBestGear>Meilleur équipement</CER_SquadSetup_PresetBestGear>
+	<CER_SquadSetup_PresetFocusRanged>Focus à distance</CER_SquadSetup_PresetFocusRanged>
+	<CER_SquadSetup_PresetAll>Tout</CER_SquadSetup_PresetAll>
+	<CER_SquadSetup_PresetAvailableItems>Objets disponibles</CER_SquadSetup_PresetAvailableItems>
+	<CER_SquadSetup_DetailedModeTip>Mode détaillé - chaque curseur est affiché pour un réglage manuel.\n\nCliquez pour passer en mode Simple (préréglages uniquement).</CER_SquadSetup_DetailedModeTip>
+	<CER_SquadSetup_SimpleModeTip>Mode simple - préréglages uniquement, les curseurs sont masqués.\n\nCliquez pour passer en mode Détaillé et régler chaque curseur manuellement.</CER_SquadSetup_SimpleModeTip>
+
+	<!-- Libellés partagés / des curseurs -->
+	<CER_SquadSetup_AntiFlesh>Anti-chair</CER_SquadSetup_AntiFlesh>
+	<CER_SquadSetup_AntiMech>Anti-mécanoïde</CER_SquadSetup_AntiMech>
+	<CER_SquadSetup_MechSliderAssignTip>Contre quoi l'escouade doit être armée.\n\nInitialisé automatiquement selon les rencontres de mécanoïdes / l'âge de la colonie, jusqu'à ce que vous le déplaciez vous-même.</CER_SquadSetup_MechSliderAssignTip>
+
+	<CER_SquadSetup_OnlyOneAmmoType>Un seul type de munitions</CER_SquadSetup_OnlyOneAmmoType>
+	<CER_SquadSetup_MaximumFlexibility>Flexibilité maximale</CER_SquadSetup_MaximumFlexibility>
+	<CER_SquadSetup_AmmoVarSliderTip>À quel point les munitions de chaque colon mélangent les types (ex. FMJ + un chargeur d'EMP). Ne s'applique qu'avec « Remplacer les munitions » activé.\n\nGauche : exactement un type par arme. Droite : jusqu'à quatre, chaque fois qu'un type couvre une menace que rien d'autre déjà emporté ne couvre. Le nombre total de cartouches n'augmente jamais - la variété le répartit - et chaque ration reste au moins un chargeur complet, donc les petits budgets gardent moins de types quoi qu'il arrive.</CER_SquadSetup_AmmoVarSliderTip>
+
+	<CER_SquadSetup_UseAvailableItems>Utiliser les objets disponibles</CER_SquadSetup_UseAvailableItems>
+	<CER_SquadSetup_CraftNewItems>Fabriquer de nouveaux objets</CER_SquadSetup_CraftNewItems>
+	<CER_SquadSetup_CraftSliderTip>À quel point l'assignation est prête à distribuer des armes que vous ne possédez pas encore.</CER_SquadSetup_CraftSliderTip>
+	<CER_SquadSetup_PreferRanged>Préférer à distance</CER_SquadSetup_PreferRanged>
+	<CER_SquadSetup_PreferMelee>Préférer le corps à corps</CER_SquadSetup_PreferMelee>
+	<CER_SquadSetup_MeleeSliderTip>Détermine qui compte comme tireur plutôt que comme bagarreur.</CER_SquadSetup_MeleeSliderTip>
+	<CER_SquadSetup_AlwaysUseBest>Toujours le meilleur</CER_SquadSetup_AlwaysUseBest>
+	<CER_SquadSetup_CoverDifferentRoles>Couvrir différents rôles</CER_SquadSetup_CoverDifferentRoles>
+	<CER_SquadSetup_DiversitySliderTip>Gauche : tout le monde reçoit l'arme de plus haute valeur. Droite : l'escouade évite les doublons et remplit d'abord les rôles classiques.</CER_SquadSetup_DiversitySliderTip>
+	<CER_SquadSetup_CheapWeapons>Armes bon marché</CER_SquadSetup_CheapWeapons>
+	<CER_SquadSetup_BestWeapon>Meilleure arme</CER_SquadSetup_BestWeapon>
+	<CER_SquadSetup_BudgetSliderTip>Ne compte que pour les armes devant être fabriquées.</CER_SquadSetup_BudgetSliderTip>
+	<CER_SquadSetup_NoSidearm>Aucune arme secondaire</CER_SquadSetup_NoSidearm>
+	<CER_SquadSetup_AlwaysSidearm>Toujours une arme secondaire</CER_SquadSetup_AlwaysSidearm>
+	<CER_SquadSetup_SidearmCoverageSliderTip>Ajoute une deuxième arme à côté de la principale (type opposé - une arme principale à distance reçoit un secours de corps à corps et vice versa), de la même façon en direct que les kits d'équipement s'attachent. Couvre cette fraction de l'escouade, priorité de combat la plus élevée d'abord.</CER_SquadSetup_SidearmCoverageSliderTip>
+	<CER_SquadSetup_NoExplosives>Aucun explosif</CER_SquadSetup_NoExplosives>
+	<CER_SquadSetup_GenerousExplosives>Explosifs généreux</CER_SquadSetup_GenerousExplosives>
+	<CER_SquadSetup_GrenadeCoverageSliderTip>Ajoute une grenade (charge de satchel, bâton explosif, ...) à côté de l'arme principale, listée avec l'arme secondaire ci-dessus mais depuis son propre bassin séparé - une grenade ne délogera jamais une véritable arme de secours de son emplacement. Couvre cette fraction de l'escouade, priorité de combat la plus élevée d'abord. Choisit parmi les grenades que vous possédez ou pouvez fabriquer.</CER_SquadSetup_GrenadeCoverageSliderTip>
+	<CER_SquadSetup_NoPacks>Aucun kit</CER_SquadSetup_NoPacks>
+	<CER_SquadSetup_GenerousPacks>Kits généreux</CER_SquadSetup_GenerousPacks>
+	<CER_SquadSetup_PackCoverageSliderTip>Classe les TYPES de kits par degré d'essentialité et en inclut progressivement plus à mesure que ceci augmente - fournitures de base (nourriture/médicament) d'abord, contenu spécialisé (médical/drogues/utilitaire) ajouté ensuite. Chaque personnage éligible reçoit chaque type de kit inclus (les kits à dominante médicale ne vont toujours qu'aux médecins désignés) - ceci ne concerne PAS l'exclusion de personnages, seulement quels types de kits existent. Les kits contenant un bouclier ne sont PAS couverts par ce curseur - voir ci-dessous.</CER_SquadSetup_PackCoverageSliderTip>
+	<CER_SquadSetup_NoShields>Aucun bouclier</CER_SquadSetup_NoShields>
+	<CER_SquadSetup_GenerousShields>Boucliers généreux</CER_SquadSetup_GenerousShields>
+	<CER_SquadSetup_ShieldCoverageSliderTip>Distribue tout kit contenant un bouclier (vérifié par son contenu réel, pas son nom) à cette fraction des personnages orientés corps à corps de l'escouade (ou toute l'escouade si personne n'est orienté corps à corps), meilleurs combattants au corps à corps d'abord - progressivement, comme les curseurs d'arme secondaire/explosifs ci-dessus, pas un tout-ou-rien.</CER_SquadSetup_ShieldCoverageSliderTip>
+
+	<CER_SquadSetup_RedistributeCarriedWeapons>Redistribuer les armes transportées :</CER_SquadSetup_RedistributeCarriedWeapons>
+	<CER_SquadSetup_RedistributeCarriedWeaponsTip>Les armes ramassées manuellement comptent comme redistribuables.</CER_SquadSetup_RedistributeCarriedWeaponsTip>
+	<CER_SquadSetup_MaxSidearmBulk>Encombrement max. de l'arme secondaire :</CER_SquadSetup_MaxSidearmBulk>
+	<CER_SquadSetup_MaxSidearmBulkTip>Le solveur automatique ne choisit jamais une candidate dépassant cette valeur d'Encombrement CE comme arme secondaire (un fusil complet ne devrait pas être distribué comme « secours » de quelqu'un juste parce qu'il obtient un bon score). Les choix manuels d'armes secondaires ne sont pas plafonnés. Partagé avec l'onglet Valeurs par défaut des dotations des paramètres du mod.</CER_SquadSetup_MaxSidearmBulkTip>
+
+	<!-- Différences uniquement / conserver actuel / utiliser les rôles -->
+	<CER_SquadSetup_ShowOnlyChanges>Afficher seulement les changements :</CER_SquadSetup_ShowOnlyChanges>
+	<CER_SquadSetup_KeepCurrentLoadouts>Conserver les dotations actuelles :</CER_SquadSetup_KeepCurrentLoadouts>
+	<CER_SquadSetup_KeepCurrentLoadoutsTip>Activé : seuls les colons sans dotation en reçoivent une ; tous ceux déjà équipés sont laissés intacts (affichés avec un cadenas).</CER_SquadSetup_KeepCurrentLoadoutsTip>
+	<CER_SquadSetup_OverrideAmmo>Remplacer les munitions :</CER_SquadSetup_OverrideAmmo>
+	<CER_SquadSetup_OverrideAmmoTip>Rechoisit la munition de chaque colon au moment de l'assignation (stock/recherche actuels + curseurs Anti-Mech et types de munitions) au lieu d'utiliser la munition par défaut de l'arme. Les rôles ne sont jamais affectés - leur munition provient toujours du rôle lui-même.</CER_SquadSetup_OverrideAmmoTip>
+
+	<!-- En-têtes de section / barre du bas -->
+	<CER_SquadSetup_BackButton>&lt; Retour</CER_SquadSetup_BackButton>
+	<CER_SquadSetup_BackButtonTip>Retour à l'étape précédente du flux Armer-ma-colonie. Les étapes déjà appliquées ne sont pas annulées.</CER_SquadSetup_BackButtonTip>
+	<CER_SquadSetup_CancelButton>Annuler</CER_SquadSetup_CancelButton>
+	<CER_SquadSetup_UnpinAllButton>Tout désépingler ({0})</CER_SquadSetup_UnpinAllButton>
+	<CER_SquadSetup_UnpinAllTip>Retire toutes les {0} épingle(s) manuelle(s) et rend ces colons au solveur.</CER_SquadSetup_UnpinAllTip>
+	<CER_SquadSetup_NothingToApply>Rien à appliquer.</CER_SquadSetup_NothingToApply>
+	<CER_SquadSetup_SkipButton>Passer</CER_SquadSetup_SkipButton>
+	<CER_SquadSetup_SkipButtonTip>Passer cette étape - rien n'est assigné ici, le flux Armer-ma-colonie continue à l'étape suivante.</CER_SquadSetup_SkipButtonTip>
+
+	<!-- Libellés des boutons Appliquer / Générer -->
+	<CER_SquadSetup_ContinueButton>Continuer &gt;</CER_SquadSetup_ContinueButton>
+	<CER_SquadSetup_ApplyChangesLabel>Appliquer ({0} {1})</CER_SquadSetup_ApplyChangesLabel>
+	<CER_SquadSetup_ApplyLabel>Appliquer</CER_SquadSetup_ApplyLabel>
+	<CER_SquadSetup_ApplyNothingSuffix> (rien à appliquer)</CER_SquadSetup_ApplyNothingSuffix>
+	<CER_SquadSetup_ChangeSingular>changement</CER_SquadSetup_ChangeSingular>
+	<CER_SquadSetup_ChangePlural>changements</CER_SquadSetup_ChangePlural>
+
+	<!-- Liste de génération -->
+
+	<!-- Ligne de génération -->
+	<CER_SquadSetup_NotResearchedSuffix> (non recherché)</CER_SquadSetup_NotResearchedSuffix>
+
+	<!-- En-tête de liste d'assignation / état vide / bandeau de coût / problèmes -->
+	<CER_SquadSetup_UnlockEveryoneTip>Déverrouiller tout le monde. L'assignation automatique replanifie tous les colons.</CER_SquadSetup_UnlockEveryoneTip>
+	<CER_SquadSetup_LockEveryoneTip>Verrouiller tout le monde. Personne n'est replanifié tant qu'il n'est pas déverrouillé.</CER_SquadSetup_LockEveryoneTip>
+	<CER_SquadSetup_ColonistColumn>Colon</CER_SquadSetup_ColonistColumn>
+	<CER_SquadSetup_RangedColumn>À distance</CER_SquadSetup_RangedColumn>
+	<CER_SquadSetup_MeleeColumn>Corps à corps</CER_SquadSetup_MeleeColumn>
+	<CER_SquadSetup_MedicalColumn>Médical</CER_SquadSetup_MedicalColumn>
+	<CER_SquadSetup_CurrentColumn>Actuel</CER_SquadSetup_CurrentColumn>
+	<CER_SquadSetup_PlannedMainWeaponColumn>Arme principale planifiée</CER_SquadSetup_PlannedMainWeaponColumn>
+	<CER_SquadSetup_PackColumn>Kit</CER_SquadSetup_PackColumn>
+	<CER_SquadSetup_SidearmColumn>Arme secondaire</CER_SquadSetup_SidearmColumn>
+	<CER_SquadSetup_MainSubheader>Armes</CER_SquadSetup_MainSubheader>
+	<CER_SquadSetup_PacksSubheader>Kits</CER_SquadSetup_PacksSubheader>
+	<CER_SquadSetup_AmmoSubheader>Munitions</CER_SquadSetup_AmmoSubheader>
+	<CER_SquadSetup_NoChangesCurrentSettings>Aucun changement avec les réglages actuels.</CER_SquadSetup_NoChangesCurrentSettings>
+	<CER_SquadSetup_PreviewCraftingCostsHeader>Aperçu - coûts de fabrication par composant (ajustables à l'écran suivant) :</CER_SquadSetup_PreviewCraftingCostsHeader>
+	<CER_SquadSetup_GrandTotalLabel>&lt;b&gt;Total :&lt;/b&gt;</CER_SquadSetup_GrandTotalLabel>
+	<CER_SquadSetup_ProblemsHeader>&lt;b&gt;Problèmes avec les réglages actuels&lt;/b&gt;</CER_SquadSetup_ProblemsHeader>
+	<CER_SquadSetup_ProblemClickToFix>Cliquez pour ouvrir l'onglet Rôles.</CER_SquadSetup_ProblemClickToFix>
+
+	<!-- Libellés des catégories de coût -->
+	<CER_SquadSetup_CostLabelMain>Principale :</CER_SquadSetup_CostLabelMain>
+	<CER_SquadSetup_CostLabelSidearms>Armes secondaires :</CER_SquadSetup_CostLabelSidearms>
+	<CER_SquadSetup_CostLabelGrenades>Grenades :</CER_SquadSetup_CostLabelGrenades>
+	<CER_SquadSetup_CostLabelShields>Boucliers :</CER_SquadSetup_CostLabelShields>
+	<CER_SquadSetup_CostLabelAmmo>Munitions :</CER_SquadSetup_CostLabelAmmo>
+	<CER_SquadSetup_CostLabelPacks>Kits :</CER_SquadSetup_CostLabelPacks>
+
+	<!-- Ligne de personnage -->
+	<CER_SquadSetup_CannotFightTip>Ne peut pas combattre (incapable de violence, ou un bébé) - protégé et jamais assigné à une dotation.</CER_SquadSetup_CannotFightTip>
+	<CER_SquadSetup_RangedScoreTip>Score à distance (Tir x10, ajusté par la vue/manipulation/traits).</CER_SquadSetup_RangedScoreTip>
+	<CER_SquadSetup_MeleeScoreTip>Score de corps à corps (Corps à corps x10, ajusté par le déplacement/manipulation/traits).</CER_SquadSetup_MeleeScoreTip>
+	<CER_SquadSetup_MedicalScoreTip>Compétence médicale (Médecine x10) - la part la plus haute de l'escouade selon ce score reçoit les kits d'équipement à dominante médicale.</CER_SquadSetup_MedicalScoreTip>
+	<CER_SquadSetup_NoneCurrentLoadout>Aucune</CER_SquadSetup_NoneCurrentLoadout>
+	<CER_SquadSetup_CantFightSkipped>ne peut pas combattre - ignoré</CER_SquadSetup_CantFightSkipped>
+	<CER_SquadSetup_CannotFightNoWeaponTip>Ce colon ne peut pas combattre (incapable de violence, ou un bébé) et ne reçoit jamais d'arme.</CER_SquadSetup_CannotFightNoWeaponTip>
+	<CER_SquadSetup_SkippedByYou>ignoré par vous</CER_SquadSetup_SkippedByYou>
+	<CER_SquadSetup_SkippedByYouTip>Vous avez marqué ce colon comme ignoré, l'affectation automatique le laisse donc tranquille. Il PEUT se battre - c'est votre décision, pas une limite du personnage. Cliquez sur l'icône tout à gauche pour le réintégrer.</CER_SquadSetup_SkippedByYouTip>
+	<CER_SquadSetup_KeptSuffix>  (conservé)</CER_SquadSetup_KeptSuffix>
+	<CER_SquadSetup_NoneKept>Aucune  (conservé)</CER_SquadSetup_NoneKept>
+	<CER_SquadSetup_PinnedSuffix>  (épinglé)</CER_SquadSetup_PinnedSuffix>
+	<CER_SquadSetup_NoLoadoutLower>aucune dotation</CER_SquadSetup_NoLoadoutLower>
+	<CER_SquadSetup_NoLoadoutCouldBeAssignedTip>Aucune dotation n'a pu être assignée à ce colon avec les réglages actuels.</CER_SquadSetup_NoLoadoutCouldBeAssignedTip>
+	<CER_SquadSetup_DropToSwapTip>Déposez pour échanger les dotations avec {0}.</CER_SquadSetup_DropToSwapTip>
+	<CER_SquadSetup_ClickToPickLoadoutTip>Cliquez pour choisir une arme pour {0} manuellement (épingle le choix - les curseurs ne le réorganiseront pas).</CER_SquadSetup_ClickToPickLoadoutTip>
+	<CER_SquadSetup_CurrentlyPinnedAutoSuffix>\n\nActuellement épinglé - le menu propose Auto pour rendre le colon au solveur.</CER_SquadSetup_CurrentlyPinnedAutoSuffix>
+	<CER_SquadSetup_DragToSwapSuffix>\n\nFaites glisser sur la ligne d'un autre colon pour échanger leurs dotations planifiées.</CER_SquadSetup_DragToSwapSuffix>
+
+	<!-- Cellules kit / arme secondaire -->
+	<CER_SquadSetup_IncludedInRoleTip>Inclus dans {0} :\n{1}\n\nIntégré à ce rôle - modifiez le rôle lui-même (onglet Rôles) pour le changer, pas ici par colon.</CER_SquadSetup_IncludedInRoleTip>
+	<CER_SquadSetup_RoleNoPackItemsTip>Ce rôle n'inclut aucun médicament/nourriture/drogue/objet utilitaire.</CER_SquadSetup_RoleNoPackItemsTip>
+	<CER_SquadSetup_RoleNoSidearmTip>Ce rôle n'inclut aucune arme secondaire, explosif lancé ou bouclier.</CER_SquadSetup_RoleNoSidearmTip>
+	<CER_SquadSetup_EquipmentPacksAttached>Kits d'équipement attachés : {0}</CER_SquadSetup_EquipmentPacksAttached>
+	<CER_SquadSetup_NoEquipmentPackAttached>Aucun kit d'équipement attaché.</CER_SquadSetup_NoEquipmentPackAttached>
+	<CER_SquadSetup_PackClickOverrideSuffix>\n\nNoté automatiquement en parallèle de l'arme. Cliquez pour choisir quels kits ce colon reçoit - une épingle en attente, comme la cellule d'arme ; rien ne s'applique avant que vous cliquiez sur Appliquer.</CER_SquadSetup_PackClickOverrideSuffix>
+	<CER_SquadSetup_TickPacksSubtitle>{0} - cochez les kits à planifier. Rien ne s'applique avant que vous cliquiez sur Appliquer.</CER_SquadSetup_TickPacksSubtitle>
+	<CER_SquadSetup_SidearmsAttached>Armes secondaires attachées : {0}</CER_SquadSetup_SidearmsAttached>
+	<CER_SquadSetup_NoSidearmAttached>Aucune arme secondaire attachée.</CER_SquadSetup_NoSidearmAttached>
+	<CER_SquadSetup_SidearmClickTickSuffix>\n\nCliquez pour cocher quelle(s) arme(s) {0} porte comme arme secondaire - une épingle en attente, comme la cellule d'arme ; rien ne s'applique avant que vous cliquiez sur Appliquer.</CER_SquadSetup_SidearmClickTickSuffix>
+	<CER_SquadSetup_TickSidearmsSubtitle>{0} - cochez la ou les armes à porter comme arme secondaire. Rien ne s'applique avant que vous cliquiez sur Appliquer.</CER_SquadSetup_TickSidearmsSubtitle>
+	<CER_SquadSetup_WeaponLoadoutsWindowTitle>Armes secondaires</CER_SquadSetup_WeaponLoadoutsWindowTitle>
+	<CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>Aucune autre arme disponible comme arme secondaire.</CER_SquadSetup_NoOtherWeaponLoadoutsEmptyMsg>
+
+	<!-- Groupe des besoins d'approvisionnement -->
+	<CER_SquadSetup_RoleTagSidearm> (arme secondaire)</CER_SquadSetup_RoleTagSidearm>
+	<CER_SquadSetup_RoleTagGrenade> (grenade)</CER_SquadSetup_RoleTagGrenade>
+	<CER_SquadSetup_RoleTagShield> (bouclier)</CER_SquadSetup_RoleTagShield>
+	<CER_SquadSetup_EverythingCoveredSuffix> - tout est couvert :\n</CER_SquadSetup_EverythingCoveredSuffix>
+	<CER_SquadSetup_StatusReady>prêt</CER_SquadSetup_StatusReady>
+	<CER_SquadSetup_StatusInProduction>en production</CER_SquadSetup_StatusInProduction>
+	<CER_SquadSetup_StatusMissing>manquant</CER_SquadSetup_StatusMissing>
+	<CER_SquadSetup_CanBeCraftedSuffix> (peut être fabriqué)</CER_SquadSetup_CanBeCraftedSuffix>
+	<CER_SquadSetup_NoBenchBuiltSuffix> (aucun établi construit)</CER_SquadSetup_NoBenchBuiltSuffix>
+	<CER_SquadSetup_UnsustainableNotResearchedSuffix> - suffisant pour l'instant, mais impossible a refabriquer (non recherche)</CER_SquadSetup_UnsustainableNotResearchedSuffix>
+	<CER_SquadSetup_UnsustainableNoBenchSuffix> - suffisant pour l'instant, mais impossible a refabriquer (aucun etabli)</CER_SquadSetup_UnsustainableNoBenchSuffix>
+
+	<!-- Glisser-déposer / menu d'épingle -->
+	<CER_SquadSetup_CantSwapCannotFight>Impossible d'échanger vers un colon qui ne peut pas combattre (pacifiste ou bébé).</CER_SquadSetup_CantSwapCannotFight>
+	<CER_SquadSetup_BothColonistsNeedConcretePlan>Les deux colons ont besoin d'une arme ou d'un rôle planifié pour échanger.</CER_SquadSetup_BothColonistsNeedConcretePlan>
+	<CER_SquadSetup_BothColonistsSameLoadout>Les deux colons planifient déjà la même dotation.</CER_SquadSetup_BothColonistsSameLoadout>
+	<CER_SquadSetup_SwappedPlannedLoadouts>Dotations planifiées échangées : {0} et {1} (épinglées).</CER_SquadSetup_SwappedPlannedLoadouts>
+	<CER_SquadSetup_AutoUnpinOption>Auto (désépingler - laisser le solveur décider)</CER_SquadSetup_AutoUnpinOption>
+	<CER_SquadSetup_SaveComboAsRoleOption>Enregistrer la combinaison actuelle comme rôle...</CER_SquadSetup_SaveComboAsRoleOption>
+
+	<!-- DoApply -->
+
+	<CER_SquadSetup_AmmoBlockedByResearch>{0} : aucune munition recherchee</CER_SquadSetup_AmmoBlockedByResearch>
+	<CER_SquadSetup_NoRecipeSuffix> (aucune recette)</CER_SquadSetup_NoRecipeSuffix>
+
+	<!-- Zeilensymbol der Assign-Zeile: ein Zustand, drei Stufen (2026-08-13) -->
+	<CER_SquadSetup_MarkPlannedTip>Sera planifié : l'assignation automatique choisit une dotation pour ce colon.</CER_SquadSetup_MarkPlannedTip>
+	<CER_SquadSetup_MarkKeptTip>Laissé tel quel : l'assignation automatique ne touche pas à l'équipement de ce colon. Toujours modifiable - cliquez sur la cellule d'arme pour le changer directement.</CER_SquadSetup_MarkKeptTip>
+	<CER_SquadSetup_MarkRemovedTip>La dotation sera retirée : à l'application, {0} perd sa dotation et se retrouve sans rien. Le matériel lui-même reste dans la colonie.</CER_SquadSetup_MarkRemovedTip>
+	<CER_SquadSetup_MarkRemovedNoneTip>Laissé de côté : {0} n'a pas de dotation et n'en recevra pas. Compte comme non-combattant sur tous les écrans.</CER_SquadSetup_MarkRemovedNoneTip>
+	<CER_SquadSetup_ActionPlanNormally>planifier normalement.</CER_SquadSetup_ActionPlanNormally>
+	<CER_SquadSetup_ActionKeepAsIs>laisser tel quel (protégé de l'assignation automatique, toujours modifiable).</CER_SquadSetup_ActionKeepAsIs>
+	<CER_SquadSetup_ActionRemoveLoadout>retirer la dotation.</CER_SquadSetup_ActionRemoveLoadout>
+	<CER_SquadSetup_LeftClickLabel>Clic gauche :</CER_SquadSetup_LeftClickLabel>
+	<CER_SquadSetup_RightClickLabel>Clic droit :</CER_SquadSetup_RightClickLabel>
+	<CER_SquadSetup_LoadoutRemoved>dotation retirée</CER_SquadSetup_LoadoutRemoved>
+	<CER_SquadSetup_LoadoutRemovedTip>Vous avez réglé ce colon sur « retirer la dotation ». À l'application, {0} perd la dotation qui lui était attribuée et se retrouve sans rien - le matériel lui-même reste dans la colonie. Cliquez sur l'icône tout à gauche pour annuler.</CER_SquadSetup_LoadoutRemovedTip>
+
+
+
+</LanguageData>

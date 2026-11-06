@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<CER_PickWeapon_Title>Choisir une arme</CER_PickWeapon_Title>
+	<CER_PickWeapon_SubtitleAssign>{0} - choisissez une arme ; les munitions par défaut sont gérées automatiquement.</CER_PickWeapon_SubtitleAssign>
+	<CER_PickWeapon_SubtitlePin>{0} - épingler une arme pour ce plan ; « Auto » rend le choix au solveur.</CER_PickWeapon_SubtitlePin>
+	<CER_PickWeapon_MassBulkTip>Poids et encombrement, munitions par défaut incluses</CER_PickWeapon_MassBulkTip>
+	<CER_PickWeapon_OwnedTipFmt>{0} dans la colonie</CER_PickWeapon_OwnedTipFmt>
+	<CER_PickWeapon_ReservedTipFmt>{0} déjà réservé(s) par ce plan</CER_PickWeapon_ReservedTipFmt>
+	<CER_PickWeapon_CraftableTip>Peut être fabriquée maintenant</CER_PickWeapon_CraftableTip>
+	<CER_PickWeapon_NothingMatches>Aucun résultat pour la recherche ou le filtre.</CER_PickWeapon_NothingMatches>
+	<CER_PickWeapon_ScoreTipFmt>Score {0} (contre chair {1}, contre mécanoïdes {2})</CER_PickWeapon_ScoreTipFmt>
+</LanguageData>

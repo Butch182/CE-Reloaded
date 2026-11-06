@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<CER_ChangeAmmo_Title>Ammunitionslastningar</CER_ChangeAmmo_Title>
+	<CER_ChangeAmmo_GroupByAmmoType>Gruppera efter ammunitionstyp</CER_ChangeAmmo_GroupByAmmoType>
+	<CER_ChangeAmmo_GroupByAmmoTypeTip>Slå ihop kolonister som kan använda samma ammunitionstyp till en rad, redigerad för alla samtidigt - i stället för ett avsnitt per kolonist.</CER_ChangeAmmo_GroupByAmmoTypeTip>
+	<CER_ChangeAmmo_SubSingle>{0} - vad de bär. Att redigera detta ersätter helt vapnets standardammunition - träder i kraft nästa gång de kontrollerar sin utrustning.</CER_ChangeAmmo_SubSingle>
+	<CER_ChangeAmmo_SubMulti>{0} kolonister valda - vad var och en bär. Att redigera ersätter helt standardammunitionen för varje vapen.</CER_ChangeAmmo_SubMulti>
+	<CER_ChangeAmmo_FilterPlaceholder>Filter (t.ex. FMJ)...</CER_ChangeAmmo_FilterPlaceholder>
+	<CER_ChangeAmmo_Close>Stäng</CER_ChangeAmmo_Close>
+	<CER_ChangeAmmo_ClearAllAmmo>Rensa all ammunition</CER_ChangeAmmo_ClearAllAmmo>
+	<CER_ChangeAmmo_ClearAllTipSingle>Ta bort varje ammunitionstyp - {0} bär då ingen ammunition alls, inte ens vapnets standard.</CER_ChangeAmmo_ClearAllTipSingle>
+	<CER_ChangeAmmo_ClearAllTipMulti>Ta bort varje ammunitionstyp från alla {0} valda kolonister - ingen av dem bär då någon ammunition, inte ens vapnets standard.</CER_ChangeAmmo_ClearAllTipMulti>
+	<CER_ChangeAmmo_Reset>Återställ</CER_ChangeAmmo_Reset>
+	<CER_ChangeAmmo_Copy>Kopiera</CER_ChangeAmmo_Copy>
+	<CER_ChangeAmmo_CopyTip>Kopierar den här kolonistens ammunitionsval. Klistra in det på andra via inklistringskolumnen i Utrusta kolonister.</CER_ChangeAmmo_CopyTip>
+	<CER_ChangeAmmo_CopiedMessageSingular>Kopierade {0} ammunitionspost från {1}.</CER_ChangeAmmo_CopiedMessageSingular>
+	<CER_ChangeAmmo_CopiedMessagePlural>Kopierade {0} ammunitionsposter från {1}.</CER_ChangeAmmo_CopiedMessagePlural>
+	<CER_ChangeAmmo_ResetTip>Återställ varje vald kolonists ammunition till vad den var när detta fönster öppnades.</CER_ChangeAmmo_ResetTip>
+	<CER_ChangeAmmo_HeaderWithTemplate>{0}  -  {1}</CER_ChangeAmmo_HeaderWithTemplate>
+	<CER_ChangeAmmo_HeaderNoTemplate>{0}  -  ingen lastning tilldelad</CER_ChangeAmmo_HeaderNoTemplate>
+	<CER_ChangeAmmo_CarriedPrefix>Bär: {0}</CER_ChangeAmmo_CarriedPrefix>
+	<CER_ChangeAmmo_CarriedItem>{0}x {1}</CER_ChangeAmmo_CarriedItem>
+	<CER_ChangeAmmo_CarriedMore>, +{0} till</CER_ChangeAmmo_CarriedMore>
+	<CER_ChangeAmmo_NoLoadoutAssigned>Inget vapen tilldelat.</CER_ChangeAmmo_NoLoadoutAssigned>
+	<CER_ChangeAmmo_NoAmmoMatchesSearch>Ingen ammunitionstyp matchar "{0}".</CER_ChangeAmmo_NoAmmoMatchesSearch>
+	<CER_ChangeAmmo_WeaponsDontTakeAmmo>{0}s vapen tar inte ammunition.</CER_ChangeAmmo_WeaponsDontTakeAmmo>
+	<CER_ChangeAmmo_ColName>Namn</CER_ChangeAmmo_ColName>
+	<CER_ChangeAmmo_ColSpecial>Speciellt</CER_ChangeAmmo_ColSpecial>
+	<CER_ChangeAmmo_ColCount>Antal</CER_ChangeAmmo_ColCount>
+	<CER_ChangeAmmo_ColStock>Lager</CER_ChangeAmmo_ColStock>
+	<CER_ChangeAmmo_NotResearchedSuffix> (ej forskat)</CER_ChangeAmmo_NotResearchedSuffix>
+	<CER_ChangeAmmo_AppliesToTip>{0}\n\nGäller för: {1}</CER_ChangeAmmo_AppliesToTip>
+	<CER_ChangeAmmo_AnyAmmoForWeapon>Valfri ammunition för {0}</CER_ChangeAmmo_AnyAmmoForWeapon>
+	<CER_ChangeAmmo_AnyAmmoGroupedTip>Låt spelet automatiskt välja den bästa forskade ammunitionen för {0} - detta är vad Försörjningspopupen och tillverkningskontrollerna redan använder när ingen specifik typ är vald. Klicka för att återställa alla berörda kolonister till detta.\n\nGäller för: {1}</CER_ChangeAmmo_AnyAmmoGroupedTip>
+	<CER_ChangeAmmo_AnyAmmoRowTip>Låt spelet automatiskt välja den bästa forskade ammunitionen för {0} - detta är vad Försörjningspopupen och tillverkningskontrollerna redan använder när ingen specifik typ är vald nedan. Klicka för att återställa till detta efter att ha valt en specifik typ.</CER_ChangeAmmo_AnyAmmoRowTip>
+	<CER_ChangeAmmo_StatusTip>{0}: {1} ({2} i lager, {3} lediga).</CER_ChangeAmmo_StatusTip>
+	<CER_ChangeAmmo_ClickOpenBillsTab> Klicka för att öppna dess orderflik.</CER_ChangeAmmo_ClickOpenBillsTab>
+	<CER_ChangeAmmo_ClickOpenSupplyPopup> Klicka för att öppna Försörjningspopupen och köa tillverkning för den.</CER_ChangeAmmo_ClickOpenSupplyPopup>
+	<CER_ChangeAmmo_NoneWeaponsTakeAmmo>Inga av de valda kolonisternas vapen tar ammunition.</CER_ChangeAmmo_NoneWeaponsTakeAmmo>
+
+</LanguageData>
