@@ -2,6 +2,8 @@
 
 A loadout, ammo and equipment automation add-on for [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) (RimWorld 1.6). It does CE's bookkeeping for you - as much or as little of it as you want.
 
+![Arm my Colony: one button from an unarmed colony to a full report](docs/media/G1_arm_my_colony.gif)
+
 ## What it does
 
 - **Arm my Colony** - one button in the Assign tab: picks a weapon per colonist by skill, builds Equipment Packs, queues the ammo and offers to craft what is missing, then shows a report of what happened.
