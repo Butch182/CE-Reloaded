@@ -9,13 +9,15 @@
   <description>CE Reloaded is a loadout, ammo and equipment automation add-on for Combat Extended. It does CE's bookkeeping for you - as much or as little of it as you want.
 
 Three ways to use it:
-- Full auto: press "Arm my Colony" in the Assign tab, pick Cautious / Normal / Aggressive, press Arm. Loadouts, ammo bills, assignment by skill and the crafting of what is missing - one button, plus a report of what happened.
-- Assisted: the same steps one at a time in four tabs - Equipment Packs, Weapon Loadouts (auto-generate with a live preview, pin rows to protect your edits), Roles, Assign Loadouts (by skill, drag and drop, click to override) - plus a Bill Overview that keeps ammo production sized to demand.
+- Full auto: press "Arm my Colony" in the Assign tab, pick Cautious / Normal / Aggressive, press Arm. Equipment packs, a weapon per colonist by skill, ammo bills and the crafting of what is missing - one button, plus a report of what happened.
+- Assisted: the same steps one at a time in the Loadout Planner - Equipment Packs, Roles (optional), Equip Colonists (pick each colonist's weapon from a list with score, stock and cost; drag and drop; an auto-assign preview with presets) - plus a Bill Overview that keeps production sized to demand.
 - All manual: keep using Combat Extended's own loadout editor and assign column. Nothing there changed. Take only the extras you like: the combat-readiness light, the gear-tab panel, the per-colonist "Ammo Loadouts" gizmo.
 
-Also in the box: a "Fetch gear now" button (everyone collects their loadout immediately), weapon scores, sidearms (backup weapons, explosives, shields), Squad Setup with Economy / Balanced presets, a Supply Loadouts table (assigned / stored / in production / missing), mass-replace ammo, special-effect icons (EMP, flame, tox, smoke, stun, AP, ...), mass and bulk bars everywhere, 13 languages, and every default configurable in Mod Settings.
+Also in the box: a "Fetch gear now" button (everyone collects their loadout immediately), weapon scores, sidearms (backup weapons, explosives, shields), weapon locks, a Supply Loadouts table (assigned / stored / in production / missing), mass-replace ammo, special-effect icons (EMP, flame, tox, smoke, stun, AP, ...), mass and bulk bars everywhere, 13 languages, and every default configurable in Mod Settings.
 
-Adds to Combat Extended, replaces nothing: no new items, ammo or defs, CE's balance and windows untouched. Everything the mod creates is an ordinary CE loadout or bill you can edit in CE's own editor. Safe to add to an existing save; safe to remove - colonists keep their loadouts and bills.
+Adds to Combat Extended, replaces nothing: no new items, ammo or defs, CE's balance and windows untouched. Everything the mod creates is an ordinary CE loadout or bill you can edit in CE's own editor. Safe to add to an existing save; before removing it, use "Prepare save for uninstall" in Mod Settings and colonists keep their gear as plain CE loadouts.
+
+Source code: github.com/Butch182/CE-Reloaded
 
 Requires Harmony and Combat Extended. Load after Combat Extended.
 
