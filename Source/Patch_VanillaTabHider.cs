@@ -5,22 +5,22 @@ using HarmonyLib;
 
 namespace CEReloaded
 {
-    // RimWorlds eigener Kolonisten-Reiter (Assign/Work/Schedule - alles MainTabWindow_PawnTable) bleibt
-    // offen, waehrend eines unserer Fenster darueber liegt, und zeichnet dabei jedes Bild weiter:
-    // gemessen 464-467 ms/s bei 130 Bildern/s, also zwei Drittel der gesamten Fensterlast, fuer einen
-    // Reiter, den in dem Moment niemand sieht (gemessen 2026-08-28). Deshalb wird er geschlossen.
+    // RimWorld's own colonist tabs (Assign/Work/Schedule - all MainTabWindow_PawnTable) stay open while
+    // one of our windows is on top, and keep drawing every frame: measured at 464-467 ms/s at 130 fps,
+    // i.e. two thirds of the total window load, for a tab nobody can see at that moment. So it is
+    // closed.
     //
-    // Mechanik: sobald das ERSTE Fenster dieses Mods in den WindowStack kommt und gerade ein
-    // Kolonisten-Reiter offen ist, wird der Reiter geschlossen (EscapeCurrentTab) und gemerkt. Sobald das
-    // LETZTE Fenster dieses Mods den Stack verlaesst, geht derselbe Reiter wieder auf (SetCurrentTab) -
-    // der Spieler landet also nach dem Schliessen wieder dort, wo er war, und nicht auf der blanken Karte.
-    // Nur Kolonisten-Tabellen, nicht Inspect/Architect: die sind billig und tragen Kontext (markierter
-    // Kolonist), den ein Zuklappen verlieren wuerde. Verkettete Fenster (Arm my Colony: eins schliesst,
-    // das naechste oeffnet) halten den Reiter zu, weil beim Schliessen noch ein Mod-Fenster im Stack liegt.
+    // Mechanics: as soon as the FIRST window of this mod enters the WindowStack while a colonist tab is
+    // open, the tab is closed (EscapeCurrentTab) and remembered. As soon as the LAST window of this mod
+    // leaves the stack, the same tab reopens (SetCurrentTab) - so after closing, the player ends up where
+    // they were rather than on the bare map.
+    // Only colonist tables, not Inspect/Architect: those are cheap and carry context (the selected
+    // colonist) that closing would lose. Chained windows (Arm my Colony: one closes, the next opens)
+    // keep the tab closed, because a mod window is still on the stack when the first one closes.
     //
-    // Erkennung ueber den Namensraum statt einer Basisklasse: die 14 Fenster dieses Mods erben alle direkt
-    // von Window, und ein FloatMenu oder eine Rueckfrage (Verse) darf den Reiter weder schliessen noch
-    // sein Wiederoeffnen ausloesen.
+    // Detection by namespace instead of a base class: the 14 windows of this mod all inherit directly
+    // from Window, and a FloatMenu or a confirmation dialog (Verse) must neither close the tab nor
+    // trigger its reopening.
     public static class VanillaTabKeeper
     {
         private static MainButtonDef closedTab;
@@ -42,13 +42,13 @@ namespace CEReloaded
         public static void NotifyWindowRemoved(Window w)
         {
             if (!IsOurs(w) || AnyOfOursStillOpen()) return;
-            // Better Pawn Control spielt beim Wiederoeffnen des Zuweisungs-Reiters SEINEN Schnappschuss
-            // der Loadout-IDs zurueck - den er beim Schliessen oben in NotifyWindowAdded gemacht hat, also
-            // VOR allem, was der Spieler in unseren Fenstern zugewiesen hat (2026-09-07, "5 von 9
-            // Zuweisungen weg, sobald man den Planer schliesst"). Deshalb hier zuerst sein Buch auf den
-            // jetzigen Stand bringen, dann erst den Reiter zurueckholen. Auch ohne gemerkten Reiter: eine
-            // Zuweisung bei geschlossenem Reiter traefe sonst dasselbe beim naechsten Oeffnen.
-            // Begruendung in voller Laenge: Compat_BetterPawnControl.cs.
+            // When the Assign tab reopens, Better Pawn Control restores ITS snapshot of the loadout IDs -
+            // the one it took when the tab was closed in NotifyWindowAdded above, i.e. BEFORE everything
+            // the player assigned in our windows (several assignments vanished as soon as the planner was
+            // closed). So first bring its records up to date here, and only then restore the tab. Also
+            // without a remembered tab: an assignment made while the tab was closed would otherwise suffer
+            // the same fate on the next open.
+            // Full reasoning: Compat_BetterPawnControl.cs.
             BetterPawnControlCompat.RefreshAssignSnapshot();
             if (closedTab == null) return;
             MainButtonDef tab = closedTab;
@@ -73,8 +73,8 @@ namespace CEReloaded
         public static void Postfix(Window window) => VanillaTabKeeper.NotifyWindowAdded(window);
     }
 
-    // Window.Close() und jeder Type-Ueberlauf von TryRemove laufen durch diese Ueberladung - eine
-    // Stelle reicht.
+    // Window.Close() and every type-based overload of TryRemove go through this overload - one
+    // place is enough.
     [HarmonyPatch(typeof(WindowStack), nameof(WindowStack.TryRemove), new Type[] { typeof(Window), typeof(bool) })]
     public static class Patch_WindowStack_TryRemove_VanillaTabHider
     {

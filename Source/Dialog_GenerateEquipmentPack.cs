@@ -62,15 +62,15 @@ namespace CEReloaded
             // pawn's actual crafted item picks its material at production time, same as any other bill),
             // so this only feeds PackMaterialCosts' ingredient total, never gets baked into the Loadout.
             public ThingDef stuff;
-            // Anzeige-Cache (2026-08-29, perf-packwizard-draw-cost): LabelCap.ToString().Truncate(...) lief pro
-            // Zeile pro Durchgang - Truncate misst den Text in einer Schleife und legt dabei Zeichenketten an.
-            // Ungueltig, sobald der Def oder die verfuegbare Breite wechselt (beides wird beim Lesen geprueft).
+            // Display cache: LabelCap.ToString().Truncate(...) ran per row per pass - Truncate measures the text in
+            // a loop and allocates strings while doing so.
+            // Invalid as soon as the def or the available width changes (both are checked on read).
             public string labelCache;
             public Def labelCacheDef;
             public float labelCacheW = -1f;
-            // Verfuegbarkeits-Abschnitte (2026-09-06, perf-packwizard-draw-time - gemessen: 20 ms/s bei
-            // 2600 Aufrufen/s). BuildAvailabilitySegments fragt je Aufruf Bestand am Boden und gesperrten
-            // Bestand ab; die Toepfe dahinter (ComputeItemOwnership) sind ohnehin 0,3 s alt. Dieselbe Frist.
+            // Availability segments (measured: 20 ms/s at 2600 calls/s). BuildAvailabilitySegments queries stock on
+            // the ground and forbidden stock per call; the pools behind it (ComputeItemOwnership) are 0.3 s old
+            // anyway. Same expiry.
             public LoadoutUtility.AvailabilitySegments segCache;
             public Def segCacheDef;
             public float segCacheTime = -99f;
@@ -81,13 +81,12 @@ namespace CEReloaded
             public string name;
             public bool include;
             public bool exists;
-            // Zur Loeschung vorgemerkt (2026-08-12): bestehende Packs kennen Pin / Loeschen / Bearbeitet,
-            // ueberall gleich. Nur fuer `exists`-Zeilen
-            // erreichbar; ein Pack, das es noch gar nicht gibt, kann man nicht loeschen.
+            // Marked for deletion: existing packs know Pin / Delete / Edited, the same everywhere. Only reachable
+            // for `exists` rows; a pack that does not exist yet cannot be deleted.
             public bool delete;
-            // Was `include` sagte, BEVOR der Muelleimer angeklickt wurde (2026-09-04). Ohne diese Zahl war
-            // der Umschalter einseitig: Pin -> Muelleimer setzt include auf false, Muelleimer -> Pin nahm
-            // das nie zurueck. Siehe die ausfuehrliche Begruendung am Umschalter.
+            // What `include` said BEFORE the trash can was clicked. Without this value the toggle was one-sided:
+            // Pin -> trash set include to false, trash -> Pin never undid that. See the full reasoning at the
+            // toggle.
             public bool includeBeforeDelete = true;
             public bool edited;   // once true, sliders/checkbox stop touching this plan's items (matches
                                   // the Weapon Loadouts auto-generate table's row-lock idea)
@@ -99,11 +98,10 @@ namespace CEReloaded
             // sliders like a brand-new plan would (2026-08-01).
             public bool seededReal;
             public List<PackItem> items = new List<PackItem>();
-            // Zeichen-Cache (2026-08-29, perf-packwizard-draw-cost): Materialkosten (Woerterbuch + Rezeptzutaten je
-            // Gegenstand) und Masse/Sperrigkeit wurden pro Zeile in JEDEM Durchgang neu gerechnet - gemessen 0,55 ms
-            // je Zeichnen und 6-10 MB/s bei 130 Bildern, obwohl RecomputeIfNeeded die Liste laengst nur noch 4x je
-            // Sekunde neu baut. uiDirty setzt jeder Pfad, der `items` anfasst (Upsert, Edit, die Auswahlmenues);
-            // gelesen und geloescht wird es einmal je Zeile in DrawRow.
+            // Draw cache: material costs (dictionary + recipe ingredients per item) and mass/bulk were recomputed
+            // per row in EVERY pass - measured 0.55 ms per draw and 6-10 MB/s at 130 fps, although
+            // RecomputeIfNeeded only rebuilds the list 4x per second. uiDirty is set by every path that touches
+            // `items` (Upsert, Edit, the selection menus); it is read and cleared once per row in DrawRow.
             public bool uiDirty = true;
             public Dictionary<ThingDef, int> costsCache;
             public float massCache, bulkCache;
@@ -128,9 +126,9 @@ namespace CEReloaded
         private readonly Dictionary<string, bool> includeState = new Dictionary<string, bool>();
         private readonly List<PackPlan> plans = new List<PackPlan>();
         private Vector2 scroll;
-        // Fussleisten-Cache (2026-08-29, perf-packwizard-draw-cost): AllEquipmentPacks().Count() lief pro Durchgang
-        // ueber alle Loadouts der Kolonie, und die beiden Beschriftungen mit Platzhalter wurden pro Durchgang neu
-        // formatiert. Der Zaehler zieht mit Recompute nach (hoechstens 250 ms alt), die Texte an ihrer Zahl.
+        // Footer cache: AllEquipmentPacks().Count() ran over all colony loadouts every pass, and the two labels
+        // with placeholders were re-formatted every pass. The counter follows Recompute (at most 250 ms old), the
+        // texts follow their number.
         private int existingPackCountCache;
         private string delLabelCache; private int delLabelCacheCount = -1; private float delWCache;
         private string genLabelCache; private int genLabelChecked = -1, genLabelDeleted = -1;
@@ -138,8 +136,8 @@ namespace CEReloaded
         // 1208f -> 1138f (2026-08-01), matching MaterialsW's own 230->160 shrink below - the window doesn't
         // need to carry width nothing actually uses.
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1138f, UI.screenWidth - 40f), Mathf.Min(1080f, UI.screenHeight - 30f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Do not slide under RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without a collision this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -191,11 +189,10 @@ namespace CEReloaded
 
             // "Use recommended setup" + presets: always visible, the one-click path - same convention as
             // the Weapon Loadouts popup (Dialog_SquadSetup).
-            // Der Knopf waechst mit seiner Beschriftung, statt sie zu verkleinern (2026-09-03,
-            // auf Deutsch stand "Empfohlenes Setup verwenden" in kleiner
-            // Schrift neben vier Voreinstellungen in normaler - genau die gemischten Groessen, die der
-            // Abgleich ausschliessen soll). Die Voreinstellungen daneben messen sich seit je selbst; hier
-            // stand eine feste Breite von 190, und 190 reicht dem englischen Text, sonst keinem.
+            // The button grows with its label instead of shrinking it (the German label showed in a small font
+            // next to four presets in the normal one - exactly the mixed sizes the alignment is meant to rule
+            // out). The presets next to it have always measured themselves; here there was a fixed width of 190,
+            // and 190 is enough for the English text, but no other.
             string recLbl = "CER_GenerateEquipmentPack_RecommendedBtn".Translate().ToString();
             float recW = Mathf.Max(190f, Text.CalcSize(recLbl).x + 20f);
             if (LoadoutUtility.ButtonTextFit(new Rect(0, y, recW, 26f), recLbl)) UseRecommended();
@@ -214,15 +211,13 @@ namespace CEReloaded
                 "CER_GenerateEquipmentPack_SimpleTip".Translate());
             y += 34f;
 
-            // "Any X" IMMER sichtbar, nicht erst hinter dem Detail-Schalter (2026-08-25: der Schalter gehoert
-            // in die schlanke Ansicht, nicht in den erweiterten Filter). Gleiche Begruendung wie beim
-            // Rollen-Schalter im Assign-Fenster: eine
-            // Grundsatzentscheidung ("konkrete Sorte oder Gattung?") gehoert in Sichtweite, die drei
-            // Feinregler darunter duerfen eingeklappt bleiben.
-            // Ueber CheckboxLabeledFit (2026-09-03): im festen
-            // 220-Punkte-Feld brach die deutsche Beschriftung auf zwei Zeilen um und wurde oben UND unten
-            // angeschnitten. Rechts daneben steht bis zum Detail-Schalter nichts, das Feld darf also
-            // mitwachsen.
+            // "Any X" ALWAYS visible, not only behind the detail toggle (the switch belongs in the compact view,
+            // not in the extended filter). Same reasoning as the role switch in the Assign window: a fundamental
+            // decision ("concrete type or category?") belongs in sight, the three fine-tuning sliders below may
+            // stay collapsed.
+            // Via CheckboxLabeledFit: in the fixed 220-point field the German label wrapped onto two lines and was
+            // clipped at the top AND bottom. There is nothing to its right up to the detail toggle, so the field
+            // may grow.
             bool anyTypes = useAnyTypes;
             Rect anyTypesRect = LoadoutUtility.CheckboxLabeledFit(new Rect(0, y, 220f, 24f),
                 "CER_GenerateEquipmentPack_UseAnyTypesLabel".Translate(), ref anyTypes,
@@ -251,18 +246,16 @@ namespace CEReloaded
             // chain only) + the primary action - same layout convention Dialog_SquadSetup's own popups use
             // (LoadoutUtility.BottomBarH/BottomBtnH/CloseBtnW/PrimaryBtnW), so this step doesn't stand out
             // with a bottom bar that behaves differently from the rest of the flow.
-            // Alle Beschriftungen der Fussleiste zuerst, dann EINE Schriftstufe fuer die ganze Reihe
-            // (2026-09-04, dieselbe Fundstellenklasse wie in der Auftragsuebersicht: dort standen die linken
-            // Knoepfe gross und die rechten klein, weil jeder fuer sich gemessen hat). Der Zaehlerlauf und der
-            // Beschriftungs-Cache des Primaerknopfes sind dafuer hierher gewandert - die Reihenstufe braucht
-            // seinen Text, bevor irgendetwas gezeichnet wird.
+            // All footer labels first, then ONE font size for the whole row (same class of issue as in the bills
+            // overview: there the left buttons were large and the right ones small, because each measured itself).
+            // The counting pass and the primary button's label cache moved here for that - the row size needs its
+            // text before anything is drawn.
             // Excludes plans GenerateChecked() would itself skip as empty (2026-08-01 fix) - a plan can be
             // ticked but have every item manually deleted, which used to still count toward this button's
             // own "Generate N" label even though GenerateChecked() silently produces nothing for it.
-            // Zum LOESCHEN markierte Packs zaehlen mit (2026-08-15, Review-Befund). Das Loeschen setzt
-            // `include` auf false, also fielen sie aus dieser Zahl heraus: markierte man drei Packs zum
-            // Loeschen und sonst nichts, stand auf dem Knopf "Weiter" - und der Klick hat die drei Packs
-            // geloescht. Ein Knopf, der zerstoert, muss das vorher sagen.
+            // Packs marked for DELETION count too. Deleting sets `include` to false, so they dropped out of this
+            // number: marking three packs for deletion and nothing else showed "Continue" on the button - and the
+            // click deleted the three packs. A button that destroys must say so beforehand.
             int checkedCount = 0, deleteCount = 0;
             for (int pi = 0; pi < plans.Count; pi++)
             {
@@ -287,8 +280,8 @@ namespace CEReloaded
             if (epExistingCount > 0 && (delLabelCache == null || delLabelCacheCount != epExistingCount))
             {
                 delLabelCache = "CER_GenerateEquipmentPack_DeleteExistingButton".Translate(epExistingCount.ToString()).ToString();
-                // In Small gemessen, nicht in der zufaellig gesetzten Schrift - der Wert ist gecacht und
-                // haette sonst je nach erstem Durchgang eine andere Breite behalten.
+                // Measured in Small, not in whatever font happens to be set - the value is cached and would
+                // otherwise have kept a different width depending on the first pass.
                 delWCache = LoadoutUtility.BottomBtnW(delLabelCache, 0f, 9999f) + 6f;
                 delLabelCacheCount = epExistingCount;
             }
@@ -325,14 +318,14 @@ namespace CEReloaded
             // added to the Weapon Loadouts generate screen (2026-08-01). Only shown when at
             // least one already exists.
             {
-                int existingPackCount = epExistingCount;   // siehe Recompute - nicht je Durchgang zaehlen
+                int existingPackCount = epExistingCount;   // see Recompute - do not count every pass
                 if (existingPackCount > 0)
                 {
                     string delLabel = delLabelCache;
                     float delW = delWCache;
                     Rect delRect = new Rect(cancelEndX + 10f, inRect.height - LoadoutUtility.BottomBarH, delW, LoadoutUtility.BottomBtnH);
-                    // ButtonTextFit statt Widgets.ButtonText (2026-09-04): der rohe Aufruf misst nicht und
-                    // ignorierte die Schriftstufe der Reihe.
+                    // ButtonTextFit instead of Widgets.ButtonText: the raw call does not measure and ignored the
+                    // row's font size.
                     if (LoadoutUtility.ButtonTextFit(delRect, delLabel))
                     {
                         string confirmMsg = existingPackCount == 1
@@ -366,10 +359,9 @@ namespace CEReloaded
             // Excludes plans GenerateChecked() would itself skip as empty (2026-08-01 fix) - a plan can be
             // ticked but have every item manually deleted, which used to still count toward this button's
             // own "Generate N" label even though GenerateChecked() silently produces nothing for it.
-            // Zum LOESCHEN markierte Packs zaehlen mit (2026-08-15, Review-Befund). Das Loeschen setzt
-            // `include` auf false, also fielen sie aus dieser Zahl heraus: markierte man drei Packs zum
-            // Loeschen und sonst nichts, stand auf dem Knopf "Weiter" - und der Klick hat die drei Packs
-            // geloescht. Ein Knopf, der zerstoert, muss das vorher sagen.
+            // Packs marked for DELETION count too. Deleting sets `include` to false, so they dropped out of this
+            // number: marking three packs for deletion and nothing else showed "Continue" on the button - and the
+            // click deleted the three packs. A button that destroys must say so beforehand.
             float xr = inRect.width;
             Rect genRect = new Rect(xr - LoadoutUtility.PrimaryBtnW, inRect.height - LoadoutUtility.BottomBarH, LoadoutUtility.PrimaryBtnW, LoadoutUtility.BottomBtnH);
             xr -= LoadoutUtility.PrimaryBtnW + 10f;
@@ -401,8 +393,8 @@ namespace CEReloaded
         // just tuned for this window's own 3 sliders (Cheap/Expensive, Lightweight/Heavy, Essential/All)
         // instead of the Weapon Loadouts assign/generate axes.
         // ================================================================================================
-        // Schluessel bleiben englisch (sie steuern ApplyPreset), die BESCHRIFTUNG kommt aus Keyed
-        // (2026-09-03: die vier Knoepfe waren als einzige in diesem Fenster unuebersetzt).
+        // Keys stay English (they drive ApplyPreset), the LABEL comes from Keyed (the four buttons were the only
+        // untranslated ones in this window).
         private static readonly string[] PresetKeys = { "Balanced", "Economy", "Best Gear", "Essentials only" };
 
         private static string PresetLabel(string key)
@@ -445,20 +437,19 @@ namespace CEReloaded
         // plan the player hasn't personally hand-edited so it goes back to tracking the live slider output,
         // same as a plan that never existed as a real pack already does. A plan the player DID edit
         // (p.edited) stays protected regardless - that's a deliberate personal choice, not stale seed data.
-        // Seit 2026-08-25 loest derselbe Klick auch die HAKEN wieder (vorher blieben manuell ein-/
-        // ausgeschaltete Packs haengen, auch wenn man oben auf Balanced / Economy etc. klickte).
-        // Ursache: der Klick auf einen Haken setzt
-        // includeTouched, und Recompute laesst eine beruehrte Zeile bewusst in Ruhe - richtig gegen den
-        // Essential<->All-Regler (sonst koennte man keinen Haken halten, waehrend man zieht), aber ein
-        // Preset ist die ausdrueckliche Bitte "stell alles neu ein", und die hat bisher nur den Inhalt
-        // neu gerechnet, nie die Auswahl. Freigegeben wird dieselbe Menge wie beim Inhalt: alles, was
-        // nicht von Hand bearbeitet ist - und zusaetzlich nichts, was zum Loeschen vorgemerkt ist, denn
-        // ein Muelleimer ist genauso eine bewusste Entscheidung wie eine Bearbeitung.
-        // includeState muss mit raus: Upsert liest es beim naechsten Aufbau zurueck und wuerde den
-        // alten Haken sonst still wiederherstellen.
+        // The same click also releases the CHECKBOXES (previously manually toggled packs stayed stuck, even when
+        // clicking Balanced / Economy etc. at the top).
+        // Cause: clicking a checkbox sets includeTouched, and Recompute deliberately leaves a touched row alone -
+        // right against the Essential<->All slider (otherwise you could not hold a checkbox while dragging), but
+        // a preset is the explicit request "set everything up again", and until now it only recomputed the
+        // content, never the selection. The same set is released as for the content: everything not edited by
+        // hand - and additionally nothing marked for deletion, because a trash can is just as deliberate a
+        // decision as an edit.
+        // includeState has to go too: Upsert reads it back on the next rebuild and would otherwise silently
+        // restore the old checkbox.
         private void ReleaseUnEditedSeeds()
         {
-            recomputeDirty = true;   // ein Preset ist die ausdrueckliche Bitte um Neuberechnung - siehe RecomputeIfNeeded
+            recomputeDirty = true;   // a preset is the explicit request to recompute - see RecomputeIfNeeded
             foreach (PackPlan p in plans)
             {
                 if (p.edited) continue;
@@ -491,10 +482,10 @@ namespace CEReloaded
         // line tall and grows to fit more lines only when a pack has more than one item - the same
         // pattern Weapon Loadouts already uses for a weapon with more than one ammo type.
 
-        // RowGapH 8 -> 4 (2026-08-12: zu viel Zeilenabstand).
-        // Bewusst NUR der Zwischenraum: RowLineH bleibt bei 26, weil die Inhaltszeile daraus als
-        // RowLineH - 2 (also 24px) gezeichnet wird - daran zu drehen haette den Inhalt geschrumpft statt
-        // den Abstand. Dieselbe Aenderung im Schwester-Popup (Dialog_SquadSetup.RowH).
+        // RowGapH 8 -> 4 (too much row spacing).
+        // Deliberately ONLY the gap: RowLineH stays at 26, because the content row is drawn from it as
+        // RowLineH - 2 (i.e. 24px) - changing that would have shrunk the content instead of the spacing. The
+        // same change in the sister popup (Dialog_SquadSetup.RowH).
         private const float RowLineH = 26f, RowGapH = 4f;
         private const float ItemsColX = 190f;
         // Mass/Bulk is a short fixed text; Materials needs real room for several ingredient icon+count
@@ -567,34 +558,32 @@ namespace CEReloaded
             // it up any time" - exactly what editing a field below now does (see Edit() local below).
             bool protectedSkip = skipExisting && p.exists && !p.includeTouched && !p.include;
             Rect chkRect = new Rect(0f, y + 3f, 20f, 20f);
-            // BESTEHENDE Packs haben jetzt denselben Zustands-Satz wie die Weapon-Loadouts-Zeile daneben
-            // (2026-08-12: ein gruener Haken ergibt wenig Sinn, weil das Pack schon angelegt ist; beide
-            // sollen GENAU GLEICH funktionieren): Pin = bleibt wie es ist,
-            // Muelleimer = wird geloescht, Stift = Inhalt oder Menge wurden veraendert. Der Klick schaltet
-            // zwischen Pin und Muelleimer hin und her - der Pin kommt also wieder, was vorher nicht ging
-            // (einmal auf den Haken geklickt, und die Zeile blieb fuer immer im Haken/X-Zyklus).
-            // Der Stift ist ein ANZEIGE-Zustand, kein Klickziel: er erscheint von selbst, sobald Edit()
-            // gelaufen ist, und verschwindet nicht, solange die Aenderung ansteht.
+            // EXISTING packs now have the same state set as the Weapon Loadouts row next to it (a green checkmark
+            // makes little sense because the pack already exists; both should work EXACTLY THE SAME): Pin = stays
+            // as it is, trash can = gets deleted, pencil = contents or amount were changed. The click toggles
+            // between Pin and trash - so the Pin comes back, which was not possible before (one click on the
+            // checkbox, and the row stayed in the checkbox/X cycle forever).
+            // The pencil is a DISPLAY state, not a click target: it appears on its own as soon as Edit() has run,
+            // and does not disappear while the change is pending.
             if (p.exists)
             {
                 Texture2D stateTex = p.delete ? LoadoutUtility.TexTrash : (p.edited ? LoadoutUtility.TexEditPencil : PinTex);
                 GUI.color = p.delete ? LoadoutUtility.ColBad : (p.edited ? Color.white : LoadoutUtility.ColPin);
                 if (LoadoutUtility.StateIconButton(chkRect, stateTex, GUI.color))
                 {
-                    // ====== Der Umschalter muss in BEIDE Richtungen gleich viel tun (2026-09-04) ======
+                    // ====== The toggle must do the same amount in BOTH directions ======
                     //
-                    // Befund im Test: Jedes Hin-und-Zurueck an EINER Zeile zog eine Zeile vom Zaehler ab,
-                    // ohne dass sich am Bild etwas aenderte. Am Ende stand der Assistent auf 'keine Packs',
-                    // obwohl er drei angehakte Packs anzeigte.
+                    // Symptom: every back-and-forth on ONE row subtracted a row from the counter without anything
+                    // changing on screen. In the end the wizard was at 'no packs' although it showed three
+                    // ticked packs.
                     //
-                    // Der Mechanismus: Pin -> Muelleimer setzte `include` auf false,
-                    // Muelleimer -> Pin nahm es nicht zurueck. Das SYMBOL haengt an `delete` und sah danach
-                    // wieder aus wie vorher; der Knopf unten zaehlt aber `include`. Anzeige und Zaehler
-                    // liefen also bei jedem Klickpaar um eins auseinander - unsichtbar, bis am Ende
-                    // "Continue (no packs)" dastand.
+                    // The mechanism: Pin -> trash set `include` to false, trash -> Pin did not undo it. The ICON
+                    // depends on `delete` and looked as before afterwards; but the button at the bottom counts
+                    // `include`. So display and counter drifted apart by one with every pair of clicks - invisible
+                    // until "Continue (no packs)" showed up at the end.
                     //
-                    // Ein Umschalter, der beim Hinweg mehr aendert als beim Rueckweg, ist immer ein Fehler.
-                    // Deshalb wird der vorherige Zustand gemerkt und beim Zurueckschalten wiederhergestellt.
+                    // A toggle that changes more on the way there than on the way back is always a bug.
+                    // So the previous state is remembered and restored when toggling back.
                     p.delete = !p.delete;
                     if (p.delete)
                     {
@@ -609,9 +598,8 @@ namespace CEReloaded
                     includeState[p.name] = p.include;
                 }
                 GUI.color = Color.white;
-                // Nur bauen, wenn die Maus darueber steht (2026-08-29, perf-packwizard-draw-cost): jede dieser
-                // Zeilen formatiert einen Text mit Platzhalter - pro Zeile, pro Durchgang, fuer einen Tooltip,
-                // den TipRegion ohnehin nur bei Mouseover zeigt.
+                // Only build when the mouse is over it: each of these lines formats a text with a placeholder - per
+                // row, per pass, for a tooltip that TipRegion only shows on mouseover anyway.
                 if (LoadoutUtility.TipWanted(chkRect)) TooltipHandler.TipRegion(chkRect, p.delete
                     ? "CER_GenerateEquipmentPack_StateDeleteTip".Translate(p.name)
                     : (p.edited ? "CER_GenerateEquipmentPack_StateEditedTip".Translate(p.name)
@@ -634,9 +622,9 @@ namespace CEReloaded
                 bool inc = p.include;
                 Widgets.Checkbox(chkRect.position, ref inc, 20f);
                 if (inc != p.include) { p.include = inc; p.includeTouched = true; includeState[p.name] = inc; }
-                // Der NOCH NICHT bestehende Fall war der einzige ohne Erklaerung (2026-08-28 im Selbsttest
-                // gefunden): Pin, Muelleimer und Stift haben je einen Tooltip, das rote X daneben hatte gar
-                // keinen - ausgerechnet das Symbol, das am ehesten nach "hier stimmt etwas nicht" aussieht.
+                // The NOT YET existing case was the only one without an explanation: Pin, trash can and pencil each
+                // have a tooltip, the red X next to them had none at all - precisely the icon that most looks like
+                // "something is wrong here".
                 if (LoadoutUtility.TipWanted(chkRect)) TooltipHandler.TipRegion(chkRect, inc
                     ? "CER_GenerateEquipmentPack_StateWillCreateTip".Translate(p.name)
                     : "CER_GenerateEquipmentPack_StateWontCreateTip".Translate(p.name));
@@ -649,25 +637,22 @@ namespace CEReloaded
             {
                 p.uiDirty = true;
                 p.edited = true;
-                // IMMER aufnehmen, nicht nur aus dem gepinnten Zustand heraus (2026-08-12: eine Aenderung
-                // bewirkte nichts). Genau hier lag es: die Aufnahme haing an
-                // `protectedSkip`, und das ist nur wahr, solange "bestehende ueberspringen" AN ist UND die
-                // Zeile unberuehrt war. Steht der Schalter aus, oder hat man die Zeile vorher einmal
-                // angefasst, blieb `include` false - die Bearbeitung wurde beim Anwenden stillschweigend
-                // uebersprungen. Eine Bearbeitung IST die Absicht, dieses Pack zu schreiben.
+                // ALWAYS include, not only from the pinned state (an edit had no effect). This is exactly where it
+                // was: inclusion depended on `protectedSkip`, which is only true while "skip existing" is ON AND the
+                // row was untouched. With the switch off, or if the row had been touched once before, `include`
+                // stayed false - the edit was silently skipped on apply. An edit IS the intent to write this pack.
                 p.include = true;
                 p.includeTouched = true;
                 includeState[p.name] = true;
-                // Eine Bearbeitung hebt eine vorgemerkte Loeschung auf - sonst editiert man etwas, das im
-                // selben Durchgang geloescht wird.
+                // An edit cancels a pending deletion - otherwise you edit something that gets deleted in the same
+                // pass.
                 p.delete = false;
             }
 
-            // Kein zweites Symbol mehr (2026-08-12: nur den ZUSTAND zeigen). Hier war es besonders
-            // redundant: dieser Tab kennt
-            // gar kein Loeschen (canDelete war fest false), das Glyph konnte also nur "+" / "~" / "x" sagen -
-            // und ob ein Pack neu ist oder aktualisiert wird, steht ohnehin in der Zeile selbst. Der Haken
-            // links traegt den Zustand allein.
+            // No second icon any more (show only the STATE). It was especially redundant here: this tab has no
+            // deletion at all (canDelete was hard-wired false), so the glyph could only say "+" / "~" / "x" - and
+            // whether a pack is new or being updated is shown in the row itself anyway. The checkbox on the left
+            // carries the state on its own.
             Widgets.Label(new Rect(42f, y, ItemsColX - 46f, RowLineH), p.name);
 
             float itemsW = width - ItemsColX - StatsColW - 8f;
@@ -734,9 +719,9 @@ namespace CEReloaded
                 }
                 Widgets.Label(nameRect, item.labelCache);
                 Text.Anchor = TextAnchor.UpperLeft;
-                // Ein Eintrag ohne Pool (aus einem Pack zurueckgelesene "sonstige" Sache, siehe
-                // ItemsFromLoadout) laesst sich nicht tauschen - dann auch nicht als klickbar anbieten.
-                // Sonst kaeme ein leeres FloatMenu, und ein leeres Menue ist schlimmer als kein Menue.
+                // An entry without a pool (an "other" item read back from a pack, see ItemsFromLoadout) cannot be
+                // swapped - so do not offer it as clickable either. Otherwise an empty FloatMenu would appear, and
+                // an empty menu is worse than no menu.
                 bool switchable = item.pool != null;
                 if (switchable) Widgets.DrawHighlightIfMouseover(nameRect);
                 if (switchable && Widgets.ButtonInvisible(nameRect))
@@ -773,7 +758,8 @@ namespace CEReloaded
                 Rect cntRect = new Rect(nameEndX + 6f, row.y, 42f, 22f);
                 int val = item.count;
                 string buf = item.countBuf;
-                // Echtes Eingabefeld nur bei Maus ueber der Zeile oder Fokus - siehe LoadoutUtility.NumericFieldLazy.
+                // Real input field only while the mouse is over the row or it has focus - see
+                // LoadoutUtility.NumericFieldLazy.
                 LoadoutUtility.NumericFieldLazy(cntRect, "CER_pack_" + p.name + "_" + itemIdx, Mouse.IsOver(full), ref val, ref buf, 0f, 99999f);
                 item.countBuf = buf;
                 // Dragging the count down to 0 removes the item outright, same as the explicit X button
@@ -814,7 +800,7 @@ namespace CEReloaded
                     // Same "In storage:/Carried by:/Assigned to:" breakdown Weapon Loadouts' own availability
                     // bar already gives, not just a bare Total/Available count (2026-07-31:
                     // wanted to see WHICH concrete food and WHERE, same detail level as elsewhere).
-                    // TipWanted: der Orts-Tooltip laeuft ueber alle Karten - nur bauen, wenn er auch gezeigt wird.
+                    // TipWanted: the location tooltip runs over all maps - only build it when it is actually shown.
                     LoadoutUtility.DrawAvailabilityBar(availRect, itemSeg, horizontal: true,
                         LoadoutUtility.TipWanted(availRect) ? LoadoutUtility.BuildPackItemLocationTooltip(item.def) : null);
                 }
@@ -876,8 +862,8 @@ namespace CEReloaded
             }
             if (p.items.Count == 0) iy += RowLineH;   // reserve the one row this pack's list still needs
 
-            // Kosten und Masse/Sperrigkeit aus dem Zeilen-Cache (siehe PackPlan.uiDirty) - neu nur, wenn sich
-            // der Inhalt wirklich geaendert hat, nicht 260 Mal je Sekunde.
+            // Costs and mass/bulk from the row cache (see PackPlan.uiDirty) - recomputed only when the content
+            // really changed, not 260 times a second.
             if (p.uiDirty || p.costsCache == null)
             {
                 p.costsCache = PackMaterialCosts(p);
@@ -893,7 +879,7 @@ namespace CEReloaded
             float statsX = width - StatsColW + AvailColW;
             // What crafting this pack would actually consume, not an abstract silver price - same ingredient-
             // chip strip the produce popups use, red where storage can't cover it.
-            // Ohne Mengen: 160px Spalte, siehe DrawTotalCostLine. Die Zahlen stehen im Tooltip der Zelle.
+            // Without amounts: 160px column, see DrawTotalCostLine. The numbers are in the cell's tooltip.
             LoadoutUtility.DrawTotalCostLine(statsX, statsY - 3f, MaterialsW, p.costsCache, "", labelW: 6f, showCounts: false);
             // Side by side, not stacked - this column has the width to spare (matches the Sidearm/Pack
             // picker's own row convention) and a pack row is rarely tall enough to want two lines here.
@@ -923,8 +909,8 @@ namespace CEReloaded
             return costs;
         }
 
-        // Masse/Sperrigkeit eines Plans - einmal je Inhaltsaenderung (siehe PackPlan.uiDirty). BulkStat ist
-        // LoadoutUtilitys aufgeloester StatDef, statt DefDatabase.GetNamed je Zeile je Durchgang.
+        // Mass/bulk of a plan - once per content change (see PackPlan.uiDirty). BulkStat is LoadoutUtility's
+        // resolved StatDef, instead of DefDatabase.GetNamed per row per pass.
         private static void ComputeMassBulk(PackPlan p, out float mass, out float bulk)
         {
             mass = 0f; bulk = 0f;
@@ -976,18 +962,16 @@ namespace CEReloaded
         // (def/count/removal) is marked `edited` and is skipped here from then on, exactly like a "Locked"
         // row in the Weapon Loadouts auto-generate table.
         //
-        // NICHT MEHR IN JEDEM BILD (2026-08-25: Flackern bei laufendem Luefter; die
-        // Messzeile darin: Dialog_GenerateEquipmentPack 140 ms/s bei 140 Bildern/s, 0.41 ms je LAYOUT-Durchgang
-        // und 3 MB/s neu belegt). Das war dieser Aufruf: bis heute in JEDEM Durchgang jedes Bildes sieben
-        // Gegenstandslisten neu gebaut - der alte Kommentar ("cheap enough ... every frame") stammt aus einer
-        // Zeit mit einem Durchgang bei 60 Bildern; bei 143 Hz und zwei Durchgaengen sind es rund 300 Laeufe
-        // pro Sekunde fuer ein Bild, das stillsteht. RecomputeIfNeeded rechnet, wenn sich eine Eingabe
-        // geaendert hat (Regler, Any-X, Zahl der Plaene, die zwei Vorgaben aus den Mod-Einstellungen), wenn es
-        // jemand ausdruecklich verlangt (Preset, Empfehlung - recomputeDirty) - und sonst hoechstens viermal
-        // je Sekunde, damit alles, was hier nicht aufgezaehlt ist (Pin geloest, Pack in einem anderen Fenster
-        // geloescht, ein vergessener Pfad), spaetestens nach einer Viertelsekunde nachzieht. Recompute ist
-        // idempotent (Upsert laesst Bearbeitetes und Geschuetztes in Ruhe): ein Lauf zu viel kostet nur Zeit,
-        // ein Lauf zu wenig hoechstens 250 ms Verzoegerung.
+        // NO LONGER EVERY FRAME (it caused stutter with the fan spinning up; measured:
+        // Dialog_GenerateEquipmentPack 140 ms/s at 140 fps, 0.41 ms per LAYOUT pass and 3 MB/s newly allocated).
+        // That was this call: it rebuilt seven item lists in EVERY pass of every frame - the old comment
+        // ("cheap enough ... every frame") dates from a time with one pass at 60 fps; at 143 Hz and two passes it
+        // is about 300 runs per second for a frame that stands still. RecomputeIfNeeded recomputes when an input
+        // changed (sliders, Any-X, number of plans, the two defaults from the mod settings), when explicitly
+        // requested (preset, recommendation - recomputeDirty) - and otherwise at most four times per second, so
+        // everything not listed here (pin released, pack deleted in another window, a forgotten path) catches up
+        // within a quarter second at the latest. Recompute is idempotent (Upsert leaves edited and protected
+        // plans alone): one run too many only costs time, one run too few at most 250 ms of delay.
         private bool recomputeDirty = true;
         private float lastRecomputeAt = -1f;
         private (float cost, float weight, float coverage, bool anyTypes, int plans, string med, string meal) lastRecomputeKey;
@@ -1006,7 +990,7 @@ namespace CEReloaded
 
         private void Recompute()
         {
-            existingPackCountCache = EquipmentPackUtility.AllEquipmentPacks().Count();   // fuer die Fussleiste, siehe dort
+            existingPackCountCache = EquipmentPackUtility.AllEquipmentPacks().Count();   // for the footer, see there
             // Same order as TemplateOrder (most essential first, Combat Drugs Kit deliberately last) - this
             // is also the row DISPLAY order, a separate thing from the coverage-slider ranking.
             Upsert("Base Supply", BuildBaseSupplyItems());
@@ -1043,13 +1027,11 @@ namespace CEReloaded
                 // sliders live until edited, same as before.
                 if (!existing.edited && !existing.seededReal)
                 {
-                    // Was der Schieberegler gar nicht kennt, ueberlebt jede Neuberechnung (2026-08-09).
-                    // ItemsFromLoadout liest solche Sachen jetzt mit
-                    // (pool == null), aber das allein haette nur den ERSTEN Frame geschuetzt: sobald
-                    // ReleaseUnEditedSeeds das seededReal loescht - und das tut jeder Preset-Klick -, wuerde
-                    // freshItems die ganze Liste ersetzen und die von Hand eingelegte Munition waere wieder
-                    // weg. Ein Preset-Klick heisst "rechne die EMPFEHLUNG neu", nicht "wirf weg, wozu die
-                    // Empfehlung gar keine Meinung hat".
+                    // Whatever the slider does not know survives every recompute. ItemsFromLoadout now reads such
+                    // items too (pool == null), but that alone would only have protected the FIRST frame: as soon
+                    // as ReleaseUnEditedSeeds clears seededReal - and every preset click does - freshItems would
+                    // replace the whole list and the hand-added ammo would be gone again. A preset click means
+                    // "recompute the RECOMMENDATION", not "throw away what the recommendation has no opinion on".
                     List<PackItem> keptExtras = existing.items.Where(i => i.pool == null).ToList();
                     existing.items = freshItems;
                     existing.uiDirty = true;
@@ -1061,7 +1043,7 @@ namespace CEReloaded
             if (freshItems.Count == 0) return;
             var plan = new PackPlan { name = name, items = freshItems };
             string fullLabel = EquipmentPackUtility.PackMarkerPrefix + " " + name;
-            // Feste Kennung statt Namenstext (2026-08-09) - siehe FindGeneratedPackForPlan.
+            // Fixed identifier instead of name text - see FindGeneratedPackForPlan.
             Loadout realLoadout = LoadoutUtility.FindGeneratedPackForPlan(name, fullLabel);
             plan.exists = realLoadout != null;
             if (plan.exists)
@@ -1150,8 +1132,8 @@ namespace CEReloaded
         {
             var items = new List<PackItem>();
             Def med = PickMedicineDef();
-            // Doppelte Grundmenge, nicht die feste 4 von frueher - so bleibt "der Sanitaeterkasten traegt
-            // mehr als das Grundpack" auch dann wahr, wenn die Grundmenge in den Einstellungen gedreht wird.
+            // Twice the base amount, not the fixed 4 from before - so "the medic kit carries more than the base
+            // pack" stays true even when the base amount is changed in the settings.
             if (med != null) items.Add(MakeItem(med, ScaleCount(MedicineBaseCount * 2), MedicinePool));
             return items;
         }
@@ -1220,16 +1202,14 @@ namespace CEReloaded
 
         // ---- Shared pickers -------------------------------------------------------------------------------------
 
-        // NEUTRAL IN DER MITTE (2026-08-16): die Vorgabe (in dem Fall 2 und 3) soll gelten, wenn der
-        // Regler in der Mitte steht - genau 50 % zwischen lightweight und heavy. Das ergibt am meisten
-        // Sinn: die Mitte ist der neutrale Wert.
-        // Vorher: Mathf.Lerp(0.5f, 2f, weightSlider). Eine GERADE zwischen 0,5 und 2 hat ihren neutralen
-        // Punkt bei einem Drittel, nicht in der Mitte - in Mittelstellung kam deshalb der Faktor 1,25
-        // heraus, und aus eingestellten 5/7 wurden 6/9. Der Regler hat den Wert also nie ausgelassen, er
-        // hat ihn nur an der falschen Stelle getroffen; genau das wurde im Test gemessen.
-        // Jetzt geometrisch statt linear: 2^((t-0,5)*2) ist bei 0 exakt die Haelfte, in der Mitte exakt 1
-        // und bei 1 exakt das Doppelte. "Halb so viel" und "doppelt so viel" sind ohnehin die Sprache,
-        // in der man ueber Mengen denkt - eine Gerade wuerde eines der beiden Enden verzerren.
+        // NEUTRAL IN THE MIDDLE: the default (here 2 and 3) should apply when the slider is in the middle -
+        // exactly 50% between lightweight and heavy. That makes the most sense: the middle is the neutral value.
+        // Previously: Mathf.Lerp(0.5f, 2f, weightSlider). A STRAIGHT LINE between 0.5 and 2 has its neutral
+        // point at one third, not in the middle - so the middle position produced a factor of 1.25, and
+        // configured 5/7 became 6/9. The slider never skipped the value, it just hit it at the wrong position.
+        // Now geometric instead of linear: 2^((t-0.5)*2) is exactly half at 0, exactly 1 in the middle and
+        // exactly double at 1. "Half as much" and "twice as much" are the language one thinks about amounts in
+        // anyway - a straight line would distort one of the two ends.
         private int ScaleCount(int baseCount) => Mathf.Max(1, Mathf.RoundToInt(baseCount * Mathf.Pow(2f, (weightSlider - 0.5f) * 2f)));
 
         // No hardcoded defName guess for any of these three - LoadoutMedicineOptions/LoadoutFoodOptions/
@@ -1240,16 +1220,13 @@ namespace CEReloaded
         // string didn't match the real def, useAnyTypes silently fell back to a SPECIFIC concrete med/food
         // instead of the generic - a pack authored to want "Any Medicine" ended up requiring one exact
         // item, reading as "missing" even with the colony stocked on a different, perfectly good medicine.
-        // Die vier Mod-Einstellungen "Standard-Mahlzeit / -Medizin" samt Mengen wirken seit 2026-08-14 GENAU
-        // HIER und nirgends sonst (2026-08-14: aus dem Vorlagen-Assistenten raus, in den Einstellungen als
-        // reiner Standard). Vorher waren sie
-        // wirkungslos: der Waffen-Vorlagen-Assistent las sie in vier Felder ein, die niemand mehr benutzte.
-        // Verpflegung gehoert zum Pack, nicht zur Waffenvorlage - damit kann sie auch nicht mehr doppelt
-        // eingeplant werden.
-        // Leerer Name heisst ausdruecklich "keins" (das ist die eigene Option des Einstellungs-Menues) und
-        // laesst den Posten im Pack ganz weg. Ein Name, den es in dieser Modliste nicht gibt, faellt still
-        // auf die bisherige Automatik zurueck - eine Einstellung aus einem anderen Modpack soll den
-        // Pack-Assistenten nicht lahmlegen.
+        // The four mod settings "default meal / medicine" plus amounts take effect EXACTLY HERE and nowhere else
+        // (removed from the loadout wizard, kept in the settings as a plain default). Previously they had no
+        // effect: the weapon loadout wizard read them into four fields nobody used any more.
+        // Provisions belong to the pack, not to the weapon template - so they can no longer be planned twice.
+        // An empty name explicitly means "none" (that is the settings menu's own option) and leaves the item out
+        // of the pack entirely. A name that does not exist in this mod list silently falls back to the previous
+        // automatic pick - a setting from another modpack should not cripple the pack wizard.
         private Def PickFromSettingOrAuto(string defName, List<Def> pool, out bool suppressed)
         {
             suppressed = false;
@@ -1257,12 +1234,10 @@ namespace CEReloaded
             if (!string.IsNullOrEmpty(defName))
             {
                 Def chosen = pool.FirstOrDefault(d => d.defName == defName);
-                // Ein GENERISCHER Vorgabewert unterliegt weiter dem Schalter "Any-Typen benutzen"
-                // (2026-08-15, Review-Befund): ausgeliefert wird als Standard genau "GenericMeal" bzw.
-                // "GenericMedicine", also traf der Vorgabewert immer und kam VOR dem Schalter - der Haken
-                // war damit wirkungslos, das Pack bekam auch abgewaehlt "Any Meal". Ein KONKRETER
-                // Vorgabewert (der Spieler hat eine bestimmte Mahlzeit gewaehlt) gewinnt weiterhin, der
-                // ist ja die ausdruecklichere Ansage.
+                // A GENERIC default is still subject to the "use Any types" switch: the shipped default is exactly
+                // "GenericMeal" or "GenericMedicine", so the default always matched and came BEFORE the switch -
+                // the checkbox had no effect, and the pack got "Any Meal" even when unticked. A CONCRETE default
+                // (the player chose a specific meal) still wins, since that is the more explicit instruction.
                 if (chosen != null && !(chosen is LoadoutGenericDef && !useAnyTypes)) return chosen;
             }
             if (useAnyTypes) { Def g = pool.FirstOrDefault(d => d is LoadoutGenericDef); if (g != null) return g; }
@@ -1275,10 +1250,10 @@ namespace CEReloaded
         private Def PickFoodDef()
             => PickFromSettingOrAuto(CEReloadedMod.settings?.defMealDefName, LoadoutUtility.LoadoutFoodOptions(), out _);
 
-        // Die eingestellten Stueckzahlen als GRUNDMENGE - der Gewichts-Regler skaliert sie weiterhin
-        // (ScaleCount), und das Verhaeltnis zwischen den Vorlagen bleibt erhalten: der Sanitaeterkasten
-        // traegt weiter das Doppelte des Grundpacks. Unlesbare oder unsinnige Eingaben fallen auf die
-        // bisherigen Festwerte zurueck, damit ein vertipptes Feld keinen leeren Pack erzeugt.
+        // The configured counts as BASE AMOUNT - the weight slider still scales them (ScaleCount), and the ratio
+        // between the templates is preserved: the medic kit still carries twice the base pack. Unreadable or
+        // nonsensical input falls back to the previous fixed values, so a mistyped field does not create an
+        // empty pack.
         private static int SettingCount(string raw, int fallback)
             => int.TryParse((raw ?? "").Trim(), out int n) && n > 0 ? n : fallback;
         private static int MealBaseCount => SettingCount(CEReloadedMod.settings?.defMealCount, 2);
@@ -1335,10 +1310,9 @@ namespace CEReloaded
             List<string> collisions = new List<string>();
             foreach (PackPlan plan in plans)
             {
-                // Vorgemerkte Loeschung zuerst - derselbe Weg, den der "alle bestehenden Packs loeschen"-
-                // Knopf oben schon nimmt (LoadoutDeletionUtility). Nur echte, von uns erzeugte Packs:
-                // ein handgebautes Pack unter demselben Namen ist nicht unseres zum Loeschen, exakt wie die
-                // Kollisionspruefung im Erzeugen-Zweig darunter.
+                // Pending deletion first - the same path the "delete all existing packs" button above already takes
+                // (LoadoutDeletionUtility). Only real packs we generated: a hand-built pack under the same name is
+                // not ours to delete, exactly like the collision check in the create branch below.
                 if (plan.delete)
                 {
                     Loadout doomed = LoadoutUtility.FindGeneratedPackForPlan(plan.name,
@@ -1348,9 +1322,9 @@ namespace CEReloaded
                 }
                 if (!plan.include || plan.items.Count == 0) continue;
                 string fullLabel = EquipmentPackUtility.PackMarkerPrefix + " " + plan.name;
-                // Feste Kennung statt Namenstext (2026-08-09) - siehe FindGeneratedPackForPlan. Wirkt auch auf
-                // die Kollisionspruefung direkt darunter: ein umbenanntes eigenes Pack wird jetzt als das
-                // eigene erkannt, statt als fremdes Pack unter demselben Namen missverstanden zu werden.
+                // Fixed identifier instead of name text - see FindGeneratedPackForPlan. Also affects the collision
+                // check directly below: a renamed pack of our own is now recognized as ours, instead of being
+                // mistaken for a foreign pack under the same name.
                 Loadout pack = LoadoutUtility.FindGeneratedPackForPlan(plan.name, fullLabel);
                 // Refuse a name collision with a pack the wizard did NOT create (2026-08-01,
                 // mirrors the same-day Role name-collision fix) - an existing pack under this name that isn't
@@ -1374,10 +1348,10 @@ namespace CEReloaded
                 {
                     foreach (LoadoutSlot s in pack.OwnSlots.ToList()) pack.RemoveSlot(s);
                 }
-                // Kennung setzen (2026-08-17), fuer BEIDE Wege - frisch angelegt wie wiederverwendet. Beim
-                // wiederverwendeten Pack ist es die Selbstheilung fuer Altbestand: es kannte seine Identitaet
-                // bisher nicht, ab jetzt schon, und der "[Pack]"-Marker im Namen wird dafuer nicht mehr
-                // gebraucht. NACH AddLoadout, weil die UniqueID erst dort entsteht.
+                // Set the identity, for BOTH paths - freshly created as well as reused. For a reused pack it is the
+                // self-healing for older data: it did not know its identity before, now it does, and the "[Pack]"
+                // marker in the name is no longer needed for that. AFTER AddLoadout, because the UniqueID is only
+                // created there.
                 EquipmentPackUtility.MarkAsPack(pack);
                 foreach (PackItem item in plan.items)
                 {
@@ -1389,8 +1363,8 @@ namespace CEReloaded
                 // pack just got regenerated in place, so Dialog_ArmColony's "delete only generated packs"
                 // scope can tell it apart from one hand-built in the Ingredients tab.
                 LoadoutUtility.MarkAsManaged(pack);
-                // Und die Zuordnung Plan -> dieses Pack festhalten, damit ein spaeteres Umbenennen sie nicht
-                // mehr zerreisst (2026-08-09). MarkAsManaged allein sagt nur "von uns", nicht "zu welchem Plan".
+                // And record the plan -> this pack mapping, so a later rename can no longer break it. MarkAsManaged
+                // alone only says "ours", not "for which plan".
                 LoadoutUtility.RecordGeneratedPackForPlan(plan.name, pack);
                 if (first == null) first = pack;
             }

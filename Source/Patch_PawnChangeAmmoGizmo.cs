@@ -24,8 +24,8 @@ namespace CEReloaded
         // happens, defeating the whole point of the attribute.
         private static readonly Texture2D Icon = ContentFinder<Texture2D>.Get("UI/Icon_ChangeAmmo", false) ?? BaseContent.BadTex;
 
-        // Zwischenspeicher fuer den Statusblock unten - pro ausgewaehltem Pawn, eine halbe Sekunde.
-        // Siehe dort, warum: dieser Postfix laeuft in JEDEM Bild, solange ein Kolonist ausgewaehlt ist.
+        // Cache for the status block below - per selected pawn, half a second.
+        // See there for why: this postfix runs EVERY frame while a colonist is selected.
         private static Pawn gizmoCachePawn;
         private static float gizmoCacheTime = -99f;
         private static Texture2D gizmoCacheIcon;
@@ -84,14 +84,14 @@ namespace CEReloaded
             Color? statusDot = null;
             if (Find.Selector.SelectedPawns.Count(p => p != null && p.IsColonistPlayerControlled) == 1)
             {
-                // GECACHT (2026-08-13, in einer Messung als teuerster Posten im NORMALEN Spiel aufgefallen).
-                // Dieser Block sitzt in Pawn.GetGizmos, und RimWorlds GizmoGridDrawer
-                // baut die Knopfleiste in JEDEM Bild neu - solange also ein Kolonist ausgewaehlt ist, lief
-                // hier pro Bild: Slots-Union des Pawns (CEs Getter baut sie jedes Mal neu), zwei LINQ-Ketten,
-                // und vor allem ComputeAmmoAvailability, dessen eigener Cache am Bildzaehler haengt und
-                // deshalb pro Bild neu rechnet - inklusive Kartendurchlauf und einer Schleife ueber ALLE
-                // Kolonisten. Das ist der Zustand beim normalen Spielen, ohne dass ein Mod-Fenster offen ist.
-                // Eine halbe Sekunde ist hier reichlich: das Ergebnis ist ein Symbol und ein Farbpunkt.
+                // CACHED (profiling showed this as the most expensive item during NORMAL play).
+                // This block sits in Pawn.GetGizmos, and RimWorld's GizmoGridDrawer
+                // rebuilds the gizmo bar EVERY frame - so while a colonist was selected, each frame ran:
+                // the pawn's Slots union (CE's getter rebuilds it every time), two LINQ chains,
+                // and above all ComputeAmmoAvailability, whose own cache is keyed on the frame counter and
+                // therefore recomputes every frame - including a map scan and a loop over ALL
+                // colonists. That is the state during normal play, with no mod window open.
+                // Half a second is plenty here: the result is an icon and a colored dot.
                 if (Time.realtimeSinceStartup - gizmoCacheTime > 0.5f || gizmoCachePawn != pawn)
                 {
                     gizmoCachePawn = pawn;

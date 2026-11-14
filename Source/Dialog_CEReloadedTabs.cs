@@ -18,19 +18,19 @@ namespace CEReloaded
             AmmoBills
         }
 
-        // Startreiter ist seit dem Lazy-Umbau (2026-09-01) der Zuweisungs-Reiter: der fruehere
-        // Weapon-Loadouts-Reiter (Massenerzeugung + Kuration) hat keine Reiterkarte mehr - Vorlagen
-        // entstehen unsichtbar beim Zuweisen. Tab.Loadouts existiert nur noch als Enum-Wert, damit der
-        // Rueckbau klein bleibt; erreichbar ist er nicht mehr.
+        // Since the lazy-template rework the start tab is the Assign tab: the former Weapon Loadouts tab
+        // (bulk generation + curation) no longer has a tab card - templates are created invisibly on
+        // assignment. Tab.Loadouts only remains as an enum value to keep the rework small; it is no
+        // longer reachable.
         private Tab currentTab = Tab.AssignLoadouts;
 
         private Dialog_Ingredients ingredientsDialog;
         private Dialog_GenerateLoadouts loadoutsDialog;
         private Dialog_GenerateAmmoBills billsDialog;
         private Dialog_AssignLoadouts assignDialog;
-        // Fuer den Klick auf CEs eigene Loadout-Zelle im Zuweisungs-Reiter (2026-09-04): ist der Planer
-        // offen, soll das Waffenfenster SEINEN Zustand benutzen (Rollen-Schalter, Filter) und nicht den
-        // einer zweiten, unsichtbaren Instanz. Siehe Dialog_AssignLoadouts.OpenWeaponPickerFor.
+        // For clicks on CE's own loadout cell in the Assign tab: if the planner is open, the weapon window
+        // should use ITS state (role toggle, filters) and not that of a second, invisible instance.
+        // See Dialog_AssignLoadouts.OpenWeaponPickerFor.
         internal Dialog_AssignLoadouts AssignDialog => assignDialog;
 
         public override Vector2 InitialSize
@@ -39,11 +39,11 @@ namespace CEReloaded
             get { return new Vector2(Mathf.Min(1100f, UI.screenWidth - 40f), Mathf.Min(1015f, UI.screenHeight - 40f)); }
         }
 
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
-        // Hier aufgefallen: unter etwa 1480 UI-Breite lag das Schliessen-X unter der Lernhilfe und war weder
-        // sichtbar noch klickbar - und weil dieses Fenster absorbInputAroundWindow setzt, war ausser
-        // Escape kein Weg mehr heraus.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
+        // Found here: below roughly 1480 UI width the close X sat under the learning readout and was
+        // neither visible nor clickable - and since this window sets absorbInputAroundWindow, Escape was
+        // the only way out.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -82,9 +82,9 @@ namespace CEReloaded
         // Weapon Loadouts) without every one of those call sites needing to say so explicitly.
         public void JumpToLoadouts()
         {
-            // Seit dem Lazy-Umbau (2026-09-01) landet dieser Sprung IMMER im Rollen-Reiter - der
-            // Weapon-Loadouts-Reiter hat keine Karte mehr, und jeder verbliebene Aufrufer (die
-            // "Save as Role"-Wege) setzt RoleMode unmittelbar vorher selbst.
+            // Since the lazy-template rework this jump ALWAYS lands in the Roles tab - the Weapon Loadouts
+            // tab no longer has a card, and every remaining caller (the "Save as Role" paths) sets
+            // RoleMode itself right before.
             currentTab = Tab.Roles;
             loadoutsDialog.RoleMode = true;
         }
@@ -97,25 +97,24 @@ namespace CEReloaded
             assignDialog.RefreshPawns();
         }
 
-        // Bereitschaftsanzeige -> "kein Munitionsauftrag laeuft" (2026-08-30): der Weg fuehrt in die Auftragsuebersicht.
+        // Readiness display -> "no ammo bill running": the path leads to the bills overview.
         public void JumpToAmmoBills()
         {
             currentTab = Tab.AmmoBills;
         }
 
-        // Schnappschuss beim Oeffnen, Vergleich beim Schliessen (2026-08-09) - siehe
-        // LoadoutUtility.AssignmentSignature. Vorher rief
-        // PostClose den Nachschub-Dialog IMMER, sobald irgendwo ein Rueckstand bestand: einmal
-        // hineingesehen und wieder zugemacht, und er ging auf. Dialog_ChangeAmmo hatte diesen Vergleich
-        // laengst, dieses Fenster nicht.
+        // Snapshot on open, comparison on close - see LoadoutUtility.AssignmentSignature. Previously
+        // PostClose ALWAYS opened the supply dialog as soon as there was a backlog anywhere: look in
+        // once, close again, and it popped up. Dialog_ChangeAmmo already had this comparison, this
+        // window did not.
         private string openSignature;
 
         public override void PostOpen()
         {
             base.PostOpen();
             openSignature = LoadoutUtility.AssignmentSignature();
-            // Der Startreiter ist seit dem Lazy-Umbau der Zuweisungs-Reiter - derselbe Refresh, den der
-            // Reiterwechsel-Klick ausloesen wuerde, sonst zeigt das erste Bild veraltete Kolonisten.
+            // Since the lazy-template rework the start tab is the Assign tab - the same refresh a tab-switch
+            // click would trigger, otherwise the first frame shows stale colonists.
             if (currentTab == Tab.AssignLoadouts) assignDialog.RefreshPawns();
             // First-ever open: show the workflow overview once so the three tabs read as a sequence.
             Dialog_CERWorkflowGuide.OpenIfFirstTime();
@@ -127,7 +126,7 @@ namespace CEReloaded
             // See LoadoutUtility.CheckAndOpenMissingProductionPopup - also hooked into Dialog_ChangeAmmo's own
             // close, since that one can be opened standalone from the map gizmo without this window ever
             // being open at all.
-            // Nur wenn wirklich etwas anders ist als beim Oeffnen (2026-08-09) - openSignature oben.
+            // Only if something really differs from when the window opened - openSignature above.
             if (openSignature == null || LoadoutUtility.AssignmentSignature() != openSignature)
                 LoadoutUtility.CheckAndOpenMissingProductionPopup();
         }
@@ -135,8 +134,8 @@ namespace CEReloaded
         private List<TabRecord> cachedTabs;
         private object cachedTabsLanguage;
 
-        // Die Reiterleiste, EINMAL gebaut. Jede Auswahl haengt an einem selectedGetter statt an einem
-        // eingefrorenen bool - sonst wuesste die zwischengespeicherte Liste nichts vom Reiterwechsel.
+        // The tab bar, built ONCE. Each selection hangs off a selectedGetter instead of a frozen bool -
+        // otherwise the cached list would know nothing about tab switches.
         // Tabs read as the workflow order: prepare ingredients -> decide -> distribute -> supply.
         private List<TabRecord> BuildTabs()
         {
@@ -149,8 +148,8 @@ namespace CEReloaded
             }
             tabs.Add(T("CER_Tabs_TabEquipmentPacks".Translate(), () => { SwitchTab(Tab.Ingredients); },
                 () => currentTab == Tab.Ingredients));
-            // Der Weapon-Loadouts-Reiter entfiel mit dem Lazy-Umbau (2026-09-01) - Waffen waehlt man im
-            // Zuweisungs-Reiter bzw. im Wizard direkt, die Vorlage dahinter entsteht unsichtbar.
+            // The Weapon Loadouts tab was dropped with the lazy-template rework - weapons are picked directly
+            // in the Assign tab or the wizard, and the template behind them is created invisibly.
             tabs.Add(T("CER_Tabs_TabRoles".Translate(), () => {
                 SwitchTab(Tab.Roles);
                 loadoutsDialog.RoleMode = true;
@@ -172,41 +171,39 @@ namespace CEReloaded
             return tabs;
         }
 
-        // Ein einziger Umschaltpfad fuer alle Tabs (2026-08-10). Vorher setzte jeder TabRecord
-        // `currentTab` selbst; damit gab es keine Stelle, an der man "der Assign-Tab wird gerade
-        // VERLASSEN" haette bemerken koennen - und genau die braucht es, damit das Nachschub-Fenster immer
-        // am Ende kommt, beim Verlassen des Reiters (Reiterwechsel oder Schliessen).
-        // Strukturell hier statt fuenfmal in den Lambdas: sonst vergisst der naechste neue Tab es.
+        // A single switch path for all tabs. Previously every TabRecord set `currentTab` itself; so there
+        // was no place where "the Assign tab is being LEFT" could be noticed - and exactly that is needed
+        // so the supply window always comes at the end, when leaving the tab (tab switch or close).
+        // Structurally here instead of five times in the lambdas: otherwise the next new tab forgets it.
         private void SwitchTab(Tab next)
         {
             if (currentTab == next) return;
             Tab prev = currentTab;
             currentTab = next;
             if (prev == Tab.AssignLoadouts) CheckSupplyOnLeavingAssign();
-            // Beim BETRETEN des Rollen-Reiters darf sich jede Zeile mit genau einer Beladung wieder
-            // selbst laden (2026-08-31) - auch die, in der er beim letzten Besuch 'Entladen'
-            // geklickt hat. Dieselbe eine Umschaltstelle wie oben, aus demselben Grund.
+            // When ENTERING the Roles tab, every row with exactly one loadout may load itself again - including
+            // the one where 'Unload' was clicked on the last visit. Same single switch point as above, for
+            // the same reason.
         }
 
-        // Der gesammelte Nachschub-Hinweis, den Dialog_AssignLoadouts' Einzelzuweisung nicht mehr selbst
-        // aufmacht. Derselbe Signaturvergleich wie PostClose - blosses Durchklicken durch die Tabs darf
-        // ihn nicht ausloesen, sonst ist er genauso laestig wie das Popup pro Zuweisung, das er ersetzt.
-        // openSignature wird dabei NACHGEZOGEN, damit PostClose dieselbe Aenderung nicht ein zweites Mal
-        // meldet, wenn man nach dem Tabwechsel das Fenster schliesst.
+        // The collected supply hint that Dialog_AssignLoadouts' single assignment no longer opens itself.
+        // Same signature comparison as PostClose - merely clicking through the tabs must not trigger it,
+        // otherwise it is just as annoying as the per-assignment popup it replaces.
+        // openSignature is UPDATED in the process, so PostClose does not report the same change a second
+        // time when the window is closed after the tab switch.
         private void CheckSupplyOnLeavingAssign()
         {
             string now = LoadoutUtility.AssignmentSignature();
-            // Diagnoselogging am 2026-08-15 wieder ausgebaut, nachdem der Fall im Test nachgestellt war:
-            // die Signatur bemerkt eine reine Pack-Aenderung sehr wohl ("Signatur ANDERS"), und das
-            // Nachschub-Fenster kam. Der beobachtete Fehler war hier nicht reproduzierbar.
+            // Diagnostic logging removed again after the case was reproduced: the signature does notice a
+            // pure pack change ("signature DIFFERENT"), and the supply window came up. The observed bug was
+            // not reproducible here.
             if (openSignature != null && now == openSignature) return;
             openSignature = now;
-            // Fuer GENAU DIESEN Stand ist das Fenster schon einmal aufgegangen (2026-08-16, zweimal dasselbe
-            // Fenster war zu viel): der Ablauf war Uebernehmen -> Fenster -> Cancel -> Reiter
-            // wechseln -> dasselbe Fenster nochmal. Eine Aenderung, zwei Fenster. Der Rueckstand bleibt
-            // deswegen nicht unsichtbar - die Bereitschaftsanzeige oben zeigt ihn dauerhaft und fuehrt mit
-            // einem Klick genau hierher; das ist der ruhige Ort dafuer, ein Fenster, das sich selbst
-            // aufdraengt, ist es nicht.
+            // The window has already opened once for EXACTLY THIS state (the same window twice was too
+            // much): the sequence was Apply -> window -> Cancel -> switch tab -> the same window again. One
+            // change, two windows. The backlog does not become invisible because of this - the readiness
+            // display at the top shows it permanently and leads exactly here with one click; that is the
+            // quiet place for it, a window that pushes itself forward is not.
             if (now == LoadoutUtility.lastSupplyOfferSignature) return;
             LoadoutUtility.CheckAndOpenMissingProductionPopup();
         }
@@ -215,13 +212,13 @@ namespace CEReloaded
         {
             // Header strip for the window-level buttons, then the tab row below it (TabDrawer draws tabs extending ~32px
             // UP from tabRect.y, so the strip must clear that or the tabs cover/eat the buttons).
-            // Das "?" ist weg (2026-08-30: das macht sonst auch kein Mod) - der Crashkurs kommt
-            // beim ersten Oeffnen von selbst und danach ueber Mod-Einstellungen -> Werkzeuge.
+            // The "?" is gone (no other mod does that) - the crash course appears by itself
+            // on first open and afterwards via Mod Settings -> Tools.
 
             Rect armRect = new Rect(inRect.xMax - 168f, inRect.y + 4f, 168f, 26f);
-            // "Fetch gear now" zwischen Bereitschaft und Arm my Colony (2026-08-30) - wie im Zuweisungs-Reiter.
+            // "Fetch gear now" between readiness and Arm my Colony - as in the Assign tab.
             Rect fetchRect = new Rect(armRect.x - 8f - 150f, inRect.y + 4f, 150f, 26f);
-            // Beide Knoepfe teilen eine Schriftstufe (2026-08-30) - siehe ButtonRowFont.
+            // Both buttons share one font size - see ButtonRowFont.
             GameFont prevHeadFont = Text.Font;
             Text.Font = LoadoutUtility.ButtonRowFont(
                 (fetchRect, "CER_LoadoutUtility_FetchGearButtonLabel".Translate().ToString()),
@@ -234,16 +231,15 @@ namespace CEReloaded
 
             Rect tabRect = new Rect(inRect.x, inRect.y + 66f, inRect.width, inRect.height - 66f);
 
-            // EINMAL gebaut statt in jedem Durchgang (2026-08-15). Diese Liste ist
-            // pro Bild MEHRFACH entstanden - fuenf TabRecord-Objekte, fuenf Abschlussfunktionen, fuenf
-            // Uebersetzungsaufrufe und die Liste selbst -, und zwar in JEDEM Reiter dieses Fensters, also
-            // auch dort, wo gar keine Liste gezeichnet wird. Fuer sich genommen ist das wenig; es ist
-            // Grundlast, die es nicht geben muss, und sie faellt bei jedem der ~286 IMGUI-Durchgaenge pro
-            // Sekunde an.
-            // Moeglich wird es durch TabRecord.selectedGetter: die Auswahl wird pro Bild ABGEFRAGT statt
-            // beim Bauen eingefroren - sonst haette die zwischengespeicherte Liste den Reiterwechsel nicht
-            // mitbekommen. Der Sprachvergleich baut sie neu, falls jemand die Sprache umstellt, waehrend
-            // das Fenster offen ist; die Beschriftungen stecken sonst uebersetzt fest.
+            // Built ONCE instead of on every pass. This list used to be created SEVERAL times
+            // per frame - five TabRecord objects, five closures, five translation calls and the list
+            // itself - in EVERY tab of this window, including where no list is drawn at all. On its
+            // own that is little; it is baseline load that need not exist, and it occurs on every one
+            // of the ~286 IMGUI passes per second.
+            // Made possible by TabRecord.selectedGetter: the selection is QUERIED per frame instead of
+            // frozen at build time - otherwise the cached list would not have noticed tab switches. The
+            // language check rebuilds it if the language is changed while the window is open; otherwise
+            // the labels stay stuck in the old translation.
             if (cachedTabs == null || !ReferenceEquals(cachedTabsLanguage, LanguageDatabase.activeLanguage))
             {
                 cachedTabsLanguage = LanguageDatabase.activeLanguage;

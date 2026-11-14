@@ -30,10 +30,10 @@ namespace CEReloaded
             cachedAssignDialog = null;
         }
 
-        // Prefix und Finalizer standen hier nur fuer die Messung [CER DIAG perf-vanilla-assign] (2026-08-17,
-        // wieder entfernt): sie hat ihre Zahl geliefert - 1,64 ms je Bild fuer den ganzen Reiter, davon
-        // 0,43 ms unsere Patches. Damit ist dieser Reiter als Luefter-Ursache abgehakt, und ein Patch, der
-        // nur noch misst, ist selbst Kosten.
+        // A prefix and finalizer used to live here only for the [CER DIAG perf-vanilla-assign] measurement
+        // (since removed): it delivered its number - 1.64 ms per frame for the whole tab, 0.43 ms of that
+        // from our patches. That rules this tab out as the cause of high load, and a patch that only
+        // measures is a cost in itself.
         public static void Postfix(Rect rect, RimWorld.MainTabWindow_PawnTable __instance)
         {
             if (!(__instance is RimWorld.MainTabWindow_Assign)) return;
@@ -41,9 +41,9 @@ namespace CEReloaded
 
             // Position the button row at bottom-right, but use the window's actual visible area (the rect
             // passed here is the inner content rect of the window).
-            // 130 -> 210 -> 150 (2026-08-30: zu sperrig): "Advanced Loadout
-            // Management" war zu lang, der Knopf heisst jetzt "Loadout Planner" und ist so breit wie "Arm my Colony"
-            // daneben - drei gleich breite Knoepfe in einer Reihe. ButtonTextFit faengt lange Uebersetzungen ab.
+            // 130 -> 210 -> 150 (too bulky): "Advanced Loadout Management" was too long, the button is now
+            // "Loadout Planner" and as wide as "Arm my Colony" next to it - three equally wide buttons in a
+            // row. ButtonTextFit handles long translations.
             float btnWidth = 150f;
             float btnHeight = 30f;
             float armWidth = 150f;
@@ -54,23 +54,23 @@ namespace CEReloaded
 
             Rect btnRect = new Rect(rect.width - btnWidth - 10f, rowY, btnWidth, btnHeight);
             Rect armRect = new Rect(btnRect.x - gap - armWidth, rowY, armWidth, btnHeight);
-            // "Fetch gear now" zwischen Bereitschaft und Arm my Colony (2026-08-30) - dieselbe
-            // Reihenfolge wie im Kopf unseres Fensters.
+            // "Fetch gear now" sits between the readiness display and Arm my Colony - the same
+            // order as in our window's header.
             float fetchWidth = 150f;
             Rect fetchRect = new Rect(armRect.x - gap - fetchWidth, rowY, fetchWidth, btnHeight);
-            // Die Anzeige bekommt den GANZEN Platz links der Knopfreihe (2026-09-03) - vorher waren es
-            // feste 150 Punkte, und auf Deutsch stand darin "9 brauchen
-            // Aufmerksaml", mitten im Wort abgeschnitten, waehrend links davon die halbe Leiste leer war.
-            // DrawReadinessWidget richtet sich in diesem Feld selbst rechtsbuendig aus und nimmt nur so viel,
-            // wie der Text braucht; ein groesseres Feld aendert also nichts fuer Sprachen, die ohnehin passen.
-            // Dieselbe Rechnung wie im Kopf unseres eigenen Fensters (Dialog_CEReloadedTabs).
+            // The readiness display gets ALL the space left of the button row - it used to be a fixed
+            // 150 points, and longer translations were cut off mid-word while half the bar to the left
+            // stayed empty.
+            // DrawReadinessWidget right-aligns itself within this rect and only takes as much as the text
+            // needs, so a larger rect changes nothing for languages that already fit.
+            // Same calculation as in the header of our own window (Dialog_CEReloadedTabs).
             Rect readinessRect = new Rect(0f, rowY, Mathf.Max(0f, fetchRect.x - gap), btnHeight);
 
             // Reuse an already-open tabs window instead of stacking a second, desynced one on top (2026-08-02
             // fix - same class of bug as Patch_LoadoutEditButton's own identical fix).
-            // EINE Schriftstufe fuer die ganze Reihe (2026-08-30: auf Deutsch standen
-            // 'Ausruestung jetzt holen' und 'Kolonie bewaffnen' klein, 'Beladungsplaner' daneben normal). ButtonTextFit
-            // misst je Knopf; drei gleich breite Knoepfe nebeneinander muessen sich aber einigen - siehe ButtonRowFont.
+            // ONE font size for the whole row (in longer translations two buttons dropped to the small font
+            // while the third stayed normal). ButtonTextFit measures per button, but three equally wide
+            // buttons side by side have to agree - see ButtonRowFont.
             GameFont rowFont = LoadoutUtility.ButtonRowFont(
                 (fetchRect, "CER_LoadoutUtility_FetchGearButtonLabel".Translate().ToString()),
                 (armRect, "CER_LoadoutUtility_ArmColonyButtonLabel".Translate().ToString()),

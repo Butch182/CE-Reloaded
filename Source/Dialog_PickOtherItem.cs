@@ -43,9 +43,9 @@ namespace CEReloaded
         // Shared by the header row and every data row so the two can never drift apart (same convention as
         // Dialog_AssignLoadouts' DrawCompactHeader/DrawPawnRowCompact).
         private const float AssignedW = 60f, QtyW = 50f, AddW = 36f, RemW = 36f, ColGap = 6f;
-        // "-" liegt LINKS von der Mengenzahl, "+" rechts davon - die Menge steht zwischen ihren beiden
-        // Knoepfen, wie in jedem Mengenwaehler. Alles haengt weiterhin am rechten Rand, nur die Namensspalte
-        // gibt die zusaetzlichen 42px ab (sie kuerzt ohnehin schon).
+        // "-" sits LEFT of the quantity, "+" to its right - the quantity sits between its two buttons,
+        // as in any quantity picker. Everything is still anchored to the right edge; only the name column
+        // gives up the extra 42px (it truncates anyway).
         private static void ColumnRects(Rect row, out Rect nameRect, out Rect assignedRect, out Rect remRect, out Rect qtyRect, out Rect addRect)
         {
             addRect = new Rect(row.xMax - AddW, row.y, AddW, row.height);
@@ -56,8 +56,8 @@ namespace CEReloaded
         }
 
         public override Vector2 InitialSize => new Vector2(600f, Mathf.Min(560f, UI.screenHeight - 60f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -88,23 +88,23 @@ namespace CEReloaded
                 && !LoadoutUtility.IsAmmoDef(d)
                 && !LoadoutUtility.IsShieldApparel(d)
                 && !d.destroyOnDrop
-                // ====== Was ein Kolonist niemals als Beladung TRAEGT (2026-09-04) ======
+                // ====== What a colonist never CARRIES as a loadout ======
                 //
-                // Befund im Test: die Liste war ungefiltert. Die ersten dreizehn Eintraege lauteten
-                // woertlich: '90mm flak turret', 'Abyssinian cat corpse', 'Advanced component', 'Advanced
-                // night vision goggles', 'Aesthetic nose', ... und 'corpse' im Suchfeld brachte eine ganze Seite.
+                // The list used to be unfiltered. The first thirteen entries read literally:
+                // '90mm flak turret', 'Abyssinian cat corpse', 'Advanced component', 'Advanced
+                // night vision goggles', 'Aesthetic nose', ... and 'corpse' in the search field filled a page.
                 //
-                // Die Pruefungen darueber sind alle richtig - Leichen und eingeklappte Gebaeude sind fuer
-                // RimWorld nun einmal haulable Items der Kategorie Item. Drei Sorten schliesse ich deshalb
-                // ausdruecklich aus, weil sie als DAUERAUFTRAG an einem Kolonisten keinen Sinn ergeben:
-                //   - Leichen: eine Beladung sagt "trage das immer bei dir".
-                //   - eingeklappte Gebaeude (der Geschuetzturm): dasselbe, und sie sind zentnerschwer.
-                //   - unfertige Werkstuecke: gehoeren an die Bank, an der sie entstehen.
+                // The checks above are all correct - to RimWorld, corpses and minified buildings simply are
+                // haulable items of category Item. Three kinds are therefore excluded explicitly, because
+                // they make no sense as a STANDING ORDER on a colonist:
+                //   - corpses: a loadout says "always carry this with you".
+                //   - minified buildings (the turret): same, and they weigh a ton.
+                //   - unfinished things: they belong at the bench where they are made.
                 //
-                // BEWUSST NICHT ausgeschlossen, obwohl sie im Befund mit auftauchen: Bauteile, Eier,
-                // Fruechte und Koerperteile. Die sind zwar selten sinnvoll, aber es gibt Faelle (der
-                // Mechaniker mit Bauteilen im Rucksack, Notproviant), und "selten sinnvoll" ist kein Grund,
-                // dem Spieler die Wahl wegzunehmen. Das Suchfeld erledigt den Rest.
+                // DELIBERATELY NOT excluded, although they showed up in the same list: components, eggs,
+                // fruit and body parts. They rarely make sense, but there are cases (the mechanic with
+                // components in the backpack, emergency rations), and "rarely sensible" is no reason to
+                // take the choice away from the player. The search field does the rest.
                 && !d.IsCorpse
                 && !d.IsFrame
                 && !d.isUnfinishedThing
@@ -190,7 +190,7 @@ namespace CEReloaded
             Rect outRect = new Rect(0, y, inRect.width, inRect.height - y - 40f);
             DrawList(outRect, shown, assignedCounts);
 
-            // Close und Copy teilen EINE Schriftstufe (de-buttontext-sweep, 2026-08-29) - siehe LoadoutUtility.ButtonRowFont.
+            // Close and Copy share ONE font size - see LoadoutUtility.ButtonRowFont.
             Rect closeRect = new Rect(0, inRect.height - 34f, 120f, 30f);
             Rect copyRect = new Rect(128f, inRect.height - 34f, 120f, 30f);
             string closeLbl = "CER_PickOtherItem_CloseButton".Translate().ToString();
@@ -199,11 +199,11 @@ namespace CEReloaded
             bool RowBtn(Rect r, string lbl) { GameFont pf = Text.Font; Text.Font = bottomFont; bool c = LoadoutUtility.ButtonTextFit(r, lbl); Text.Font = pf; return c; }
             if (RowBtn(closeRect, closeLbl)) Close();
 
-            // Kopieren wie bei Packs und Zweitwaffen (2026-08-25: "Add other item" hatte keinen Copy-Knopf
-            // und damit auch kein Einfuegen). Kopiert wird, was der Kolonist
-            // JETZT an Sonstigem traegt - dieselbe Menge, die die Sonstiges-Zelle zeigt; eine Auswahl hat dieses
-            // Fenster nicht. Eine leere Liste ist erlaubt, wie bei Packs: eingefuegt raeumt sie beim Ziel auf.
-            // Eingefuegt wird ueber die gemeinsame Einfuege-Spalte im Assign-Reiter (DrawPasteColumn).
+            // Copy as for packs and sidearms ("Add other item" had no Copy button and therefore no paste
+            // either). What gets copied is what the colonist carries in other items RIGHT NOW - the same
+            // set the Other cell shows; this window has no selection. An empty list is allowed, as for
+            // packs: pasting it clears the target.
+            // Pasting goes through the shared paste column in the Assign tab (DrawPasteColumn).
             if (RowBtn(copyRect, copyLbl))
             {
                 List<LoadoutSlot> mine = existingAnchor?.OwnSlots
@@ -276,12 +276,12 @@ namespace CEReloaded
             Widgets.TextFieldNumeric(qtyRect, ref qty, ref buf, 1f, 9999f);
             qtyBuffers[def] = buf;
 
-            // Der Rueckweg (2026-08-09). Vorher fuehrten ALLE drei Wege zum Entfernen ins Leere: dieser Dialog
-            // konnte nur addieren, der Editor, der es konnte, ist geloescht, und CEs eigenen Stift fangen wir
-            // fuer verwaltete Kolonisten ab. Wer sich einmal bei der Menge vertippt hatte, kam nur noch ueber
-            // "Pawn auf eine Rolle setzen" heraus - und das loescht ihm alles, auch Packs und Zweitwaffen.
-            // Entfernt dieselbe Menge, die im Feld steht; ist danach nichts mehr uebrig, faellt der ganze
-            // Eintrag weg statt als Null-Zeile stehenzubleiben.
+            // The way back. Previously ALL three removal paths led nowhere: this dialog could only add,
+            // the editor that could remove has been deleted, and we intercept CE's own pencil for managed
+            // colonists. A typo in the quantity could only be undone via "set pawn to a role" - and that
+            // wipes everything, packs and sidearms included.
+            // Removes the quantity entered in the field; if nothing is left afterwards, the whole entry
+            // is dropped instead of staying as a zero row.
             Loadout leaf = AmmoAssignmentUtility.GetAmmoLeaf(pawn);
             LoadoutSlot ownSlot = leaf?.OwnSlots?.FirstOrDefault(s => s.thingDef == def);
             bool prevEnabled = GUI.enabled;

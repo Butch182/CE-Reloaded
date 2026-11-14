@@ -7,12 +7,11 @@ using CombatExtended;
 
 namespace CEReloaded
 {
-    // AssignedNotCarried (2026-08-09): der eine Zustand, den keine der
-    // sieben anderen Kategorien traf. Ein Kolonist MIT echtem Loadout, der GAR KEINE Waffe in der Hand
-    // hat, waehrend seine zugewiesene Waffe im Lager liegt, faellt sonst durch alles durch: NoLoadout
-    // greift nicht (er hat ja eins), WeaponUnavailable greift nicht (die Waffe existiert ja), und LowAmmo
-    // haengt an der getragenen Waffe, die es nicht gibt. Ergebnis war gruenes 'Ready' bei leeren Haenden -
-    // genau das Szenario, wegen dem es diesen Mod gibt.
+    // AssignedNotCarried: the one state none of the seven other categories caught. A colonist WITH a real
+    // loadout who holds NO weapon at all while their assigned weapon sits in storage otherwise falls through
+    // everything: NoLoadout does not apply (they have one), WeaponUnavailable does not apply (the weapon
+    // exists), and LowAmmo hangs off the carried weapon, which does not exist. The result was a green 'Ready'
+    // with empty hands - exactly the scenario this mod exists for.
     public enum ReadinessIssue { NoLoadout, WeaponWithoutAmmo, AmmoNotProduced, LowAmmo, Overloaded, WeaponUnavailable, CapacityBlocked, AssignedNotCarried }
 
     // Shared, cached combat-readiness scan. RimWorld's alert readout polls each alert on a rotating schedule, so all
@@ -54,43 +53,40 @@ namespace CEReloaded
         // mutation site across the mod.
         public static void Invalidate() { lastTick = -99999; MutationVersion++; }
 
-        // Zaehler jeder gemeldeten Aenderung an Zuweisungen/Ankern (2026-08-25): die
-        // Zeichen-Caches des Assign-Reiters (Reihum-Rechnung, Zeileninfo, Munitionszelle, Bestandstopf)
-        // wurden bis heute in JEDEM Bild neu gebaut - bei 143 Hz rund 90 Neuaufbauten je Sekunde fuer ein
-        // pausiertes Spiel, in dem sich zwischen zwei Bildern nichts aendert, ausser der Spieler klickt.
-        // Jetzt gilt die Zwei-Sperren-Regel: ein Cache lebt, bis diese
-        // Zahl sich aendert ODER ein kurzes Hoechstalter erreicht ist. Invalidate() ist seit 2026-08-01 der
-        // eine Punkt, den jede Mutation des Mods ohnehin ruft - der Zaehler haengt sich nur dazu; eine
-        // vergessene Mutationsstelle macht den Wert damit fuer den Bruchteil einer Sekunde alt, nie
-        // dauerhaft falsch.
+        // Counter of every reported change to assignments/anchors: the Assign tab's draw caches (round-robin
+        // calculation, row info, ammo cell, stock pool) used to be rebuilt EVERY frame - at 143 Hz roughly 90
+        // rebuilds per second for a paused game in which nothing changes between two frames unless the player
+        // clicks. Now the two-lock rule applies: a cache lives until this number changes OR a short maximum
+        // age is reached. Invalidate() is already the one point every mutation of the mod calls - the counter
+        // just piggybacks on it; a forgotten mutation site therefore makes the value stale for a fraction of a
+        // second, never permanently wrong.
         public static int MutationVersion { get; private set; }
 
         // No longer keyed on "did the viewed map change" - the scan itself is empire-wide now (every colony map,
         // every caravan), so a mech assault on an outpost still raises the alert while the player is looking at
         // the main base. Just a plain tick-interval cache.
-        // Echtzeit-Gegenstueck zu RecomputeInterval - vier Sekunden reichen, um eine Aenderung im
-        // pausierten Spiel zu bemerken, ohne im laufenden Spiel zusaetzlich zu rechnen.
+        // Real-time counterpart to RecomputeInterval - four seconds are enough to notice a change in a paused
+        // game without extra computation while the game is running.
         private const float RealSecondsInterval = 4f;
         private static float lastReal = -9999f;
 
-        // NUR solange wirklich ein Fenster dieses Mods offen ist (2026-08-15: ein ueber Nacht laufender
-        // PC drehte morgens den Luefter hoch).
+        // ONLY while one of this mod's windows is actually open (a PC left running overnight spun up its fan
+        // by morning).
         //
-        // Die Echtzeit-Schranke ist am 09.08. fuer GENAU EINEN Fall entstanden: unsere Fenster pausieren
-        // das Spiel, die Spielzeit steht still, und die Tick-Schranke taute deshalb nie auf. Sie hing aber
-        // an der blossen Uhr - und die laeuft auch dann, wenn RimWorld unberuehrt im Hauptmenue-Nichts
-        // steht. Ergebnis: alle vier Sekunden ein voller Durchlauf ueber alle Werkbaenke, alle Auftraege,
-        // alle Waffen jeder Karte und alle Kolonisten - die ganze Nacht durch, ohne dass sich irgendetwas
-        // aendern koennte. Das ist kein Speicherleck, sondern Dauerlast; sie erklaert einen drehenden
-        // Luefter besser als wachsender Speicher, weil sie pro Durchlauf gleich teuer bleibt.
+        // The real-time limit was added for EXACTLY ONE case: our windows pause the game, game time stands
+        // still, and so the tick limit never thawed. But it hung off the bare clock - which keeps running even
+        // while RimWorld sits untouched in the main menu. Result: every four seconds a full pass over all
+        // workbenches, all bills, all weapons on every map and all colonists - all night long, without anything
+        // able to change. That is not a memory leak but a constant load; it explains a spinning fan better than
+        // growing memory, because it costs the same on every pass.
         //
-        // Ist kein Fenster von uns offen, gilt wieder allein die Tick-Schranke: laeuft das Spiel, tickt es
-        // und wir rechnen wie bisher alle 250 Ticks; ist es pausiert, aendert sich ohne unsere Fenster
-        // ohnehin nichts, was diese Zahlen bewegen koennte.
+        // With none of our windows open, only the tick limit applies again: if the game runs, it ticks and we
+        // recompute every 250 ticks as before; if it is paused, nothing that could move these numbers changes
+        // without our windows anyway.
         //
-        // Ueber den Namensraum statt ueber eine Liste von Fenstertypen: eine Aufzaehlung waere beim
-        // naechsten neuen Dialog still unvollstaendig, und dann kaeme der Fehler von 2026-08-01 zurueck
-        // (Zahlen von vorher hinter einem offenen Tab).
+        // Checked via the namespace rather than a list of window types: an enumeration would silently become
+        // incomplete with the next new dialog, and then the old bug would return (stale numbers behind an
+        // open tab).
         private static bool AnyModWindowOpen()
         {
             var stack = Find.WindowStack;
@@ -104,18 +100,16 @@ namespace CEReloaded
         private static void EnsureFresh()
         {
             int now = Find.TickManager != null ? Find.TickManager.TicksGame : 0;
-            // Rueckwaerts gesprungene Spielzeit heisst: anderes Spiel (Hauptmenue -> neue Kolonie oder
-            // ein aelterer Spielstand). lastTick ist statisch und ueberlebt den Spielwechsel, also war
-            // now - lastTick dann stark NEGATIV und damit fuer immer < RecomputeInterval - der Cache
-            // taute nie wieder auf und lieferte Pawn-Objekte aus dem weggeworfenen Spiel. Ein Klick auf
-            // die Meldung sprang dann auf eine Karte, die es nicht mehr gibt.
+            // Game time jumping backwards means: a different game (main menu -> new colony or an older save).
+            // lastTick is static and survives the game switch, so now - lastTick was strongly NEGATIVE and thus
+            // forever < RecomputeInterval - the cache never thawed again and returned pawn objects from the
+            // discarded game. Clicking the alert then jumped to a map that no longer exists.
             if (now < lastTick) lastTick = -99999;
-            // Zweite Bremse an der ECHTEN Uhr (2026-08-09): die Spielzeit steht in der Pause still, und
-            // jedes Fenster dieses Mods pausiert automatisch. Der Cache taute dadurch nie auf, solange
-            // man in einem Mod-Fenster war - genau im Panik-Ablauf vor einem Raid (pausieren, von Hand
-            // ausruesten, aufs Licht schauen) zeigte er die Zahlen von vorher.
-            // Beide Schranken muessen halten: erst wenn Spielzeit ODER Echtzeit weit genug ist, wird neu
-            // gerechnet. Das haelt die Last im laufenden Spiel unveraendert niedrig.
+            // Second brake on the REAL clock: game time stands still while paused, and every window of this mod
+            // pauses automatically. So the cache never thawed while a mod window was open - precisely in the
+            // panic routine before a raid (pause, equip by hand, check the light) it showed the old numbers.
+            // Both limits must hold: only when game time OR real time has advanced far enough is it recomputed.
+            // That keeps the load in a running game as low as before.
             float rt = Time.realtimeSinceStartup;
             bool tickStale = (now - lastTick) >= RecomputeInterval;
             bool realStale = (rt - lastReal) >= RealSecondsInterval && AnyModWindowOpen();
@@ -145,13 +139,12 @@ namespace CEReloaded
             int stockThreshold = 0;
             if (CEReloadedMod.settings != null) int.TryParse(CEReloadedMod.settings.alertAmmoStockThreshold, out stockThreshold);
 
-            // 2. "Wem fehlt welche Waffe" - der Reihum-Anspruch auf den freien Bestand steht seit
-            // 2026-08-17 in Dialog_AssignLoadouts.WeaponShortfallsByPawn und wird von dort gelesen, statt
-            // hier ein zweites Mal gerechnet zu werden. Grund und Fehlerbild: siehe die Kopfzeile dort
-            // (diese Warnung meldete eine Luecke, die das Nachschub-Fenster mit
-            // seiner eigenen Rechnung nicht kannte). Waffen mit "nicht aufsammeln" zaehlen weiterhin als
-            // Bestand (2026-08-09) - eine Warnung "niemand kann bewaffnet werden", waehrend zwanzig
-            // Gewehre auf dem Boden liegen, war die Beschwerde, aus der diese Regel kam.
+            // 2. "Who is missing which weapon" - the round-robin claim on free stock lives in
+            // Dialog_AssignLoadouts.WeaponShortfallsByPawn and is read from there instead of being computed a
+            // second time here. Reason and failure mode: see the header comment there (this alert reported a gap
+            // the resupply window did not know about with its own calculation). Weapons marked "forbidden" still
+            // count as stock - an alert "nobody can be armed" while twenty rifles lie on the floor was the
+            // problem this rule came from.
             Dictionary<Pawn, Dictionary<ThingDef, int>> weaponShortfalls = Dialog_AssignLoadouts.WeaponShortfallsByPawn();
 
             HashSet<Pawn> noLoadout = new HashSet<Pawn>();
@@ -166,12 +159,12 @@ namespace CEReloaded
             foreach (Pawn pawn in LoadoutUtility.AllColonyPawns())
             {
                 Loadout lo = pawn.GetLoadout();
-                // Aufgeloest entschieden, roh gelesen (2026-08-13): lo ist bei jedem personalisierten
-                // Kolonisten sein persoenlicher Anker, und der ist NIE das Default-Loadout - "hat eine
-                // Vorlage" war damit an dieser Stelle immer wahr, sobald ein Anker existiert, auch wenn
-                // darunter gar keine Vorlage mehr haengt (geloescht, oder aufs Default umgehaengt). Genau
-                // dann fehlte der Kolonist in "kein Loadout", obwohl er keins hat. Fuer den INHALT bleibt es
-                // bei lo.Slots: die Vereinigung ueber die ganze Kette ist das, was er wirklich traegt.
+                // Decide on the resolved loadout, read the raw one: for every personalized colonist lo is their
+                // personal anchor, and that is NEVER the default loadout - so "has a template" was always true
+                // here as soon as an anchor existed, even with no template underneath any more (deleted, or
+                // re-parented to the default). Exactly then the colonist was missing from "no loadout" although
+                // they have none. For the CONTENT it stays lo.Slots: the union over the whole chain is what they
+                // really carry.
                 Loadout display = AmmoAssignmentUtility.DisplayLoadout(lo);
                 bool hasRealLoadout = display != null && !display.defaultLoadout;
 
@@ -182,9 +175,9 @@ namespace CEReloaded
                 if (!hasRealLoadout && !LoadoutUtility.CannotFight(pawn))
                     noLoadout.Add(pawn);
 
-                // Inhalt auch pruefen, wenn nur Zweitwaffen ueber CEs None-Loadout haengen (2026-08-25):
-                // "kein Loadout" bleibt fuer die Zeile oben richtig (keine Hauptwaffe), aber die
-                // Munition der Hellebarde oder des Revolvers daran will genauso geprueft sein.
+                // Check the content too when only sidearms hang off CE's None loadout: "no loadout" stays correct
+                // for the row above (no main weapon), but the ammo of an attached halberd or revolver needs
+                // checking just the same.
                 bool hasSidearmsOnly = !hasRealLoadout && (SidearmAssignmentUtility.GetPawnSidearms(pawn)?.Count ?? 0) > 0;
                 if ((hasRealLoadout || hasSidearmsOnly) && lo.Slots != null)
                 {
@@ -215,13 +208,13 @@ namespace CEReloaded
                             loadoutAmmo.Add(slot.thingDef);   // ammo/consumables only - weapons (incl. melee) never belong here
                     }
 
-                    // Zugewiesen, traegt aber GAR NICHTS (2026-08-09). Bewusst nur dieser eine, harte Fall -
-                    // nicht "irgendein Slot fehlt noch": Letzteres traefe in jeder lebenden Kolonie staendig zu
-                    // (jemand ist immer gerade unterwegs zum Regal) und die Warnung waere binnen einer Stunde
-                    // Tapete. "Loadout sagt Waffe, Haende leer" ist dagegen der Zustand, in dem jemand im
-                    // Gefecht wirklich nichts zu tun hat.
-                    // equipment.Primary, nicht das Inventar: eine Waffe im Rucksack ist zwar nicht gezueckt,
-                    // aber CE zieht sie im Kampf selbst - leere Haende UND leeres Inventar waere zu eng.
+                    // Assigned, but carries NOTHING at all. Deliberately only this one hard case - not "some slot
+                    // is still missing": the latter would be true constantly in any living colony (somebody is
+                    // always on the way to the shelf) and the alert would be wallpaper within an hour. "Loadout
+                    // says weapon, hands empty", on the other hand, is the state in which someone really has
+                    // nothing to do in a fight.
+                    // equipment.Primary, not the inventory: a weapon in the backpack is not drawn, but CE draws it
+                    // itself in combat - empty hands AND empty inventory would be too narrow.
                     if (loadoutWeapons.Count > 0
                         && (pawn.equipment == null || pawn.equipment.Primary == null)
                         && (pawn.inventory?.innerContainer == null
@@ -229,15 +222,14 @@ namespace CEReloaded
                         && !LoadoutUtility.CannotFight(pawn))
                         assignedNotCarried.Add(pawn);
 
-                    // Eine Loadout-Waffe, die der Kolonist nicht schon haelt, die auch nicht mehr frei im
-                    // Lager liegt (der Reihum-Anspruch oben hat sie einem anderen zugeschlagen) und fuer
-                    // die kein Auftrag laeuft. Die MENGE kommt aus der gemeinsamen Rechnung; hier steht nur
-                    // noch, worueber diese Warnung ueberhaupt spricht:
-                    // - laeuft ein Auftrag, ist es keine Luecke mehr, sondern Wartezeit (produced);
-                    // - Wurfsprengsaetze/Granaten sind Verbrauchsgut, nicht "die Waffe fehlt ihm"
-                    //   (IsSelfAmmoWeapon - sie stehen bewusst im Munitions-Zweig, siehe loadoutAmmo);
-                    // - Schilde meldet diese Warnung weiterhin nicht (das Nachschub-Fenster kennt sie,
-                    //   diese Warnung hat sie noch nie gemeldet - das bleibt eine eigene Entscheidung).
+                    // A loadout weapon the colonist does not already hold, that is no longer free in storage (the
+                    // round-robin claim above gave it to someone else), and for which no bill is running. The
+                    // QUANTITY comes from the shared calculation; all that is left here is what this alert is about:
+                    // - if a bill is running, it is no longer a gap but a wait (produced);
+                    // - thrown explosives/grenades are consumables, not "the weapon is missing"
+                    //   (IsSelfAmmoWeapon - they deliberately sit in the ammo branch, see loadoutAmmo);
+                    // - this alert still does not report shields (the resupply window knows them, this alert never
+                    //   reported them - that remains a separate decision).
                     if (weaponShortfalls.TryGetValue(pawn, out Dictionary<ThingDef, int> missingGear)
                         && missingGear.Keys.Any(w => !produced.Contains(w)
                             && !LoadoutUtility.IsSelfAmmoWeapon(w)
@@ -285,11 +277,10 @@ namespace CEReloaded
                         // Equipped Primary (e.g. a melee main weapon) never shows up in inventory.innerContainer -
                         // without this it reads as "missing" and falsely blocks a fully-equipped pawn.
                         if (pawn.equipment != null && pawn.equipment.Primary != null) carriedDefs.Add(pawn.equipment.Primary.def);
-                        // Dieselbe Begruendung fuer GETRAGENE Kleidung (2026-08-13):
-                        // ein Schild ist Apparel und stand deshalb nie in dieser Menge, obwohl loadoutAmmo es
-                        // enthaelt (dort steht jeder Nicht-Waffen-Slot). Fehlszenario: Nahkaempfer mit Shield
-                        // Kit, traegt sein Schild, Bulk am Anschlag -> stand dauerhaft unter "Capacity blocked",
-                        // obwohl er alles hat. Diese Warnung ging nie wieder weg.
+                        // Same reasoning for WORN apparel: a shield is apparel and so was never in this set, although
+                        // loadoutAmmo contains it (every non-weapon slot is there). Failure scenario: melee fighter
+                        // with a Shield Kit, wearing the shield, bulk at the limit -> permanently listed under
+                        // "Capacity blocked" although they have everything. The alert never went away.
                         if (pawn.apparel != null && pawn.apparel.WornApparel != null)
                             foreach (Apparel a in pawn.apparel.WornApparel) carriedDefs.Add(a.def);
                         if (loadoutAmmo.Any(a => !carriedDefs.Contains(a))) capacityBlocked.Add(pawn);
@@ -297,9 +288,9 @@ namespace CEReloaded
                 }
 
                 // Low on ammo: the pawn's equipped CE gun vs. spare ammo it is actually carrying.
-                // Die Rechnung selbst steht seit 2026-08-13 in LowAmmoState - siehe dort, warum: der
-                // Klick-Weg der Bereitschaftsanzeige muss dieselbe Schwelle und dieselbe getragene Menge
-                // kennen, sonst beantwortet er eine andere Frage als die, die die Warnung gestellt hat.
+                // The calculation itself lives in LowAmmoState - see there for why: the readiness widget's click
+                // path must know the same threshold and the same carried amount, otherwise it answers a different
+                // question than the one the alert asked.
                 if (LowAmmoState(pawn, out LowAmmoInfo lowInfo) && lowInfo.IsLow) lowAmmo.Add(pawn);
 
                 // Overloaded: over CE weight or bulk capacity (slows the pawn, hurts aim/dodge).
@@ -318,60 +309,58 @@ namespace CEReloaded
             culprits[ReadinessIssue.AssignedNotCarried].AddRange(assignedNotCarried);
         }
 
-        // ---- "Low on ammo" - der Zustand DAHINTER, nicht nur das Ja/Nein ----------------------------
+        // ---- "Low on ammo" - the state BEHIND it, not just the yes/no ----------------------------
         //
-        // 2026-08-13: ein Klick auf "low ammo", der zu einer Loesung fuehren soll, oeffnete ein
-        // Supply-Loadouts-Fenster, das nur anbot, Satchel Charges abzubrechen - Unsinn.
-        // Die Sache zerlegt sich so:
-        // "Low on ammo" hat DREI Ursachen, und jede braucht eine ANDERE Antwort.
-        //   A) Der Kolonist hat die Munition schlicht noch nicht abgeholt (sie liegt im Lager oder ist in
-        //      Produktion) -> die Loesung ist warten, nicht produzieren.
-        //   B) Sein Loadout bzw. seine Rolle sieht von vornherein weniger vor, als die Warnschwelle
-        //      verlangt -> dann wird die Warnung NIE verschwinden, egal wie voll das Lager ist. Das ist der
-        //      Fall, den bisher niemand behandelt hat, und der unangenehmste: eine Warnung, die man nicht
-        //      wegbekommen kann.
-        //   C) Die Munition fehlt wirklich und niemand stellt sie her -> Nachschub-Fenster, und darin MUSS
-        //      genau diese Munition stehen.
+        // A click on "low ammo", meant to lead to a fix, used to open a Supply Loadouts window that only offered
+        // to cancel Satchel Charges - nonsense.
+        // It breaks down like this:
+        // "Low on ammo" has THREE causes, and each needs a DIFFERENT answer.
+        //   A) The colonist simply has not picked up the ammo yet (it is in storage or in production)
+        //      -> the fix is to wait, not to produce.
+        //   B) Their loadout or role plans for less than the alert threshold from the start -> then the alert
+        //      will NEVER go away, however full storage is. That is the case nobody handled before, and the most
+        //      annoying one: an alert you cannot get rid of.
+        //   C) The ammo really is missing and nobody produces it -> resupply window, and exactly this ammo MUST
+        //      be listed there.
         //
-        // Diese Struktur ist die gemeinsame Grundlage fuer die Warnung selbst UND fuer den Klick-Weg in
-        // LoadoutUtility. Bewusst EINE Rechnung: die Warnung sagt "zu wenig", der Klick muss von derselben
-        // Schwelle und derselben getragenen Menge ausgehen, sonst schickt er den Spieler wegen einer
-        // anderen Zahl irgendwohin.
+        // This structure is the shared basis for the alert itself AND for the click path in LoadoutUtility.
+        // Deliberately ONE calculation: the alert says "too little", the click must start from the same
+        // threshold and the same carried amount, otherwise it sends the player somewhere because of a different
+        // number.
         public enum LowAmmoCause
         {
-            Pending,        // A - Bestand oder laufender Auftrag decken die Luecke, es ist unterwegs
-            PlanTooSmall,   // B - das Loadout/die Rolle fordert weniger als die Warnschwelle
-            NotProduced     // C - die Luecke ist ungedeckt, es entsteht auch nichts
+            Pending,        // A - stock or a running bill covers the gap, it is on the way
+            PlanTooSmall,   // B - the loadout/role asks for less than the alert threshold
+            NotProduced     // C - the gap is uncovered and nothing is being produced
         }
 
         public struct LowAmmoInfo
         {
             public ThingWithComps weapon;
-            public List<ThingDef> usableAmmo;   // alles, was diese Waffe verschiessen kann
-            public int carried;                 // was er davon wirklich bei sich hat
-            public int threshold;               // was er haben muesste, damit die Warnung schweigt
-            public int planned;                 // was sein Loadout/seine Rolle ihm ueberhaupt zugesteht
-            // Die zwei Zahlen, an denen Pending gegen NotProduced entschieden WIRD (2026-08-17,
-            // lowammo-three-answers): sie standen bisher nur als lokale Variablen in der Rechnung, und die
-            // Anzeige hat sie sich daneben ein zweites Mal ausgerechnet - mit einer anderen Munitionsmenge
-            // (nur die GELADENE Sorte) und einer anderen Bestandsfunktion. Ergebnis im Test: der
-            // Tooltip sagte "none in stock, not queued", das Menue derselben Anzeige "supplies are on the
-            // way". Wer den Grund anzeigen will, nimmt jetzt diese Felder.
-            // Seit 2026-08-30 nur noch ueber die Sorten, die sein LOADOUT auch verlangt (Fall: Cloud stand als
-            // 'supplies in stock, not picked up' da, weil 20 Schuss einer Sorte lagen, die sein SKS zwar verschiesst,
-            // sein Loadout aber nicht fordert - CEs Abhol-Job holt nur, was im Loadout steht, also war da nichts
-            // abzuholen; seine Sorte wurde gerade produziert). Fordert das Loadout keine konkrete Sorte (nur
-            // 'Any ammo'), gelten wie bisher alle nutzbaren.
-            public int reachable;               // greifbarer Bestand ueber die GEPLANTEN Sorten, ohne Gesperrtes
-            public List<ThingDef> plannedAmmo;  // die Sorten aus seinem Loadout (leer = generisch/alle)
+            public List<ThingDef> usableAmmo;   // everything this weapon can fire
+            public int carried;                 // what they actually carry of it
+            public int threshold;               // what they would need for the alert to stay quiet
+            public int planned;                 // what their loadout/role allows them in the first place
+            // The two numbers on which Pending vs. NotProduced IS decided: they used to exist only as local
+            // variables in the calculation, and the display computed them a second time on its own - with a
+            // different ammo amount (only the LOADED type) and a different stock function. Result: the tooltip
+            // said "none in stock, not queued" while the menu of the same display said "supplies are on the way".
+            // Anything that wants to show the reason now uses these fields.
+            // Only over the types their LOADOUT actually asks for (case: a colonist was listed as 'supplies in
+            // stock, not picked up' because 20 rounds of a type lay around that his SKS can fire but his loadout
+            // does not ask for - CE's pickup job only fetches what is in the loadout, so there was nothing to
+            // fetch; his type was being produced). If the loadout asks for no concrete type (only 'Any ammo'),
+            // all usable types count as before.
+            public int reachable;               // reachable stock over the PLANNED types, excluding forbidden
+            public List<ThingDef> plannedAmmo;  // the types from their loadout (empty = generic/all)
             public List<ThingDef> AmmoToCheck => plannedAmmo != null && plannedAmmo.Count > 0 ? plannedAmmo : usableAmmo;
-            public bool anyBill;                // laeuft fuer irgendeine davon ein Auftrag
+            public bool anyBill;                // whether a bill is running for any of them
             public LowAmmoCause cause;
             public bool IsLow => carried < threshold;
             public int Shortfall => Mathf.Max(0, threshold - carried);
         }
 
-        // false, wenn die Frage fuer diesen Pawn gar nicht gilt (keine Waffe, keine CE-Munitionswaffe).
+        // false if the question does not apply to this pawn at all (no weapon, no CE ammo-using weapon).
         public static bool LowAmmoState(Pawn pawn, out LowAmmoInfo info)
         {
             info = default(LowAmmoInfo);
@@ -383,8 +372,8 @@ namespace CEReloaded
             info.weapon = primary;
             info.usableAmmo = comp.Props.ammoSet.ammoTypes.Select(t => (ThingDef)t.ammo).Where(a => a != null).Distinct().ToList();
 
-            // Schwelle aus den Einstellungen statt hartkodierter 2 (2026-08-09). Ungueltige Eingabe faellt
-            // auf 2 zurueck - ein vertipptes Feld darf die Warnung nicht abschalten.
+            // Threshold from the settings instead of a hardcoded 2. Invalid input falls back to 2 - a mistyped
+            // field must not switch the alert off.
             int magsNeeded = 2;
             if (CEReloadedMod.settings != null && int.TryParse(CEReloadedMod.settings.alertLowAmmoMags, out int mn) && mn > 0) magsNeeded = mn;
             info.threshold = magsNeeded * comp.Props.magazineSize;
@@ -393,19 +382,18 @@ namespace CEReloaded
             if (pawn.inventory != null && pawn.inventory.innerContainer != null)
                 foreach (Thing t in pawn.inventory.innerContainer)
                     if (setAmmo.Contains(t.def)) info.carried += t.stackCount;
-            // Das geladene Magazin zaehlt mit, wie bei CE selbst (2026-08-30, siehe LoadoutUtility.MagazineAmmoCount).
+            // The loaded magazine counts too, as in CE itself (see LoadoutUtility.MagazineAmmoCount).
             if (comp.CurrentAmmo != null && setAmmo.Contains(comp.CurrentAmmo)) info.carried += comp.CurMagCount;
 
             if (!info.IsLow) return true;
 
-            // (B) Was steht ueberhaupt in seinem Loadout? Die LEBENDE Zuweisung, nicht DisplayLoadout.
-            // Der Unterschied entscheidet den Fall: DisplayLoadout laeuft vom persoenlichen Anker AUFWAERTS
-            // zur Vorlage und liefert damit genau das, was der Kolonist NICHT selbst gesetzt hat. Wer seine
-            // Munitionsmenge gerade selbst erhoeht hat, waere so weiter als "Loadout fordert zu wenig"
-            // eingestuft worden - der Mod haette ihn aufgefordert, etwas zu aendern, das er schon geaendert
-            // hat. pawn.GetLoadout().Slots ist die Vereinigung aus Anker, Vorlage und Extra-Eltern, also
-            // wirklich "alles, was sein Plan ihm zugesteht"; eine ROLLE ist darin genauso enthalten, weil
-            // sie die Vorlage IST. Einmal lesen, nicht zweimal - der Getter baut die Vereinigung neu.
+            // (B) What is in their loadout at all? The LIVE assignment, not DisplayLoadout. The difference
+            // decides the case: DisplayLoadout walks from the personal anchor UP to the template and so returns
+            // exactly what the colonist did NOT set themselves. Someone who just raised their own ammo amount
+            // would still have been classified as "loadout asks for too little" - the mod would have told them
+            // to change something they already changed. pawn.GetLoadout().Slots is the union of anchor,
+            // template and extra parents, so really "everything their plan allows them"; a ROLE is included
+            // just the same, because it IS the template. Read once, not twice - the getter rebuilds the union.
             List<LoadoutSlot> planSlots = pawn.GetLoadout()?.Slots;
             info.plannedAmmo = new List<ThingDef>();
             bool plansGeneric = false;
@@ -420,18 +408,17 @@ namespace CEReloaded
                     }
                     else if (s.genericDef != null && LoadoutUtility.GetWeaponForGenericAmmo(s.genericDef) == primary.def) { info.planned += s.count; plansGeneric = true; }
                 }
-            // 'Any ammo for X' verlangt jede Sorte - dann zaehlt alles Nutzbare, wie bisher.
+            // 'Any ammo for X' asks for every type - then everything usable counts, as before.
             if (plansGeneric) info.plannedAmmo.Clear();
             if (info.planned < info.threshold) { info.cause = LowAmmoCause.PlanTooSmall; return true; }
 
-            // (A gegen C) Reicht das, was greifbar ist oder gerade entsteht, um die Luecke zu schliessen?
-            // Bestand hier bewusst OHNE den getragenen Topf (CarriedStockCount) - was andere Kolonisten
-            // schon am Mann haben, kann dieser hier nicht mehr abholen.
-            // Gesperrter Bestand ("nicht aufsammeln") zaehlt NICHT als greifbar - er liegt zwar da, aber
-            // niemand holt ihn. Ohne diesen Abzug meldet der Klick "Nachschub ist unterwegs" fuer einen
-            // Haufen Beutemunition, den der Kolonist nie anfassen wird. ForbiddenStockCount ueberschneidet
-            // sich mit beiden Toepfen darueber (es zaehlt jedes markierte Stueck ausserhalb eines Pawns,
-            // im Lager wie auf dem Boden), deshalb genau einmal abziehen und bei 0 abschneiden.
+            // (A vs. C) Is what is reachable or being produced enough to close the gap?
+            // Stock here deliberately WITHOUT the carried pool (CarriedStockCount) - what other colonists
+            // already carry, this one can no longer pick up.
+            // Forbidden stock does NOT count as reachable - it is there, but nobody fetches it. Without this
+            // deduction the click reports "supplies are on the way" for a pile of looted ammo the colonist will
+            // never touch. ForbiddenStockCount overlaps with both pools above (it counts every marked item
+            // outside a pawn, in storage as well as on the floor), so deduct it exactly once and clamp at 0.
             foreach (ThingDef a in info.AmmoToCheck)
             {
                 info.reachable += Mathf.Max(0, LoadoutUtility.IngredientStockCount(a) + LoadoutUtility.GroundStockCount(a)
@@ -454,7 +441,7 @@ namespace CEReloaded
     }
 
     // ---- Alert (auto-discovered by RimWorld; Medium priority = quiet, no bell/bounce) ----------------------------
-    // ONE consolidated alert instead of five separate ones (WORKFLOW_OVERHAUL_PLAN.md section 4): five near-
+    // ONE consolidated alert instead of five separate ones: five near-
     // identical entries in the vanilla alert bar read as noise, not signal - "which of these four almost-the-same
     // alerts is the one that matters right now?". This keeps the per-category on/off settings (a category with its
     // setting off simply contributes nothing) but surfaces ONE line, "Combat readiness: N issues", with the

@@ -5,29 +5,28 @@ using Verse;
 
 namespace CEReloaded
 {
-    // Warum es das gibt (2026-08-15): der Luefter drehte hoch, sobald eines der grossen Fenster dieses
-    // Mods offen war, und voll hoch im Zuweisungs-Fenster.
+    // Why this exists: CPU load and fan noise went up as soon as one of this mod's large windows was
+    // open, and to the maximum in the Assign window.
     //
-    // Die Rechnung, jedes Glied im RimWorld-Dekompilat nachgelesen, nichts davon geraten:
-    //   * Verse.Root.CheckGlobalInit setzt Application.targetFrameRate auf die Bildwiederholrate des
-    //     Monitors. Auf diesem Rechner sind das 143 Hz - RimWorld zeichnet also 143 Bilder pro Sekunde,
-    //     auch wenn das Spiel pausiert ist und sich auf dem Schirm nichts bewegt.
-    //   * Verse.Window.WindowOnGUI ruft den Fensterinhalt ueber GUI.Window auf. Unitys IMGUI ruft die
-    //     Fensterfunktion pro Bild MINDESTENS zweimal (Layout und Repaint) plus einmal je Eingabe.
-    //   * Unser teuerster Fensterinhalt kostet gemessene ~3,4 ms pro Durchgang.
-    //     3,4 ms * 2 Durchgaenge * 143 Bilder = rund 1000 ms Rechenzeit pro Sekunde - ein Kern zu 100 %,
-    //     dauerhaft, fuer ein Bild, das stillsteht. Genau das hoert man am Luefter.
+    // The math, every link verified in RimWorld's decompiled code, none of it guessed:
+    //   * Verse.Root.CheckGlobalInit sets Application.targetFrameRate to the monitor's refresh rate.
+    //     On a 143 Hz monitor RimWorld therefore draws 143 frames per second, even while the game is
+    //     paused and nothing moves on screen.
+    //   * Verse.Window.WindowOnGUI calls the window content via GUI.Window. Unity's IMGUI calls the
+    //     window function AT LEAST twice per frame (Layout and Repaint) plus once per input event.
+    //   * Our most expensive window content costs a measured ~3.4 ms per pass.
+    //     3.4 ms * 2 passes * 143 frames = roughly 1000 ms of CPU time per second - one core at 100 %,
+    //     permanently, for a picture that stands still. That is exactly what the fan reacts to.
     //
-    // Der Hebel hier ist der eine, der ohne Ruecksicht auf den Inhalt wirkt: solange ein Fenster dieses
-    // Mods offen ist UND das Spiel dadurch pausiert, gibt es keinen Grund fuer 143 Bilder pro Sekunde.
-    // 60 im Umgang, 30 wenn eine Dreiviertelsekunde lang weder Maus noch Taste etwas getan hat. Das ist
-    // dieselbe Arbeit pro Bild wie vorher - nur ein Viertel bis die Haelfte so oft.
+    // The lever here is the one that works regardless of content: as long as a window of this mod is
+    // open AND the game is paused because of it, there is no reason for 143 frames per second.
+    // 60 while interacting, 30 when neither mouse nor key has done anything for three quarters of a
+    // second. That is the same work per frame as before - just a quarter to half as often.
     //
-    // Bewusst NICHT an einzelnen Fenstern aufgehaengt, sondern an einer Pruefung pro Bild: ein Fenster,
-    // das ueber PostClose/Close hinweg vergisst freizugeben (Absturz im Inhalt, Spielstand geladen
-    // waehrend es offen ist), liesse das Spiel sonst dauerhaft bei 30 Bildern stehen. Diese Fassung
-    // heilt sich selbst - sobald kein Fenster von uns mehr offen ist, steht im naechsten Bild wieder
-    // der urspruengliche Wert.
+    // Deliberately NOT tied to individual windows, but to a per-frame check: a window that forgets to
+    // release across PostClose/Close (crash in the content, save loaded while it is open) would
+    // otherwise leave the game stuck at 30 frames permanently. This version heals itself - as soon as
+    // none of our windows is open, the original value is back on the next frame.
     [HarmonyPatch(typeof(WindowStack), nameof(WindowStack.WindowsUpdate))]
     public static class Patch_IdleFrameRate
     {
@@ -39,31 +38,31 @@ namespace CEReloaded
 
     public static class IdleFrameRate
     {
-        // Im Umgang: 60 ist fuer eine pausierte, stehende Oberflaeche fluessig - auch beim Ziehen eines
-        // Reglers. Im Leerlauf: 30, da bewegt sich ueberhaupt nichts.
+        // While interacting: 60 is smooth for a paused, static UI - even when dragging a
+        // slider. When idle: 30, nothing moves at all.
         private const int ActiveFps = 60;
         private const int IdleFps = 30;
         private const float IdleAfterSeconds = 0.75f;
 
         private static readonly Assembly OwnAssembly = typeof(IdleFrameRate).Assembly;
 
-        private static bool held;            // wir halten gerade die Bildrate (und kennen den Originalwert)
+        private static bool held;            // we are currently holding the frame rate (and know the original value)
         private static int savedTarget;
-        private static int appliedFps = -1;  // was zuletzt wirklich gesetzt wurde, damit wir nicht pro Bild schreiben
+        private static int appliedFps = -1;  // what was actually set last, so we don't write every frame
         private static Vector3 lastMouse;
         private static float lastInputAt;
 
         public static void Update()
         {
-            // Bei eingeschalteter Bildsynchronisation gar nicht erst anfassen (2026-08-25: Flackern bei
-            // laufendem Luefter, Messzeile darin: "140 Bilder/s (Ziel 30, vSync 1)").
-            // Unity ignoriert targetFrameRate, sobald vSyncCount > 0 - die 140 Bilder bei "Ziel 30" sind der
-            // Beweis. Das Umschalten 30/60 je nach Eingabe hat also nie gedrosselt und war zugleich der
-            // EINZIGE Wert, den dieser Mod an der Bildausgabe noch veraendert hat. Ein Hebel ohne Wirkung,
-            // der als Flacker-Kandidat uebrig bleibt, kommt weg: unter vSync tut dieser Patch nichts mehr.
-            // Ohne vSync (vom Spieler abgeschaltet) drosselt er weiter wie bisher - dort wirkt der Wert.
-            // Release() statt return, damit ein Wert, den wir vor einem vSync-Wechsel gesetzt hatten, nicht
-            // stehen bleibt.
+            // Don't touch it at all when vSync is on (flickering while the fan was running, with the
+            // measurement line showing "140 fps (target 30, vSync 1)").
+            // Unity ignores targetFrameRate as soon as vSyncCount > 0 - the 140 frames at "target 30" are the
+            // proof. Switching 30/60 depending on input therefore never throttled anything and was at the same
+            // time the ONLY value this mod still changed about frame output. A lever without effect that
+            // remains a flicker candidate goes away: under vSync this patch no longer does anything.
+            // Without vSync (turned off by the player) it keeps throttling as before - there the value works.
+            // Release() instead of return, so a value we set before a vSync change does not
+            // stay behind.
             if (QualitySettings.vSyncCount > 0 || !ShouldHold())
             {
                 Release();
@@ -79,8 +78,8 @@ namespace CEReloaded
                 lastInputAt = Time.realtimeSinceStartup;
             }
 
-            // Maus oder Taste = "er arbeitet gerade damit". Das Zeitfenster danach faengt die Pausen
-            // zwischen zwei Klicks ab, damit die Bildrate nicht bei jedem Absetzen der Hand springt.
+            // Mouse or key = "someone is working with it". The time window afterwards covers the pauses
+            // between two clicks, so the frame rate doesn't jump every time the hand comes off.
             Vector3 mouse = Input.mousePosition;
             if (mouse != lastMouse || Input.anyKey || Input.mouseScrollDelta.y != 0f)
             {
@@ -89,39 +88,37 @@ namespace CEReloaded
             }
             bool idle = Time.realtimeSinceStartup - lastInputAt > IdleAfterSeconds;
 
-            // Nie ueber den Wert hinaus, den das Spiel selbst gesetzt hat - sonst wuerde dieser Patch auf
-            // einem 60-Hz-Schirm die Bildrate ERHOEHEN wollen.
+            // Never above the value the game itself set - otherwise on a 60 Hz screen this patch would
+            // want to RAISE the frame rate.
             int want = idle ? IdleFps : (savedTarget > 0 ? Mathf.Min(savedTarget, ActiveFps) : ActiveFps);
-            // Auch dann neu setzen, wenn jemand anders den Wert unter uns geaendert hat (RimWorld setzt ihn
-            // beim Start und beim Aufloesungswechsel, ein anderer Mod kann es jederzeit tun). Sonst haetten
-            // wir eine Sperre, die still verloren geht und trotzdem als gesetzt gilt.
+            // Also reapply when someone else changed the value underneath us (RimWorld sets it at startup
+            // and on resolution change, another mod can do so at any time). Otherwise we would have a lock
+            // that silently gets lost while still counting as set.
             if (want == appliedFps && Application.targetFrameRate == appliedFps) return;
             appliedFps = want;
-            // ============ vSync wird NICHT MEHR angefasst (2026-08-18) ============
-            // Hier stand: "bei eingeschalteter Synchronisation ignoriert Unity targetFrameRate, also
-            // schalten wir sie ab, solange wir halten". Das stimmt in der ersten Haelfte und war in der
-            // zweiten ein Fehler mit sichtbarer Folge.
+            // ============ vSync is NO LONGER touched ============
+            // This used to say: "with vSync on, Unity ignores targetFrameRate, so we turn it off while we
+            // hold". The first half is true; the second was a mistake with visible consequences.
             //
-            // Beobachtet zweimal an einem Abend: der Bildschirm flackerte - und tags zuvor dasselbe beim
-            // Tippen in einem anderen Programm. Dazu die Messzeile
-            // aus dem laufenden Spiel: "76 Bilder/s (Ziel 144, vSync 1)". vSync stand also auf 1, WAEHREND
-            // wir halten - jemand hat unsere Null ueberschrieben. Der Test eine Zeile darueber prueft nur
-            // targetFrameRate, nicht vSync: wir haben die Null also in jedem Bild neu hingeschrieben, in
-            // dem der Wert wieder auf 1 stand. Ein An-und-Aus der Synchronisation pro Bild ist genau das,
-            // was ein Bildschirm als Flackern zeigt - Unity baut dabei jedes Mal den Bildtakt neu auf.
+            // Observed repeatedly: the screen flickered. The measurement line
+            // from the running game read: "76 fps (target 144, vSync 1)". So vSync was at 1 WHILE
+            // we were holding - something had overwritten our zero. The test one line above only checks
+            // targetFrameRate, not vSync: so we wrote the zero again on every frame in which the value
+            // was back at 1. Toggling vSync on and off per frame is exactly what a screen shows as
+            // flickering - Unity rebuilds the frame timing each time.
             //
-            // Die Zeile hat also nie erreicht, wofuer sie da war (die 76 Bilder/s beweisen es: das ist die
-            // halbe Bildwiederholrate, also vSync), und hat dabei geflackert. Ein Hebel, der nicht wirkt
-            // und stattdessen schadet, kommt weg.
+            // So the line never achieved what it was there for (the 76 fps prove it: that is half the
+            // refresh rate, i.e. vSync), and flickered in the process. A lever that doesn't work
+            // and does harm instead goes away.
             //
-            // Was das kostet, ehrlich: bei eingeschalteter Synchronisation ist die Drosselung wirkungslos -
-            // Unity ignoriert targetFrameRate dann, und daran kann kein Mod etwas aendern, das nicht genau
-            // diesen Schaden anrichtet. Der Luefter bleibt in dem Fall also oben, und der richtige Hebel
-            // ist der andere: weniger Arbeit pro Bild statt weniger Bilder.
+            // What this costs, honestly: with vSync on the throttling has no effect -
+            // Unity ignores targetFrameRate then, and no mod can change that without causing exactly
+            // this damage. In that case the fan stays up, and the right lever is the other one:
+            // less work per frame instead of fewer frames.
             Application.targetFrameRate = want;
-            // Die Messzeile fuer die Bildrate ist am 2026-08-17 entfallen: eine Luefter-Messung hat gezeigt,
-            // dass das Entwickler-Logfenster selbst 530 von 537 ms/s aller
-            // Fensterkosten traegt. Die Drosselung darunter bleibt unveraendert - nur ihr Protokoll ist weg.
+            // The frame-rate measurement line was dropped: a load measurement showed that the developer
+            // log window itself accounted for 530 of 537 ms/s of all
+            // window cost. The throttling below is unchanged - only its logging is gone.
         }
 
         private static void Release()
@@ -130,15 +127,15 @@ namespace CEReloaded
             held = false;
             appliedFps = -1;
             Application.targetFrameRate = savedTarget;
-            // KEIN Zuruecksetzen von vSync mehr (2026-08-18): wir fassen den Wert nicht mehr an, also
-            // gehoert er uns auch nicht. Ihn hier zu schreiben hiesse, eine Einstellung zurueckzustellen,
-            // die der Spieler oder der Treiber inzwischen selbst geaendert haben koennte - und beim
-            // Oeffnen/Schliessen eines Fensters war genau das der zweite Flacker-Moment.
+            // NO more resetting of vSync: we no longer touch the value, so it is not ours either.
+            // Writing it here would mean resetting a setting that the player or the driver may have
+            // changed in the meantime - and on opening/closing a window that was exactly the second
+            // flicker moment.
         }
 
-        // Zwei Bedingungen, und die zweite ist die wichtige: NUR wenn das Spiel wegen eines Fensters
-        // ohnehin steht. Ein Fenster von uns, das den Betrieb nicht pausiert, darf die Bildrate der
-        // laufenden Karte nicht anfassen - da bewegt sich etwas, das fluessig bleiben muss.
+        // Two conditions, and the second is the important one: ONLY when the game is standing still
+        // because of a window anyway. A window of ours that does not pause the game must not touch the
+        // frame rate of the running map - something is moving there that has to stay smooth.
         private static bool ShouldHold()
         {
             WindowStack stack = Find.WindowStack;
@@ -147,10 +144,10 @@ namespace CEReloaded
             for (int i = 0; i < stack.Count; i++)
             {
                 Window w = stack[i];
-                // Ueber die Assembly statt ueber eine Liste von Fenstertypen: eine Aufzaehlung waere beim
-                // naechsten neuen Dialog still unvollstaendig (dieselbe Begruendung wie in
-                // CombatReadiness.AnyModWindowOpen). stack.Windows waere hier falsch - das ist ein
-                // AsReadOnly() und belegt bei JEDEM Aufruf Speicher; Count + Indexer tun es nicht.
+                // Via the assembly instead of a list of window types: an enumeration would silently be
+                // incomplete with the next new dialog (same reasoning as in
+                // CombatReadiness.AnyModWindowOpen). stack.Windows would be wrong here - it is an
+                // AsReadOnly() and allocates on EVERY call; Count + indexer do not.
                 if (w != null && w.GetType().Assembly == OwnAssembly) return true;
             }
             return false;

@@ -31,7 +31,7 @@ namespace CEReloaded
                 // below for the exact same gating and its own reasoning). Used to run unconditionally for
                 // EVERY FloatMenu in the game, which also stripped Equipment Packs out of the generic
                 // "Select/Load/Delete loadout..." management dialog (CE's own loadout browser) where seeing
-                // and picking one is exactly the point - packs were repeatedly reported missing from
+                // and picking one is exactly the point - packs went missing from
                 // that picker before this was scoped down to just the one context where hiding them is
                 // actually correct.
                 if (Patch_LoadoutTooltip.CurrentDoCellPawn != null)
@@ -39,20 +39,20 @@ namespace CEReloaded
                     options.RemoveAll(opt => opt.Label != null && byLabel.TryGetValue(opt.Label, out Loadout packOpt)
                         && EquipmentPackUtility.IsEquipmentPackLoadout(packOpt));
 
-                    // Die Markierung an die AKTION haengen, nicht an den Frame (2026-08-09).
+                    // Attach the flag to the ACTION, not to the frame.
                     //
-                    // Der Anker-Schutz in Patch_Utility_Loadouts_SetLoadout fragt CurrentDoCellPawn ab, um sich
-                    // aus CEs eigenem Dropdown herauszuhalten. Das funktionierte hier nie: CEs DoCell ruft
-                    // SetLoadout nicht selbst auf, es BAUT nur dieses Menue. Geklickt wird einen Frame spaeter
-                    // aus dem FloatMenu-Fenster heraus - da ist CurrentDoCellPawn laengst wieder null.
-                    // Folge: wer ueber CEs Dropdown ein Loadout waehlte, landete im Anker-Umbiegen-Pfad und
-                    // schleppte Packs, Zweitwaffen und persoenliche Munition mit - exakt das Gegenteil dessen,
-                    // was dieser Schutz erreichen soll ("wenn ich im Vanilla-Editor etwas aendere, erwarte ich
-                    // nicht, Leichen mitzuziehen").
-                    // Ein Frame-Flag kann das nicht loesen. Die Aktion selbst ist der einzige Zeitpunkt, der
-                    // zuverlaessig "jetzt laeuft eine Auswahl aus CEs Dropdown" bedeutet - also wird sie
-                    // umschlossen. finally, damit eine Ausnahme in CEs Code das Flag nicht dauerhaft stehen
-                    // laesst (dieselbe Vorsichtsmassnahme wie bei InsideVanillaLoadoutEditor).
+                    // The anchor guard in Patch_Utility_Loadouts_SetLoadout checks CurrentDoCellPawn to stay
+                    // out of CE's own dropdown. That never worked here: CE's DoCell does not call SetLoadout
+                    // itself, it only BUILDS this menu. The click happens one frame later from inside the
+                    // FloatMenu window - by then CurrentDoCellPawn is long back to null.
+                    // Consequence: picking a loadout via CE's dropdown ended up in the anchor-redirect path and
+                    // dragged packs, sidearms and personal ammo along - the exact opposite of what this guard
+                    // is meant to achieve (a change made in the vanilla editor should not carry over stale
+                    // extras).
+                    // A frame flag cannot solve this. The action itself is the only moment that reliably
+                    // means "a selection from CE's dropdown is running now" - so it gets wrapped. finally,
+                    // so that an exception in CE's code doesn't leave the flag set permanently (same
+                    // precaution as for InsideVanillaLoadoutEditor).
                     foreach (FloatMenuOption opt in options)
                     {
                         if (opt?.action == null) continue;
@@ -179,41 +179,41 @@ namespace CEReloaded
         // everywhere else this mod's own dialogs show a loadout-picking FloatMenu).
         public static bool InsideVanillaLoadoutEditor;
 
-        // True nur waehrend die AKTION eines Menuepunkts aus CEs eigenem Loadout-Dropdown laeuft. Gesetzt in
-        // Patch_FloatMenu, wo die Aktionen dieses Menues umschlossen werden - siehe die Begruendung dort.
-        // Notwendig, weil CurrentDoCellPawn nur waehrend des ZEICHNENS gesetzt ist, der Klick aber einen
-        // Frame spaeter kommt. Ein Frame-Flag kann diese Luecke prinzipiell nicht schliessen.
+        // True only while the ACTION of a menu entry from CE's own loadout dropdown is running. Set in
+        // Patch_FloatMenu, where this menu's actions are wrapped - see the reasoning there.
+        // Needed because CurrentDoCellPawn is only set while DRAWING, but the click comes one frame
+        // later. A frame flag fundamentally cannot close that gap.
         public static bool InsideNativeLoadoutPick;
 
         public static void Prefix(Pawn pawn) => CurrentDoCellPawn = pawn;
 
-        // ============ Alles, was eine Zelle pro Zeile braucht - einmal pro BILD (2026-08-17) ============
+        // ============ Everything a cell needs per row - once per FRAME ============
         //
-        // Anlass: schon das Oeffnen des Vanilla-Assign-Reiters liess den Luefter hochdrehen.
-        // Dieselbe Klasse Verschwendung, die frameRowCache in
-        // Dialog_AssignLoadouts schon behoben hat, nur an der Stelle mit dem meisten Publikum - CEs eigene
-        // Loadout-Spalte sitzt auf einem VANILLA-Reiter, und RimWorld zeichnet ein Fenster mindestens
-        // zweimal pro Bild (Layout + Repaint).
+        // Reason: merely opening the vanilla Assign tab already drove CPU load and fan noise up.
+        // The same class of waste that frameRowCache already fixed in
+        // Dialog_AssignLoadouts, just at the place with the largest audience - CE's own
+        // loadout column sits on a VANILLA tab, and RimWorld draws a window at least
+        // twice per frame (Layout + Repaint).
         //
-        // Pro Zeile lief bisher pro DURCHGANG: dreimal pawn.GetLoadout() (hier zweimal ueber
-        // LoadoutButtonRect, einmal in Patch_LoadoutEditButton, das nochmal separat GetLoadout ruft),
-        // dreimal HoldTrackerAnythingHeld, dreimal .Translate(), und einmal ComposedDisplayLabel - und das
-        // ist der teure Posten: es haengt DisplayLoadout, GetPawnSidearms, GetPawnPacks und ExtraAmmoSlots
-        // hintereinander, und jedes davon fasst die Inhaltsliste eines Loadouts an, die bei einem Kolonisten
-        // mit Anker bei JEDEM Zugriff neu zusammengesetzt wird (Vorlage + Rolle + Packs + Zweitwaffen).
+        // Per row and per PASS this used to run: pawn.GetLoadout() three times (twice here via
+        // LoadoutButtonRect, once in Patch_LoadoutEditButton, which calls GetLoadout separately again),
+        // HoldTrackerAnythingHeld three times, .Translate() three times, and ComposedDisplayLabel once - and
+        // that is the expensive item: it chains DisplayLoadout, GetPawnSidearms, GetPawnPacks and
+        // ExtraAmmoSlots, and each of those touches a loadout's content list, which for a colonist with an
+        // anchor is reassembled on EVERY access (template + role + packs + sidearms).
         //
-        // Die Grenze ist bewusst genau ein Bild: eine Zuweisung, die der Spieler klickt, wird immer erst im
-        // naechsten Bild gezeichnet - der Klick selbst laeuft aus dem FloatMenu-Fenster heraus, lange
-        // nachdem diese Spalte fuer dieses Bild fertig ist.
+        // The boundary is deliberately exactly one frame: an assignment the player clicks is always only
+        // drawn on the next frame - the click itself runs from inside the FloatMenu window, long
+        // after this column is done for the current frame.
         internal struct CellInfo
         {
             public Loadout assigned;
             public bool isAnchor;
             public bool isRole;
             public bool isOurs;
-            // Das Urteil von Patch_LoadoutEditButton.ManagedByUs, aus denselben zwei Teilen gebaut:
-            // IsAmmoLink(assigned) || IsRoleLoadout(assigned). Fuer einen Anker ist isAnchor bereits true,
-            // fuer alles andere ist `real` identisch mit `assigned` - beide Wege geben dasselbe.
+            // The verdict of Patch_LoadoutEditButton.ManagedByUs, built from the same two parts:
+            // IsAmmoLink(assigned) || IsRoleLoadout(assigned). For an anchor isAnchor is already true,
+            // for everything else `real` is identical to `assigned` - both paths give the same result.
             public bool managedByUs;
             public bool held;
             public string label;
@@ -228,9 +228,9 @@ namespace CEReloaded
             if (Time.frameCount == frameCellStamp) return;
             frameCellStamp = Time.frameCount;
             frameCellCache.Clear();
-            // Pro Bild statt pro Zelle: GetWidthCached ist billig, .Translate() davor nicht ganz - und es
-            // lief bis zu dreimal je Zeile. Nicht einmalig statisch, weil ein Sprachwechsel im laufenden
-            // Spiel sonst eine Breite aus der alten Sprache behielte.
+            // Per frame instead of per cell: GetWidthCached is cheap, the .Translate() before it not quite -
+            // and it ran up to three times per row. Not a one-off static, because a language change during
+            // a running game would otherwise keep a width from the old language.
             frameRearmWidth = "CE_UpdateLoadoutNow".Translate().GetWidthCached();
         }
 
@@ -250,8 +250,8 @@ namespace CEReloaded
                 info.isRole = RoleUtility.IsRoleLoadout(real);
                 info.isOurs = info.isAnchor || info.isRole || LoadoutUtility.IsGeneratedTemplate(real);
                 info.managedByUs = info.isAnchor || info.isRole;
-                // Nur wenn er ueberhaupt gezeichnet wird - ein Kolonist auf einem fremden, von Hand
-                // gebauten Loadout laeuft hier nicht durch ComposedDisplayLabel.
+                // Only if it is drawn at all - a colonist on a foreign, hand-built loadout does not go
+                // through ComposedDisplayLabel here.
                 if (info.isOurs)
                     info.label = info.isAnchor
                         ? AmmoAssignmentUtility.ComposedDisplayLabel(pawn)
@@ -279,8 +279,8 @@ namespace CEReloaded
             if (pawn == null) return;
             CellInfo info = GetCellInfo(pawn);
             Loadout loadout = info.assigned;
-            // Einmal statt zweimal (Knopf und Tooltip benutzen denselben Bereich - das war zweimal dieselbe
-            // Rechnung inklusive zweimal HoldTrackerAnythingHeld und zweimal .Translate()).
+            // Once instead of twice (button and tooltip use the same rect - that was the same calculation
+            // twice, including HoldTrackerAnythingHeld twice and .Translate() twice).
             Rect buttonRect = LoadoutButtonRect(rect, pawn, info);
 
             // CE's own DoCell draws pawn.GetLoadout()'s raw label - for a pawn on a hidden personal anchor
@@ -315,17 +315,17 @@ namespace CEReloaded
                 // two mod-owned UI elements disagreed about the exact same loadout. Tint now applies either
                 // way; the ComposedDisplayLabel relabel (hiding the internal "[Pawn-Loadout]" name) stays
                 // anchor-only, since a raw Role/template's own label is already the real, player-facing name.
-                // Die vier Urteile kommen seit 2026-08-17 aus GetCellInfo, damit sie im zweiten Durchgang
-                // desselben Bildes nicht ein zweites Mal hergeleitet werden - inhaltlich unveraendert.
+                // The four verdicts come from GetCellInfo, so they are not derived a second time in the
+                // second pass of the same frame - the content is unchanged.
                 if (info.isOurs)
                 {
                     Rect btnRect = buttonRect;
-                    // Die Blautoene aus LoadoutUtility statt nochmal hingeschriebener Zahlen (2026-08-16):
-                    // hier standen dieselben zwei Farben ein zweites Mal, und ab dem Moment kann eine
-                    // Aenderung nur noch halb ankommen. Die Bedingung darueber (isOurs) bleibt absichtlich
-                    // eigenstaendig: sie faerbt auch einen ins Leere zeigenden Anker, damit CEs interner Name
-                    // ("[Pawn-Loadout] 1003") in JEDEM Fall uebermalt wird - LoadoutTintFor gaebe dort null
-                    // zurueck, und der Knopf zeigte wieder Buchhaltung.
+                    // The blue tints from LoadoutUtility instead of numbers written out again: the same two
+                    // colors used to be duplicated here, and from that moment a change can only arrive
+                    // halfway. The condition above (isOurs) deliberately stays separate: it also tints an
+                    // anchor pointing into nothing, so CE's internal name ("[Pawn-Loadout] 1003") is painted
+                    // over in EVERY case - LoadoutTintFor would return null there, and the button would show
+                    // bookkeeping again.
                     GUI.color = info.isRole ? LoadoutUtility.LoadoutTintRole : LoadoutUtility.LoadoutTintWeapon;
                     Widgets.DrawAtlas(btnRect, Widgets.ButtonBGAtlas);
                     GUI.color = Color.white;
@@ -338,19 +338,19 @@ namespace CEReloaded
                     // just needs its own already-correct, player-facing label.
                     Text.Font = GameFont.Small;
                     Text.Anchor = TextAnchor.MiddleCenter;
-                    // RoleUtility.DisplayLabel statt des rohen LabelCap (2026-08-14, zweimal aufgefallen): eine
-                    // Rolle heisst intern "[Role] X", und dieses Praefix ist Buchhaltung, kein Name. Der
-                    // Anker-Zweig daneben zeigte laengst den sauberen Namen (ComposedDisplayLabel raeumt ihn
-                    // selbst weg) - nur wer seine Rolle ueber CEs EIGENES Dropdown in genau dieser Spalte
-                    // gewaehlt hat, landet hier (isAnchor false) und sah "[Role] Assault ...". Dass es sich
-                    // spaeter "von selbst" auflegte, passt dazu: sobald irgendetwas ueber unseren Weg lief,
-                    // bekam der Kolonist einen Anker und damit den anderen Zweig.
-                    // Nebenwirkung, die im Test ebenfalls auffiel: das Praefix frass Breite,
-                    // der Name wurde also frueher abgeschnitten als bei den Nachbarn.
-                    // CellLabel in BEIDEN Zweigen (2026-08-16): der Anker-Zweig raeumte den Namen ueber
-                    // ComposedDisplayLabel laengst so auf, der andere nicht - derselbe Knopf, zwei
-                    // Namensregeln. Und "Zelle" ist hier richtig: die Faerbung eine Zeile darueber sagt die
-                    // Art schon, die Vorsilbe waere Wiederholung auf der schmalsten Spalte des Spiels.
+                    // RoleUtility.DisplayLabel instead of the raw LabelCap: a role is internally named
+                    // "[Role] X", and that prefix is bookkeeping, not a name. The anchor branch next to it
+                    // already showed the clean name (ComposedDisplayLabel strips it itself) - only a colonist
+                    // whose role was picked via CE's OWN dropdown in exactly this column ends up here
+                    // (isAnchor false) and showed "[Role] Assault ...". That it later fixed itself "on its
+                    // own" fits: as soon as anything went through our path, the colonist got an anchor and
+                    // with it the other branch.
+                    // Side effect: the prefix ate width,
+                    // so the name was cut off earlier than its neighbors.
+                    // CellLabel in BOTH branches: the anchor branch already cleaned up the name via
+                    // ComposedDisplayLabel this way, the other did not - the same button, two naming rules.
+                    // And "cell" is right here: the tint one line above already says the kind, the prefix
+                    // would be repetition in the narrowest column of the game.
                     string label = info.label ?? "";
                     Widgets.Label(btnRect, label.Truncate(btnRect.width - 4f));
                     Text.Anchor = TextAnchor.UpperLeft;
@@ -358,13 +358,13 @@ namespace CEReloaded
                 }
             }
 
-            // TipWanted zuerst (2026-08-13, in einer Messung die heisseste Tooltip-Stelle des ganzen Mods):
-            // das hier sitzt in CEs eigener Loadout-Spalte, also auf einem VANILLA-Reiter mit
-            // vielen sichtbaren Zeilen - und GetLoadoutTooltip baut pro Zeile pro Bild den vollen Text, ruft
-            // dabei ComposedDisplayLabel ein zweites Mal (das erste steckt im Knopf darueber), macht drei
-            // volle String-Ersetzungen und ruft pro Waffe das ungecachte WeaponQueuedCount, das jeden
-            // Auftragsstapel jeder Werkbank durchgeht. Acht eigene Fenster haben diese Wache schon; die
-            // Stelle mit dem meisten Publikum hatte sie nicht.
+            // TipWanted first (profiling showed this as the hottest tooltip spot in the whole mod):
+            // this sits in CE's own loadout column, i.e. on a VANILLA tab with
+            // many visible rows - and GetLoadoutTooltip builds the full text per row per frame, calls
+            // ComposedDisplayLabel a second time (the first is in the button above), does three full
+            // string replacements and calls the uncached WeaponQueuedCount per weapon, which walks every
+            // bill stack of every workbench. Eight of our own windows already had this guard; the
+            // spot with the largest audience did not.
             if (LoadoutUtility.TipWanted(buttonRect))
             {
                 string tooltip = GetLoadoutTooltip(loadout, pawn);
@@ -382,15 +382,15 @@ namespace CEReloaded
         // before. IconSize (16) is CE's own constant for those trailing icons.
         // CombatExtended.Utility_HoldTracker is internal, so the "anything held?" check goes through reflection
         // (resolved once), same as Dialog_AssignLoadouts does for HoldTrackerForget.
-        // Einmal in einen ECHTEN Delegaten aufgeloest statt pro Aufruf ueber MethodInfo.Invoke (2026-08-14,
-        // Befund 7 der zweiten Performance-Runde). Der MethodInfo war schon vorher nur einmal gesucht - der
-        // teure Teil war die INVOCATION: reflektierter Aufruf plus ein frisches `new object[1]` pro Aufruf,
-        // und das bis zu dreimal pro Zeile pro Bild (LoadoutButtonRect wird fuer den Knopf und fuer den
-        // Tooltip-Rect gerufen, dazu Patch_LoadoutEditButton) - in CEs eigener Loadout-Spalte, also auf
-        // einem Vanilla-Reiter mit vielen sichtbaren Zeilen.
-        // Delegate.CreateDelegate geht nur, weil die Methode statisch ist und genau (Pawn) -> bool hat; die
-        // Pruefungen davor sind kein Zierrat, sondern der Grund, warum ein spaeteres CE-Update hier still
-        // auf "false" faellt statt zu werfen.
+        // Resolved once into a REAL delegate instead of going through MethodInfo.Invoke per call. The
+        // MethodInfo was already looked up only once before - the expensive part was the INVOCATION: a
+        // reflected call plus a fresh `new object[1]` per call, and that up to three times per row per
+        // frame (LoadoutButtonRect is called for the button and for the tooltip rect, plus
+        // Patch_LoadoutEditButton) - in CE's own loadout column, i.e. on a vanilla tab with many
+        // visible rows.
+        // Delegate.CreateDelegate only works because the method is static and has exactly
+        // (Pawn) -> bool; the checks before it are not decoration but the reason a later CE update
+        // silently falls back to "false" here instead of throwing.
         private static readonly System.Func<Pawn, bool> holdTrackerAnythingHeldFn = BuildHoldTrackerFn();
 
         private static System.Func<Pawn, bool> BuildHoldTrackerFn()
@@ -407,14 +407,14 @@ namespace CEReloaded
         internal static bool HoldTrackerAnythingHeld(Pawn p)
         {
             if (holdTrackerAnythingHeldFn == null) return false;
-            // try/catch bleibt: gefangen wird jetzt nur noch, was die AUFGERUFENE Methode selbst wirft -
-            // vorher war hier zusaetzlich jeder Reflexionsfehler mit drin.
+            // try/catch stays: it now only catches what the CALLED method itself throws -
+            // previously every reflection error was in there too.
             try { return holdTrackerAnythingHeldFn(p); }
             catch { return false; }
         }
 
-        // Nimmt "haelt der Kolonist etwas fest" und die Breite des Rearm-Knopfes aus dem Bild-Cache statt
-        // beides pro Aufruf neu zu holen (2026-08-17) - die Rechnung selbst ist unveraendert.
+        // Takes "is the colonist holding something" and the Rearm button width from the frame cache
+        // instead of fetching both per call - the calculation itself is unchanged.
         internal static Rect LoadoutButtonRect(Rect rect, Pawn pawn, CellInfo info)
         {
             const float iconSize = 16f;
@@ -508,12 +508,12 @@ namespace CEReloaded
                 if (p.equipment != null && p.equipment.Primary != null && p.equipment.Primary.def == wDef) carries = true;
                 else if (p.inventory != null && p.inventory.innerContainer != null && p.inventory.innerContainer.Any(t => t.def == wDef)) carries = true;
                 else if (p.carryTracker != null && p.carryTracker.CarriedThing != null && p.carryTracker.CarriedThing.def == wDef) carries = true;
-                // GETRAGENE KLEIDUNG zaehlt mit (2026-08-13). Ein CE-Schild ist
-                // Apparel, kein Equipment und kein Inventar - es fiel durch alle drei Pruefungen darueber.
-                // Fehlszenario: drei Nahkaempfer mit Shield Kit, alle drei tragen ihr Schild, keins im Lager.
-                // Getragene Apparel ist nicht gespawnt, taucht also auch in listerThings nicht auf: Bestand 0,
-                // zugewiesen ja, getragen (bisher) nein -> Bedarf 3 aus dem Lager, und die Kostenzeile schlug
-                // vor, drei Schilde herzustellen, die laengst getragen werden.
+                // WORN APPAREL counts too. A CE shield is
+                // apparel, not equipment and not inventory - it fell through all three checks above.
+                // Failure scenario: three melee fighters with a Shield Kit, all three wearing their shield,
+                // none in storage. Worn apparel is not spawned, so it doesn't show up in listerThings
+                // either: stock 0, assigned yes, worn (so far) no -> demand 3 from storage, and the cost
+                // line suggested crafting three shields that were already being worn.
                 else if (p.apparel != null && p.apparel.WornApparel != null && p.apparel.WornApparel.Any(t => t.def == wDef)) carries = true;
 
                 Loadout pLoadout = p.GetLoadout();

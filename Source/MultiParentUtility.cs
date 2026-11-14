@@ -15,8 +15,8 @@ namespace CEReloaded
     // still guards against one anyway, defensively.
     public static class MultiParentUtility
     {
-        // Gemerkter Komponenten-Zugriff statt Game.GetComponent bei JEDEM Aufruf (2026-08-14) - diese
-        // Funktion haengt ueber Patch_Loadout_MultiParentSlots an Loadout.Slots, siehe die Begruendung an
+        // Cached component access instead of Game.GetComponent on EVERY call - this function hangs off
+        // Loadout.Slots via Patch_Loadout_MultiParentSlots, see the reasoning at
         // CEReloadedGameComponent.Cached.
         private static Dictionary<int, string> Map() => CEReloadedGameComponent.Cached?.loadoutExtraParents;
 
@@ -36,14 +36,13 @@ namespace CEReloaded
             return parsed;
         }
 
-        // Eine geteilte, LEERE Liste statt einer frischen bei jedem Fehlschlag (2026-08-09). Der Normalfall
-        // ist "dieses Loadout hat keine Extra-Eltern", und diese
-        // Funktion haengt ueber Patch_Loadout_MultiParentSlots an Loadout.Slots - also an einem Getter, den
-        // CEs Think-Tree pro Kolonist und Entscheidung aufruft. Eine Allokation pro Aufruf ist dort die
-        // teuerste Art, "nichts" zu sagen.
-        // Die Liste wird von keinem Aufrufer veraendert (alle nur lesend: Count, foreach, Select) - sie ist
-        // trotzdem als ReadOnly deklariert, damit ein kuenftiger Aufrufer, der es doch versucht, sofort
-        // auffliegt statt still den Zustand aller anderen mitzuaendern.
+        // One shared, EMPTY list instead of a fresh one on every miss. The normal case is "this loadout
+        // has no extra parents", and this function hangs off Loadout.Slots via
+        // Patch_Loadout_MultiParentSlots - i.e. off a getter that CE's think tree calls per colonist and
+        // decision. An allocation per call is the most expensive way to say "nothing" there.
+        // No caller modifies the list (all read only: Count, foreach, Select) - it is still declared
+        // ReadOnly so a future caller that tries anyway fails immediately instead of silently changing
+        // the state of everyone else.
         private static readonly List<int> NoExtraParents = new List<int>(0);
 
         public static List<int> GetExtraParentIds(Loadout owner)
@@ -54,18 +53,18 @@ namespace CEReloaded
             return ParseIds(raw);
         }
 
-        // Die Extra-Eltern dieses Loadouts UND die aller Vorfahren, zusammengelegt.
-        // Das muss sein, weil CEs eigene Kette an unserem Patch VORBEI laeuft: Loadout.Slots baut bei
-        // vorhandenem Elternteil _slots.Concat(ParentSlots), und ParentSlots iteriert `ancestor.OwnSlots` -
-        // das ROHE Feld, nicht die (von uns gepatchte) Slots-Eigenschaft. Der Postfix am Kind haengt also
-        // nur dessen EIGENE Extra-Eltern an, die des Elternteils nie.
-        // Praktische Folge, live gemessen (2026-08-13): ein Kolonist mit einer Rolle, an der ein Equipment
-        // Pack haengt, hatte den Pack-Inhalt nicht in seinen Slots - unsere eigene Vorschau zeigte ihn (die
-        // liest role.Slots, also den gepatchten Getter der ROLLE), CEs Abhol-KI sah ihn nicht. Der Mod
-        // bestellte damit Nachschub, den niemand einsammelt.
-        // Kosten: der Normalfall zahlt eine Dictionary-Pruefung auf Count und gibt die geteilte Liste
-        // zurueck - keine Allokation. Nur wenn ein VORFAHR wirklich Extra-Eltern hat (Rolle mit Pack), wird
-        // ueberhaupt eine neue Liste gebaut. Das zaehlt hier, weil an Loadout.Slots CEs Think-Tree haengt.
+        // The extra parents of this loadout AND those of all its ancestors, combined.
+        // This is necessary because CE's own chain runs PAST our patch: with a parent present,
+        // Loadout.Slots builds _slots.Concat(ParentSlots), and ParentSlots iterates `ancestor.OwnSlots` -
+        // the RAW field, not the (patched) Slots property. So the postfix on the child only appends its
+        // OWN extra parents, never those of the parent.
+        // Practical consequence, measured live: a colonist with a role that had an Equipment Pack
+        // attached did not have the pack contents in their slots - our own preview showed them (it
+        // reads role.Slots, i.e. the ROLE's patched getter), CE's pickup AI did not see them. The mod
+        // therefore ordered supplies that nobody picked up.
+        // Cost: the normal case pays one dictionary check on Count and returns the shared list - no
+        // allocation. A new list is only built when an ANCESTOR actually has extra parents (role with
+        // pack). That matters here because CE's think tree hangs off Loadout.Slots.
         public static List<int> GetExtraParentIdsWithAncestors(Loadout owner)
         {
             if (owner == null) return NoExtraParents;
@@ -80,7 +79,7 @@ namespace CEReloaded
                 if (!map.TryGetValue(a.UniqueID, out string araw)) continue;
                 List<int> ids = ParseIds(araw);
                 if (ids.Count == 0) continue;
-                // Erst hier allokieren, und die gecachte Liste aus ParseIds dabei NICHT veraendern.
+                // Only allocate here, and do NOT modify the cached list from ParseIds.
                 if (merged == null) merged = own != null ? new List<int>(own) : new List<int>();
                 for (int i = 0; i < ids.Count; i++)
                     if (!merged.Contains(ids[i])) merged.Add(ids[i]);
@@ -101,14 +100,14 @@ namespace CEReloaded
             else map[owner.UniqueID] = string.Join(",", real.Select(p => p.UniqueID));
         }
 
-        // Diese Zuordnung kennt ein geloeschtes Loadout in BEIDEN Rollen, und beide muessen weg
-        // (LoadoutDeletionUtility ruft das, sonst niemand): als SCHLUESSEL, wenn eine geloeschte Rolle oder
-        // ein geloeschter Anker selbst Packs trug, und als WERT in der Liste jedes anderen Besitzers, wenn
-        // ein geloeschtes Pack bzw. eine geloeschte Zweitwaffe getragen WURDE. Der Wert ist der gefaehrliche
-        // Fall: CE vergibt IDs als Max+1 und recycelt sie damit, eine stehengebliebene Zahl haengt also
-        // frueher oder spaeter ein voellig fremdes, neues Objekt an diesen Kolonisten.
-        // parseCache braucht nichts: er ist am ROHSTRING geschluesselt, ein geaenderter Eintrag ist ein
-        // anderer String und damit ein anderer Cache-Eintrag.
+        // This mapping knows a deleted loadout in BOTH roles, and both must go
+        // (LoadoutDeletionUtility calls this, nothing else does): as a KEY, when a deleted role or anchor
+        // itself carried packs, and as a VALUE in every other owner's list, when a deleted pack or
+        // sidearm WAS carried. The value is the dangerous case: CE assigns IDs as max+1 and so recycles
+        // them, which means a leftover number sooner or later attaches a completely unrelated new
+        // object to that colonist.
+        // parseCache needs nothing: it is keyed by the RAW string, and a changed entry is a different
+        // string and therefore a different cache entry.
         public static void ForgetLoadout(int id)
         {
             Dictionary<int, string> map = Map();
@@ -118,7 +117,7 @@ namespace CEReloaded
             {
                 List<int> ids = ParseIds(map[owner]);
                 if (!ids.Contains(id)) continue;
-                // Neue Liste, NICHT ids veraendern - das ist die geteilte, gecachte Instanz aus ParseIds.
+                // New list, do NOT modify ids - that is the shared, cached instance from ParseIds.
                 List<int> kept = ids.Where(v => v != id).ToList();
                 if (kept.Count == 0) map.Remove(owner);
                 else map[owner] = string.Join(",", kept);

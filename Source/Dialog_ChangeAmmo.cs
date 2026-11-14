@@ -39,8 +39,8 @@ namespace CEReloaded
         // (2026-07-30: the button's own label was cut off at the window edge).
         public override Vector2 InitialSize =>
             new Vector2(700f, Mathf.Min(pawns.Count > 1 ? 760f : 520f, UI.screenHeight - 60f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Do not slide under RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without a collision this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -115,13 +115,12 @@ namespace CEReloaded
             // This dialog can be opened standalone from the map gizmo without Dialog_CEReloadedTabs ever
             // being open - it needs its own end-of-session production check, not just the tabs window's.
             // Only when something actually changed (2026-08-02, see AnyPawnAmmoChanged's own comment).
-            // ABER nur STANDALONE (2026-08-14: im Test sprang das Fenster rund zwoelfmal ungefragt auf,
-            // jedes Mal mit Cancel wegzuklicken). Steht das Tab-Fenster offen, hat es
-            // seinen eigenen, GESAMMELTEN Hinweis beim Verlassen des Assign-Tabs - genau den, der die
-            // Nachfrage pro Einzelzuweisung ersetzen sollte (Dialog_CEReloadedTabs.CheckSupplyOnLeavingAssign,
-            // seit 10.08.: der Hinweis kommt immer am Ende). Solange dieser Haken hier
-            // zusaetzlich feuerte, war die Nachfrage pro Zuweisung nie wirklich weg: einmal Munition
-            // aendern, Fenster zu, Produktionsdialog - mitten in der Arbeit im selben Tab.
+            // BUT only STANDALONE (otherwise the window popped up unasked about twelve times in a row, each time
+            // to be dismissed with Cancel). If the tabs window is open, it has its own COLLECTED prompt when
+            // leaving the Assign tab - exactly the one meant to replace the per-assignment prompt
+            // (Dialog_CEReloadedTabs.CheckSupplyOnLeavingAssign: the prompt always comes at the end). As long as
+            // this hook fired in addition, the per-assignment prompt was never really gone: change ammo once,
+            // close the window, production dialog - in the middle of working in the same tab.
             if (AnyPawnAmmoChanged() && Find.WindowStack?.WindowOfType<Dialog_CEReloadedTabs>() == null)
                 LoadoutUtility.CheckAndOpenMissingProductionPopup();
             // Readiness cache invalidation (2026-08-01: the readiness widget flagged a
@@ -178,8 +177,8 @@ namespace CEReloaded
             if (pawns.Count > 1 && groupByAmmoType) DoGroupedView(outRect);
             else DoPerPawnView(outRect);
 
-            // Die vier Knoepfe der Fussleiste teilen EINE Schriftstufe (de-buttontext-sweep, 2026-08-29) - siehe
-            // LoadoutUtility.ButtonRowFont. Rechtecke deshalb vorab, nicht mehr je Knopf an seiner Stelle.
+            // The four footer buttons share ONE font size - see LoadoutUtility.ButtonRowFont. Hence the rects are
+            // computed up front instead of per button at its own place.
             Rect closeRect = new Rect(0, inRect.height - 34f, 120f, 30f);
             Rect clearRect = new Rect(132f, inRect.height - 34f, 150f, 30f);
             Rect copyRect = new Rect(294f, inRect.height - 34f, 120f, 30f);
@@ -199,50 +198,47 @@ namespace CEReloaded
                     Loadout tmpl = AmmoAssignmentUtility.DisplayLoadout(p.GetLoadout());
                     if (tmpl == null) continue;
                     Loadout link = AmmoAssignmentUtility.EnsureAmmoLink(p, tmpl);
-                    // Generische Munitions-Slots MIT loeschen (2026-08-13): der
-                    // Filter kannte nur konkrete Munition, ein eigener Eintrag "Any ammo for <Waffe>" blieb
-                    // liegen. Sichtbare Folge: man drueckt "alle Munition entfernen", die Zeile bleibt
-                    // angehakt stehen, und der Kolonist holt weiter Nachschub - waehrend SetAmmoCleared
-                    // gleichzeitig die geerbte Munition wegwirft. Reset, Kopieren und Einfuegen fassen beide
-                    // Slot-Arten laengst an; nur dieser Knopf nicht.
-                    // Ueber die zentrale Definition (2026-08-18). Vorher stand hier ein eigener Test, der
-                    // einen Platzhalter nur dann als Munition gelten liess, wenn seine WAFFE noch in der
-                    // DefDatabase steht - genau der Fall, den LoadoutUtility.IsGenericAmmoDef ausdruecklich
-                    // anders beantwortet: verschwindet der Waffen-Mod, bleibt der Platzhalter Munition und
-                    // waere hier fuer immer stehengeblieben, obwohl "alles loeschen" gedrueckt wurde.
+                    // Remove generic ammo slots TOO: the filter only knew concrete ammo, an own entry
+                    // "Any ammo for <weapon>" stayed behind. Visible consequence: press "remove all ammo", the row
+                    // stays checked, and the colonist keeps fetching resupply - while SetAmmoCleared at the same time
+                    // throws away the inherited ammo. Reset, Copy and Paste already handle both slot kinds; only this
+                    // button did not.
+                    // Via the central definition. Previously there was a separate test here that only counted a
+                    // placeholder as ammo if its WEAPON was still in the DefDatabase - exactly the case
+                    // LoadoutUtility.IsGenericAmmoDef deliberately answers differently: if the weapon mod disappears,
+                    // the placeholder stays ammo and would have remained here forever although "remove all" was
+                    // pressed.
                     foreach (LoadoutSlot s in link.OwnSlots.Where(LoadoutUtility.IsAmmoSlot).ToList())
                         link.RemoveSlot(s);
                     AmmoAssignmentUtility.SetAmmoCleared(link, true);
                 }
                 LoadoutUtility.InvalidateAmmoOwnership();
                 countBuffers.Clear();
-                // Das Verdraengungs-Gedaechtnis gehoert zum aktuellen Stand - siehe anyAmmoDisplaced.
+                // The displacement memory belongs to the current state - see anyAmmoDisplaced.
                 anyAmmoDisplaced.Clear();
             }
             TooltipHandler.TipRegion(clearRect, pawns.Count == 1
                 ? "CER_ChangeAmmo_ClearAllTipSingle".Translate(pawns[0].LabelShortCap.ToString())
                 : "CER_ChangeAmmo_ClearAllTipMulti".Translate(pawns.Count.ToString()));
 
-            // Kopieren-Knopf (2026-08-13: Munition hatte keinen Copy-Knopf, die anderen Spalten schon).
-            // Kopiert die Munitionswahl des Kolonisten, dessen Fenster gerade offen ist; eingefuegt wird sie
-            // ueber dieselbe eine Einfuege-Spalte in Assign Loadouts, die auch Packs und Zweitwaffen
-            // uebernimmt. Bei mehreren ausgewaehlten Kolonisten wird der ERSTE kopiert - eine Ablage haelt
-            // eine Auswahl, und "die Munition von sieben Leuten gleichzeitig" waere keine.
-            // Kopiert wird die Union, WIE DAS FENSTER SIE ZEIGT - nicht mehr nur der eigene Anker
-            // (Umbau 2026-08-26): der Anker eines Rollen-Kolonisten ist konstruktionsbedingt LEER
-            // (AssignTemplate raeumt ihn beim Rollenwechsel), also meldete Copy dort "0 entries",
-            // waehrend zwei angehakte Zeilen mit Mengen sichtbar waren. Die alte Sorge (Vorlagen-
-            // Voreinstellung wandert als persoenliche Festlegung aufs Ziel) ist genau das, was der
-            // Spieler beim Einfuegen erwartet: das Ziel soll dieselbe SICHTBARE Auswahl bekommen.
+            // Copy button (ammo had no Copy button, the other columns did).
+            // Copies the ammo choice of the colonist whose window is currently open; it is pasted via the same
+            // single paste column in Assign Loadouts that also takes packs and sidearms. With several colonists
+            // selected the FIRST one is copied - a clipboard holds one selection, and "the ammo of seven people
+            // at once" would not be one.
+            // What is copied is the union AS THE WINDOW SHOWS IT - no longer just the own anchor: a role
+            // colonist's anchor is EMPTY by construction (AssignTemplate clears it on a role change), so Copy
+            // reported "0 entries" there while two checked rows with amounts were visible. The old concern
+            // (the template default travels to the target as a personal setting) is exactly what the player
+            // expects when pasting: the target should get the same VISIBLE selection.
             if (RowBtn(copyRect, copyLbl))
             {
                 Pawn src = pawns.FirstOrDefault();
                 List<LoadoutSlot> ammoSlots = EffectiveAmmoSlotsAsShown(src);
                 LoadoutClipboard.CopyAmmo(ammoSlots, src != null ? src.LabelShortCap.ToString() : "");
-                // Ein- und Mehrzahl getrennt (2026-08-19): die Meldung
-                // schrieb "Copied 1 ammo entr(ies)". Dieselbe Bauform, die CEReloadedMod fuer die
-                // uebernommenen Vorgaben schon benutzt - eine Klammer-Endung laesst sich in mehreren der
-                // 13 Sprachen ohnehin nicht sauber bilden.
+                // Singular and plural kept separate: the message used to read "Copied 1 ammo entr(ies)". The same
+                // pattern CEReloadedMod already uses for the applied defaults - a parenthesized ending cannot be
+                // formed cleanly in several of the 13 languages anyway.
                 string srcName = src != null ? src.LabelShortCap.ToString() : "";
                 Messages.Message(ammoSlots.Count == 1
                     ? "CER_ChangeAmmo_CopiedMessageSingular".Translate(ammoSlots.Count.ToString(), srcName)
@@ -276,7 +272,7 @@ namespace CEReloaded
                 }
                 LoadoutUtility.InvalidateAmmoOwnership();
                 countBuffers.Clear();
-                // Das Verdraengungs-Gedaechtnis gehoert zum aktuellen Stand - siehe anyAmmoDisplaced.
+                // The displacement memory belongs to the current state - see anyAmmoDisplaced.
                 anyAmmoDisplaced.Clear();
             }
             TooltipHandler.TipRegion(resetRect,
@@ -437,8 +433,8 @@ namespace CEReloaded
             if (groupSortDescending) allAmmo.Reverse();
 
             float contentW = outRect.width - 16f;
-            // Der Namenskopf endet vor den drei Vergleichsbalken (2026-09-06), und die bekommen ihre eigenen
-            // Koepfe - dieselbe Rechnung wie AmmoRoleCell fuer die Zeilen darunter (Symbolkante 190, Luft 8).
+            // The name header ends before the three comparison bars, and they get their own headers - the same
+            // calculation as AmmoRoleCell for the rows below (icon edge 190, gap 8).
             float statsX = outRect.x + contentW - 190f - 8f - LoadoutUtility.AmmoStatBarsW;
             if (LoadoutUtility.ColumnHeader(new Rect(outRect.x + 50f, outRect.y, statsX - 8f - (outRect.x + 50f), 22f), "CER_ChangeAmmo_ColName".Translate(),
                 groupSortMode == GroupSortMode.Name, groupSortDescending, true)) SetGroupSort(GroupSortMode.Name);
@@ -488,10 +484,10 @@ namespace CEReloaded
                         else if (ownExisting != null)
                         {
                             link.RemoveSlot(ownExisting);
-                            // IsAmmoSlot (2026-08-14): steht daneben noch ein "Any ammo", ist der Kolonist
-                            // NICHT auf null gesetzt, sondern hat eine Wahl - ihn hier als "bewusst leer" zu
-                            // markieren wirkt erst spaeter, wenn auch der generische Haken faellt: dann
-                            // bliebe er ohne jede Munition statt bei der Vorgabe der Vorlage.
+                            // IsAmmoSlot: if an "Any ammo" is still there next to it, the colonist is NOT set to
+                            // zero but has a choice - marking them "deliberately empty" here only takes effect later,
+                            // when the generic checkbox goes too: then they would be left without any ammo instead
+                            // of the template's default.
                             if (!link.OwnSlots.Any(LoadoutUtility.IsAmmoSlot)) AmmoAssignmentUtility.SetAmmoCleared(link, true);
                         }
                     }
@@ -510,16 +506,15 @@ namespace CEReloaded
                 Widgets.ThingIcon(iconRect, ammoDef);
 
                 GUI.color = researched ? (state != MultiCheckboxState.Off ? Color.white : new Color(1f, 1f, 1f, 0.55f)) : Color.gray;
-                // Der Namensspalte den Platz fuer den Rollen-Balken abziehen (2026-09-04) - siehe
-                // AmmoRoleCell unten. Ohne Platz faellt der Balken weg und der Name bekommt alles.
+                // Take the space for the role bar away from the name column - see AmmoRoleCell below. Without
+                // room the bar is dropped and the name gets everything.
                 Rect roleCell1 = AmmoRoleCell(row, 190f);
                 Rect labelRect = new Rect(row.x + 50f, row.y,
                     (roleCell1.width > 0f ? roleCell1.x - 8f : row.xMax - 246f) - (row.x + 50f), 24f);
-                // Der Zustands-Zusatz kommt NACH dem Kuerzen dazu (2026-08-23, dritte Fundstelle per
-                // Regel-7-Grep): er endet selbst auf ")", also haette TruncateKeepingSuffix ihn fuer die
-                // Munitionssorte gehalten und ausgerechnet die Sorte weggeschnitten - " (not researched)"
-                // haette ueberlebt, "(FMJ)" nicht. Deshalb erst den Namen auf den verbleibenden Platz
-                // kuerzen, dann den Zusatz anhaengen.
+                // The state suffix is appended AFTER truncating (third occurrence of the pattern): it ends in ")"
+                // itself, so TruncateKeepingSuffix would have taken it for the ammo type and cut off the type of
+                // all things - " (not researched)" would have survived, "(FMJ)" would not. So first truncate the
+                // name to the remaining space, then append the suffix.
                 string ammoSuffix = researched ? "" : "CER_ChangeAmmo_NotResearchedSuffix".Translate().ToString();
                 string labelText = LoadoutUtility.TruncateKeepingSuffix(ammoDef.label,
                     labelRect.width - 4f - (ammoSuffix.Length > 0 ? Text.CalcSize(ammoSuffix).x : 0f)) + ammoSuffix;
@@ -530,10 +525,9 @@ namespace CEReloaded
                     "CER_ChangeAmmo_AppliesToTip".Translate(LoadoutUtility.GetAmmoRecipeTooltip(ammoDef).ToString(), names));
 
                 SpecialAbility ammoEff = LoadoutUtility.GetAmmoEffects(ammoDef);
-                // Die Deckelung ist die ECHTE Luecke bis zum Mengenfeld (row.xMax - 122f), nicht eine
-                // eigene Zahl: 150f war groesser als der Platz, ab vier Effekten lief der Streifen ins Feld
-                // hinein (2026-08-15, Review-Befund). Aus denselben zwei Konstanten gerechnet, damit die
-                // beiden beim naechsten Verschieben nicht wieder auseinanderlaufen.
+                // The cap is the REAL gap up to the count field (row.xMax - 122f), not a number of its own: 150f
+                // was larger than the space, and from four effects on the strip ran into the field. Computed
+                // from the same two constants so the two do not drift apart again on the next shift.
                 const float effIconX = 190f, effCountX = 122f;
                 if (roleCell1.width > 0f) LoadoutUtility.DrawAmmoStatBars(roleCell1, ammoDef);
                 if (ammoEff != SpecialAbility.None) Dialog_GenerateLoadouts.DrawAmmoEffectIcons(row.xMax - effIconX, row.y + 1f, ammoEff, ammoDef, effIconX - effCountX - 4f);
@@ -594,8 +588,8 @@ namespace CEReloaded
                         }));
                     }
                 }
-                // "!" auf den Bestands-Punkt, wenn ein Teil des gezaehlten Vorrats als "nicht aufsammeln"
-                // markiert ist (2026-08-09) - der Punkt ist hier die Bestandsanzeige der Zeile.
+                // "!" on the stock dot when part of the counted stock is marked "forbidden" - the dot is this
+                // row's stock display.
                 int groupForbidden = LoadoutUtility.ForbiddenStockCount(ammoDef);
                 LoadoutUtility.DrawForbiddenMarkAt(new Rect(groupStatusDot.x - 12f, groupStatusDot.y, 11f, 11f), groupForbidden, tooltip: false);
                 if (groupForbidden > 0)
@@ -619,9 +613,8 @@ namespace CEReloaded
         // who actually owns it (not just one pawn). Checking it (fully or from Partial) commits every
         // not-yet-generic applicable colonist to the generic placeholder itself (same 2026-08-01 fix as the
         // per-pawn row - see its own comment for why just clearing overrides and hoping isn't enough).
-        // Abhaken nimmt ihn allen wieder weg (2026-08-12, zweite Fundstelle desselben Fehlers - im Test
-        // fiel genau DIESE Zeile auf). Vorher war
-        // jeder Klick, der nicht auf "An" hinauslief, ein No-Op.
+        // Unchecking takes it away from all of them again (second occurrence of the same bug - exactly THIS row
+        // was the one noticed). Previously every click that did not end up "on" was a no-op.
         private void DrawAnyAmmoRowGrouped(Rect row, List<PawnSection> perPawn, ThingDef weapon, LoadoutGenericDef generic)
         {
             List<PawnSection> applicable = perPawn.Where(s => s.effective.Any(sl => sl.thingDef == weapon)).ToList();
@@ -641,7 +634,7 @@ namespace CEReloaded
                     EnsurePersonalAmmo(s.pawn, s.template, s.effective);
                     Loadout link = AmmoAssignmentUtility.GetAmmoLeaf(s.pawn);
                     if (link == null) continue;
-                    // Dieselbe Verdraengung wie in der Einzelansicht - der Schalter gibt es zweimal.
+                    // The same displacement as in the single view - the switch exists twice.
                     DisplaceOwnFamilyAmmo(link, s.pawn, weapon, family);
                     if (!link.OwnSlots.Any(sl => sl.genericDef == generic)) link.AddSlot(new LoadoutSlot(generic, count));
                     AmmoAssignmentUtility.SetAmmoCleared(link, true);
@@ -670,7 +663,7 @@ namespace CEReloaded
 
             Rect iconRect = new Rect(row.x + 26f, row.y + 2f, 20f, 20f);
             GUI.color = Color.white;
-            // Waffensymbol MIT Munitionsmarke - siehe LoadoutUtility.DrawGenericAmmoIcon.
+            // Weapon icon WITH an ammo badge - see LoadoutUtility.DrawGenericAmmoIcon.
             LoadoutUtility.DrawGenericAmmoIcon(iconRect, weapon);
             Rect labelRect = new Rect(row.x + 50f, row.y, row.width - 246f - 50f, 24f);
             GUI.color = state == MultiCheckboxState.Off ? new Color(1f, 1f, 1f, 0.55f) : new Color(0.7f, 0.85f, 1f);
@@ -682,21 +675,20 @@ namespace CEReloaded
                 "CER_ChangeAmmo_AnyAmmoGroupedTip".Translate(weapon.LabelCap.ToString(), names));
         }
 
-        // Wo steht der "wogegen ist das gut"-Balken in DIESER Zeile (2026-09-04: in den Spalten zwischen
-        // Munitionsname und Schadensart)? Genau dort: rechts vom Namen,
-        // links von der Symbolspalte, deren Kante die Zeile selbst kennt (190 bzw. 210 - die beiden
-        // Zeilenzeichner haben historisch verschiedene Kanten, deshalb ist sie ein Parameter und
-        // keine dritte Konstante).
+        // Where does the "what is this good against" bar sit in THIS row (in the columns between ammo name and
+        // damage type)? Exactly there: right of the name, left of the icon column, whose edge the row itself
+        // knows (190 or 210 - the two row drawers historically have different edges, which is why it is a
+        // parameter and not a third constant).
         //
-        // Faellt der Name unter MinNameW, gibt es KEINEN Balken: ein abgeschnittener Munitionsname
-        // ist teurer als eine fehlende Zusatzinfo - man kann dann nicht mehr unterscheiden, welche
-        // Sorte man gerade anhakt. Der Balken ist der Zusatz, der Name ist die Sache selbst.
-        // Seit 2026-09-06 drei Vergleichsbalken (Schaden / scharf / stumpf, normiert aufs Kaliber) statt
-        // des einen Deutungsbalkens - siehe LoadoutUtility.DrawAmmoStatBars.
+        // If the name falls below MinNameW there is NO bar: a truncated ammo name costs more than a missing
+        // piece of extra info - you could no longer tell which type you are checking. The bar is the extra,
+        // the name is the thing itself.
+        // Three comparison bars (damage / sharp / blunt, normalized to the caliber) instead of the single
+        // interpretation bar - see LoadoutUtility.DrawAmmoStatBars.
         private static Rect AmmoRoleCell(Rect row, float effIconX)
         {
             const float MinNameW = 150f, Gap = 8f;
-            float right = row.xMax - effIconX - Gap;              // linke Kante der Symbolspalte, minus Luft
+            float right = row.xMax - effIconX - Gap;              // left edge of the icon column, minus a gap
             float left = right - LoadoutUtility.AmmoStatBarsW;
             if (left - (row.x + 50f) < MinNameW) return new Rect(0f, 0f, 0f, 0f);
             return new Rect(left, row.y + 4f, LoadoutUtility.AmmoStatBarsW, 16f);
@@ -727,8 +719,8 @@ namespace CEReloaded
                     // Unchecking the last remaining type would otherwise let the template's own default
                     // silently reappear (an anchor with zero ammo slots reads as "never customized" - see
                     // Patch_Loadout_MultiParentSlots) - mark it explicitly cleared instead.
-                    // IsAmmoSlot (2026-08-14) - siehe die gleichlautende Stelle in der Gruppen-Ansicht: ein
-                    // noch stehender "Any ammo"-Slot ist eine Wahl, kein leerer Zustand.
+                    // IsAmmoSlot - see the matching spot in the grouped view: a remaining "Any ammo" slot is a
+                    // choice, not an empty state.
                     if (!link.OwnSlots.Any(LoadoutUtility.IsAmmoSlot)) AmmoAssignmentUtility.SetAmmoCleared(link, true);
                 }
                 LoadoutUtility.InvalidateAmmoOwnership(ammoDef);
@@ -739,13 +731,12 @@ namespace CEReloaded
             Widgets.ThingIcon(iconRect, ammoDef);
 
             GUI.color = researched ? (hasAmmo ? Color.white : new Color(1f, 1f, 1f, 0.55f)) : Color.gray;
-            // Zwilling der Gruppen-Zeile weiter oben - dieselbe Zelle, nur mit DIESER Zeile eigener
-            // Symbolspalten-Kante (210 statt 190). Beide holen sie aus AmmoRoleCell, damit sie beim
-            // naechsten Verschieben nicht auseinanderlaufen.
+            // Twin of the grouped row further up - the same cell, just with THIS row's own icon column edge
+            // (210 instead of 190). Both get it from AmmoRoleCell so they do not drift apart on the next shift.
             Rect roleCell2 = AmmoRoleCell(row, 210f);
             Rect labelRect = new Rect(row.x + 50f, row.y,
                 (roleCell2.width > 0f ? roleCell2.x - 8f : row.xMax - 246f) - (row.x + 50f), 24f);
-            // Siehe die Zwillingsstelle weiter oben: Zusatz erst nach dem Kuerzen anhaengen.
+            // See the twin spot further up: append the suffix only after truncating.
             string ammoSuffix = researched ? "" : "CER_ChangeAmmo_NotResearchedSuffix".Translate().ToString();
             string labelText = LoadoutUtility.TruncateKeepingSuffix(ammoDef.label,
                 labelRect.width - 4f - (ammoSuffix.Length > 0 ? Text.CalcSize(ammoSuffix).x : 0f)) + ammoSuffix;
@@ -757,7 +748,7 @@ namespace CEReloaded
             SpecialAbility ammoEff = LoadoutUtility.GetAmmoEffects(ammoDef);
             // Shifted 190 -> 210 (2026-08-01) to make room for the new 90px-wide Availability bar replacing
             // the old 12x12 status dot further right - see below.
-            // Deckelung = echte Luecke bis zum Mengenfeld (row.xMax - 146f), siehe die Zwillingsstelle oben.
+            // Cap = real gap up to the count field (row.xMax - 146f), see the twin spot above.
             const float effIconX2 = 210f, effCountX2 = 146f;
             if (roleCell2.width > 0f) LoadoutUtility.DrawAmmoStatBars(roleCell2, ammoDef);
             if (ammoEff != SpecialAbility.None) Dialog_GenerateLoadouts.DrawAmmoEffectIcons(row.xMax - effIconX2, row.y + 1f, ammoEff, ammoDef, effIconX2 - effCountX2 - 4f);
@@ -832,13 +823,12 @@ namespace CEReloaded
         internal static void EnsurePersonalAmmo(Pawn pawn, Loadout template, List<LoadoutSlot> effective)
         {
             Loadout link = AmmoAssignmentUtility.EnsureAmmoLink(pawn, template);
-            // Die Abbruchbedingung zaehlt generische Eigen-Slots mit (2026-08-14, dritte Fundstelle
-            // derselben Frage): ein Kolonist, der NUR auf "Any ammo" steht, hat sehr wohl schon eine eigene
-            // Wahl getroffen. Vorher galt er hier als unberuehrt, und der naechste Klick hat ihm die
-            // konkrete Vorgabe-Munition der Vorlage zusaetzlich in den Anker kopiert - also genau den
-            // Doppelzustand "Any ammo UND drei konkrete Sorten", den der Fehlerbericht beschreibt.
-            // Kopiert wird weiterhin nur KONKRETE Munition: ein geerbter generischer Platzhalter ist keine
-            // Wahl, die man materialisieren muesste, sondern das, wovon man sich gerade loest.
+            // The early-out counts generic own slots too (third occurrence of the same question): a colonist
+            // who is ONLY on "Any ammo" has already made a choice of their own. Previously they counted as
+            // untouched here, and the next click additionally copied the template's concrete default ammo into
+            // the anchor - exactly the double state "Any ammo AND three concrete types".
+            // Still only CONCRETE ammo is copied: an inherited generic placeholder is not a choice that needs
+            // materializing, but the very thing being moved away from.
             if (link.OwnSlots.Any(LoadoutUtility.IsAmmoSlot)) return;
             foreach (LoadoutSlot s in effective.Where(s => LoadoutUtility.IsAmmoDef(s.thingDef)).ToList())
                 link.AddSlot(new LoadoutSlot(s.thingDef, s.count));
@@ -878,22 +868,20 @@ namespace CEReloaded
         // that cell used to independently ask "does the pawn have PERSONAL extra ammo" (ExtraAmmoSlots),
         // which said "None" for every pawn who never touched this popup even when their weapon loadout
         // already carried a perfectly real ammo type. Both should agree on what "relevant ammo" even means.
-        // Genau die Munitions-Eigenslots, die DIESES FENSTER dem Spieler auch zeigt - eine Frage, eine
-        // Antwort (2026-08-18: Kopieren meldete drei Eintraege, im Fenster
-        // standen zwei).
-        // Der Kopieren-Knopf zaehlte vorher jeden Eigenslot des Ankers, der irgendwie nach Munition aussah
-        // ("IsAmmoDef(thingDef) || genericDef != null"), waehrend die Zeilen darueber aus
-        // RelevantAmmoPool/RelevantGenericWeapons kommen - also nur aus den Waffen, die der Kolonist
-        // WIRKLICH traegt. Ein Rest-Slot einer laengst abgenommenen Zweitwaffe wurde damit mitgezaehlt und
-        // sogar mitkopiert, obwohl ihn niemand sehen und niemand gebrauchen konnte (Einfuegen wirft ihn am
-        // anderen Ende ohnehin weg, siehe Dialog_AssignLoadouts.PasteAmmo).
-        // Ausserdem ueber IsGenericAmmoDef statt "genericDef != null": ein generischer VERSORGUNGS-Eintrag
-        // (etwa "Any Medicine") ist keine Munition und hat in der Munitions-Ablage nichts verloren.
-        // Seit 2026-08-26 aus der UNION (GetLoadout().Slots) statt aus leaf.OwnSlots: der Anker eines
-        // Rollen-Kolonisten ist konstruktionsbedingt leer (AmmoAssignmentUtility.AssignTemplate raeumt
-        // OwnSlots beim Rollenwechsel), die Zeilen des Fensters kommen aber aus der Union - Copy sah
-        // also 0, wo das Fenster 2 angehakte Sorten zeigte. Erste Fundstelle je Sorte gewinnt, weil die
-        // Mengenfelder des Fensters mit FirstOrDefault aus derselben Liste lesen.
+        // Exactly the own ammo slots THIS WINDOW shows the player - one question, one answer (Copy reported
+        // three entries while the window showed two).
+        // The Copy button used to count every own slot of the anchor that looked like ammo in any way
+        // ("IsAmmoDef(thingDef) || genericDef != null"), while the rows above come from
+        // RelevantAmmoPool/RelevantGenericWeapons - i.e. only from the weapons the colonist REALLY carries. A
+        // leftover slot of a long-detached sidearm was therefore counted and even copied, although nobody could
+        // see or use it (Paste discards it at the other end anyway, see Dialog_AssignLoadouts.PasteAmmo).
+        // Also via IsGenericAmmoDef instead of "genericDef != null": a generic SUPPLY entry (e.g. "Any
+        // Medicine") is not ammo and does not belong in the ammo clipboard.
+        // Taken from the UNION (GetLoadout().Slots) instead of leaf.OwnSlots: a role colonist's anchor is empty
+        // by construction (AmmoAssignmentUtility.AssignTemplate clears OwnSlots on a role change), but the
+        // window's rows come from the union - so Copy saw 0 where the window showed 2 checked types. The first
+        // occurrence per type wins, because the window's count fields read from the same list with
+        // FirstOrDefault.
         private static List<LoadoutSlot> EffectiveAmmoSlotsAsShown(Pawn src)
         {
             if (src == null) return new List<LoadoutSlot>();
@@ -902,8 +890,8 @@ namespace CEReloaded
             HashSet<ThingDef> shownGenericWeapons = new HashSet<ThingDef>(RelevantGenericWeapons(effective));
             var result = new List<LoadoutSlot>();
             var seenConcrete = new HashSet<ThingDef>();
-            // Generische Slots NICHT ueber den Def dedupen (CE-Generics haben alle Hash 0, siehe
-            // DefRefComparer) - der Schluessel ist die Waffe, zu der der Generic gehoert.
+            // Do NOT dedupe generic slots by def (CE generics all have hash 0, see DefRefComparer) - the key is
+            // the weapon the generic belongs to.
             var seenGenericWeapons = new HashSet<ThingDef>();
             foreach (LoadoutSlot s in effective)
             {
@@ -951,55 +939,52 @@ namespace CEReloaded
             return result;
         }
 
-        // "Hat dieser Anker eigene Munition?" - konkrete UND generische Slots (2026-08-13).
-        // Dieselbe Frage stellt Patch_Loadout_MultiParentSlots, und beide muessen sie gleich
-        // beantworten, sonst wirft der eine die geerbte Munition weg, waehrend der andere sie
-        // zurueckholt.
-        // Ueber LoadoutUtility.IsAmmoSlot (2026-08-14) - dieselbe Frage wie in
-        // Patch_Loadout_MultiParentSlots, jetzt auch wirklich dieselbe Antwort. Solange die beiden eigene
-        // Fassungen hatten, war ein Auseinanderlaufen nur eine Frage der Zeit, und genau das ist passiert.
+        // "Does this anchor have its own ammo?" - concrete AND generic slots.
+        // Patch_Loadout_MultiParentSlots asks the same question, and both must answer it the same way,
+        // otherwise one throws the inherited ammo away while the other brings it back.
+        // Via LoadoutUtility.IsAmmoSlot - the same question as in Patch_Loadout_MultiParentSlots, now really
+        // with the same answer too. As long as the two had their own versions, drifting apart was only a
+        // matter of time, and that is exactly what happened.
         private static bool HasOwnAmmoSlot(Loadout link)
             => link?.OwnSlots != null && link.OwnSlots.Any(LoadoutUtility.IsAmmoSlot);
 
-        // Was bedeutet "Any ammo abhaken"? Das haengt daran, WOHER der Haken kam - und genau diese
-        // Unterscheidung fehlte (2026-08-14, erneut aufgetreten: nach dem Abhaken BEIDER generischer Zeilen
-        // stand der Kolonist ohne jede Munition da, statt auf die Vorgabe der Vorlage zurueckzufallen).
-        //   - Der Kolonist hatte den generischen Eintrag SELBST gesetzt -> Abhaken heisst "zurueck zur
-        //     Vorlage". 'cleared' muss dann FALSE sein, sonst unterdrueckt der Anker alles Geerbte und der
-        //     Kolonist steht mit leeren Haenden da.
-        //   - Der generische Eintrag kam aus der VORLAGE -> Abhaken heisst "diese Munition will ich nicht".
-        //     Da es nichts Eigenes zu entfernen gab, haelt nur das ausdrueckliche 'cleared' sie draussen.
-        // Bleibt daneben noch irgendein eigener Munitions-Slot stehen, ist ohnehin nichts geleert.
-        // Der Fix vom 13.08. hat nur den dritten Fall behandelt und die ersten beiden zusammengeworfen.
+        // What does "unchecking Any ammo" mean? That depends on WHERE the check came from - and exactly this
+        // distinction was missing (after unchecking BOTH generic rows the colonist was left without any ammo
+        // instead of falling back to the template's default).
+        //   - The colonist had set the generic entry THEMSELVES -> unchecking means "back to the template".
+        //     'cleared' must then be FALSE, otherwise the anchor suppresses everything inherited and the
+        //     colonist is left empty-handed.
+        //   - The generic entry came from the TEMPLATE -> unchecking means "I do not want this ammo".
+        //     Since there was nothing of its own to remove, only the explicit 'cleared' keeps it out.
+        // If any other own ammo slot remains next to it, nothing is cleared anyway.
+        // An earlier fix only handled the third case and lumped the first two together.
         private static bool ClearedAfterGenericOff(Loadout link, bool hadOwnGeneric)
             => !HasOwnAmmoSlot(link) && !hadOwnGeneric;
 
-        // Was das Einschalten von "Any ammo" VERDRAENGT hat - je Kolonist und Waffe, solange dieses Fenster
-        // offen ist (2026-08-18).
+        // What switching on "Any ammo" DISPLACED - per colonist and weapon, as long as this window is open.
         //
-        // Fehlerbild: "Any ammo" ging zwar aus, hakte dann aber andere Sorten wieder an. Im Einzelnen:
-        // vorher nur Ion 150 angehakt, Any ammo AN -> alles konkrete aus, Any ammo AUS -> ploetzlich
-        // Charged 120 UND Ion 150.
-        // Nachgerechnet und nicht geraten: das Einschalten LOESCHT die eigenen konkreten Slots der Waffe
-        // (die Zeile "RemoveSlot" im Ein-Zweig), und das Ausschalten kann sie nicht zurueckholen. Danach hat
-        // der Anker gar keine eigene Munition mehr, gilt also als "nie angefasst" - und die Vorgabe der
-        // VORLAGE kommt durch. Genau das sah aus wie "hakt andere Sorten an".
+        // Failure: "Any ammo" did switch off, but then re-checked other types. In detail: only Ion 150 checked
+        // before, Any ammo ON -> all concrete off, Any ammo OFF -> suddenly Charged 120 AND Ion 150.
+        // Worked through, not guessed: switching on DELETES the weapon's own concrete slots (the "RemoveSlot"
+        // line in the on branch), and switching off cannot bring them back. Afterwards the anchor has no own
+        // ammo at all, so it counts as "never touched" - and the TEMPLATE's default comes through. That is
+        // exactly what looked like "checks other types".
         //
-        // Ein Schalter, der beim Einschalten Daten wegwirft, laesst sich nicht ausschalten. Also merkt sich
-        // das Fenster, was es verdraengt hat, und legt es beim Ausschalten zurueck.
-        // Das ersetzt NICHT den Rueckfall auf die Vorlage: hatte der Kolonist vorher gar nichts Eigenes
-        // (er stand also selbst auf der Vorlage), gibt es nichts zurueckzulegen und es bleibt beim alten
-        // Verhalten - genau der Fall, um den es am 2026-08-14 ging ("stand ohne jede Munition da").
-        // Grenze, bewusst: das Gedaechtnis lebt nur so lange wie dieses Fenster. Wer Any ammo einschaltet,
-        // das Fenster schliesst und es spaeter wieder ausschaltet, landet beim Rueckfall auf die Vorlage -
-        // dauerhaft speichern hiesse, den Spielstand um einen Rueckgaengig-Puffer zu erweitern.
+        // A switch that throws data away when switched on cannot be switched off. So the window remembers what
+        // it displaced and puts it back when switching off.
+        // This does NOT replace the fallback to the template: if the colonist had nothing of their own before
+        // (so they were on the template themselves), there is nothing to put back and the old behavior stays -
+        // exactly the case where they were left without any ammo.
+        // Deliberate limit: the memory only lives as long as this window. Anyone who switches Any ammo on,
+        // closes the window and switches it off later ends up with the fallback to the template - storing it
+        // permanently would mean extending the save with an undo buffer.
         private readonly Dictionary<string, List<LoadoutSlot>> anyAmmoDisplaced = new Dictionary<string, List<LoadoutSlot>>();
 
         private static string DisplacedKey(Pawn pawn, ThingDef weapon) =>
             (pawn != null ? pawn.thingIDNumber : 0) + "|" + (weapon != null ? weapon.defName : "?");
 
-        // Nimmt die eigenen konkreten Slots dieser Waffenfamilie weg und merkt sie sich. Als KOPIEN, weil
-        // die Originale gleich aus dem Loadout fliegen.
+        // Removes this weapon family's own concrete slots and remembers them. As COPIES, because the originals
+        // are about to be removed from the loadout.
         private void DisplaceOwnFamilyAmmo(Loadout link, Pawn pawn, ThingDef weapon, List<ThingDef> family)
         {
             if (link?.OwnSlots == null) return;
@@ -1008,8 +993,8 @@ namespace CEReloaded
             foreach (LoadoutSlot own in hit) link.RemoveSlot(own);
         }
 
-        // Legt zurueck, was das Einschalten weggenommen hat. False, wenn es nichts zurueckzulegen gab -
-        // dann gilt weiter der Rueckfall auf die Vorlage.
+        // Puts back what switching on took away. False if there was nothing to put back - then the fallback to
+        // the template still applies.
         private bool RestoreDisplacedAmmo(Loadout link, Pawn pawn, ThingDef weapon)
         {
             string key = DisplacedKey(pawn, weapon);
@@ -1050,15 +1035,14 @@ namespace CEReloaded
         // explicitly cleared (Patch_Loadout_MultiParentSlots' own-ammo filter only counts CONCRETE own
         // slots for the "own replaces inherited" gate, so an own slot that's generic-only wouldn't
         // otherwise suppress the template's inherited concrete default from leaking back in alongside it).
-        // Der Haken geht jetzt in BEIDE Richtungen (2026-08-12).
-        // Vorher stand hier "Klicken im angehakten Zustand ist ein No-Op - es gibt keinen eigenen
-        // Aus-Zustand, die Zeile haekelt sich nur als Nebenwirkung ab, wenn man unten eine konkrete Sorte
-        // waehlt". Das war als Absicht gemeint und kam als Fehler an: ein Haken, der sich nicht wieder
-        // ausschalten laesst, ist genau das "ich klicke und es tut sich nichts", das hier schon mehrfach
-        // aufgefallen war - und im Test hat es die Gegenprobe blockiert, weil der generische
-        // Eintrag nicht mehr wegging. Aus heisst dasselbe wie in der Zeile darunter (DrawAmmoRow): den
-        // eigenen Slot entfernen und, wenn danach gar keine eigene Munition mehr steht, ausdruecklich
-        // "geleert" markieren, damit der Vorlagen-Default nicht still zurueckkommt.
+        // The check now works in BOTH directions.
+        // Previously this said "clicking while checked is a no-op - there is no own off state, the row only
+        // unchecks itself as a side effect when you pick a concrete type below". That was meant as intent and
+        // came across as a bug: a checkbox that cannot be switched off again is exactly the "I click and nothing
+        // happens" that had been noticed here several times already - and it blocked the counter-check, because
+        // the generic entry no longer went away. Off means the same as in the row below (DrawAmmoRow): remove
+        // the own slot and, if no own ammo remains afterwards, explicitly mark it "cleared" so the template
+        // default does not silently come back.
         private void DrawAnyAmmoRow(Rect row, Pawn pawn, Loadout template, ThingDef weapon, LoadoutGenericDef generic, List<LoadoutSlot> effective)
         {
             bool isGeneric = HasGenericSlot(effective, generic);
@@ -1066,20 +1050,20 @@ namespace CEReloaded
             Widgets.Checkbox(new Vector2(row.x, row.y + 2f), ref check, 20f);
             if (!check && isGeneric && generic != null)
             {
-                // EnsurePersonalAmmo auch hier: der generische Slot kann GEERBT sein (aus der Vorlage), dann
-                // gibt es nichts zu entfernen und nur das ausdrueckliche "geleert" am eigenen Anker haelt ihn
-                // draussen - dieselbe Mechanik wie beim Anhaken eine Zeile weiter unten.
+                // EnsurePersonalAmmo here too: the generic slot may be INHERITED (from the template), then there is
+                // nothing to remove and only the explicit "cleared" on the own anchor keeps it out - the same
+                // mechanism as when checking a row further down.
                 EnsurePersonalAmmo(pawn, template, effective);
                 Loadout link = AmmoAssignmentUtility.GetAmmoLeaf(pawn);
                 if (link != null)
                 {
-                    // Hatte der Kolonist diesen generischen Eintrag SELBST gesetzt, oder kam er aus der
-                    // Vorlage? Davon haengt ab, was das Abhaken bedeutet - vor dem Entfernen festhalten.
+                    // Did the colonist set this generic entry THEMSELVES, or did it come from the template? What
+                    // unchecking means depends on that - record it before removing.
                     bool hadOwnGeneric = link.OwnSlots.Any(s => s.genericDef == generic);
                     foreach (LoadoutSlot own in link.OwnSlots.Where(s => s.genericDef == generic).ToList())
                         link.RemoveSlot(own);
-                    // VOR der cleared-Rechnung: die zurueckgelegten Slots sind eigene Munition, der Anker
-                    // gilt danach also zu Recht nicht als geleert.
+                    // BEFORE the cleared calculation: the restored slots are own ammo, so the anchor rightly does
+                    // not count as cleared afterwards.
                     RestoreDisplacedAmmo(link, pawn, weapon);
                     AmmoAssignmentUtility.SetAmmoCleared(link, ClearedAfterGenericOff(link, hadOwnGeneric));
                 }
@@ -1092,7 +1076,7 @@ namespace CEReloaded
                 if (link != null)
                 {
                     List<ThingDef> family = LoadoutUtility.GetAmmoTypesFor(weapon).ToList();
-                    // Verdraengen statt loeschen - siehe anyAmmoDisplaced.
+                    // Displace instead of delete - see anyAmmoDisplaced.
                     DisplaceOwnFamilyAmmo(link, pawn, weapon, family);
                     if (!link.OwnSlots.Any(s => s.genericDef == generic))
                     {
@@ -1105,7 +1089,7 @@ namespace CEReloaded
 
             Rect iconRect = new Rect(row.x + 26f, row.y + 2f, 20f, 20f);
             GUI.color = Color.white;
-            // Waffensymbol MIT Munitionsmarke - siehe LoadoutUtility.DrawGenericAmmoIcon.
+            // Weapon icon WITH an ammo badge - see LoadoutUtility.DrawGenericAmmoIcon.
             LoadoutUtility.DrawGenericAmmoIcon(iconRect, weapon);
             Rect labelRect = new Rect(row.x + 50f, row.y, row.width - 246f - 50f, 24f);
             GUI.color = isGeneric ? new Color(0.7f, 0.85f, 1f) : new Color(1f, 1f, 1f, 0.55f);

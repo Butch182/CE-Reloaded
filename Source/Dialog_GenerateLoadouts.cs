@@ -25,15 +25,14 @@ namespace CEReloaded
         
         
         
-        // Hoechster Waffen-Score, gemerkt gegen LoadoutUtility.WeaponScoreVersion - siehe die Fundstelle
-        // in der Zeichenschleife. -1 heisst "noch nie gerechnet".
+        // Highest weapon score, cached against LoadoutUtility.WeaponScoreVersion - see where it is used in the
+        // draw loop. -1 means "never computed".
         private string sidearmMaxBulk = "5.0";
-        // Mahlzeit und Medizin sind hier am 2026-08-14 ERSATZLOS ENTFALLEN. Es standen vier Felder und vier
-        // internal-Eigenschaften hier, die die Mod-Einstellungen einlasen - und niemand hat sie mehr gelesen:
-        // "vier Einstellungen ohne Wirkung". Verpflegung gehoert zum Equipment Pack, nicht zur
-        // Waffenvorlage; die Einstellungen wirken jetzt dort (Dialog_GenerateEquipmentPack.
-        // PickFromSettingOrAuto). Der Kommentar bleibt als Wegweiser stehen, damit die Verdrahtung nicht
-        // aus Versehen ein drittes Mal entsteht.
+        // Meal and medicine were REMOVED here without replacement. There used to be four fields and four
+        // internal properties that read the mod settings - and nothing read them anymore: four settings with no
+        // effect. Food belongs to the Equipment Pack, not to the weapon template; the settings now take effect
+        // there (Dialog_GenerateEquipmentPack.PickFromSettingOrAuto). This comment stays as a signpost so the
+        // wiring doesn't get recreated here by accident a third time.
 
         // --- Role Mode state (drag weapon loadouts onto a role to produce a scaled "[Role] ..." loadout) ---
         private bool roleMode;
@@ -43,51 +42,48 @@ namespace CEReloaded
         private LoadoutRole activeRoleObj;
         private LoadoutRole lastNamedRole;
         private string roleNameEdit = "";
-        // Wurde am Namensfeld wirklich getippt? Ohne das wuerde jedes Verlassen des Feldes schreiben, auch
-        // wenn nichts geaendert wurde (2026-08-17, siehe das Feld selbst).
+        // Was the name field actually typed into? Without this, every time the field loses focus it would
+        // write, even when nothing changed (see the field itself).
         private bool roleNameEditDirty;
         private float roleNameEditAt;
         private readonly Dictionary<LoadoutRole, List<Loadout>> roleComp = new Dictionary<LoadoutRole, List<Loadout>>();
         private Loadout dragLoadout;
-        // Ziehen eines WAFFEN-Bausteins (Lazy-Umbau): die Vorlage entsteht erst beim DROP auf eine
-        // Rollenkarte, nicht beim Anfassen - sonst springt die Zeile noch waehrend des Klicks in die
-        // Loadout-Sektion darueber (2026-09-02: die Zeile sprang nach oben ueber die Ueberschrift).
+        // Dragging a WEAPON building block (lazy rework): the template is only created on DROP onto a role card,
+        // not when the drag starts - otherwise the row jumps into the loadout section above it while the click
+        // is still in progress (the row used to jump up above the heading).
         private ThingDef dragWeaponDef;
         private Vector2 roleSourceScroll, roleListScroll, rolePreviewScroll;
         private string roleSourceSearch = "", roleCardSearch = "", equipmentPackSearch = "";
-        // Vorlagen-Name je Waffe fuer die Bausteine-Liste im Rollen-Modus (Lazy-Umbau 2026-09-01) - einmal
-        // gebaut, weil das Praefix aus den Mod-Einstellungen kommt und sich praktisch nie aendert.
+        // Template name per weapon for the building-block list in Role Mode (lazy rework) - built once, because
+        // the prefix comes from the mod settings and practically never changes.
         private Dictionary<ThingDef, string> roleWeaponLabelCache;
-        // Vorgabe-Slots je Waffe fuer die Bausteine-Liste (2026-09-04: der Waffenansicht im Rollen-Editor
-        // fehlten alle wichtigen Infos). Genau derselbe Zwischenspeicher wie
-        // in Dialog_PickPacks.WeaponSlots - eine Vorgabe-Slotliste zu bauen ist zu teuer fuer jede Zeile
-        // in jedem Bild, aendert sich aber nur mit den Mod-Einstellungen, also einmal je Fensterleben.
-        // Die Masse/Sperrigkeits-Haelfte ist am selben Tag wieder entfallen, als die Spalte verschwand
-        // (Masse/Sperrigkeit flog raus) - ein Zwischenspeicher, den niemand mehr liest, ist genau
-        // die Sorte Rest, die spaeter jemand fuer benutzt haelt.
+        // Default slots per weapon for the building-block list (the weapon view in the role editor lacked all
+        // the important info). Exactly the same cache as Dialog_PickPacks.WeaponSlots - building a default slot
+        // list is too expensive for every row in every frame, but it only changes with the mod settings, so
+        // once per window lifetime.
+        // The mass/bulk half was removed again when that column went away - a cache nobody reads anymore is
+        // exactly the kind of leftover someone later mistakes for being in use.
         private readonly Dictionary<ThingDef, List<LoadoutSlot>> roleWeaponSlotsCache = new Dictionary<ThingDef, List<LoadoutSlot>>();
         private Vector2 equipmentPackScroll;
-        // ====== Eingabepuffer je ROLLE, nicht je ZEILENNUMMER (2026-09-04) ======
+        // ====== Input buffers per ROLE, not per ROW INDEX ======
         //
-        // Befund im Test: der Ammo-Faktor der Rolle 'Support' war von 2 auf 1 gesprungen und der von
-        // 'New role' von 1 auf 2 - die Werte waren also um eine Zeile verrutscht, waehrend sich die
-        // Reihenfolge der Liste aenderte: Zeile per Index statt per Identitaet angefasst. Genau das war es.
+        // Symptom: the ammo factor of the 'Support' role jumped from 2 to 1 and that of 'New role' from 1 to 2 -
+        // the values had shifted by one row while the list order changed: the row was addressed by index
+        // instead of by identity.
         //
-        // Der Schluessel war "c" + i + "a" - die laufende Nummer der gezeichneten Karte. Die Liste sortiert
-        // sich aber nach RoleSortTier um, und dieser Rang aendert sich in dem Moment, in dem eine Rolle
-        // ihren ersten Baustein bekommt (Stufe 2 "leer" -> Stufe 0 "Entwurf"). Ein einziges Draufziehen
-        // verschiebt also die halbe Liste. Danach steht in Puffer "c3a" noch der Text der Rolle, die eben
-        // auf Platz 3 lag - und Widgets.TextFieldNumeric schreibt genau diesen Text als WERT in die Rolle,
-        // die jetzt dort steht. Die Zahlen wandern eine Zeile weiter, ohne dass jemand etwas getippt hat.
+        // The key used to be "c" + i + "a" - the running number of the drawn card. But the list re-sorts by
+        // RoleSortTier, and that tier changes the moment a role gets its first building block (tier 2 "empty"
+        // -> tier 0 "draft"). A single drop therefore shifts half the list. Afterwards buffer "c3a" still holds
+        // the text of the role that was just in slot 3 - and Widgets.TextFieldNumeric writes exactly that text
+        // as the VALUE into the role that now sits there. The numbers move down a row without anyone typing.
         //
-        // Schlimmer als die falsche Zahl ist die Folge daneben: das Kartenfeld ruft bei jeder erkannten
-        // Aenderung AutoCommitRole - also speichert der Mod eine Rolle, die der Spieler nie angefasst hat,
-        // und bei einer GLOBALEN Rolle landet das ueber PersistRoles in der Mod-Einstellungsdatei, wirkt
-        // also in jedem kuenftigen Spiel.
+        // Worse than the wrong number is the side effect: the card field calls AutoCommitRole on every detected
+        // change - so the mod saves a role the player never touched, and for a GLOBAL role that ends up in the
+        // mod settings file via PersistRoles, i.e. it affects every future game.
         //
-        // Jetzt haengt der Puffer am Rollen-OBJEKT (vier Felder je Rolle, Reihenfolge Am/Me/Fo/Gr).
-        // Umsortieren kann daran nichts mehr verschieben, und eine geloeschte Rolle nimmt ihren Eintrag
-        // beim naechsten Aufraeumen mit, weil niemand mehr danach fragt.
+        // Now the buffer is keyed on the role OBJECT (four fields per role, order Am/Me/Fo/Gr). Re-sorting can
+        // no longer shift anything, and a deleted role's entry is dropped at the next cleanup because nothing
+        // asks for it anymore.
         private readonly Dictionary<LoadoutRole, string[]> cardFactorBuffers = new Dictionary<LoadoutRole, string[]>();
 
         // FIX: Cache textures to avoid creating new Texture2D every frame
@@ -112,16 +108,15 @@ namespace CEReloaded
         // the tooltip gains a real per-round detail line (explosion radius, fragment count, ...) via LoadoutUtility.
         // AbilityDetailSuffix; callers with only a bare SpecialAbility bitmask (e.g. aggregated multi-source
         // displays) just omit it and get the old generic-only tooltip, unchanged.
-        // maxWidth (2026-08-09): die Leiste wuchs ungebremst nach rechts. Elf
-        // Flags sind moeglich, das sind ueber 200px - jede Spalte im Mod ist schmaler, also lief eine Waffe
-        // mit vielen Effekten in die Nachbarspalte. Statt an einer Stelle eine Konstante zu vergroessern
-        // (was nur den EINEN beobachteten Fall deckt und beim naechsten Effekt-Flag wieder bricht) bricht die
-        // Leiste jetzt selbst ab und setzt ein "+N", dessen Tooltip die uebrigen aufzaehlt. Die Breite ist
-        // damit eine Obergrenze statt einer Hoffnung, egal wie viele Flags eine Waffe je bekommt.
-        // Vorgabe unendlich = altes Verhalten fuer jeden Aufrufer ohne eigene Spaltenbreite.
-        // tipLines wie bei DrawWeaponSpecialIcons (2026-09-02): sammelt der Aufrufer, entfallen die
-        // Einzel-Tooltips je Symbol UND der Tooltip am "+N" - ALLE Zeilen (auch abgeschnittene) landen
-        // in der Liste, der Aufrufer legt einen Sammel-Tooltip ueber die ganze Zelle.
+        // maxWidth: the strip used to grow unbounded to the right. Eleven flags are possible, which is over
+        // 200px - every column in the mod is narrower, so a weapon with many effects ran into the neighbouring
+        // column. Instead of enlarging a constant in one place (which only covers the ONE observed case and
+        // breaks again with the next effect flag), the strip now cuts itself off and appends a "+N" whose
+        // tooltip lists the rest. The width is thus an upper bound rather than a hope, however many flags a
+        // weapon ever gets. Default infinity = old behaviour for every caller without its own column width.
+        // tipLines as in DrawWeaponSpecialIcons: if the caller collects them, the per-icon tooltips AND the
+        // tooltip on the "+N" are skipped - ALL lines (including cut-off ones) go into the list, and the caller
+        // puts one combined tooltip over the whole cell.
         public static float DrawAmmoEffectIcons(float x, float y, SpecialAbility ab, ThingDef ammoDefForDetail = null, float maxWidth = float.MaxValue, List<string> tipLines = null)
         {
             float ix = x;
@@ -131,8 +126,8 @@ namespace CEReloaded
             {
                 string full = tip + LoadoutUtility.AbilityDetailSuffix(flag, proj);
                 if (tipLines != null) tipLines.Add(full);
-                // 19px fuer dieses Symbol plus 20px Reserve fuer ein moegliches "+N" dahinter - sonst passt
-                // das letzte Symbol gerade noch und der Zaehler haengt wieder ueber der Kante.
+                // 19px for this icon plus 20px reserve for a possible "+N" after it - otherwise the last icon
+                // just barely fits and the counter hangs over the edge again.
                 if (overflow.Count > 0 || ix - x + 19f + 20f > maxWidth) { overflow.Add(full); return; }
                 Rect r = new Rect(ix, y, 16f, 16f);
                 GUI.DrawTexture(r, tex);
@@ -155,8 +150,8 @@ namespace CEReloaded
             return ix - x;
         }
 
-        // Das "+N" am Ende einer abgeschnittenen Symbolleiste. Eigene Funktion, damit beide Leisten
-        // (Munition und Waffe) gleich aussehen und denselben Tooltip-Aufbau benutzen.
+        // The "+N" at the end of a cut-off icon strip. Its own function so both strips (ammo and weapon) look
+        // the same and use the same tooltip layout.
         private static float DrawOverflowMarker(float x, float y, List<string> hidden, bool tip = true)
         {
             if (hidden == null || hidden.Count == 0) return 0f;
@@ -167,8 +162,8 @@ namespace CEReloaded
             Widgets.Label(r, "+" + hidden.Count);
             GUI.color = Color.white;
             Text.Font = pf;
-            // tip aus, wenn der Aufrufer einen Sammel-Tooltip ueber die ganze Zelle legt (2026-09-02) -
-            // zwei uebereinanderliegende Tooltip-Flaechen zeigen sonst beide Kaesten gestapelt.
+            // tip is off when the caller puts a combined tooltip over the whole cell - two overlapping tooltip
+            // regions would otherwise show both boxes stacked.
             if (tip)
                 TooltipHandler.TipRegion(r, "CER_GenerateLoadouts_MoreEffectsTip".Translate(hidden.Count.ToString())
                     + "\n" + string.Join("\n", hidden.ToArray()));
@@ -177,12 +172,11 @@ namespace CEReloaded
 
         // Draws a weapon's INTRINSIC special icons (no ammo badge) left-to-right at (x,y), mirroring the Special column
         // of the main list. Reused by the "produce missing weapons" popup so its rows match the loadout tab.
-        // maxWidth wie bei DrawAmmoEffectIcons - siehe dort. Hier faellt der Ueberlauf weniger auf, weil der
-        // Tooltip ohnehin ueber der ganzen Leiste liegt und alle Zeilen nennt; abgeschnitten wird trotzdem,
-        // damit die Symbole nicht in die Nachbarspalte laufen.
-        // tipLines (2026-09-02, Sammel-Tooltip wiederhergestellt): sammelt der Aufrufer
-        // die Zeilen ein, registriert diese Funktion KEINEN eigenen Streifen-Tooltip - er legt selbst
-        // einen ueber die ganze Zelle (intrinsisch + Munition in einem Kasten).
+        // maxWidth as in DrawAmmoEffectIcons - see there. The overflow is less noticeable here because the tooltip
+        // covers the whole strip anyway and names every line; it is cut off regardless so the icons don't run
+        // into the neighbouring column.
+        // tipLines (combined tooltip restored): if the caller collects the lines, this function registers NO
+        // strip tooltip of its own - the caller puts one over the whole cell (intrinsic + ammo in one box).
         public static float DrawWeaponSpecialIcons(float x, float y, ThingDef weapon, float maxWidth = float.MaxValue, List<string> tipLines = null)
         {
             SpecialAbility ab = LoadoutUtility.DetectSpecialAbilities(weapon);
@@ -193,8 +187,8 @@ namespace CEReloaded
             string tip = "CER_GenerateLoadouts_SpecialAbilitiesHeader".Translate();
             void Draw(SpecialAbility flag, Texture2D tex, string line)
             {
-                // Der Tooltip bekommt die Zeile IMMER, auch fuer abgeschnittene Symbole - sonst waere die
-                // Information weg statt nur das Bild.
+                // The tooltip ALWAYS gets the line, even for cut-off icons - otherwise the information would be
+                // lost, not just the picture.
                 tip += "\n" + line + LoadoutUtility.AbilityDetailSuffix(flag, proj);
                 if (hiddenCount > 0 || ix - x + 18f + 20f > maxWidth) { hiddenCount++; return; }
                 GUI.DrawTexture(new Rect(ix, y, 16f, 16f), tex);
@@ -211,8 +205,8 @@ namespace CEReloaded
             if (apIntrinsic) Draw(SpecialAbility.ArmorPiercing, TexArmorPiercing, "CER_GenerateLoadouts_WeaponTipArmorPiercing".Translate());
             if (ab.HasFlag(SpecialAbility.Explosive)) Draw(SpecialAbility.Explosive, TexExplosive, "CER_GenerateLoadouts_WeaponTipExplosive".Translate());
             if (ab.HasFlag(SpecialAbility.ExplosiveSecondary)) Draw(SpecialAbility.ExplosiveSecondary, TexExplosiveSecondary, "CER_GenerateLoadouts_WeaponTipExplosiveSecondary".Translate());
-            // "+N" hinter der Leiste, wenn abgeschnitten wurde - der Tooltip darunter nennt ohnehin alle
-            // Zeilen, das Zeichen sagt nur, dass es mehr sind als sichtbar.
+            // "+N" after the strip if it was cut off - the tooltip underneath names all lines anyway, the marker
+            // only says there are more than are visible.
             if (hiddenCount > 0)
             {
                 GameFont pf = Text.Font;
@@ -251,8 +245,8 @@ namespace CEReloaded
             CERUiState ui = RoleUtility.Ui();
             var cfg = CEReloadedMod.settings;
             sidearmMaxBulk = ui.loSidearmMaxBulk ?? (cfg != null ? cfg.sidearmMaxBulk : sidearmMaxBulk);
-            // Mahlzeit/Medizin werden hier bewusst NICHT mehr eingelesen - siehe den Kommentar an den
-            // entfallenen Feldern oben.
+            // Meal/medicine are deliberately NO LONGER read here - see the comment at the removed fields
+            // above.
         }
 
         // ---- Dynamic ("Auto") sidearm, grenade & shield defaults ---------------------------------------------------
@@ -331,8 +325,8 @@ namespace CEReloaded
                 if (quality != null) q = quality(d);
                 else
                 {
-                    // researchedOnly: PickBest WAEHLT eine Waffe aus, ist also ein Vorschlag und keine
-                    // Anzeige (2026-08-09).
+                    // researchedOnly: PickBest CHOOSES a weapon, so it is a suggestion, not a
+                    // display.
                     LoadoutUtility.GetWeaponTargetScores(d, out float f, out float m, researchedOnly: true);
                     q = Mathf.Lerp(f, m, Mathf.Clamp01(mech));
                 }
@@ -400,14 +394,14 @@ namespace CEReloaded
             return cfg == null ? null : ResolveDefaultDef(cfg.defShieldDefName, () => { EnsureAutoPools(); return PickAuto(autoPoolShield, 0.5f, econ ?? UiEcon(), d => ShieldQuality(d, mobile)); });
         }
 
-        // static seit 2026-08-15: der Rumpf liest ausschliesslich Mod-Einstellungen und statische Helfer,
-        // keinen Zustand dieses Fensters. Damit kann die Ueberlast-Vorschau im Loeser dieselbe Vorgabe
-        // erfragen, ohne dass ein Dialog offen sein oder durch den Loeser gereicht werden muss.
+        // static: the body reads only mod settings and static helpers, no state of this window. That way the
+        // overload preview in the solver can ask for the same default without a dialog having to be open or
+        // passed through the solver.
         internal static WeaponLoadoutSettings BuildDefaultSettings(ThingDef w)
         {
-            // Namensregel NUR aus VirtualLoadoutLabel (2026-09-01): vorher rechneten drei Stellen dieselbe
-            // Praefix-Formel unabhaengig - jede Abweichung haette die "gibt es schon?"-Erkennung gebrochen,
-            // an der Dedup, Fill-Gaps-Seeding und der Loeschpfad haengen.
+            // Naming rule ONLY from VirtualLoadoutLabel: previously three places computed the same prefix formula
+            // independently - any divergence would have broken the "does it already exist?" detection that
+            // dedup, fill-gaps seeding and the delete path depend on.
             var s = new WeaponLoadoutSettings
             {
                 loadoutName = LoadoutUtility.VirtualLoadoutLabel(w)
@@ -426,12 +420,12 @@ namespace CEReloaded
         // Create (or fetch) the default loadout for a weapon - used when auto-assign picks a weapon that has no
         // loadout yet (a "virtual" candidate). Uses the same defaults as the Generate tab (prefix name, default ammo,
         // sidearm, supplies) and never overwrites an existing loadout of that name.
-        // WAS in einer erzeugten Waffen-Vorlage steht - Waffe plus die eingestellten Munitionsmengen.
-        // Herausgezogen (2026-08-15), damit die Ueberlast-Warnung vor dem Uebernehmen eine Vorlage wiegen
-        // kann, die es noch gar nicht gibt: der Loeser waehlt regelmaessig eine Waffe OHNE Vorlage
-        // ("virtuell"), und genau dort ist die ganze Last neu und am ehesten zu schwer.
-        // Bewusst als geteilte Funktion und nicht als zweite Rechnung: eine Warnung, die anders rechnet als
-        // der Erzeuger baut, waere schlimmer als keine.
+        // WHAT goes into a generated weapon template - the weapon plus the configured ammo amounts.
+        // Extracted so the overload warning before applying can weigh a template that doesn't exist yet: the
+        // solver regularly picks a weapon WITHOUT a template ("virtual"), and that is exactly where the whole
+        // load is new and most likely too heavy.
+        // Deliberately a shared function and not a second calculation: a warning that calculates differently
+        // from what the generator builds would be worse than none.
         internal static List<LoadoutSlot> DefaultSlotsFor(ThingDef wDef, WeaponLoadoutSettings settings)
         {
             List<LoadoutSlot> slots = new List<LoadoutSlot>();
@@ -446,7 +440,7 @@ namespace CEReloaded
             return slots;
         }
 
-        // Masse und Sperrigkeit derselben Vorgabe, ohne irgendetwas anzulegen.
+        // Mass and bulk of the same default, without creating anything.
         public static void DefaultMassBulkFor(ThingDef wDef, out float mass, out float bulk)
         {
             mass = 0f; bulk = 0f;
@@ -454,10 +448,9 @@ namespace CEReloaded
             LoadoutUtility.SlotsMassBulk(DefaultSlotsFor(wDef, BuildDefaultSettings(wDef)), out mass, out bulk);
         }
 
-        // Statisch seit 2026-09-01 (Lazy-Umbau): das ist DIE eine Stelle, an der eine Waffen-Vorlage im
-        // Hintergrund entsteht. Vorher hing der Aufruf an parentWindow.LoadoutsDialog - in zwei Aufrufwegen
-        // (Arm-Kette, Bereitschaftsanzeige) war das null, und ein virtueller Pick ging beim Uebernehmen
-        // still verloren.
+        // Static (lazy rework): this is THE one place where a weapon template is created in the background.
+        // Previously the call went through parentWindow.LoadoutsDialog - on two call paths (arm chain,
+        // readiness indicator) that was null, and a virtual pick was silently lost on apply.
         public static Loadout EnsureDefaultLoadout(ThingDef w)
         {
             WeaponLoadoutSettings st = BuildDefaultSettings(w);
@@ -510,8 +503,8 @@ namespace CEReloaded
 
         // Routes ammo-bill generation for weapons that are their own ammo (grenades + CE AmmoDef weapons like javelins).
         // The shared definition lives in LoadoutUtility so the weapon-audit tool uses the exact same rule.
-        // static: reicht nur an LoadoutUtility durch, kein Instanzzustand - BuildDefaultSettings
-        // ist seit 2026-08-15 ebenfalls statisch und braucht es so.
+        // static: only forwards to LoadoutUtility, no instance state - BuildDefaultSettings is static too and
+        // needs it that way.
         private static bool IsSelfAmmoWeapon(ThingDef w) => LoadoutUtility.IsSelfAmmoWeapon(w);
 
         internal static bool IsResearched(Def def)
@@ -570,18 +563,15 @@ namespace CEReloaded
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(0f, 0f, inRect.width - 170f, 30f), "CER_GenerateLoadouts_RoleModeTitle".Translate());
             Text.Font = GameFont.Small;
-            // Die Warnung "benenne [Role]-Loadouts nicht um" ist am 2026-08-17 entfallen. Sie war richtig,
-            // solange die Erkennung am Etikett hing - jetzt haengt sie an einer eigenen Kennung, und ein
-            // Umbenennen (auch in CEs eigenem Editor) kann die Verbindung nicht mehr zerreissen. Eine
-            // Warnung, die nicht mehr stimmt, erzieht dazu, Warnungen zu ueberlesen.
+            // The "don't rename [Role] loadouts" warning has been removed. It was correct while detection relied
+            // on the label - now it relies on a dedicated ID, and a rename (even in CE's own editor) can no longer
+            // break the link. A warning that is no longer true teaches people to skip warnings.
 
             float top = 58f;
-            // 210 -> 290 (2026-08-18): beide Listen etwas schmaeler, damit auch der Rollen-Rahmen rechts,
-            // und die Vorschau wird groesser und zeigt mehr. Die Vorschau ist die Stelle, an der man
-            // wirklich liest, was eine Rolle enthaelt,
-            // und sie hat bisher haeufig "5 more below" gezeigt. Die 80 Punkte kommen von den drei
-            // Kaesten darueber - die scrollen ohnehin alle drei, dort kostet es eine Zeile, hier bringt es
-            // drei.
+            // 210 -> 290: both lists slightly narrower so the role frame on the right and the preview get
+            // bigger and show more. The preview is where you actually read what a role contains, and it often
+            // showed "5 more below". The 80 points come from the three boxes above - all three scroll anyway;
+            // there it costs one row, here it gains three.
             float previewH = 290f;
             float panelsH = inRect.height - top - previewH - 8f;
             float gap = 12f;
@@ -622,10 +612,10 @@ namespace CEReloaded
         {
             Widgets.DrawMenuSection(panel);
             Rect header = panel.ContractedBy(6f);
-            // Beschriftungsbreite messen statt 96f fest (2026-08-26: auf Deutsch stand in
-            // BEIDEN Kaesten nur der Wortanfang - der Umbruch der laengeren Uebersetzung lag ausserhalb des
-            // 22f-Rects, zwei verschiedene Bereiche hiessen dadurch gleich). Das Suchfeld rueckt mit;
-            // die Kappung bei 60% haelt es bedienbar, falls eine Sprache noch laenger wird.
+            // Measure the label width instead of a fixed 96f: in German BOTH boxes showed only the start of the
+            // word - the wrap of the longer translation fell outside the 22f rect, so two different sections
+            // appeared to have the same name. The search field moves along; the 60% cap keeps it usable if a
+            // language gets even longer.
             string srcHeaderTxt = "CER_GenerateLoadouts_YourLoadoutsHeader".Translate();
             float srcHeaderW = Mathf.Min(Text.CalcSize(srcHeaderTxt).x + 4f, header.width * 0.6f);
             Widgets.Label(new Rect(header.x, header.y, srcHeaderW, 22f), srcHeaderTxt.Truncate(srcHeaderW));
@@ -636,28 +626,27 @@ namespace CEReloaded
             // Sources = your real loadouts (not the default one, and not existing role loadouts, Equipment
             // Packs - packs get their own source list below - or the hidden per-pawn "[Pawn-Loadout]"
             // anchors, which are internal bookkeeping never meant to be dragged/picked by a player).
-            // Zusaetzlich zur Identitaetspruefung (IsPlainWeaponLoadout fragt IsRoleLoadout) auch der
-            // MARKER - und das ist die einzige Stelle im Mod, an der das noch erlaubt ist (2026-08-18).
-            // Begruendung: die Identitaet kann voruebergehend fehlen (ein Loadout, dessen Rolle gerade
-            // zurueckgesetzt oder geloescht wurde, gehoert einen Moment lang zu niemandem), und in genau
-            // diesem Moment stand es hier als ziehbare "Waffen-Vorlage" - mit dem Ergebnis, dass eine Rolle
-            // in eine Rolle gelegt werden konnte. Der Marker taugt hier als Sicherheitsnetz, weil er nur
-            // MEHR ausschliessen kann: er entscheidet nichts ueber Anzeige oder Verhalten, er haelt nur
-            // etwas aus einer Liste heraus, das dort nie hingehoert. Die Wurzel ist trotzdem repariert
-            // (RoleUtility.AdoptRoleLoadoutsByName am Zuruecksetzen-Knopf).
+            // In addition to the identity check (IsPlainWeaponLoadout asks IsRoleLoadout), the MARKER is checked
+            // too - and this is the only place in the mod where that is still allowed.
+            // Reason: the identity can be missing temporarily (a loadout whose role was just reset or deleted
+            // belongs to nobody for a moment), and in exactly that moment it showed up here as a draggable
+            // "weapon template" - with the result that a role could be dropped into a role. The marker works as
+            // a safety net here because it can only exclude MORE: it decides nothing about display or behaviour,
+            // it just keeps something out of a list where it never belongs. The root cause is fixed as well
+            // (RoleUtility.AdoptRoleLoadoutsByName on the reset button).
             List<Loadout> sources = LoadoutManager.Loadouts
                 .Where(l => LoadoutUtility.IsPlainWeaponLoadout(l) && !RoleUtility.IsRoleLabel(l.label)
                     && (string.IsNullOrEmpty(roleSourceSearch) || (l.label != null && l.label.IndexOf(roleSourceSearch, StringComparison.OrdinalIgnoreCase) >= 0)))
                 .ToList();
 
-            // WAFFEN als Bausteine (Lazy-Umbau 2026-09-01): frueher speiste sich diese Liste NUR aus vorab
-            // erzeugten Vorlagen - ohne Massenerzeugung waere sie leer und der Rollen-Baukasten tot. Jetzt
-            // steht unter den Loadouts jede Waffe, zu der noch keine Standard-Vorlage existiert; beim
-            // Anfassen (Ziehbeginn) entsteht die geteilte Vorlage unsichtbar ueber EnsureDefaultLoadout.
-            // Label-Dedup gegen den Loadout-Bestand pro Bild (ein HashSet-Aufbau, gleiche Groessenordnung
-            // wie die sources-Abfrage darueber); die Vorlagen-Namen je Waffe sind gecacht - das Praefix
-            // kommt aus den Mod-Einstellungen und aendert sich praktisch nie (schlimmstenfalls steht eine
-            // Waffe bis zum naechsten Fensteroeffnen doppelt neben ihrer Vorlage).
+            // WEAPONS as building blocks (lazy rework): this list used to be fed ONLY from pre-generated
+            // templates - without bulk generation it would be empty and the role builder dead. Now every weapon
+            // that has no default template yet is listed below the loadouts; on pickup (drag start) the shared
+            // template is created invisibly via EnsureDefaultLoadout.
+            // Label dedup against the existing loadouts per frame (one HashSet build, same order of magnitude
+            // as the sources query above); the template names per weapon are cached - the prefix comes from the
+            // mod settings and practically never changes (worst case, a weapon shows up next to its template
+            // until the window is reopened).
             HashSet<string> existingLabels = new HashSet<string>(LoadoutManager.Loadouts
                 .Where(l => l != null && !l.defaultLoadout && l.label != null).Select(l => l.label));
             if (roleWeaponLabelCache == null)
@@ -670,38 +659,36 @@ namespace CEReloaded
                     && (string.IsNullOrEmpty(roleSourceSearch) || (w.label != null && w.label.IndexOf(roleSourceSearch, StringComparison.OrdinalIgnoreCase) >= 0)))
                 .ToList();
 
-            // ===== Spalten wie im Waffen-Auswahlfenster (2026-09-04): der Waffenansicht im Rollen-Editor
-            // fehlten alle wichtigen Infos - komplett ueberarbeitet nach dem Vorbild von "Choose weapon",
-            // aber im Layout an den verfuegbaren Platz angepasst =====
+            // ===== Columns as in the weapon picker window: the weapon view in the role editor lacked all the
+            // important info - reworked after the "Choose weapon" window, but with the layout adapted to the
+            // available space =====
             //
-            // Vorher stand hier nur ein Name, bei Waffen zusaetzlich ein Symbol. Wer eine Rolle
-            // zusammenbaut, entscheidet aber genau dasselbe wie im Auswahlfenster: taugt die Waffe etwas,
-            // ist ueberhaupt eine da, und was kostet sie an Traglast. Das stand ausschliesslich im
-            // Tooltip - also erst nach Zielen und Warten, und pro Zeile einzeln.
+            // Previously this showed only a name, plus an icon for weapons. But someone building a role decides
+            // exactly the same things as in the picker window: is the weapon any good, is one available at all,
+            // and what does it cost in carrying capacity. That was only in the tooltip - so only after aiming and
+            // waiting, and one row at a time.
             //
-            // NICHT die festen Spaltenbreiten von Dialog_PickPacks uebernommen: dieser Kasten ist rund
-            // halb so breit wie jenes Fenster - das ist der "passe das layout an den platz an"-Teil.
-            // Stattdessen faellt von rechts nach links weg, was nicht mehr passt, und der Name bekommt,
-            // was uebrig bleibt (nie weniger als NameMinW). Die Reihenfolge des Wegfallens ist nach
-            // Nutzen gewaehlt: der Inhaltsstreifen zuerst (er steht auch im Tooltip), dann
-            // Masse/Sperrigkeit, dann Verfuegbarkeit, zuletzt die Wertung.
+            // The fixed column widths of Dialog_PickPacks are deliberately NOT copied: this box is roughly half
+            // as wide as that window. Instead, whatever no longer fits drops out from right to left, and the name
+            // gets what is left (never less than NameMinW). The drop order is chosen by usefulness: the contents
+            // strip first (it is also in the tooltip), then mass/bulk, then availability, the score last.
             const float SrcRowH = 30f;
             const float NameMinW = 140f;
-            float rowW = header.width - 16f;                  // minus Bildlaufleiste
+            float rowW = header.width - 16f;                  // minus scrollbar
             float srcScoreW = 0f, srcSpecW = 0f, srcAvailW = 0f, srcContW = 0f;
-            float restW = rowW - 52f;                         // Schloss + Symbol + Raender
+            float restW = rowW - 52f;                         // lock + icon + margins
             if (restW >= NameMinW + 68f) { srcScoreW = 68f; restW -= srcScoreW; }
-            // Masse/Sperrigkeit ist RAUS und durch die Schadensspalte ersetzt (2026-09-04): statt Masse/Bulk
-            // eine wichtigere Info, z.B. die Schadensart. Beim Rollenbauen zaehlt, WOGEGEN die Waffe
-            // taugt - Traglast entscheidet man am Kolonisten, nicht am Baustein. Dieselben Symbole wie im
-            // Auswahlfenster: intrinsische Waffeneffekte, dahinter die der Standard-Munition mit Plakette.
+            // Mass/bulk is OUT, replaced by the damage column: instead of mass/bulk, more important info such as
+            // the damage type. When building a role what matters is what the weapon is good AGAINST - carrying
+            // capacity is decided at the colonist, not the building block. Same icons as in the picker window:
+            // intrinsic weapon effects, followed by those of the default ammo with the badge.
             if (restW >= NameMinW + 96f) { srcSpecW = 96f; restW -= srcSpecW; }
             if (restW >= NameMinW + 62f) { srcAvailW = 62f; restW -= srcAvailW; }
             if (restW >= NameMinW + 104f) { srcContW = 104f; restW -= srcContW; }
             float srcNameW = restW;
 
-            // Spaltenkopf - drei Balken nebeneinander sind ohne Beschriftung nicht zuzuordnen. Gleiche
-            // Bauform wie die uebrigen Kopfzeilen des Mods: Tiny, 55 % Deckkraft, reine Beschriftung.
+            // Column header - three bars side by side can't be told apart without labels. Same style as the
+            // mod's other header rows: Tiny, 55% opacity, plain label.
             Rect colHead = new Rect(header.x, header.y + 26f, rowW, 16f);
             Text.Font = GameFont.Tiny;
             GUI.color = new Color(1f, 1f, 1f, 0.55f);
@@ -715,19 +702,18 @@ namespace CEReloaded
 
             Rect outRect = new Rect(header.x, header.y + 44f, header.width, header.height - 44f);
 
-            // ===== EINE Liste statt zwei Sektionen (2026-09-04: zugeteilte Waffen sprangen nach oben -
-            // das ist weg) =====
+            // ===== ONE list instead of two sections (assigned weapons used to jump to the top - fixed) =====
             //
-            // Vorher standen oben die vorhandenen Vorlagen und unter einer Zwischenueberschrift die
-            // Waffen ohne Vorlage. Sobald eine Waffe irgendwo zugeteilt wurde, entstand ihre Vorlage -
-            // und ihre Zeile sprang aus dem unteren Block in den oberen. Fuer den Spieler ist das
-            // dieselbe Waffe an einer anderen Stelle, ohne dass er in dieser Liste etwas getan haette.
+            // Previously the existing templates were on top, and below a subheading the weapons without a
+            // template. As soon as a weapon was assigned anywhere, its template was created - and its row jumped
+            // from the lower block into the upper one. To the player that's the same weapon in a different spot,
+            // without having done anything in this list.
             //
-            // Der Unterschied war ohnehin nur intern (Vorlage existiert schon / entsteht beim Ablegen);
-            // beide Zeilen sehen gleich aus und tun beim Ziehen dasselbe. Also eine gemeinsame Liste,
-            // alphabetisch nach dem ANGEZEIGTEN Namen - da steht eine Waffe immer an derselben Stelle,
-            // egal ob sie gerade jemand traegt. Einzige Ausnahme bleibt das Sperren: Gesperrtes rutscht
-            // ans Ende, aber das ist eine Handlung des Spielers genau in dieser Liste.
+            // The difference was purely internal anyway (template already exists / gets created on drop); both
+            // rows look the same and do the same thing when dragged. So one shared list, alphabetical by the
+            // DISPLAYED name - a weapon always stays in the same spot, whether or not someone is carrying it. The
+            // only exception remains locking: locked rows sink to the end, but that is a player action in this
+            // very list.
             var srcRows = new List<KeyValuePair<Loadout, ThingDef>>();
             foreach (Loadout lo in sources) srcRows.Add(new KeyValuePair<Loadout, ThingDef>(lo, null));
             foreach (ThingDef w in weaponBlocks) srcRows.Add(new KeyValuePair<Loadout, ThingDef>(null, w));
@@ -751,10 +737,10 @@ namespace CEReloaded
             if (srcRows.Count == 0)
             {
                 GUI.color = new Color(1f, 1f, 1f, 0.5f);
-                // Leer wegen der SUCHE ist etwas anderes als leer, weil es noch nichts gibt (2026-08-19, im
-                // Test aufgefallen): der Nachbarkasten "Your Equipment" unterscheidet die beiden Faelle
-                // laengst, dieser hier behauptete bei jedem Suchbegriff ohne Treffer "No loadouts yet" -
-                // also, es gebe gar keine Vorlagen, waehrend die Liste ohne Suchbegriff voll ist.
+                // Empty because of the SEARCH is different from empty because nothing exists yet: the
+                // neighbouring "Your Equipment" box has long distinguished the two cases, while this one claimed
+                // "No loadouts yet" for every search term without matches - i.e. that there were no templates at
+                // all, while the list was full without a search term.
                 Widgets.Label(new Rect(4f, 4f, viewRect.width - 8f, 40f), string.IsNullOrEmpty(roleSourceSearch)
                     ? "CER_GenerateLoadouts_NoLoadoutsYet".Translate()
                     : "CER_GenerateLoadouts_NoLoadoutsMatchSearch".Translate(roleSourceSearch));
@@ -763,10 +749,10 @@ namespace CEReloaded
             Widgets.EndScrollView();
         }
 
-        // Die Schadensspalte einer Bausteine-Zeile: intrinsische Effekte der Waffe, dahinter die der
-        // Standard-Munition MIT Munitions-Plakette - genau die Zellen aus Dialog_PickPacks.DrawDamageCell,
-        // damit dieselbe Waffe hier und im Auswahlfenster nicht zwei verschiedene Bilder zeigt. EIN
-        // Sammel-Tooltip ueber die ganze Zelle statt Einzeltooltips je Symbol.
+        // The damage column of a building-block row: the weapon's intrinsic effects, followed by those of the
+        // default ammo WITH the ammo badge - exactly the cells from Dialog_PickPacks.DrawDamageCell, so the same
+        // weapon doesn't show two different pictures here and in the picker window. ONE combined tooltip over
+        // the whole cell instead of per-icon tooltips.
         private static void DrawSourceDamageCell(Rect cell, ThingDef weapon, IEnumerable<LoadoutSlot> slots)
         {
             if (weapon == null) return;
@@ -788,16 +774,16 @@ namespace CEReloaded
                 TooltipHandler.TipRegion(cell, string.Join("\n\n", tipLines));
         }
 
-        // Eine Zeile der Bausteine-Liste, Fassung "vorhandenes Loadout". Dieselben Zellen wie im
-        // Auswahlfenster, und ausdruecklich dieselben Zeichner aus LoadoutUtility - eine zweite Rechnung
-        // fuer dieselbe Frage ist die Fehlerklasse, die diesen Mod am haeufigsten trifft.
+        // A building-block list row, "existing loadout" variant. Same cells as in the picker window, and
+        // explicitly the same drawers from LoadoutUtility - a second calculation for the same question is the
+        // class of bug that hits this mod most often.
         private void DrawRoleSourceLoadoutRow(Rect row, Loadout lo, float nameW, float scoreW, float specW, float availW, float contW)
         {
             if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
             bool locked = LoadoutUtility.IsLoadoutDisabled(lo);
             Dialog_AssignLoadouts.AnalyzeLoadout(lo, out ThingDef main, out float score, out _, out _);
 
-            // Schloss zuerst - der Ziehbereich beginnt dahinter, sonst frisst er den Klick darauf.
+            // Lock first - the drag area starts after it, otherwise it swallows the click.
             Loadout lockLo = lo;
             bool lockedNow = locked;
             DrawSourceLockToggle(new Rect(row.x + 4f, row.y + (row.height - 18f) / 2f, 18f, 18f), locked,
@@ -828,8 +814,8 @@ namespace CEReloaded
                 if (main != null)
                 {
                     Rect r = new Rect(cx + 2f, row.y + (row.height - 20f) / 2f, availW - 10f, 20f);
-                    // TipWanted davor: BuildWeaponLocationTooltip laeuft ueber Karten und Kolonisten, und
-                    // dieser Balken steht in JEDER Zeile - dieselbe Vorsicht wie im Auswahlfenster.
+                    // TipWanted first: BuildWeaponLocationTooltip iterates maps and colonists, and this bar is in
+                    // EVERY row - same precaution as in the picker window.
                     LoadoutUtility.DrawAvailabilityBar(r, LoadoutUtility.WeaponAvailability(main), horizontal: true,
                         LoadoutUtility.TipWanted(r) ? LoadoutUtility.BuildWeaponLocationTooltip(main) : null);
                 }
@@ -841,12 +827,12 @@ namespace CEReloaded
                 cx += contW;
             }
 
-            // Der Ziehbereich endet vor den Zellen rechts: die haben eigene Tooltips (Wertung, Fundorte,
-            // Inhalt), und ein Ziehstart darueber wuerde die verdecken.
+            // The drag area ends before the cells on the right: they have their own tooltips (score, locations,
+            // contents), and a drag start over them would hide those.
             Rect dragArea = new Rect(row.x + 22f, row.y, 30f + nameW, row.height);
             Loadout tipLo = lo;
             TooltipHandler.TipRegion(dragArea, () => LoadoutUtility.LoadoutContentsTooltip(tipLo), tipLo.UniqueID ^ 0x5C0F);
-            if (locked) return;   // gesperrt = kein Baustein, so wie es im Auswahlfenster nicht waehlbar ist
+            if (locked) return;   // locked = no building block, just as it can't be picked in the picker window
             if (Mouse.IsOver(dragArea) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
             {
                 dragLoadout = lo;
@@ -854,8 +840,8 @@ namespace CEReloaded
             }
         }
 
-        // Dieselbe Zeile, Fassung "Waffe ohne Vorlage". Die Zahlen kommen aus der Vorgabe-Slotliste
-        // (DefaultSlotsFor), also aus genau dem, was beim Ziehen entstuende - nicht aus der nackten Waffe.
+        // Same row, "weapon without a template" variant. The numbers come from the default slot list
+        // (DefaultSlotsFor), i.e. exactly what dragging would create - not from the bare weapon.
         private void DrawRoleSourceWeaponRow(Rect row, ThingDef w, float nameW, float scoreW, float specW, float availW, float contW)
         {
             if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
@@ -907,33 +893,32 @@ namespace CEReloaded
             if (locked) return;
             if (Mouse.IsOver(dragArea) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
             {
-                // NUR die Waffe merken - die Vorlage entsteht erst beim Drop auf eine Rollenkarte
-                // (2026-09-02: Materialisieren beim Anfassen liess die Zeile sofort in die
-                // Loadout-Sektion darueber springen).
+                // Only remember the WEAPON - the template is created on drop onto a role card
+                // (materializing it on pickup made the row jump into the loadout section above
+                // immediately).
                 dragWeaponDef = tipW;
                 Event.current.Use();
             }
         }
 
-        // Derselbe Schalter wie im Auswahlfenster (Dialog_PickPacks.DrawWeaponRow), damit ein Schloss
-        // ueberall gleich aussieht und gleich reagiert: schwach sichtbar, bis die Maus auf der Zeile
-        // steht oder es zu ist.
+        // Same toggle as in the picker window (Dialog_PickPacks.DrawWeaponRow), so a lock looks and reacts the
+        // same everywhere: faintly visible until the mouse is over the row or it is locked.
         private static void DrawSourceLockToggle(Rect r, bool locked, Action toggle, bool rowHovered, bool isLoadout)
         {
             GUI.color = new Color(1f, 1f, 1f, locked || rowHovered ? 1f : 0.3f);
             if (Widgets.ButtonImage(r, locked ? Dialog_PickPacks.TexDoNotUseOn : Dialog_PickPacks.TexDoNotUseOff)) toggle();
             GUI.color = Color.white;
-            // Vorlage und Waffe bekommen ihren eigenen Wortlaut - derselbe wie im Auswahlfenster, damit
-            // dasselbe Schloss nicht an zwei Stellen zwei verschiedene Dinge zu versprechen scheint.
+            // Template and weapon each get their own wording - the same as in the picker window, so the same lock
+            // doesn't seem to promise two different things in two places.
             string key = isLoadout
                 ? (locked ? "CER_PickPacks_UnlockLoadoutTip" : "CER_PickPacks_LockLoadoutTip")
                 : (locked ? "CER_PickPacks_UnlockTip" : "CER_PickPacks_LockTip");
             TooltipHandler.TipRegion(r, key.Translate());
         }
 
-        // Bis zu vier Symbole plus "+N" - die Kurzfassung des Inhalts; die Langfassung steht im Tooltip
-        // des Namens. Bewusst weniger Symbole als im Auswahlfenster (dort sechs): die Spalte ist hier
-        // schmaler, und vier passen ohne Kappung.
+        // Up to four icons plus "+N" - the short version of the contents; the long version is in the name's
+        // tooltip. Deliberately fewer icons than in the picker window (six there): the column is narrower here,
+        // and four fit without clipping.
         private static void DrawSourceContentsStrip(Rect r, List<LoadoutSlot> slots)
         {
             if (slots == null || slots.Count == 0) return;
@@ -964,9 +949,9 @@ namespace CEReloaded
             }
         }
 
-        // Vorgabe-Slots einer Waffe, einmal gebaut und gemerkt. Genau dieselbe Bauform wie
-        // Dialog_PickPacks.WeaponSlots; eine Vorgabeliste je Zeile je Bild waere bei dreistelliger
-        // Waffenzahl nicht bezahlbar.
+        // Default slots of a weapon, built once and cached. Exactly the same pattern as
+        // Dialog_PickPacks.WeaponSlots; a default list per row per frame would be unaffordable with a
+        // three-digit weapon count.
         private List<LoadoutSlot> RoleWeaponSlots(ThingDef w)
         {
             if (!roleWeaponSlotsCache.TryGetValue(w, out List<LoadoutSlot> slots))
@@ -984,15 +969,14 @@ namespace CEReloaded
         {
             Widgets.DrawMenuSection(panel);
             Rect header = panel.ContractedBy(6f);
-            // Breite gemessen statt 140f fest - dieselbe Sache wie im Waffen-Kasten darueber (2026-08-26).
+            // Width measured instead of a fixed 140f - same issue as in the weapons box above.
             string packHeaderTxt = "CER_GenerateLoadouts_YourEquipmentPacksHeader".Translate();
             float packHeaderW = Mathf.Min(Text.CalcSize(packHeaderTxt).x + 4f, header.width * 0.6f);
             Widgets.Label(new Rect(header.x, header.y, packHeaderW, 22f), packHeaderTxt.Truncate(packHeaderW));
-            // Suchfeld wie in der Liste darueber (2026-08-18): "Your equipment packs" bekommt eine
-            // Type-ahead-Suche genau wie "Your weapons". Dieselbe Bauform, dasselbe Loeschkreuz -
-            // und nebenbei sind damit auch die beiden LISTEN gleich hoch: die Waffenliste hat 26 Punkte an
-            // ihren Kopf verloren, die Packliste bisher nicht, also war ihre Liste um genau diese Zeile
-            // hoeher, obwohl die Kaesten selbst gleich gross sind. Genau das war der erste Befund.
+            // Search field as in the list above: "Your equipment packs" gets a type-ahead search just like
+            // "Your weapons". Same style, same clear cross - and as a side effect both LISTS are now the same
+            // height: the weapons list had lost 26 points to its header, the pack list hadn't, so its list was
+            // exactly that one row taller even though the boxes themselves are the same size.
             Rect packFieldRect = new Rect(header.x + packHeaderW + 4f, header.y - 2f, header.width - packHeaderW - 4f - 24f, 22f);
             equipmentPackSearch = Widgets.TextField(packFieldRect, equipmentPackSearch);
             if (LoadoutUtility.ClearSearchButton(packFieldRect, header.y - 2f, equipmentPackSearch)) equipmentPackSearch = "";
@@ -1023,9 +1007,9 @@ namespace CEReloaded
                 }
                 TooltipHandler.TipRegion(delRect, "CER_GenerateLoadouts_DeletePackTip".Translate());
                 Rect dragArea = new Rect(row.x, row.y, row.width - 26f, row.height);
-                // Inhalt im Tooltip, gleiche Begruendung wie in der Loadout-Liste darueber. Bewusst auf der
-                // ZIEHFLAECHE und nicht auf der ganzen Zeile: der Loeschknopf rechts hat seinen eigenen
-                // Tooltip, und der darf nicht vom Inhalt ueberdeckt werden.
+                // Contents in the tooltip, same reasoning as in the loadout list above. Deliberately on the
+                // DRAG AREA and not the whole row: the delete button on the right has its own tooltip, and that
+                // must not be covered by the contents.
                 Loadout tipPack = pack;
                 TooltipHandler.TipRegion(dragArea, () => LoadoutUtility.LoadoutContentsTooltip(tipPack), tipPack.UniqueID ^ 0x5C10);
                 if (Mouse.IsOver(dragArea) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
@@ -1056,11 +1040,10 @@ namespace CEReloaded
             Rect addSaveRect = new Rect(header.xMax - 108f, header.y - 2f, 108f, 24f);
             if (local != null)
             {
-                // Die neue Karte wird SOFORT die ausgewaehlte (2026-08-15, im Test gefunden).
-                // Vorher blieb die vorher ausgewaehlte Rolle aktiv, und das Namensfeld unten gehoert der
-                // ausgewaehlten - der getippte Name landete also auf einer FREMDEN Rolle: man tippte den
-                // Namen der neuen Rolle, und eine andere Karte hiess ploetzlich anders. Eine stille
-                // Umbenennung der falschen Zeile ist der schlimmste Ausgang dieses Knopfes.
+                // The new card immediately becomes the SELECTED one. Previously the previously selected role
+                // stayed active, and the name field below belongs to the selected one - so the typed name landed
+                // on a DIFFERENT role: you typed the new role's name and another card was suddenly renamed. A
+                // silent rename of the wrong row is the worst possible outcome of this button.
                 if (LoadoutUtility.ButtonTextFit(addSaveRect, "CER_GenerateLoadouts_NewRoleButton".Translate().ToString()))
                 {
                     LoadoutRole added = new LoadoutRole { name = "CER_GenerateLoadouts_NewRoleDefaultName".Translate() };
@@ -1074,13 +1057,13 @@ namespace CEReloaded
                 Find.WindowStack.Add(LoadoutUtility.CompactConfirmation("CER_GenerateLoadouts_ResetRolesConfirm".Translate(),
                     () =>
                     {
-                        // Der ganze Vorgang steht seit 2026-09-04 in RoleUtility.ResetGlobalRoles - samt
-                        // dem Wiederzuordnen der gleichnamigen Loadouts (2026-08-18) UND dem Loeschen der
-                        // Loadouts, die danach zu keiner Rolle mehr gehoeren. Zweiter Knopf derselben Art
-                        // sitzt in den Mod-Einstellungen und ruft jetzt dieselbe Zeile.
+                        // The whole procedure lives in RoleUtility.ResetGlobalRoles - including re-linking the
+                        // loadouts with matching names AND deleting the loadouts that no longer belong to any
+                        // role afterwards. A second button of the same kind sits in the mod settings and now
+                        // calls the same line.
                         RoleUtility.ResetGlobalRoles(st);
-                        // Nur die Reihen der WEGGEWORFENEN Rollen vergessen - die spielstandlokalen Rollen
-                        // ueberleben das Zuruecksetzen, und mit ihnen ihre gerade zusammengezogene Reihe.
+                        // Forget only the rows of the DISCARDED roles - save-local roles survive the reset, and
+                        // with them their just-assembled row.
                         var alive = new HashSet<LoadoutRole>(RoleUtility.AllKnownRoles());
                         foreach (LoadoutRole gone in roleComp.Keys.Where(r => !alive.Contains(r)).ToList())
                             roleComp.Remove(gone);
@@ -1089,9 +1072,9 @@ namespace CEReloaded
                     }, true));
             TooltipHandler.TipRegion(resetRect, "CER_GenerateLoadouts_ResetRolesTip".Translate());
 
-            // Der Rueckweg fuer geloeschte Vorgaberollen (2026-09-04) - steht nur da, wenn wirklich eine
-            // fehlt, und traegt die Zahl. Ohne ihn war "Zuruecksetzen" der einzige Weg zurueck, und der
-            // wirft jede selbst gebaute Rolle mit weg. Begruendung in RoleUtility.RestoreMissingPresetRoles.
+            // The way back for deleted preset roles - only shown when one is actually missing, and it carries
+            // the count. Without it "Reset" was the only way back, and that throws away every self-built role
+            // too. Rationale in RoleUtility.RestoreMissingPresetRoles.
             int missingPresets = RoleUtility.MissingPresetRoles(st).Count;
             float restoreW = 0f;
             if (missingPresets > 0)
@@ -1131,10 +1114,9 @@ namespace CEReloaded
                 .OrderBy(RoleSortTier)
                 .ToList();
 
-            // Wer hat welche Rolle gerade (2026-08-25): anzeigen, wie vielen Pawns die Rolle aktuell
-            // zugeordnet ist - EINMAL je Zeichendurchgang fuer alle
-            // Karten, nicht je Karte ueber alle Kolonisten. DisplayLoadout schaut durch den persoenlichen
-            // Anker auf die eigentliche Vorlage, so wie jede andere Zaehlung im Mod.
+            // Who has which role right now: show how many pawns the role is currently assigned to - computed
+            // ONCE per draw pass for all cards, not per card over all colonists. DisplayLoadout looks through
+            // the personal anchor to the actual template, like every other count in the mod.
             Dictionary<Loadout, List<string>> pawnsByLoadout = new Dictionary<Loadout, List<string>>();
             foreach (Pawn p in LoadoutUtility.AllColonyPawns())
             {
@@ -1149,29 +1131,29 @@ namespace CEReloaded
                 return rl != null && pawnsByLoadout.TryGetValue(rl, out List<string> n) ? n : new List<string>();
             }
             Rect outRect = new Rect(header.x, header.y + 26f, header.width, header.height - 26f);
-            // Karte waechst mit der Zahl der Anhaenge (2026-08-14, im Test aufgefallen): die Chips
-            // zeichneten in EINER Zeile ohne Umbruch bei fester Kartenhoehe. Ab etwa vier Anhaengen lagen
-            // die letzten komplett ausserhalb des Kastens - samt ihrer [x]-Knoepfe, die Packs waren also
-            // nicht mehr zu entfernen, und die ganze Rolle musste neu gebaut werden.
-            // Struktureller Fix statt groesserer Konstante: die Kette Kartenhoehe -> Chip-Zeile
-            // ist die Ursache, nicht die konkrete Zahl 80.
+            // The card grows with the number of attachments: the chips used to draw in ONE row without wrapping
+            // at a fixed card height. From about four attachments on, the last ones were completely outside the
+            // box - along with their [x] buttons, so the packs could no longer be removed and the whole role had
+            // to be rebuilt.
+            // Structural fix instead of a bigger constant: the chain card height -> chip row is the cause, not
+            // the specific number 80.
             const float chipRowH = 24f;
             const float cardBaseH = 80f;
-            // Platz fuer das Bild der Hauptwaffe im gekennzeichneten Chip - siehe MainOf weiter unten.
+            // Room for the main weapon's icon in the marked chip - see MainOf further down.
             const float mainIconW = 22f;
             float cardW = outRect.width - 16f - 4f;
             float chipAreaW = cardW - 12f;
 
-            // Der angezeigte Name der Karte - beim Umbenennen der GETIPPTE, sonst der gespeicherte. Hier
-            // oben, weil ihn ausser der Beschriftung auch die Hauptwaffen-Kuer braucht und die beiden nie
-            // verschiedene Namen sehen duerfen.
+            // The card's displayed name - the TYPED one while renaming, otherwise the stored one. Up here
+            // because besides the label the main-weapon pick needs it too, and the two must never see
+            // different names.
             string CardNameOf(LoadoutRole r)
             {
                 if (r == activeRoleObj && !string.IsNullOrWhiteSpace(roleNameEdit)) return roleNameEdit.Trim();
                 return r?.name;
             }
-            // Einmal je Zeichendurchgang statt einmal je Abfrage: Hoehenrechnung und Zeichenschleife fragen
-            // dasselbe zweimal, und die Kuer liest die Slots jeder Zusammenstellungs-Zeile.
+            // Once per draw pass instead of once per query: the height calculation and the draw loop ask the
+            // same thing twice, and the pick reads the slots of every composition row.
             Dictionary<LoadoutRole, ThingDef> mainWeaponOfRole = new Dictionary<LoadoutRole, ThingDef>();
             ThingDef MainOf(LoadoutRole r)
             {
@@ -1183,10 +1165,9 @@ namespace CEReloaded
                 }
                 return m;
             }
-            // Breite und Beschriftung eines Chips an EINER Stelle: die Hoehenrechnung und das Zeichnen
-            // hatten die Formel bisher doppelt, mit einem Kommentar daneben, dass sie nicht auseinander-
-            // laufen duerfen. Mit dem Bild der Hauptwaffe waeren es drei Zahlen gewesen, die zusammenpassen
-            // muessen (die Kette reparieren, nicht die naechste Konstante drehen).
+            // Chip width and label in ONE place: the height calculation and the drawing used to duplicate the
+            // formula, with a comment next to it saying they must not drift apart. With the main weapon icon
+            // that would have been three numbers that must match (fix the chain, don't turn the next constant).
             string ChipText(Loadout l) => EquipmentPackUtility.StripMarker(l.label).Truncate(120f);
             float ChipWidth(Loadout l, bool isMain)
                 => Mathf.Min(Text.CalcSize(ChipText(l)).x + 30f + (isMain ? mainIconW : 0f), chipAreaW);
@@ -1250,42 +1231,37 @@ namespace CEReloaded
                 LoadoutRole roleToDelete = role;
                 List<LoadoutRole> localList = local;
                 CEReloadedSettings stCapture = st;
-                // Eine Karte, die noch NIE erzeugt wurde und auf der nichts liegt, verschwindet ohne
-                // Rueckfrage (2026-08-15). Die Rueckfrage schuetzt hier nichts: es gibt kein Loadout dazu,
-                // also auch keinen Kolonisten, der daran haengen koennte - sie kostet nur einen zweiten
-                // Klick fuer eine leere Platzhalterkarte, die man versehentlich angelegt hat.
-                // Anlass: im Test entfernte das x an einer frisch angelegten, leeren 'New role'-Karte sie
-                // nicht. Beweisen laesst sich das aus dem Code NICHT - der Entfernungspfad
-                // unten ist korrekt, und die Fernsteuerung im Test hat mit Bestaetigungsfenstern
-                // nachweislich Probleme. Deshalb hier keine erfundene
-                // Ursache, sondern der Griff, der beide Erklaerungen erledigt: kein Fenster, kein Problem.
-                // Fuer eine erzeugte Rolle bleibt die Rueckfrage von 2026-08-01 unveraendert.
-                // ...UND jede GLOBALE Vorgaberolle (2026-09-06, Nachtest: das x an der
-                // leeren Karte '[G] Marksman' hat sie OHNE Rueckfrage aus der globalen Bibliothek entfernt).
-                // Die Ausnahme von 2026-08-15 gilt fuer eine versehentlich angelegte, leere LOKALE Karte -
-                // eine leere Vorgabe ist kein Versehen, und ihr Verlust trifft jede Kolonie. Genau dafuer gibt
-                // es den Rueckfragetext mit dem Hinweis auf 'Vorlagen zurueck' - der lief hier nie.
+                // A card that was NEVER created and has nothing on it disappears without confirmation. The
+                // confirmation protects nothing here: there is no loadout for it, so no colonist could depend
+                // on it - it only costs a second click for an empty placeholder card created by accident. It
+                // also sidesteps an unexplained case where the x on a freshly created, empty 'New role' card
+                // did not remove it: the removal path below is correct, so rather than invent a cause, the
+                // dialog is skipped - no window, no problem.
+                // For a created role the confirmation stays unchanged.
+                // ...AND every GLOBAL preset role: the x on the empty card '[G] Marksman' used to remove it from
+                // the global library WITHOUT confirmation. The exception above is for an accidentally created,
+                // empty LOCAL card - an empty preset is not an accident, and losing it affects every colony. That
+                // is exactly what the confirmation text with the hint about 'restore presets' is for - and it
+                // never ran here.
                 bool needsConfirm = created || CompFor(role).Count > 0 || (!isLocal && RoleUtility.IsPresetRoleName(role.name));
                 Action removeRole = () =>
                 {
-                    // Das "[Role] <Name>"-Loadout GEHT MIT (2026-09-04, zwei Befunde mit derselben
-                    // Wurzel: eine schon geloeschte Rolle wurde in Assign Loadouts weiter angezeigt,
-                    // und die Geister-Rollen nach Loeschen + Zuruecksetzen).
+                    // The "[Role] <Name>" loadout GOES WITH IT (two problems with the same root: an already
+                    // deleted role was still shown in Assign Loadouts, and ghost roles after delete + reset).
                     //
-                    // Bis hierher entfernte dieser Knopf nur den Buchhaltungseintrag - mit der Begruendung,
-                    // ein Loeschen des Loadouts koennte einen lebenden Verweis haengen lassen. Das stimmte,
-                    // als es LoadoutDeletionUtility noch nicht gab; seitdem ist genau das dort erledigt
-                    // (zugewiesene Kolonisten fallen sauber auf "keine Vorlage", Anker mit eigenem Inhalt
-                    // werden umgehaengt statt geloescht, alle Nebenbuecher vergessen die ID).
+                    // Until now this button only removed the bookkeeping entry - on the grounds that deleting the
+                    // loadout could leave a live reference dangling. That was true before LoadoutDeletionUtility
+                    // existed; since then exactly that is handled there (assigned colonists fall back cleanly to
+                    // "no template", anchors with their own contents are re-parented instead of deleted, all side
+                    // ledgers forget the ID).
                     //
-                    // Was die alte Fassung dagegen hinterliess, war schlimmer als ein haengender Verweis:
-                    // ein Loadout OHNE Besitzer. Ohne Rolle dahinter ist es fuer jede Identitaetspruefung
-                    // eine gewoehnliche Vorlage - es wurde in der Zuweisung selbst unter "Keine Rollen"
-                    // weiter verteilt, und zwar unter seinem rohen Etikett "[Role] Assault", weil der
-                    // Marker nur bei einer ERKANNTEN Rolle abgestreift wird. Und beim naechsten
-                    // "Zuruecksetzen" adoptierte die frische Vorgaberolle gleichen Namens es wieder
-                    // (RoleUtility.AdoptRoleLoadoutsByName) - dann stand die geloeschte Rolle als "erzeugt"
-                    // samt Waffeninhalt da, aber mit leerer Bausteinreihe.
+                    // What the old version left behind instead was worse than a dangling reference: a loadout
+                    // WITHOUT an owner. Without a role behind it, every identity check sees an ordinary template -
+                    // it kept being handed out in the assignment itself under "No roles", under its raw label
+                    // "[Role] Assault", because the marker is only stripped for a RECOGNIZED role. And on the next
+                    // "Reset" the fresh preset role with the same name adopted it again
+                    // (RoleUtility.AdoptRoleLoadoutsByName) - then the deleted role showed up as "created" with
+                    // weapon contents, but with an empty building-block row.
                     Loadout doomed = RoleUtility.RoleLoadoutOf(roleToDelete);
                     if (!stCapture.roles.Remove(roleToDelete)) localList?.Remove(roleToDelete);
                     roleComp.Remove(roleToDelete);
@@ -1295,10 +1271,10 @@ namespace CEReloaded
                 if (Widgets.ButtonText(delCard, "CER_GenerateLoadouts_RemoveButton".Translate()))
                 {
                     if (needsConfirm)
-                        // Bei einer der sieben eingebauten Vorlagen sagt die Rueckfrage AUCH, dass sie aus
-                        // der globalen Bibliothek verschwindet und wo sie wieder herkommt (2026-09-04): im
-                        // Test wurde das x als "rueckgaengig" gelesen, und der alte Text hat dem nicht
-                        // widersprochen - er sprach nur von "der Rolle und dem Loadout dahinter".
+                        // For one of the seven built-in presets the confirmation ALSO says that it disappears
+                        // from the global library and where to get it back: the x was easily read as "undo", and
+                        // the old text did not contradict that - it only spoke of "the role and the loadout
+                        // behind it".
                         Find.WindowStack.Add(LoadoutUtility.CompactConfirmation(
                             RoleUtility.IsPresetRoleName(roleToDelete.name)
                                 ? "CER_GenerateLoadouts_DeleteRoleConfirmPreset".Translate(roleToDelete.name)
@@ -1325,15 +1301,15 @@ namespace CEReloaded
                 TooltipHandler.TipRegion(badgeRect, created ? "CER_GenerateLoadouts_BadgeCreatedTip".Translate() : "CER_GenerateLoadouts_BadgeNewTip".Translate());
 
                 GUI.color = created ? Color.white : new Color(1f, 1f, 1f, 0.5f);
-                // Der GETIPPTE Name, solange diese Rolle die aktive ist (2026-08-14, im Test
-                // aufgefallen: der Name wurde zweimal eingegeben, weil die Karte weiter "New role" zeigte -
-                // und bei mehreren neuen Rollen untereinander stehen sonst lauter gleiche Zeilen).
-                // NUR die Anzeige, `role.name` bleibt unangetastet: CommitRole sucht das schon angelegte
-                // Loadout ueber den ALTEN Namen ("[Role] <role.name>"), um es beim Umbenennen zu behalten
-                // statt ein zweites daneben zu legen. Wuerde der Puffer hier live in role.name geschrieben,
-                // wuerde genau diese Suche ins Leere laufen - aus dem Umbenennen wuerde ein Duplikat, und
-                // jeder Kolonist an der alten Rolle bliebe an der alten haengen.
-                // Nur bei nicht-leerer Eingabe, damit ein geleertes Feld nicht eine namenlose Karte zeigt.
+                // The TYPED name while this role is the active one (the name was otherwise entered twice
+                // because the card kept showing "New role" - and with several new roles you'd get a stack of
+                // identical rows).
+                // Display ONLY, `role.name` stays untouched: CommitRole looks up the already-created loadout by
+                // the OLD name ("[Role] <role.name>") so it keeps it on rename instead of adding a second one
+                // next to it. If the buffer were written live into role.name here, exactly that lookup would come
+                // up empty - the rename would turn into a duplicate, and every colonist on the old role would
+                // stay stuck on the old one.
+                // Only for non-empty input, so a cleared field doesn't show a nameless card.
                 string cardName = CardNameOf(role);
                 Widgets.Label(new Rect(card.x + 32f, card.y + 3f, badgeRect.x - 6f - (card.x + 32f), 22f), "<b>" + cardName + "</b>");
                 GUI.color = Color.white;
@@ -1347,19 +1323,18 @@ namespace CEReloaded
                     Rect lr = new Rect(fx, card.y + 27f, 26f, 20f);
                     Widgets.Label(lr, lbl);
                     GUI.color = Color.white;
-                    // Der Erklaertext haengt auch an der BESCHRIFTUNG (2026-09-07: nirgends stand, wofuer die
-                    // vier stehen, und an den Beschriftungen selbst kam kein Erklaertext). Zwei Buchstaben
-                    // ohne Erklaerung sind ein Raetsel, und
-                    // das Feld daneben erklaerte im gesperrten Zustand nur die Sperre, nicht den Faktor.
+                    // The explanation also goes on the LABEL: nowhere did it say what the four stand for, and the
+                    // labels themselves had no tooltip. Two letters without explanation are a riddle, and the field
+                    // next to it, when locked, only explained the lock, not the factor.
                     TooltipHandler.TipRegion(lr, tip);
                     Rect fr = new Rect(fx + 26f, card.y + 25f, 38f, 22f);
                     if (factorsEditable)
                     {
                         float beforeFactor = g();
                         CardFactorField(fr, role, slot, g, s);
-                        // Ein geaenderter Faktor aendert den Inhalt der Rolle genauso wie ein Chip - also
-                        // wird er genauso sofort geschrieben (2026-08-17). Nur bei echter Aenderung, sonst
-                        // liefe das pro Bild.
+                        // A changed factor changes the role's contents just like a chip - so it is written
+                        // immediately the same way. Only on an actual change, otherwise it would run every
+                        // frame.
                         if (g() != beforeFactor) AutoCommitRole(role, st);
                         TooltipHandler.TipRegion(fr, tip);
                     }
@@ -1371,7 +1346,7 @@ namespace CEReloaded
                         Widgets.Label(fr, g().ToString("0.##"));
                         Text.Anchor = TextAnchor.UpperLeft;
                         GUI.color = Color.white;
-                        // Erst was der Faktor bedeutet, dann warum er gesperrt ist - nicht nur die Sperre.
+                        // First what the factor means, then why it is locked - not just the lock.
                         TooltipHandler.TipRegion(fr, tip + "\n\n" + "CER_GenerateLoadouts_FactorLockedTip".Translate());
                     }
                     fx += 70f;
@@ -1381,10 +1356,10 @@ namespace CEReloaded
                 FField("CER_GenerateLoadouts_FactorFoLabel".Translate(), 2, () => role.foodFactor, v => role.foodFactor = v, "CER_GenerateLoadouts_FoodFactorTip".Translate());
                 FField("CER_GenerateLoadouts_FactorGrLabel".Translate(), 3, () => role.grenadeFactor, v => role.grenadeFactor = v, "CER_GenerateLoadouts_GrenadeFactorTip".Translate());
 
-                // Die Zahl der Kolonisten auf dieser Rolle, rechts in der Faktor-Zeile (siehe pawnsByLoadout
-                // oben): dort stand bisher nichts, und die Kopfzeile ist mit Name, Zustand und zwei Knoepfen
-                // voll. Nur fuer angelegte Rollen - eine Rolle ohne Loadout kann niemand haben. Die Namen
-                // stehen im Mouseover.
+                // The number of colonists on this role, on the right of the factor row (see pawnsByLoadout
+                // above): nothing was there before, and the header is full with name, state and two buttons.
+                // Only for created roles - a role without a loadout can't be held by anyone. The names are in
+                // the mouseover.
                 if (created)
                 {
                     List<string> onRole = OnRole(role);
@@ -1405,16 +1380,15 @@ namespace CEReloaded
                 float chipY = card.y + 52f;
                 if (comp.Count == 0)
                 {
-                    // ERSTELLTE Rolle ohne gespeicherte Zusammensetzung sagt, was sie WIRKLICH enthaelt
-                    // (2026-08-23, im Test aufgefallen: die Zeile einer erstellten Rolle zeigte nur
-                    // "drag a loadout here" und ausgegraute Faktorfelder - dass ein Gewehr drinsteckt,
-                    // erfuhr man erst ueber die Vorschau darunter oder im Waffenmenue der Zuweisung).
-                    // Der Zustand selbst ist richtig und laesst sich nicht wegprogrammieren: eine Rolle aus
-                    // einer frueheren Spielsitzung hat keine gespeicherte Reihe von Bausteinen, und die laesst
-                    // sich auch nicht rekonstruieren - siehe die Weiche an RoleAutoSaves. Falsch war nur,
-                    // dass die Zeile daraus "hier ist nichts" gemacht hat. Sie liest den Inhalt jetzt aus
-                    // dem gespeicherten Rollen-Loadout selbst, ueber dieselbe Funktion, mit der auch der
-                    // Assign-Reiter die Hauptwaffe einer Vorlage bestimmt - nicht ueber eine zweite eigene.
+                    // A CREATED role without a stored composition says what it ACTUALLY contains (the row of a
+                    // created role used to show only "drag a loadout here" and greyed-out factor fields - that it
+                    // contained a rifle could only be seen in the preview below or in the assignment's weapon
+                    // menu).
+                    // The state itself is correct and can't be programmed away: a role from an earlier game
+                    // session has no stored row of building blocks, and it can't be reconstructed either - see
+                    // the switch at RoleAutoSaves. What was wrong was only that the row turned this into "nothing
+                    // here". It now reads the contents from the stored role loadout itself, via the same function
+                    // the Assign tab uses to determine a template's main weapon - not via a second one of its own.
                     Loadout savedRole = created ? RoleUtility.RoleLoadoutOf(role) : null;
                     ThingDef savedMain = null;
                     if (savedRole != null) Dialog_AssignLoadouts.AnalyzeLoadout(savedRole, out savedMain, out _, out _, out _);
@@ -1424,7 +1398,7 @@ namespace CEReloaded
                         ? "CER_GenerateLoadouts_CreatedRoleContentHintFmt".Translate(savedMain.LabelCap)
                         : "CER_GenerateLoadouts_DragLoadoutHerePlaceholder".Translate());
                     GUI.color = Color.white;
-                    // Der Erklaertext fehlte an dieser Zeile ganz - auch das war Teil des Befunds.
+                    // This row had no tooltip at all either.
                     TooltipHandler.TipRegion(hintRect, savedMain != null
                         ? "CER_GenerateLoadouts_CreatedRoleContentTip".Translate()
                         : "CER_GenerateLoadouts_DragLoadoutHereTip".Translate());
@@ -1433,12 +1407,12 @@ namespace CEReloaded
                 {
                     int removeIdx = -1;
                     ThingDef roleMainW = MainOf(role);
-                    // Haengt an der ROLLE, nicht am einzelnen Baustein - deshalb einmal vor der Schleife.
-                    // NUR fuer ANGELEGTE Rollen (2026-08-30: die Rolle war noch nicht einmal erzeugt,
-                    // geschweige denn einem Pawn zugewiesen - und trotzdem war das x gesperrt, mit dem
-                    // Text ueber leer ausgehende Kolonisten). Die Sperre schuetzt das GESPEICHERTE Rollen-Loadout
-                    // davor, geleert zu werden; eine Vorlage, die nie geschrieben wurde, hat nichts zu schuetzen -
-                    // ihr letzter Baustein geht weg wie jeder andere, die Karte sagt dann 'drag a loadout here'.
+                    // Belongs to the ROLE, not the individual building block - hence once before the loop.
+                    // ONLY for CREATED roles (the role had not even been created yet, let alone assigned to a
+                    // pawn - and still the x was locked, with text about colonists ending up empty-handed). The
+                    // lock protects the STORED role loadout from being emptied; a template that was never written
+                    // has nothing to protect - its last building block goes away like any other, and the card then
+                    // says 'drag a loadout here'.
                     bool blockedRemove = comp.Count <= 1 && created;
                     for (int c = 0; c < comp.Count; c++)
                     {
@@ -1447,19 +1421,18 @@ namespace CEReloaded
                         string t = ChipText(comp[c]);
                         bool isMain = RoleUtility.CompHasDef(comp[c], roleMainW);
                         float w = ChipWidth(comp[c], isMain);
-                        // Umbruch mit derselben Rechnung wie ChipRows oben - laufen die beiden auseinander,
-                        // passt die reservierte Kartenhoehe nicht zu dem, was wirklich gezeichnet wird.
+                        // Wrap with the same calculation as ChipRows above - if the two drift apart, the reserved
+                        // card height doesn't match what is actually drawn.
                         if (chipX > card.x + 6f && chipX + w > card.x + 6f + chipAreaW)
                         {
                             chipX = card.x + 6f;
                             chipY += chipRowH;
                         }
                         Rect chip = new Rect(chipX, chipY, w, 20f);
-                        // Der Chip, der die HAUPTWAFFE liefert, hebt sich ab und traegt ihr Bild (2026-08-14,
-                        // Variante a): eine Rolle darf mehrere Waffen buendeln, sie sagte bisher nur
-                        // nicht, welche davon die Hauptwaffe wird - die uebrigen lesen sich damit als
-                        // Zweitwaffen. Welche es ist, entscheidet RoleUtility.MainWeaponOf und damit dieselbe
-                        // Kuer, die spaeter auf dem fertigen Rollen-Loadout laeuft.
+                        // The chip that supplies the MAIN WEAPON stands out and carries its icon: a role may
+                        // bundle several weapons, but it didn't say which one becomes the main weapon - the rest
+                        // now read as sidearms. Which one it is is decided by RoleUtility.MainWeaponOf, i.e. the
+                        // same pick that later runs on the finished role loadout.
                         Widgets.DrawBoxSolid(chip, isMain
                             ? new Color(0.30f, 0.47f, 0.34f, 0.95f)
                             : new Color(0.25f, 0.35f, 0.28f, 0.9f));
@@ -1477,8 +1450,8 @@ namespace CEReloaded
                         // only at Create/Update time - unlike a pawn's normal "+Pack" attach (which stays a
                         // live MultiParentUtility link), editing this item afterward never reaches colonists
                         // already on this Role until Create/Update is clicked again here.
-                        // Hinter TipWanted, weil der Text jetzt zusammengesetzt wird und die Karte in einer
-                        // langen Rollenliste sonst pro Bild einen Tooltip je Chip baut, den niemand sieht.
+                        // Behind TipWanted because the text is now assembled, and in a long role list the card
+                        // would otherwise build an unseen tooltip per chip every frame.
                         if (LoadoutUtility.TipWanted(chipTextRect))
                             TooltipHandler.TipRegion(chipTextRect, isMain
                                 ? ("CER_GenerateLoadouts_RoleMainWeaponTip".Translate(roleMainW.LabelCap).ToString()
@@ -1487,21 +1460,20 @@ namespace CEReloaded
                         Rect chipXRect = new Rect(chip.xMax - 20f, chip.y, 20f, 20f);
                         if (blockedRemove)
                         {
-                            // SICHTBAR gesperrt statt stillschweigend abgelehnt (2026-08-18, im Test als toter
-                            // Knopf aufgefallen: normaler Klick, 350 ms, 700 ms - der Baustein blieb
-                            // stehen). Der Klick kam an, er lief nur in die Ablehnung unten und hinterliess
-                            // nichts als eine Meldung am oberen Bildrand - nicht von
-                            // einem kaputten Knopf zu unterscheiden. Gesperrt heisst
-                            // ausgegraut. TintedButton statt GUI.enabled, weil RimWorlds Knopfgrafik ueber
-                            // GUI.DrawTexture laeuft und GUI.enabled dort nachweislich nichts zeichnet
-                            // (siehe LoadoutUtility.TintedButton).
+                            // VISIBLY disabled instead of silently refused (it behaved like a dead button: normal
+                            // click, 350 ms, 700 ms - the building block stayed). The click arrived, it just ran
+                            // into the refusal below and left nothing but a message at the top of the screen -
+                            // indistinguishable from a broken button. Disabled means greyed out. TintedButton
+                            // instead of GUI.enabled, because RimWorld's button texture goes through
+                            // GUI.DrawTexture, and GUI.enabled demonstrably draws nothing there (see
+                            // LoadoutUtility.TintedButton).
                             LoadoutUtility.TintedButton(chipXRect, null, disabled: true);
                             GUI.color = new Color(1f, 1f, 1f, 0.45f);
                             Text.Anchor = TextAnchor.MiddleCenter;
                             Widgets.Label(chipXRect, "CER_GenerateLoadouts_RemoveButton".Translate());
                             Text.Anchor = TextAnchor.UpperLeft;
                             GUI.color = Color.white;
-                            // Den Satz 'jeder Kolonist auf dieser Rolle stuende leer da' nur, wenn jemand darauf ist.
+                            // The 'every colonist on this role would be left empty-handed' sentence only if someone is on it.
                             if (LoadoutUtility.TipWanted(chipXRect))
                                 TooltipHandler.TipRegion(chipXRect, OnRole(role).Count > 0
                                     ? "CER_GenerateLoadouts_RemoveLastChipBlockedTip".Translate(CardNameOf(role))
@@ -1510,30 +1482,27 @@ namespace CEReloaded
                         else if (Widgets.ButtonText(chipXRect, "CER_GenerateLoadouts_RemoveButton".Translate())) removeIdx = c;
                         chipX = chip.xMax + 4f;
                     }
-                    // Entfernen schreibt sofort (2026-08-17) - siehe RoleAutoSaves.
+                    // Removal writes immediately - see RoleAutoSaves.
                     //
-                    // DEN LETZTEN Baustein wegzunehmen wird ABGELEHNT (2026-08-18, im Test gefunden:
-                    // nach Fenster zu und auf war der Baustein WIEDER DA, zweimal reproduziert).
-                    // Ursache war die Aenderung vom Vortag: RoleNeedsCommit sagt bei leerer Reihe
-                    // "nichts zu tun", also lief kein Commit, also blieb role.composition unveraendert - und
-                    // beim naechsten Oeffnen baute CompFor die Reihe aus genau dieser Zusammensetzung wieder
-                    // auf. Der Chip kam zurueck, weil das Entfernen nie irgendwo ankam.
-                    // Es einfach doch zu schreiben waere falsch: CommitRole lehnt eine Aktualisierung, die
-                    // eine gefuellte Rolle LEEREN wuerde, seit dem 16.08. ausdruecklich ab - genau der
-                    // Schaden, um den sich dieser ganze Punkt dreht. Die ehrliche Antwort ist deshalb, den
-                    // Griff abzulehnen, statt ihn stillschweigend zurueckzunehmen: eine Rolle ohne Bausteine
-                    // gibt es nicht, wer sie los sein will, loescht sie.
-                    // Die Ablehnung steht seit dem 18.08. AM KNOPF (blockedRemove oben), nicht mehr hier:
-                    // hier war sie unsichtbar und las sich als Defekt. Hier ankommen kann deshalb nur noch
-                    // ein erlaubtes Entfernen.
+                    // Removing the LAST building block is REFUSED (after closing and reopening the window the
+                    // building block was BACK, reproducibly).
+                    // The cause was an earlier change: RoleNeedsCommit says "nothing to do" for an empty row, so
+                    // no commit ran, so role.composition stayed unchanged - and on the next open CompFor rebuilt
+                    // the row from exactly that composition. The chip came back because the removal never landed
+                    // anywhere.
+                    // Simply writing it anyway would be wrong: CommitRole explicitly refuses an update that would
+                    // EMPTY a filled role - exactly the damage this whole thing is about. The honest answer is
+                    // therefore to refuse the action instead of silently undoing it: a role without building
+                    // blocks doesn't exist; to get rid of it, delete it.
+                    // The refusal now sits ON THE BUTTON (blockedRemove above), no longer here: here it was
+                    // invisible and read as a defect. So only a permitted removal can arrive here.
                     if (removeIdx >= 0)
                     {
                         comp.RemoveAt(removeIdx);
-                        // Leert das Entfernen eine NICHT angelegte Vorlage, wird ihre gemerkte Zusammensetzung
-                        // gleich mit geleert - AutoCommitRole schreibt bei leerer Reihe nichts, und CompFor
-                        // baute die Reihe beim naechsten Oeffnen sonst aus genau dieser Vorlage wieder auf
-                        // (derselbe Mechanismus wie beim Punkt vom 18.08.). Ein Loadout wird dabei nicht
-                        // geleert, es gibt keins.
+                        // If the removal empties a NOT yet created template, its stored composition is cleared
+                        // too - AutoCommitRole writes nothing for an empty row, and CompFor would otherwise
+                        // rebuild the row from exactly this template on the next open (same mechanism as the
+                        // last-block case above). No loadout is emptied in the process; there isn't one.
                         if (comp.Count == 0 && !created) role.composition = new System.Collections.Generic.List<string>();
                         AutoCommitRole(role, st);
                     }
@@ -1546,25 +1515,24 @@ namespace CEReloaded
                 }
                 if ((dragLoadout != null || dragWeaponDef != null) && Event.current.type == EventType.MouseUp && Mouse.IsOver(card))
                 {
-                    // Ein gezogener WAFFEN-Baustein materialisiert erst JETZT (2026-09-02) -
-                    // ab hier identisch zum Zug einer existierenden Vorlage.
+                    // A dragged WEAPON building block materializes only NOW -
+                    // from here on identical to dragging an existing template.
                     Loadout dropLo = dragLoadout != null ? dragLoadout : EnsureDefaultLoadout(dragWeaponDef);
                     if (dropLo != null && !comp.Contains(dropLo)) comp.Add(dropLo);
                     SetActiveRole(role);
                     Event.current.Use();
                     dragLoadout = null;
                     dragWeaponDef = null;
-                    // Und Draufziehen ebenso - das ist der Handgriff, um den es ging.
+                    // Dropping, too - that is the whole point of this interaction.
                     AutoCommitRole(role, st);
                 }
 
                 ry += cardH + 6f;
             }
-            // Dritter Kasten mit Suchfeld, dritte Leermeldung - hier gab es bisher GAR KEINE (
-            // 2026-08-19): tippt man einen Suchbegriff, der auf keine Rolle passt, blieb der Kasten
-            // einfach leer, und man sieht der Anzeige nicht an, ob die Suche schuld ist oder ob es
-            // wirklich keine Rollen mehr gibt. Rollen ohne Suche kann es nicht geben (die eingebauten
-            // sind immer da), deshalb nur der Suchfall.
+            // Third box with a search field, third empty message - there was NONE here before: typing a search
+            // term that matches no role left the box simply empty, and the display didn't show whether the
+            // search was to blame or there really were no roles left. Roles without a search can't be absent
+            // (the built-in ones are always there), so only the search case.
             if (all.Count == 0 && !string.IsNullOrEmpty(roleCardSearch))
             {
                 GUI.color = new Color(1f, 1f, 1f, 0.5f);
@@ -1582,9 +1550,9 @@ namespace CEReloaded
                 // same "freshest first" placement a brand new role gets.
                 if (local != null && local.Contains(copySource)) local.Insert(0, copy);
                 else st.roles.Insert(0, copy);
-                // Erst leeren, dann uebernehmen (2026-08-15): Clone() bringt seit der Rueckgewinnung die
-                // gespeicherte Zusammensetzung mit, und CompFor fuellt die Reihe daraus schon beim ersten
-                // Zugriff. Ein blosses AddRange haette danach jede Quelle doppelt in der Kopie stehen.
+                // Clear first, then copy over: Clone() carries the stored composition along, and CompFor fills
+                // the row from it on first access. A plain AddRange would then have every source twice in the
+                // copy.
                 List<Loadout> copyComp = CompFor(copy);
                 copyComp.Clear();
                 copyComp.AddRange(CompFor(copySource));
@@ -1642,35 +1610,32 @@ namespace CEReloaded
             // typed name instead used to make a rename look like "no existing loadout" (since nothing is
             // filed under the NEW name yet), showing "Create" instead of "Update" and losing track of the
             // already-committed object entirely.
-            // Ueber die Identitaet (2026-08-17) - nicht mehr ueber das Etikett. Eine in CEs eigenem Editor
-            // umbenannte Rolle wird damit weiterhin als "existiert schon" erkannt, statt als neu zu gelten
-            // und beim naechsten Speichern ein zweites Loadout danebenzustellen.
+            // By identity - no longer by label. A role renamed in CE's own editor is thus still recognized as
+            // "already exists" instead of counting as new and placing a second loadout next to it on the
+            // next save.
             Loadout existing = RoleUtility.RoleLoadoutOf(role);
 
             // Header: editable final name + "(exists - delta)" hint.
             Widgets.Label(new Rect(inner.x, inner.y + 2f, 56f, 24f), "CER_GenerateLoadouts_PreviewLabel".Translate());
             Widgets.Label(new Rect(inner.x + 60f, inner.y + 2f, 46f, 24f), "CER_GenerateLoadouts_RoleTagLabel".Translate());
-            // Namensfeld: schreibt beim VERLASSEN, nicht pro Tastendruck (2026-08-17).
+            // Name field: writes when the edit SETTLES, not per keystroke.
             //
-            // Der Plan im Punkt sagte "pro Tastendruck schreiben, wie bei den Packs". Beim Bauen ist mir
-            // aufgefallen, dass das hier etwas anderes bedeutet als dort: der Name einer Rolle IST das
-            // Etikett des geteilten Loadouts, an dem Kolonisten haengen. Pro Tastendruck zu schreiben hiesse,
-            // beim Tippen von "Medic" nacheinander die Rollen "M", "Me", "Med" anzulegen bzw. umzubenennen -
-            // und jeder Kolonist darauf wandert mit. Ein Pack hat dieses Problem nicht, weil an ihm niemand
-            // haengt.
-            // Deshalb: der Inhalt (Chips, Faktoren) schreibt sofort, der NAME beim Verlassen des Feldes.
-            // Das ist die einzige bewusste Abweichung von seinem Auftrag, und sie geht in die Richtung, in
-            // der ein Fehler nicht wehtut.
+            // Writing per keystroke, as packs do, means something different here: a role's name IS the label of
+            // the shared loadout colonists are attached to. Writing per keystroke would mean that typing "Medic"
+            // creates or renames the roles "M", "Me", "Med" in turn - and every colonist on it moves along. A
+            // pack doesn't have this problem because nobody is attached to it.
+            // Therefore: the contents (chips, factors) write immediately, the NAME only once editing is done.
+            // This is a deliberate deviation from the pack behaviour, in the direction where a mistake doesn't
+            // hurt.
             string beforeName = roleNameEdit;
             roleNameEdit = Widgets.TextField(new Rect(inner.x + 108f, inner.y, 180f, 24f), roleNameEdit);
-            // NACH EINER KURZEN RUHEPAUSE statt beim Fokusverlust (2026-08-18, im Test gefunden: nach
-            // Fenster zu und auf trug die Rolle wieder den alten Namen, und das CE-Loadout wurde nie
-            // umbenannt - zweimal reproduziert).
-            // Die erste Fassung haengte am Fokus (GUI.SetNextControlName + GetNameOfFocusedControl).
-            // Das hat nicht getragen; woran genau, ist von aussen nicht zu sehen, und eine Wette auf IMGUIs
-            // Fokusverwaltung ist hier auch die falsche Bauform. Eine Ruhepause ist unabhaengig davon,
-            // deterministisch und loest zugleich das Problem, weswegen ich ueberhaupt nicht pro Tastendruck
-            // schreibe: beim Tippen von "Medic" entstehen keine Rollen "M", "Me", "Med".
+            // AFTER A SHORT IDLE PAUSE instead of on focus loss (after closing and reopening the window the role
+            // carried its old name again, and the CE loadout was never renamed - reproducibly).
+            // The first version relied on focus (GUI.SetNextControlName + GetNameOfFocusedControl). That didn't
+            // hold up; exactly why isn't visible from the outside, and betting on IMGUI's focus handling is the
+            // wrong design here anyway. An idle pause is independent of that, deterministic, and at the same time
+            // solves the reason for not writing per keystroke in the first place: typing "Medic" doesn't create
+            // roles "M", "Me", "Med".
             if (roleNameEdit != beforeName)
             {
                 roleNameEditDirty = true;
@@ -1681,27 +1646,25 @@ namespace CEReloaded
                 roleNameEditDirty = false;
                 AutoCommitRole(role, st);
             }
-            // Die linke Kante des Hauptknopfes steht schon hier fest - die Marke darunter braucht sie als
-            // Grenze, damit sie sich beim Messen nicht in den Knopf schiebt.
+            // The left edge of the main button is fixed here already - the label below needs it as a limit so it
+            // doesn't push into the button when measured.
             float createRectLeft = inner.xMax - 230f;
-            // ENTFERNT 2026-08-18: hier stand ein Zaehler fuer den "Alle erzeugen/aktualisieren"-Knopf, und
-            // mit dem Knopf ist er gegenstandslos geworden. Er war nicht bloss ueberfluessig, sondern teuer:
-            // die Schleife rief RoleNeedsCommit fuer JEDE Rolle in JEDEM Bild, und das rechnet pro Rolle
-            // einen vollstaendigen Merge ueber alle ihre Bausteine.
-            // "(existiert - Aenderung)" hing bis zum 2026-08-14 allein an `existing != null`, sagte also in
-            // Wahrheit nur "es gibt schon eins" und stand auch dann noch da, wenn gar nichts mehr zu tun war.
-            // Zusammen mit dem Zaehlerfehler in RoleNeedsCommit las sich das als "da ist noch was offen",
-            // waehrend der Einzelknopf daneben "unveraendert" meldete. Jetzt sagt die Marke genau das, was
-            // derselbe Test auch dem Zaehler sagt - dieselbe Quelle, keine zweite Rechnung.
+            // REMOVED: a counter for the "create/update all" button used to be here, and it became moot along with
+            // the button. It wasn't merely redundant but expensive: the loop called RoleNeedsCommit for EVERY role
+            // in EVERY frame, which computes a full merge over all of a role's building blocks.
+            // "(exists - delta)" used to depend solely on `existing != null`, so it really only said "one already
+            // exists" and was still shown when there was nothing left to do. Together with the counting bug in
+            // RoleNeedsCommit this read as "something is still pending", while the single button next to it said
+            // "unchanged". Now the label says exactly what the same test tells the counter - the same source, no
+            // second calculation.
             if (existing != null)
             {
                 bool roleDirty = role != null && RoleNeedsCommit(role, comp);
                 GUI.color = roleDirty ? new Color(0.95f, 0.85f, 0.4f) : new Color(1f, 1f, 1f, 0.45f);
-                // Breite GEMESSEN statt fest 120 (2026-08-15, im Test gefunden): "(exists - up to
-                // date)" passte nicht hinein und stand als "(exists - up to" da, waehrend rechts daneben
-                // Platz frei war. Die kuerzere Variante "(exists - delta)" passte zufaellig - deshalb fiel
-                // es nur an einer der beiden auf. Uebersetzungen sind laenger als das Englische, eine feste
-                // Zahl ist hier also grundsaetzlich falsch.
+                // Width MEASURED instead of a fixed 120: "(exists - up to date)" didn't fit and showed as "(exists
+                // - up to", while there was free space to the right. The shorter variant "(exists - delta)" fit by
+                // chance - that's why it only showed up with one of the two. Translations are longer than the
+                // English, so a fixed number is fundamentally wrong here.
                 string existsLabel = (roleDirty
                     ? "CER_GenerateLoadouts_ExistsDeltaLabel".Translate()
                     : "CER_GenerateLoadouts_ExistsUpToDateLabel".Translate()).ToString();
@@ -1713,25 +1676,24 @@ namespace CEReloaded
             Rect createRect = new Rect(createRectLeft, inner.y, 230f, 30f);
             Rect createAllRect = new Rect(createRect.x - 198f, inner.y, 190f, 30f);
 
-            // ============ KEINE Knoepfe mehr, ausnahmslos (2026-08-18) ============
-            // Ziel: es gibt nur noch "automatically saved" - die Knoepfe "create / update all (1)" und
-            // "update role" tauchten manchmal noch auf.
+            // ============ NO buttons anymore, without exception ============
+            // Goal: there is only "automatically saved" - the buttons "create / update all (1)" and "update role"
+            // still showed up sometimes.
             //
-            // Am 17.08. blieben zwei Ausnahmen stehen, und genau die tauchten wieder auf: eine Rolle ohne
-            // gespeicherte Zusammensetzung (aus einer frueheren Spielsitzung) und eine, deren Speichern eine
-            // verwaiste gleichnamige Rolle adoptiert haette. Dazu kam, dass EINE solche Rolle irgendwo in
-            // der Liste die Knoepfe fuer ALLE zurueckholte - daher das "manchmal".
+            // Two exceptions had been kept, and exactly those kept showing up: a role without a stored composition
+            // (from an earlier game session) and one whose save would have adopted an orphaned role of the same
+            // name. On top of that, ONE such role anywhere in the list brought the buttons back for ALL of them -
+            // hence the "sometimes".
             //
-            // Warum das jetzt gefahrlos geht, Punkt fuer Punkt:
-            //  - Leere Reihe: AutoCommitRole steigt bei comp.Count == 0 aus. Eine Rolle, von der der Mod die
-            //    Zusammensetzung nicht kennt, wird also von allein NIE angefasst - der Fall, gegen den die
-            //    erste Ausnahme gebaut war, kann ohne Zutun gar nicht eintreten.
-            //  - Leeren einer gefuellten Rolle: CommitRole lehnt das seit dem 16.08. hart ab, unabhaengig
-            //    von jedem Knopf.
-            //  - Adoption einer verwaisten Rolle mit Traegern: die Rueckfrage ist geblieben, sie sitzt jetzt
-            //    in AutoCommitRole. Eine einmalige Frage im richtigen Moment ist das, was hier gebraucht
-            //    wird - kein Knopf, der dauerhaft dasteht.
-            // Was bleibt, ist die ruhige Zeile "wird automatisch gespeichert" und die Vorschau darunter.
+            // Why this is now safe, point by point:
+            //  - Empty row: AutoCommitRole bails out on comp.Count == 0. A role whose composition the mod doesn't
+            //    know is therefore NEVER touched on its own - the case the first exception guarded against can't
+            //    happen without player action.
+            //  - Emptying a filled role: CommitRole hard-refuses that, independent of any button.
+            //  - Adopting an orphaned role that has carriers: the confirmation remains, it now lives in
+            //    AutoCommitRole. A one-time question at the right moment is what's needed here - not a button that
+            //    stays there permanently.
+            // What remains is the quiet "saved automatically" line and the preview below it.
             GUI.color = new Color(1f, 1f, 1f, 0.45f);
             Text.Anchor = TextAnchor.MiddleRight;
             Widgets.Label(new Rect(createAllRect.x, inner.y, createRect.xMax - createAllRect.x, 30f),
@@ -1742,10 +1704,9 @@ namespace CEReloaded
             // Existing role loadout, for the delta.
             Dictionary<string, int> existMap = SlotMap(existing);
             Dictionary<string, string> existLabels = new Dictionary<string, string>();
-            // Inhalt der BESTEHENDEN Rolle, mit Def und Menge - fuer Masse und Volumen weiter unten
-            // (2026-08-23). Hier gesammelt und nicht dort noch einmal, weil dieser Durchlauf ueber
-            // existing.Slots ohnehin laeuft: Slots ist bei einem Loadout MIT Eltern kein Feld, sondern ein
-            // Neuaufbau pro Zugriff, und die Rollen-Loadouts haengen ihre Packs genau so an.
+            // Contents of the EXISTING role, with def and amount - for mass and bulk further down. Collected here
+            // and not again there because this pass over existing.Slots runs anyway: for a loadout WITH parents,
+            // Slots is not a field but a rebuild per access, and role loadouts attach their packs exactly that way.
             List<KeyValuePair<Def, int>> existContent = new List<KeyValuePair<Def, int>>();
             if (existing != null && existing.Slots != null)
                 foreach (LoadoutSlot s in existing.Slots)
@@ -1758,9 +1719,9 @@ namespace CEReloaded
             // Build display rows: added (green), changed (yellow, old -> new), kept (neutral), removed (red strikethrough).
             Color cAdd = LoadoutUtility.ColGood, cChg = new Color(0.95f, 0.85f, 0.4f), cKeep = new Color(1f, 1f, 1f, 0.85f), cRem = LoadoutUtility.ColBad;
             List<DispRow> disp = new List<DispRow>();
-            // "Geladene Ansicht": nichts abgelegt, die Rolle existiert schon - die Liste zeigt dann ihren
-            // IST-Zustand, und es wird gerade gar nichts geschrieben. Das ist unten dreimal wichtig
-            // (Masse/Volumen, Stapelzahl, Legende), deshalb einmal benannt statt dreimal nachgefragt.
+            // "Loaded view": nothing dropped, the role already exists - the list then shows its CURRENT state, and
+            // nothing is being written at all. That matters three times below (mass/bulk, stack count, legend),
+            // so it is named once instead of asked three times.
             bool loadedView = comp.Count == 0 && existing != null;
             if (loadedView)
             {
@@ -1785,17 +1746,16 @@ namespace CEReloaded
                     else col = cKeep;
                     disp.Add(new DispRow { label = r.label, amount = amount, color = col });
                 }
-                // Pack-Inhalte gehoeren in diese Liste (2026-08-13, zwei Befunde: "Any Medicine" war ohne
-                // Grund durchgestrichen, und die Vorschau zeigte nur den Inhalt der Loadouts, nicht den der
-                // Equipment Packs). Beides war dieselbe Ursache: RoleUtility.
-                // Merge liefert bewusst nur Waffen und Munition, weil ein Pack seit dem 09.08. an die Rolle
-                // ANGEHAENGT statt eingeschmolzen wird (siehe CommitRole). Die Vorschau las nur die
-                // Merge-Haelfte - und weil das bestehende Rollen-Loadout den Pack-Inhalt ueber die
-                // Multi-Parent-Kette sehr wohl fuehrt, tauchte er unten als "nicht mehr enthalten" auf:
-                // durchgestrichen und rot, obwohl er bleibt. Das war die einzige Stelle im Mod, an der
-                // Durchstreichen nicht "wird geloescht" hiess.
-                // Der Packname steht dahinter, damit erkennbar bleibt, woher die Zeile kommt - sie laesst
-                // sich hier naemlich nicht einzeln aendern, sondern nur ueber das Pack selbst.
+                // Pack contents belong in this list (two symptoms: "Any Medicine" was struck through for no
+                // reason, and the preview showed only the contents of the loadouts, not those of the Equipment
+                // Packs). Both had the same cause: RoleUtility.Merge deliberately returns only weapons and ammo,
+                // because a pack is ATTACHED to the role instead of melted in (see CommitRole). The preview read
+                // only the merge half - and since the existing role loadout does carry the pack contents via the
+                // multi-parent chain, they appeared below as "no longer included": struck through and red, even
+                // though they stay. That was the only place in the mod where strikethrough didn't mean "will be
+                // deleted".
+                // The pack name is appended so it's clear where the row comes from - it can't be changed
+                // individually here, only via the pack itself.
                 foreach (Loadout pk in RoleUtility.PacksIn(comp))
                 {
                     if (pk?.OwnSlots == null) continue;
@@ -1852,22 +1812,20 @@ namespace CEReloaded
                 ty += 22f;
             }
             Widgets.EndScrollView();
-            // Nur drei Zeilen passen hier hinein - siehe DrawScrollMoreHint, warum das ohne Hinweis wie eine
-            // vollstaendige Liste aussieht.
+            // Only three rows fit here - see DrawScrollMoreHint for why that looks like a complete list without a
+            // hint.
             LoadoutUtility.DrawScrollMoreHint(tableOut, tableView, rolePreviewScroll, 22f);
 
             // Mass / bulk + legend.
             float m = 0f, b = 0f;
             StatDef bulkStat = DefDatabase<StatDef>.GetNamed("Bulk", false);
-            // In der geladenen Ansicht wiegt das, was die Rolle SCHON enthaelt (2026-08-23, im Test
-            // aufgefallen: eine erstellte Rolle zeigte "Result: 0 stacks", "Mass 0.0/40.0 kg", "Bulk 0.0/20.0",
-            // waehrend die Liste direkt darueber Gewehr und 150 Schuss auflistete).
-            // Die Null war nicht falsch gerechnet, sondern falsch beschriftet: alle drei Werte lasen
-            // resultRows, also das, was dieser Ablegevorgang schreiben WUERDE - und der schreibt hier nichts.
-            // Fuer den Spieler steht an den Balken aber "Mass" und "Bulk", nicht "Aenderung der Masse". Eine
-            // Rolle mit Gewehr und 150 Schuss, die 0,0 kg behauptet, ist schlicht eine Falschaussage - und
-            // ausgerechnet bei einer bestehenden Rolle ist die Traglast die Frage, wegen der man hinsieht.
-            // Die Balken zeigen jetzt in beiden Faellen dasselbe: was die Rolle nach diesem Bildschirm haelt.
+            // In the loaded view, weigh what the role ALREADY contains (a created role showed "Result: 0 stacks",
+            // "Mass 0.0/40.0 kg", "Bulk 0.0/20.0" while the list directly above it listed a rifle and 150 rounds).
+            // The zero wasn't miscalculated but mislabeled: all three values read resultRows, i.e. what this drop
+            // WOULD write - and it writes nothing here. But the bars say "Mass" and "Bulk", not "change in mass".
+            // A role with a rifle and 150 rounds claiming 0.0 kg is simply false - and for an existing role the
+            // carrying load is exactly the question you're looking for.
+            // The bars now show the same thing in both cases: what the role holds after this screen.
             if (loadedView)
             {
                 foreach (var kv in existContent)
@@ -1890,15 +1848,14 @@ namespace CEReloaded
                 }
                 else if (e.generic != null) { m += e.generic.mass * e.scaledCount; b += e.generic.bulk * e.scaledCount; }
             }
-            // Der Inhalt angehaengter Equipment Packs zaehlt MIT (2026-08-13, im Test aufgefallen: die
-            // vier Fertiggerichte aus dem Pack fehlten in der Liste UND in Masse/Bulk).
-            // Warum er ueberhaupt fehlte, ist kein Fehler, sondern eine Entscheidung: RoleUtility.Merge
-            // schmilzt Packs bewusst NICHT ein, sie haengen als echte Referenz an der Rolle (seit
-            // 09.08.: echte Verbindungen auch bei Rollen). Der Kolonist bekommt den Inhalt also
-            // sehr wohl - nur diese Vorschau hat ihn nie mitgerechnet, und damit war ihre Traglast-Aussage
-            // fuer jede Rolle mit Pack zu niedrig. Wer knapp unter der Grenze lag, war in Wahrheit darueber.
-            // Nicht in resultRows aufgenommen: die Liste zeigt, was in die Rolle GESCHRIEBEN wird, und das
-            // ist der Pack-Inhalt gerade nicht - er bleibt referenziert. Er zaehlt hier nur fuer die Last.
+            // Contents of attached Equipment Packs COUNT (the four ready meals from the pack were missing from
+            // the list AND from mass/bulk).
+            // Why it was missing at all is not a bug but a decision: RoleUtility.Merge deliberately does NOT melt
+            // packs in, they hang off the role as a real reference (real links for roles too). So the colonist
+            // does get the contents - only this preview never counted them, so its carrying-load figure was too
+            // low for every role with a pack. Anyone just under the limit was actually over it.
+            // Not added to resultRows: the list shows what gets WRITTEN into the role, and the pack contents are
+            // exactly what isn't - they stay referenced. They only count here for the load.
             int packStacks = 0;
             foreach (Loadout pk in RoleUtility.PacksIn(comp))
             {
@@ -1915,22 +1872,20 @@ namespace CEReloaded
                 }
             }
             GUI.color = new Color(1f, 1f, 1f, 0.7f);
-            // Die Legende nur dort, wo es wirklich etwas zu unterscheiden gibt (2026-08-23, zweite Haelfte
-            // derselben Meldung: hinter "Result: 0 stacks" standen "added changed removed" ohne jede Zahl -
-            // das sah nach einer Beschriftung aus, deren Werte fehlen). In der geladenen Ansicht wird
-            // nichts hinzugefuegt, geaendert oder entfernt, die drei Woerter erklaeren also Farben, die in
-            // der Liste darueber gar nicht vorkommen.
+            // Show the legend only where there is actually something to distinguish ("Result: 0 stacks" used to
+            // be followed by "added changed removed" without any number - it looked like a label whose values were
+            // missing). In the loaded view nothing is added, changed or removed, so the three words explain colours
+            // that don't even appear in the list above.
             string legend = (existing != null && !loadedView) ? "CER_GenerateLoadouts_ResultLegend".Translate() : "";
-            // Die Zahl nennt den Pack-Anteil getrennt, statt ihn stillschweigend zu verschlucken - sonst
-            // widerspricht sie den Balken direkt darunter, die ihn ja mitrechnen.
-            // Seit 2026-08-13 ist die ERSTE Zahl die Gesamtsumme (Stapelzahl und
-            // Liste passen nicht zusammen"): vorher stand dort die Zahl OHNE Packs und daneben der Pack-Anteil,
-            // also "3 + 2" ueber einer Liste mit fuenf Zeilen - man musste selbst addieren, um zu merken, dass
-            // nichts fehlt. Jetzt zaehlt die erste Zahl genau die Zeilen, die man daruber sieht (durchgestrichene
-            // sind sichtbar KEIN Ergebnis), und der Pack-Anteil steht als Erlaeuterung dahinter.
-            // In der geladenen Ansicht zaehlen die Zeilen der Liste selbst - dasselbe Versprechen wie oben,
-            // nur fuer den Fall, in dem resultRows leer ist: die erste Zahl ist immer die Anzahl der Zeilen,
-            // die man darueber sieht.
+            // The number states the pack share separately instead of silently swallowing it - otherwise it
+            // contradicts the bars right below, which do include it.
+            // The FIRST number is the total (stack count and list didn't match): previously it showed the number
+            // WITHOUT packs and the pack share next to it, i.e. "3 + 2" above a list with five rows - you had to
+            // add it up yourself to notice nothing was missing. Now the first number counts exactly the rows you
+            // see above (struck-through ones are visibly NOT part of the result), and the pack share follows as
+            // an explanation.
+            // In the loaded view the rows of the list itself count - the same promise as above, just for the case
+            // where resultRows is empty: the first number is always the number of rows you see above.
             int shownStacks = loadedView ? disp.Count : resultRows.Count + packStacks;
             string stacksLine = packStacks > 0
                 ? "CER_GenerateLoadouts_ResultStacksWithPacks".Translate(shownStacks.ToString(), packStacks.ToString()).ToString()
@@ -1951,11 +1906,11 @@ namespace CEReloaded
             return map;
         }
 
-        // Wie viele Kolonisten an einem VERWAISTEN Loadout haengen, das CommitRole gleich adoptieren wuerde.
-        // 0 heisst: entweder gibt es kein gleichnamiges Loadout, oder diese Rolle besitzt es ohnehin schon
-        // (dann ist es kein Waisenkind, sondern ein normales Update), oder es traegt niemand.
-        // Spiegelt bewusst exakt die Fallback-Logik in CommitRole - findet die dort das Objekt ueber den ALTEN
-        // Namen, wird gar nicht adoptiert und hier darf auch nicht gewarnt werden.
+        // How many colonists are attached to an ORPHANED loadout that CommitRole would adopt right away.
+        // 0 means: either there is no loadout with that name, or this role already owns it (then it's not an
+        // orphan but a normal update), or nobody carries it.
+        // Deliberately mirrors the fallback logic in CommitRole exactly - if that finds the object by the OLD
+        // name, nothing is adopted and no warning may be shown here either.
         private int CountOrphanRoleCarriers(LoadoutRole role, string rawName)
         {
             string name = (rawName ?? "").Trim();
@@ -1981,17 +1936,16 @@ namespace CEReloaded
         {
             string name = (rawName ?? "").Trim();
             List<RoleMergeEntry> res = RoleUtility.Merge(role, comp).Where(r => r.scaledCount > 0).ToList();
-            // Packs zaehlen als Inhalt, auch wenn sie nicht mehr in `res` landen (2026-08-09) - sonst gilt eine
-            // Rolle, die NUR aus einem Equipment Pack besteht, faelschlich als leer und laesst sich gar nicht
-            // mehr anlegen. Genau das waere die stille Nebenwirkung davon, sie aus dem Merge zu nehmen.
+            // Packs count as contents even though they no longer end up in `res` - otherwise a role consisting
+            // ONLY of an Equipment Pack would wrongly count as empty and could no longer be created at all. That
+            // would be the silent side effect of taking them out of the merge.
             List<Loadout> rolePacks = RoleUtility.PacksIn(comp);
-            // REINES UMBENENNEN, bevor die "nichts zu tun"-Absage greift (2026-08-15, im Test
-            // gefunden: aenderte man NUR den Namen einer bestehenden Rolle, blieb Update AUSGEGRAUT).
-            // Ursache war nicht der Knopf, sondern diese Zeile: ohne etwas Hineingezogenes ist comp leer,
-            // und damit galt auch eine Umbenennung als nichts.
-            // Bewusst OHNE Neuaufbau des Inhalts: comp ist leer, ein Rebuild wuerde die Rolle LEEREN. Hier
-            // wird nur das Etikett des bestehenden Objekts geaendert - jeder Kolonist daran behaelt exakt
-            // seine Ausruestung, denn es ist dasselbe Loadout.
+            // PURE RENAME, before the "nothing to do" refusal kicks in (changing ONLY the name of an existing
+            // role left Update GREYED OUT). The cause wasn't the button but this line: with nothing dragged in,
+            // comp is empty, and so a rename counted as nothing too.
+            // Deliberately WITHOUT rebuilding the contents: comp is empty, a rebuild would EMPTY the role. Only
+            // the label of the existing object is changed here - every colonist on it keeps exactly their gear,
+            // because it's the same loadout.
             if (name.Length > 0 && comp.Count == 0)
             {
                 string renameOld = RoleUtility.RoleMarker + " " + (role.name ?? "").Trim();
@@ -2030,11 +1984,10 @@ namespace CEReloaded
             // must reuse and relabel that SAME object (so any pawn already assigned to it keeps pointing at
             // something real) rather than leaving it behind untouched and creating an unrelated duplicate
             // under the new name, which is what looking up purely by the new typed name used to do.
-            // ZUERST ueber die Identitaet (2026-08-17): RoleLoadoutOf kennt das Loadout dieser Rolle, ohne
-            // ihren Namen zu benutzen - und schreibt die Verknuepfung beim ersten Mal fest. Damit findet ein
-            // Umbenennen sein Ziel auch dann noch, wenn das Etikett laengst nicht mehr passt (etwa weil es
-            // jemand in CEs eigenem Editor geaendert hat). Erst wenn die Rolle noch gar kein Loadout hat,
-            // greift der alte Weg ueber das Etikett.
+            // By identity FIRST: RoleLoadoutOf knows this role's loadout without using its name - and records the
+            // link the first time. That way a rename still finds its target even when the label no longer
+            // matches (e.g. because it was changed in CE's own editor). Only if the role has no loadout at all
+            // yet does the old label-based lookup apply.
             string oldLabel = RoleUtility.RoleMarker + " " + (role.name ?? "").Trim();
             Loadout existing = RoleUtility.RoleLoadoutOf(role);
             if (existing == null)
@@ -2047,40 +2000,37 @@ namespace CEReloaded
             {
                 Loadout made = RoleUtility.BuildRoleLoadout(role, comp, name);
                 LoadoutManager.AddLoadout(made);
-                // Packs als ECHTE Referenz anhaengen, nicht einschmelzen (2026-08-09) - dieselbe
-                // Multi-Parent-Mechanik, die ein Pack an einem einzelnen Kolonisten schon immer benutzt hat.
-                // Muss NACH AddLoadout stehen: die Zuordnung wird ueber die UniqueID gespeichert, und die
-                // vergibt erst der LoadoutManager.
+                // Attach packs as a REAL reference, don't melt them in - the same multi-parent mechanism a pack
+                // on a single colonist has always used.
+                // Must come AFTER AddLoadout: the link is stored via the UniqueID, and the LoadoutManager only
+                // assigns that there.
                 MultiParentUtility.SetExtraParents(made, rolePacks);
-                // Die Rolle merkt sich AB JETZT ihr Loadout ueber die Identitaet (2026-08-17) - das ist der
-                // Grund, warum sie nicht mehr am Namen erkannt werden muss. Nach AddLoadout, weil die
-                // UniqueID erst dort vergeben wird.
+                // FROM NOW ON the role remembers its loadout by identity - that's why it no longer has to be
+                // recognized by name. After AddLoadout, because the UniqueID is only assigned there.
                 RoleUtility.LinkRoleLoadout(role, made);
                 role.name = name;
                 RememberComposition(role, comp);
-                // Der ANGEZEIGTE Name, nicht das gespeicherte Etikett (2026-08-18): die vier
-                // Vollzugsmeldungen dieser Funktion sagten "[Role] Foo", waehrend jede Liste daneben
-                // laengst "Foo" schreibt. Der Marker ist Buchhaltung und wird nirgends gezeigt -
-                // siehe LoadoutUtility.LoadoutDisplayName.
+                // The DISPLAYED name, not the stored label: the four completion messages of this function said
+                // "[Role] Foo" while every list next to them already wrote "Foo". The marker is bookkeeping and is
+                // never shown - see LoadoutUtility.LoadoutDisplayName.
                 message = "CER_GenerateLoadouts_CreatedMessage".Translate(LoadoutUtility.LoadoutDisplayName(made.label));
                 return true;
             }
 
             Dictionary<string, int> oldMap = SlotMap(existing);
 
-            // HARTE SPERRE: eine Aktualisierung darf eine gefuellte Rolle niemals LEEREN (2026-08-16).
-            // Genau das ist der Schaden, um den sich das Autosave der Rollen dreht: eine
-            // Rolle, deren Zusammensetzung der Mod nicht mehr kennt, wird aus einer leeren Kaestchen-Reihe
-            // neu gebaut - und jeder Kolonist daran steht ohne Ausruestung da. Bisher haengte der Schutz
-            // daran, dass immer ein Mensch auf "Update" drueckt und die durchgestrichene Vorschau sieht.
-            // Das ist kein Schutz, das ist Aufmerksamkeit; und es ist der einzige Grund, warum das
-            // Sofort-Speichern noch nicht gebaut ist.
-            // Hier steht die Regel jetzt im Code, wo sie unabhaengig von Reihenfolge und Aufmerksamkeit
-            // gilt: nichts drin UND vorher war etwas drin UND auch keine Packs, die den Inhalt tragen
-            // koennten -> abgelehnt, mit Begruendung, ohne etwas anzufassen.
-            // "Vorher war etwas drin" heisst AUCH: sie hatte angehaengte Packs. Eine Rolle, die ihren
-            // ganzen Inhalt ueber ein Pack bezieht, hat null eigene Slots - mit oldMap allein waere sie
-            // durch diese Sperre gefallen, und SetExtraParents haette ihr unten das Pack abgenommen.
+            // HARD BLOCK: an update may never EMPTY a filled role.
+            // That is exactly the damage role autosave is all about: a role whose composition the mod no longer
+            // knows gets rebuilt from an empty row of boxes - and every colonist on it is left without gear.
+            // Previously the protection relied on a human always pressing "Update" and seeing the struck-through
+            // preview. That is not protection, that's attention; and it was the only thing standing in the way of
+            // immediate saving.
+            // Now the rule is in the code, where it applies regardless of order and attention: nothing in it AND
+            // there was something in it before AND no packs that could carry the contents -> refused, with a
+            // reason, without touching anything.
+            // "There was something in it before" ALSO means: it had attached packs. A role that gets all its
+            // contents from a pack has zero own slots - with oldMap alone it would have fallen through this block,
+            // and SetExtraParents below would have taken the pack away from it.
             if (res.Count == 0 && rolePacks.Count == 0
                 && (oldMap.Count > 0 || MultiParentUtility.GetExtraParents(existing).Count > 0))
             {
@@ -2094,12 +2044,12 @@ namespace CEReloaded
                 if (e.thing != null) existing.AddSlot(new LoadoutSlot(e.thing, e.scaledCount));
                 else if (e.generic != null) existing.AddSlot(new LoadoutSlot(e.generic, e.scaledCount));
             }
-            // Beim Update dieselbe Referenz-Anhaengung wie beim Anlegen - sonst behaelt eine bestehende Rolle
-            // ewig ihren alten Schnappschuss, und der Fix waere nur fuer neue Rollen wirksam.
+            // On update the same reference attachment as on create - otherwise an existing role keeps its old
+            // snapshot forever, and the fix would only work for new roles.
             MultiParentUtility.SetExtraParents(existing, rolePacks);
             existing.label = newLabel;
-            // Auch beim Aktualisieren festschreiben (2026-08-17) - eine Rolle aus einem alten Spielstand
-            // hatte noch keine Verknuepfung, und dies ist der Moment, in dem sie sicher bekannt ist.
+            // Record the link on update too - a role from an old save had no link yet, and this is the moment
+            // it is reliably known.
             RoleUtility.LinkRoleLoadout(role, existing);
             role.name = name;
             RememberComposition(role, comp);
@@ -2107,7 +2057,7 @@ namespace CEReloaded
             int added = 0, removed = 0, changed = 0;
             foreach (var kv in newMap) { if (!oldMap.TryGetValue(kv.Key, out int o)) added++; else if (o != kv.Value) changed++; }
             foreach (var kv in oldMap) if (!newMap.ContainsKey(kv.Key)) removed++;
-            // Einmal fuer alle vier Meldungen darunter - siehe Kommentar bei CreatedMessage.
+            // Once for all four messages below - see the comment at CreatedMessage.
             string shownLabel = LoadoutUtility.LoadoutDisplayName(newLabel);
 
             if (renamed)
@@ -2124,18 +2074,17 @@ namespace CEReloaded
 
         // True if committing this role would actually create a new loadout or change an existing one (so "Create / Update
         // all" only counts roles with pending work, not ones already up to date).
-        // Der Name, den die Karte ANZEIGT - beim Umbenennen der getippte, sonst der gespeicherte.
-        // Eine Stelle fuer Beschriftung, Hauptwaffen-Kuer und die Frage "ist hier etwas zu tun".
+        // The name the card DISPLAYS - the typed one while renaming, otherwise the stored one.
+        // One place for the label, the main-weapon pick and the question "is there anything to do here".
         private string EffectiveRoleName(LoadoutRole r)
         {
             if (r == activeRoleObj && !string.IsNullOrWhiteSpace(roleNameEdit)) return roleNameEdit.Trim();
             return (r?.name ?? "").Trim();
         }
 
-        // Nur auf den zwei Wegen aufgerufen, die den Inhalt der Rolle wirklich neu bauen - NICHT im
-        // reinen Umbenenn-Zweig. Dort ist comp leer, und die gespeicherte Zusammensetzung damit zu
-        // ueberschreiben hiesse, die Rueckgewinnung genau in dem Moment wegzuwerfen, in dem sie am
-        // wenigsten weh tun darf: beim Umbenennen aendert sich am Inhalt ja nichts.
+        // Only called on the two paths that actually rebuild the role's contents - NOT in the pure rename
+        // branch. There comp is empty, and overwriting the stored composition with it would throw away the
+        // recovery at exactly the moment it must hurt least: renaming doesn't change the contents.
         private static void RememberComposition(LoadoutRole role, List<Loadout> comp)
         {
             if (role == null) return;
@@ -2143,42 +2092,36 @@ namespace CEReloaded
             if (comp != null)
                 foreach (Loadout l in comp)
                     if (l != null && !string.IsNullOrEmpty(l.label) && !labels.Contains(l.label)) labels.Add(l.label);
-            // Hier stand vom 04.09. bis 06.09. eine Diagnosezeile: sie
-            // sollte belegen, ob ein Ziehen auf eine lokale Rolle noch eine GLOBALE mitschreibt. Der
-            // Testlauf vom 04.09. ("alle anderen Rollen behielten
-            // ihre Faktoren") war der Lauf ohne diese Zeile - die Ursache waren die zeilennummer-gebundenen
-            // Eingabepuffer, siehe cardFactorBuffers. Wieder ausgebaut.
+            // A diagnostic line used to be here to check whether dragging onto a local role also writes a
+            // GLOBAL one. The cause turned out to be the row-index-bound input buffers, see cardFactorBuffers.
+            // Removed again.
             role.composition = labels;
         }
 
-        // ================== Rollen speichern sofort, wie Equipment Packs (2026-08-17) ==================
+        // ================== Roles save immediately, like Equipment Packs ==================
         //
-        // Ziel seit 2026-08-15: Rollen werden automatisch erzeugt / aktualisiert, genau wie Equipment
-        // Packs. Die Knoepfe "create/update all" und "update role xyz" sind weg, stattdessen wird sofort
-        // gespeichert.
+        // Roles are created / updated automatically, just like Equipment Packs. The "create/update all" and
+        // "update role xyz" buttons are gone; saving happens immediately instead.
         //
-        // Schritt 1 (die Rolle merkt sich ihre Zusammensetzung) steht seit dem 15.08. und ist im Test
-        // bestaetigt. Das hier ist Schritt 2.
+        // Step 1 (the role remembers its composition) came first. This is step 2.
         //
-        // DIE WEICHE, und sie ist nicht Vorsicht, sondern notwendig: eine Rolle aus einer frueheren Spielsitzung
-        // hat KEINE gespeicherte Zusammensetzung (im Test am 2026-08-17 belegt - solche Rollen
-        // zeigen weiter "drag a loadout here"). Fuer sie baut ein Update die Rolle aus einer leeren Reihe neu
-        // und wuerde sie leeren. Solche Rollen behalten deshalb Vorschau und Knopf, bis sie einmal bewusst
-        // zusammengesetzt wurden - danach sind auch sie im neuen Verhalten.
+        // THE SWITCH, and it isn't caution but necessity: a role from an earlier game session has NO stored
+        // composition (such roles keep showing "drag a loadout here"). For them an update rebuilds the role
+        // from an empty row and would empty it. Such roles therefore keep the preview and button until they
+        // have been deliberately composed once - after that they follow the new behaviour too.
         //
-        // ZWEITE BREMSE: adoptiert das Speichern eine verwaiste gleichnamige Rolle, an der noch Kolonisten
-        // haengen, fragt der Knopfweg vorher nach. Diese Frage darf nicht bei jedem Ziehen aufpoppen - also
-        // speichert so eine Rolle nicht von selbst, sondern behaelt ihren Knopf.
-        // Seit 2026-08-18 ohne Ausnahme wahr - die Funktion bleibt als EINE Stelle stehen, an der die Frage
-        // beantwortet wird, falls es je wieder eine Ausnahme geben soll. Warum die zwei alten hier weg sind,
-        // steht ausfuehrlich am Knopfblock in DrawRolePreview; kurz: die eine kann ohne Zutun gar nicht
-        // eintreten (AutoCommitRole ruehrt eine leere Reihe nicht an), die andere ist zur Rueckfrage in
-        // AutoCommitRole gewandert.
+        // SECOND BRAKE: if saving adopts an orphaned role of the same name that still has colonists attached,
+        // the button path asks first. That question must not pop up on every drag - so such a role doesn't
+        // save on its own but keeps its button.
+        // Now true without exception - the function stays as the ONE place where the question is answered,
+        // in case there is ever an exception again. Why the two old ones are gone is explained in detail at
+        // the button block in DrawRolePreview; in short: one can't happen without player action
+        // (AutoCommitRole doesn't touch an empty row), the other moved into the confirmation in AutoCommitRole.
         private bool RoleAutoSaves(LoadoutRole role) => role != null;
 
-        // Schreibt sofort, ohne Meldung und ohne Knopf. Still, weil eine Vollzugsmeldung bei JEDEM Ziehen
-        // genau die Sorte Rauschen waere, die Packs auch nicht machen - was passiert ist, steht in der
-        // Vorschau darunter.
+        // Writes immediately, without a message and without a button. Quiet, because a completion message on
+        // EVERY drag would be exactly the kind of noise packs don't make either - what happened is shown in
+        // the preview below.
         private void AutoCommitRole(LoadoutRole role, CEReloadedSettings st)
         {
             if (!RoleAutoSaves(role)) return;
@@ -2187,12 +2130,11 @@ namespace CEReloaded
             if (comp.Count == 0 || name.Length == 0) return;
             if (!RoleNeedsCommit(role, comp)) return;
 
-            // Die EINE Rueckfrage, die aus dem Knopfweg hierher gewandert ist (2026-08-18): adoptiert das
-            // Speichern eine verwaiste gleichnamige Rolle, an der noch Kolonisten haengen, werden die im
-            // selben Moment umgeruestet. Das Umruesten ist harmlos, das Ueberraschende daran ist, dass es
-            // unangekuendigt kommt - deshalb warnen statt verbieten, und nur, wenn wirklich jemand daran
-            // haengt. Sie kann nicht in einer Schleife aufpoppen: AutoCommitRole laeuft an Ereignissen
-            // (Ziehen, Baustein entfernen, Faktor aendern, Umbenennen), nicht pro Bild.
+            // The ONE confirmation that moved here from the button path: if saving adopts an orphaned role of the
+            // same name that still has colonists attached, they are re-equipped at the same moment. The
+            // re-equipping is harmless; the surprising part is that it comes unannounced - hence warn rather than
+            // forbid, and only when someone is actually attached. It can't pop up in a loop: AutoCommitRole runs
+            // on events (drag, remove building block, change factor, rename), not per frame.
             int orphanPawns = CountOrphanRoleCarriers(role, name);
             if (orphanPawns > 0)
             {
@@ -2213,9 +2155,9 @@ namespace CEReloaded
 
         private bool RoleNeedsCommit(LoadoutRole role, List<Loadout> comp)
         {
-            // Ein anstehender Namenswechsel IST Arbeit, auch ohne dass etwas hineingezogen wurde
-            // (2026-08-15) - sonst bleibt der Knopf grau und die Umbenennung ist ueber die Oberflaeche
-            // gar nicht ausloesbar. CommitRole hat dafuer jetzt einen eigenen, inhaltsschonenden Pfad.
+            // A pending name change IS work, even without anything dragged in - otherwise the button stays grey
+            // and the rename can't be triggered from the UI at all. CommitRole now has its own,
+            // contents-preserving path for it.
             if (role != null)
             {
                 string pending = EffectiveRoleName(role);
@@ -2224,25 +2166,23 @@ namespace CEReloaded
                     return true;
             }
             if (comp == null || comp.Count == 0) return false;
-            // Kein "res.Count == 0 -> false" mehr (2026-08-13, dieselbe Ursache wie bei canAct oben): eine
-            // reine Pack-Rolle hat keine Merge-Zeilen und galt deshalb als "nichts zu tun".
+            // No more "res.Count == 0 -> false" (same cause as canAct above): a pure pack role has no merge rows
+            // and therefore counted as "nothing to do".
             List<RoleMergeEntry> res = RoleUtility.Merge(role, comp).Where(r => r.scaledCount > 0).ToList();
             Loadout existing = RoleUtility.RoleLoadoutOf(role);
             if (existing == null) return true;
-            // OwnSlots, NICHT SlotMap(existing) (2026-08-14). Das war der ganze Fehler: `SlotMap` liest
-            // `Loadout.Slots`, also eigene UND geerbte Slots - bei einer Rolle mit angehaengtem Pack steht der
-            // PACK-INHALT mit drin. Verglichen wurde das gegen `res`, und da sind die Packs ausdruecklich
-            // NICHT enthalten (siehe CommitRole: sie werden als echte Referenz angehaengt, nicht
-            // eingeschmolzen). Zwei verschiedene Mengen, also war der Vergleich fuer JEDE Rolle mit Pack
-            // dauerhaft "ungleich" - bei einer reinen Pack-Rolle sogar 0 gegen n.
-            // Sichtbar wurde es so (14.08., im Test zweimal gemessen): nach "Alle erzeugen/
-            // aktualisieren" stand weiter "(exists - delta)" an der Zeile und der Zaehler weiter auf (2),
-            // waehrend der Einzelknopf derselben Rolle korrekt "unveraendert" meldete. CommitRole vergleicht
-            // vorher/nachher DIESELBE Quelle und hatte deshalb recht; nur dieser Zaehler verglich Aepfel mit
-            // Birnen.
-            // OwnSlots ist genau das, was CommitRole schreibt (Clear + ein Slot je res-Eintrag) - damit
-            // beantworten Zaehler und Einzelknopf dieselbe Frage aus derselben Quelle. Die Packs werden
-            // weiterhin verglichen, nur eben dort, wo sie wirklich stehen: als Elternliste, unten.
+            // OwnSlots, NOT SlotMap(existing). That was the whole bug: `SlotMap` reads `Loadout.Slots`, i.e. own
+            // AND inherited slots - for a role with an attached pack, the PACK CONTENTS are included. That was
+            // compared against `res`, and there packs are explicitly NOT included (see CommitRole: they are
+            // attached as a real reference, not melted in). Two different sets, so the comparison was permanently
+            // "unequal" for EVERY role with a pack - for a pure pack role even 0 against n.
+            // The visible effect: after "create/update all", "(exists - delta)" stayed on the row and the counter
+            // stayed at (2), while the single button of the same role correctly reported "unchanged". CommitRole
+            // compares before/after from the SAME source and was therefore right; only this counter compared
+            // apples to oranges.
+            // OwnSlots is exactly what CommitRole writes (Clear + one slot per res entry) - so counter and single
+            // button answer the same question from the same source. Packs are still compared, just where they
+            // actually live: as the parent list, below.
             Dictionary<string, int> oldMap = new Dictionary<string, int>();
             foreach (LoadoutSlot s in existing.OwnSlots ?? new List<LoadoutSlot>())
                 oldMap[SlotKey(s.thingDef, s.genericDef)] = s.count;
@@ -2250,45 +2190,44 @@ namespace CEReloaded
             foreach (RoleMergeEntry e in res) newMap[SlotKey(e.thing, e.generic)] = e.scaledCount;
             if (oldMap.Count != newMap.Count) return true;
             foreach (var kv in newMap) if (!oldMap.TryGetValue(kv.Key, out int o) || o != kv.Value) return true;
-            // Die PACKS mitvergleichen (2026-08-13, Nebenbefund desselben Fehlers): aendert man an einer
-            // bestehenden Rolle NUR die angehaengten Packs, waren beide Slot-Karten gleich und der Mod meldete
-            // "unveraendert" - obwohl CommitRole die Aenderung sehr wohl schreibt. "Alle erzeugen/aktualisieren"
-            // hat sie deshalb nicht mitgezaehlt.
+            // Compare the PACKS too (a side effect of the same bug): if only the attached packs of an existing
+            // role were changed, both slot maps were equal and the mod reported "unchanged" - even though
+            // CommitRole does write the change. "Create/update all" therefore didn't count it.
             var oldPacks = new HashSet<int>(MultiParentUtility.GetExtraParents(existing).Select(l => l.UniqueID));
             var newPacks = new HashSet<int>(RoleUtility.PacksIn(comp).Select(l => l.UniqueID));
             if (!oldPacks.SetEquals(newPacks)) return true;
             return false;
         }
 
-        // ENTFERNT 2026-08-18: CreateAllRoles - der Rumpf des Knopfes "Alle erzeugen/aktualisieren".
-        // Mit dem Knopf faellt auch er weg; jede Rolle speichert von selbst, sobald sich etwas an ihr
-        // aendert (AutoCommitRole). Ein Sammelknopf haette nichts mehr zu tun.
+        // REMOVED: CreateAllRoles - the body of the "create/update all" button. It goes along with the button;
+        // every role saves on its own as soon as something about it changes (AutoCommitRole). A bulk button
+        // would have nothing left to do.
 
-        // Die GLOBALE Rollenliste liegt in den Mod-Einstellungen, und die schreibt RimWorld von sich aus nur,
-        // wenn der Spieler das Einstellungsfenster schliesst - dieser Reiter hat es nie getan. Fuer eine
-        // save-lokale Rolle (alles, was "+ New role" anlegt) traegt der Spielstand die Daten ohnehin; fuer
-        // eine globale gingen Name, Faktoren und ab heute auch die Zusammensetzung beim Beenden verloren.
-        // Einmal pro bestaetigtem Vorgang, nicht pro Bild: Write() serialisiert die ganze Einstellungsdatei.
+        // The GLOBAL role list lives in the mod settings, and RimWorld only writes those on its own when the
+        // player closes the settings window - this tab never did. For a save-local role (everything "+ New role"
+        // creates) the save carries the data anyway; for a global one, the name, factors and now also the
+        // composition were lost on exit.
+        // Once per confirmed action, not per frame: Write() serializes the whole settings file.
         private static void PersistRoles()
         {
             if (CEReloadedMod.settings != null) CEReloadedMod.settings.Write();
         }
 
-        // Merkzettel, wieviele Loadouts es beim letzten Aufraeumen gab. Aendert sich die Zahl, ist irgendwo
-        // eines geloescht (oder dazugekommen) - erst dann muessen die gemerkten Reihen geprueft werden.
+        // Remembers how many loadouts there were at the last cleanup. If the number changes, one was deleted
+        // (or added) somewhere - only then do the remembered rows need checking.
         private int roleCompCheckedCount = -1;
 
         private List<Loadout> CompFor(LoadoutRole role)
         {
             if (role == null) return new List<Loadout>();
-            // GELOESCHTE Quellen aus den gemerkten Reihen werfen (2026-08-18: es gab keine Weapon Loadouts
-            // mehr, aber die Rollen hatten immer noch welche zugeteilt).
-            // Die fruehere Beschreibung war falsch: die Reihe wird beim ERSTEN Zugriff aus der
-            // gespeicherten Zusammensetzung aufgebaut und danach im Fenster festgehalten. Loescht man die
-            // Quell-Vorlagen, waehrend das Fenster offen ist, zeigt die Karte weiter Bausteine, hinter denen
-            // nichts mehr steht - und ein Klick darauf haette mit einem toten Objekt gerechnet.
-            // Nicht jedes Bild, sondern nur wenn sich die Zahl der Loadouts geaendert hat: derselbe Riegel,
-            // den RebuildLoadoutsByWeaponFrame benutzt.
+            // Throw DELETED sources out of the remembered rows (with no weapon loadouts left, the roles still had
+            // some assigned).
+            // The earlier description was wrong: the row is built from the stored composition on FIRST access
+            // and then held in the window. If the source templates are deleted while the window is open, the card
+            // keeps showing building blocks with nothing behind them - and a click on one would have computed
+            // with a dead object.
+            // Not every frame, only when the number of loadouts has changed: the same latch that
+            // RebuildLoadoutsByWeaponFrame uses.
             int loCount = LoadoutManager.Loadouts != null ? LoadoutManager.Loadouts.Count : 0;
             if (loCount != roleCompCheckedCount)
             {
@@ -2299,13 +2238,13 @@ namespace CEReloaded
             if (!roleComp.TryGetValue(role, out List<Loadout> list))
             {
                 list = new List<Loadout>();
-                // RUECKGEWINNUNG beim ersten Zugriff (2026-08-15, LoadoutRole.composition - die lange
-                // Begruendung steht dort). Ohne sie startet jede bestehende Rolle mit leerer Reihe, und das
-                // naechste Update ERSETZT ihren Inhalt, statt ihn zu ergaenzen.
-                // Bewusst nur beim ANLEGEN des Eintrags: wer alle Anhaenge von Hand entfernt, bekommt sie
-                // nicht beim naechsten Bild wieder hereingespuelt - der Eintrag existiert dann als leere
-                // Liste, und dieser Zweig laeuft nicht mehr.
-                // Ein Quell-Loadout, das es nicht mehr gibt (geloescht oder umbenannt), faellt still heraus.
+                // RECOVERY on first access (LoadoutRole.composition - the long rationale is there). Without it
+                // every existing role starts with an empty row, and the next update REPLACES its contents instead
+                // of adding to them.
+                // Deliberately only when the entry is CREATED: if someone removes all attachments by hand, they
+                // don't get washed back in on the next frame - the entry then exists as an empty list, and this
+                // branch no longer runs.
+                // A source loadout that no longer exists (deleted or renamed) silently drops out.
                 if (role.composition != null && role.composition.Count > 0)
                 {
                     foreach (string label in role.composition)
@@ -2313,21 +2252,20 @@ namespace CEReloaded
                         if (string.IsNullOrEmpty(label)) continue;
                         Loadout src = LoadoutManager.Loadouts.FirstOrDefault(
                             l => l != null && !l.defaultLoadout && l.label == label);
-                        // LAZY NACHBAUEN (2026-09-07, im Test: "Faktoren auch bei fertigen Rollen gesperrt",
-                        // mit dem Hinweistext "Drop a loadout onto this role", obwohl die Rolle laengst eine
-                        // Waffe enthielt). Seit dem Lazy-Umbau (01.09.) entstehen Waffen-Vorlagen nur bei
-                        // Bedarf und verschwinden, wenn niemand sie mehr traegt - eine Rolle, die aus so
-                        // einer Vorlage gebaut wurde, fand ihre Quelle dann nicht mehr, die Reihe blieb leer,
-                        // und leer heisst gesperrt. Die Vorlage ist aber jederzeit wieder herstellbar, genau
-                        // dafuer gibt es EnsureDefaultLoadout: eine Waffen-Vorlage IST ihre Waffe.
+                        // REBUILD LAZILY (factors were locked even on finished roles, with the hint text "Drop a
+                        // loadout onto this role", although the role had long contained a weapon). Since the lazy
+                        // rework, weapon templates are only created on demand and disappear when nobody carries
+                        // them anymore - a role built from such a template then no longer found its source, the
+                        // row stayed empty, and empty means locked. But the template can be recreated at any time;
+                        // that's exactly what EnsureDefaultLoadout is for: a weapon template IS its weapon.
                         if (src == null) src = RecreateTemplateByLabel(label);
                         if (src != null && !list.Contains(src)) list.Add(src);
                     }
                 }
-                // ZWEITER Notnagel: die Rolle hat ein Loadout, aber keine auffindbare Zusammensetzung
-                // (angelegt, bevor sie gemerkt wurde, oder ueber einen Weg, der sie nie gemerkt hat). Dann
-                // sind die Waffen des Rollen-Loadouts die Quellen - jede Waffe hat ihre Vorlage. Einmal
-                // gemerkt, damit das naechste Oeffnen nicht wieder suchen muss.
+                // SECOND fallback: the role has a loadout but no findable composition (created before it was
+                // remembered, or via a path that never remembered it). Then the weapons of the role loadout are
+                // the sources - every weapon has its template. Remembered once so the next open doesn't have to
+                // search again.
                 if (list.Count == 0)
                 {
                     Loadout own = RoleUtility.RoleLoadoutOf(role);
@@ -2346,10 +2284,10 @@ namespace CEReloaded
             return list;
         }
 
-        // Eine Quell-Vorlage, die es gerade nicht gibt, aus ihrem Etikett nachbauen: das Etikett einer
-        // Waffen-Vorlage ist VirtualLoadoutLabel(waffe), also laesst sich die Waffe daraus zurueckfinden.
-        // Nur echte Waffen; alles andere (Packs, fremde Loadouts) bleibt verschwunden - das war vorher so
-        // und ist richtig, weil es dafuer keine Vorlage gibt, die man nachbauen koennte.
+        // Rebuild a source template that doesn't currently exist from its label: a weapon template's label is
+        // VirtualLoadoutLabel(weapon), so the weapon can be recovered from it.
+        // Real weapons only; everything else (packs, foreign loadouts) stays gone - that's how it was before and
+        // it's correct, because there is no template to rebuild for those.
         private static Loadout RecreateTemplateByLabel(string label)
         {
             if (string.IsNullOrEmpty(label)) return null;
@@ -2362,8 +2300,8 @@ namespace CEReloaded
             return null;
         }
 
-        // Ueber die Identitaet (2026-08-17). Das ist die Frage "wurde diese Rolle schon einmal geschrieben"
-        // und sie darf nicht davon abhaengen, wie das Loadout gerade heisst.
+        // By identity. This is the question "has this role ever been written", and it must not depend on what
+        // the loadout happens to be called right now.
         private static bool RoleCreated(LoadoutRole role) => RoleUtility.RoleLoadoutOf(role) != null;
 
         // This save's local roles first, then global roles (null local list when no game is loaded). Local-
@@ -2390,14 +2328,13 @@ namespace CEReloaded
             }
         }
 
-            // Eine BESTEHENDE Rolle im Reiter auswaehlen (2026-08-16): hat ein Pawn eine Rolle, steht
-            // statt eines inaktiven "Save as role" ein Knopf "Edit Role", der in den Rollen-Editor springt.
-            // Bewusst NICHT ueber StartRoleDraftFromPawn: das legt einen
-        // ENTWURF aus den Bestandteilen des Kolonisten an - bei einem Kolonisten, der die Rolle schon
-        // traegt, waere das eine Kopie statt der Rolle selbst.
-        // Gesucht wird ueber den Namen, weil das im ganzen Mod die Identitaet einer Rolle ist (das Loadout
-        // heisst "[Role] <name>"). Findet er nichts, passiert nichts - dann ist die Rolle geloescht worden,
-        // waehrend das Fenster offen war, und ein stiller Fehlschlag ist besser als eine leere Karte.
+            // Select an EXISTING role in the tab: if a pawn has a role, an "Edit Role" button that jumps into
+            // the role editor replaces the inactive "Save as role".
+            // Deliberately NOT via StartRoleDraftFromPawn: that creates a DRAFT from the colonist's parts - for a
+            // colonist who already carries the role, that would be a copy instead of the role itself.
+            // Looked up by name, because throughout the mod that is a role's identity (the loadout is called
+            // "[Role] <name>"). If nothing is found, nothing happens - then the role was deleted while the window
+            // was open, and a silent failure is better than an empty card.
         public bool FocusExistingRole(string roleName)
         {
             string want = (roleName ?? "").Trim();
@@ -2460,40 +2397,37 @@ namespace CEReloaded
                 }
                 comp.Add(ammoWrap);
             }
-            // Die Zusammensetzung SOFORT festhalten (2026-09-04, Befund im Test: die Rolle hiess
-            // weiter '[S] Henry Big Boy +Base Supply', aber in ihrer Zeile stand 'drag a loadout here' -
-            // uebrig blieb eine Rolle, deren Name eine Waffe und ein Pack verspricht und die nichts
-            // enthielt).
+            // Record the composition IMMEDIATELY (the role was still called '[S] Henry Big Boy +Base Supply', but
+            // its row said 'drag a loadout here' - leaving a role whose name promises a weapon and a pack and
+            // which contained nothing).
             //
-            // Ursache: dieser Entwurf fuellte nur die LAUFZEIT-Reihe (roleComp). role.composition blieb
-            // leer, und sobald CompFor die Reihe neu aufbaut - was es tut, sobald sich die Zahl der
-            // Loadouts geaendert hat -, baut es sie aus genau dieser leeren Zusammensetzung wieder auf.
-            // Die Karte war danach dauerhaft leer, und die Faktorfelder ausgegraut.
+            // Cause: this draft only filled the RUNTIME row (roleComp). role.composition stayed empty, and as soon
+            // as CompFor rebuilds the row - which it does whenever the number of loadouts has changed - it
+            // rebuilds it from exactly that empty composition. The card was then permanently empty, and the
+            // factor fields greyed out.
             //
-            // Bewusst nur MERKEN, nicht anlegen: ein Entwurf soll ausdruecklich erst auf Knopfdruck zur
-            // echten Rolle werden (siehe der Kommentar oben). Gemerkt wird ueber die Etiketten - der
-            // Wegwerf-Traeger fuer persoenliche Munition faellt dabei still heraus, weil es ihn in der
-            // Loadout-Liste nicht gibt; das ist die dokumentierte Zusage von CompFor.
+            // Deliberately only REMEMBER, don't create: a draft should explicitly only become a real role on a
+            // button press (see the comment above). Remembered via the labels - the throwaway carrier for
+            // personal ammo silently drops out because it doesn't exist in the loadout list; that is the
+            // documented contract of CompFor.
             RememberComposition(role, comp);
             SetActiveRole(role);
         }
 
         public void DoWindowContents(Rect inRect)
         {
-            // Seit dem Lazy-Umbau (2026-09-01) gibt es NUR noch den Rollen-Reiter (2026-09-06, Aufraeumen):
-            // der Zeichenkoerper des alten Waffen-Loadouts-Reiters (rund 950 Zeilen - Filterzeile,
-            // Waffenliste mit Lade-/Bearbeiten-/Zuweisen-Knoepfen, Fussleiste) stand hier bis heute und war
-            // unerreichbar - jeder Aufrufer setzt RoleMode vorher auf true (Dialog_CEReloadedTabs zeichnet den
-            // Rollen-Reiter direkt ueber DoRoleMode, Dialog_ArmColony.RolesStep setzt RoleMode im Konstruktor).
-            // Im Test am 03.09. von aussen belegt: zwei Tests rot, weil es die Oberflaeche nicht mehr
-            // gab. Die Klasse selbst lebt weiter - fuer die Rollen und als Heimat von EnsureDefaultLoadout.
+            // Since the lazy rework there is ONLY the role tab: the drawing body of the old weapon loadouts tab
+            // (around 950 lines - filter row, weapon list with load/edit/assign buttons, footer) stayed here and
+            // was unreachable - every caller sets RoleMode to true beforehand (Dialog_CEReloadedTabs draws the
+            // role tab directly via DoRoleMode, Dialog_ArmColony.RolesStep sets RoleMode in its constructor).
+            // The class itself lives on - for the roles and as the home of EnsureDefaultLoadout.
             RoleMode = true;
             DoRoleMode(inRect);
         }
 
-        // Statischer Kern (2026-09-01, Lazy-Umbau): braucht keinerlei Fensterzustand, damit die
-        // Hintergrund-Erzeugung (EnsureDefaultLoadout) ohne offenes Fenster laufen kann.
-        // status: 0 = neu angelegt, 1 = aktualisiert, 2 = unveraendert.
+        // Static core (lazy rework): needs no window state at all, so background creation
+        // (EnsureDefaultLoadout) can run without an open window.
+        // status: 0 = newly created, 1 = updated, 2 = unchanged.
         internal static Loadout CreateOrUpdateWeaponLoadout(ThingDef wDef, WeaponLoadoutSettings settings, out int status)
         {
             string loadoutName = string.IsNullOrEmpty(settings.loadoutName) ? LoadoutUtility.VirtualLoadoutLabel(wDef) : settings.loadoutName;

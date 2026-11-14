@@ -6,32 +6,32 @@ using CombatExtended;
 
 namespace CEReloaded
 {
-    // "Spielstand fuer die Deinstallation vorbereiten" (2026-09-17).
+    // "Prepare save for uninstall".
     //
-    // Das Problem, das dieser Knopf loest: ein Teil der Ausruestung jedes Kolonisten steht nicht in CE,
-    // sondern nur in diesem Mod.
-    //   - Packs und Zweitwaffen haengen ueber die Zusatz-Eltern-Tabelle (MultiParentUtility) an Anker und
-    //     Rolle. CE kennt nur EINEN Elternteil - ohne den Mod sind sie einfach weg.
-    //   - Persoenliche Munition liegt als eigener Slot am Anker und VERDRAENGT die geerbte Munition der
-    //     Vorlage (Patch_Loadout_MultiParentSlots). CEs eigenes Loadout.Slots haengt beide nur aneinander,
-    //     und CEs KI ADDIERT gleiche Zeilen (JobGiver_UpdateLoadout.GetPrioritySlot zieht pro Zeile vom
-    //     Inventar ab) - ohne den Mod wollte jeder Kolonist also Vorlage + persoenliche Munition tragen.
-    //   - Der Anker selbst waere danach ein sichtbarer "[Pawn-Loadout] Name 1234"-Eintrag in CEs Liste.
+    // The problem this button solves: part of every colonist's equipment is not stored in CE,
+    // but only in this mod.
+    //   - Packs and sidearms hang off the anchor and role via the extra-parent table
+    //     (MultiParentUtility). CE knows only ONE parent - without the mod they are simply gone.
+    //   - Personal ammo sits as its own slot on the anchor and REPLACES the template's inherited ammo
+    //     (Patch_Loadout_MultiParentSlots). CE's own Loadout.Slots just concatenates both, and CE's AI
+    //     ADDS identical rows (JobGiver_UpdateLoadout.GetPrioritySlot subtracts per row from the
+    //     inventory) - so without the mod every colonist would want to carry template + personal ammo.
+    //   - The anchor itself would then be a visible "[Pawn-Loadout] Name 1234" entry in CE's list.
     //
-    // Der Weg: solange der Mod noch laeuft, liefert Loadout.Slots die fertige, richtige Zusammensetzung.
-    // Genau die wird in gewoehnliche CE-Loadouts ohne Zusatz-Eltern und ohne Anker eingebacken. Danach ist
-    // nichts mehr uebrig, was nur dieser Mod versteht.
+    // The approach: while the mod is still running, Loadout.Slots returns the finished, correct
+    // composition. Exactly that is baked into ordinary CE loadouts without extra parents and without
+    // anchors. Afterwards nothing is left that only this mod understands.
     public static class SaveCleanseUtility
     {
-        // Solange das laeuft, darf Patch_Utility_Loadouts_SetLoadout nicht auf den Anker umlenken - sonst
-        // wuerde das Zuweisen der eingebackenen Kopie nur den Anker umhaengen, den wir gerade aufloesen.
+        // While this runs, Patch_Utility_Loadouts_SetLoadout must not redirect to the anchor - otherwise
+        // assigning the baked copy would just re-point the anchor we are dissolving.
         internal static bool Running;
 
         public struct Result
         {
-            public int unwrapped;   // Kolonist ohne persoenliche Anpassung: direkt zurueck auf die geteilte Vorlage/Rolle
-            public int baked;       // Kolonist mit Anpassung: bekommt eine eigene, flache Kopie
-            public int flattened;   // Rolle (oder anderes Loadout) mit angehaengten Packs: Packs eingeschmolzen
+            public int unwrapped;   // colonist without personal customization: straight back to the shared template/role
+            public int baked;       // colonist with customization: gets its own flat copy
+            public int flattened;   // role (or other loadout) with attached packs: packs merged in
             public int anchorsDeleted;
         }
 
@@ -42,9 +42,9 @@ namespace CEReloaded
             Running = true;
             try
             {
-                // 1. Kolonisten zuerst, solange Rollen und Vorlagen noch ihre volle Zusammensetzung liefern.
-                //    Dieselben zwei Sammelabfragen wie FindOrphanedAnchors - Kryoschlaf, Karawane, fliegende
-                //    Kapsel und Welt-Pawns eingeschlossen (reference-rimworld-pawn-enumeration).
+                // 1. Colonists first, while roles and templates still return their full composition.
+                //    Same two collection queries as FindOrphanedAnchors - including cryptosleep, caravans,
+                //    transport pods and world pawns.
                 var pawns = new HashSet<Pawn>();
                 foreach (Pawn p in PawnsFinder.AllMapsWorldAndTemporary_Alive) if (p != null) pawns.Add(p);
                 foreach (Pawn p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive) if (p != null) pawns.Add(p);
@@ -61,7 +61,7 @@ namespace CEReloaded
 
                     if (!personal)
                     {
-                        // Ohne Vorlage (geloescht) und ohne Anpassung traegt der Anker nichts - dann "keins".
+                        // No template (deleted) and no customization: the anchor carries nothing - then "none".
                         pawn.SetLoadout(template ?? LoadoutManager.DefaultLoadout);
                         r.unwrapped++;
                         continue;
@@ -78,13 +78,13 @@ namespace CEReloaded
                     r.baked++;
                 }
 
-                // 2. Alles, was noch Zusatz-Eltern hat (Rollen mit Packs), in sich selbst einschmelzen.
-                //    Erst den vollen Stand kopieren, DANN die eigenen Slots leeren - Slots liefert bei
-                //    Zusatz-Eltern zwar eine neue Liste, deren Eintraege aber teils dieselben Objekte sind.
-                //    Auch den CE-Elternteil abhaengen (2026-10-26, Review-Befund): der Snapshot enthaelt dessen
-                //    Slots schon, und CEs Slots haengt sie sonst ein zweites Mal an - die KI addiert beide Zeilen.
-                //    Moeglich, sobald jemand einer Rolle mit Packs in CEs eigenem Fenster einen Eltern-Loadout
-                //    gegeben hat. Kinder dieser Rolle erben danach deren vollen Stand, ebenfalls ohne Dopplung.
+                // 2. Merge everything that still has extra parents (roles with packs) into itself.
+                //    Copy the full state first, THEN clear its own slots - with extra parents Slots returns
+                //    a new list, but some of its entries are the same objects.
+                //    Also detach the CE parent: the snapshot already contains its slots, and CE's Slots
+                //    would otherwise append them a second time - the AI adds both rows.
+                //    Possible as soon as a role with packs has been given a parent loadout in CE's own
+                //    window. Children of that role then inherit its full state, also without duplication.
                 foreach (Loadout lo in LoadoutManager.Loadouts.ToList())
                 {
                     if (lo == null || lo.defaultLoadout || AmmoAssignmentUtility.IsAmmoLink(lo)) continue;
@@ -97,13 +97,13 @@ namespace CEReloaded
                     r.flattened++;
                 }
 
-                // 3. Die Anker selbst. Niemand zeigt mehr auf sie; LoadoutDeletionUtility raeumt dabei auch die
-                //    Seitenbuecher dieses Mods (IDs werden von CE recycelt).
+                // 3. The anchors themselves. Nothing points to them anymore; LoadoutDeletionUtility also
+                //    cleans this mod's side records (IDs are recycled by CE).
                 List<Loadout> anchors = LoadoutManager.Loadouts.Where(AmmoAssignmentUtility.IsAmmoLink).ToList();
                 r.anchorsDeleted = LoadoutDeletionUtility.DeleteAll(anchors);
 
-                // Better Pawn Control merkt sich Loadout-Nummern und spielt sie beim Oeffnen seines Reiters
-                // zurueck - ohne frischen Schnappschuss zeigte er auf die eben geloeschten Anker.
+                // Better Pawn Control remembers loadout numbers and restores them when its tab opens -
+                // without a fresh snapshot it would point at the anchors just deleted.
                 BetterPawnControlCompat.RefreshAssignSnapshot();
                 CombatReadiness.Invalidate();
             }
@@ -114,8 +114,8 @@ namespace CEReloaded
             return r;
         }
 
-        // Neue Slot-Objekte, nie die vorhandenen weiterreichen. AddSlot fasst gleiche Eintraege spaeter zusammen
-        // und ADDIERT dabei - das entspricht CEs Lesart (siehe Kopfkommentar), aendert also nichts am Bedarf.
+        // New slot objects, never pass on the existing ones. AddSlot later merges identical entries
+        // and ADDS them up - that matches CE's reading (see header comment), so demand is unchanged.
         private static List<LoadoutSlot> CloneSlots(IEnumerable<LoadoutSlot> source)
         {
             var result = new List<LoadoutSlot>();

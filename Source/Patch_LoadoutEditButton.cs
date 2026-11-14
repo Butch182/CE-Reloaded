@@ -27,31 +27,28 @@ namespace CEReloaded
         // is completely untouched.
         public static void Prefix(Rect rect, Pawn pawn)
         {
-            // Die Ereignispruefung ZUERST (2026-08-17): sie ist die billigste von
-            // allen und in jedem Bild ausser dem einen Klick-Bild schon das Ende. Vorher stand darueber ein
-            // pawn.GetLoadout() plus ManagedByUs pro Zeile pro Durchgang - Arbeit fuer eine Frage, die sich
-            // fast immer mit einem Feldvergleich beantworten laesst.
+            // The event check comes FIRST: it is the cheapest of all, and in every frame except the one
+            // click frame it already ends things. Previously a pawn.GetLoadout() plus ManagedByUs ran above
+            // it per row per pass - work for a question that can almost always be answered with a single
+            // field comparison.
             if (Event.current == null || Event.current.type != EventType.MouseUp) return;
             if (pawn?.outfits == null || !pawn.Spawned) return;
             Patch_LoadoutTooltip.CellInfo info = Patch_LoadoutTooltip.GetCellInfo(pawn);
             if (!info.managedByUs) return;
 
-            // DIE ZELLE SELBST (2026-09-04): ein Klick auf den Loadout-Namen oeffnet unser Waffenfenster
-            // statt CEs Aufklappmenue "Nothing / [Role] ... / Save current combo as Role". Der Lazy-Umbau
-            // hat diesen Weg ueberall sonst laengst ersetzt; hier war er stehengeblieben, was in mehreren
-            // Tests aufgefallen ist.
+            // THE CELL ITSELF: clicking the loadout name opens our weapon window instead of CE's dropdown
+            // "Nothing / [Role] ... / Save current combo as Role". The lazy-template rework replaced that
+            // path everywhere else long ago; it had been left behind here.
             //
-            // Warum das keine Verarmung ist: das Waffenfenster kann alles, was das Menue konnte, und mehr -
-            // "Keins" steht als oberste Zeile, die Rollen stehen als eigene Sektion, dazu Wertung, Bestand,
-            // Gewicht und die Waffen selbst. Der einzige Menuepunkt ohne Entsprechung ist "Save current
-            // combo as Role", und der gehoert bewusst nicht ins Auswahlfenster (2026-09-03); er lebt weiter
-            // auf den Karten und
-            // Kompaktzeilen des Reiters "Kolonisten ausruesten".
+            // Why this loses nothing: the weapon window can do everything the menu could, and more -
+            // "None" is the top row, roles have their own section, plus rating, stock, weight and the
+            // weapons themselves. The only menu entry without an equivalent is "Save current combo as
+            // Role", and it deliberately does not belong in the picker; it still lives on the cards and
+            // compact rows of the "Equip colonists" tab.
             //
-            // Wie beim Stift: nur fuer Kolonisten, deren Zuweisung WIRKLICH von uns verwaltet wird, und
-            // nur durch Verbrauch des MouseUp-Ereignisses - CE zeichnet die Zelle unveraendert, sie oeffnet
-            // danach nur etwas anderes. Ein Kolonist auf einem von Hand gebauten CE-Loadout behaelt CEs
-            // eigenes Menue.
+            // Like the pencil: only for colonists whose assignment is REALLY managed by us, and only by
+            // consuming the MouseUp event - CE draws the cell unchanged, it just opens something else
+            // afterwards. A colonist on a hand-built CE loadout keeps CE's own menu.
             Rect cellRect = Patch_LoadoutTooltip.LoadoutButtonRect(rect, pawn, info);
             if (Mouse.IsOver(cellRect))
             {
@@ -90,9 +87,9 @@ namespace CEReloaded
                 Rect dot = new Rect(editRect.xMax - 6f, editRect.y - 2f, 7f, 7f);
                 Widgets.DrawBoxSolid(new Rect(dot.x - 1f, dot.y - 1f, dot.width + 2f, dot.height + 2f), new Color(0.08f, 0.08f, 0.08f, 0.95f));
                 Widgets.DrawBoxSolid(dot, new Color(0.45f, 0.75f, 1f));
-                // TipWanted davor (2026-08-17): dieser eine Text wurde pro Zeile pro Durchgang uebersetzt und
-                // registriert, obwohl hoechstens EINE Zeile pro Bild unter der Maus liegt. Dieselbe Wache, die
-                // der Loadout-Tooltip zwei Zeilen weiter oben seit dem 13.08. hat - hier fehlte sie noch.
+                // TipWanted first: this one text was translated and registered per row per pass, although
+                // at most ONE row per frame is under the mouse. Same guard the loadout tooltip two lines
+                // above already has - it was still missing here.
                 if (LoadoutUtility.TipWanted(editRect))
                     TooltipHandler.TipRegion(editRect, "CER_LoadoutEditButton_Tip".Translate());
             }

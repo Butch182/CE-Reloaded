@@ -32,7 +32,7 @@ namespace CEReloaded
         public const string MarkerPrefix = "[Pawn-Loadout]";
         private const string LegacyMarkerPrefix = "[Ammo]";
 
-        // Requires the numeric pawn-ID suffix EnsureAmmoLink always writes ("[Pawn-Loadout] Ryder 1003" -
+        // Requires the numeric pawn-ID suffix EnsureAmmoLink always writes ("[Pawn-Loadout] <name> 1003" -
         // the name is cosmetic/readability only, added 2026-07-30; older saves still have the bare-ID form
         // "[Pawn-Loadout] 1003"), not just the bracket prefix - a player's own pre-existing loadout that
         // happens to be named "[Pawn-Loadout] Sniper" (a perfectly reasonable thing to type) must never be
@@ -97,10 +97,9 @@ namespace CEReloaded
         {
             Loadout template = DisplayLoadout(pawn?.GetLoadout());
             if (template == null) return "CER_AmmoAssignment_NoneLabel".Translate();
-            // Ohne das kurze Praefix (2026-08-13, auch in CEs eigenem Menue):
-            // dieser Text steht in CEs eigener Loadout-Spalte, wo der Platz noch knapper ist als in unserer
-            // kompakten Zeile - und wo die Blaufaerbung (Patch_LoadoutTooltip) Rolle und Vorlage ohnehin schon
-            // unterscheidet. Im Auswahlmenue bleibt der volle Name.
+            // Without the short prefix (also in CE's own menu): this text sits in CE's own Loadout column,
+            // where space is even tighter than in our compact row - and where the blue tint
+            // (Patch_LoadoutTooltip) already tells role and template apart. The selection menu keeps the full name.
             string label = LoadoutUtility.CellLabel(template);
             List<Loadout> sidearms = SidearmAssignmentUtility.GetPawnSidearms(pawn);
             List<Loadout> packs = GetPawnPacks(pawn);
@@ -108,11 +107,10 @@ namespace CEReloaded
             if (sidearms.Count == 0 && packs.Count == 0 && extraAmmo.Count == 0) return label;
 
             var extras = new List<string>();
-            // CellLabel auch fuer die Zweitwaffen (2026-08-14, im freien Spielen gefunden:
-            // "M16A4 +W| M..." - die Hauptwaffe ohne Praefix, der Anhang mit, in DERSELBEN Zeile). Die
-            // Hauptwaffe wird oben schon so behandelt, die Packs ueber StripMarker - nur die Zweitwaffen
-            // standen roh da. Das Praefix ist Buchhaltung, kein Name, und es frisst ausgerechnet dort Breite,
-            // wo am wenigsten ist (CEs eigene Loadout-Spalte).
+            // CellLabel for the sidearms too ("M16A4 +W| M..." showed the main weapon without prefix and the
+            // attachment with it, in the SAME row). The main weapon is already handled that way above, the packs
+            // via StripMarker - only the sidearms were shown raw. The prefix is bookkeeping, not a name, and it eats
+            // width exactly where there is least of it (CE's own Loadout column).
             extras.AddRange(sidearms.Select(s => s != null
                 ? LoadoutUtility.CellLabel(s)
                 : "CER_AmmoAssignment_UnknownLabel".Translate().ToString()));
@@ -120,7 +118,7 @@ namespace CEReloaded
             if (extraAmmo.Count > 0) extras.Add("CER_AmmoAssignment_ExtraAmmoCount".Translate(extraAmmo.Count.ToString()));
 
             // Capped at 2 named extras regardless of how much is actually stacked (packs/sidearms are
-            // uncapped - "beliebig viel stacken" - so the raw list has no natural upper bound) - the pixel-
+            // uncapped - "stack as many as you like" - so the raw list has no natural upper bound) - the pixel-
             // width Truncate() at every display site already keeps this from overflowing its box, but a
             // bounded "+N more" reads better than an ellipsis cutting a name off mid-word, and keeps the
             // untruncated tooltip from growing without limit either.
@@ -139,25 +137,23 @@ namespace CEReloaded
         public static List<Loadout> FindOrphanedAnchors()
         {
             HashSet<Loadout> referenced = new HashSet<Loadout>();
-            // AllPawns, NICHT AllPawnsSpawned (2026-08-13). Ein Kolonist in
-            // einer Kryptoschlafkammer, einer der gerade bewusstlos getragen wird, oder einer in einer
-            // stehenden Transportkapsel ist NICHT gespawnt - sein Anker galt damit innerhalb einer
-            // Spielstunde als verwaist und wurde geloescht. Ergebnis beim Aufwachen: keine Vorlage, keine
-            // persoenliche Munition, keine Packs, keine Zweitwaffen, ohne jede Meldung.
-            // Der Gegenbeweis stand im eigenen Code: LoadoutUtility.AllColonyPawns benutzt FreeColonists,
-            // und das enthaelt die Unspawned sehr wohl - der Bereitschafts-Scan zaehlte ihn also weiter als
-            // Kolonisten, waehrend diese Funktion ihn fuer tot hielt.
-            // Dazu die Welt-Pawns: ausgeliehene Quest-Kolonisten stehen auf keiner Karte und in keiner
-            // Karawane. Lieber ein verwaister Anker zu viel (kostet nichts) als einer zu wenig.
+            // AllPawns, NOT AllPawnsSpawned. A colonist in a cryptosleep casket, one being carried while
+            // unconscious, or one in a landed transport pod is NOT spawned - so their anchor counted as orphaned
+            // within an in-game hour and got deleted. Result on waking up: no template, no personal ammo, no
+            // packs, no sidearms, without any message.
+            // Our own code already proved it wrong: LoadoutUtility.AllColonyPawns uses FreeColonists, which does
+            // include unspawned pawns - so the readiness scan kept counting the colonist while this function
+            // considered them dead.
+            // Plus the world pawns: lent-out quest colonists are on no map and in no caravan. Better one orphaned
+            // anchor too many (costs nothing) than one too few.
             //
-            // 2026-08-15, dieselbe Luecke ein Halter weiter (Review-Befund): eine FLIEGENDE Transportkapsel
-            // ist weder Karte noch Karawane, und ihre Insassen stehen auch nicht in den Welt-Pawns. Ein
-            // Kapselflug ueber mehrere Felder dauert laenger als die 2500 Ticks zwischen zwei Laeufen - der
-            // Kolonist waere also mitten im Flug entankert worden und ohne Vorlage, Packs, Zweitwaffen und
-            // persoenliche Munition gelandet, genau das Schadensbild von oben.
-            // Statt einen dritten Halter von Hand nachzutragen jetzt RimWorlds eigene Sammelabfragen, die
-            // beide zusammen alles abdecken, was der Mod je anfassen kann - so muss diese Liste nicht bei
-            // jedem neuen Halter (Gravship, Questgruppen) erneut nachgezogen werden.
+            // The same gap one holder further: a FLYING transport pod is neither map nor caravan, and its
+            // passengers are not in the world pawns either. A pod flight over several tiles takes longer than
+            // the 2500 ticks between two runs - so the colonist would have been un-anchored mid-flight and landed
+            // without template, packs, sidearms and personal ammo, exactly the damage described above.
+            // Instead of adding a third holder by hand, this now uses RimWorld's own aggregate queries, which
+            // together cover everything the mod can ever touch - so this list does not need updating for every
+            // new holder (gravship, quest groups).
             void AddAll(System.Collections.Generic.IEnumerable<Pawn> pawns)
             {
                 if (pawns == null) return;
@@ -167,9 +163,9 @@ namespace CEReloaded
                     if (lo != null) referenced.Add(lo);
                 }
             }
-            // Karten + Welt + "temporaer" (u.a. Gravship). Enthaelt KEINE fliegenden Transporter.
+            // Maps + world + "temporary" (gravship among others). Does NOT include flying transporters.
             AddAll(RimWorld.PawnsFinder.AllMapsWorldAndTemporary_Alive);
-            // Karten + Karawanen + FLIEGENDE Transporter - die Haelfte, die der ersten Abfrage fehlt.
+            // Maps + caravans + FLYING transporters - the half the first query lacks.
             AddAll(RimWorld.PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive);
             return LoadoutManager.Loadouts.Where(l => l != null && IsAmmoLink(l) && !referenced.Contains(l)).ToList();
         }
@@ -178,9 +174,9 @@ namespace CEReloaded
         public static int CleanupOrphanedAnchors()
         {
             List<Loadout> orphans = FindOrphanedAnchors();
-            // Ueber LoadoutDeletionUtility, nicht ueber RemoveLoadout direkt: ein Anker ist genau das Objekt,
-            // dessen ID in ammoExplicitlyCleared und als Schluessel in loadoutExtraParents steht, und diese
-            // Aufraeumung laeuft im Hintergrund weiter, waehrend CE die IDs recycelt.
+            // Via LoadoutDeletionUtility, not RemoveLoadout directly: an anchor is exactly the object whose ID
+            // is in ammoExplicitlyCleared and is a key in loadoutExtraParents, and this cleanup runs in the
+            // background while CE recycles the IDs.
             return LoadoutDeletionUtility.DeleteAll(orphans);
         }
 
@@ -244,28 +240,27 @@ namespace CEReloaded
                         current.OwnSlots.Clear();
                         MultiParentUtility.SetExtraParents(current, new List<Loadout>());
                     }
-                    // Die eigene Munition der ALTEN Waffe geht mit ihr (2026-09-04).
+                    // The OLD weapon's personal ammo goes with it.
                     //
-                    // Der Fall: Yttoyyn trug eine M1917 Enfield mit persoenlich zugewiesenen 150 Schuss
-                    // .30-06 (FMJ). Ueber die Waffensperre bekam sie eine Ruger Mini-14 zugewiesen - anderes
-                    // Kaliber. Danach widersprachen sich zwei Anzeigen DESSELBEN Fensters: ihre Karte sagte
-                    // "die Waffe braucht Munition, aber es ist keine eingerichtet", und die Kolonie-Rechnung
-                    // fuehrte dieselben 150 Schuss weiter als "zugewiesen an Yttoyyn". Beide hatten recht.
+                    // The case: a colonist carried an M1917 Enfield with 150 personally assigned rounds of
+                    // .30-06 (FMJ). Via the weapon lock she was assigned a Ruger Mini-14 - a different caliber.
+                    // Afterwards two displays in the SAME window contradicted each other: her card said "the
+                    // weapon needs ammo, but none is set up", and the colony tally still listed the same 150
+                    // rounds as "assigned to" her. Both were right.
                     //
-                    // Warum beide: die persoenliche Munition liegt als eigener Slot AUF dem Anker, und ein
-                    // eigener Ammo-Slot verdraengt die geerbte Munition der Vorlage (Patch_Loadout_
-                    // MultiParentSlots). Der Anker wurde hier nur UMGEHAENGT - die alte Patrone blieb also
-                    // liegen, blockierte die richtige und band 150 Schuss, die niemand mehr braucht.
+                    // Why both: personal ammo lives as an own slot ON the anchor, and an own ammo slot displaces
+                    // the template's inherited ammo (Patch_Loadout_MultiParentSlots). The anchor was only
+                    // RE-PARENTED here - so the old cartridge stayed, blocked the right one and tied up 150
+                    // rounds nobody needs any more.
                     //
-                    // Der Weg ueber "Keins" raeumte das laengst auf, der Weg ueber
-                    // einen WAFFENWECHSEL nicht - dieselbe Frage, zwei Rechnungen. Deshalb steht die Regel
-                    // jetzt hier, an der EINEN Stelle, durch die jeder Vorlagenwechsel laeuft.
+                    // The path via "None" already cleaned this up, the path via a WEAPON CHANGE did not - same
+                    // question, two answers. That is why the rule now lives here, at the ONE place every
+                    // template change goes through.
                     //
-                    // Konservativ: raus fliegt nur KONKRETE Munition, die KEINE der jetzt erreichbaren
-                    // Waffen verschiessen kann - die der neuen Vorlage, plus die aus angehaengten Packs und
-                    // Zweitwaffen, plus Waffen, die als eigener Slot am Anker haengen. Ein generischer
-                    // Platzhalter ("Beliebige Munition") loest sich ohnehin erst beim Lesen auf und bleibt
-                    // unangetastet, und der Rollen-Zweig darueber hat schon alles geleert.
+                    // Conservative: only CONCRETE ammo that NONE of the now reachable weapons can fire is removed
+                    // - those of the new template, plus those from attached packs and sidearms, plus weapons hanging
+                    // on the anchor as own slots. A generic placeholder ("Any ammo") only resolves when read anyway
+                    // and stays untouched, and the role branch above has already cleared everything.
                     else DropAmmoNoWeaponCanUse(current, template);
                     current.parentID = template.UniqueID;
                 }
@@ -274,14 +269,14 @@ namespace CEReloaded
             Loadout link = new Loadout { defaultLoadout = false, label = MarkerPrefix + " " + pawn.LabelShort + " " + pawn.thingIDNumber, parentID = template.UniqueID };
             LoadoutManager.AddLoadout(link);
             pawn.SetLoadout(link);
-            // Hier stand vom 06.09. bis 07.09. eine Diagnosezeile. Sie hat den Fund
-            // gebracht: der Anker wurde IMMER richtig gesetzt - verloren ging er erst beim Wiederoeffnen von
-            // RimWorlds Zuweisungs-Reiter, durch Better Pawn Control (Compat_BetterPawnControl.cs).
+            // A diagnostic line used to sit here. It produced the finding: the anchor was ALWAYS set
+            // correctly - it was only lost when reopening RimWorld's Assign tab, through Better Pawn Control
+            // (Compat_BetterPawnControl.cs).
             return link;
         }
 
-        // Welche Munition kann nach dem Vorlagenwechsel ueberhaupt noch jemand verschiessen? Alles andere
-        // ist tote Zuweisung - siehe die Begruendung an der Aufrufstelle in EnsureAmmoLink.
+        // Which ammo can anyone still fire after the template change? Everything else is a dead assignment -
+        // see the reasoning at the call site in EnsureAmmoLink.
         private static void DropAmmoNoWeaponCanUse(Loadout anchor, Loadout template)
         {
             if (anchor == null) return;
@@ -350,23 +345,22 @@ namespace CEReloaded
             return MultiParentUtility.GetExtraParents(leaf).Where(EquipmentPackUtility.IsEquipmentPackLoadout).ToList();
         }
 
-        // "Welchen Versorgungs-INHALT traegt dieser Pawn" - auf Slot-Ebene, nicht auf Pack-Objekt-Ebene
-        // (2026-08-13). GetPawnPacks daneben beantwortet eine andere, ebenfalls richtige Frage ("welche
-        // Pack-OBJEKTE haengen an ihm") und bleibt unveraendert - aber wer wissen will, WAS er traegt, war
-        // damit bisher blind fuer alles, was ueber eine ROLLE kommt: eine Rolle haengt ihre Packs nicht als
-        // Extra-Eltern an, RoleUtility.Merge backt den ganzen Inhalt in EIN flaches Loadout. Das ist der Sinn
-        // einer Rolle, kein Fehler - aber jeder Aufrufer von GetPawnPacks hat role-getragene Versorgung
-        // schlicht nicht gesehen.
-        // Im Test sind davon vier Symptome aufgefallen, ohne die gemeinsame Ursache zu kennen: der
-        // Verfuegbarkeits-Tooltip an der Pack-Zelle zeigte nur direkt angehaengte Inhalte (ausgerechnet die
-        // knappe Medizin aus der Rolle fehlte), in "Assigned to" fehlte die Rollen-Traegerin ganz, ein
-        // anderer Kolonist stand dort mit 2 statt 32, und die Bedarfszahlen waren entsprechend zu niedrig -
-        // der Mod plante fuer einen Teil der Kolonie keinen Nachschub ein.
+        // "What supply CONTENT does this pawn carry" - at slot level, not pack-object level. GetPawnPacks next to
+        // it answers a different, equally valid question ("which pack OBJECTS hang on it") and stays unchanged -
+        // but anyone wanting to know WHAT the pawn carries was blind to everything coming via a ROLE: a role
+        // does not attach its packs as extra parents, RoleUtility.Merge bakes the whole content into ONE flat
+        // loadout. That is the point of a role, not a bug - but every caller of GetPawnPacks simply did not see
+        // role-carried supply.
+        // This showed up as four symptoms before the common cause was known: the availability tooltip on the
+        // pack cell showed only directly attached content (missing precisely the scarce medicine from the
+        // role), the role carrier was missing from "Assigned to" entirely, another colonist was listed with 2
+        // instead of 32, and the demand numbers were correspondingly too low - the mod planned no resupply for
+        // part of the colony.
         //
-        // Was als Pack-Inhalt einer Rolle zaehlt: alles, was KEINE Waffe, KEIN Schild und KEINE Munition ist.
-        // Genau das ist die Definition eines Equipment Packs (reine Versorgung), nur hier aus der flachen
-        // Union herausgelesen statt aus einem eigenen Objekt. Generische Eintraege zaehlen mit, ausser sie
-        // sind Munitions-Platzhalter (GetWeaponForGenericAmmo != null).
+        // What counts as a role's pack content: everything that is NOT a weapon, NOT a shield and NOT ammo.
+        // That is exactly the definition of an Equipment Pack (pure supply), just read from the flat union
+        // instead of a separate object. Generic entries count too, unless they are ammo placeholders
+        // (GetWeaponForGenericAmmo != null).
         public static List<LoadoutSlot> CarriedPackSlots(Pawn pawn)
         {
             var result = new List<LoadoutSlot>();
@@ -378,10 +372,9 @@ namespace CEReloaded
             return result;
         }
 
-        // Dieselbe Frage fuer ein GEPLANTES Rollen-Loadout, das noch an keinem Pawn haengt (2026-08-13):
-        // die Vorschau im Assign-Tab kennt nur den Plan, nie den lebenden Anker,
-        // hat den Rollen-Inhalt deshalb an CarriedPackSlots vorbei gesehen - und ihn mangels Pack-Objekt in
-        // die MUNITIONS-Gruppe gelegt. Eine Definition, zwei Einstiege.
+        // The same question for a PLANNED role loadout that is not on any pawn yet: the preview in the Assign
+        // tab only knows the plan, never the live anchor, so it saw the role content past CarriedPackSlots -
+        // and, lacking a pack object, put it into the AMMO group. One definition, two entry points.
         public static List<LoadoutSlot> RoleSupplySlots(Loadout role)
         {
             var result = new List<LoadoutSlot>();
@@ -391,8 +384,8 @@ namespace CEReloaded
             return result;
         }
 
-        // Ein Slot, der Versorgung ist - kein Kampfgeraet. Bewusst hier und nicht in jedem Aufrufer, damit
-        // "was ist Pack-Inhalt" genau eine Definition hat.
+        // A slot that is supply - not combat gear. Deliberately here and not in every caller, so that
+        // "what is pack content" has exactly one definition.
         private static bool IsSupplySlot(LoadoutSlot s)
         {
             if (s == null) return false;
@@ -436,7 +429,7 @@ namespace CEReloaded
             }
             Loadout leaf = EnsureAmmoLink(pawn, template);
             MultiParentUtility.SetExtraParents(leaf, combined);
-            // Erst die abgenommenen aufraeumen, dann die neuen saeen - siehe UnseedOwnAmmoForDetached.
+            // Clean up the detached ones first, then seed the new ones - see UnseedOwnAmmoForDetached.
             UnseedOwnAmmoForDetached(leaf, currentPacks.Except(newPacks));
             // Same ammo-starvation-on-attach fix as SidearmAssignmentUtility.SetPawnSidearms (see its own
             // comment for the full mechanism) - packs are documented as never containing an ammo-consuming
@@ -477,31 +470,29 @@ namespace CEReloaded
             }
         }
 
-        // Die Gegenrichtung zu SeedOwnAmmoForNewlyAttached (2026-08-14). Das Saeen gab es seit dem
-        // 2026-08-01, das Aufraeumen nie: eine abgenommene Zweitwaffe verliert nur ihre Elternverknuepfung,
-        // ihre beim Anhaengen auf den PERSOENLICHEN Anker kopierte Munition bleibt dort fuer immer stehen.
-        // Der Kolonist verlangt danach dauerhaft Munition fuer eine Waffe, die er nicht mehr traegt.
+        // The counterpart to SeedOwnAmmoForNewlyAttached. Seeding existed, cleanup never did: a detached
+        // sidearm only loses its parent link, while the ammo copied onto the PERSONAL anchor on attach stays
+        // there forever. The colonist then permanently demands ammo for a weapon they no longer carry.
         //
-        // Aufgefallen ist es am auffaelligsten bei Wurfsprengstoff, weil der SEINE EIGENE Munition ist
-        // (IsSelfAmmoWeapon): der zurueckgebliebene Slot ist dann der Sprengsatz selbst, und der ist eine
-        // WAFFE. Fehlszenario, am 14.08. Schritt fuer Schritt belegt - Zweitwaffe
-        // "W| satchel charge" abgehakt (Zelle zeigt danach das rote X, sie ist wirklich weg), Nachschub-
-        // Fenster geoeffnet: der Sprengsatz steht weiter als zu produzieren drin, mit LEERER Assig-Spalte,
-        // und taucht gleichzeitig NICHT unter "ueberfluessige Auftraege" auf. Beides erklaert derselbe
-        // Rest-Slot: ComputeWeaponDemand sieht ihn (Waffenslot -> Auftrag gilt als gebraucht),
-        // ComputeAmmoNeedForLoadouts ueberspringt ihn (IsSelfAmmoWeapon -> keine Zuweisung in der Raute).
+        // It was most visible with thrown explosives, because they are THEIR OWN ammo (IsSelfAmmoWeapon): the
+        // leftover slot is then the explosive itself, and that is a WEAPON. Failure scenario, step by step:
+        // untick the sidearm "W| satchel charge" (the cell then shows the red X, it really is gone), open the
+        // resupply window: the charge is still listed as to be produced, with an EMPTY Assigned column, and at
+        // the same time does NOT appear under "unneeded bills". The same leftover slot explains both:
+        // ComputeWeaponDemand sees it (weapon slot -> bill counts as needed), ComputeAmmoNeedForLoadouts skips
+        // it (IsSelfAmmoWeapon -> no assignment in the grid).
         //
-        // Entfernt wird NUR, was beides erfuellt: es kam aus dem gerade abgenommenen Loadout, UND keine der
-        // noch getragenen Waffen kann es verschiessen. Damit bleibt eine persoenliche Munitionswahl fuer
-        // eine weiterhin getragene Waffe unangetastet - das ist der ganze Zweck des Ankers.
-        // GetLoadoutAmmoDefs mit IsSelfAmmoWeapon, nicht Dialog_ChangeAmmo.RelevantAmmoPool: der Pool laesst
-        // Wurfsachen ausdruecklich aus (er beantwortet "welche Sorten darf der Spieler hier auswaehlen"),
-        // und genau die duerfen hier nicht durchs Raster fallen.
+        // Only what meets both conditions is removed: it came from the loadout just detached, AND none of the
+        // weapons still carried can fire it. A personal ammo choice for a weapon still carried stays
+        // untouched - that is the whole purpose of the anchor.
+        // GetLoadoutAmmoDefs with IsSelfAmmoWeapon, not Dialog_ChangeAmmo.RelevantAmmoPool: the pool explicitly
+        // leaves out throwables (it answers "which types may the player pick here"), and exactly those must
+        // not slip through the net here.
         internal static void UnseedOwnAmmoForDetached(Loadout anchor, IEnumerable<Loadout> detached)
         {
             if (anchor?.OwnSlots == null || detached == null) return;
-            // Einmal festhalten: die Aufrufer reichen LINQ-Ausdruecke herein, und diese Funktion laeuft
-            // zweimal darueber (konkrete Munition, dann die Platzhalter).
+            // Materialize once: callers pass in LINQ expressions, and this function iterates twice
+            // (concrete ammo, then the placeholders).
             List<Loadout> detachedList = detached.Where(l => l != null).ToList();
             HashSet<ThingDef> fromDetached = new HashSet<ThingDef>();
             foreach (Loadout lo in detachedList)
@@ -511,8 +502,8 @@ namespace CEReloaded
                     if (LoadoutUtility.IsAmmoDef(s.thingDef)) fromDetached.Add(s.thingDef);
             }
             if (fromDetached.Count == 0) return;
-            // Nach dem Umhaengen gelesen, nicht davor: `Slots` ist die Vereinigung aus eigenen Slots und
-            // den VERBLIEBENEN Eltern, also genau das, was der Kolonist ab jetzt traegt.
+            // Read after re-parenting, not before: `Slots` is the union of own slots and the REMAINING parents,
+            // i.e. exactly what the colonist carries from now on.
             HashSet<ThingDef> stillRelevant = new HashSet<ThingDef>();
             foreach (LoadoutSlot s in anchor.Slots ?? new List<LoadoutSlot>())
             {
@@ -525,16 +516,14 @@ namespace CEReloaded
                 if (own.thingDef != null && fromDetached.Contains(own.thingDef) && !stillRelevant.Contains(own.thingDef))
                     anchor.RemoveSlot(own);
 
-            // DASSELBE fuer den generischen Platzhalter (2026-08-18). Der Block darueber raeumt nur
-            // KONKRETE Munition weg - ein "Any ammo for <Waffe>", das der Kolonist fuer die abgenommene
-            // Zweitwaffe gesetzt hatte, blieb fuer immer auf dem Anker stehen. Das ist derselbe Schaden,
-            // gegen den die Funktion 2026-08-14 geschrieben wurde, nur ueber den anderen Weg: der
-            // Platzhalter loest sich in Patch_Loadout_MultiParentSlots wieder in echte Munition auf, der
-            // Kolonist verlangt sie also weiter fuer eine Waffe, die er nicht mehr traegt. Sichtbar wurde
-            // es an einer ganz anderen Stelle - der Kopieren-Knopf im Munitionsfenster zaehlte drei
-            // Eintraege, wo das Fenster zwei zeigte.
-            // Ein Platzhalter nennt seine Waffe selbst, die Bedingung ist also enger als oben: weg, wenn
-            // die Waffe aus dem gerade Abgenommenen kam UND keine verbliebene Waffe dieselbe ist.
+            // The SAME for the generic placeholder. The block above only removes CONCRETE ammo - an
+            // "Any ammo for <weapon>" the colonist had set for the detached sidearm stayed on the anchor forever.
+            // That is the same damage this function was written against, just via the other path: the
+            // placeholder resolves back into real ammo in Patch_Loadout_MultiParentSlots, so the colonist keeps
+            // demanding it for a weapon they no longer carry. It surfaced somewhere else entirely - the copy
+            // button in the ammo window counted three entries where the window showed two.
+            // A placeholder names its own weapon, so the condition is narrower than above: removed if the weapon
+            // came from what was just detached AND no remaining weapon is the same one.
             HashSet<ThingDef> weaponsFromDetached = new HashSet<ThingDef>();
             foreach (Loadout lo in detachedList)
             {

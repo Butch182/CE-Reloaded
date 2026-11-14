@@ -20,39 +20,36 @@ namespace CEReloaded
         public float foodFactor = 1f;
         public float grenadeFactor = 1f;
 
-        // WORAUS die Rolle zusammengesetzt wurde - die Etiketten der Quell-Loadouts, in der Reihenfolge des
-        // Draufziehens (2026-08-15).
+        // WHAT the role was composed of - the labels of the source loadouts, in the order they were dragged on.
         //
-        // Warum es das braucht: eine fertige Rolle ist ein FLACHGEKLOPFTES Loadout (RoleUtility.
-        // BuildRoleLoadout mischt die Quellen zusammen und multipliziert die Mengen). Aus dem Ergebnis
-        // laesst sich nicht mehr ablesen, aus welchen Loadouts es entstanden ist. Die Zusammensetzung lebte
-        // deshalb nur in einem Laufzeit-Woerterbuch des Dialogs und war weg, sobald man das Fenster zumachte.
-        // Folge - genau das Fehlerbild: Rolle auswaehlen, EIN Pack draufziehen, Update, und die Waffe ist weg,
-        // weil "die Rolle ist genau das, was in der Reihe liegt" auf eine leere Reihe traf.
+        // Why this is needed: a finished role is a FLATTENED loadout (RoleUtility.BuildRoleLoadout merges the
+        // sources and multiplies the counts). The result no longer tells which loadouts it came from. So the
+        // composition only lived in a runtime dictionary of the dialog and was gone as soon as the window closed.
+        // Consequence - exactly the failure seen: select a role, drag ONE pack on, Update, and the weapon is gone,
+        // because "the role is exactly what is in the row" met an empty row.
         //
-        // Etiketten und nicht UniqueIDs: CE vergibt IDs als Max+1 und benutzt sie nach dem Loeschen WIEDER.
-        // Eine gespeicherte ID koennte also spaeter auf ein voellig anderes Loadout zeigen - ein still
-        // falscher Inhalt statt einer sichtbar fehlenden Zeile. Ein umbenanntes Quell-Loadout faellt beim
-        // naechsten Auswaehlen einfach aus der Reihe; das ist der harmlosere Ausgang, und der Mod sucht
-        // seine Rollen ohnehin ueberall ueber das Etikett.
+        // Labels, not UniqueIDs: CE assigns IDs as max+1 and REUSES them after deletion. A stored ID could later
+        // point at a completely different loadout - silently wrong content instead of a visibly missing row. A
+        // renamed source loadout simply drops out of the row on the next selection; that is the more harmless
+        // outcome, and the mod looks up its roles by label everywhere anyway.
         public List<string> composition = new List<string>();
 
-        // ============ WELCHES Loadout diese Rolle IST - ueber die Identitaet, nicht ueber den Namen ============
+        // ============ WHICH loadout this role IS - by identity, not by name ============
         //
-        // 2026-08-17, Grundsatz: nichts mehr an irgendwelchen Praefixen erkennen - die sollen nur noch
-        // aesthetisch sein und im Nachgang hinzugefuegt werden, nicht im String stehen.
+        // Principle: nothing is recognized by prefixes any more - prefixes are purely cosmetic and added at
+        // display time, not stored in the string.
         //
-        // Bis hierher lief BEIDES ueber das Etikett: ob ein Loadout eine Rolle IST (label.StartsWith("[Role]"))
-        // und WELCHES Loadout zu einer Rolle gehoert (label == "[Role] " + name). Deshalb stand im Reiter die
-        // Warnung "benenne diese Loadouts nicht um" - sie war richtig, und sie war das Symptom.
+        // Previously BOTH went through the label: whether a loadout IS a role (label.StartsWith("[Role]")) and
+        // WHICH loadout belongs to a role (label == "[Role] " + name). That is why the tab showed the warning
+        // "do not rename these loadouts" - it was correct, and it was the symptom.
         //
-        // Die ID ist hier ausdruecklich das RICHTIGE Mittel, obwohl der Kommentar ueber `composition` sagt,
-        // dass IDs recycelt werden. Der Unterschied ist das Aufraeumen: eine verwaiste ID wird beim Loeschen
-        // geputzt (LoadoutDeletionUtility.ForgetSideBooks raeumt sie ueberall weg, genau wie die vier anderen
-        // Nebenbuecher). Bei `composition` geht das nicht, weil dort FREMDE Loadouts referenziert werden, die
-        // jemand anders loescht - hier zeigt die Zahl auf das eigene Loadout der Rolle.
-        // 0 heisst "noch nicht verknuepft". Der Altbestand wird EINMAL beim Laden nachgetragen
-        // (CEReloadedGameComponent.AdoptMarkersOnce) - danach fragt nirgends mehr jemand das Etikett.
+        // The ID is explicitly the RIGHT tool here, even though the comment on `composition` says IDs get
+        // recycled. The difference is cleanup: an orphaned ID is purged on deletion
+        // (LoadoutDeletionUtility.ForgetSideBooks removes it everywhere, just like the four other side books).
+        // That is not possible for `composition`, because it references FOREIGN loadouts that someone else
+        // deletes - here the number points at the role's own loadout.
+        // 0 means "not linked yet". Existing data is filled in ONCE on load
+        // (CEReloadedGameComponent.AdoptMarkersOnce) - after that nothing asks the label any more.
         public int loadoutId;
 
         public void ExposeData()
@@ -64,9 +61,9 @@ namespace CEReloaded
             Scribe_Values.Look(ref grenadeFactor, "grenadeFactor", 1f);
             Scribe_Collections.Look(ref composition, "composition", LookMode.Value);
             Scribe_Values.Look(ref loadoutId, "loadoutId", 0);
-            // Ein Spielstand von vor dieser Aenderung hat den Knoten nicht, und Scribe_Collections setzt
-            // die Liste dann auf null - jede spaetere Nutzung waere ein Absturz. Solche Rollen bleiben
-            // bewusst OHNE Zusammensetzung: raten waere schlimmer als eine leere Reihe (siehe oben).
+            // A save from before this change lacks the node, and Scribe_Collections then sets the list to null -
+            // any later use would crash. Such roles deliberately stay WITHOUT a composition: guessing would be
+            // worse than an empty row (see above).
             if (Scribe.mode == LoadSaveMode.PostLoadInit && composition == null) composition = new List<string>();
         }
 
@@ -75,9 +72,9 @@ namespace CEReloaded
             name = name, ammoFactor = ammoFactor, medicineFactor = medicineFactor,
             foodFactor = foodFactor, grenadeFactor = grenadeFactor,
             composition = composition != null ? new List<string>(composition) : new List<string>()
-            // loadoutId wird BEWUSST nicht mitkopiert: eine Kopie ist eine neue Rolle und bekommt ihr
-            // eigenes Loadout, sobald sie zum ersten Mal geschrieben wird. Uebernaehme sie die ID, zeigten
-            // zwei Rollen auf dasselbe Loadout und wuerden sich gegenseitig ueberschreiben.
+            // loadoutId is DELIBERATELY not copied: a copy is a new role and gets its own loadout the first time
+            // it is written. If it took over the ID, two roles would point at the same loadout and overwrite
+            // each other.
         };
     }
 
@@ -97,17 +94,16 @@ namespace CEReloaded
     // RimWorld for every game (it creates all GameComponent subclasses that have a (Game) constructor).
     public class CEReloadedGameComponent : GameComponent
     {
-        // EIN gemerkter Zugriff auf diese Komponente (2026-08-14, aus der zweiten Performance-Runde).
-        // `Game.GetComponent<T>()` geht die Komponentenliste des Spiels durch und macht pro Eintrag einen
-        // Typtest. Das steht an CEs heissestem Getter: `Loadout.Slots` laeuft ueber
-        // Patch_Loadout_MultiParentSlots, und der ruft pro Zugriff ZWEI davon (MultiParentUtility.Map und
-        // AmmoAssignmentUtility.IsAmmoCleared) - waehrend CEs eigener Think-Tree den Getter pro Kolonist
-        // und Entscheidung anfasst, auch ohne offenes Mod-Fenster.
-        // Gemerkt am Game-OBJEKT, nicht ueber eine Zeitschranke: solange ein Spiel laeuft, ist die Antwort
-        // unveraenderlich (RimWorld baut alle GameComponents mit dem Game), und ein neues oder geladenes
-        // Spiel IST ein anderes Objekt. Damit kann dieser Cache nicht veralten, ohne dass irgendwo an ein
-        // Aufraeumen gedacht werden muss - genau der Fehler, den ein TTL-Cache hier machen wuerde.
-        // Verhaelt sich sonst exakt wie der alte Ausdruck: null, solange kein Spiel laeuft.
+        // ONE remembered reference to this component (from a performance pass).
+        // `Game.GetComponent<T>()` walks the game's component list and does a type test per entry. That sits on
+        // CE's hottest getter: `Loadout.Slots` goes through Patch_Loadout_MultiParentSlots, which calls TWO of
+        // them per access (MultiParentUtility.Map and AmmoAssignmentUtility.IsAmmoCleared) - while CE's own think
+        // tree touches the getter per colonist and decision, even with no mod window open.
+        // Cached against the Game OBJECT, not a time limit: while a game runs the answer is immutable (RimWorld
+        // builds all GameComponents with the Game), and a new or loaded game IS a different object. So this
+        // cache cannot go stale without anyone having to remember a cleanup - exactly the mistake a TTL cache
+        // would make here.
+        // Otherwise behaves exactly like the old expression: null while no game is running.
         private static Game cachedGame;
         private static CEReloadedGameComponent cachedComp;
 
@@ -145,10 +141,10 @@ namespace CEReloaded
         // rename, unlike the "W|" prefix convention (LoadoutUtility.IsManagedByUs falls back to the prefix
         // only for loadouts generated before this set existed, so nothing already in a save needs migrating).
         public HashSet<int> managedLoadoutIds = new HashSet<int>();
-        // Welche Loadouts EQUIPMENT PACKS sind - ueber die Identitaet statt ueber das Etikett (2026-08-17,
-        // gleicher Grundsatz: nichts an Praefixen erkennen). Dieselbe Bauform wie managedLoadoutIds daneben:
-        // beim Anlegen eintragen, beim Loeschen austragen (LoadoutDeletionUtility - Pflicht, weil CEs IDs
-        // recycelt werden), und der "[Pack]"-Marker im Etikett bleibt nur noch Notnagel fuer Altbestand.
+        // Which loadouts ARE EQUIPMENT PACKS - by identity instead of label (same principle: recognize nothing
+        // by prefixes). Same pattern as managedLoadoutIds next to it: add on creation, remove on deletion
+        // (LoadoutDeletionUtility - mandatory, because CE's IDs are recycled), and the "[Pack]" marker in the
+        // label is only a fallback for older data.
         public HashSet<int> packLoadoutIds = new HashSet<int>();
 
         // Production bills OUR wizard actually created (LoadoutUtility.MarkBillAsManaged, called from both
@@ -158,12 +154,11 @@ namespace CEReloaded
         // Arm-my-Colony's "Delete ammo/weapon bills" switches offer a precise "delete only what THIS mod
         // queued" scope alongside the existing blunt "delete everything for a recognized type" one, instead
         // of only ever being able to do the latter (2026-08-01).
-        // Bis 2026-08-15 stand hier "wird nie aufgeraeumt - eine tote ID ist harmlos, weil nur ueber noch
-        // existierende Auftraege iteriert wird". Fuer die KORREKTHEIT stimmt das weiterhin. Fuer die GROESSE
-        // nicht: die Menge wuchs mit jedem je erzeugten Auftrag, wurde nie kleiner und wird mitgespeichert -
-        // ueber eine lange Partie mit regelmaessigem Nachschub-Assistenten sind das tausende tote
-        // Zeichenketten in jedem Spielstand. Seit 2026-08-15 raeumt LoadoutUtility.PruneManagedBillIds am
-        // Aufraeum-Tick auf (einmal je Spielstunde, zusammen mit den verwaisten Ankern).
+        // This used to say "never cleaned up - a dead ID is harmless because only existing bills are iterated".
+        // For CORRECTNESS that is still true. For SIZE it is not: the set grew with every bill ever created,
+        // never shrank and is saved with the game - over a long playthrough with regular use of the resupply
+        // wizard that is thousands of dead strings in every save. LoadoutUtility.PruneManagedBillIds now cleans
+        // it up on the cleanup tick (once per in-game hour, together with the orphaned anchors).
         public HashSet<string> managedBillIds = new HashSet<string>();
 
         // Colonists the PLAYER declared off-limits for arming, keyed by Pawn.thingIDNumber (stable within a
@@ -175,48 +170,45 @@ namespace CEReloaded
         // nothing on a colonist who has no loadout yet).
         public HashSet<int> excludedPawnIds = new HashSet<int>();
 
-        // Vom Spieler GESPERRTE Waffen (2026-09-03): die Automatik
-        // vergibt sie nie, im Auswahlfenster stehen sie ausgegraut am Gruppenende und lassen sich dort
-        // wieder entsperren. defNames statt ThingDef-Referenzen - stabil im Spielstand, und eine Waffe
-        // aus einem spaeter entfernten Mod verschwindet einfach still aus der Menge.
+        // Weapons the PLAYER has DISABLED: the automation never hands them out, and in the selection window they
+        // are greyed out at the end of their group, where they can be re-enabled. defNames instead of ThingDef
+        // references - stable in the save, and a weapon from a mod removed later just silently drops out of the
+        // set.
         public HashSet<string> disabledWeapons = new HashSet<string>();
 
-        // Dasselbe fuer ROLLEN und handgebaute Loadouts (2026-09-04): nicht nur Waffen, auch Rollen und
-        // Loadouts lassen sich sperren, mit allen Folgen. Hier stehen UniqueIDs statt defNames, denn ein
-        // Loadout hat keinen defName -
-        // und weil CE seine IDs nach dem Loeschen WIEDERVERWENDET (Max+1), muss diese Menge beim Loeschen
-        // mitgeputzt werden, sonst gilt die naechste Vorlage mit derselben Nummer als gesperrt.
-        // Das erledigt LoadoutDeletionUtility.ForgetSideBooks - die eine Stelle, an der jede ID-Liste
-        // dieses Mods aufgeraeumt wird.
+        // The same for ROLES and hand-built loadouts: not only weapons, roles and loadouts can be disabled too,
+        // with all consequences. UniqueIDs instead of defNames here, since a loadout has no defName - and
+        // because CE REUSES its IDs after deletion (max+1), this set must be purged on deletion, otherwise the
+        // next template with the same number counts as disabled.
+        // LoadoutDeletionUtility.ForgetSideBooks does that - the one place where every ID list of this mod is
+        // cleaned up.
         public HashSet<int> disabledLoadouts = new HashSet<int>();
 
-        // Welches Equipment Pack der Generator fuer welchen seiner Plaene angelegt hat - Planname ->
-        // Loadout.UniqueID. Bis 2026-08-09 erkannte der Generator "gibt es das schon" ausschliesslich am
-        // LABEL-Text, mit zwei Folgen: ein umbenanntes Pack galt beim naechsten Durchlauf als neu und wurde
-        // ein zweites Mal angelegt, und zwei Packs mit gleichem Namen waren nicht auseinanderzuhalten.
-        // Der Name bleibt als Rueckfallebene fuer Packs, die vor dieser Aufzeichnung entstanden sind.
+        // Which Equipment Pack the generator created for which of its plans - plan name -> Loadout.UniqueID.
+        // Previously the generator recognized "does this already exist" solely by the LABEL text, with two
+        // consequences: a renamed pack counted as new on the next run and was created a second time, and two
+        // packs with the same name could not be told apart.
+        // The name remains as a fallback for packs created before this record existed.
         public Dictionary<string, int> packPlanIds = new Dictionary<string, int>();
 
         public CEReloadedGameComponent(Game game) { }
 
-        // ============ EINMALIGE UEBERNAHME: Marker -> Identitaet (2026-08-17) ============
+        // ============ ONE-TIME ADOPTION: marker -> identity ============
         //
-        // Sein Auftrag: "schau ob jetzt wirklich kein code mehr nach den prefixes sucht, egal ob waffe,
-        // sidearm, equipment pack oder rolle, das muss raus".
+        // Goal: no code may look for prefixes any more, whether weapon, sidearm, equipment pack or role.
         //
-        // Ohne diese Stelle koennten die Rueckfaelle in IsRoleLoadout/IsEquipmentPackLoadout/
-        // IsGeneratedTemplate nicht verschwinden: alles, was VOR der Umstellung entstanden ist, kennt seine
-        // Identitaet nicht und wuerde beim Wegfall des Markers schlagartig zu einem gewoehnlichen Loadout -
-        // Rollen waeren keine Rollen mehr, Packs keine Packs. Das waere kein Anzeigefehler, sondern
-        // Datenverlust in der Wahrnehmung des Spiels.
+        // Without this, the fallbacks in IsRoleLoadout/IsEquipmentPackLoadout/IsGeneratedTemplate could not go
+        // away: everything created BEFORE the switch does not know its identity and would abruptly become an
+        // ordinary loadout once the marker is dropped - roles would no longer be roles, packs no longer packs.
+        // That would not be a display bug but data loss as far as the game is concerned.
         //
-        // Deshalb wird EINMAL beim Laden nachgetragen, was der Marker noch weiss. Danach ist der Marker
-        // reine Kosmetik und niemand fragt ihn mehr. Der Durchlauf ist billig (eine Schleife ueber die
-        // Loadout-Liste) und idempotent - HashSets und eine ID-Zuweisung, die schon stimmt.
+        // So what the marker still knows is filled in ONCE on load. After that the marker is pure cosmetics and
+        // nobody asks it any more. The pass is cheap (one loop over the loadout list) and idempotent - HashSets
+        // and an ID assignment that is already correct.
         //
-        // Bewusst KEINE Migrations-Versionsnummer: der Durchlauf darf jedes Mal laufen. Eine Zaehlung, die
-        // sich merkt "schon erledigt", waere genau die Sorte Zustand, die beim naechsten Sonderfall falsch
-        // steht - und hier kostet das Wiederholen nichts.
+        // Deliberately NO migration version number: the pass may run every time. A counter that remembers
+        // "already done" would be exactly the kind of state that is wrong in the next special case - and
+        // repeating costs nothing here.
         public override void FinalizeInit() => AdoptMarkersOnce();
 
         public override void LoadedGame() => AdoptMarkersOnce();
@@ -226,17 +218,16 @@ namespace CEReloaded
             List<Loadout> all = LoadoutManager.Loadouts;
             if (all == null) return;
 
-            // Rollen: ueber den Namen zuordnen, denn genau das war bisher die Verbindung. Ab jetzt haelt
-            // die ID, und der Name ist frei. Der Rumpf steht in RoleUtility, weil ihn seit 2026-08-18 auch
-            // der Zuruecksetzen-Knopf braucht - siehe dort.
+            // Roles: match by name, because that was the link until now. From here on the ID holds and the name
+            // is free. The body lives in RoleUtility because the reset button needs it too - see there.
             RoleUtility.AdoptRoleLoadoutsByName();
 
             foreach (Loadout lo in all)
             {
                 if (lo == null || lo.defaultLoadout || lo.label == null) continue;
                 if (EquipmentPackUtility.IsEquipmentPackLabel(lo.label)) packLoadoutIds.Add(lo.UniqueID);
-                // Waffen-Vorlagen: die Vorsilbe ist einstellbar und steht standardmaessig auf "keine".
-                // Deshalb beide Schreibweisen pruefen - die eingestellte und die historische "W|".
+                // Weapon templates: the prefix is configurable and defaults to "none". So check both spellings -
+                // the configured one and the historical "W|".
                 CEReloadedSettings s = CEReloadedMod.settings;
                 string mark = s != null && !string.IsNullOrEmpty(s.loadoutPrefix) ? s.loadoutPrefix : "W|";
                 if (lo.label.StartsWith(mark) || lo.label.StartsWith("W|")) managedLoadoutIds.Add(lo.UniqueID);
@@ -253,8 +244,8 @@ namespace CEReloaded
             if (Find.TickManager.TicksGame % 2500 == 0)
             {
                 AmmoAssignmentUtility.CleanupOrphanedAnchors();
-                // Dieselbe Hygiene fuer die Auftrags-Merkliste: sie wuchs mit jedem je erzeugten Auftrag
-                // und wurde nie kleiner, obwohl sie im Spielstand mitgeschrieben wird (2026-08-15).
+                // The same hygiene for the bill bookkeeping set: it grew with every bill ever created and never
+                // shrank, although it is written into the save.
                 LoadoutUtility.PruneManagedBillIds();
             }
         }
@@ -324,20 +315,19 @@ namespace CEReloaded
             return comp != null ? comp.UiState() : CERUiState.FromSettings(CEReloadedMod.settings);
         }
 
-        // ============ Erkennung ueber die Identitaet, nicht ueber den Namen (2026-08-17) ============
+        // ============ Recognition by identity, not by name ============
         //
-        // Ein Loadout ist genau dann eine Rolle, wenn irgendeine LoadoutRole darauf zeigt. Das Etikett spielt
-        // dafuer keine Rolle mehr - es ist der erste Schritt zu seinem Auftrag "nichts mehr an praefixes
-        // erkennen".
+        // A loadout is a role exactly when some LoadoutRole points at it. The label no longer matters for that -
+        // it is the first step towards recognizing nothing by prefixes.
         //
-        // IsRoleLabel bleibt als RUECKFALL, und zwar nur fuer den einen Fall, den es noch geben muss: eine
-        // Rolle aus einem Spielstand von vor dieser Aenderung hat loadoutId == 0. Sobald sie einmal
-        // angefasst wird, schreibt RoleLoadoutOf die Verknuepfung fest, und ab da zaehlt nur noch die.
-        // Der Rueckfall ist damit selbstheilend und verschwindet von allein aus dem Bestand.
+        // IsRoleLabel remains as a FALLBACK, only for the one case that must still exist: a role from a save
+        // made before this change has loadoutId == 0. As soon as it is touched once, RoleLoadoutOf records the
+        // link, and from then on only that counts. The fallback is therefore self-healing and disappears from
+        // existing data on its own.
         //
-        // Gecacht, weil das hier pro Zeile pro Bild gefragt wird (CEs eigene Loadout-Spalte, unsere Zellen,
-        // die FloatMenu-Faerbung). Der Schluessel ist die Rollenzahl plus die Loadout-Zahl - beides aendert
-        // sich genau dann, wenn sich die Antwort aendern kann.
+        // Cached because this is asked per row per frame (CE's own Loadout column, our cells, the FloatMenu
+        // tinting). The key is the role count plus the loadout count - both change exactly when the answer can
+        // change.
         private static HashSet<int> roleIdCache;
         private static int roleIdCacheKey = -1;
 
@@ -352,8 +342,8 @@ namespace CEReloaded
             return roleIdCache = ids;
         }
 
-        // Global (Mod-Einstellungen) UND spielstandlokal - eine Rolle kann in beiden Listen leben, und die
-        // Frage "ist das eine Rolle" darf nicht davon abhaengen, wo sie gespeichert ist.
+        // Global (mod settings) AND save-local - a role can live in both lists, and the question "is this a
+        // role" must not depend on where it is stored.
         public static List<LoadoutRole> AllKnownRoles()
         {
             var all = new List<LoadoutRole>();
@@ -363,9 +353,9 @@ namespace CEReloaded
             return all;
         }
 
-        // Das Loadout DIESER Rolle. Erst ueber die gemerkte Identitaet, sonst einmalig ueber das Etikett -
-        // und dann wird die Identitaet festgeschrieben, damit ein spaeteres Umbenennen sie nicht mehr
-        // zerreissen kann. Das ist die Stelle, die die Warnung im Reiter ueberfluessig macht.
+        // THIS role's loadout. First via the remembered identity, otherwise once via the label - and then the
+        // identity is recorded so that a later rename can no longer break it. This is what makes the warning
+        // in the tab unnecessary.
         public static Loadout RoleLoadoutOf(LoadoutRole role)
         {
             if (role == null || LoadoutManager.Loadouts == null) return null;
@@ -373,33 +363,31 @@ namespace CEReloaded
             {
                 Loadout byId = LoadoutManager.Loadouts.FirstOrDefault(l => l != null && l.UniqueID == role.loadoutId);
                 if (byId != null) return byId;
-                // Zeigt ins Leere - das Loadout wurde ausserhalb unserer Loeschroutine entfernt. Verknuepfung
-                // aufgeben und unten normal weitersuchen, statt eine tote Zahl mitzuschleppen.
+                // Points nowhere - the loadout was removed outside our deletion routine. Drop the link and keep
+                // searching normally below instead of carrying a dead number around.
                 role.loadoutId = 0;
                 roleIdCacheKey = -1;
             }
-            // Kein Etiketten-Rueckfall mehr: die Zuordnung ueber den Namen passiert genau EINMAL beim Laden
-            // (AdoptMarkersOnce). Findet sich hier nichts, hat die Rolle wirklich noch kein Loadout - und
-            // dann ist "null" die richtige Antwort, nicht eine Suche nach ihrem Namen.
+            // No label fallback any more: matching by name happens exactly ONCE on load (AdoptMarkersOnce). If
+            // nothing is found here, the role really has no loadout yet - and then "null" is the right answer,
+            // not a search by its name.
             return null;
         }
 
-        // Jede Rolle OHNE Verknuepfung an ein vorhandenes "[Role] <Name>"-Loadout binden. Genau die
-        // Zuordnung, die beim Laden einmal laeuft (CEReloadedGameComponent.AdoptMarkersOnce) - hier
-        // herausgeloest, weil sie seit 2026-08-18 an einer zweiten Stelle gebraucht wird.
+        // Bind every role WITHOUT a link to an existing "[Role] <name>" loadout. Exactly the matching that runs
+        // once on load (CEReloadedGameComponent.AdoptMarkersOnce) - extracted here because it is needed in a
+        // second place.
         //
-        // Anlass (Befund mit Screenshot): nach "Zuruecksetzen" im Rollen-Reiter standen ploetzlich
-        // "[Role] Support", "[Role] Breacher" und "[Role] Assault" in der Liste "Your weapon" - also unter
-        // den Dingen, die man auf eine Rolle ZIEHEN kann. Danach liess sich eine Rolle in eine Rolle legen,
-        // und die Vorschau zeigte zwei Hauptwaffen mit Ueberlast.
-        // Die Ursache ist genau hier: Zuruecksetzen ersetzt die globalen Rollen durch frische Vorgaben, und
-        // eine frische Rolle hat loadoutId 0. Ihr altes Loadout lebt aber weiter - es gehoert ab diesem
-        // Moment zu keiner Rolle mehr, und ohne Besitzer ist es fuer jede Identitaetspruefung ein ganz
-        // gewoehnliches Loadout. Die Erkennung war nicht kaputt, sie hatte nur nichts mehr zu erkennen.
-        // Das Zuordnen nach dem Zuruecksetzen schliesst die Luecke an der Wurzel, statt sie hinterher
-        // wieder am Etikett aufzufangen.
+        // Cause: after "Reset" in the Roles tab, "[Role] Support", "[Role] Breacher" and "[Role] Assault"
+        // suddenly appeared in the "Your weapon" list - i.e. among the things you can DRAG onto a role. After
+        // that a role could be put into a role, and the preview showed two main weapons with overload.
+        // The cause is right here: Reset replaces the global roles with fresh defaults, and a fresh role has
+        // loadoutId 0. Its old loadout lives on, though - from that moment it belongs to no role, and without
+        // an owner it is an entirely ordinary loadout to every identity check. Recognition was not broken, it
+        // just had nothing left to recognize.
+        // Matching after the reset closes the gap at the root instead of catching it via the label afterwards.
         //
-        // Rueckgabe: wieviele Verknuepfungen neu entstanden sind (fuer die Meldung am Knopf).
+        // Returns: how many links were newly created (for the message at the button).
         public static int AdoptRoleLoadoutsByName()
         {
             List<Loadout> all = LoadoutManager.Loadouts;
@@ -417,13 +405,12 @@ namespace CEReloaded
             return n;
         }
 
-        // Wieviele Rollen wuerden ihre BAUSTEINE verlieren, wenn diese Loadouts verschwinden (2026-08-18)?
-        // Eine Rolle merkt sich, AUS WELCHEN Vorlagen sie zusammengesetzt wurde - nicht deren Inhalt, den
-        // hat sie beim Speichern flachgeklopft. Verschwinden die Quellen, behaelt sie also ihren Inhalt
-        // (jeder Kolonist darauf bleibt ausgeruestet), aber ihre Reihe ist leer und sie laesst sich nicht
-        // mehr sinnvoll nachjustieren.
-        // Das ist kein Fehler, sondern die Folge des Schnappschuss-Prinzips - es ueberrascht nur, wenn es
-        // niemand sagt. Genau dafuer ist diese Zahl da.
+        // How many roles would lose their BUILDING BLOCKS if these loadouts disappear?
+        // A role remembers WHICH templates it was composed of - not their content, which it flattened on save.
+        // If the sources disappear it keeps its content (every colonist on it stays equipped), but its row is
+        // empty and it can no longer be adjusted meaningfully.
+        // That is not a bug but a consequence of the snapshot principle - it is only surprising if nobody says
+        // so. That is what this number is for.
         public static int CountRolesComposedOf(IEnumerable<Loadout> doomed)
         {
             if (doomed == null) return 0;
@@ -442,9 +429,9 @@ namespace CEReloaded
             roleIdCacheKey = -1;
         }
 
-        // Aufgerufen von LoadoutDeletionUtility - ohne das zeigte eine gemerkte ID nach dem Loeschen auf ein
-        // RECYCELTES fremdes Loadout (CEs IDs sind Max+1 und werden wiederverwendet), und eine beliebige
-        // neue Vorlage haette sich ploetzlich als Rolle ausgegeben.
+        // Called from LoadoutDeletionUtility - without it, a remembered ID pointed at a RECYCLED foreign loadout
+        // after deletion (CE's IDs are max+1 and get reused), and an arbitrary new template would suddenly have
+        // passed itself off as a role.
         public static void ForgetRoleLoadout(int loadoutId)
         {
             foreach (LoadoutRole r in AllKnownRoles())
@@ -452,9 +439,8 @@ namespace CEReloaded
             roleIdCacheKey = -1;
         }
 
-        // KEIN Etiketten-Rueckfall mehr (2026-08-17). Was es vor der
-        // Umstellung schon gab, wird beim Laden EINMAL nachgetragen - siehe
-        // CEReloadedGameComponent.AdoptMarkersOnce. Ab hier entscheidet allein die Identitaet.
+        // NO label fallback any more. Whatever existed before the switch is filled in ONCE on load - see
+        // CEReloadedGameComponent.AdoptMarkersOnce. From here on identity alone decides.
         public static bool IsRoleLoadout(Loadout lo) => lo != null && RoleLoadoutIds().Contains(lo.UniqueID);
         public static bool IsRoleLabel(string label) => !string.IsNullOrEmpty(label) && label.StartsWith(RoleMarker);
 
@@ -463,12 +449,11 @@ namespace CEReloaded
         // (2026-08-02: Roles showed their raw internal marker everywhere, the only one of
         // the three template types that did). Purely cosmetic - RoleMarker/IsRoleLabel above, and every
         // internal identity check, are completely untouched, so this can never un-recognize a Role.
-        // Reicht seit 2026-08-16 an LoadoutUtility.LoadoutDisplayName durch - EINE Stelle fuer alle
-        // Namen, statt dass jede Stelle selbst bastelt. Der Name bleibt, damit die knapp zwanzig
-        // Aufrufstellen lesbar bleiben und nicht alle in einem Zug angefasst werden mussten.
-        // markerShownElsewhere: false - diese Fassung wird dort benutzt, wo nur Text steht (Menues,
-        // Meldungen, CEs eigene Spalte). Wo ein Symbol oder eine Farbe danebensteht, nimmt der Aufrufer
-        // LoadoutUtility.CellLabel.
+        // Delegates to LoadoutUtility.LoadoutDisplayName - ONE place for all names instead of every call site
+        // building its own. The name is kept so the roughly twenty call sites stay readable and did not all
+        // have to be touched in one go.
+        // markerShownElsewhere: false - this variant is used where there is only text (menus, messages, CE's
+        // own column). Where an icon or a color sits next to it, the caller uses LoadoutUtility.CellLabel.
         public static string DisplayLabel(Loadout lo) => LoadoutUtility.LoadoutDisplayName(lo, false);
 
         // Populate the role list with sensible presets the first time it is used. Factors only, so no def lookups needed.
@@ -479,19 +464,18 @@ namespace CEReloaded
             if (settings.roles.Count == 0) settings.roles.AddRange(DefaultRoles());
         }
 
-        // ============ Zuruecksetzen der GLOBALEN Rollen - an EINER Stelle (2026-09-04) ============
+        // ============ Resetting the GLOBAL roles - in ONE place ============
         //
-        // Es gab zwei Knoepfe dafuer (Rollen-Reiter und Mod-Einstellungen), und sie machten
-        // Verschiedenes: der eine ordnete die alten Loadouts wieder zu, der andere nicht. Beiden
-        // gemeinsam war der Fehler, den auch der Loeschknopf hatte - eine Rolle mit einem NICHT in den
-        // Vorgaben vorkommenden Namen ("Agent Rifleman") verschwindet beim Zuruecksetzen, ihr Loadout
-        // "[Role] Agent Rifleman" aber nicht. Ohne Rolle dahinter ist es fuer jede Identitaetspruefung
-        // eine gewoehnliche Vorlage: die Zuweisung verteilt sie weiter (auch unter "Keine Rollen"), und
-        // zwar unter ihrem rohen Etikett samt "[Role]"-Marker.
+        // There used to be two buttons for this (Roles tab and mod settings), and they did different things: one
+        // re-matched the old loadouts, the other did not. Both shared the bug the delete button also had - a
+        // role whose name does NOT appear among the defaults ("Agent Rifleman") disappears on reset, but its
+        // loadout "[Role] Agent Rifleman" does not. Without a role behind it, it is an ordinary template to every
+        // identity check: assignment keeps handing it out (even under "No roles"), and under its raw label
+        // including the "[Role]" marker.
         //
-        // Reihenfolge hier ist wesentlich: erst einsammeln, WAS den Rollen jetzt gehoert (nach dem
-        // Clear ist die Verknuepfung nicht mehr erreichbar), dann zuruecksetzen, dann die gleichnamigen
-        // wieder zuordnen - und erst danach loeschen, was danach noch immer herrenlos ist.
+        // The order here matters: first collect WHAT belongs to the roles now (after the Clear the link is no
+        // longer reachable), then reset, then re-match the ones with the same name - and only then delete what
+        // is still ownerless.
         public static void ResetGlobalRoles(CEReloadedSettings settings)
         {
             if (settings == null) return;
@@ -504,9 +488,8 @@ namespace CEReloaded
             }
             settings.roles.Clear();
             settings.roles.AddRange(DefaultRoles());
-            // Gleichnamige Vorgaberollen uebernehmen ihr altes Loadout zurueck (2026-08-18): sonst standen
-            // "[Role] Support" & Co. in der ZIEH-Liste und eine Rolle liess
-            // sich in eine Rolle legen).
+            // Default roles with the same name take back their old loadout: otherwise "[Role] Support" and co.
+            // appeared in the DRAG list and a role could be put into a role.
             AdoptRoleLoadoutsByName();
             var stillOwned = new HashSet<int>();
             foreach (LoadoutRole r in AllKnownRoles())
@@ -514,19 +497,18 @@ namespace CEReloaded
             LoadoutDeletionUtility.DeleteAll(owned.Where(l => !stillOwned.Contains(l.UniqueID)));
         }
 
-        // ============ Eine geloeschte Vorgaberolle zurueckholen, OHNE alles andere wegzuwerfen ============
+        // ============ Restore a deleted default role WITHOUT throwing everything else away ============
         //
-        // 2026-09-04, Befund im Test: eine Waffe auf die leere Vorlagenkarte "[G] Assault" gezogen, danach
-        // das x gedrueckt, um es rueckgaengig zu machen - und Assault war aus der GLOBALEN Bibliothek
-        // verschwunden. Nicht auf die leere Vorlage zurueckgefallen: weg. Die sieben Vorgaberollen sind der
-        // einzige Startpunkt fuer Rollen, und der einzige Weg zurueck war "Voreinstellungen zuruecksetzen" -
-        // das nimmt jede selbst gebaute Rolle mit. Eine Falle mit sehr hohem Preis fuer einen Fehlklick.
+        // The failure: drag a weapon onto the empty template card "[G] Assault", then press the x to undo it -
+        // and Assault was gone from the GLOBAL library. Not reverted to the empty template: gone. The seven
+        // default roles are the only starting point for roles, and the only way back was "Reset to defaults" -
+        // which takes every self-built role with it. A trap with a very high price for a misclick.
         //
-        // Bewusst NICHT gebaut: "Loeschen macht aus einer Vorgaberolle wieder eine leere Vorlage". Loeschen
-        // soll loeschen - wer Assault nicht will, soll ihn loswerden koennen, und eine Karte, die nach dem
-        // Loeschen wiederkommt, ist ihr eigener Fehlerbericht. Gebaut ist statt dessen der fehlende Rueckweg:
-        // was von den sieben fehlt, kommt einzeln zurueck, an seinen Platz in der Vorgabereihenfolge, und
-        // nichts anderes wird angefasst.
+        // Deliberately NOT built: "deleting turns a default role back into an empty template". Delete should
+        // delete - anyone who does not want Assault should be able to get rid of it, and a card that comes back
+        // after deletion would itself be a bug. What is built instead is the missing way back: whichever of the
+        // seven is missing comes back individually, at its place in the default order, and nothing else is
+        // touched.
         public static List<LoadoutRole> MissingPresetRoles(CEReloadedSettings settings)
         {
             var missing = new List<LoadoutRole>();
@@ -549,21 +531,20 @@ namespace CEReloaded
             if (missing.Count == 0) return 0;
             foreach (LoadoutRole m in missing)
             {
-                // An den Platz, den die Vorgabe hat - eine wiederhergestellte Rolle soll nicht als
-                // Anhaengsel am Ende stehen (genau das passierte beim Reparieren von Hand im Test:
-                // "die Rolle steht jetzt am ENDE der Liste statt am Anfang").
+                // At the default's position - a restored role should not be tacked on at the end (restoring by
+                // hand put the role at the END of the list instead of the beginning).
                 int want = presets.FindIndex(d => d.name == m.name);
                 int at = Mathf.Clamp(want < 0 ? settings.roles.Count : want, 0, settings.roles.Count);
                 settings.roles.Insert(at, m);
             }
-            // Ein bereits vorhandenes, herrenloses "[Role] <Name>"-Loadout gehoert der zurueckgeholten
-            // Rolle wieder - dieselbe Adoption, die auch das Zuruecksetzen benutzt.
+            // An existing ownerless "[Role] <name>" loadout belongs to the restored role again - the same
+            // adoption the reset uses.
             AdoptRoleLoadoutsByName();
             return missing.Count;
         }
 
-        // Ist DIESE Rolle eine der sieben eingebauten Vorlagen (nach Namen)? Nur fuer den Rueckfragetext -
-        // Loeschen selbst verhaelt sich fuer alle Rollen gleich.
+        // Is THIS role one of the seven built-in templates (by name)? Only for the confirmation text -
+        // deletion itself behaves the same for all roles.
         public static bool IsPresetRoleName(string name)
         {
             string n = (name ?? "").Trim();
@@ -597,13 +578,12 @@ namespace CEReloaded
             {
                 foreach (Loadout src in dragged)
                 {
-                    // Equipment Packs werden NICHT mehr eingeschmolzen (2026-08-09): echte Verbindungen auch
-                    // bei Rollen (Referenzen). Sie haengen jetzt als echte Referenz an der
-                    // Rolle, genau wie an einem einzelnen Kolonisten - siehe PacksIn/CommitRole.
-                    // Vorher verhielt sich dasselbe Pack unterschiedlich, je nachdem wie es angehaengt wurde:
-                    // am Pawn blieb es verbunden, in einer Rolle wurde beim Anlegen nur eine Kopie gezogen und
-                    // spaetere Aenderungen kamen dort nie an. Alle fuenf Spieler-Simulationen haben das
-                    // unabhaengig als die groesste Verstaendnisfalle des Mods benannt.
+                    // Equipment Packs are NO longer melted in: real links for roles too (references). They now
+                    // hang on the role as a real reference, just like on a single colonist - see
+                    // PacksIn/CommitRole.
+                    // Previously the same pack behaved differently depending on how it was attached: on a pawn it
+                    // stayed linked, in a role only a copy was taken on creation and later changes never arrived
+                    // there. That inconsistency was the mod's biggest source of confusion.
                     if (EquipmentPackUtility.IsEquipmentPackLoadout(src)) continue;
                     if (src == null || src.Slots == null) continue;
                     foreach (LoadoutSlot s in src.Slots)
@@ -631,11 +611,11 @@ namespace CEReloaded
             return rows.OrderBy(r => (int)r.kind).ThenBy(r => r.label).ToList();
         }
 
-        // Die Equipment Packs aus einer Zusammenstellung - die Teile, die als echte Referenz an die Rolle
-        // gehaengt werden statt eingeschmolzen zu werden (2026-08-09). Die Rollen-Skalierungsfaktoren wirken
-        // auf sie folglich NICHT mehr: eine Referenz ist der Pack-Inhalt, nicht eine skalierte Kopie davon.
-        // Das ist der Preis der Live-Verbindung und ausdruecklich gewollt - eine Zahl, die sich beim naechsten
-        // Oeffnen des Packs wieder aendert, waere sonst nur eine Kopie mit Extraschritten.
+        // The Equipment Packs from a composition - the parts that are attached to the role as a real reference
+        // instead of being melted in. The role scaling factors therefore NO longer apply to them: a reference is
+        // the pack content, not a scaled copy of it. That is the price of the live link and explicitly intended -
+        // a number that changes again the next time the pack is opened would otherwise just be a copy with extra
+        // steps.
         public static List<Loadout> PacksIn(IEnumerable<Loadout> dragged)
         {
             List<Loadout> packs = new List<Loadout>();
@@ -645,11 +625,11 @@ namespace CEReloaded
             return packs;
         }
 
-        // Die Slots, mit denen EINE Zeile der Zusammenstellung in die Rolle eingeht: ein Equipment Pack
-        // haengt als Referenz dran (OwnSlots, wie die Vorschau es liest), alles andere wird eingeschmolzen
-        // (Slots, wie Merge es liest). Beide Fundstellen gab es vorher getrennt; als geteilte Funktion,
-        // weil eine Karte, die eine andere Slot-Quelle liest als das spaetere Ergebnis, genau die Art
-        // stiller Falschanzeige ist, die hier schon zweimal aufgetreten ist.
+        // The slots with which ONE row of the composition enters the role: an Equipment Pack is attached as a
+        // reference (OwnSlots, as the preview reads it), everything else is melted in (Slots, as Merge reads it).
+        // Both lookups used to exist separately; it is a shared function because a card that reads a different
+        // slot source than the later result is exactly the kind of silent misdisplay that has already happened
+        // twice here.
         public static IEnumerable<LoadoutSlot> CompSlots(Loadout src)
         {
             if (src == null) return Enumerable.Empty<LoadoutSlot>();
@@ -660,14 +640,13 @@ namespace CEReloaded
         public static bool CompHasDef(Loadout src, ThingDef def)
             => def != null && CompSlots(src).Any(s => s.thingDef == def);
 
-        // Welche Waffe der Zusammenstellung als HAUPTWAFFE gilt - dieselbe Kuer, die der Mod spaeter auf dem
-        // fertigen Rollen-Loadout faehrt, nur schon vorher (LoadoutUtility.MainAndSideFrom).
-        // Hintergrund (2026-08-14): eine zweite Waffe auf
-        // einer Rolle ERSETZT die erste bewusst nicht - eine Rolle soll Hauptwaffe + Messer + Granate
-        // buendeln duerfen. Was fehlte, war die Ansage, WELCHE der Waffen die Hauptwaffe wird; die
-        // Rollen-Karte kennzeichnet damit ihren Chip.
-        // Der Name geht als das Etikett hinein, das BuildRoleLoadout spaeter wirklich vergibt, damit die
-        // Namens-Regel in LoadoutNameMatchesWeapon hier und dort dasselbe Ergebnis liefert.
+        // Which weapon of the composition counts as the MAIN weapon - the same pick the mod later makes on the
+        // finished role loadout, just earlier (LoadoutUtility.MainAndSideFrom).
+        // Background: a second weapon on a role deliberately does NOT replace the first - a role may bundle main
+        // weapon + knife + grenade. What was missing was saying WHICH of the weapons becomes the main weapon; the
+        // role card marks its chip with this.
+        // The name goes in as the label BuildRoleLoadout will actually assign later, so that the naming rule in
+        // LoadoutNameMatchesWeapon gives the same result here and there.
         public static ThingDef MainWeaponOf(IEnumerable<Loadout> dragged, string finalName)
         {
             if (dragged == null) return null;

@@ -36,16 +36,16 @@ namespace CEReloaded
             return For(cat);
         }
 
-        // Grundbild aus einem austauschbaren PNG, das "A" weiterhin aus Code darueber (2026-08-09): das Bild
-        // dahinter laesst sich durch Austauschen der PNG-Datei ersetzen, das "A" rechts unten wird weiter erzeugt.
+        // Base image from a replaceable PNG, with the "A" still drawn on top in code: the image behind it
+        // can be swapped by replacing the PNG file, the "A" in the bottom-right is still generated.
         //
-        // Der Umweg ueber eine RenderTexture ist der Grund, warum das nicht in fuenf Minuten ging: eine ueber
-        // ContentFinder geladene Textur ist NICHT lesbar, GetPixels/SetPixels wirft darauf. Man kann das "A"
-        // also nicht einfach hineinstempeln. Blit erzeugt eine lesbare Kopie, in die es geht.
-        // Laeuft genau einmal pro Symbol (die Felder darueber cachen), also beim ersten Zeichnen, nicht pro
-        // Bild - und bewusst NICHT beim Laden des Mods: eine RenderTexture zu diesem Zeitpunkt ist heikel.
+        // The RenderTexture detour is needed because a texture loaded via ContentFinder is NOT readable -
+        // GetPixels/SetPixels throw on it, so the "A" cannot simply be stamped in. Blit produces a readable
+        // copy that can be written to.
+        // Runs exactly once per icon (the fields above cache it), i.e. on first draw, not per frame - and
+        // deliberately NOT at mod load: creating a RenderTexture at that point is fragile.
         //
-        // Fehlt das PNG, wird weiter gemalt wie bisher. Ein geloeschtes Bild darf den Mod nicht kaputtmachen.
+        // If the PNG is missing, it is painted as before. A deleted image must not break the mod.
         private static Texture2D FromPngOr(string pngName, Action<Color[], Color> fallbackPaint, Color accent)
         {
             Texture2D src = ContentFinder<Texture2D>.Get("UI/" + pngName, false);
@@ -66,8 +66,8 @@ namespace CEReloaded
             }
             catch (Exception e)
             {
-                // Lieber das gemalte Symbol als gar keins - ein Fehler hier ist ein Schoenheitsproblem,
-                // kein Grund, die Zeile leer zu lassen.
+                // Better the painted icon than none - a failure here is cosmetic,
+                // no reason to leave the row empty.
                 Log.Warning("[CE Reloaded] " + pngName + " could not be loaded, using the "
                     + "drawn icon instead.\n" + e);
                 return Build(fallbackPaint, accent);

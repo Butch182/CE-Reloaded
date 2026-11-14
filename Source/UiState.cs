@@ -19,10 +19,9 @@ namespace CEReloaded
         // Supply/bulk defaults edited IN the tabs - per save. Direction contract: settings changes flow INTO the
         // save (seed + settings-close sync), tab edits never write back to the global settings. null = unseeded
         // (fall back to settings), "" = an explicit None.
-        // loMealDefName/loMealCount/loMedDefName/loMedCount sind am 2026-08-14 entfallen: Mahlzeit und
-        // Medizin werden nicht mehr in den Spielstand
-        // gesaet, sondern beim Erzeugen eines Equipment Packs direkt aus den Mod-Einstellungen gelesen.
-        // Ein alter Spielstand bringt die vier Werte noch mit - Scribe ueberliest sie einfach.
+        // loMealDefName/loMealCount/loMedDefName/loMedCount were removed: meal and medicine are no longer
+        // seeded into the save, but read directly from the mod settings when an Equipment Pack is created.
+        // An old save still carries the four values - Scribe simply skips them.
         public string loSidearmMaxBulk;
         public string abDefaultBatches;
 
@@ -35,14 +34,14 @@ namespace CEReloaded
         public AssignLoadoutFilter asLoadoutFilter = AssignLoadoutFilter.AvailableMainWeapon;
         public bool asSortMelee = false;    // pawn grid sort: false = by ranged score, true = by melee score
         public bool asCompact = false;      // pawn grid: full cards vs one slim table row per colonist
-        // War ein bool (2026-08-19 zu RoleAssignMode geworden) - siehe dort. Migration unten.
+        // Used to be a bool (now RoleAssignMode) - see there. Migration below.
         public RoleAssignMode asRoleMode = RoleAssignMode.Mixed;
         public bool asDetailed = false;
 
-        // Auto-assign preview: die HAKEN je Spielstand. Die vier Regler-Felder darunter sind seit 2026-08-30 tot -
-        // Dialog_SquadSetup startet bei jedem Oeffnen auf settings.presetBalanced (Grundsatz: Regler nie im
-        // Spielstand; Vorgaben aendert man in den Presets der Mod-Einstellungen). Felder bleiben nur, damit ein
-        // alter Spielstand nichts vermisst.
+        // Auto-assign preview: the CHECKBOXES per save. The four slider fields below are dead -
+        // Dialog_SquadSetup starts from settings.presetBalanced every time it opens (principle: sliders
+        // never live in the save; defaults are changed in the presets in the mod settings). The fields
+        // only remain so an old save doesn't miss anything.
         public float asCraft = 0.3f;        // use existing weapons <-> craft new weapons (tipping point on MaterialAffordability)
         public float asMelee = 0.35f;       // prefer ranged <-> prefer melee
         public float asDiversity = 0.7f;    // always use best <-> cover different roles
@@ -57,13 +56,13 @@ namespace CEReloaded
         // packs + sidearms) under the colonist's own CE carry bulk/weight instead of only warning afterward.
         // On by default; a missing key in an older save reads as true, which is the intended default.
 
-        // Auto-generate popup sliders (0..1) + flags - je Sitzung gemerkt, nicht je Spielstand (2026-08-30).
+        // Auto-generate popup sliders (0..1) + flags - kept in memory until the game restarts, not per save.
         public float agPool = 0.3f;         // for available weapons <-> for researched weapons (base anchor; see poolManuallySet)
         public float agCount = 0.35f;       // high value loadouts <-> all loadouts
         public float agAmmoVar = 0.5f;      // only one ammo type <-> maximum flexibility (how eagerly rations are split)
 
         // Shared Anti-flesh <-> Anti-mech slider (used by BOTH generate-time ammo/grenade choice and assign-time
-        // target scoring - one dialect, one value, see WORKFLOW_OVERHAUL_PLAN.md section 3). The CORE is intelligent
+        // target scoring - one dialect, one value). The CORE is intelligent
         // (confirmed mechanoid encounters, else a slow days-played ramp - section 6a); the slider itself is only a
         // tipping-point seed. "ManuallySet" flags mean: once the player drags a slider themselves, the dynamic system
         // stops touching it - their explicit choice always wins, forever (until they use "Use recommended setup",
@@ -113,9 +112,9 @@ namespace CEReloaded
             Scribe_Values.Look(ref asSortMelee, "asSortMelee", false);
             Scribe_Values.Look(ref asCompact, "asCompact", false);
             Scribe_Values.Look(ref asRoleMode, "asRoleMode", RoleAssignMode.Mixed);
-            // Migration vom alten bool, gleiche Begruendung wie in CEReloadedSettings (2026-08-19):
-            // ein Spielstand, in dem "nur Rollen" angehakt war, soll nicht stillschweigend auf
-            // gemischt zurueckfallen.
+            // Migration from the old bool, same reasoning as in CEReloadedSettings:
+            // a save with "roles only" checked must not silently fall back to
+            // mixed.
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 bool legacyRolesOnly = false;
@@ -123,15 +122,14 @@ namespace CEReloaded
                 if (legacyRolesOnly && asRoleMode == RoleAssignMode.Mixed) asRoleMode = RoleAssignMode.RolesOnly;
             }
             Scribe_Values.Look(ref asDetailed, "asDetailed", false);
-            // Die Regler der beiden Assistenten (asCraft/asMelee/asDiversity/asBudget, agPool/agCount/agAmmoVar,
-            // mechAffinity samt den zwei Handsperren) werden seit 2026-08-30 NICHT mehr gespeichert: wer den
-            // Assign-Loadouts-Screen oeffnete, fand dort die zuletzt benutzten Reglerstellungen statt der
-            // Empfehlung. Der Stand kam aus dem Spielstand: wer zuletzt an den Reglern war, bestimmte, was
-            // beim naechsten Laden dastand.
-            // Sie bleiben Felder, also innerhalb einer Sitzung gemerkt (zweimal oeffnen = derselbe Stand);
-            // ein geladener Spielstand startet mit der Empfehlung. Die Haken darunter (Keep/Redistribute/...)
-            // sind Einstellungen, keine Regler - die bleiben gespeichert. Alte Werte in einem Spielstand
-            // ueberliest Scribe einfach.
+            // The sliders of both assistants (asCraft/asMelee/asDiversity/asBudget, agPool/agCount/agAmmoVar,
+            // mechAffinity plus the two hand locks) are NO LONGER saved: opening the Assign Loadouts screen
+            // showed the most recently used slider positions instead of the recommendation. The state came
+            // from the save: whoever last touched the sliders decided what showed up on the next load.
+            // They remain fields, so they are remembered until the game restarts (opening twice = same
+            // state); a loaded save starts with the recommendation. The checkboxes below
+            // (Keep/Redistribute/...) are settings, not sliders - those stay saved. Scribe simply skips old
+            // values in a save.
             Scribe_Values.Look(ref asKeepAssigned, "asKeepAssigned", true);
             Scribe_Values.Look(ref asRedistribute, "asRedistribute", true);
             Scribe_Values.Look(ref asCreateNew, "asCreateNew", false);

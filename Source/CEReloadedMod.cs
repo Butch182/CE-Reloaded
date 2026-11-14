@@ -16,9 +16,9 @@ namespace CEReloaded
         private Vector2 rolesScroll = Vector2.zero;
         private Vector2 debugScroll = Vector2.zero;
         private Vector2 presetGridScroll = Vector2.zero;
-        // Senkrechte Bildlaufleiste fuer die Reiter, die ihren Inhalt allein mit dem Listing aufbauen
-        // (2026-08-19). Die gemessene Hoehe kommt aus dem VORIGEN Durchgang - Listing_Standard rechnet erst
-        // beim Zeichnen, eine Vorabrechnung waere eine zweite Wahrheit neben derselben Layoutkette.
+        // Vertical scrollbar for the tabs that build their content purely with the Listing. The measured height
+        // comes from the PREVIOUS pass - Listing_Standard only computes while drawing, and a pre-computation
+        // would be a second truth next to the same layout chain.
         private Vector2 tabScroll = Vector2.zero;
         private SettingsTab tabScrollFor = SettingsTab.Filters;
         private readonly Dictionary<SettingsTab, float> tabContentHeight = new Dictionary<SettingsTab, float>();
@@ -59,8 +59,8 @@ namespace CEReloaded
         public override void WriteSettings()
         {
             base.WriteSettings();
-            // Waffen-Scores haengen ueber die Traglast an den Munitionsmengen hier drin - ohne Leeren
-            // behaelt jede schon bewertete Waffe ihren alten Wert bis zum Spielneustart (2026-08-09).
+            // Weapon scores depend on the ammo amounts in here via carry capacity - without clearing, every
+            // already-scored weapon keeps its old value until the game restarts.
             LoadoutUtility.ClearWeaponScoreCache();
             ApplyChangedSeedsToCurrentGame();
             seedSnapshot = null;
@@ -83,12 +83,11 @@ namespace CEReloaded
                 ui.asDetailed = settings.startTabsDetailed;
                 n++;
             }
-            // Mahlzeit/Medizin brauchen diesen Weg seit 2026-08-14 nicht mehr: sie werden nicht mehr in den
-            // Spielstand-Zustand gesaet, sondern beim Erzeugen eines Equipment Packs direkt aus den
-            // Einstellungen gelesen (Dialog_GenerateEquipmentPack). Eine Aenderung wirkt damit sofort auf
-            // den naechsten erzeugten Pack, ohne Umweg - und die vier Zeilen hier wuerden nur noch Felder
-            // fuellen, die niemand liest. Die Zaehlung `n` (die Meldung "N geaenderte Vorgaben uebernommen")
-            // ist deshalb ebenfalls um vier Faelle kleiner, und das ist richtig so.
+            // Meal/medicine no longer need this path: they are no longer seeded into the per-save state but read
+            // directly from the settings when an Equipment Pack is generated (Dialog_GenerateEquipmentPack). A
+            // change therefore affects the next generated pack immediately, without a detour - and the four lines
+            // here would only fill fields nobody reads. The count `n` (the "N changed defaults applied" message)
+            // is therefore also four cases smaller, and that is correct.
             if (o.bulk != settings.sidearmMaxBulk) { ui.loSidearmMaxBulk = settings.sidearmMaxBulk; n++; }
             if (o.batches != settings.defAmmoBatches) { ui.abDefaultBatches = settings.defAmmoBatches; n++; }
             if (n > 0)
@@ -121,19 +120,17 @@ namespace CEReloaded
 
             Rect body = new Rect(inRect.x, inRect.y + tabH + 10f, inRect.width, inRect.height - tabH - 10f);
 
-            // Was unter die Fensterkante rutscht, war bisher WEG (2026-08-19, am Reiter "Presets"
-            // aufgefallen: Ueberschrift und Erklaertext von "Arm my Colony mode presets" standen da,
-            // die Tabelle mit den sechs Schaltern und ihr Zuruecksetzen-Knopf darunter gar nicht - "auch
-            // nicht nach Scrollversuchen", weil es nichts zu scrollen gab).
-            // Ursache ist die Groessenkette, nicht dieser eine Reiter: Listing_Standard schneidet
-            // nicht ab und meldet auch nichts, es legt einfach weiter Rechtecke unterhalb des sichtbaren
-            // Bereichs an. Das Fenster selbst ist gedeckelt (Patch_ModSettingsSize, hoechstens Bildhoehe-40),
-            // also kann JEDER Inhalt, der laenger wird als der Rest des Fensters, still verschwinden - beim
-            // Presets-Reiter etwa 740 Punkte Inhalt gegen 664 Punkte Platz bei 820 Fensterhoehe.
-            // Deshalb hier fuer alle Reiter, nicht dort fuer einen.
-            // Roles und Debug bleiben aussen vor: die haben eine EIGENE Bildlaufleiste ueber die volle
-            // Resthoehe und rechnen dafuer mit `body` - eine zweite darum wuerde ihre Hoehenrechnung
-            // aushebeln.
+            // Whatever slipped below the window edge used to be GONE (on the Presets tab, the header and
+            // explanation of "Arm my Colony mode presets" were shown, but the table with the six switches and its
+            // reset button below were not - not even after trying to scroll, because there was nothing to scroll).
+            // The cause is the size chain, not this one tab: Listing_Standard does not clip and reports nothing,
+            // it just keeps laying out rects below the visible area. The window itself is capped
+            // (Patch_ModSettingsSize, at most screen height - 40), so ANY content longer than the rest of the window
+            // can silently disappear - on the Presets tab about 740 points of content against 664 points of space
+            // at a window height of 820.
+            // Hence here for all tabs, not there for one.
+            // Roles and Debug are excluded: they have their OWN scrollbar over the full remaining height and
+            // compute it from `body` - a second one around them would break their height calculation.
             bool ownScroll = settingsTab == SettingsTab.Roles || settingsTab == SettingsTab.Debug;
             if (tabScrollFor != settingsTab)
             {
@@ -151,22 +148,20 @@ namespace CEReloaded
                 listRect = view;
             }
             Listing_Standard ls = new Listing_Standard();
-            // ====== DAS ist die eigentliche Ursache (2026-08-19, im Test widerlegt) ======
-            // Die erste Erklaerung war falsch: Listing legt seine Rechtecke NICHT einfach unterhalb des
-            // sichtbaren Bereichs weiter an. Verse.Listing.NewColumnIfNeeded bricht bei
-            // `curY + hoehe > listingRect.height` in eine ZWEITE SPALTE um - curY faellt auf 0 zurueck und
-            // curX waechst um ColumnWidth + 17, also aus dem Fenster hinaus. Der Inhalt war damit nicht
-            // unten weg, sondern RECHTS daneben, und unsichtbar.
-            // Zwei Folgen, und beide erklaeren genau das, was im Test gemessen wurde:
-            //   1. Der Presets-Reiter zeigte Ueberschrift und Erklaertext, dann leeren Raum - die Tabelle
-            //      stand in der unsichtbaren zweiten Spalte.
-            //   2. Weil curY beim Umbruch auf 0 zurueckfaellt, wird CurHeight NIE groesser als body.height.
-            //      Die Bildlauf-Bedingung darunter konnte deshalb gar nicht ausloesen, und der Reiter
-            //      verhielt sich nach meinem ersten Fix exakt wie vorher. Genau so kam es zurueck:
-            //      "Scrollen aendert daran nichts, es gibt auch keine sichtbare Bildlaufleiste."
-            // maxOneColumn schaltet den Umbruch ab. Erst dann laeuft der Inhalt wirklich nach unten, erst
-            // dann misst CurHeight die echte Hoehe, und erst dann greift die Bildlaufleiste.
-            // Beides wird gebraucht - einzeln loest keines der zwei das Problem.
+            // ====== THIS is the actual cause ======
+            // The first explanation was wrong: Listing does NOT simply keep laying out rects below the visible
+            // area. Verse.Listing.NewColumnIfNeeded wraps into a SECOND COLUMN when
+            // `curY + height > listingRect.height` - curY drops back to 0 and curX grows by ColumnWidth + 17, i.e.
+            // out of the window. So the content was not gone at the bottom but off to the RIGHT, and invisible.
+            // Two consequences, and both explain exactly what was observed:
+            //   1. The Presets tab showed the header and explanation, then empty space - the table was in the
+            //      invisible second column.
+            //   2. Because curY drops back to 0 on the wrap, CurHeight NEVER exceeds body.height. The scroll
+            //      condition below could therefore never trigger, and after the first fix the tab behaved exactly
+            //      as before: scrolling changed nothing and no scrollbar was visible.
+            // maxOneColumn turns the wrapping off. Only then does the content really run downwards, only then
+            // does CurHeight measure the real height, and only then does the scrollbar kick in.
+            // Both are needed - neither of the two solves the problem on its own.
             ls.maxOneColumn = true;
             ls.Begin(listRect);
 
@@ -184,24 +179,22 @@ namespace CEReloaded
             }
 
             ls.End();
-            // Vor EndScrollView lesen ist egal, nach ls.End() nicht: CurHeight ist der Stand, den das
-            // Listing beim Schliessen erreicht hat. Nur fuer die Reiter merken, die wir auch wirklich
-            // umschliessen - bei Roles/Debug endet das Listing weit oberhalb ihrer eigenen Liste, die Zahl
-            // wuerde also das Gegenteil dessen behaupten, was auf dem Schirm steht.
+            // Reading before EndScrollView does not matter, after ls.End() it does: CurHeight is the state the
+            // listing reached when closing. Only remember it for the tabs we actually wrap - for Roles/Debug the
+            // listing ends far above their own list, so the number would claim the opposite of what is on screen.
             if (!ownScroll) tabContentHeight[settingsTab] = ls.CurHeight;
             if (scrolled) Widgets.EndScrollView();
             base.DoSettingsWindowContents(inRect);
         }
 
-        // Neun Knoepfe dieser Datei laufen seit 2026-08-27 ueber LoadoutUtility.ButtonTextFit statt ueber
-        // Widgets.ButtonText: die Reiterleiste, die Zellen der Preset-Tabelle, Aufraeumen, Rolle loeschen und
-        // die vier Aufklappknoepfe mit dynamischem Wert. Grund: drei der fuenf deutschen Kappungen desselben
-        // Tages sassen in dieser Datei, und ButtonText zentriert und schneidet dann BEIDSEITIG ab - ein Knopf
-        // mit zu langem Text wird unlesbar, ohne dass man es dem Code ansieht.
-        // Die Umstellung ist fuer jeden Knopf, dessen Text ohnehin passt, ein No-op: ButtonTextFit misst
-        // zuerst und stuft nur dann auf Tiny bzw. kuerzt sichtbar. Deshalb aendert sich an Englisch nichts.
-        // Die uebrigen Knoepfe dieser Datei rechnen ihre Breite bereits aus dem Text (ResetButton und die
-        // beiden Preset-Resets) und brauchen das nicht.
+        // Nine buttons in this file go through LoadoutUtility.ButtonTextFit instead of Widgets.ButtonText: the tab
+        // bar, the preset table cells, cleanup, delete role and the four dropdown buttons with a dynamic value.
+        // Reason: several clipped German labels were in this file, and ButtonText centers and then clips on BOTH
+        // sides - a button with too long a text becomes unreadable without that being visible in the code.
+        // For every button whose text fits anyway the switch is a no-op: ButtonTextFit measures first and only
+        // then steps down to Tiny or visibly shortens. So nothing changes for English.
+        // The remaining buttons in this file already compute their width from the text (ResetButton and the two
+        // preset resets) and do not need this.
         private void DrawTab(Rect r, string label, SettingsTab tab)
         {
             if (settingsTab == tab) Widgets.DrawHighlightSelected(r);
@@ -247,23 +240,21 @@ namespace CEReloaded
             };
 
             const float lblW = 240f, colW = 88f, colGap = 6f, rowH = 26f;
-            // Kopfzeilenhoehe GEMESSEN statt gesetzt (2026-08-23: "Focus Ranged"
-            // und "Available items" brachen auf zwei Zeilen um und wurden dann oben UND unten beschnitten -
-            // die erste Zeile vom Beschreibungstext darueber, die zweite von den Eingabefeldern darunter).
-            // Ursache war eine feste 24: einwortige Koepfe passen in eine Zeile, zweiwortige nicht, und
-            // Widgets.Label bricht dann um, ohne dass das Rechteck mitwaechst.
-            // Eine groessere feste Zahl waere hier die falsche Loesung - welche Kopfzeile umbricht, haengt
-            // an der SPRACHE: "Available items" braucht zwei Zeilen, "Verfuegbare Gegenstaende" moeglicherweise
-            // drei. Deshalb wird die Hoehe aus dem laengsten wirklich vorhandenen Kopf berechnet, mit
-            // Text.CalcHeight bei genau der Spaltenbreite, in der er auch gezeichnet wird. Nach unten auf
-            // eine Zeile begrenzt, damit die Tabelle nicht schrumpft.
-            // Die uebrigen Masse haengen ohnehin schon an headerH (gridH und rowY leiten sich davon ab) -
-            // es genuegt also, diese eine Zahl richtig zu bestimmen.
-            // Schrift pro Kopf (2026-08-26: "Anti-Maschinoid" stand als "Anti-Maschin"/"oid"
-            // da): passt ein einzelnes WORT nicht in die Spalte, trennt Unity mitten im Wort - dann lieber
-            // dieser Kopf in Tiny, wo das Wort einzeilig passt. Umbrueche an Wortgrenzen (zwei Zeilen)
-            // bleiben erlaubt und erwuenscht. Die Hoehenmessung unten benutzt DIESELBE Schriftwahl,
-            // sonst stimmt headerH nicht zum Gezeichneten.
+            // Header height MEASURED instead of set: "Focus Ranged" and "Available items" wrapped onto two lines
+            // and were then clipped at the top AND bottom - the first line by the description text above, the
+            // second by the input fields below.
+            // The cause was a fixed 24: one-word headers fit on one line, two-word headers do not, and
+            // Widgets.Label then wraps without the rect growing.
+            // A larger fixed number would be the wrong fix here - which header wraps depends on the LANGUAGE:
+            // "Available items" needs two lines, a longer translation possibly three. So the height is computed
+            // from the longest header actually present, with Text.CalcHeight at exactly the column width it is
+            // drawn in. Clamped below at one line so the table does not shrink.
+            // The other dimensions already depend on headerH (gridH and rowY derive from it) - so getting this one
+            // number right is enough.
+            // Font per header (a long single word was split mid-word across two lines): if a single WORD does not
+            // fit into the column, Unity breaks inside the word - then rather draw this header in Tiny, where the
+            // word fits on one line. Wrapping at word boundaries (two lines) stays allowed and desired. The height
+            // measurement below uses the SAME font choice, otherwise headerH does not match what is drawn.
             GameFont HeaderFont(string label)
             {
                 GameFont saved = Text.Font;
@@ -336,7 +327,7 @@ namespace CEReloaded
 
             ls.Gap(10f);
             Rect resetR = ls.GetRect(28f);
-            // Breite gemessen statt 240f fest - dieselbe Sache wie ResetButton (2026-08-26).
+            // Width measured instead of a fixed 240f - same as ResetButton.
             string resetPresetsLabel = "CER_ModSettings_ResetPresetsButton".Translate();
             if (Widgets.ButtonText(new Rect(resetR.x, resetR.y, Mathf.Max(240f, Text.CalcSize(resetPresetsLabel).x + 24f), 28f), resetPresetsLabel))
             {
@@ -418,8 +409,8 @@ namespace CEReloaded
 
             ls.Gap(6f);
             Rect armResetR = ls.GetRect(28f);
-            // Breite gemessen statt 240f fest - dieselbe Sache wie ResetButton (2026-08-26); die deutsche
-            // Beschriftung dieses Knopfs ist die laengste der ganzen Datei (~450px).
+            // Width measured instead of a fixed 240f - same as ResetButton; the German label of this button is the
+            // longest in the whole file (~450px).
             string resetArmLabel = "CER_ModSettings_ResetArmPresetsButton".Translate();
             if (Widgets.ButtonText(new Rect(armResetR.x, armResetR.y, Mathf.Max(240f, Text.CalcSize(resetArmLabel).x + 24f), 28f), resetArmLabel))
             {
@@ -454,7 +445,7 @@ namespace CEReloaded
             Widgets.CheckboxLabeled(ls.GetRect(24f), "CER_ModSettings_AlertWeaponWithoutAmmo".Translate(), ref settings.alertWeaponWithoutAmmo);
             Widgets.CheckboxLabeled(ls.GetRect(24f), "CER_ModSettings_AlertWeaponUnavailable".Translate(), ref settings.alertWeaponUnavailable);
             Widgets.CheckboxLabeled(ls.GetRect(24f), "CER_ModSettings_AlertLowAmmo".Translate(), ref settings.alertLowAmmo);
-            // Direkt unter dem zugehoerigen Haken, eingerueckt - die Zahl gehoert zu DIESER Warnung.
+            // Directly below its checkbox, indented - the number belongs to THIS alert.
             Rect lowMagRow = ls.GetRect(24f);
             Widgets.Label(new Rect(lowMagRow.x + 28f, lowMagRow.y, 300f, 24f), "CER_ModSettings_AlertLowAmmoMagsLabel".Translate());
             settings.alertLowAmmoMags = Widgets.TextField(new Rect(lowMagRow.x + 330f, lowMagRow.y, 50f, 24f), settings.alertLowAmmoMags);
@@ -471,12 +462,12 @@ namespace CEReloaded
             Widgets.CheckboxLabeled(ls.GetRect(24f), "CER_ModSettings_AlertAmmoNotProduced".Translate(), ref settings.alertAmmoNotProduced);
             Rect threshRect = ls.GetRect(24f);
             GUI.color = on ? Color.white : new Color(1f, 1f, 1f, 0.5f);
-            // Breite GEMESSEN statt fest 360 (2026-09-04: auf Englisch stand
-            // "...only if fewer than X rounds are stockpiled (0 =" und dann kam das Eingabefeld - die
-            // Klammer wurde nie geschlossen, und RimWorlds Label schneidet ohne Auslassungszeichen ab,
-            // es sah also nach einem kaputten Text aus statt nach zu wenig Platz).
-            // Struktureller Fix statt groesserer Zahl: der Text bekommt, was er braucht, und
-            // das Feld rueckt dahinter - nur eben nie ueber den rechten Rand hinaus.
+            // Width MEASURED instead of a fixed 360 (in English the label showed
+            // "...only if fewer than X rounds are stockpiled (0 =" and then the input field - the parenthesis was
+            // never closed, and RimWorld's Label clips without an ellipsis, so it looked like broken text rather
+            // than too little space).
+            // Structural fix instead of a bigger number: the text gets what it needs, and the field moves after
+            // it - just never past the right edge.
             string threshLabel = "CER_ModSettings_AlertAmmoStockThresholdLabel".Translate();
             float threshTextX = threshRect.x + 24f;
             float fieldX = Mathf.Min(threshTextX + Text.CalcSize(threshLabel).x + 8f, threshRect.xMax - 62f);
@@ -500,11 +491,10 @@ namespace CEReloaded
             ls.Label("CER_ModSettings_WeaponAuditDesc".Translate());
             ls.Gap(10f);
 
-            // Beide Knopfbreiten dieses Reiters gemessen statt 280f/320f fest (2026-08-27):
-            // "Aktuelles Spiel auf diese Mod-Einstellungen
-            // zuruecksetzen" stand auf Deutsch als "uelles Spiel auf diese Mod-Einstellungen zurueckset" da -
-            // links UND rechts abgeschnitten, weil Widgets.ButtonText zentriert und dann kappt. Der
-            // Waffenpruefungs-Knopf darueber passte nur zufaellig; gemessen wird jetzt beides.
+            // Both button widths in this tab measured instead of a fixed 280f/320f: the German label of the
+            // "reset current game to these mod settings" button was clipped on the left AND right, because
+            // Widgets.ButtonText centers and then clips. The weapon audit button above only fit by chance; both
+            // are measured now.
             string auditLabel = "CER_ModSettings_RunWeaponAuditButton".Translate();
             Rect r = ls.GetRect(38f);
             r.width = Mathf.Max(280f, Text.CalcSize(auditLabel).x + 24f);
@@ -540,8 +530,8 @@ namespace CEReloaded
                 }
             }
 
-            // Der Crashkurs (2026-08-30): das "?" im Fensterkopf ist weg, hier ist sein neuer Platz - einmal zeigen,
-            // und den Erststart zuruecksetzen (damit ein Test das automatische erste Oeffnen pruefen kann).
+            // The crash course: the "?" in the window header is gone, this is its new place - show it once, and
+            // reset the first-start flag (so the automatic first opening can be tested).
             ls.Gap(16f);
             ls.GapLine();
             ls.Gap(6f);
@@ -694,8 +684,8 @@ namespace CEReloaded
                 List<Loadout> extras = MultiParentUtility.GetExtraParents(l);
                 string tip = "CER_ModSettings_DebugTipHeader".Translate(l.UniqueID.ToString(), slotCount.ToString());
                 if (parent != null) tip += "CER_ModSettings_DebugTipParent".Translate(LoadoutUtility.CellLabel(parent));
-                // Angezeigte Namen, nicht rohe Etiketten (2026-08-17): die Spalte daneben nennt die Art schon,
-                // deshalb CellLabel. Vorher stand hier als einziger Stelle dieser Liste noch "W| ...".
+                // Displayed names, not raw labels: the column next to it already names the kind, hence CellLabel.
+                // Previously this was the only place in this list that still showed "W| ...".
                 if (extras.Count > 0) tip += "CER_ModSettings_DebugTipExtraParents".Translate(string.Join(", ", extras.Select(e => LoadoutUtility.CellLabel(e))));
                 List<LoadoutSlot> resolved = l.Slots?.ToList() ?? new List<LoadoutSlot>();
                 tip += resolved.Count > 0
@@ -733,11 +723,9 @@ namespace CEReloaded
             Rect bar = ls.GetRect(32f);
             if (list != null)
             {
-                // Beide Breiten gemessen statt 150f/170f fest (2026-08-27): "Voreinstellungen zuruecksetzen"
-                // endete auf
-                // Deutsch als "Voreinstellungen zurueckset". Dieselbe Rechnung wie ResetButton weiter unten -
-                // dieser eine Knopf lief nur deshalb aus der Reihe, weil er den gemeinsamen Helfer nicht
-                // benutzt (er sitzt in einer Reihe neben "+ Rolle hinzufuegen", nicht allein auf seiner Zeile).
+                // Both widths measured instead of a fixed 150f/170f: the German "reset to defaults" label was cut
+                // off. Same calculation as ResetButton further down - this one button only fell out of line because
+                // it does not use the shared helper (it sits in a row next to "+ Add role", not alone on its line).
                 string addRoleLabel = "CER_ModSettings_AddRoleButton".Translate();
                 float addRoleW = Mathf.Max(150f, Text.CalcSize(addRoleLabel).x + 24f);
                 if (Widgets.ButtonText(new Rect(bar.x, bar.y, addRoleW, 30f), addRoleLabel))
@@ -749,17 +737,15 @@ namespace CEReloaded
                         Mathf.Max(170f, Text.CalcSize(resetRolesLabel).x + 24f), 30f);
                     if (Widgets.ButtonText(resetRect, resetRolesLabel))
                     {
-                        // Dieselbe Zeile wie der Zuruecksetzen-Knopf im Rollen-Reiter (2026-09-04) - vorher
-                        // machten die zwei Knoepfe Verschiedenes, und beide liessen die Loadouts der
-                        // weggeworfenen Rollen herrenlos zurueck.
+                        // Same line as the reset button in the Roles tab - previously the two buttons did different
+                        // things, and both left the loadouts of the discarded roles ownerless.
                         RoleUtility.ResetGlobalRoles(settings);
                     }
                     TooltipHandler.TipRegion(resetRect, "CER_ModSettings_ResetRolesToPresetsTip".Translate());
 
-                    // Zwilling des Knopfes im Rollen-Reiter (2026-09-04): holt NUR die fehlenden
-                    // Vorgaberollen zurueck und laesst alles andere in Ruhe. Erscheint nur, wenn etwas
-                    // fehlt. Ohne ihn war der Nachbarknopf der einzige Weg zurueck - und der wirft jede
-                    // selbst gebaute Rolle mit weg.
+                    // Twin of the button in the Roles tab: restores ONLY the missing default roles and leaves
+                    // everything else alone. Only appears when something is missing. Without it the neighboring
+                    // button was the only way back - and that one throws away every self-built role too.
                     int missingPresets = RoleUtility.MissingPresetRoles(settings).Count;
                     if (missingPresets > 0)
                     {
@@ -830,22 +816,21 @@ namespace CEReloaded
             Widgets.EndScrollView();
             if (toDelete >= 0)
             {
-                // Das Loadout der Rolle GEHT MIT (2026-09-04, derselbe Fehler wie am Loeschknopf im
-                // Rollen-Reiter - zweite Fundstelle desselben Musters). Ohne das bleibt "[Role] Assault"
-                // als besitzerloses Loadout stehen: es gehoert dann zu keiner Rolle mehr, gilt damit
-                // ueberall als ganz gewoehnliche Vorlage und wird in der Zuweisung selbst unter "Keine
-                // Rollen" wieder verteilt - mit seinem rohen Etikett samt "[Role]"-Marker.
+                // The role's loadout GOES WITH IT (same bug as the delete button in the Roles tab - second
+                // occurrence of the same pattern). Without this, "[Role] Assault" stays behind as an ownerless
+                // loadout: it then belongs to no role, counts everywhere as an entirely ordinary template and is
+                // handed out again by assignment even under "No roles" - with its raw label including the "[Role]"
+                // marker.
                 Loadout doomed = RoleUtility.RoleLoadoutOf(list[toDelete]);
                 list.RemoveAt(toDelete);
                 if (doomed != null) LoadoutDeletionUtility.Delete(doomed);
             }
         }
 
-        // Zweite Fundstelle desselben Musters (2026-09-04, Regel-7-Grep): auch hier hing der Eingabepuffer
-        // an der ZEILENNUMMER ("G"/"L" + i + Feldbuchstabe). Diese Liste sortiert sich zwar nicht von
-        // selbst um, aber sie wird kuerzer, sobald man eine Rolle loescht - danach zeigt jeder Puffer ab
-        // der Loeschstelle auf die naechste Rolle, und der erste Tastendruck schreibt eine fremde Zahl.
-        // Die ausfuehrliche Begruendung steht am Zwilling in Dialog_GenerateLoadouts.
+        // Second occurrence of the same pattern: here too the input buffer was keyed on the ROW NUMBER
+        // ("G"/"L" + i + field letter). This list does not re-sort itself, but it gets shorter as soon as a role is
+        // deleted - after that every buffer from the deletion point on points at the next role, and the first
+        // keystroke writes a foreign number. The full reasoning is at the twin in Dialog_GenerateLoadouts.
         private readonly Dictionary<LoadoutRole, string[]> roleFactorBuffers = new Dictionary<LoadoutRole, string[]>();
         private void FactorField(Rect r, LoadoutRole role, int slot, System.Func<float> get, System.Action<float> set)
         {
@@ -872,9 +857,8 @@ namespace CEReloaded
             settings.Write();
         }
 
-        // Breite gemessen statt 230f fest (2026-08-26: die deutschen Beschriftungen -
-        // "Munitionsauftraege auf Standard zuruecksetzen" u.a. - liefen beidseitig aus dem Knopf).
-        // Das Einstellungsfenster ist mindestens 1100 breit (Patch_ModSettingsSize), Platz ist da.
+        // Width measured instead of a fixed 230f (the longer German labels ran out of the button on both sides).
+        // The settings window is at least 1100 wide (Patch_ModSettingsSize), so there is room.
         private void ResetButton(Listing_Standard ls, string buttonLabel, params string[] names)
         {
             ls.Gap(10f);
@@ -893,7 +877,7 @@ namespace CEReloaded
 
             EnumDropdown(ls, "CER_ModSettings_DefaultAmmoFilterLabel".Translate(), settings.defAmmoFilter, v => settings.defAmmoFilter = v);
             EnumDropdown(ls, "CER_ModSettings_DefaultAmmoBillFilterLabel".Translate(), settings.defAmmoBillFilter, v => settings.defAmmoBillFilter = v,
-                new[] { AmmoBillFilterMode.AvailableLoadouts });   // "Created loadouts" entfallen (2026-09-07)
+                new[] { AmmoBillFilterMode.AvailableLoadouts });   // "Created loadouts" removed
 
             ls.GapLine(12f);
 
@@ -1005,10 +989,9 @@ namespace CEReloaded
             List<Def> allFoods = LoadoutUtility.LoadoutFoodOptions();
             List<Def> allMedicines = LoadoutUtility.LoadoutMedicineOptions();
 
-            // Sagt seit 2026-08-14 ausdruecklich, WO diese vier Werte wirken. Sie waren bis dahin
-            // wirkungslos, und die blossen Beschriftungen
-            // "Standard-Mahlzeit"/"Standard-Medizin" sagen von sich aus nicht, worauf sie sich beziehen -
-            // genau die Luecke, aus der die Verwirrung entstanden ist.
+            // States explicitly WHERE these four values take effect. They used to have no effect, and the bare
+            // labels "Default meal"/"Default medicine" do not say by themselves what they refer to - exactly the
+            // gap the confusion came from.
             GUI.color = new Color(1f, 1f, 1f, 0.6f);
             Text.Font = GameFont.Tiny;
             ls.Label("CER_ModSettings_MealMedicineScopeNote".Translate());
@@ -1058,12 +1041,12 @@ namespace CEReloaded
             Text.Font = GameFont.Small;
             ls.Gap(6f);
 
-            // Beschriftungsbreite GEMESSEN statt 180 fest (2026-09-07: 'Grenades / thrown explosives:'
-            // wurde abgeschnitten, auf Deutsch in beiden Spalten). Die Kette:
-            // Spaltenbreite des Reiters -> zwei Spalten je (Beschriftung + 60er-Feld). Die Beschriftung ist so
-            // breit wie die laengste der zehn in der aktiven Sprache; passen zwei Spalten damit nicht mehr
-            // nebeneinander, faellt der Block auf eine Spalte je Zeile zurueck, statt irgendwo abzuschneiden.
-            // Pistolen (2026-08-09) haben einen eigenen Wert, weil sie sonst auf die 150 des Allgemein-Feldes fallen.
+            // Label width MEASURED instead of a fixed 180 ('Grenades / thrown explosives:' was cut off, in German
+            // in both columns). The chain:
+            // tab column width -> two columns of (label + 60 field) each. The label is as wide as the longest of
+            // the ten in the active language; if two columns no longer fit side by side, the block falls back to
+            // one column per row instead of clipping somewhere.
+            // Pistols have their own value, because otherwise they fall back to the 150 of the general field.
             (string label, string tip, System.Func<string> get, System.Action<string> set)[] ammoFields =
             {
                 ("CER_ModSettings_AmmoAssaultLabel",  null,                               () => settings.defAmmoAssault,  v => settings.defAmmoAssault = v),
@@ -1124,9 +1107,8 @@ namespace CEReloaded
             settings.ammoBillMaxSkill = skillRange.max;
 
             ls.Gap(10f);
-            // Der Hinweis haengt am Rechteck der Ueberschrift SELBST. Vorher an `ls.GetRect(0f)` - ein
-            // Rechteck mit Hoehe 0, ueber dem der Zeiger nie steht: der Text, der die zwei Regler darunter
-            // ueberhaupt erklaert, war damit tot (2026-08-15, Review-Befund).
+            // The tooltip hangs on the header's OWN rect. Previously on `ls.GetRect(0f)` - a rect of height 0
+            // the cursor is never over: the text that explains the two sliders below was therefore dead.
             Rect ammoReserveHdr = ls.Label("CER_ModSettings_AmmoReserveHeader".Translate());
             TooltipHandler.TipRegion(ammoReserveHdr, "CER_ModSettings_AmmoReserveHeaderTip".Translate());
             Rect fullWeightRect = ls.GetRect(24f);
@@ -1171,8 +1153,8 @@ namespace CEReloaded
             // "Produce missing/main/sidearms" settings removed entirely (2026-07-30) - the
             // end-of-session production check (LoadoutUtility.CheckAndOpenMissingProductionPopup) now always
             // covers this, so there's nothing left to configure here.
-            // Aus dem Haken ist eine Auswahl mit drei Werten geworden (2026-08-19) - siehe RoleAssignMode.
-            // Ueber dieselbe EnumDropdown-Bauform wie die Filter darueber, statt eines eigenen Bedienelements.
+            // The checkbox has become a three-value selection - see RoleAssignMode.
+            // Same EnumDropdown pattern as the filters above, instead of a dedicated control.
             EnumDropdown(ls, "CER_ModSettings_RoleModeLabel".Translate(), settings.autoAssignRoleMode, v => settings.autoAssignRoleMode = v);
 
             ls.GapLine(12f);

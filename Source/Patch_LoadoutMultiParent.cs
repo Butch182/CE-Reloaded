@@ -39,17 +39,17 @@ namespace CEReloaded
 
         public static void Postfix(Loadout __instance, ref List<LoadoutSlot> __result)
         {
-            // ...WithAncestors, nicht nur die eigenen (2026-08-13, live gemessen): CEs ParentSlots liest
-            // `ancestor.OwnSlots` und damit das rohe Feld, nicht diesen gepatchten Getter - die Extra-Eltern
-            // eines VORFAHREN fielen also komplett durch. Konkret: ein Kolonist auf einer Rolle, an der ein
-            // Equipment Pack haengt, hatte dessen Inhalt nie in seinen Slots, obwohl jede Anzeige im Mod ihn
-            // zeigte (die liest role.Slots, wo dieser Postfix laeuft). Ergebnis war bestellter Nachschub,
-            // den niemand abholt. Der Fix sitzt bewusst HIER und nicht in der Zuweisung: so wirkt er auf
-            // jedem Weg, ueber den eine Rolle an einen Kolonisten kommt - auch ueber CEs eigenes Dropdown -
-            // und nicht nur auf unserem.
-            // Kein Doppelzaehlen: RoleUtility.Merge backt Packs bewusst NICHT in die OwnSlots der Rolle ein,
-            // die Pack-Slots stehen also noch nirgends in __result; GetExtraParentIdsWithAncestors entdoppelt
-            // ausserdem gegen die eigenen Extra-Eltern des Kindes.
+            // ...WithAncestors, not just its own (measured live): CE's ParentSlots reads
+            // `ancestor.OwnSlots` and thus the raw field, not this patched getter - so the extra parents of
+            // an ANCESTOR fell through completely. Concretely: a colonist on a role with an Equipment Pack
+            // attached never had its contents in their slots, although every display in the mod showed
+            // them (those read role.Slots, where this postfix runs). The result was ordered supplies that
+            // nobody picked up. The fix deliberately sits HERE and not in the assignment: that way it works
+            // on every path by which a role reaches a colonist - including CE's own dropdown - and not
+            // only on ours.
+            // No double counting: RoleUtility.Merge deliberately does NOT bake packs into the role's
+            // OwnSlots, so the pack slots are not in __result yet; GetExtraParentIdsWithAncestors also
+            // deduplicates against the child's own extra parents.
             List<int> extra = MultiParentUtility.GetExtraParentIdsWithAncestors(__instance);
             bool hasExtra = extra != null && extra.Count > 0;
 
@@ -64,24 +64,24 @@ namespace CEReloaded
             // with no ammo slots of its own is otherwise indistinguishable from "never customized", so
             // without this flag the template's default would silently reappear the moment the last
             // personal ammo type is removed.
-            // Schleife statt LINQ+ToList, und IsAmmoCleared nur als ZWEITE Bedingung (2026-08-09).
-            // Vorher baute jeder Aufruf eine Liste, die im Normalfall sofort
-            // wieder verworfen wurde, und rief in jedem Fall IsAmmoCleared - das macht ein
-            // Current.Game.GetComponent, also einen Komponenten-Scan, pro Aufruf. Beides passierte VOR dem
-            // Early-Out darunter, der fast immer greift. Dieser Postfix haengt an Loadout.Slots, und das ist
-            // kein reiner UI-Getter: ThinkNode_ConditionalHasLoadout, JobGiver_CheckReload und
-            // Utility_HoldTracker rufen ihn aus CEs Think-Tree.
-            // Nur die Reihenfolge und die Allokationen sind anders - die BEDINGUNG ist Zeichen fuer Zeichen
-            // dieselbe wie vorher (irgendein eigener Ammo-Slot ODER explizit geleert).
-            // LoadoutUtility.IsAmmoSlot statt nur IsAmmoDef(thingDef) (2026-08-14, erneut aufgetreten): ein
-            // generischer Eigen-Slot ("Any ammo for X") IST eine eigene Munitionswahl. Dass er hier nicht
-            // als solche zaehlte, war die eigentliche Ursache des Fehlers, den der Fix vom 13.08. auf der
-            // Dialog-Seite nur halb erwischt hat - entschieden wird hier, nicht dort.
-            // Fehlszenario: Haupt- und Zweitwaffe beide auf "Any ammo", einen Haken wieder weg. Danach
-            // stand am Anker nur noch der generische Slot der anderen Waffe; hasOwnAmmoSlot war false, und
-            // 'cleared' hatte der Dialog korrekt auf false gesetzt (es gibt ja eine eigene Wahl) - also
-            // lief der Filter unten gar nicht, und die Vorgabe-Munition der Vorlage kam fuer BEIDE Waffen
-            // zurueck, mit Haken neben dem noch gesetzten "Any ammo".
+            // A loop instead of LINQ+ToList, and IsAmmoCleared only as the SECOND condition.
+            // Previously every call built a list that was discarded immediately in the normal case, and
+            // always called IsAmmoCleared - which does a Current.Game.GetComponent, i.e. a component
+            // scan, per call. Both happened BEFORE the early-out below, which almost always applies. This
+            // postfix hangs off Loadout.Slots, and that is not a pure UI getter:
+            // ThinkNode_ConditionalHasLoadout, JobGiver_CheckReload and Utility_HoldTracker call it from
+            // CE's think tree.
+            // Only the order and the allocations differ - the CONDITION is character for character
+            // the same as before (any own ammo slot OR explicitly cleared).
+            // LoadoutUtility.IsAmmoSlot instead of just IsAmmoDef(thingDef) (the bug came back): a
+            // generic own slot ("Any ammo for X") IS an own ammo choice. Not counting it as one here was
+            // the actual cause of the bug that an earlier fix on the dialog side only half caught - the
+            // decision is made here, not there.
+            // Failure scenario: main weapon and sidearm both on "Any ammo", one checkbox unticked again.
+            // Afterwards the anchor only had the other weapon's generic slot; hasOwnAmmoSlot was false,
+            // and the dialog had correctly set 'cleared' to false (there is an own choice) - so the filter
+            // below never ran, and the template's default ammo came back for BOTH weapons, ticked next to
+            // the still-set "Any ammo".
             bool hasOwnAmmoSlot = false;
             List<LoadoutSlot> own = __instance.OwnSlots;
             if (own != null)
@@ -102,7 +102,7 @@ namespace CEReloaded
                 // legitimate multi-level chain (A extra-parents B, B extra-parents C, no cycle) still needs
                 // to fully descend into B's own extras even though B was just marked visited by the caller a
                 // moment ago. The actual cycle check is the Add(id) below, right before descending into a
-                // NEW loadout - that's the one that stops a true cycle (…-> A -> B -> A) instead of hanging.
+                // NEW loadout - that's the one that stops a true cycle (...-> A -> B -> A) instead of hanging.
                 guard.Add(__instance.UniqueID);
                 try
                 {
@@ -117,7 +117,7 @@ namespace CEReloaded
             {
                 // Reference-equality against OwnSlots itself, NOT a def-membership check (2026-08-01,
                 // live: a pawn's own ammo count showed doubled everywhere - "Assigned to:
-                // Ryder x300" for a personal override of 150). The old check kept a slot if its DEF matched
+                // <pawn> x300" for a personal override of 150). The old check kept a slot if its DEF matched
                 // one of the pawn's own ammo defs - but the INHERITED copy of that exact same def (from the
                 // template's parent chain, still sitting in `combined` from CE's own native union) trivially
                 // matches too, so both the inherited slot AND the real own slot survived the filter and got
@@ -128,26 +128,26 @@ namespace CEReloaded
                 // once an inherited slot shares a def with an owned one, which is exactly the common case
                 // (personalizing ammo for the SAME weapon the template already listed a default for).
                 HashSet<LoadoutSlot> ownSlotRefs = new HashSet<LoadoutSlot>(__instance.OwnSlots ?? new List<LoadoutSlot>());
-                // Auch hier IsAmmoSlot statt IsAmmoDef(thingDef) (2026-08-14, derselbe Fehler): der
-                // alte Test liess `s.thingDef == null` pauschal durch und damit AUCH einen geerbten
-                // generischen Munitions-Platzhalter der Vorlage - der stand dann neben der eigenen Wahl des
-                // Kolonisten, zweimal dieselbe Munition. "Eigene Munition ersetzt geerbte" muss fuer beide
-                // Schreibweisen derselben Sache gelten, sonst haengt es davon ab, wie die Vorlage zufaellig
-                // gebaut ist. Versorgungs-Generika aus Packs ("Any Medicine") sind KEINE Munition und
-                // bleiben unangetastet - genau das trennt IsAmmoSlot.
+                // IsAmmoSlot instead of IsAmmoDef(thingDef) here too (same bug): the old test let
+                // `s.thingDef == null` through wholesale, and with it ALSO an inherited generic ammo
+                // placeholder from the template - which then sat next to the colonist's own choice, the
+                // same ammo twice. "Own ammo replaces inherited" must hold for both spellings of the same
+                // thing, otherwise it depends on how the template happens to be built. Supply generics from
+                // packs ("Any Medicine") are NOT ammo and stay untouched - that is exactly what IsAmmoSlot
+                // separates.
                 combined = combined.Where(s => !IsRealAmmoSlot(s) || ownSlotRefs.Contains(s)).ToList();
             }
             __result = combined;
         }
 
-        // NUR echte Munition faellt unter die Eigene-Munition-Regel - keine Wurfwaffen (2026-08-30, die Ursache hinter DREI
-        // Fehlerbildern: ein Kolonist holt die Stickbombs aus dem Regal nicht, eine Satchel Charge steht koloniweit auf
-        // 'Assigned 0', 'Fetch gear now' nennt die Zweitwaffe nicht). CEs Granaten und Sprengsaetze sind AmmoThing,
-        // also sagt IsAmmoSlot fuer den Stickbomb-Slot einer
-        // Zweitwaffen-Vorlage 'Munition' - und sobald der Anker eigene Munition hat (immer, sobald eine Waffe Munition
-        // braucht), flog jeder Granaten-Slot der Extra-Eltern hier heraus. CE sah den Slot nie, holte nie, zaehlte nie.
-        // Eine Wurfwaffe ist ein Weapon-Def; echte Munition nicht.
-        // Dieselbe Trennung wie LoadoutUtility.IsRealAmmoDef, nur fuer einen Slot (der auch generisch sein kann).
+        // ONLY real ammo falls under the own-ammo rule - not throwing weapons (the cause behind THREE
+        // symptoms: a colonist not fetching stickbombs from the shelf, a satchel charge showing
+        // 'Assigned 0' colony-wide, 'Fetch gear now' not naming the sidearm). CE's grenades and explosives
+        // are AmmoThing, so IsAmmoSlot calls the stickbomb slot of a sidearm template 'ammo' - and as soon
+        // as the anchor has its own ammo (always, as soon as a weapon needs ammo), every grenade slot of
+        // the extra parents was dropped here. CE never saw the slot, never fetched, never counted.
+        // A throwing weapon is a Weapon def; real ammo is not.
+        // Same distinction as LoadoutUtility.IsRealAmmoDef, just for a slot (which can also be generic).
         private static bool IsRealAmmoSlot(LoadoutSlot s) =>
             LoadoutUtility.IsAmmoSlot(s) && (s.thingDef == null || LoadoutUtility.IsRealAmmoDef(s.thingDef));
 

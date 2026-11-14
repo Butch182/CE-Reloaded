@@ -27,11 +27,10 @@ namespace CEReloaded
         // Picking it creates a default loadout on Apply - this is what lets "Craft new weapons" reach beyond the
         // existing loadout list instead of settling for whatever scraps happen to have one.
         public bool isVirtual;
-        // Vom Spieler GESPERRT (2026-09-04): das Loadout bzw. die Rolle steht weiter in der Liste - das
-        // Auswahlfenster muss sie ausgegraut zeigen koennen, sonst gaebe es keinen Weg zurueck zum
-        // Entsperren -, aber der Loeser laesst sie aus. Gesperrte WAFFEN kommen gar nicht erst als
-        // Kandidat an (Dialog_SquadSetup.BuildAssignStaticData filtert sie), weil ihre Zeile im
-        // Auswahlfenster aus einer anderen Quelle kommt.
+        // DISABLED by the player: the loadout or role stays in the list - the picker must be able to show it
+        // greyed out, otherwise there would be no way back to re-enable it - but the solver skips it. Disabled
+        // WEAPONS never become candidates in the first place (Dialog_SquadSetup.BuildAssignStaticData filters
+        // them), because their row in the picker comes from a different source.
         public bool isDisabled;
     }
 
@@ -43,25 +42,23 @@ namespace CEReloaded
         public ThingDef plannedMain; // the planned loadout's main weapon (for supply checks)
         public List<Loadout> plannedPacks = new List<Loadout>();  // Equipment Packs carried alongside the weapon - a fitting subset, unless a Role already bakes its own in
         public List<Loadout> plannedSidearms = new List<Loadout>();   // extra Weapon Loadout(s) attached via multi-parent (SidearmAssignmentUtility)
-        // Zweitwaffe/Granate als blosse WAFFE geplant, weil beim Planen keine Vorlage existierte (Lazy-
-        // Umbau 2026-09-01). Wird NIE in der Vorschau materialisiert - erst ApplyPreviewPlan macht daraus
-        // ueber EnsureDefaultLoadout die geteilte Vorlage und haengt sie in plannedSidearms um.
+        // Sidearm/grenade planned as a bare WEAPON because no template existed at planning time (lazy
+        // creation). Never materialized in the preview - only ApplyPreviewPlan turns it into the shared
+        // template via EnsureDefaultLoadout and moves it into plannedSidearms.
         public List<ThingDef> plannedSidearmDefs;
         public bool plannedVirtual;  // picked a weapon with no loadout yet: a default loadout is created on Apply
-        // Hat der SPIELER diesen Pack-/Zweitwaffen-Satz ausdruecklich festgelegt (Zelle in der Vorschau,
-        // Einfuegen, Kopieren)? Der Unterschied ist tragend und nicht kosmetisch (2026-08-19):
-        // eine LEERE Liste heisst beim Loeser "nichts ausgesucht", beim Spieler dagegen "nimm ihm alles weg".
-        // Ohne diese Unterscheidung kann WantsPackWrite nur eines von beidem richtig machen.
+        // Did the PLAYER set this pack/sidearm set explicitly (preview cell, paste, copy)? The distinction is
+        // load-bearing, not cosmetic: for the solver an EMPTY list means "nothing picked", for the player it
+        // means "take everything away". Without this flag WantsPackWrite can only get one of the two right.
         public bool packPinned;
         public bool sidearmPinned;
-        // Dritter Fall derselben Frage (2026-08-27, im Test gemessen): der Loeser HAT fuer diese
-        // Zeile ausgesucht, "Respect max bulk" hat aber ALLES gestrichen. Die Liste ist dann leer wie beim
-        // "nichts ausgesucht" - und ohne diese Marke behaelt der Kolonist seine heutigen, schwereren Packs,
-        // waehrend Schranke und Vorschau glauben, er trage nichts. Genau so gemessen: Ltz stand MIT Haken
-        // bei Sperrigkeit 48.4/33.5 und damit HOEHER als ohne Haken (41.2/33.5), weil ohne Haken die
-        // leichteren Loeser-Packs geschrieben worden waeren und mit Haken die alten sieben haengen blieben.
-        // Der Kommentar an EffectivePacks hat diesen Fall seit dem 25.08. als "bewusst offen" gefuehrt; er
-        // ist es nicht mehr - er macht das Versprechen des Hakens ("nicht mehr zuweisen als tragbar") falsch.
+        // A third case of the same question: the solver DID pick for this row, but "Respect max bulk" removed
+        // EVERYTHING. The list is then empty just like "nothing picked" - and without this flag the colonist
+        // kept today's heavier packs while the cap and the preview assumed he carries nothing. Measured: with
+        // the box ticked a colonist ended up at bulk 48.4/33.5, i.e. HIGHER than without it (41.2/33.5),
+        // because without the box the lighter solver packs would have been written, and with it the old seven
+        // stayed attached. The comment on EffectivePacks used to list this case as "deliberately open"; it no
+        // longer is - it breaks the box's promise ("don't assign more than can be carried").
         // Apply would really write this row's pack/sidearm set (planned set differs from what the pawn carries
         // right now, and there IS a template to hang it on). Kept as a stored flag rather than a live compare,
         // because AssignPlan.Changes is read from OnGUI and the two getters behind it walk the pawn's
@@ -70,14 +67,14 @@ namespace CEReloaded
         public bool kept;            // locked or keep-assigned: untouched by the solver
         public bool pinned;          // explicit player override (Dialog_SquadSetup) - a stronger "kept" with a chosen loadout
         public bool needsCraft;      // planned main weapon is not in stock (would have to be produced)
-        // Was dieser Kolonist NACH dem Uebernehmen traegt, und seine Grenzen (2026-08-30:
-        // Mass/Bulk als eigene Spalten in der Vorschau). Gefuellt in derselben Schleife, die auch die
-        // Ueberladungs-Warnung ausloest - eine Frage, eine Rechnung: was der Balken zeigt, ist genau das, was die
-        // Warnung meint. Ohne Plan (behalten/uebersprungen) steht dort, was er HEUTE traegt.
+        // What this colonist carries AFTER Apply, and his limits (mass/bulk as separate preview columns).
+        // Filled in the same loop that raises the overload warning - one question, one calculation: what the
+        // bar shows is exactly what the warning means. Without a plan (kept/skipped) it holds what he carries
+        // TODAY.
         public float previewMass, previewBulk, capMass, capBulk;
-        // Hat ReweighEntry diese Zeile WIRKLICH gewogen (dann darf die Ueberladungs-Box sie nennen), oder
-        // blieb es bei der Vorgabe "heutiger Stand"? Gespeichert, damit RefreshOverloadProblem die Box
-        // jederzeit aus den Eintragsfeldern neu bauen kann - auch beim In-Place-Pin (2026-09-01).
+        // Did ReweighEntry REALLY weigh this row (then the overload box may list it), or did it stay at the
+        // "current state" default? Stored so RefreshOverloadProblem can rebuild the box from the entry fields
+        // at any time - including on an in-place pin.
         public bool previewWeighed;
         public bool cannotFight;     // permanently incapable of violence: skipped, never assigned
 
@@ -89,8 +86,8 @@ namespace CEReloaded
 
     // What the UI should offer to resolve a problem. The solver stays UI-free and only tags intent; the popup maps
     // the tag to an actual button + navigation.
-    // Seit dem Lazy-Rueckbau (2026-09-17) gibt es nur noch EIN Sprungziel: den Rollen-Reiter, wenn "nur Rollen"
-    // an ist und keine Rolle existiert. "CreateLoadouts" sprang in die Waffenliste, die es nicht mehr gibt.
+    // Since the lazy-creation rollback there is only ONE jump target: the Roles tab, when "Roles only" is on
+    // and no role exists. "CreateLoadouts" jumped to the weapon list, which no longer exists.
     public enum ProblemAction { None, OpenRolesTab }
 
     // One entry in the reactive problem list: the message and an optional suggested action.
@@ -98,8 +95,8 @@ namespace CEReloaded
     {
         public string text;
         public ProblemAction action;
-        // Kennzeichnet DIE Ueberladungs-Zeile, damit RefreshOverloadProblem sie beim In-Place-Pin an Ort
-        // und Stelle ersetzen kann, statt die ganze Box neu bauen zu muessen (2026-09-01).
+        // Marks THE overload line so RefreshOverloadProblem can replace it in place on an in-place pin instead
+        // of rebuilding the whole box.
         public bool isOverloadLine;
         public AssignProblem(string text, ProblemAction action = ProblemAction.None)
         {
@@ -129,11 +126,11 @@ namespace CEReloaded
     //              is only overtaken when it genuinely does more to the chosen target type.
     //   value = base
     //         - (1-craft) * 80 * (1-afford)   when the weapon must be made   (use existing <-> craft new)
-    //         - (1-budget) * 50 * scarcity^2  when it must be made   (cheap <-> best weapon, KNAPPHEIT der Zutaten,
-    //           see LoadoutUtility.MaterialAffordability - WORKFLOW_OVERHAUL_PLAN.md 6b/6d)
-    //         - (1-budget) * 45 * cost/maxCost when it must be made  (cheap <-> best weapon, PREIS des Stuecks -
-    //           2026-08-14 ergaenzt, siehe CraftPenalty: ohne diesen Anteil war der Regler in einer Kolonie mit
-    //           vollen Lagern wirkungslos, weil dort jede Waffe "bezahlbar" ist)
+    //         - (1-budget) * 50 * scarcity^2  when it must be made   (cheap <-> best weapon, SCARCITY of the
+    //           ingredients, see LoadoutUtility.MaterialAffordability)
+    //         - (1-budget) * 45 * cost/maxCost when it must be made  (cheap <-> best weapon, PRICE of the item -
+    //           see CraftPenalty: without this term the slider did nothing in a colony with full stockpiles,
+    //           because there every weapon is "affordable")
     //         - diversity * (55 * reuse + 8 * groupUse + 35 * overCap)   (always best <-> cover roles)
     //         + diversity * 25 for the first pick of an unfilled role group (SupportMG/Marksman/CQC/Launcher)
     // The ranged/melee slider shifts the shooter-vs-brawler threshold per pawn instead of scoring options.
@@ -166,12 +163,12 @@ namespace CEReloaded
             float grenadeCoverage = 0f, float shieldCoverage = 0f)
         {
             AssignPlan plan = new AssignPlan();
-            // Virtuelle Kandidaten (Waffen ohne Vorlage) treten seit dem Lazy-Umbau (2026-09-01) IMMER an -
-            // die Vorlage ist ein unsichtbares Hintergrund-Objekt, das erst beim Uebernehmen entsteht. Der
-            // fruehere Opt-in-Haken "Create new loadouts" entfiel mit der Pflicht-Massenerzeugung.
-            // `!c.isDisabled` (2026-09-04): eine gesperrte Rolle/Vorlage bleibt in der Kandidatenliste,
-            // damit das Auswahlfenster sie ausgegraut anzeigen und wieder entsperren kann - aber der Loeser
-            // vergibt sie nie. Genau dieselbe Zusage, die der Schalter fuer Waffen gibt.
+            // Virtual candidates (weapons without a template) ALWAYS compete since lazy creation - the template
+            // is an invisible background object that only comes into existence on Apply. The former opt-in
+            // checkbox "Create new loadouts" went away together with the mandatory bulk creation.
+            // `!c.isDisabled`: a disabled role/template stays in the candidate list so the picker can show it
+            // greyed out and re-enable it - but the solver never hands it out. Exactly the same promise the
+            // toggle makes for weapons.
             List<AssignCandidate> cands = allCandidates.Where(c => !c.isDisabled && RoleModeAllows(c, roleMode)).ToList();
 
             // Split pawns into settled (locked / keep-assigned / pinned) and targets; settled pawns reserve their
@@ -196,19 +193,18 @@ namespace CEReloaded
                 // Permanently incapable of violence (pacifist trait/backstory) or a baby: can never wield a weapon,
                 // so leave whatever they have untouched and skip them. Temporary states (downed, anesthetised) are
                 // NOT this, so an unconscious colonist is still planned normally.
-                // Vom Spieler ausgeschlossen heisst ab 2026-08-13: das Loadout wird beim Uebernehmen WEGGENOMMEN
-                // - ein Kolonist laesst sich nicht loeschen, die Zuweisung seiner Ausruestung aber sehr wohl;
-                // er steht danach ohne da. Vorher landete er im Zweig darunter mit planned=cur/kept=true, also
-                // "unangetastet lassen" - dann hat der Muelleimer im Zeilensymbol nichts weggenommen und war
-                // eine leere Geste.
-                // kept=false + planned=null ist genau die Kombination, die ApplyPreviewPlans apply() schon
-                // immer als "Zuweisung entfernen" schreibt (SetLoadout(none)); cannotFight bleibt true, damit
-                // die Zeile weiter als Entscheidung des Spielers gezeichnet wird und der Solver ihn nicht antastet.
-                // plannedPacks bleiben seine aktuellen: die Packs sind reine Versorgung und haengen nicht am
-                // Waffen-Loadout - weggenommen wird die WAFFE, nicht sein Verbandszeug.
-                // Reihenfolge zaehlt: die TATSACHE zuerst. Ein Pazifist, der zusaetzlich ausgeschlossen ist,
-                // faellt in den unteren Zweig und bleibt unangetastet - sein Zeilensymbol ist ein totes
-                // Schloss ohne Rueckweg, ihm hier still das Loadout wegzunehmen waere eine Falle.
+                // EXCLUDED by the player means: the loadout is TAKEN AWAY on Apply - a colonist can't be
+                // deleted, but his gear assignment can; he ends up without one. Previously he landed in the
+                // branch below with planned=cur/kept=true, i.e. "leave untouched" - so the trash icon in the
+                // row did not take anything away and was an empty gesture.
+                // kept=false + planned=null is exactly the combination ApplyPreviewPlan's apply() has always
+                // written as "remove assignment" (SetLoadout(none)); cannotFight stays true so the row is still
+                // drawn as the player's decision and the solver leaves it alone.
+                // plannedPacks stay his current ones: packs are pure supply and don't hang off the weapon
+                // loadout - what gets taken away is the WEAPON, not his bandages.
+                // Order matters: the FACT comes first. A pacifist who is also excluded falls into the lower
+                // branch and stays untouched - his row icon is a dead lock with no way back, so silently taking
+                // his loadout away here would be a trap.
                 if (!LoadoutUtility.CannotFightByNature(p) && LoadoutUtility.IsExcludedFromArming(p))
                 {
                     plan.entries.Add(new AssignPlanEntry { pawn = p, current = cur, planned = null, kept = false, cannotFight = true,
@@ -232,7 +228,7 @@ namespace CEReloaded
                     continue;
                 }
 
-                // Pinned (WORKFLOW_OVERHAUL_PLAN.md 5.5) is a player override, not a "nothing to do" state: it must
+                // Pinned is a player override, not a "nothing to do" state: it must
                 // stay OUT of `kept` (Changes/apply/produce-list all key off `kept` meaning "skip, planned==current
                 // already handled") so the pin actually applies and shows up as a change. It IS excluded from the
                 // solver's target list, exactly like a kept pawn, so it never gets reshuffled by a slider tweak.
@@ -255,18 +251,17 @@ namespace CEReloaded
                 // changes and stayed that way until the player realized the toggle was itself the undo).
                 // The keepAssigned==true branch already had this `cur != null` guard; it was just missing
                 // from the other one.
-                // Gesperrte Waffe an der Zuweisung (2026-09-03): "behalten" gibt es
-                // fuer so eine Zeile nicht - genau sie soll die Vorschau unter keepAssigned neu planen,
-                // alle anderen bleiben stehen. Ueber die ROHE Slots-Vereinigung des Ankers, damit auch
-                // eine gesperrte Zweitwaffe die Zeile freigibt.
+                // Disabled weapon in the assignment: "keep" does not exist for such a row - under keepAssigned
+                // the preview should replan exactly this row while all others stay. Uses the anchor's RAW slot
+                // union so a disabled sidearm releases the row too.
                 bool carriesDisabled = false;
                 Loadout rawForDisabled = p.GetLoadout();
                 if (rawForDisabled != null && !rawForDisabled.defaultLoadout)
                 {
-                    // Seit 2026-09-04 gilt dasselbe fuer eine gesperrte ROLLE bzw. VORLAGE: die Zeile wird
-                    // freigegeben, egal ob die Sperre an einer Waffe darin oder am Loadout selbst haengt.
-                    // Ueber DisplayLoadout, weil ein personalisierter Kolonist an seinem Anker haengt und
-                    // nicht direkt an der Vorlage - die rohe Zuweisung waere hier immer der Anker.
+                    // The same applies to a disabled ROLE or TEMPLATE: the row is released whether the lock sits
+                    // on a weapon inside it or on the loadout itself. Goes through DisplayLoadout because a
+                    // personalized colonist hangs off his anchor, not directly off the template - the raw
+                    // assignment would always be the anchor here.
                     if (LoadoutUtility.IsLoadoutDisabled(rawForDisabled)
                         || LoadoutUtility.IsLoadoutDisabled(AmmoAssignmentUtility.DisplayLoadout(rawForDisabled)))
                         carriesDisabled = true;
@@ -377,11 +372,10 @@ namespace CEReloaded
             if (pinnedPacks != null) foreach (Pawn pp in pinnedPacks.Keys) packPinnedPawns.Add(pp);
             HashSet<Pawn> sidearmPinnedPawns = new HashSet<Pawn>(prep.Where(x => x.sidearmPinned).Select(x => x.pawn));
 
-            // Die "superior loadouts skipped"-Liste (skippedSuperior) und ihr Schattenlauf pro Kolonist sind am
-            // 2026-08-25 ersatzlos entfallen, weil sie keinen Sinn ergab. Mit ihr der Parameter
-            // ignoreAvailability von PickBest und die Meldung
-            // "Unobtainable and skipped" in BuildProblems. Nebeneffekt: bis zu zwei komplette PickBest-Laeufe
-            // je Kolonist weniger (stand seit dem 2026-08-15 auf der Performance-Restliste).
+            // The "superior loadouts skipped" list (skippedSuperior) and its per-colonist shadow run were removed
+            // without replacement because they made no sense. With them went PickBest's ignoreAvailability
+            // parameter and the "Unobtainable and skipped" message in BuildProblems. Side effect: up to two full
+            // PickBest runs less per colonist.
 
             // Shooter vs brawler per pawn: the melee slider shifts the threshold (right = melee wins ties and more).
             float shift = (melee - 0.5f) * 300f;
@@ -401,46 +395,43 @@ namespace CEReloaded
             Dictionary<WeaponGroup, int> usedInGroup = new Dictionary<WeaponGroup, int>();
             Dictionary<AssignCandidate, int> timesUsed = new Dictionary<AssignCandidate, int>();   // keyed by candidate (virtuals have no loadout)
 
-            // Der Abzug fuer alles, was erst GEBAUT werden muss - eine Formel fuer Hauptwaffe, Zweitwaffe
-            // und Wurfsprengstoff (bis zum 2026-08-14 stand sie dreimal wortgleich in den drei Pickern; die
-            // Kostenerweiterung darunter waere sonst wieder nur an einer der drei gelandet).
+            // The penalty for everything that must be BUILT first - one formula for main weapon, sidearm and
+            // throwables (it used to exist three times verbatim in the three pickers; the cost extension below
+            // would otherwise have landed in only one of them again).
             //
-            // Zwei Anteile, zwei verschiedene Fragen:
-            //   craft   "Vorhandenes nutzen <-> Neues bauen"  -> haengt an der KNAPPHEIT der Zutaten
-            //   budget  "Guenstige Waffen <-> Beste Waffe"    -> haengt an der KNAPPHEIT *und* am PREIS
+            // Two terms, two different questions:
+            //   craft   "Use existing <-> Craft new"   -> depends on the SCARCITY of the ingredients
+            //   budget  "Cheap weapons <-> Best weapon" -> depends on SCARCITY *and* PRICE
             //
-            // Der Preisanteil ist neu (2026-08-14): wer Economy waehlte, bekam exorbitant hohe Baukosten.
-            // Vorher hingen BEIDE Regler allein an MaterialAffordability,
-            // also am Verhaeltnis Bestand/Bedarf - in einer Kolonie mit vollen Lagern steht das fuer jede
-            // Waffe auf 1.0, beide Abzuege fallen auf 0, und "Guenstige Waffen" ganz links aendert exakt
-            // nichts mehr. Genau dieser Zustand war im Test zu sehen.
-            // Relativ zum teuersten Kandidaten dieses Laufs, nicht gegen eine absolute Silberschwelle: was
-            // "teuer" heisst, haengt am Zeitalter und am Modpack, und der Regler soll in einer Bogen-und-
-            // Speer-Kolonie genauso greifen wie zwischen Sturmgewehr und schwerem MG.
-            // Drei getrennte Bezugswerte, weil es drei getrennte Wettbewerbe sind: die drei Picker
-            // vergleichen Schusswaffen nur mit Schusswaffen, Nahkampf nur mit Nahkampf und Wurfsprengstoff
-            // nur mit Wurfsprengstoff. Mit EINEM gemeinsamen Maximum haette das teuerste MG den Massstab
-            // gesetzt und jedes Messer, jede Granate waere pauschal bei ~0 gelandet - der Regler haette
-            // dort dann wieder nichts unterschieden, also genau der Fehler, den dieser Fix behebt.
+            // The price term is newer: picking Economy produced exorbitant build costs. Before, BOTH sliders hung
+            // on MaterialAffordability alone, i.e. on the stock/demand ratio - in a colony with full stockpiles
+            // that is 1.0 for every weapon, both penalties drop to 0, and "Cheap weapons" at the far left changes
+            // exactly nothing. That was precisely the state observed in testing.
+            // Relative to the most expensive candidate of this run, not against an absolute silver threshold:
+            // what counts as "expensive" depends on the tech era and the mod pack, and the slider should work in
+            // a bow-and-spear colony just as well as between assault rifle and heavy MG.
+            // Three separate reference values because these are three separate competitions: the three pickers
+            // compare firearms only with firearms, melee only with melee and throwables only with throwables.
+            // With ONE shared maximum the most expensive MG would have set the scale and every knife and grenade
+            // would have landed at ~0 across the board - the slider would again distinguish nothing there,
+            // exactly the bug this fix addresses.
             float maxCostRanged = 0f, maxCostMelee = 0f, maxCostGrenade = 0f;
-            // Wie weit liegen die Kandidaten eines Wettbewerbs QUALITATIV auseinander? Das ist der Massstab,
-            // an dem sich der Preisanteil messen muss (2026-08-16, zweiter Befund zu Economy: es wurde immer
-            // noch extrem viel produziert).
+            // How far apart are a competition's candidates in QUALITY? That is the scale the price term has to
+            // measure up against (Economy still produced far too much after the first fix).
             //
-            // Ehrlich festgehalten: der Fix vom 14.08. hat den Preisanteil ueberhaupt erst eingebaut -
-            // richtig, aber unvollstaendig. Er ist auf 45 Punkte gedeckelt, waehrend die Bewertungen der
-            // Kandidaten bis ~111 reichen. Liegen zwei Waffen 60 Punkte auseinander, kann der Preis die
-            // Entscheidung gar nicht mehr drehen, egal wie weit links der Regler steht - die Voreinstellung
-            // "Economy" plant dann weiter das MG. Beim ersten Mal habe ich geprueft, ob der Regler ANKOMMT
-            // (er tut es), und nicht, ob er ENTSCHEIDEN kann.
+            // The first fix only introduced the price term - correct, but incomplete. It was capped at 45
+            // points while candidate scores reach up to ~111. If two weapons are 60 points apart, price can no
+            // longer flip the decision no matter how far left the slider is - the "Economy" preset then still
+            // plans the MG. The first check only verified that the slider ARRIVES (it does), not that it can
+            // DECIDE.
             //
-            // Deshalb haengt das Gewicht jetzt an der Spanne des jeweiligen Wettbewerbs statt an einer festen
-            // Zahl: ganz links darf der Preis jede Qualitaetsdifferenz innerhalb des Pools ueberstimmen, ganz
-            // rechts zaehlt er gar nicht, dazwischen anteilig. Die alten 45 bleiben als Untergrenze - diese
-            // Aenderung kann den Regler nur staerker machen, nie schwaecher.
-            // Wichtig: das gilt ausschliesslich fuer Waffen, die HERGESTELLT werden muessen (der Aufrufer
-            // ruft CraftPenalty nur bei !hasStock). Vorhandene Waffen bleiben voellig unberuehrt - "guenstig"
-            // heisst hier "billig zu BAUEN", nicht "schlechter".
+            // So the weight now follows the spread of the respective competition instead of a fixed number: at
+            // the far left price may outvote any quality difference within the pool, at the far right it does
+            // not count at all, proportionally in between. The old 45 remain as a floor - this change can only
+            // make the slider stronger, never weaker.
+            // Important: this applies only to weapons that must be PRODUCED (the caller only calls CraftPenalty
+            // when !hasStock). Weapons in stock are completely unaffected - "cheap" here means "cheap to BUILD",
+            // not "worse".
             float spreadRanged = 0f, spreadMelee = 0f, spreadGrenade = 0f;
             float minRanged = float.MaxValue, minMelee = float.MaxValue, minGrenade = float.MaxValue;
             float maxScoreRanged = 0f, maxScoreMelee = 0f, maxScoreGrenade = 0f;
@@ -472,34 +463,34 @@ namespace CEReloaded
             float CraftPenalty(AssignCandidate c)
             {
                 float afford = LoadoutUtility.MaterialAffordability(c.mainWeapon);
-                // Beide Knappheits-Abzuege wie bisher, unveraendert. Quadratisch beim Budget-Anteil, damit
-                // eine leicht teurere, aber klar bessere Waffe bei geringer Knappheit trotzdem gewinnt.
+                // Both scarcity penalties as before, unchanged. Quadratic in the budget term so a slightly more
+                // expensive but clearly better weapon still wins at low scarcity.
                 float scarcity = 1f - afford;
                 float penalty = (1f - craft) * 80f * (1f - afford)
                     + (1f - budget) * 50f * scarcity * scarcity;
-                // Linear im Preisanteil, nicht quadratisch: hier ist der Punkt gerade, dass auch der
-                // MITTLERE Preisunterschied zaehlt (Sturmgewehr gegen MG), nicht nur der extreme.
+                // Linear in the price term, not quadratic: the point here is that the MEDIUM price difference
+                // counts too (assault rifle vs MG), not only the extreme one.
                 bool isGren = Dialog_GenerateLoadouts.IsGrenade(c.mainWeapon);
                 float maxCost = isGren ? maxCostGrenade : c.isRanged ? maxCostRanged : maxCostMelee;
-                // Gewicht = Spanne dieses Wettbewerbs, mindestens die bisherigen 45 (siehe oben).
+                // Weight = spread of this competition, at least the previous 45 (see above).
                 float priceWeight = Mathf.Max(45f, isGren ? spreadGrenade : c.isRanged ? spreadRanged : spreadMelee);
                 if (maxCost > 0f)
                     penalty += (1f - budget) * priceWeight * Mathf.Clamp01(LoadoutUtility.WeaponCraftCost(c.mainWeapon) / maxCost);
                 return penalty;
             }
 
-            // TRAGKRAFT IST BEI DER ZUTEILUNG KEINE SCHRANKE MEHR (2026-08-30): zuweisen soll man ALLES koennen,
-            // Gewicht und Bulk spielen bei der Zuweisung keine Rolle - der Spieler sorgt selbst dafuer, dass es
-            // sinnvoll ist (vielleicht zieht er nachher noch einen Rucksack an). Damit ist der Haken
-            // "Respect max bulk" vom 25.08. wieder weg und mit ihm alles, was
-            // daran hing: die Hauptwaffen-Schranke, das Rest-Budget fuer Packs/Zweitwaffe/Sprengstoff und die zwei
-            // Meldungen darueber ("reduced set", "nothing fits"). Der Loeser teilt wieder zu, was am besten passt.
-            // Was BLEIBT, ist die WARNUNG unten: wer nach dem Uebernehmen ueber seiner Grenze liegt, steht mit Zahlen
-            // im Kasten "Problems with the current settings" und hat rote Balken - siehe die Schleife bei den
-            // Ueberladungs-Meldungen. Sie ist der einzige Ort, an dem Tragkraft den Loeser noch interessiert, und
-            // dafuer braucht sie genau diese zwei Helfer.
-            // CapOf lebt seit 2026-09-01 als statisches CapacityOf neben ReweighEntry (siehe dort);
-            // WhyExceeds und der Box-Aufbau selbst am selben Tag als RefreshOverloadProblem daneben.
+            // CARRY CAPACITY IS NO LONGER A CONSTRAINT ON ASSIGNMENT: it must be possible to assign ANYTHING;
+            // weight and bulk play no role in assignment - the player makes sure it is sensible (maybe a
+            // backpack goes on afterwards). That removed the "Respect max bulk" checkbox again, and with it
+            // everything attached to it: the main weapon cap, the remaining budget for packs/sidearm/throwables
+            // and the two messages about it ("reduced set", "nothing fits"). The solver again assigns what fits
+            // best.
+            // What REMAINS is the WARNING below: anyone over his limit after Apply is listed with numbers in the
+            // "Problems with the current settings" box and gets red bars - see the loop for the overload
+            // messages. It is the only place where carry capacity still matters to the solver, and that is
+            // exactly what these two helpers are for.
+            // CapOf now lives as the static CapacityOf next to ReweighEntry (see there); WhyExceeds and the box
+            // construction itself moved next to it as RefreshOverloadProblem.
 
             AssignCandidate PickBest(bool wantRanged, float pawnRanged, float pawnMelee)
             {
@@ -511,7 +502,7 @@ namespace CEReloaded
                     // neither is ever a pawn's MAIN weapon, just something that rides alongside it.
                     if (Dialog_GenerateLoadouts.IsGrenade(c.mainWeapon) || LoadoutUtility.IsShieldApparel(c.mainWeapon)) continue;
                     if (c.isRanged != wantRanged) continue;
-                    // "Respect max bulk": was allein schon nicht traegt, tritt gar nicht an.
+                    // "Respect max bulk": anything that cannot be carried on its own does not compete at all.
                     bool hasStock = stock.TryGetValue(c.mainWeapon, out int s) && s > 0;
                     if (!hasStock && (craft <= 0.001f || !c.producible)) continue;
 
@@ -520,9 +511,9 @@ namespace CEReloaded
                     float targetDamage = Mathf.Lerp(c.fleshScore, c.mechScore, mech);
                     float tilt = Mathf.Abs(mech - 0.5f) * 2f * MechTilt;
                     float val = Mathf.Lerp(c.score, targetDamage, tilt);
-                    // Nur was gebaut werden muss, kostet etwas - eine Waffe, die schon im Regal liegt, ist
-                    // fuer jeden Reglerstand gratis. Das ist zugleich der "erst schauen, was da ist"-Teil
-                    // Economy-Vorgabe: Vorhandenes hat hier per Konstruktion keinen Abzug.
+                    // Only what must be built costs anything - a weapon already on the shelf is free at every
+                    // slider position. This is also the "check what's there first" part of the Economy preset:
+                    // existing gear has no penalty here by construction.
                     if (!hasStock) val -= CraftPenalty(c);
                     // A virtual pick creates a brand-new loadout; prefer an equivalent existing loadout when tied.
                     if (c.isVirtual) val -= 4f;
@@ -579,18 +570,17 @@ namespace CEReloaded
             // otherwise top the medic ranking right below (2026-08-01 fix). Kept OUT of anyMeleeTarget/
             // shieldEligible below on purpose - a shield is pointless for someone who never fights, and their
             // presence shouldn't skew whether the FIGHTING squad counts as melee-capable.
-            // IsExcludedFromArming muss hier RAUS, obwohl es Teil von CannotFight ist (2026-08-09, direkt beim
-            // Einbau des Merkers aufgefallen): CannotFight buendelt zwei verschiedene Aussagen. "Pazifist oder
-            // Baby" heisst nur "keine WAFFE" - ein Pazifist soll sehr wohl ein Medic Kit bekommen, genau dafuer
-            // gibt es diesen Zweig. "Der Spieler hat ihn abgehakt" heisst dagegen "lass ihn komplett in Ruhe";
-            // ihm hier automatisch ein Pack zuzuteilen waere das Gegenteil dessen, was der Haken bedeutet.
+            // IsExcludedFromArming must be filtered OUT here even though it is part of CannotFight: CannotFight
+            // bundles two different statements. "Pacifist or baby" only means "no WEAPON" - a pacifist should
+            // very much get a Medic Kit, which is exactly what this branch is for. "The player unticked him",
+            // on the other hand, means "leave him completely alone"; auto-assigning him a pack here would be the
+            // opposite of what that checkbox means.
             List<Pawn> packOnlyPawns = pawns.Where(p => LoadoutUtility.CannotFight(p) && !LoadoutUtility.CannotCarryAnything(p)
                 && !LoadoutUtility.IsExcludedFromArming(p) && !packPinnedPawns.Contains(p)).ToList();
-            // Die frueher hier stehende feste 40%-Medic-Grenze ist am 2026-08-09 entfallen. Sie war nicht
-            // falsch, nur unbeweglich: sie meinte dasselbe wie die jetzige Skill-Reihenfolge weiter unten
-            // (rankRecipients), aber mit einer Zahl, die der Abdeckungs-Regler nicht anfassen konnte - genau
-            // die Inkonsistenz, ueber die der Punkt lief. Die Auswahl "wer bekommt ein Medic Kit zuerst"
-            // passiert jetzt an einer Stelle statt an zweien; medicPackEligible bleibt als Grundmenge.
+            // The fixed 40% medic cutoff that used to live here is gone. It wasn't wrong, just immovable: it meant
+            // the same as the current skill ordering further down (rankRecipients), but with a number the
+            // coverage slider could not touch - exactly the inconsistency at issue. Choosing "who gets a Medic
+            // Kit first" now happens in one place instead of two; medicPackEligible remains as the base set.
             List<Pawn> medicPackEligible = packEligible.Concat(packOnlyPawns).ToList();
             bool anyMeleeTarget = packEligible.Any(p => !isShooter[p]);
 
@@ -614,7 +604,7 @@ namespace CEReloaded
             // as the slider rises - it does NOT mean "some pawns get every pack, others get none" (that was
             // the original, wrong reading: coverage gated PAWNS, not WHICH packs, so a mid-slider setting
             // could hand a shooter's whole squad zero food/medicine while a melee pawn further down the list
-            // got everything). Base Supply-like packs (mixed content, or Food-led - the "Grundausrüstung"
+            // got everything). Base Supply-like packs (mixed content, or Food-led - the base kit
             // every pawn needs first: food+medicine) rank most essential; Medical/Drugs/Utility-specialized
             // content only layers on top once included. Every ELIGIBLE pawn gets every pack up to the
             // threshold (still subject to the Medical gate below) - coverage never excludes a pawn outright
@@ -637,28 +627,28 @@ namespace CEReloaded
             // own Essential<->All slider already ranks its templates (TemplateOrder/TemplateRank).
             int packSteps = maxPackRank + 2;
 
-            // Ab hier GRADUELL statt alles-oder-nichts (2026-08-09): wie bei Schilden, und bei medizinlastigen
-            // Packs bekommen Kolonisten mit hohem Medical-Skill das Pack bevorzugt zuerst.
-            // Vorher tat derselbe Regler auf verschiedenen Zeilen etwas anderes: bei Schilden hiess 60% "die
-            // sechs bestgeeigneten von zehn", bei einem Medic Pack weiterhin "alle oder keiner", je nachdem ob
-            // die Rangschwelle gerissen wurde - die Vorschau sprang von 0 auf alle.
+            // From here on GRADUAL instead of all-or-nothing: as with shields, and for medicine-heavy packs
+            // colonists with a high Medical skill get the pack first.
+            // Previously the same slider did different things on different rows: for shields 60% meant "the six
+            // best-suited out of ten", for a Medic Pack still "all or none" depending on whether the rank
+            // threshold was crossed - the preview jumped from 0 to everyone.
             //
-            // 2026-08-16, Vorgabe: zuerst Aerzte, aber langsam mehr, dann Helfer, aber langsam mehr, dann
-            // alle, aber langsam mehr. Im Test war 0 -> 5 -> 6 -> 9 gemessen, mit fuenf
-            // Kolonisten auf einen 5%-Schritt. Ursache war NICHT die Rampe, die gab es schon - es war eine
-            // HARTE Rangschwelle darueber (packRankThreshold): sie liess einen Rang erst ab der Mitte seiner
-            // eigenen Rampe ueberhaupt zu, und in dem Moment stand die Rampe bereits bei 50 %. Also sprang
-            // jeder Rang mit der halben Gruppe ins Bild. Die Schwelle ist jetzt weg; die Rampe allein
-            // entscheidet, und sie liefert fuer einen noch nicht erreichten Rang von sich aus null Traeger.
+            // Intended behavior: doctors first, but gradually more, then helpers, gradually more, then everyone,
+            // gradually more. Measured was 0 -> 5 -> 6 -> 9 with five colonists added on a single 5% step. The
+            // cause was NOT the ramp, which already existed - it was a HARD rank threshold on top
+            // (packRankThreshold): it only admitted a rank from the middle of its own ramp onward, and at that
+            // moment the ramp was already at 50%. So every rank popped in with half its group at once. The
+            // threshold is gone now; the ramp alone decides, and for a rank not yet reached it yields zero
+            // carriers on its own.
             //
-            // Damit rampt auch Rang 0 (Grundausruestung) - vorher "alle oder keiner". Das ist der Preis fuer
-            // diese Vorgabe und zugleich die einzige Art, das linke Ende ("No packs") zu behalten: bei Regler 0
-            // ist jede Rampe null, also bekommt niemand etwas. Vorher hielt die Rangschwelle dieses Ende.
+            // This means rank 0 (base supply) ramps too - previously "all or none". That is the price of this
+            // behavior and at the same time the only way to keep the left end ("No packs"): at slider 0 every
+            // ramp is zero, so nobody gets anything. Previously the rank threshold held that end.
             float packPos = packCoverage * (packSteps - 1);
             List<Pawn> combatOrderedEligible = order.Select(e => e.pawn).Where(packEligible.Contains).Concat(packOnlyPawns).ToList();
-            // Medizin nach Medical-Skill, absteigend - genau so vorgegeben. Pazifisten sind hier absichtlich
-            // mit drin: ein Arzt, der nie kaempft, ist der beste Traeger fuer ein Medic Kit, nicht der
-            // schlechteste (dieselbe Ueberlegung wie beim packOnlyPawns-Zweig oben).
+            // Medicine by Medical skill, descending - by design. Pacifists are deliberately included: a doctor
+            // who never fights is the best carrier for a Medic Kit, not the worst (same reasoning as the
+            // packOnlyPawns branch above).
             List<Pawn> medicalOrdered = medicPackEligible
                 .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0)
                 .ThenBy(p => p.LabelShortCap.ToString())
@@ -668,27 +658,26 @@ namespace CEReloaded
             {
                 List<Pawn> pool = r == 1 ? medicalOrdered : combatOrderedEligible;
                 float fill = Mathf.Clamp01(packPos - r);
-                // Aufrunden, nicht kaufmaennisch runden: sonst passiert am ANFANG jeder Stufe wieder nichts.
-                // Bei zehn Traegern braeuchte Runden 5 % Reglerweg, ehe der erste ueberhaupt erscheint - genau
-                // das "zwischen 25 und 75 passiert gar nichts", das im Test auffiel. Aufrunden heisst: sobald
-                // eine Stufe anfaengt, bewegt sich auch etwas, und danach kommt einer nach dem anderen dazu.
+                // Round up, not to nearest: otherwise nothing happens at the START of each step again. With ten
+                // carriers, rounding would need 5% of slider travel before the first one even appears - exactly
+                // the "nothing happens between 25 and 75" effect seen before. Rounding up means: as soon as a
+                // step begins something moves, and after that one carrier is added after another.
                 int slots = fill <= 0f ? 0 : Mathf.Clamp(Mathf.CeilToInt(pool.Count * fill), 1, pool.Count);
                 rankRecipients[r] = new HashSet<Pawn>(pool.Take(slots));
             }
 
-            // `e` ist der Eintrag, dessen Tragkraft-Budget die Packs belasten ("Respect max bulk") - fuer die
-            // Kampfschleife der Eintrag der Zeile, fuer den Nur-Pack-Durchgang der Pazifisten-Eintrag.
+            // `e` is the entry whose carry budget the packs count against ("Respect max bulk") - for the combat
+            // loop the row's entry, for the pack-only pass the pacifist's entry.
             List<Loadout> ChoosePacksFor(Pawn pawn, AssignPlanEntry e)
             {
                 var chosen = new List<Loadout>();
-                // Ein Pack kommt nur hinein, wenn es in das Restbudget passt; sonst wird es fuer die Meldung
-                // gemerkt und das NAECHSTE probiert (ein leichteres Medic Kit kann noch passen, wenn die
-                // Grundausruestung nicht mehr ging). Ohne Haken nimmt TryTake alles.
-                // PACKS SIND VON DER SCHRANKE AUSGENOMMEN (2026-08-30): es ergibt keinen Sinn, zwei Zweitwaffen
-                // hineinzustopfen und dafuer keine Packs zu geben - Packs werden sehr wohl zugeteilt, die Warnung
-                // fuers Gewicht bleibt. Sie belasten das Budget weiterhin (die Zweitwaffe
-                // danach sieht also, was schon draufliegt), aber ein Pack wird nie mehr weggelassen - und die
-                // Ueberladungs-Warnung unten nennt den Kolonisten wie bisher mit Zahlen.
+                // A pack only goes in if it fits the remaining budget; otherwise it is remembered for the message
+                // and the NEXT one is tried (a lighter Medic Kit may still fit when the base supply no longer
+                // did). Without the checkbox TryTake accepts everything.
+                // PACKS ARE EXEMPT FROM THE CAP: it makes no sense to cram in two sidearms and give no packs for
+                // it - packs are assigned regardless, the weight warning stays. They still count against the
+                // budget (so the sidearm afterwards sees what is already loaded), but a pack is never left out
+                // anymore - and the overload warning below lists the colonist with numbers as before.
                 void Take(Loadout pack) { chosen.Add(pack); }
                 // One shield pack, not every shield pack in the pool (2026-07-31 fix) - AddRange used to hand
                 // a shield-eligible pawn ALL of them simultaneously whenever 2+ distinct shield-bearing packs
@@ -698,29 +687,29 @@ namespace CEReloaded
                 foreach (Loadout pack in rankedPackPool)
                 {
                     int rank = PackRank(pack);
-                    // Statt der alten Alles-oder-nichts-Schwelle: gehoert dieser Pawn zu den Traegern, die
-                    // dieser Rang bei der aktuellen Reglerstellung abdeckt? Bei Medizin ist das die
-                    // Skill-Reihenfolge, sonst die Kampf-Reihenfolge (dieselbe wie bei Schilden).
-                    // Der alte separate medics-Gate ist damit weg: er hat dasselbe gemeint, aber mit einer
-                    // fixen 40%-Grenze, die der Regler nicht bewegen konnte.
+                    // Instead of the old all-or-nothing threshold: is this pawn among the carriers this rank covers
+                    // at the current slider position? For medicine that is the skill order, otherwise the combat
+                    // order (same as for shields).
+                    // This removes the old separate medics gate: it meant the same thing, but with a fixed 40%
+                    // cutoff the slider could not move.
                     if (rankRecipients.TryGetValue(rank, out HashSet<Pawn> recips) && !recips.Contains(pawn)) continue;
                     Take(pack);
                 }
                 return chosen;
             }
 
-            // ---- Was nach dem Uebernehmen an Extras WIRKLICH haengt ----
-            // Eine LEERE Plan-Liste heisst seit 2026-08-19 "nicht anfassen" (WantsPackWrite/WantsSidearmWrite): der
-            // Kolonist behaelt dann, was er heute traegt - und das wiegt, also muss die Ueberladungs-Warnung es sehen.
-            // Ausnahme: ein Rollen-Pick mit Vorlagenwechsel leert den Anker (EnsureAmmoLink), dann haengt nichts mehr.
-            // EffectivePacks/EffectiveSidearms sind damit die Mengen NACH dem Uebernehmen und die einzige Quelle der
-            // Warnung. Seit 2026-09-01 sind sie STATISCHE Helfer neben ReweighEntry (siehe dort) - der
-            // In-Place-Pin braucht dieselbe Antwort wie dieser Solve.
+            // ---- What REALLY hangs on the pawn after Apply in terms of extras ----
+            // An EMPTY plan list means "don't touch" (WantsPackWrite/WantsSidearmWrite): the colonist then keeps
+            // what he carries today - and that has weight, so the overload warning must see it.
+            // Exception: a role pick that switches templates clears the anchor (EnsureAmmoLink), then nothing
+            // hangs on it anymore. EffectivePacks/EffectiveSidearms are therefore the sets AFTER Apply and the
+            // warning's only source. They are STATIC helpers next to ReweighEntry (see there) - the in-place pin
+            // needs the same answer as this solve.
 
             // Sidearm: a second Weapon Loadout attached the same live way Equipment Packs are (multi-parent,
             // see SidearmAssignmentUtility) - opposite weapon type from the main pick (a ranged main gets a
             // melee backup, a melee main a ranged one), same "sidearms still exist, just as their own
-            // Weapon Loadout now" idea this session's architecture was built around. sidearmCoverage (0..1)
+            // Weapon Loadout now" idea the current architecture was built around. sidearmCoverage (0..1)
             // covers that fraction of the squad, best-combat-priority first (the same order weapons are
             // handed out in) rather than a per-pawn coin flip, so a partial setting always arms the
             // sharpest shooters/fighters first instead of a scattershot subset.
@@ -737,11 +726,11 @@ namespace CEReloaded
             // because it out-scores a pistol. Reuses the same cap the old baked-in-sidearm mechanism
             // already had (CEReloadedSettings.sidearmMaxBulk, still configurable in mod settings and now
             // also inline in this popup) rather than inventing a second, disconnected setting.
-            // Seit 2026-08-25 ueber SidearmAssignmentUtility.MaxSidearmBulk - dieselbe Zahl, die das
-            // Zweitwaffen-Auswahlfenster jetzt zum Ausblenden benutzt. Eine Quelle, zwei Leser.
+            // Goes through SidearmAssignmentUtility.MaxSidearmBulk - the same number the sidearm picker now uses
+            // for hiding entries. One source, two readers.
             float maxSidearmBulk = SidearmAssignmentUtility.MaxSidearmBulk();
 
-            // `limit` = das Restbudget des Kolonisten ("Respect max bulk"), null = keine Schranke.
+            // `limit` = the colonist's remaining budget ("Respect max bulk"), null = no cap.
             AssignCandidate PickSidearm(bool wantRanged, ThingDef excludeWeapon)
             {
                 AssignCandidate best = null;
@@ -776,7 +765,7 @@ namespace CEReloaded
             int grenadeGiven = 0;
             Dictionary<AssignCandidate, int> timesUsedGrenade = new Dictionary<AssignCandidate, int>();
 
-            // `limit` wie bei PickSidearm.
+            // `limit` as in PickSidearm.
             AssignCandidate PickGrenade(ThingDef excludeWeapon)
             {
                 AssignCandidate best = null;
@@ -813,9 +802,9 @@ namespace CEReloaded
             foreach (AssignPlanEntry e in order)
             {
                 float pr = rangedScore(e.pawn), pm = meleeScore(e.pawn);
-                // "Respect max bulk": die Tragkraft des Kolonisten MINUS dem, was unabhaengig von dieser Wahl
-                // haengen bleibt (angeheftete Extras, heutige Packs ohne neue Vergabe - ReservedBeforeMain),
-                // als Schranke fuer die Hauptwaffe.
+                // "Respect max bulk": the colonist's carry capacity MINUS whatever stays attached regardless of
+                // this pick (pinned extras, today's packs without a new assignment - ReservedBeforeMain), as the
+                // cap for the main weapon.
                 AssignCandidate pick = PickBest(isShooter[e.pawn], pr, pm) ?? PickBest(!isShooter[e.pawn], pr, pm);
                 if (pick == null) continue;
                 bool hasStock = stock.TryGetValue(pick.mainWeapon, out int s2) && s2 > 0;
@@ -866,10 +855,10 @@ namespace CEReloaded
             {
                 if (sidearmGiven >= sidearmSlots) break;
                 AssignCandidate side = PickSidearm(wantRanged, e.plannedMain);
-                // Ein virtueller Kandidat hat kein Loadout-Objekt (siehe isVirtual oben). Bis zum Lazy-Umbau
-                // (2026-09-01) wurde er hier verworfen - seither wandert die blosse WAFFE in
-                // plannedSidearmDefs, und die Vorlage entsteht erst beim Uebernehmen (ApplyPreviewPlan).
-                // Ein nicht-virtueller Kandidat ohne Loadout bleibt ein Datenfehler und faellt weiter raus.
+                // A virtual candidate has no loadout object (see isVirtual above). Before lazy creation it was
+                // discarded here - now the bare WEAPON goes into plannedSidearmDefs, and the template is only
+                // created on Apply (ApplyPreviewPlan).
+                // A non-virtual candidate without a loadout remains a data error and is still dropped.
                 if (side != null && !side.isVirtual && side.loadout == null) side = null;
                 if (side == null) continue;
                 bool sideStock = stock.TryGetValue(side.mainWeapon, out int ss) && ss > 0;
@@ -912,7 +901,7 @@ namespace CEReloaded
 
             // Explosives fill independently, into the SAME plannedSidearms list a real backup weapon may have
             // already claimed above - one shared attach mechanism and GUI cell, two separate budgets/pools
-            // feeding it, exactly as agreed: grenades and a real sidearm are never in competition with
+            // feeding it, by design: grenades and a real sidearm are never in competition with
             // each other, but both end up listed as "this pawn's sidearms" either way. Ordered by
             // ExplosivesSuitability (descending) instead of plain combat-priority order, so a limited
             // grenadeSlots budget reaches the safest/most accurate carriers first.
@@ -922,8 +911,8 @@ namespace CEReloaded
                 AssignCandidate nade = PickGrenade(e.plannedMain);
                 if (nade == null) continue;
                 bool nadeStock = stock.TryGetValue(nade.mainWeapon, out int ns) && ns > 0;
-                // Gleiche Zweiteilung wie beim Sidearm oben (Lazy-Umbau 2026-09-01): virtuell -> Waffe
-                // merken, real -> Vorlage anhaengen. Ein realer Kandidat ohne Loadout bleibt draussen.
+                // Same split as for the sidearm above (lazy creation): virtual -> remember the weapon,
+                // real -> attach the template. A real candidate without a loadout stays out.
                 if (nade.isVirtual)
                 {
                     if (e.plannedSidearmDefs == null) e.plannedSidearmDefs = new List<ThingDef>();
@@ -958,29 +947,28 @@ namespace CEReloaded
                     // one place, and it covers the pin path too.
                 }
 
-            // "Passt das ueberhaupt auf den Kolonisten?" gehoert VOR das Uebernehmen (2026-08-13, im Test:
-            // zwei von neun Kolonisten waren nach Auto-assign ueberladen - einer mit
-            // Masse 56.9/30.4 kg, also fast dem Doppelten -, und in der Vorschau stand dazu nichts. Die roten
-            // Balken und der richtige Tooltip erscheinen erst danach im Assign-Tab, und nur beim Hovern).
-            // Kein hartes Limit: Grundsatz ist "erlauben, aber eine gut sichtbare Warnung einbauen".
-            // Die Warnung stand seither an der Kapazitaetsleiste - nur
-            // eben eine Stufe zu spaet. Der Solver selbst bleibt unangetastet.
-            // Gerechnet gegen CEs eigene Werte des KONKRETEN Pawns (nicht den Median), weil hier ein
-            // bestimmtes Loadout einem bestimmten Kolonisten zugedacht ist.
-            // Tragkraft und Begruendungstext kommen aus denselben Helfern wie die Schranke oben (CapOf,
-            // WhyExceeds) - seit 2026-08-25 bewusst EINE Rechnung fuer beide.
-            // Die ganze Wiege-Logik (Vorgabe heutiger Stand, drei Gewichtsquellen, Extras zaehlen mit; auch
-            // der Sanitaeterinnen-Fall "kampfunfaehig, bekommt aber Packs" aus 2026-08-14) lebt seit
-            // 2026-09-01 in ReweighEntry - EINE Rechnung fuer diesen Solve UND den In-Place-Pin
-            // (Dialog_SquadSetup.AdoptExtrasPin). Die Box-Zeile MIT GRUND UND ZAHLEN (2026-08-16) baut
-            // RefreshOverloadProblem aus den Eintragsfeldern - dieselbe Funktion laeuft beim Pin, damit
-            // Box und Leisten nie zwei verschiedene Staende zeigen.
+            // "Does this even fit on the colonist?" belongs BEFORE Apply (two of nine colonists were overloaded
+            // after Auto-assign - one at mass 56.9/30.4 kg, almost double - and the preview said nothing about
+            // it. The red bars and the proper tooltip only appeared afterwards in the Assign tab, and only on
+            // hover).
+            // No hard limit: the principle is "allow it, but add a clearly visible warning".
+            // The warning had been on the capacity bar all along - just one step too late. The solver itself
+            // stays untouched.
+            // Computed against CE's own values for the SPECIFIC pawn (not the median), because here a specific
+            // loadout is intended for a specific colonist.
+            // Carry capacity and the explanation text come from the same helpers as the cap above (CapOf,
+            // WhyExceeds) - deliberately ONE calculation for both.
+            // The whole weighing logic (default to current state, three weight sources, extras count too; also
+            // the medic case "can't fight but gets packs") lives in ReweighEntry - ONE calculation for this
+            // solve AND the in-place pin (Dialog_SquadSetup.AdoptExtrasPin). The box line WITH REASON AND
+            // NUMBERS is built by RefreshOverloadProblem from the entry fields - the same function runs on a pin,
+            // so box and bars never show two different states.
             foreach (AssignPlanEntry e in plan.entries)
                 ReweighEntry(e);
             RefreshOverloadProblem(plan);
 
-            // "Respect max bulk", die zwei Folgen der Schranke - beide nur mit Haken befuellt:
-            // wer gar keine tragbare Hauptwaffe bekam, und wem Packs/Zweitwaffen weggelassen wurden.
+            // "Respect max bulk", the two consequences of the cap - both only filled with the checkbox on:
+            // who got no carryable main weapon at all, and who had packs/sidearms left out.
 
             BuildProblems(plan, cands, targets, craft, mech, melee, diversity, roleMode);
 
@@ -1008,17 +996,16 @@ namespace CEReloaded
             return plan;
         }
 
-        // ---- Vorschau-Gewicht einer Zeile: EINE Rechnung fuer Solve UND In-Place-Pin (2026-09-01) ----
+        // ---- Preview weight of a row: ONE calculation for solve AND in-place pin ----
         //
-        // Bis heute wurde previewMass/previewBulk NUR im vollen Solve gesetzt. Ein von Hand angeheftetes
-        // Pack oder eine angeheftete Zweitwaffe patcht den Eintrag aber absichtlich in-place (siehe
-        // Dialog_SquadSetup.AdoptExtrasPin - ein voller RecomputeAssign wuerde fremde Zeilen umwerfen),
-        // und dabei wurde nie nachgewogen: die Nachschub-Symbole der Zeile lasen die neuen Zweitwaffen
-        // sofort, die Mass/Bulk-Leisten daneben zeigten weiter den Stand vom letzten Solve (Zweitwaffen
-        // und Packs bewegten die Masse-/Gewichtsleiste nicht).
-        // Deshalb liegt die ganze Wiege-Logik jetzt hier als statische Funktion; der Solve ruft sie pro
-        // Zeile, der Pin fuer die eine gepatchte Zeile. Rueckgabe: wurde WIRKLICH gewogen (dann darf die
-        // Ueberladungs-Box den Kolonisten nennen) oder blieb es beim heutigen Stand als Vorgabe.
+        // previewMass/previewBulk used to be set ONLY in the full solve. A manually pinned pack or sidearm,
+        // however, deliberately patches the entry in place (see Dialog_SquadSetup.AdoptExtrasPin - a full
+        // RecomputeAssign would reshuffle other rows), and nothing was reweighed: the row's resupply icons
+        // read the new sidearms immediately while the mass/bulk bars next to them still showed the state of
+        // the last solve (sidearms and packs did not move the mass/weight bar).
+        // So the whole weighing logic now lives here as a static function; the solve calls it per row, the
+        // pin for the one patched row. Returns whether it REALLY weighed (then the overload box may name the
+        // colonist) or stayed at today's state as the default.
         internal static bool RoleClears(AssignPlanEntry e) => e.planned != null && RoleUtility.IsRoleLoadout(e.planned)
             && e.pawn != null && AmmoAssignmentUtility.DisplayLoadout(e.pawn.GetLoadout()) != e.planned;
         internal static List<Loadout> EffectivePacks(AssignPlanEntry e)
@@ -1030,8 +1017,8 @@ namespace CEReloaded
                ? (e.plannedSidearms ?? new List<Loadout>())
                : (RoleClears(e) ? new List<Loadout>() : (SidearmAssignmentUtility.GetPawnSidearms(e.pawn) ?? new List<Loadout>()));
 
-        // Tragkraft-Grenzen eines Kolonisten - dieselben Rueckfaelle wie das fruehere Solve-lokale CapOf.
-        // Ohne den per-Solve-Cache: der Pin-Pfad fragt genau EINEN Kolonisten, der Solve einmal pro Zeile.
+        // A colonist's carry limits - the same fallbacks as the former solve-local CapOf.
+        // Without the per-solve cache: the pin path asks about exactly ONE colonist, the solve once per row.
         internal static (float mass, float bulk) CapacityOf(Pawn p)
         {
             float capMass = LoadoutUtility.CarryWeightOf(p);
@@ -1051,18 +1038,18 @@ namespace CEReloaded
             (float capM0, float capB0) = CapacityOf(e.pawn);
             e.capMass = capM0; e.capBulk = capB0;
             LoadoutUtility.GetLoadoutMassBulk(e.current, out float curM, out float curB);
-            e.previewMass = curM; e.previewBulk = curB;   // Vorgabe: der heutige Stand, unten ueberschrieben
+            e.previewMass = curM; e.previewBulk = curB;   // default: today's state, overwritten below
             if (e.cannotFight && !e.extrasChanged) return false;
 
-            // Die Mengen NACH dem Uebernehmen, nicht die rohen Plan-Listen: eine leere Plan-Liste heisst
-            // "behaelt seine heutigen" - siehe EffectivePacks/EffectiveSidearms direkt darueber.
+            // The sets AFTER Apply, not the raw plan lists: an empty plan list means "keeps his current ones" -
+            // see EffectivePacks/EffectiveSidearms right above.
             List<Loadout> extras = EffectivePacks(e).Concat(EffectiveSidearms(e)).ToList();
             bool hasVirtualSidearms = e.plannedSidearmDefs != null && e.plannedSidearmDefs.Count > 0;
             bool hasExtras = extras.Any(x => x != null) || hasVirtualSidearms;
 
-            // EINE Gewichtsquelle mit drei Faellen (Historie siehe die Kommentare im Solve, 2026-08-15):
-            // echte Vorlage, virtueller Pick (aus derselben Vorgabe gewogen, aus der beim Uebernehmen die
-            // Vorlage entsteht), oder keine Waffe aber Extras.
+            // ONE weight source with three cases (history in the comments in the solve): a real template, a
+            // virtual pick (weighed from the same defaults the template is created from on Apply), or no weapon
+            // but extras.
             float lMass, lBulk;
             if (e.planned != null)
             {
@@ -1076,17 +1063,17 @@ namespace CEReloaded
             {
                 lMass = 0f; lBulk = 0f;
             }
-            else return false;   // wirklich nichts zu wiegen - Vorgabe (heutiger Stand) bleibt stehen
-            // Packs und Zweitwaffen ZAEHLEN MIT (2026-08-13): e.planned ist die reine Waffenvorlage,
-            // die Extras haengen als eigene Loadouts daneben - und genau die machen Sperrigkeit aus.
+            else return false;   // really nothing to weigh - the default (today's state) stays
+            // Packs and sidearms COUNT TOO: e.planned is the bare weapon template, the extras hang next to it as
+            // separate loadouts - and those are exactly what makes up bulk.
             foreach (Loadout extra in extras)
             {
                 if (extra == null) continue;
                 LoadoutUtility.GetLoadoutMassBulk(extra, out float em, out float eb);
                 lMass += em; lBulk += eb;
             }
-            // Virtuelle Zweitwaffen/Granaten wiegen wie der virtuelle Hauptwaffen-Pick: aus derselben
-            // Vorgabe, aus der beim Uebernehmen die Vorlage entsteht (Lazy-Umbau 2026-09-01).
+            // Virtual sidearms/grenades are weighed like the virtual main weapon pick: from the same defaults the
+            // template is created from on Apply (lazy creation).
             if (hasVirtualSidearms)
                 foreach (ThingDef sd in e.plannedSidearmDefs)
                 {
@@ -1098,7 +1085,7 @@ namespace CEReloaded
             return true;
         }
 
-        // Sperrigkeit zuerst, das ist in CE der haeufigere Fall.
+        // Bulk first, that is the more common case in CE.
         internal static List<string> WhyExceeds((float mass, float bulk) load, (float mass, float bulk) cap)
         {
             List<string> why = new List<string>();
@@ -1109,12 +1096,12 @@ namespace CEReloaded
             return why;
         }
 
-        // Baut die EINE Ueberladungs-Zeile der Problem-Box aus den Eintragsfeldern neu - beim Solve UND
-        // beim In-Place-Pin (2026-09-01: die vorher
-        // dokumentierte Grenze "Box rechnet erst beim naechsten Neurechnen" war unnoetig - nach ReweighEntry
-        // stehen alle Zahlen an den Eintraegen, es gab keinen Grund mehr, die Box alt zu lassen).
-        // Ersetzt die bestehende Zeile an Ort und Stelle (isOverloadLine), damit ihre Position in der Box
-        // stabil bleibt; verschwindet die letzte Ueberladung, verschwindet die Zeile.
+        // Rebuilds THE one overload line of the problem box from the entry fields - on solve AND on an in-place
+        // pin (the previously documented limitation "the box only updates on the next recompute" was
+        // unnecessary - after ReweighEntry all numbers are on the entries, so there was no reason left to keep
+        // the box stale).
+        // Replaces the existing line in place (isOverloadLine) so its position in the box stays stable; when
+        // the last overload disappears, the line disappears.
         internal static void RefreshOverloadProblem(AssignPlan plan)
         {
             if (plan == null || plan.entries == null || plan.problems == null) return;
@@ -1149,47 +1136,44 @@ namespace CEReloaded
         {
             if (e == null) return false;
             List<Loadout> want = e.plannedPacks ?? new List<Loadout>();
-            // ====== Der Schutz galt nur fuer Zeilen OHNE Waffenplan - das war zu eng (2026-08-19) ======
-            // Die Begruendung eine Zeile darueber ist richtig und vollstaendig: plannedPacks wird NUR fuer
-            // Zeilen gefuellt, fuer die der Loeser wirklich ein Pack ausgesucht hat. Eine leere Liste heisst
-            // also "nichts ausgesucht", nie "nimm ihm seine weg". Genau das galt aber bisher nur, solange
-            // die Zeile auch keine Waffe geplant bekam - bei einer Zeile MIT Waffenplan und leerem Packplan
-            // lief die Mengenvergleichszeile darunter durch und hat das Pack des Kolonisten geloescht.
-            // Im Test gemessen: drei Kolonisten hatten von Hand ein Medic-Pack, die Vorschau zeigte in der
-            // Pack-Spalte
-            // ueberall "-", und nach Apply war es bei allen dreien weg - ohne Ankuendigung, ohne Meldung.
-            // Ein Pack nimmt man ueber die Pack-Zelle weg, nicht als Nebenwirkung einer Waffenzuweisung.
-            // ====== Dritter Fall: der Loeser hat ausgesucht, die Tragkraft-Schranke hat alles gestrichen ======
-            // Dann IST die leere Liste die Anweisung (2026-08-27). Ohne diese Ausnahme schreibt Apply nichts,
-            // der Kolonist behaelt seine heutigen Packs, und der Haken "Respect max bulk" haelt sein
-            // Versprechen nicht - genau der gemessene Fall Ltz. Kein neues Ueberraschungsrisiko: bei
-            // ausgeschaltetem Haken ersetzt der Loeser den Packsatz dieser Zeile ohnehin.
+            // ====== The guard used to cover only rows WITHOUT a weapon plan - that was too narrow ======
+            // The reasoning one line above is correct and complete: plannedPacks is ONLY filled for rows the
+            // solver really picked a pack for. An empty list therefore means "nothing picked", never "take his
+            // away". But that only held as long as the row also got no weapon planned - for a row WITH a
+            // weapon plan and an empty pack plan, the set comparison below went through and deleted the
+            // colonist's pack.
+            // Measured: three colonists had a Medic pack set by hand, the preview showed "-" everywhere in the
+            // Pack column, and after Apply it was gone for all three - without notice, without a message.
+            // A pack is removed via the Pack cell, not as a side effect of a weapon assignment.
+            // ====== Third case: the solver picked, the carry cap removed everything ======
+            // Then the empty list IS the instruction. Without this exception Apply writes nothing, the colonist
+            // keeps today's packs, and the "Respect max bulk" checkbox doesn't keep its promise - exactly the
+            // measured case. No new surprise risk: with the checkbox off the solver replaces this row's pack
+            // set anyway.
             if (want.Count == 0 && !e.packPinned) return false;
             return !SameLoadoutSet(AmmoAssignmentUtility.GetPawnPacks(e.pawn), want);
         }
 
-        // Same for sidearms. Bis 2026-08-25 stand hier `e.planned == null -> false` ("sidearms genuinely need a
-        // real weapon loadout to hang off of") - das stimmte nie: die Zweitwaffe haengt wie das Pack am
-        // persoenlichen Anker, und der laesst sich ueber CEs None-Vorlage aufspannen. Folge war ein stilles
-        // Schlupfloch: eine in der Vorschau angeheftete Zweitwaffe bei einem Kolonisten ohne geplante Waffe
-        // zaehlte nicht als Aenderung und wurde beim Apply verworfen (Fall Balork/Jamie; dazu nach
-        // aehnlichen Schlupfloechern gesucht). Dialog_AssignLoadouts.ApplyPreviewPlan schreibt sie jetzt im
-        // planned==null-Zweig ueber die None-Vorlage, parallel zur Pack-Zeile dort.
+        // Same for sidearms. This used to say `e.planned == null -> false` ("sidearms genuinely need a
+        // real weapon loadout to hang off of") - that was never true: the sidearm hangs off the personal anchor
+        // just like the pack, and that anchor can be set up via CE's None template. The result was a silent
+        // loophole: a sidearm pinned in the preview for a colonist without a planned weapon didn't count as a
+        // change and was discarded on Apply (similar loopholes were searched for as well).
+        // Dialog_AssignLoadouts.ApplyPreviewPlan now writes it in the planned==null branch via the None
+        // template, parallel to the pack line there.
         public static bool WantsSidearmWrite(AssignPlanEntry e)
         {
             if (e == null) return false;
-            // Dieselbe Luecke wie bei den Packs, per Regel-7-Grep an der Zwillingsstelle gefunden
-            // (2026-08-19): plannedSidearms wird nur gefuellt, wenn der Loeser wirklich eine Zweitwaffe
-            // ausgesucht hat - und er waehlt nur fuer so viele Kolonisten, wie der Regler hergibt, der Rest
-            // bleibt leer. Leer heisst also "nicht ausgesucht", nicht "nimm ihm seine weg". Aufgefallen war
-            // nur der Pack-Fall; dieser hier waere als naechstes gekommen.
-            // Dieselbe dritte Ausnahme wie bei den Packs (Regel-7-Grep an der Zwillingsstelle, 2026-08-27):
-            // hat der Picker fuer diese Zeile wirklich gesucht und nur die Schranke hat ihn gestoppt, heisst
-            // leer "keine Zweitwaffe" - sonst bleibt die heutige haengen und frisst genau das Budget, das die
-            // Schranke gerade freigehalten hat.
-            // Ein virtueller Pick (blosse Waffe, Vorlage entsteht erst beim Uebernehmen) ist IMMER eine
-            // Aenderung: eine Vorlage zu dieser Waffe existierte beim Planen nicht, also kann der Kolonist
-            // sie auch nicht schon tragen (Lazy-Umbau 2026-09-01).
+            // The same gap as for packs, found by grepping the twin location: plannedSidearms is only filled
+            // when the solver really picked a sidearm - and it only picks for as many colonists as the slider
+            // allows, the rest stay empty. So empty means "not picked", not "take his away". Only the pack case
+            // had been noticed; this one would have been next.
+            // The same third exception as for packs (again found at the twin location): if the picker really
+            // searched for this row and only the cap stopped it, empty means "no sidearm" - otherwise today's
+            // stays attached and eats exactly the budget the cap just freed up.
+            // A virtual pick (bare weapon, template only created on Apply) is ALWAYS a change: a template for
+            // this weapon didn't exist at planning time, so the colonist can't already be carrying it (lazy
+            // creation).
             bool hasDefs = e.plannedSidearmDefs != null && e.plannedSidearmDefs.Count > 0;
             if ((e.plannedSidearms == null || e.plannedSidearms.Count == 0) && !hasDefs && !e.sidearmPinned) return false;
             if (hasDefs) return true;
@@ -1214,15 +1198,14 @@ namespace CEReloaded
             return ia.SequenceEqual(ib);
         }
 
-        // ====== Darf dieser Kandidat bei diesem Schalterwert ueberhaupt vergeben werden? ======
-        // Drei Faelle statt zwei (2026-08-19, siehe RoleAssignMode): NoRoles ist der neue, und er ist der
-        // einzige, mit dem sich "Ad-Hoc Loadouts per Pawn" im Assistenten ueberhaupt einhalten laesst.
-        // Mixed ist das bisherige Verhalten und bleibt der Standard.
-        // OEFFENTLICH und an EINER Stelle, weil zwei Listen dieselbe Frage stellen: der Loeser hier und
-        // das Anpinn-Menue der Vorschau (Dialog_SquadSetup.OpenPinMenu). Beim ersten Anlauf hatte nur der
-            // Loeser gefiltert - im Test fiel prompt auf, dass die Handauswahl bei "Keine Rollen"
-        // weiterhin beide Rollen anbot, waehrend der eigene Mouseover des Schalters ausdruecklich "and the
-        // per-colonist picker" verspricht. Genau die Doppelung, aus der schon die Fehlbeschriftung kam.
+        // ====== May this candidate be handed out at this toggle value at all? ======
+        // Three cases instead of two (see RoleAssignMode): NoRoles is the new one, and it is the only one with
+        // which "Ad-Hoc Loadouts per Pawn" can be honored in the wizard at all.
+        // Mixed is the previous behavior and stays the default.
+        // PUBLIC and in ONE place, because two lists ask the same question: the solver here and the preview's
+        // pin menu (Dialog_SquadSetup.OpenPinMenu). In the first attempt only the solver filtered - the manual
+        // picker under "No roles" promptly still offered both roles, while the toggle's own tooltip explicitly
+        // promises "and the per-colonist picker". Exactly the duplication the mislabeling came from.
         public static bool RoleModeAllows(AssignCandidate c, RoleAssignMode mode)
         {
             if (c == null) return false;
@@ -1245,9 +1228,8 @@ namespace CEReloaded
             }
             if (cands.Count == 0)
             {
-                // Drei Modi, drei Gruende (2026-08-19): "es gibt keine Rolle" und "es gibt keine
-                // Vorlage ausser Rollen" sind verschiedene Sackgassen, und wer nur "keine Loadouts"
-                // liest, sucht an der falschen Stelle.
+                // Three modes, three reasons: "there is no role" and "there is no template other than roles" are
+                // different dead ends, and anyone reading just "no loadouts" looks in the wrong place.
                 if (roleMode == RoleAssignMode.RolesOnly)
                     P("CER_AssignPlanner_RolesOnlyNoRoles".Translate(), ProblemAction.OpenRolesTab);
                 else
@@ -1259,9 +1241,9 @@ namespace CEReloaded
             int unassigned = targets.Count(e => e.planned == null && !e.plannedVirtual);
             if (unassigned > 0)
             {
-                // Seit dem Lazy-Umbau ist jede besessene oder herstellbare Waffe Kandidat - bleibt jemand leer,
-                // fehlen wirklich Waffen (2026-09-17: der fruehere Zweig "du besitzt Waffen ohne Loadout" konnte
-                // nur noch fuer gesperrte Waffen ausloesen und ist entfallen).
+                // Since lazy creation every owned or producible weapon is a candidate - if someone stays empty,
+                // weapons are really missing (the former branch "you own weapons without a loadout" could only
+                // fire for disabled weapons anymore and was removed).
                 P(craft <= 0.001f
                     ? "CER_AssignPlanner_UnassignedNoOwned".Translate(unassigned.ToString())
                     : "CER_AssignPlanner_UnassignedNoProducible".Translate(unassigned.ToString()));

@@ -40,31 +40,30 @@ namespace CEReloaded
         // double-decrement its own single claim.
         private Dictionary<ThingDef, int> frameRemainingCache;
         private Dictionary<(Pawn, Def, int), FulfillStatus> frameFulfillCache;
-        // Die Aufstellung je (Kolonist, Gegenstand, Bedarf, Quelle) - EINMAL fuer Streifen und Tooltip (2026-08-30,
-        // siehe RichSegCached). Lebt im selben 0,3-s-Block wie die Caches darueber.
+        // The breakdown per (colonist, item, need, source) - built ONCE for both the bar and the tooltip (see
+        // RichSegCached). Lives in the same 0.3 s block as the caches above.
         private Dictionary<(Pawn, Def, int, RichStock), LoadoutUtility.AvailabilitySegments> frameRichSegCache;
 
-        // Trag- und Sperrigkeitsgrenze pro Kolonist, EINMAL pro Bild statt pro Zeile pro Bild (2026-08-14,
-        // Befund 4 der ersten Performance-Runde). Beide Werte kommen aus RimWorlds StatWorker.GetValue, und
-        // das hat laut Dekompilat KEINEN eigenen Cache: es laeuft jedes Mal ueber die Stat-Teile des Pawns
-        // (Kleidung, Gesundheit, Hediffs), im Entwicklermodus zusaetzlich durch IsDisabledFor. Gebraucht
-        // werden sie in beiden Ansichten pro sichtbarer Zeile - und ausserdem zweimal je Zeile, weil
-        // Masse- und Sperrigkeitsbalken getrennt fragen.
-        // Frame-Cache wie seine drei Nachbarn oben, aus demselben Grund: die Werte KOENNEN sich aendern
-        // (ein Kolonist zieht etwas an, wird verletzt), aber nicht innerhalb eines Bildes. Geleert wird er
-        // an derselben Stelle wie die anderen drei.
-        // Der StatDef selbst liegt in LoadoutUtility.CarryBulkStat - vorher stand hier zweimal ein
-        // DefDatabase-Nachschlag ueber den STRING "CarryBulk", ebenfalls pro Zeile pro Bild.
+        // Carry and bulk limits per colonist, computed ONCE per frame instead of per row per frame (finding 4
+        // of the first performance pass). Both values come from RimWorld's StatWorker.GetValue, which per the
+        // decompiled source has NO cache of its own: it walks the pawn's stat parts (apparel, health, hediffs)
+        // every time, and in dev mode additionally runs IsDisabledFor. Both views need them per visible row -
+        // and twice per row, since the mass and bulk bars query separately.
+        // Frame cache like its three neighbours above, for the same reason: the values CAN change (a colonist
+        // puts something on, gets injured), but not within a single frame. Cleared in the same place as the
+        // other three.
+        // The StatDef itself lives in LoadoutUtility.CarryBulkStat - previously this did a DefDatabase lookup
+        // by the STRING "CarryBulk" twice, also per row per frame.
         private readonly Dictionary<Pawn, (float mass, float bulk)> frameCapCache = new Dictionary<Pawn, (float, float)>();
 
-        // Was die Munitions-Zelle eines Kolonisten anzeigt - EINMAL pro Bild statt pro Zelle pro Zeile
-        // (2026-08-14, Befund 2 der ersten Performance-Runde). Der Aufbau ist der teuerste in der ganzen
-        // Zeile: `GetLoadout().Slots` baut bei jedem angeankerten Kolonisten - also praktisch jedem mit
-        // einer Zuweisung dieses Mods - die Vereinigung aus eigenen und geerbten Slots neu auf, `.ToList()`
-        // kopiert sie, `RelevantAmmoPool` laeuft ueber jede Waffe darin, und der `active`-Filter ist
-        // O(Pool x Slots) mit einer Closure. Das steht in BEIDEN Ansichten pro Kolonist.
-        // Frame-Cache wie seine Nachbarn: der Zustand kann sich aendern (Munition umstellen, Zweitwaffe
-        // anhaengen), aber nicht innerhalb eines Bildes. Geleert an derselben Stelle wie die anderen.
+        // What a colonist's ammo cell shows - computed ONCE per frame instead of per cell per row (finding 2
+        // of the first performance pass). This is the most expensive build in the whole row:
+        // `GetLoadout().Slots` rebuilds the union of own and inherited slots for every anchored colonist -
+        // practically everyone with an assignment from this mod - `.ToList()` copies it, `RelevantAmmoPool`
+        // walks every weapon in it, and the `active` filter is O(pool x slots) with a closure. Both views do
+        // this per colonist.
+        // Frame cache like its neighbours: the state can change (switching ammo, attaching a sidearm), but
+        // not within a frame. Cleared in the same place as the others.
         private class AmmoCellState
         {
             public List<LoadoutSlot> effective;
@@ -74,44 +73,43 @@ namespace CEReloaded
 
         private readonly Dictionary<Pawn, AmmoCellState> frameAmmoCache = new Dictionary<Pawn, AmmoCellState>();
 
-        // Das BILD, fuer das die reinen Caches oben gebaut wurden - siehe DoWindowContents. -1, damit der
-        // erste Aufruf nach dem Oeffnen sicher neu baut (Time.frameCount ist nie negativ).
+        // The FRAME the pure caches above were built for - see DoWindowContents. -1 so the first call after
+        // opening is guaranteed to rebuild (Time.frameCount is never negative).
         private int frameCacheStamp = -1;
-        // Lebensdauer der Zeilen-Caches jenseits eines Bildes - siehe den Kommentar am Neuaufbau in
-        // DoWindowContents (2026-08-25).
+        // Lifetime of the row caches beyond a single frame - see the comment at the rebuild in
+        // DoWindowContents.
         private int rowCacheVersion = -1;
         private float rowCacheAt = -99f;
         private const float RowCacheMaxAge = 0.3f;
 
-        // Die drei teuren Ableitungen, die JEDE Zeile braucht - Masse/Sperrigkeit, Haupt- und Zweitwaffe,
-        // "haengt ein Pack dran" (2026-08-17, gemessen: "Zeile:kompakt 167 ms/s bei 725 Aufrufen/s",
-        // also 230 Mikrosekunden je Zeile).
-        // Alle drei greifen auf `Loadout.Slots` zu, und das ist bei jedem angeankerten Kolonisten kein Feld,
-        // sondern ein Neuaufbau der Vereinigung aus eigenen und geerbten Slots - PRO ZUGRIFF. Dazu kommen in
-        // LoadoutMainAndSide vier LINQ-Zwischenlisten und in GetExtraParents eine weitere. Das lief bisher
-        // dreimal pro Zeile pro DURCHGANG, und RimWorld schickt mindestens zwei Durchgaenge je Bild.
-        // Genau dieselbe Begruendung wie bei frameAmmoCache/frameCapCache daneben - und dieselbe Grenze: die
-        // Werte KOENNEN sich aendern (Vorlage tauschen, Pack anhaengen), aber nicht innerhalb eines Bildes.
-        // Beide Ansichten lesen daraus, sonst waere es wieder nur die halbe Fundstelle.
+        // The three expensive derivations EVERY row needs - mass/bulk, main and sidearm weapon, "is a pack
+        // attached" (measured at 167 ms/s for 725 compact-row calls/s, i.e. 230 microseconds per row).
+        // All three go through `Loadout.Slots`, which for every anchored colonist is not a field but a rebuild
+        // of the union of own and inherited slots - PER ACCESS. On top of that, LoadoutMainAndSide builds four
+        // intermediate LINQ lists and GetExtraParents another. This used to run three times per row per
+        // PASS, and RimWorld sends at least two passes per frame.
+        // Exactly the same reasoning as frameAmmoCache/frameCapCache next to it - and the same limit: the
+        // values CAN change (swapping a template, attaching a pack), but not within a frame.
+        // Both views read from it; otherwise only half the call sites would be covered.
         private struct RowInfo
         {
             public float mass, bulk;
             public ThingDef mainW, sideW;
             public bool hasPacks;
-            // Die Zellen daneben - dieselbe Begruendung, nur eine Ebene tiefer: GetPawnPacks/GetPawnSidearms
-            // laufen ueber MultiParentUtility.GetExtraParents (Parsen + drei LINQ-Listen), CarriedPackSlots
-            // zusaetzlich ueber die flache Union einer Rolle. Das steht dreimal in derselben Zeile
-            // (Pack-Zelle, ihr Rollen-Zweig, Zweitwaffen-Zelle) und lief pro Durchgang.
-            // NUR LESEN - diese Listen sind geteilt. Wer sie aendern will, holt sich seine eigene beim
-            // Werkzeug (die Klick-Wege tun das ohnehin, sie laufen ausserhalb des Zeichnens).
+            // The neighbouring cells - same reasoning, one level deeper: GetPawnPacks/GetPawnSidearms
+            // go through MultiParentUtility.GetExtraParents (parsing + three LINQ lists), CarriedPackSlots
+            // additionally through a role's flat union. That happens three times in the same row
+            // (pack cell, its role branch, sidearm cell) and used to run per pass.
+            // READ ONLY - these lists are shared. Code that wants to modify one fetches its own from the
+            // utility (the click paths do that anyway; they run outside of drawing).
             public List<Loadout> packs;
             public List<LoadoutSlot> packSlots;
             public Dictionary<Def, int> packNeeded;
             public List<Loadout> sidearms;
             public List<ThingDef> sidearmIcons;
-            // Das angezeigte Loadout (Vorlage/Rolle, nicht der Anker) und die Posten, die die WAFFEN-Zelle
-            // vertritt (2026-08-30): bei einem CE-eigenen Loadout mit Gewehr, Gladius,
-            // Mahlzeiten und Medizin zeigte die Zelle nur das Gewehr - alles andere hatte keine Zelle.
+            // The displayed loadout (template/role, not the anchor) and the entries the WEAPON cell
+            // represents: for a CE-native loadout with a rifle, gladius, meals and medicine, the cell used
+            // to show only the rifle - everything else had no cell at all.
             public Loadout display;
             public List<WeaponCellItem> weaponCellItems;
         }
@@ -127,8 +125,8 @@ namespace CEReloaded
             Loadout assigned = pawn?.GetLoadout();
             Loadout display = AmmoAssignmentUtility.DisplayLoadout(assigned);
             info.hasPacks = MultiParentUtility.GetExtraParents(assigned).Any(EquipmentPackUtility.IsEquipmentPackLoadout);
-            // Der ANKER fuer Masse/Sperrigkeit, die WAFFEN-VORLAGE fuer die Icons - genau die Aufteilung, die
-            // vorher an beiden Aufrufstellen stand (siehe den Kommentar am Massebalken der kompakten Zeile).
+            // The ANCHOR for mass/bulk, the WEAPON TEMPLATE for the icons - exactly the split that used to
+            // live at both call sites (see the comment at the compact row's mass bar).
             if (assigned != null && !assigned.defaultLoadout)
                 LoadoutUtility.GetLoadoutMassBulk(assigned, out info.mass, out info.bulk);
             if (display != null && !display.defaultLoadout)
@@ -144,11 +142,11 @@ namespace CEReloaded
             return info;
         }
 
-        // Alles, was die Waffen-Zelle vertritt: die Hauptwaffe plus jeden EIGENEN Slot des angezeigten Loadouts,
-        // den keine Nachbarzelle zeigt - Munition (auch 'Any ammo for X') gehoert der Munitionszelle, Pack-Inhalt
-        // der Pack-Zelle, Zweitwaffen der Zweitwaffen-Zelle. Bei unseren eigenen Vorlagen (eine Waffe + Munition)
-        // bleibt genau die Hauptwaffe uebrig, die Zelle sieht also aus wie bisher; bei einem CE-eigenen Loadout
-        // kommen Gladius, Mahlzeiten und Medizin dazu. Einmal je 0,3 s (RowInfo), nicht je Durchgang.
+        // Everything the weapon cell represents: the main weapon plus every OWN slot of the displayed loadout
+        // that no neighbouring cell shows - ammo (including 'Any ammo for X') belongs to the ammo cell, pack
+        // contents to the pack cell, sidearms to the sidearm cell. For our own templates (one weapon + ammo)
+        // exactly the main weapon remains, so the cell looks as before; for a CE-native loadout the gladius,
+        // meals and medicine are added. Once per 0.3 s (RowInfo), not per pass.
         private static List<WeaponCellItem> BuildWeaponCellItems(RowInfo info, Loadout display)
         {
             var list = new List<WeaponCellItem>();
@@ -170,11 +168,10 @@ namespace CEReloaded
             return list;
         }
 
-        // Vorformatierte Beschriftungen je Kolonist (2026-08-25, perf-cell-row-next): Faehigkeitsbalken,
-        // Masse/Sperrigkeit und die Aufschluesselung bauten ihre Texte in JEDEM Durchgang neu (Translate mit
-        // Argumenten, F1-Formatierung, string.Format, dazu fuenf Skill-/Kapazitaetsabfragen) - gemessen 45 bis
-        // 76 ms/s je Abschnitt, fuer Werte, die sich zwischen zwei Bildern nie aendern. Lebensdauer wie
-        // frameRowCache (Versionszaehler + 0,3 s), geleert an derselben Stelle.
+        // Preformatted labels per colonist: skill bars, mass/bulk and the breakdown used to rebuild their
+        // text in EVERY pass (Translate with arguments, F1 formatting, string.Format, plus five skill/capacity
+        // queries) - measured at 45 to 76 ms/s per section, for values that never change between two frames.
+        // Lifetime like frameRowCache (version counter + 0.3 s), cleared in the same place.
         private struct RowLabels { public string rangedCard, meleeCard, rangedCompact, meleeCompact, mass, bulk, b1, b2; }
         private readonly Dictionary<Pawn, RowLabels> frameLabelCache = new Dictionary<Pawn, RowLabels>();
 
@@ -211,14 +208,13 @@ namespace CEReloaded
             List<LoadoutSlot> effective = pawn?.GetLoadout()?.Slots?.ToList() ?? new List<LoadoutSlot>();
             List<ThingDef> pool = Dialog_ChangeAmmo.RelevantAmmoPool(effective);
             List<ThingDef> active = pool.Where(d => effective.Any(s => s.thingDef == d)).ToList();
-            // Ein generischer Eintrag ("Any ammo for X") IST eine gesetzte Munitionswahl (2026-08-14,
-            // im Test aufgefallen): vorher zaehlte hier nur KONKRETE Munition, ein Kolonist auf
-            // "Any ammo" fiel damit in den Warnzweig und die Zelle behauptete, er habe nichts zu
-            // schiessen - genau das Gegenteil dessen, was der Spieler gerade eingestellt hatte.
-            // Aufgeloest auf die konkrete Vorgabesorte (ResolveGenericAmmo), nicht bloss "irgendwas
-            // gesetzt": dieselbe Aufloesung, mit der der Mod auch die Produktion plant
-            // (MergeResolvedGenericAmmoDemand). Dadurch stimmen Symbol, Zaehler und Verfuegbarkeits-
-            // Aufschluesselung dieser Zelle mit dem ueberein, was wirklich beschafft wird.
+            // A generic entry ("Any ammo for X") IS a chosen ammo selection: previously only CONCRETE ammo
+            // counted here, so a colonist on "Any ammo" fell into the warning branch and the cell claimed
+            // they had nothing to shoot - the exact opposite of what the player had just set.
+            // Resolved to the concrete default type (ResolveGenericAmmo), not merely "something is
+            // set": the same resolution the mod uses to plan production
+            // (MergeResolvedGenericAmmoDemand). This keeps the icon, the counter and the availability
+            // breakdown of this cell consistent with what actually gets procured.
             foreach (LoadoutSlot s in effective)
             {
                 if (!LoadoutUtility.IsGenericAmmoDef(s.genericDef)) continue;
@@ -230,11 +226,11 @@ namespace CEReloaded
             return state;
         }
 
-        // Wie viele Schuss dieser Sorte dieser Kolonist eingeplant hat. Konkrete Slots werden summiert (zwei
-        // Slots derselben Sorte sind zusammen der Bedarf); findet sich keiner, kommt die Zahl aus dem
-        // generischen Slot, der auf genau diese Sorte aufloest ("Any ammo for X"). Genau die Aufloesung, mit
-        // der GetAmmoCellState die Sorte ueberhaupt erst in die Liste gesetzt hat - ohne diesen zweiten Weg
-        // gaebe es fuer sie keine Zahl.
+        // How many rounds of this type this colonist has planned. Concrete slots are summed (two slots of
+        // the same type together make up the need); if there are none, the count comes from the generic
+        // slot that resolves to exactly this type ("Any ammo for X"). This is the same resolution
+        // GetAmmoCellState used to put the type into the list in the first place - without this second
+        // path there would be no count for it.
         private static int AmmoCountFor(List<LoadoutSlot> effective, ThingDef d)
         {
             if (effective == null || d == null) return 0;
@@ -251,7 +247,7 @@ namespace CEReloaded
         private void GetCapacities(Pawn pawn, out float capMass, out float capBulk)
         {
             if (pawn != null && frameCapCache.TryGetValue(pawn, out var hit)) { capMass = hit.mass; capBulk = hit.bulk; return; }
-            // CEs CarryWeight, nicht Vanillas CarryingCapacity - siehe LoadoutUtility.CarryWeightOf.
+            // CE's CarryWeight, not vanilla's CarryingCapacity - see LoadoutUtility.CarryWeightOf.
             capMass = LoadoutUtility.CarryWeightOf(pawn);
             StatDef bulkStat = LoadoutUtility.CarryBulkStat;
             capBulk = bulkStat != null && pawn != null ? pawn.GetStatValue(bulkStat) : 20f;
@@ -266,13 +262,13 @@ namespace CEReloaded
         private const float CardWidth = 330f;
         // Compact view's Weapon column start - right after the Melee score bar (326 + 80 wide + 6 gap),
         // shared between DrawCompactHeader and DrawPawnRowCompact so they can never drift apart again.
-        // 412 -> 398 (2026-08-13): nach dem Speichern-Knopf liessen sich ein paar Pixel
-        // sparen - zwischen dem Speichern-Knopf (endet 214) und dem ersten Skill-Balken lagen 26px Luft.
-        // Die beiden Balken ruecken um 14 nach links, die Waffenspalte gewinnt genau diese 14px.
-        // 398 -> 372 (2026-08-31): in der kompakten Ansicht liefen zu lange Waffennamen ueber den Knopf
-        // hinaus - die Kolonisten-Spalte ist deshalb etwas schmaler. Die Namensspalte gibt 26 Punkte ab (130 -> 104),
-        // Rollenknopf und die beiden Faehigkeitsbalken ruecken um genau dieselben 26 mit - rechts vom
-        // Waffenknopf bleibt jede Zelle, wo sie war (nichts sonst verschieben).
+        // 412 -> 398: a few pixels could be saved after the Save button - there were 26px of slack between
+        // the Save button (ends at 214) and the first skill bar. Both bars move 14 to the left, and the
+        // weapon column gains exactly those 14px.
+        // 398 -> 372: in the compact view, long weapon names ran past the button, so the colonist column
+        // is a bit narrower. The name column gives up 26 points (130 -> 104), and the role button and both
+        // skill bars move by exactly the same 26 - every cell right of the weapon button stays where it
+        // was (nothing else moves).
         private const float WeaponColX = 372f;
         // Shrunk by 21 - the old separate "Equipped: <weapon>" detail row is gone (see DrawWeaponStatusDot),
         // replaced by a corner dot on the loadout button itself, same as Ammo/Pack/Sidearm's own dots.
@@ -280,14 +276,14 @@ namespace CEReloaded
         private const float Margin = 10f;
 
         private static readonly Texture2D MassBulkBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0f, 0.8f, 0.8f));
-        // Ueber der Kapazitaet (2026-08-12) - dunkelrot statt tuerkis, damit der Balken schon aus dem
-        // Augenwinkel anders aussieht und man nicht erst die Zahlen lesen muss.
+        // Over capacity - dark red instead of teal, so the bar looks different at a glance and the
+        // numbers don't have to be read first.
         private static readonly Texture2D OverCapBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.75f, 0.18f, 0.18f));
 
-        // Masse/Sperrigkeit-Beschriftungen der Kolonisten-Karte, einmal uebersetzt und gemessen statt pro
-        // Karte pro Bild (2026-08-26: "Mas"/"Sper" - die 32f/30f-Rects waren fuer die
-        // deutschen Woerter zu schmal und Widgets.Label clippt stumpf). Sprache aendert sich nur mit
-        // Neustart - RimWorlds Umschalten im Lauf ist ohnehin defekt.
+        // Mass/bulk labels on the colonist card, translated and measured once instead of per card per
+        // frame. The 32f/30f rects were too narrow for the German abbreviations and Widgets.Label clips
+        // hard. The language only changes with a restart - RimWorld's in-game language switch is broken
+        // anyway.
         private static string cardMassCaption, cardBulkCaption;
         private static float cardMassCaptionW, cardBulkCaptionW;
 
@@ -301,19 +297,19 @@ namespace CEReloaded
         internal const bool produceMissing = true;
         internal const bool produceMainWeapons = true;
         internal const bool produceSidearms = true;
-        // Drei Werte statt zwei seit 2026-08-19 - siehe RoleAssignMode.
+        // Three values instead of two - see RoleAssignMode.
         internal RoleAssignMode roleMode = RoleAssignMode.Mixed;
-        // Der Rollen-Schalter, wie er VOR einem Arm-my-Colony-Lauf stand (2026-09-04: nach Arm my Colony
-        // liessen sich ueberall nur noch Rollen waehlen).
+        // The role toggle as it stood BEFORE an Arm-my-Colony run (without this, after Arm my Colony only
+        // roles could be picked anywhere).
         //
-        // Ursache: die Wurzelfrage des Assistenten ("mit Rollen arbeiten?") wird als roleModeOverride
-        // in genau dieses Feld geschrieben - und DoWindowContents spiegelt das Feld in jedem Bild in
-        // den Spielstand (ui.asRoleMode). Damit wurde aus einer Antwort FUER DIESEN LAUF die dauerhafte
-        // Einstellung des Spielers: das Waffen-Auswahlfenster (Dialog_SquadSetup.OpenPinMenu) baut seine
-        // Waffenliste aus demselben Schalter und zeigte danach ueberall nur noch Rollen.
-        // Solange dieses Feld gesetzt ist, laeuft ein Lauf mit erzwungenem Modus: die Spiegelung in den
-        // Spielstand pausiert, und am Ende des Laufs (FinishArmReport - Apply wie Abbruch gehen dort
-        // durch) wird der alte Wert zurueckgestellt.
+        // Cause: the wizard's root question ("work with roles?") is written into exactly this field as
+        // roleModeOverride - and DoWindowContents mirrors the field into the save (ui.asRoleMode) every
+        // frame. That turned an answer FOR THIS RUN into the player's permanent setting: the weapon picker
+        // (Dialog_SquadSetup.OpenPinMenu) builds its weapon list from the same toggle and afterwards
+        // showed only roles everywhere.
+        // While this field is set, a run with a forced mode is in progress: mirroring into the save is
+        // paused, and at the end of the run (FinishArmReport - both apply and cancel go through it) the
+        // old value is restored.
         private RoleAssignMode? armRoleModeRestore;
         private bool sortByMelee = false;   // pawn grid sort: ranged score (default) vs melee score
         private bool compactView = false;   // full cards vs one slim table row per colonist
@@ -426,9 +422,9 @@ namespace CEReloaded
             }
             if (sidearmLoadouts != null)
                 foreach (Loadout lo in sidearmLoadouts) FoldSlots(lo);
-            // Virtuelle Zweitwaffen/Granaten-Picks (Lazy-Umbau 2026-09-01): beim Planen existiert noch kein
-            // Vorlagen-Objekt, der Bedarf ihrer Slots (Waffe selbst; Schild kann hier nie vorkommen) muss
-            // aber in DIESELBEN Toepfe, sonst fehlt er in jeder Fehlmengen-Anzeige.
+            // Virtual sidearm/grenade picks (lazy rework): during planning no template object exists yet,
+            // but the demand of their slots (the weapon itself; a shield can never occur here) must go into
+            // the SAME pools, otherwise it is missing from every shortfall display.
             if (extraSidearmSlots != null)
                 foreach (LoadoutSlot slot in extraSidearmSlots) FoldSlot(slot);
 
@@ -453,10 +449,10 @@ namespace CEReloaded
 
         // Weapon/shield def -> names of the pawns whose (planned or current) loadout contains it, for the supply
         // popup's Assig. column. Covers mains, sidearms, grenades and shields alike.
-        // internal seit 2026-08-18: das ist die EINE Antwort auf "wer hat diese Waffe zugewiesen", und der
-        // Munitions-Reiter braucht sie auch. Vorher hat er dort ScanMissingAssignedWeapons benutzt - und das
-        // beantwortet eine ANDERE Frage: wem sie noch FEHLT. Wer sie laengst traegt, steht dort nie drin,
-        // und genau deshalb hat der Fix vom selben Tag nur auf einem von zwei Wegen gegriffen.
+        // internal: this is THE one answer to "who has this weapon assigned", and the ammo tab needs it
+        // too. Previously that tab used ScanMissingAssignedWeapons - which answers a DIFFERENT question: who
+        // is still MISSING it. Anyone already carrying it never shows up there, which is why an earlier fix
+        // only took effect on one of the two paths.
         internal static Dictionary<ThingDef, List<string>> BuildWeaponUsedBy(IEnumerable<(Loadout loadout, string name)> pairs)
         {
             var map = new Dictionary<ThingDef, List<string>>();
@@ -483,18 +479,18 @@ namespace CEReloaded
         {
             List<Pawn> pawnList = pawns.Where(p => p != null).ToList();
 
-            // Der Fehlbestand an Waffen und Schilden kommt aus WeaponShortfallsByPawn, NICHT mehr aus
-            // ComputeMissingSplit gegen den kolonieweiten Bestand (2026-08-17):
-            // dieser Einstieg wird ausschliesslich aus der Bereitschaftsanzeige heraus benutzt, und die
-            // meldet reihum - "diesem Kolonisten ist nichts mehr uebrig geblieben". Der kolonieweite
-            // Bestand zaehlt dagegen jede Waffe mit, die ein anderer schon traegt, und sagte deshalb
-            // "es fehlt nichts" zu genau der Luecke, wegen der das Fenster aufgemacht wurde. Siehe die
-            // Kopfzeile ueber WeaponShortfallsByPawn.
+            // The weapon and shield shortfall comes from WeaponShortfallsByPawn, NO LONGER from
+            // ComputeMissingSplit against colony-wide stock:
+            // this entry point is used exclusively from the readiness display, and that reports per
+            // colonist in turn - "nothing was left over for this colonist". Colony-wide stock, by contrast,
+            // also counts every weapon someone else is already carrying, and therefore said "nothing is
+            // missing" for exactly the gap the window was opened for. See the header comment above
+            // WeaponShortfallsByPawn.
             //
-            // Die EINSORTIERUNG (Hauptwaffe vs. Zweitwaffe) haengt weiter allein an den Vorlagen der
-            // Kolonisten: AnalyzeLoadout kuert pro Loadout genau eine Hauptwaffe, und eine Zweitwaffe darf
-            // um diesen Platz nicht konkurrieren (2026-08-13, sidearms-appear-in-supply: "je nach Weg
-            // landen dieselben Waffen einmal unter 'Main weapons' und einmal unter 'Sidearms & grenades'").
+            // The CLASSIFICATION (main weapon vs. sidearm) still depends solely on the colonists'
+            // templates: AnalyzeLoadout picks exactly one main weapon per loadout, and a sidearm must not
+            // compete for that slot (otherwise the same weapons could land under 'Main weapons' on one
+            // path and under 'Sidearms & grenades' on another).
             List<Loadout> mainLoadouts = pawnList
                 .Select(p => AmmoAssignmentUtility.DisplayLoadout(p.GetLoadout()))
                 .Where(l => l != null && !l.defaultLoadout).ToList();
@@ -529,11 +525,11 @@ namespace CEReloaded
             // this sibling call site never got) - the old !WeaponHasActiveBill(kv.Key) suppressed the WHOLE
             // shortfall the instant ANY bill for that ammo existed anywhere, even a leftover 1-unit bill from
             // before more colonists got assigned it, silently under-proposing real demand on re-trigger.
-            // + CarriedStockCount (2026-08-12): der Bedarf hier ist der JEDES
-            // zugewiesenen Kolonisten, der Bestand war aber nur Lager + laufende Auftraege. Was die Leute im
-            // Rucksack haben, zaehlte fuer niemanden - und genau das ist bei Munition der Normalfall, sobald
-            // einmal ausgeruestet wurde. Ergebnis war ein Vorschlag, Munition herzustellen, die die Kolonie
-            // laengst hat, nur eben am Mann statt im Regal. Siehe LoadoutUtility.CarriedStockCount.
+            // + CarriedStockCount: the demand here is that of EVERY
+            // assigned colonist, but the stock was only storage + running bills. What colonists carry in their
+            // backpacks counted for nobody - and with ammo that is the normal case once they have been
+            // equipped. The result was a proposal to craft ammo the colony already has, just on the colonists
+            // instead of on the shelf. See LoadoutUtility.CarriedStockCount.
             var missingSpecifics = specifics.Where(kv => LoadoutUtility.IsAmmoResearched(kv.Key)
                 && LoadoutUtility.AmmoOnHand(kv.Key) + LoadoutUtility.WeaponQueuedCount(kv.Key) < kv.Value)
                 .ToDictionary(kv => kv.Key, kv => kv.Value);
@@ -541,19 +537,18 @@ namespace CEReloaded
                 LoadoutUtility.GetAmmoTypesFor(LoadoutUtility.GetWeaponForGenericAmmo(kv.Key)).Any(LoadoutUtility.IsAmmoResearched))
                 .ToDictionary(kv => kv.Key, kv => kv.Value);
 
-            // Ab hier DASSELBE Nachbereiten wie im Uebernehmen-Weg (2026-08-13, im Test: ueber die
-            // Bereitschaftsanzeige geoeffnet fehlten die beiden 23x75mmR-Zeilen und die Abschnitte
-            // Pack items / Not producible).
-            // Der Grund war kein Rechenfehler, sondern eine halbe Anfrage: dieser Einstieg hat packItems nie
-            // gefuellt, die Dauerauftrag-Ergaenzung nie laufen lassen und die Obsolet-Pruefung nie angehaengt.
-            // Drei Fenster, dieselbe Frage, drei verschieden vollstaendige Antworten.
+            // From here on the SAME post-processing as the Apply path (when opened via the readiness
+            // display, the two 23x75mmR rows and the Pack items / Not producible sections were missing).
+            // The cause was not a calculation error but an incomplete request: this entry point never filled
+            // packItems, never ran the standing-bill top-up and never attached the obsolete check.
+            // Three windows, the same question, three answers of varying completeness.
             LoadoutUtility.ScanMissingAssignedPackItems(
                 pawnList.Select(p => (p, AmmoAssignmentUtility.GetPawnPacks(p))), out var missingPackItems, out var packUsedBy,
                 out var packDemandDefs);
-            // Kein IsProducible-Filter (2026-08-13) - gleiche Begruendung wie
-            // bei den Waffen einen Zweig weiter unten: eine nicht herstellbare Zeile stellt das Fenster
-            // selbst richtig dar, stilles Weglassen liest sich dagegen als "nichts fehlt". Genau daran ist
-            // die Medizin-Zeile verschwunden, obwohl der Tooltip daneben "Still missing: 42" sagte.
+            // No IsProducible filter - same reasoning as
+            // for weapons one branch further down: the window itself renders a non-producible row correctly,
+            // whereas silently dropping it reads as "nothing is missing". That is exactly how the medicine
+            // row disappeared even though the tooltip next to it said "Still missing: 42".
             var produciblePackItems = new Dictionary<ThingDef, int>(missingPackItems);
             foreach (var kv in packUsedBy) weaponAssignedUsedBy[kv.Key] = kv.Value;
 
@@ -588,50 +583,50 @@ namespace CEReloaded
             return total == 0 ? null : req;
         }
 
-        // Kapazitaets-Balken (Masse oder Sperrigkeit) mit sichtbarer Ueberlast-Warnung. EINE Funktion fuer
-        // Kartenansicht und kompakte Zeile, damit die beiden nicht auseinanderlaufen.
+        // Capacity bar (mass or bulk) with a visible overload warning. ONE function for the card view and
+        // the compact row, so the two cannot drift apart.
         //
-        // 2026-08-12, Grundsatz: erlauben, aber eine gut sichtbare Warnung einbauen.
-        // Vorher war ein zu schweres Loadout nur an zwei Zahlen im Balken zu
-        // erkennen (25.5/20.0), und der Balken selbst sah wegen Clamp01 aus wie ein sauber gefuellter.
+        // Principle: allow it, but show a clearly visible warning.
+        // Previously an overweight loadout was only recognisable by two numbers in the bar (25.5/20.0), and
+        // the bar itself looked cleanly filled because of Clamp01.
         //
-        // Warum der Text NICHT "ueberladen" sagt: der Kolonist wird es nie. CEs Abhol-Job prueft vor jedem
-        // Stueck CanFitInInventory und wirft Ueberschuss sogar aktiv wieder ab (JobGiver_UpdateLoadout:135
-        // und :314, im Dekompilat nachgelesen). Was wirklich passiert, ist stiller: er holt den Rest gar nicht
-        // erst, sein Loadout bleibt dauerhaft halb erfuellt, und ohne diese Warnung sagt ihm das niemand.
-        // Genau darum ist die Warnung der Fix und nicht eine harte Grenze beim Zuweisen: die Sperrigkeits-
-        // grenze schwankt mit Ruestung und Verletzungen, ein hartes Limit wuerde je nach Tagesform Sachen
-        // verweigern, die morgen passen.
-        // pawn/bulk (2026-08-30): rechts in der Leiste das Symbol des getragenen Gegenstands, der DIESE
-        // Grenze hebt (Rucksack/Weste fuer Sperrigkeit, Exoframe fuer Masse), bei mehreren mit '...'; die Beschriftung
-        // rueckt entsprechend. Siehe LoadoutUtility.CarryBoostersOf. `boosters` gibt der Aufrufer weiter an den Tooltip.
+        // Why the text does NOT say "overloaded": the colonist never becomes overloaded. CE's pickup job
+        // checks CanFitInInventory before every item and even actively drops surplus again
+        // (JobGiver_UpdateLoadout:135 and :314, verified in the decompiled source). What really happens is
+        // quieter: the colonist never fetches the rest, the loadout stays permanently half-fulfilled, and
+        // without this warning nothing says so. That is exactly why the warning is the fix rather than a
+        // hard limit at assignment time: the bulk limit fluctuates with armor and injuries, so a hard limit
+        // would, depending on the day, refuse items that would fit tomorrow.
+        // On the right side of the bar: the icon of the worn item that raises THIS limit (backpack/vest
+        // for bulk, exoframe for mass), with '...' if there are several; the label shifts accordingly.
+        // See LoadoutUtility.CarryBoostersOf. The caller passes `boosters` on to the tooltip.
         private static bool DrawCapacityBar(Rect bar, float load, float cap, string label, Pawn pawn, bool bulk, out List<LoadoutUtility.CarryBooster> boosters)
         {
             bool over = cap > 0f && load > cap;
             boosters = LoadoutUtility.CarryBoostersOf(pawn, bulk);
-            // Zweifarbiger Fuellstand (2026-08-30): die koerpereigene Tragkraft ist die Grenze zwischen den
-            // beiden Toenen - alles darueber traegt er nur, WEIL er den Rucksack anhat. Dieselbe Zerlegung, die der
-            // Tooltip auflistet (Grundwert + jeder Gegenstand), damit Leiste und Text dieselbe Geschichte erzaehlen.
+            // Two-tone fill: the colonist's own body carrying capacity is the boundary between the two
+            // tones - everything above it is only carried BECAUSE of the backpack. The same breakdown the
+            // tooltip lists (base value + each item), so bar and text tell the same story.
             float natural = cap;
             foreach (LoadoutUtility.CarryBooster b in boosters) natural -= b.offset;
             LoadoutUtility.DrawCarryFillBar(bar, load, cap, Mathf.Max(0f, natural), over);
             float reserve = over ? 16f : 0f;
             reserve += LoadoutUtility.DrawCarryBoosterIcon(bar, boosters, reserve);
-            // Beschriftung mit eigenem Kontrast (2026-08-13) - siehe LoadoutUtility.BarLabel. Der tuerkise
-            // Fuellstand lag genau unter den ersten Ziffern, also ausgerechnet unter dem IST-Wert.
+            // Label with its own contrast - see LoadoutUtility.BarLabel. The teal fill sat right under the
+            // first digits, i.e. precisely under the CURRENT value.
             LoadoutUtility.BarLabel(bar, label, reserve);
-            // Das gemeinsame Warnzeichen des Mods, oben rechts halb ueber der Kante - dieselbe Geometrie wie
-            // an den Zutaten- und Werkbank-Zellen, damit es als dasselbe Zeichen gelesen wird.
-            // Ganz INNERHALB des Balkens (2026-08-13: bei zwei Zeilen hing das Warndreieck halb ueber dem
-            // Zellrand). An den Zutaten-Zellen faellt das Ueberstehen nicht auf,
-            // weil rechts daneben Platz ist - am rechten Rand der kompakten Zeile ist keiner.
+            // The mod's shared warning sign, top right and half over the edge - the same geometry as on the
+            // ingredient and workbench cells, so it reads as the same sign.
+            // Entirely INSIDE the bar (with two lines the warning triangle used to hang half over the cell
+            // border). On the ingredient cells the overhang goes unnoticed because there is room to the
+            // right - at the right edge of the compact row there is none.
             if (over) LoadoutUtility.DrawWarningBadge(new Rect(bar.xMax - 16f, bar.y - 3f, 15f, 15f), LoadoutUtility.ColBad);
             return over;
         }
 
-        // Eine Tragkraft-Leiste fuer eine FREMDE Ansicht (2026-08-30, die Mass/Bulk-Spalten der Zuweisungs-Vorschau):
-        // dieselbe Leiste, dasselbe Traeger-Symbol, derselbe Tooltip wie in der kompakten Ansicht - nur mit Zahlen,
-        // die der Aufrufer mitbringt (dort der GEPLANTE Stand, nicht der heutige). Kein zweiter Nachbau.
+        // A carry-capacity bar for a FOREIGN view (the Mass/Bulk columns of the assignment preview):
+        // the same bar, the same carrier icon, the same tooltip as in the compact view - just with numbers
+        // the caller supplies (there the PLANNED state, not the current one). No second reimplementation.
         internal static void DrawPawnCapacityBar(Rect bar, float load, float cap, Pawn pawn, bool bulk)
         {
             string label = bulk
@@ -642,8 +637,8 @@ namespace CEReloaded
                 TooltipHandler.TipRegion(bar, WithOverCapNote(LoadoutUtility.CarryCapacityTooltip(pawn, bulk, load, cap, boosters), over));
         }
 
-        // EINE Id je Zelle und Kolonist - stabil ueber die Bilder hinweg, verschieden zwischen den Zellen. Ohne sie
-        // waere der Tooltip einer Zelle derselbe wie der der Nachbarzelle, sobald beide denselben Text haetten.
+        // ONE id per cell and colonist - stable across frames, distinct between cells. Without it a cell's
+        // tooltip would be the same as its neighbour's as soon as both had the same text.
         private static int TipId(Pawn pawn, Def d, int salt)
             => (pawn != null ? pawn.thingIDNumber * 31 : 0) ^ (d != null ? d.shortHash * 17 : 0) ^ (salt << 24);
 
@@ -657,7 +652,7 @@ namespace CEReloaded
             return LoadoutUtility.AllColonyBenches().Any(b => benchDefs.Contains(b.def));
         }
 
-        // Builds and shows the ONE supply popup (weapons + shields + ammo, WORKFLOW_OVERHAUL_PLAN.md section 2) for
+        // Builds and shows the ONE supply popup (weapons + shields + ammo) for
         // a set of (pawn, planned loadout) pairs. Secondary (sidearm/grenade) shortfall is only included in the
         // "...and sidearms" mode; skipped-superior info is only passed from Auto-Assign. Ammo need is computed
         // directly from the PLANNED loadouts (not pawn.GetLoadout(), which hasn't been updated yet at this point in
@@ -668,11 +663,11 @@ namespace CEReloaded
         private bool OpenProducePopup(IEnumerable<(Pawn pawn, Loadout loadout)> planned, Action onConfirm = null, Action onCancel = null, Action onBack = null, IEnumerable<(Pawn pawn, List<Loadout> packs)> packAssignments = null, IEnumerable<(Pawn pawn, List<Loadout> sidearms)> sidearmAssignments = null)
             => OpenProducePopup(planned, BuildOwnedWeaponCounts(), onConfirm, onCancel, onBack, packAssignments, sidearmAssignments);
 
-        // Der Bereichs-Schalter "Consider assigned weapons / created loadouts" dieses Popups (2026-08-01
-        // bis 2026-09-07) ist entfallen, siehe Dialog_SupplyLoadouts.Request. Der Bedarf
-        // kommt aus genau `planned`/`packAssignments`/`sidearmAssignments`, den Kolonisten dieses Laufs.
-        // Der Parameter `skipped` (die "Not producible - superior loadouts skipped"-Liste des Loesers) ist am
-        // 2026-08-25 samt Anzeige entfallen, weil er keinen Sinn ergab.
+        // This popup's scope toggle "Consider assigned weapons / created loadouts" has been removed, see
+        // Dialog_SupplyLoadouts.Request. The demand comes from exactly `planned`/`packAssignments`/
+        // `sidearmAssignments`, the colonists of this run.
+        // The `skipped` parameter (the solver's "Not producible - superior loadouts skipped" list) was
+        // removed along with its display because it served no purpose.
         private bool OpenProducePopup(IEnumerable<(Pawn pawn, Loadout loadout)> planned, Dictionary<ThingDef, int> ownedPool, Action onConfirm, Action onCancel = null, Action onBack = null, IEnumerable<(Pawn pawn, List<Loadout> packs)> packAssignments = null, IEnumerable<(Pawn pawn, List<Loadout> sidearms)> sidearmAssignments = null)
         {
             List<(Pawn pawn, Loadout loadout)> pairs = planned.ToList();
@@ -702,33 +697,33 @@ namespace CEReloaded
                 : new List<(Pawn, Loadout)>();
 
             Dictionary<ThingDef, int> mainReq, secReq, shieldMissing, missingSpecifics, produciblePackItems;
-            // Zu jeder Pack-Zeile der Def, an dem der BEDARF haengt - folgt DEMSELBEN Zweig wie die Zeilen
-            // selbst, sonst traegt eine Zeile aus dem einen Umfang die Herkunft aus dem anderen.
+            // For each pack row, the def the DEMAND is attached to - follows the SAME branch as the rows
+            // themselves, otherwise a row from one scope would carry the origin from the other.
             Dictionary<ThingDef, Def> packDemandDefsForRequest = null;
             Dictionary<LoadoutGenericDef, int> relevantGenerics;
 
             // Both indicator sources are ALWAYS computed now, regardless of scope (2026-08-02) - the "Assig."
             // column used to be a single dict-set whose MEANING silently flipped between "real pawn" and
-            // "loadout template" depending on this scope flag (two screenshots of the same
-            // colonist showing wildly different numbers). Only the visible DEMAND numbers (mainReq etc.
+            // "loadout template" depending on this scope flag (the same colonist could show
+            // wildly different numbers). Only the visible DEMAND numbers (mainReq etc.
             // below) still depend on scope; the diamond/circle indicators are independent of it.
             // Assigned (diamond) - this run's own planned pawn/sidearm demand.
             //
-            // Munition kommt aus dem LIVE-Loadout des Kolonisten, nicht aus der Vorlage (2026-08-13):
-            // Supply Loadouts schaute faelschlicherweise noch in das urspruengliche Loadout.
-            // Der Ablauf ist der Grund:
-            // ApplyPreviewPlan ruft apply() VOR diesem Popup, und apply() schreibt die frisch gewaehlte
-            // Munition ("Override ammo", standardmaessig AN, reglerabhaengig) auf den persoenlichen Anker
-            // des Kolonisten. Die geplante VORLAGE behaelt dabei unveraendert die Munition, mit der sie
-            // erzeugt wurde. Wer hier die Vorlage liest, liest also genau die Munition, die der Kolonist
-            // NICHT bekommt - das Fenster schlug Kaliber zum Herstellen vor, die niemand benutzt, und
-            // schrieb im "Used by" den Namen dessen daneben, der stattdessen etwas anderes traegt.
-            // Der Anker ist die einzige Stelle, an der beides zusammenkommt: Waffe(n) aus der Vorlage,
-            // Zweitwaffen und Packs als Extra-Eltern, und die persoenliche Munitionswahl, die jede
-            // geerbte ersetzt (Patch_Loadout_MultiParentSlots). Ein Eintrag pro Kolonist statt einer pro
-            // Vorlage+Zweitwaffe, weil die Vereinigung ohnehin schon alles enthaelt.
-            // Nebeneffekt, gewollt: damit rechnet dieser Einstieg dieselbe Summe wie
-            // BuildSupplyRequestForPawns, das schon immer p.GetLoadout() gelesen hat.
+            // Ammo comes from the colonist's LIVE loadout, not from the template: Supply Loadouts used to
+            // wrongly look at the original loadout.
+            // The sequence is the reason:
+            // ApplyPreviewPlan calls apply() BEFORE this popup, and apply() writes the freshly chosen ammo
+            // ("Override ammo", ON by default, configurable) onto the colonist's personal anchor. The
+            // planned TEMPLATE meanwhile keeps the ammo it was created with, unchanged. Reading the template
+            // here therefore reads exactly the ammo the colonist does NOT get - the window proposed calibers
+            // for crafting that nobody uses, and listed under "Used by" the name of a colonist who carries
+            // something else instead.
+            // The anchor is the only place where both come together: weapon(s) from the template, sidearms
+            // and packs as extra parents, and the personal ammo choice that replaces any inherited one
+            // (Patch_Loadout_MultiParentSlots). One entry per colonist instead of one per
+            // template+sidearm, because the union already contains everything.
+            // Intended side effect: this entry point now computes the same sum as
+            // BuildSupplyRequestForPawns, which has always read p.GetLoadout().
             List<(Loadout loadout, string pawnName)> ammoPairs = pairs.Select(p => p.pawn)
                 .Concat(sidearmPairs.Select(p => p.pawn))
                 .Where(p => p != null)
@@ -763,11 +758,11 @@ namespace CEReloaded
             // this sibling call site never got) - the old !WeaponHasActiveBill(kv.Key) suppressed the WHOLE
             // shortfall the instant ANY bill for that ammo existed anywhere, even a leftover 1-unit bill from
             // before more colonists got assigned it, silently under-proposing real demand on re-trigger.
-            // + CarriedStockCount (2026-08-12): hier ist es die direkte Folge des Fixes von heute frueh -
-            // seit `sidearmAssignments` nicht mehr auf !kept gefiltert wird, steckt im Bedarf oben auch
-            // der Zweitwaffen-Munitionsbedarf von Kolonisten, die ihre Munition SCHON TRAGEN. Ohne den
-            // dritten Bestandstopf meldet genau dieser Fall eine Fehlmenge, die es nicht gibt. Die alte
-            // Loesung dafuer war der kept-Filter, und der hat zu viel weggeworfen (siehe dort).
+            // + CarriedStockCount: here it is the direct consequence of the earlier sidearm fix - since
+            // `sidearmAssignments` is no longer filtered on !kept, the demand above also includes the
+            // sidearm ammo demand of colonists who ALREADY CARRY their ammo. Without the third stock pool,
+            // exactly this case reports a shortfall that does not exist. The old solution for that was the
+            // kept filter, and it threw away too much (see there).
             missingSpecifics = pairSpecifics.Where(kv => LoadoutUtility.IsAmmoResearched(kv.Key)
                 && LoadoutUtility.AmmoOnHand(kv.Key) + LoadoutUtility.WeaponQueuedCount(kv.Key) < kv.Value)
                 .ToDictionary(kv => kv.Key, kv => kv.Value);
@@ -791,8 +786,8 @@ namespace CEReloaded
             // so it's feature-complete and Dialog_ArmReport no longer needs its own separate end-of-chain
             // safety-net popup for Arm-my-Colony runs (2026-07-31: one popup, not two in a
             // row - the old second popup was the only place pack items were ever checked at all).
-            // Kein IsProducible-Filter mehr (2026-08-13) - siehe den
-            // Erstellt-Zweig oben und LoadoutUtility.CheckAndOpenMissingProductionPopup.
+            // No IsProducible filter any more - see the
+            // Created branch above and LoadoutUtility.CheckAndOpenMissingProductionPopup.
             produciblePackItems = new Dictionary<ThingDef, int>(assignedMissingPackItems);
             packDemandDefsForRequest = assignedPackDemandDefs;
             foreach (var kv in LoadoutUtility.ConsumablesNeedingMaintenance(assignedMissingPackItems, requireConsumable: true))
@@ -918,8 +913,8 @@ namespace CEReloaded
                     // "Brawler"/"Nimble"/etc. are vanilla TraitDefs, already translated by Core into every
                     // language RimWorld ships; inventing our own CER_ copy of that word would duplicate
                     // Ludeon's translation work and risk drifting from whatever word Core actually uses
-                    // elsewhere in the UI for the same trait (2026-07-31, user-caught: "das hört sich eher
-                    // nach vanilla an, wir dürfen nur in unserer Codebase suchen"). Only the TIP (our own
+                    // elsewhere in the UI for the same trait. Only the TIP (our own explanation of the
+                    // scoring effect) is our content, parameterized with the real label.
                     // explanation of the scoring effect) is our content, parameterized with the real label.
                     if (brawlerDef != null && pawn.story.traits.HasTrait(brawlerDef)) { meleeScore *= 1.5f; string lbl = pawn.story.traits.GetTrait(brawlerDef)?.LabelCap ?? brawlerDef.label; notableTraits.Add(lbl); traitTips.Add("CER_AssignLoadouts_TraitBrawlerTip".Translate(lbl)); }
                     if (nimbleDef != null && pawn.story.traits.HasTrait(nimbleDef)) { meleeScore *= 1.25f; string lbl = pawn.story.traits.GetTrait(nimbleDef)?.LabelCap ?? nimbleDef.label; notableTraits.Add(lbl); traitTips.Add("CER_AssignLoadouts_TraitNimbleTip".Translate(lbl)); }
@@ -990,13 +985,12 @@ namespace CEReloaded
             if (Time.frameCount != frameCacheStamp)
             {
                 frameCacheStamp = Time.frameCount;
-                // Die vier "Bild-Caches" leben seit 2026-08-25 laenger als ein Bild (perf-cell-row-next):
-                // Bestandstopf, Tragkraft, Munitionszelle und Zeileninfo wurden bei 143 Hz rund 90 Mal je
-                // Sekunde neu gebaut - Slots-Vereinigung je Kolonist, Kartenscan nach Waffen, RelevantAmmoPool
-                // - fuer ein Spiel, das pausiert ist. Jetzt gilt die Zwei-Sperren-Regel: neu bei jeder
-                // gemeldeten Mutation (CombatReadiness.MutationVersion) oder nach 0,3 s. Was darunter liegt
-                // (frameRemainingCache: ein ABZAEHLENDER Topf, frameFulfillCache: Memo je Durchgang) bleibt
-                // je Durchgang, das ist seine Natur.
+                // The four "frame caches" now live longer than a single frame: stock pool, carry capacity,
+                // ammo cell and row info used to be rebuilt about 90 times per second at 143 Hz - slot union
+                // per colonist, map scan for weapons, RelevantAmmoPool - for a game that is paused. Now the
+                // two-lock rule applies: rebuild on every reported mutation (CombatReadiness.MutationVersion)
+                // or after 0.3 s. What sits beneath them (frameRemainingCache: a DECREMENTING pool,
+                // frameFulfillCache: memo per pass) stays per pass; that is its nature.
                 float now = Time.realtimeSinceStartup;
                 if (frameOwnedCache == null || rowCacheVersion != CombatReadiness.MutationVersion || now - rowCacheAt > RowCacheMaxAge)
                 {
@@ -1007,17 +1001,16 @@ namespace CEReloaded
                     frameAmmoCache.Clear();
                     frameRowCache.Clear();
                     frameLabelCache.Clear();
-                    // Topf UND Memo gehoeren seit 2026-08-27 in denselben Block wie die vier darueber.
-                    // Der Kommentar von 2026-08-17 sagte "der Fulfill-Cache merkt sich Ergebnisse aus genau
-                    // diesem Zaehler und muss deshalb MIT IHM ZUSAMMEN zurueck" - das stimmt, und es ist die
-                    // ganze Bedingung. Sie muessen zusammen zurueckgesetzt werden, nicht je Durchgang:
-                    // solange beide stehen, liefert jeder wiederholte Aufruf seinen gemerkten Wert und zaehlt
-                    // deshalb NICHTS mehr ab - der Topf kann also gar nicht leerlaufen. Ein neuer Schluessel
-                    // (eine Zeile, die vorher nicht gezeichnet wurde) zaehlt vom Rest ab, und das ist richtig
-                    // so: die schon gezeichneten Zeilen haben ihren Anteil bereits genommen.
-                    // Der Grund fuer die Aenderung, gemessen am 27.08.: die Statusrechnung in DrawFulfillDot
-                    // kostete 229 der 509 ms/s des ganzen Reiters - 45 %, jeden Durchgang neu, fuer ein
-                    // pausiertes Spiel. Sie haengt an genau denselben Daten wie die vier Caches darueber.
+                    // Pool AND memo now belong in the same block as the four above.
+                    // An earlier comment said "the fulfill cache remembers results from exactly this counter
+                    // and must therefore be reset TOGETHER WITH IT" - that is true, and it is the whole
+                    // condition. They have to be reset together, not per pass: as long as both stand, every
+                    // repeated call returns its memoized value and therefore decrements NOTHING more - so the
+                    // pool cannot run dry. A new key (a row that was not drawn before) decrements from the
+                    // remainder, and that is correct: the rows already drawn have already taken their share.
+                    // The reason for the change, as measured: the status computation in DrawFulfillDot cost
+                    // 229 of the tab's 509 ms/s - 45 %, redone every pass, for a paused game. It depends on
+                    // exactly the same data as the four caches above.
                     frameRemainingCache = new Dictionary<ThingDef, int>(frameOwnedCache);
                     frameFulfillCache = new Dictionary<(Pawn, Def, int), FulfillStatus>();
                     frameRichSegCache = new Dictionary<(Pawn, Def, int, RichStock), LoadoutUtility.AvailabilitySegments>();
@@ -1027,12 +1020,12 @@ namespace CEReloaded
             // --- Top bar: search + weapons filter (radios) + produce/roles toggles. The fine-tuning (sourcing,
             // ranged/melee, anti-mech, diversity) lives in the Auto-assign preview popup. ---
             CERUiState ui = RoleUtility.Ui();
-            // Selbstheilung: sollte ein Lauf einmal enden, ohne durch FinishArmReport zu gehen (Fenster
-            // anders geschlossen), holt das die Ruecksetzung beim naechsten Bild nach - sonst bliebe der
-            // erzwungene Modus stehen und wuerde ab dann doch wieder gespiegelt.
+            // Self-healing: should a run ever end without going through FinishArmReport (window closed
+            // some other way), the reset is caught up on the next frame - otherwise the forced mode would
+            // stay in place and from then on be mirrored into the save after all.
             if (armReport == null) RestoreArmRoleMode();
             ui.asLoadoutFilter = loadoutFilter;
-            // NICHT waehrend eines Arm-my-Colony-Laufs mit erzwungenem Rollenmodus (siehe armRoleModeRestore).
+            // NOT during an Arm-my-Colony run with a forced role mode (see armRoleModeRestore).
             if (!armRoleModeRestore.HasValue) ui.asRoleMode = roleMode;
             ui.asSortMelee = sortByMelee;
             ui.asCompact = compactView;
@@ -1063,11 +1056,10 @@ namespace CEReloaded
             Widgets.CheckboxLabeled(cvRect, cvLbl, ref compactView);
             TooltipHandler.TipRegion(cvRect, "CER_AssignLoadouts_CompactViewTip".Translate());
 
-            // Die Filterzeilen des Detailmodus sind RAUS (2026-09-03: die Filter "all loadouts /
-            // researched weapons" ergaben keinen Sinn mehr, und der "Assign roles"-Knopf oben auch
-            // nicht): der Loadout-Filter gehoerte zur alten Loadout-Auswahl (das Waffen-Fenster hat
-            // eigene Filter), und der Rollen-Modus wird dort eingestellt, wo er wirkt - in der
-            // Auto-Vorschau. Der Kopf ist damit in beiden Modi gleich schlank.
+            // The detailed mode's filter rows are GONE (the "all loadouts / researched weapons" filters no
+            // longer made sense, nor did the "Assign roles" button at the top): the loadout filter belonged
+            // to the old loadout picker (the weapon window has its own filters), and the role mode is set
+            // where it takes effect - in the auto preview. The header is now equally slim in both modes.
             float gridTop = LoadoutUtility.Divider(30f, inRect.width);
 
             List<Pawn> visiblePawns = string.IsNullOrEmpty(pawnSearch) ? cachedPawns : cachedPawns.Where(PawnMatchesSearch).ToList();
@@ -1082,10 +1074,10 @@ namespace CEReloaded
             if (compactView && currentSortMode != SortMode.Default)
             {
                 displayPawns = new List<Pawn>(visiblePawns);
-                // Ranged/Melee dazu (2026-08-09): bei 20 Kolonisten war "wer schiesst am besten" nur durch
-                // Zeile-fuer-Zeile-Lesen zu beantworten, obwohl die Werte direkt danebenstehen. Absteigend als
-                // erster Klick, weil bei einer Faehigkeit "die Besten zuerst" die gemeinte Frage ist - beim
-                // Namen ist aufsteigend das Erwartete, deshalb der Unterschied.
+                // Ranged/Melee added: with 20 colonists, "who shoots best" could only be answered by reading
+                // row by row, even though the values sit right next to the names. Descending on the first
+                // click, because for a skill "best first" is the intended question - for names ascending is
+                // what's expected, hence the difference.
                 switch (currentSortMode)
                 {
                     case SortMode.Ranged:
@@ -1161,9 +1153,8 @@ namespace CEReloaded
 
             // --- Bottom bar: actions flowing in from the right (primary rightmost); the window's X closes. ---
             float xr = inRect.width;
-            // EINE Schriftstufe fuer die ganze Reihe (2026-09-03: auf
-            // Deutsch stand "Munition massenhaft ersetzen" klein zwischen zwei grossen Nachbarn) - siehe
-            // LoadoutUtility.BottomBarFont.
+            // ONE font size for the whole row (in German the long bulk ammo-replace label rendered small
+            // between two large neighbours) - see LoadoutUtility.BottomBarFont.
             string autoAssignLbl = "CER_AssignLoadouts_AutoAssignBtn".Translate().ToString();
             string massAmmoLbl = "CER_AssignLoadouts_MassReplaceAmmoBtn".Translate().ToString();
             string unassignAllLbl = "CER_AssignLoadouts_UnassignAllBtn".Translate().ToString();
@@ -1184,9 +1175,9 @@ namespace CEReloaded
             {
                 Find.WindowStack.Add(new Dialog_MassReplaceAmmo());
             }
-            // "Unassign all" (2026-09-03): nimmt JEDEM freien Kolonisten die Zuweisung weg -
-            // ueber den ankersicheren Weg (ArmUnassignAll behaelt Packs/Zweitwaffen am Anker), mit
-            // Bestaetigung, weil es die ganze Kolonie betrifft.
+            // "Unassign all": removes the assignment from EVERY free colonist - via the anchor-safe path
+            // (ArmUnassignAll keeps packs/sidearms on the anchor), with confirmation, because it affects the
+            // whole colony.
             if (LoadoutUtility.BottomActionButton(inRect, ref xr, LoadoutUtility.SecondaryBtnW, unassignAllLbl,
                 tip: "CER_AssignLoadouts_UnassignAllBtnTip".Translate()))
             {
@@ -1210,8 +1201,8 @@ namespace CEReloaded
         {
             armReport = rep;
             RefreshPawns();
-            // Nur FUER DIESEN LAUF - siehe armRoleModeRestore. Ein zweiter Lauf ohne dazwischenliegendes
-            // FinishArmReport darf den urspruenglichen Wert nicht ueberschreiben, deshalb nur beim ersten Mal merken.
+            // Only FOR THIS RUN - see armRoleModeRestore. A second run without an intervening FinishArmReport
+            // must not overwrite the original value, so it is only remembered the first time.
             if (roleModeOverride.HasValue)
             {
                 if (!armRoleModeRestore.HasValue) armRoleModeRestore = roleMode;
@@ -1232,14 +1223,13 @@ namespace CEReloaded
             {
                 Loadout cur = p.GetLoadout();
                 if (cur == null || cur.defaultLoadout) continue;
-                // Anker BEHALTEN statt SetLoadout(none) (2026-09-01, dieselbe Fehlerklasse
-                // wie im Apply-Pfad unten seit dem 25.08.): SetLoadout(none) laeuft am persoenlichen Anker
-                // vorbei, der haengt danach an niemandem, und der naechste Aufraeum-Tick loescht ihn SAMT
-                // Packs, Zweitwaffen und eigener Munition. Beim Lazy-Umbau wiegt das doppelt, weil "Reset
-                // first" in Normal/Aggressive Standard ist und unmittelbar vor der Neuzuweisung laeuft.
-                // Ein Anker MIT Zusatz-Eltern wird auf None umgehaengt (Packs/Zweitwaffen bleiben), nur die
-                // eigene Munition der alten Waffe geht mit ihr; ein Kolonist ohne solchen Anker geht den
-                // alten Weg.
+                // KEEP the anchor instead of SetLoadout(none) (same class of bug as in the apply path below):
+                // SetLoadout(none) bypasses the personal anchor, which is then attached to nobody, and the
+                // next cleanup tick deletes it ALONG WITH packs, sidearms and own ammo. With the lazy rework
+                // this matters twice as much, because "Reset first" is the default in Normal/Aggressive and
+                // runs immediately before the reassignment.
+                // An anchor WITH extra parents is re-hung onto None (packs/sidearms stay), only the old
+                // weapon's own ammo goes with it; a colonist without such an anchor takes the old path.
                 if (none != null && AmmoAssignmentUtility.IsAmmoLink(cur) && MultiParentUtility.GetExtraParents(cur).Count > 0)
                 {
                     Loadout link = AmmoAssignmentUtility.EnsureAmmoLink(p, none);
@@ -1252,8 +1242,8 @@ namespace CEReloaded
             return n;
         }
 
-        // Den Rollen-Schalter zuruecknehmen, den die Wurzelfrage von Arm my Colony erzwungen hat.
-        // Idempotent - wer ihn nicht erzwungen hat, aendert hier nichts.
+        // Revert the role toggle that Arm my Colony's root question forced.
+        // Idempotent - if it was not forced, nothing changes here.
         private void RestoreArmRoleMode()
         {
             if (!armRoleModeRestore.HasValue) return;
@@ -1279,8 +1269,8 @@ namespace CEReloaded
             {
                 // Pacifists and babies never get armed, so they are not "unarmed" in the actionable sense.
                 if (LoadoutUtility.CannotFight(p)) continue;
-                // Ueber DisplayLoadout, sonst gilt jeder Kolonist mit persoenlichem Anker als bewaffnet -
-                // der Anker selbst ist nie das Default, auch wenn darunter keine Vorlage mehr haengt.
+                // Via DisplayLoadout, otherwise every colonist with a personal anchor counts as armed -
+                // the anchor itself is never the default, even when no template hangs beneath it any more.
                 Loadout lo = AmmoAssignmentUtility.DisplayLoadout(p.GetLoadout());
                 if (lo == null || lo.defaultLoadout) n++;
             }
@@ -1298,8 +1288,8 @@ namespace CEReloaded
         {
             // Materialize virtual picks first: create the default loadout for each newly picked weapon, so the rest
             // of the flow (produce popup, assignment, report) treats them like any other loadout.
-            // Statisch seit 2026-09-01 (Lazy-Umbau): der Weg ueber parentWindow.LoadoutsDialog war in der
-            // Arm-Kette und der Bereitschaftsanzeige null, und der Pick ging dort still verloren.
+            // Static since the lazy rework: the path via parentWindow.LoadoutsDialog was null in the
+            // Arm chain and the readiness display, and the pick was silently lost there.
             foreach (AssignPlanEntry e in plan.entries)
             {
                 if (e.kept) continue;
@@ -1308,8 +1298,8 @@ namespace CEReloaded
                     Loadout made = Dialog_GenerateLoadouts.EnsureDefaultLoadout(e.plannedMain);
                     if (made != null) { e.planned = made; e.plannedVirtual = false; }
                 }
-                // Zweitwaffen/Granaten, die der Loeser als blosse Waffe gewaehlt hat (kein Vorlagen-Objekt
-                // existierte beim Planen) - erst JETZT entsteht die geteilte Vorlage, nie in der Vorschau.
+                // Sidearms/grenades the solver picked as a bare weapon (no template object existed during
+                // planning) - only NOW is the shared template created, never in the preview.
                 if (e.plannedSidearmDefs != null && e.plannedSidearmDefs.Count > 0)
                 {
                     foreach (ThingDef sd in e.plannedSidearmDefs)
@@ -1367,15 +1357,15 @@ namespace CEReloaded
                     }
                     else
                     {
-                        // Anker BEHALTEN statt SetLoadout(none) (2026-08-25, vorbestehend):
-                        // SetLoadout(none) laeuft am Anker vorbei, der haengt danach an niemandem mehr, und das
-                        // naechste Aufraeumen loescht ihn - samt Packs, Zweitwaffen und eigener Munition. Genau
-                        // das versprach der Kommentar an WantsPackWrite seit dem 19.08. NICHT zu tun ("would
-                        // strip the packs off every colonist the plan simply left without a weapon"). Jetzt
-                        // wird der Anker auf None umgehaengt (EnsureAmmoLink), Packs und Zweitwaffen bleiben;
-                        // nur die eigene Munition der alten Waffe geht mit ihr - ohne Waffe traegt sie niemand.
-                        // Ein Kolonist OHNE Anker (Vorlage direkt zugewiesen, nichts zu bewahren) geht den alten
-                        // Weg, damit kein leerer Anker fuer nichts entsteht.
+                        // KEEP the anchor instead of SetLoadout(none) (pre-existing issue):
+                        // SetLoadout(none) bypasses the anchor, which is then attached to nobody, and the next
+                        // cleanup deletes it - along with packs, sidearms and own ammo. That is exactly what
+                        // the comment on WantsPackWrite promised NOT to do ("would strip the packs off every
+                        // colonist the plan simply left without a weapon"). Now the anchor is re-hung onto
+                        // None (EnsureAmmoLink), packs and sidearms stay; only the old weapon's own ammo goes
+                        // with it - without a weapon nobody carries it. A colonist WITHOUT an anchor (template
+                        // assigned directly, nothing to preserve) takes the old path, so no empty anchor is
+                        // created for nothing.
                         if (e.current != null)
                         {
                             Loadout raw = e.pawn.GetLoadout();
@@ -1396,12 +1386,12 @@ namespace CEReloaded
                         // see its own comment - so nobody loses a pack just for going unassigned.
                         if (none != null && AssignPlanner.WantsPackWrite(e))
                             AmmoAssignmentUtility.SetPawnPacks(e.pawn, none, e.plannedPacks ?? new List<Loadout>());
-                        // Zweitwaffen genauso (2026-08-25, beim Nachgehen eines Falls: Balork hatte keine
-                        // Waffe, eine eingefuegte Hellebarde wurde nicht angezeigt; dazu nach aehnlichen
-                        // Schlupfloechern gesucht): eine hier angeheftete Zweitwaffe bei einem Kolonisten ohne
-                        // geplante Waffe wurde beim Apply still verworfen, weil dieser Zweig nur Packs schrieb
-                        // und WantsSidearmWrite auf planned != null sperrte. Die Zweitwaffe haengt aber wie das
-                        // Pack am Anker ueber der None-Vorlage - der Assign-Reiter erlaubt das seit heute auch.
+                        // Same for sidearms (found while tracing a colonist with no weapon whose added halberd
+                        // was not shown, then searching for similar loopholes): a sidearm pinned here on a
+                        // colonist without a planned weapon was silently discarded on Apply, because this
+                        // branch only wrote packs and WantsSidearmWrite was gated on planned != null. But the
+                        // sidearm hangs on the anchor above the None template just like the pack - the Assign
+                        // tab allows that too now.
                         if (none != null && AssignPlanner.WantsSidearmWrite(e))
                             SidearmAssignmentUtility.SetPawnSidearms(e.pawn, none, e.plannedSidearms ?? new List<Loadout>());
                     }
@@ -1410,17 +1400,16 @@ namespace CEReloaded
                     // plan gave it to. CE's hold tracker would otherwise make the pawn cling to it forever.
                     if (redistributeCarried) DropNonLoadoutWeapons(e.pawn, e.planned);
                 }
-                // "Ohne Loadout geblieben" heisst: haette eins bekommen sollen und hat keins - nicht "hat
-                // keins" (2026-08-13, zwei Befunde derselben Ursache, plus eine Nebenwirkung einer
-                // Aenderung vom selben Tag).
-                // Die Zeile zaehlte jede Zeile mit !kept && planned == null. Da landen aber auch Leute, fuer
-                // die das gar nicht gilt: ein Pazifist, dem nur ein Pack angeheftet wurde, faellt durch die
-                // extrasChanged-Regel am Ende von AssignPlanner.Compute auf kept=false und hat naturgemaess
-                // kein geplantes Loadout - angezeigt wurde daraufhin "0 Kolonisten zugewiesen, 1 ohne Loadout
-                // geblieben", obwohl niemand fehlte. Und seit ein vom Spieler ausgeschlossener Kolonist
-                // planned=null/kept=false traegt (der Muelleimer-Zustand), waere er hier ebenfalls als
-                // Fehlschlag gezaehlt worden - dabei ist es genau das, was der Spieler wollte.
-                // CannotFight deckt beide Faelle ab: das Spielerkennzeichen UND Pazifist/Baby.
+                // "Left without a loadout" means: should have received one and didn't - not "has none"
+                // (two findings with the same cause, plus a side effect of another change).
+                // The line counted every row with !kept && planned == null. But that also catches colonists
+                // it doesn't apply to: a pacifist who only had a pack pinned falls to kept=false through the
+                // extrasChanged rule at the end of AssignPlanner.Compute and naturally has no planned
+                // loadout - the summary then read "0 colonists assigned, 1 left without a loadout" even
+                // though nobody was missing. And since a colonist excluded by the player carries
+                // planned=null/kept=false (the trash-bin state), they would have been counted here as a
+                // failure too - when that is exactly what the player wanted.
+                // CannotFight covers both cases: the player flag AND pacifist/baby.
                 int left = plan.entries.Count(x => !x.kept && x.planned == null && !LoadoutUtility.CannotFight(x.pawn));
                 string msg = assigned == 1
                     ? "CER_AssignLoadouts_AutoAssignedSingular".Translate(assigned.ToString())
@@ -1433,8 +1422,8 @@ namespace CEReloaded
                     {
                         if (e.kept || e.planned == null) continue;
                         AnalyzeLoadout(e.planned, out ThingDef mw2, out _, out _, out _);
-                        // Last-write-wins, keyed by pawn (2026-08-01: "Cloud -> MosqueFAL"
-                        // and "Ryder -> MosqueFAL" each appearing 4-5 times in the final Arm my Colony summary)
+                        // Last-write-wins, keyed by pawn (2026-08-01: "<pawn> -> <weapon>"
+                        // and the same pair each appearing 4-5 times in the final Arm my Colony summary)
                         // - apply() can legitimately run more than once for the SAME plan within one Arm-my-
                         // Colony session (e.g. pinning one colonist re-applies the whole current plan, not just
                         // that one pawn's own change), and this loop used to just Add() every time with no
@@ -1471,7 +1460,7 @@ namespace CEReloaded
             // popup handle production-only from here on doesn't lose or duplicate anything either used to do.
             apply();
 
-            // The ammo-gap check (WORKFLOW_OVERHAUL_PLAN.md section 7 - neither the solver nor manual assignment
+            // The ammo-gap check (neither the solver nor manual assignment
             // ever checked whether newly assigned loadouts have ammo production at all) is now folded INTO the
             // production popup, so the player sees ONE combined Supply popup (weapons + shields + ammo) instead
             // of two sequential ones - that consolidation is the actual point of this dialog. Always runs now
@@ -1490,19 +1479,18 @@ namespace CEReloaded
             // newly-planned pawns' packs are exactly what apply() already set, so this already reflects
             // post-apply reality.
             var packAssignments = plan.entries.Select(e => (e.pawn, e.plannedPacks));
-            // Ganzer Plan, nicht nur die geaenderten Zeilen (2026-08-12) - genau wie packAssignments eine
-            // Zeile darueber. Die alte Begruendung ("ein kept-Pawn traegt seine Zweitwaffe ja schon, das
-            // waere Doppelzaehlung") gilt nur, wenn er sie WIRKLICH traegt. Verlangt sein Loadout ein Messer,
-            // das die Kolonie nie hergestellt hat, entstand hier ueberhaupt kein Bedarf - und weil nach einem
-            // Arm-Lauf praktisch jeder Kolonist "kept" ist, hiess das: fehlende Zweitwaffen tauchen im
-            // Nachschub-Fenster GAR NICHT auf.
-            // Kein Doppelzaehl-Risiko, und das ist keine Vermutung: ComputeMissingSplit zieht `owned`
-            // (BuildOwnedWeaponCounts) ab, und das zaehlt jeden getragenen Gegenstand mit, kept oder nicht -
-            // Bedarf 1 und Bestand 1 heben sich fuer den Pawn, der sein Messer hat, exakt auf, waehrend fuer
-            // den ohne Messer eine echte Fehlmenge uebrig bleibt.
-            // Exakt dieselbe Korrektur hat Dialog_SquadSetup.BuildPlanWideShortfalls am 2026-08-02 bekommen
-            // (dort als "Messer zeigt 'bereit', obwohl die Kolonie keins hat" aufgefallen); der Kommentar hier
-            // verwies sogar auf jenen Filter als Vorbild - nur war der zu dem Zeitpunkt schon entfernt.
+            // Whole plan, not just the changed rows - exactly like packAssignments one line above. The old
+            // reasoning ("a kept pawn already carries its sidearm, that would be double counting") only holds
+            // if the pawn REALLY carries it. If its loadout asks for a knife the colony never made, no demand
+            // arose here at all - and since practically every colonist is "kept" after an Arm run, that
+            // meant: missing sidearms did NOT SHOW UP AT ALL in the supply window.
+            // No double-counting risk, and that is not a guess: ComputeMissingSplit subtracts `owned`
+            // (BuildOwnedWeaponCounts), which counts every carried item, kept or not - demand 1 and stock 1
+            // cancel out exactly for the pawn that has its knife, while a real shortfall remains for the one
+            // without.
+            // Dialog_SquadSetup.BuildPlanWideShortfalls received exactly the same correction (noticed there
+            // as a knife showing 'ready' although the colony had none); the comment here even pointed to
+            // that filter as the model - except it had already been removed by then.
             var sidearmAssignments = plan.entries.Select(e => (e.pawn, e.plannedSidearms));
             // onConfirm here is just the report wrap-up now - apply() already ran above, unconditionally;
             // this popup is purely a "anything to produce for what was just assigned?" follow-up from here.
@@ -1578,7 +1566,7 @@ namespace CEReloaded
 
         // Soft caps that keep the squad's ranged mix balanced (mostly rifles, a few specialists). Caps are maxima,
         // not targets, and are ignored entirely as a fallback so nobody is left unarmed while loadouts remain.
-        // Colony-size-aware, SUB-LINEAR caps (WORKFLOW_OVERHAUL_PLAN.md 6d) - replaces the old flat-percentage
+        // Colony-size-aware, SUB-LINEAR caps - replaces the old flat-percentage
         // formula, which scaled specialist roles linearly forever (a 30-pawn colony got up to 8 Marksmen). A small
         // colony still gets an essential floor of one specialist per moderate role once it's big enough to spare
         // one; growth beyond that flattens out (a few more specialists, not proportionally many more) since
@@ -1600,7 +1588,7 @@ namespace CEReloaded
 
         // A loadout counts as RANGED as soon as it carries any (non-utility) firearm - that firearm is the primary and
         // melee is just a sidearm. Only pure-melee loadouts are melee. Within the chosen role the highest-scoring
-        // weapon is the "main weapon" (so two firearms fall back to the higher score, as the user intended).
+        // weapon is the "main weapon" (so two firearms fall back to the higher score, as intended).
         internal static bool AnalyzeLoadout(Loadout lo, out ThingDef main, out float score, out bool isRanged, out WeaponGroup group)
         {
             main = null; score = 0f; isRanged = false; group = WeaponGroup.Other;
@@ -1735,59 +1723,58 @@ namespace CEReloaded
         }
 
         // ================================================================================================
-        // EINE Rechnung fuer "wem fehlt welche Waffe" (2026-08-17)
+        // ONE calculation for "who is missing which weapon"
         // ================================================================================================
         //
-        // Es gab zwei, und sie haben sich widersprochen. Die Bereitschaftsanzeige sprach REIHUM an: jeder
-        // Kolonist deckt zuerst aus dem, was er selbst traegt, dann aus dem freien Bestand auf den Karten -
-        // wer leer ausgeht, ist gemeldet. Das Nachschub-Fenster rechnete stattdessen die GESAMTNACHFRAGE der
-        // betroffenen Kolonisten gegen den GESAMTBESTAND der Kolonie (BuildOwnedWeaponCounts), und darin
-        // steckt auch jede Waffe, die ein ANDERER Kolonist laengst in der Hand hat. Ergebnis im Test:
-        // "Production gaps (2) - open Supply" oeffnete ein Fenster mit "Everything needed is already in
-        // stock or in production". Dieselbe Fehlerklasse wie UnneededAmmoBillCandidates/UnneededAmmoEntries:
-        // eine Frage, zwei Rechnungen.
+        // There used to be two, and they contradicted each other. The readiness display allocated IN TURN:
+        // each colonist first covers from what they carry, then from the free stock on the maps - whoever
+        // comes up empty is reported. The supply window instead computed the TOTAL DEMAND of the affected
+        // colonists against the colony's TOTAL STOCK (BuildOwnedWeaponCounts), which also includes every
+        // weapon ANOTHER colonist is already holding. The result: "Production gaps (2) - open Supply"
+        // opened a window saying "Everything needed is already in stock or in production". Same class of
+        // bug as UnneededAmmoBillCandidates/UnneededAmmoEntries: one question, two calculations.
         //
-        // Diese Funktion IST die Rechnung. Die Warnung liest daraus, WER etwas nicht bekommt, das
-        // Nachschub-Fenster liest daraus, WAS zu beschaffen ist - sie koennen sich nicht mehr widersprechen.
-        // Bewusst NICHT enthalten: ob fuer den Fehlbestand schon ein Auftrag laeuft. Das ist eine zweite,
-        // eigene Frage ("wird es schon behoben"), und beide Seiten beantworten sie weiterhin selbst - die
-        // Warnung ueber ihre produced-Menge, das Fenster ueber die Stueckzahl seiner Zeilen.
+        // This function IS the calculation. The warning reads from it WHO doesn't get something, the
+        // supply window reads WHAT needs to be procured - they can no longer contradict each other.
+        // Deliberately NOT included: whether a bill is already running for the shortfall. That is a
+        // second, separate question ("is it already being fixed"), and both sides keep answering it
+        // themselves - the warning via its produced amount, the window via its rows' quantities.
         //
-        // Bedarf = die Slots-Union des Ankers: Vorlage PLUS Zweitwaffen PLUS Packs (die haengen als
-        // Extra-Eltern daran, siehe MultiParentUtility) - genau das, was der Kolonist laut Plan traegt.
+        // Demand = the anchor's slot union: template PLUS sidearms PLUS packs (attached as extra parents,
+        // see MultiParentUtility) - exactly what the colonist carries according to the plan.
         // ------------------------------------------------------------------------------------------------
-        // 2026-08-17, Variante "beides umstellen": eine Zelle zeigt
-        // nur, was fuer DIESEN Kolonisten wirklich frei ist.
+        // Both views use this now: a cell shows
+        // only what is really free for THIS colonist.
         //
-        // Dieselbe Rechnung deckt jetzt AUCH die Nicht-Waffen ab (Munition, Pack-Inhalte, generische Slots).
-        // Vorher hatten die Zellen dafuer eine zweite Sicht: jede Zelle verglich ihren eigenen Bedarf mit dem
-        // Bestand der GANZEN Kolonie, ohne abzuziehen, was andere Kolonisten schon beanspruchen - also sagten
-        // bei 102 Medizin und 50 pro Zelle ALLE Zellen "nichts fehlt", auch wenn die Summe weit ueber 102 lag.
-        // Bei Waffen war es eine Spur schaerfer: dort zaehlte sogar die Waffe mit, die ein anderer gerade in
-        // der Hand hielt, und das Ergebnis haing zusaetzlich an der ZEICHENREIHENFOLGE.
+        // The same calculation now ALSO covers non-weapons (ammo, pack contents, generic slots).
+        // Previously the cells had a second view for those: each cell compared its own demand with the
+        // stock of the WHOLE colony without subtracting what other colonists already claimed - so with
+        // 102 medicine and 50 per cell, ALL cells said "nothing missing", even if the total was far above
+        // 102. For weapons it was a notch worse: there even the weapon another colonist was holding
+        // counted, and the result additionally depended on the DRAWING ORDER.
         //
-        // Jetzt gilt fuer beides dieselbe Reihenfolge (AllColonyPawns, nicht die Zeichenreihenfolge) und
-        // dieselbe Regel: erst deckt jeder aus dem, was er selbst traegt, dann aus dem freien Bestand auf den
-        // Karten. Was danach offen ist, ist die Fehlmenge dieses Kolonisten.
+        // Now both use the same order (AllColonyPawns, not the drawing order) and the same rule: each
+        // colonist first covers from what they carry, then from the free stock on the maps. Whatever is
+        // still open afterwards is that colonist's shortfall.
         //
-        // Was BEWUSST unberuehrt bleibt: Dialog_SquadSetup rechnet fuer die Zuweisungs-VORSCHAU weiter gegen
-        // den Gesamtbestand (BuildOwnedWeaponCounts). Das ist kein Widerspruch, sondern eine andere Frage -
-        // beim Umverteilen ist die Waffe eines anderen sehr wohl greifbar, beim Anzeigen des Ist-Zustands
-        // nicht.
+        // What is DELIBERATELY left untouched: Dialog_SquadSetup still computes against total stock for
+        // the assignment PREVIEW (BuildOwnedWeaponCounts). That is not a contradiction but a different
+        // question - when redistributing, another colonist's weapon is very much available; when showing
+        // the current state, it is not.
         private sealed class LoadoutClaims
         {
-            // Waffen und Schilde - was WeaponShortfallsByPawn seit dem Vormittag liefert, unveraendert.
+            // Weapons and shields - what WeaponShortfallsByPawn already delivered before, unchanged.
             public readonly Dictionary<Pawn, Dictionary<ThingDef, int>> weaponMissing = new Dictionary<Pawn, Dictionary<ThingDef, int>>();
-            // Alles andere aus derselben Slots-Union. Def, nicht ThingDef: ein generischer Slot
-            // ("Any Medicine") hat keinen konkreten ThingDef und muss trotzdem beansprucht werden.
+            // Everything else from the same slot union. Def, not ThingDef: a generic slot
+            // ("Any Medicine") has no concrete ThingDef and must still be claimed.
             public readonly Dictionary<Pawn, Dictionary<Def, int>> itemMissing = new Dictionary<Pawn, Dictionary<Def, int>>();
-            // WELCHE Defs fuer diesen Kolonisten ueberhaupt durchgerechnet wurden. Ohne das koennte eine
-            // Zelle "kein Eintrag in der Fehlliste" nicht von "gar nicht gefragt" unterscheiden - und eine
-            // Vorschauzeile im Loadout-Editor, die noch gar nicht zugewiesen ist, laese sich als "vorhanden".
+            // WHICH defs were evaluated for this colonist at all. Without this a cell could not tell
+            // "no entry in the shortfall list" apart from "never asked" - and a preview row in the loadout
+            // editor that isn't assigned yet would read as "available".
             public readonly Dictionary<Pawn, HashSet<Def>> evaluated = new Dictionary<Pawn, HashSet<Def>>();
-            // Was dieser Kolonist von diesem Def wirklich BEKOMMT: eigenes Getragenes plus sein Anteil am
-            // freien Bestand. Das ist die Zahl, mit der eine einzelne Zelle rechnen kann (siehe
-            // ClaimedAllocation) - die Fehlmenge daneben ist die des ganzen Kolonisten und taugt dafuer nicht.
+            // What this colonist really GETS of this def: own carried items plus its share of the free
+            // stock. That is the number a single cell can work with (see ClaimedAllocation) - the shortfall
+            // next to it belongs to the whole colonist and is not suitable for that.
             public readonly Dictionary<Pawn, Dictionary<Def, int>> allocated = new Dictionary<Pawn, Dictionary<Def, int>>();
 
             public bool Knows(Pawn pawn, Def d) => pawn != null && d != null
@@ -1797,14 +1784,13 @@ namespace CEReloaded
         private static LoadoutClaims claimsCache;
         private static int claimsCacheVersion = -1;
         private static float claimsCacheAt = -99f;
-        // Nicht mehr je Bild (2026-08-25, perf-cell-row-next): BuildClaimsUncached laeuft ueber jeden
-        // Kolonisten samt Slots-Vereinigung und Inventar - bei 143 Hz rund 90 Mal je Sekunde fuer ein
-        // pausiertes Spiel, und die Rechnung landete als erster Aufrufer in der Munitionszelle der ersten
-        // Zeile (gemessen 86 ms/s, der groesste Posten der Zellenreihe). Zwei Sperren statt einer: der
-        // Versionszaehler der zentralen Invalidierung (CombatReadiness.MutationVersion, jede Mutation des
-        // Mods ruft sie) UND ein kurzes Hoechstalter - eine vergessene Mutationsstelle macht das Ergebnis
-        // damit fuer 0,3 s alt, nie dauerhaft falsch. Im laufenden Spiel (Bereitschaftsanzeige) heisst
-        // 0,3 s: ein gerade eingelagerter Stapel zaehlt einen Wimpernschlag spaeter.
+        // No longer per frame: BuildClaimsUncached walks every colonist including the slot union and
+        // inventory - at 143 Hz about 90 times per second for a paused game, and the calculation landed as
+        // the first caller in the first row's ammo cell (measured 86 ms/s, the largest item of the cell
+        // row). Two locks instead of one: the version counter of the central invalidation
+        // (CombatReadiness.MutationVersion, every mutation in the mod calls it) AND a short maximum age -
+        // a forgotten mutation site thus makes the result 0.3 s stale, never permanently wrong. In a
+        // running game (readiness display) 0.3 s means: a stack that was just stored counts a blink later.
         private const float ClaimsMaxAge = 0.3f;
 
         private static LoadoutClaims Claims()
@@ -1818,22 +1804,19 @@ namespace CEReloaded
 
         internal static Dictionary<Pawn, Dictionary<ThingDef, int>> WeaponShortfallsByPawn() => Claims().weaponMissing;
 
-        // Wie viel von diesem Gegenstand dieser Kolonist WIRKLICH bekommt, nachdem alle anderen ihren
-        // Anteil genommen haben - eigenes Getragenes plus der Anteil aus dem freien Bestand. -1 heisst
-        // "dazu sagt die Rechnung nichts" (keine Vorlage, oder der Gegenstand steht nicht darin), dann
-        // bleibt es beim bisherigen Weg.
+        // How much of this item this colonist REALLY gets after everyone else has taken their share -
+        // own carried items plus the share from the free stock. -1 means "the calculation has nothing to
+        // say about this" (no template, or the item isn't in it); then the previous path applies.
         //
-        // Die ZUTEILUNG, nicht die Fehlmenge (korrigiert 2026-08-17 abends, im Test gefunden). Vorher
-        // gab diese Funktion die Fehlmenge des KOLONISTEN zurueck, und BuildAvailabilitySegments schrieb sie
-        // direkt in jede Zelle. Damit sagten zwei Zellen desselben Kolonisten fuer denselben Gegenstand
-        // wieder wortgleich dasselbe - genau der Fehler, der am 2026-08-16 schon einmal behoben war
-        // ("die 1-Stueck-Zelle meldete denselben Mangel wie die 5-Stueck-Zelle").
-        // Befund: die ZAHLEN zu Medicine waren identisch und bezogen sich auf den
-        // Gesamtbedarf des Kolonisten (13 = 12 aus dem Pack + 1 aus Sonstiges), nicht auf den Anteil der
-        // jeweiligen Zelle.
-        // Mit der Zuteilung rechnet jede Zelle wieder selbst: fehlt = ihr eigener Bedarf minus dem, was der
-        // Kolonist ueberhaupt bekommt. Die 1-Stueck-Zelle ist damit gedeckt, die 12-Stueck-Zelle nicht -
-        // und der Bezugspunkt ist trotzdem der Kolonist und nicht mehr die ganze Kolonie.
+        // The ALLOCATION, not the shortfall. Previously this function returned the COLONIST's shortfall,
+        // and BuildAvailabilitySegments wrote it directly into every cell. So two cells of the same
+        // colonist for the same item again said word for word the same thing - exactly the bug that had
+        // been fixed once before (the 1-item cell reported the same shortage as the 5-item cell).
+        // Finding: the medicine NUMBERS were identical and referred to the colonist's total demand
+        // (13 = 12 from the pack + 1 from misc), not to the respective cell's share.
+        // With the allocation each cell computes for itself again: missing = its own demand minus what
+        // the colonist gets at all. The 1-item cell is thereby covered, the 12-item cell is not - and the
+        // reference point is still the colonist, no longer the whole colony.
         internal static int ClaimedAllocation(Pawn pawn, Def d)
         {
             if (pawn == null || d == null) return -1;
@@ -1845,11 +1828,10 @@ namespace CEReloaded
 
         private static LoadoutClaims BuildClaimsUncached()
         {
-            // Der Pool ist der FREIE Bestand - Boden und Lager auf allen Spielerkarten. Was ein Kolonist am
-            // Mann hat, steht bewusst NICHT darin (es haengt an ihm, nicht an der Karte) und wird unten pro
-            // Kolonist einzeln abgezogen; genau darin unterscheidet sich diese Rechnung von
-            // BuildOwnedWeaponCounts, das alles in einen Topf wirft. "Nicht aufsammeln" zaehlt mit, gleiche
-            // Begruendung wie dort (2026-08-09).
+            // The pool is the FREE stock - ground and storage on all player maps. What a colonist carries
+            // is deliberately NOT in it (it belongs to the colonist, not to the map) and is subtracted per
+            // colonist below; that is exactly how this calculation differs from BuildOwnedWeaponCounts,
+            // which throws everything into one pool. "Do not pick up" counts too, same reasoning as there.
             Dictionary<ThingDef, int> pool = new Dictionary<ThingDef, int>();
             HashSet<Thing> seen = new HashSet<Thing>();
             void AddPool(Thing t)
@@ -1861,32 +1843,32 @@ namespace CEReloaded
             foreach (Map map in LoadoutUtility.PlayerMaps())
             {
                 foreach (Thing t in map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon)) AddPool(t);
-                // Schilde sind Apparel, die Waffengruppe oben findet sie nie - gleiche Sonderbehandlung wie
+                // Shields are apparel, the weapon group above never finds them - same special handling as
                 // in BuildOwnedWeaponCounts.
                 foreach (Thing t in map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel))
                     if (LoadoutUtility.IsShieldApparel(t.def)) AddPool(t);
             }
 
-            // Der Topf fuer alles, was KEINE Waffe und kein Schild ist - Munition, Medizin, Rationen,
-            // Bauteile, generische Slots. Erst beim ersten Nachfragen pro Def gefuellt, damit hier nicht
-            // die halbe Gegenstandsdatenbank durchgezaehlt wird, sondern nur, was wirklich jemand
-            // zugewiesen bekommen hat. Lager UND Boden, wie ueberall im Mod.
-            // Was Kolonisten am Mann haben, steht bewusst nicht darin - das wird unten pro Kolonist
-            // einzeln abgezogen, genau wie beim Waffentopf darueber.
-            // Referenzvergleich fuer JEDEN Def-Schluessel dieser Rechnung (2026-08-25): CEs generische Defs
-            // tragen ohne den Startfix in CEReloadedMain alle Hash 0 und gelten als gleich - siehe dort. Mit
-            // Standardvergleich fielen "Any ammo for M1 Garand" und "Any Perishable Meal" auf EINEN Schluessel,
-            // der Nahrungstopf war nach dem ersten Kolonisten leer, und jeder danach las "fehlt" (mit
-            // vier Screenshots belegt). Der Startfix behebt die Wurzel; der Vergleicher hier haelt die
-            // Rechnung auch dann richtig, wenn ein anderer Mod solche Defs spaeter noch einmal ohne Hash anlegt.
+            // The pool for everything that is NOT a weapon or shield - ammo, medicine, rations,
+            // components, generic slots. Only filled on the first request per def, so this doesn't count
+            // through half the item database, only what someone was actually assigned. Storage AND
+            // ground, as everywhere in the mod.
+            // What colonists carry is deliberately not in it - that is subtracted per colonist below,
+            // exactly like the weapon pool above.
+            // Reference comparison for EVERY def key of this calculation: without the startup fix in
+            // CEReloadedMain, CE's generic defs all carry hash 0 and compare as equal - see there. With the
+            // default comparer, "Any ammo for M1 Garand" and "Any Perishable Meal" fell onto ONE key, the
+            // food pool was empty after the first colonist, and everyone after that read "missing". The
+            // startup fix addresses the root cause; the comparer here keeps the calculation correct even
+            // if another mod later creates such defs without a hash again.
             Dictionary<Def, int> itemPool = new Dictionary<Def, int>(LoadoutUtility.DefRefComparer.Instance);
             int ItemFree(Def d)
             {
                 if (itemPool.TryGetValue(d, out int have)) return have;
-                // StoredStockCount statt IngredientStockCount (2026-08-18): der Pack-Topf enthaelt auch
-                // Dinge, die RimWorld nicht als Rohstoff fuehrt (Schilde, Ferngläser, Wurfsachen) - fuer die
-                // liefert der Rohstoffzaehler immer 0, und im Regal liegend werden sie zusaetzlich vom
-                // Bodenzaehler uebersprungen. Siehe LoadoutUtility.StoredStockCount.
+                // StoredStockCount instead of IngredientStockCount: the pack pool also contains things
+                // RimWorld doesn't treat as a resource (shields, binoculars, throwables) - for those the
+                // resource counter always returns 0, and when lying on a shelf they are additionally skipped
+                // by the ground counter. See LoadoutUtility.StoredStockCount.
                 int stock = d is ThingDef td2
                     ? LoadoutUtility.StoredStockCount(td2) + LoadoutUtility.GroundStockCount(td2)
                     : LoadoutUtility.GenericStockCount(d as LoadoutGenericDef);
@@ -1898,14 +1880,14 @@ namespace CEReloaded
             foreach (Pawn pawn in LoadoutUtility.AllColonyPawns())
             {
                 Loadout lo = pawn.GetLoadout();
-                // Aufgeloest entschieden, roh gelesen - dieselbe Unterscheidung wie in
-                // CombatReadinessAlerts.Recompute: ob ueberhaupt eine Vorlage haengt, sagt DisplayLoadout,
-                // was er traegt, steht in der Slots-Union des Ankers.
+                // Decided on the resolved loadout, read from the raw one - the same distinction as in
+                // CombatReadinessAlerts.Recompute: whether a template is attached at all is answered by
+                // DisplayLoadout, what the colonist carries is in the anchor's slot union.
                 Loadout display = AmmoAssignmentUtility.DisplayLoadout(lo);
-                // Kein Abbruch mehr bei display.defaultLoadout (2026-08-25): ein Anker ueber CEs
-                // None-Loadout traegt Packs und seit heute auch Zweitwaffen - die gehoeren in die Reihum-
-                // Rechnung wie bei jedem anderen. Ein nacktes None ohne Anker hat leere Slots und faellt
-                // ueber `needs.Count == 0 && itemNeeds.Count == 0` unten ohnehin heraus.
+                // No longer bailing out on display.defaultLoadout: an anchor over CE's None loadout carries
+                // packs and now sidearms too - they belong in the turn-based calculation like any other.
+                // A bare None without an anchor has empty slots and drops out below via
+                // `needs.Count == 0 && itemNeeds.Count == 0` anyway.
                 if (lo == null || lo.Slots == null || display == null) continue;
 
                 Dictionary<ThingDef, int> needs = new Dictionary<ThingDef, int>();
@@ -1916,24 +1898,24 @@ namespace CEReloaded
                     int want = Mathf.Max(1, slot.count);
                     if (w == null)
                     {
-                        // Generischer Slot ("Any Medicine", "Any Meal") - kein konkreter ThingDef, aber
-                        // sehr wohl ein Anspruch auf den gemeinsamen Bestand seiner Familie.
-                        // Generische MUNITION ("Any ammo for X") bleibt draussen (2026-08-25): ihr Bestand
-                        // wird ueber ResolveGenericAmmo/ComputeAmmoAvailability gerechnet, nicht ueber den
-                        // Gegenstandstopf - EnsureGenericSupplyDefs kennt sie absichtlich nicht, GenericStockCount
-                        // lieferte fuer sie immer 0, also ein garantiert falsches "fehlt".
+                        // Generic slot ("Any Medicine", "Any Meal") - no concrete ThingDef, but definitely
+                        // a claim on the shared stock of its family.
+                        // Generic AMMO ("Any ammo for X") stays out: its stock is computed via
+                        // ResolveGenericAmmo/ComputeAmmoAvailability, not via the item pool -
+                        // EnsureGenericSupplyDefs deliberately doesn't know it, and GenericStockCount always
+                        // returned 0 for it, i.e. a guaranteed false "missing".
                         if (slot.genericDef != null && !LoadoutUtility.IsGenericAmmoDef(slot.genericDef))
                             itemNeeds[slot.genericDef] = (itemNeeds.TryGetValue(slot.genericDef, out int gc) ? gc : 0) + want;
                         continue;
                     }
-                    // Genau das Praedikat von ComputeMissingSplit.FoldSlots - Waffen und Schilde, keine
-                    // Utility-Waffen (fuer die gibt es auch im Nachschub-Fenster nichts zu tun).
+                    // Exactly the predicate of ComputeMissingSplit.FoldSlots - weapons and shields, no utility
+                    // weapons (there is nothing to do for them in the supply window either).
                     if (!LoadoutUtility.IsShieldApparel(w) && (!w.IsWeapon || LoadoutUtility.IsUtilityWeapon(w)))
                     {
-                        // Utility-Waffen bleiben AUSSEN VOR - in beiden Toepfen. Sie sind Waffen, stehen
-                        // also nicht im Gegenstandsbestand (resourceCounter kennt keine Waffen), und ein
-                        // Anspruch gegen einen leeren Topf waere ein garantiert falsches Rot. Fuer sie
-                        // gilt weiter der alte Weg in SingleFulfillStatus.
+                        // Utility weapons stay OUT - in both pools. They are weapons, so they aren't in the
+                        // item stock (resourceCounter knows no weapons), and a claim against an empty pool
+                        // would be a guaranteed false red. The old path in SingleFulfillStatus still applies
+                        // to them.
                         if (!w.IsWeapon && !LoadoutUtility.IsShieldApparel(w))
                             itemNeeds[w] = (itemNeeds.TryGetValue(w, out int ic) ? ic : 0) + want;
                         continue;
@@ -1999,8 +1981,8 @@ namespace CEReloaded
             return claims;
         }
 
-        // Was dieser Kolonist von diesem Def wirklich bei sich hat - Hand, Rucksack und (fuer Schilde)
-        // am Koerper. Getragene Ruestung zaehlt mit, sonst laese ein getragenes Schild als fehlend.
+        // What this colonist actually has of this def on them - hands, backpack and (for shields) on the
+        // body. Worn apparel counts too, otherwise a worn shield would read as missing.
         private static int CarriedCountOf(Pawn pawn, ThingDef def)
         {
             int c = 0;
@@ -2041,9 +2023,9 @@ namespace CEReloaded
             // Opens Role Mode with a pre-filled draft (see Dialog_GenerateLoadouts.StartRoleDraftFromPawn)
             // instead of instantly baking and saving - the player reviews/renames/adjusts factors in the
             // already-existing Role Mode preview and explicitly presses Create there.
-            // 120f statt 90f (2026-08-26: "Als Rolle speichern" wurde von ButtonText in zwei
-            // gequetschte Kleinstzeilen umgebrochen). Der Namenszeile daneben gehoeren die 30px weniger -
-            // sie kuerzt ohnehin sichtbar. ButtonTextFit faengt Sprachen ab, denen auch 120 nicht reichen.
+            // 120f instead of 90f (ButtonText wrapped the translated "Save as Role" label into two squeezed
+            // tiny lines). The name row next to it loses the 30px - it visibly truncates anyway. ButtonTextFit
+            // handles languages for which even 120 is not enough.
             Rect saveRoleRect = new Rect(rect.xMax - 124f, rect.y + 3f, 120f, 22f);
             Loadout cardAssigned = pawn.GetLoadout();
             // DisplayLoadout, not the raw assignment (2026-08-01 fix, adopting the gating the old
@@ -2054,28 +2036,28 @@ namespace CEReloaded
             // producing a doubled "[Role] [Role] X" draft name.
             Loadout cardDisplay = AmmoAssignmentUtility.DisplayLoadout(cardAssigned);
             bool cardIsRole = RoleUtility.IsRoleLoadout(cardDisplay);
-            // cardDisplay statt cardAssigned auch hier: der rohe Wert ist bei personalisierten Kolonisten der
-            // Anker, und der ist nie das Default - "Als Rolle speichern" erschien dadurch auch bei einem
-            // Kolonisten, unter dessen Anker gar keine Vorlage mehr haengt.
-            // AUCH ein reiner Pack-Traeger hat etwas zu speichern (2026-08-16): auch ein Pazifist mit
-            // zugeordnetem Equipment Pack hat genug fuer eine Rolle, also "Save as role" auch fuer ihn.
-            // Er irrt sich nicht: eine Rolle NUR aus einem Pack ist ausdruecklich vorgesehen - CommitRole
-            // hat am 2026-08-09 genau dafuer einen eigenen Zweig bekommen ("sonst gilt eine Rolle, die NUR
-            // aus einem Equipment Pack besteht, faelschlich als leer"). Die Bedingung hier kannte diesen
-            // Fall nur nicht und fragte allein nach der Waffen-Vorlage.
+            // cardDisplay instead of cardAssigned here too: for personalized colonists the raw value is the
+            // anchor, which is never the default - so "Save as Role" also appeared for a colonist whose
+            // anchor no longer has any template under it.
+            // A pure pack carrier ALSO has something to save: even a pacifist with an assigned Equipment
+            // Pack has enough for a role, so "Save as role" applies to them too.
+            // This is intended: a role consisting ONLY of a pack is explicitly supported - CommitRole has its
+            // own branch for exactly that (otherwise a role consisting ONLY of an Equipment Pack would wrongly
+            // count as empty). The condition here simply didn't know that case and only asked about the
+            // weapon template.
             RowInfo rowInfo = GetRowInfo(pawn);
             bool cardHasPacks = rowInfo.hasPacks;
             bool cardHasLoadout = (cardDisplay != null && !cardDisplay.defaultLoadout && !cardIsRole) || (cardHasPacks && !cardIsRole);
             if (cardIsRole)
             {
-                // Traegt er schon eine Rolle, ist "als Rolle speichern" die falsche Frage - dann will man
-                // an die Rolle selbst (2026-08-16). Springt in den Rollen-Reiter und waehlt
-                // GENAU diese Rolle aus, statt einen Entwurf aus seinen Teilen zu bauen.
+                // If the colonist already has a role, "save as role" is the wrong question - what is wanted
+                // then is the role itself. Jumps to the Roles tab and selects EXACTLY this role instead of
+                // building a draft from the colonist's parts.
                 if (LoadoutUtility.ButtonTextFit(saveRoleRect, "CER_AssignLoadouts_EditRoleBtn".Translate()) && parentWindow != null)
                 {
-                    // Der ROHE Name, nicht die Anzeigefassung: die Rolle heisst intern "[Role] <name>",
-                    // und genau dieses <name> steht im LoadoutRole-Objekt. DisplayLabel haengt zusaetzlich
-                    // das konfigurierbare "R| " davor - damit wuerde die Suche ins Leere laufen.
+                    // The RAW name, not the display form: the role is internally named "[Role] <name>", and
+                    // exactly this <name> is stored in the LoadoutRole object. DisplayLabel additionally
+                    // prepends the configurable "R| " - the search would then come up empty.
                     string roleName = (cardDisplay.label ?? "").Substring(
                         (cardDisplay.label ?? "").StartsWith(RoleUtility.RoleMarker) ? RoleUtility.RoleMarker.Length : 0).Trim();
                     parentWindow.LoadoutsDialog.FocusExistingRole(roleName);
@@ -2098,7 +2080,7 @@ namespace CEReloaded
                 // House style: an inactive element should just look plain/dim, never struck through.
                 GUI.color = new Color(1f, 1f, 1f, 0.35f);
                 Text.Anchor = TextAnchor.MiddleCenter;
-                // Dieselbe Einpassung wie die Knopf-Zweige darueber, nur ohne Knopfrahmen.
+                // Same fitting as the button branches above, just without a button frame.
                 GameFont prevRoleFont = Text.Font;
                 bool prevRoleWrap = Text.WordWrap;
                 Text.WordWrap = false;
@@ -2110,23 +2092,21 @@ namespace CEReloaded
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
             }
-            // Der Hinweis muss zum Knopf passen (2026-08-16, beim Nachsehen selbst gefunden): seit dem
-            // Edit-Role-Zweig oben stand am NEUEN Knopf weiterhin "hier gibt es nichts zu speichern" -
-            // cardHasLoadout ist bei einem Rollen-Traeger absichtlich false. Ein Knopf, dessen Hinweis das
-            // Gegenteil dessen sagt, was er tut, ist schlimmer als gar keiner.
+            // The hint must match the button: since the Edit-Role branch above was added, the NEW button
+            // still showed "nothing to save here" - cardHasLoadout is deliberately false for a role carrier.
+            // A button whose hint says the opposite of what it does is worse than none at all.
             if (LoadoutUtility.TipWanted(saveRoleRect)) TooltipHandler.TipRegion(saveRoleRect, cardIsRole
                 ? "CER_AssignLoadouts_EditRoleTip".Translate()
                 : (cardHasLoadout ? "CER_AssignLoadouts_SaveRoleTipHas".Translate()
                                   : "CER_AssignLoadouts_SaveRoleTipNone".Translate()));
 
-            // Pencil/magnifier removed (2026-08-01, closes a gap in the "Barebones editor -> Other button"
-            // request from earlier the same day): the original ask was to drop this button in BOTH compact
-            // AND card view, replaced by the Other-item cell in the bottom row (DrawOtherItemsCell, already
-            // shipped here) - only compact view actually got it, card view's own pencil (which opened the
-            // barebones Dialog_LoadoutEditor, a dialog since removed entirely) was left in place by mistake
-            // ("barebone editor ist immer noch da"). Ammo/Pack/Sidearm/Other now cover
-            // everything that editor used to for an ad-hoc pawn; a Role pawn's read-only banner has no
-            // equivalent here anyway (Roles are edited in Role Mode, not per-pawn).
+            // Pencil/magnifier removed: this button was meant to go in BOTH compact AND card view, replaced
+            // by the Other-item cell in the bottom row (DrawOtherItemsCell, already shipped here) - only
+            // compact view actually got it, card view's own pencil (which opened the barebones
+            // Dialog_LoadoutEditor, a dialog since removed entirely) was left in place by mistake.
+            // Ammo/Pack/Sidearm/Other now cover everything that editor used to for an ad-hoc pawn; a Role
+            // pawn's read-only banner has no equivalent here anyway (Roles are edited in Role Mode, not
+            // per-pawn).
 
             // Name - width must clear the "Save as Role" button in the card's own top-right corner (94px
             // reserved from rect.xMax: 4px margin + 90px button - was 124px before the pencil above it was
@@ -2165,7 +2145,7 @@ namespace CEReloaded
             Rect rBarRect = new Rect(rect.x + 75f, rect.y + 42f, rect.width - 80f, 16f);
             Rect mBarRect = new Rect(rect.x + 75f, rect.y + 60f, rect.width - 80f, 16f);
             
-            RowLabels cardLabels = GetRowLabels(pawn);   // vorformatiert, siehe GetRowLabels
+            RowLabels cardLabels = GetRowLabels(pawn);   // preformatted, see GetRowLabels
             DrawScoreBarPrebuilt(rBarRect, rScore, maxScore, cardLabels.rangedCard);
             DrawScoreBarPrebuilt(mBarRect, mScore, maxScore, cardLabels.meleeCard);
             
@@ -2185,13 +2165,12 @@ namespace CEReloaded
             Loadout assignedLoadout = pawn.GetLoadout();
             Loadout currentLoadout = AmmoAssignmentUtility.DisplayLoadout(assignedLoadout);
             bool hasLoadout = currentLoadout != null && !currentLoadout.defaultLoadout;
-            // CellLabel, nicht DisplayLabel (2026-08-13) - dasselbe wie in der kompakten Zeile: das kurze
-            // Praefix wiederholt nur das Symbol daneben. Im Auswahlmenue (OpenLoadoutPickMenu) steht
-            // weiterhin der volle Name.
+            // CellLabel, not DisplayLabel - same as in the compact row: the short prefix only repeats the
+            // icon next to it. The pick menu (OpenLoadoutPickMenu) still shows the full name.
             string btnLabel = hasLoadout ? LoadoutUtility.CellLabel(currentLoadout) : "CER_AssignLoadouts_NoneLoadout".Translate().ToString();
 
             // The loadout's main weapon + sidearm, shown as icons before the name (main weapon always first).
-            // Aus GetRowInfo, siehe dort - dieselbe Kuer wie in der kompakten Zeile, jetzt einmal pro Bild.
+            // From GetRowInfo, see there - the same pick as in the compact row, now once per frame.
             ThingDef cardMainW = rowInfo.mainW, cardSideW = rowInfo.sideW;
 
             // Non-combatants (pacifists, babies - the same CannotFight rule the solver uses) can't be handed a
@@ -2209,21 +2188,18 @@ namespace CEReloaded
             // No longer dimmed for cannotFight pawns - a pacifist can still carry an Equipment Pack (see
             // DrawEquipmentPackCell), so greying out the whole row read as "nothing works here" when
             // something usually does. The tooltip below still explains why no WEAPON can be assigned.
-            // Blautoene wie in CEs eigener Loadout-Spalte - dunkleres Blau = Rolle, blasses = eigene
-            // Waffen-Vorlage (2026-08-13: die Blau-Abstufungen unterscheiden Rollen und Waffen, so wie
-            // beim Vanilla-"Current loadout" draussen).
-            // Am 2026-08-15 erneut aufgefallen: die KOMPAKTE Ansicht hatte es seit dem 13.08., die
-            // KARTENANSICHT nie - der
-            // Fix von damals hat nur eine der beiden Zeichenstellen erwischt. Dieselben zwei Konstanten,
-            // dieselbe Bedingung, damit die zwei Ansichten nicht wieder auseinanderlaufen koennen.
-            // TintedButton statt DrawAtlas+ButtonText (2026-08-16, im Test gemessen): die zweite
-            // Haelfte hat die erste uebermalt, die Einfaerbung war deshalb NIE zu sehen - in beiden
-            // Ansichten und seit dem ersten Tag. Siehe LoadoutUtility.TintedButton.
-            // LoadoutTintFor statt hasLoadout+cardIsRole (2026-08-16: ein in CE erstelltes Vanilla-Loadout
-            // hatte einen Blauton am Knopf, den es nicht haben soll): die Bedingung hier faerbte
-            // JEDES Loadout ein, nicht nur unsere. Der Fehler ist aelter als der Sichtbarkeits-Fix von
-            // heute Mittag - er war bis dahin nur nicht zu sehen. Jetzt dieselbe Regel wie in CEs eigener
-            // Spalte, aus einer Funktion.
+            // Shades of blue as in CE's own loadout column - darker blue = role, pale = own weapon template
+            // (the blue shades distinguish roles and weapons, just like vanilla's "Current loadout"
+            // outside).
+            // The COMPACT view had this, the CARD view never did - the
+            // earlier fix only caught one of the two draw sites. The same two constants, the same
+            // condition, so the two views cannot drift apart again.
+            // TintedButton instead of DrawAtlas+ButtonText: the second half painted over the first, so
+            // the tint was NEVER visible - in both views and from day one. See LoadoutUtility.TintedButton.
+            // LoadoutTintFor instead of hasLoadout+cardIsRole (a vanilla loadout created in CE had a blue
+            // tint on its button it should not have): the condition here tinted EVERY loadout, not just
+            // ours. The bug is older than the visibility fix - it simply wasn't visible until then. Now the
+            // same rule as in CE's own column, from one function.
             bool loadoutClicked = LoadoutUtility.TintedButton(btnHitRect, LoadoutUtility.LoadoutTintFor(cardAssigned));
             {
                 float ix = loadoutBtnRect.x + 5f;
@@ -2243,8 +2219,8 @@ namespace CEReloaded
                 Rect weaponDotRectCard = WeaponDotRect(loadoutBtnRect);
                 if (!Mouse.IsOver(weaponDotRectCard))
                 {
-                    // Die ganze Kette hinter die Maus-Pruefung: LoadoutContentsTooltip laeuft ueber jeden
-                    // Slot der Vorlage und lief so pro Karte pro Bild (LoadoutUtility.TipWanted).
+                    // The whole chain goes behind the mouse check: LoadoutContentsTooltip walks every slot
+                    // of the template and so ran per card per frame (LoadoutUtility.TipWanted).
                     if (LoadoutUtility.TipWanted(loadoutBtnRect))
                     {
                         if (dragPawn != null && dragPawn != pawn)
@@ -2263,21 +2239,19 @@ namespace CEReloaded
             DrawWeaponStatusDot(loadoutBtnRect, pawn, cardMainW);
 
             // Loadout mass & bulk vs. THIS pawn's carry capacity, drawn as fillable bars (same style as Generate
-            // Loadouts). Always shown - with no loadout the load is simply 0. Generic "Any …" entries use CE's own
+            // Loadouts). Always shown - with no loadout the load is simply 0. Generic "Any ..." entries use CE's own
             // category averages. Reads assignedLoadout (not the unwrapped currentLoadout) so any extra ammo
             // counts toward the total too.
-            // Masse/Sperrigkeit kommen aus GetRowInfo (Frame-Cache statt einmal pro Durchgang) - die Rechnung
-            // selbst ist unveraendert, inklusive der Regel, dass sie am ANKER haengt und nicht an der
-            // entpackten Waffenvorlage (2026-08-14, im Test als Nebenbefund gemessen: ein Kolonist
-            // mit DREI direkt angehaengten Packs zeigte sonst 0.0/32.0 kg, weil die Waffen-Vorlage eines
-            // reinen Pack-Traegers das "None"-Objekt ist. Schwer wiegt es, weil die Ueberladungs-Warnung an
-            // genau dieser Zahl haengt: steht dort 0, warnt niemand).
+            // Mass/bulk come from GetRowInfo (frame cache instead of once per pass) - the calculation itself
+            // is unchanged, including the rule that it hangs off the ANCHOR and not the unwrapped weapon
+            // template (otherwise a colonist with THREE directly attached packs showed 0.0/32.0 kg, because
+            // the weapon template of a pure pack carrier is the "None" object. This matters because the
+            // overload warning depends on exactly this number: if it reads 0, nothing warns).
             float lMass = rowInfo.mass, lBulk = rowInfo.bulk;
             GetCapacities(pawn, out float capMass, out float capBulk);
 
-            // Die beiden Tooltip-Texte stehen jetzt UNTEN in ihrer eigenen Bedingung (siehe
-            // LoadoutUtility.TipWanted) - sie sahen hier harmlos aus und liefen trotzdem pro Karte pro Bild
-            // durch RimWorlds Uebersetzung.
+            // Both tooltip texts now sit BELOW in their own condition (see LoadoutUtility.TipWanted) - they
+            // looked harmless here and still ran through RimWorld's translation per card per frame.
 
             // Right under the loadout row - used to sit a line lower, sharing space with the old "Equipped:"
             // detail row (now gone, see DrawWeaponStatusDot above).
@@ -2290,13 +2264,13 @@ namespace CEReloaded
                 cardMassCaptionW = Text.CalcSize(cardMassCaption).x + 2f;
                 cardBulkCaptionW = Text.CalcSize(cardBulkCaption).x + 2f;
             }
-            // Die Beschriftung bekommt, was sie braucht, der Balken den Rest - mit Deckel bei 55% der
-            // Haelfte, damit auch eine sehr lange Uebersetzung nie den ganzen Balken frisst (LabelCell
-            // kuerzt dann sichtbar statt stumpf zu clippen).
+            // The label gets what it needs, the bar the rest - capped at 55% of the half, so even a very
+            // long translation never eats the whole bar (LabelCell then visibly truncates instead of
+            // clipping hard).
             float massCapW = Mathf.Min(cardMassCaptionW, halfW * 0.55f);
             LoadoutUtility.LabelCell(new Rect(rect.x + 6f, by, massCapW, 20f), cardMassCaption);
             Rect massBar = new Rect(rect.x + 6f + massCapW + 2f, by + 1f, halfW - massCapW - 2f, 18f);
-            bool massOver = DrawCapacityBar(massBar, lMass, capMass, GetRowLabels(pawn).mass, pawn, false, out var massBoosters);   // vorformatiert, siehe GetRowLabels
+            bool massOver = DrawCapacityBar(massBar, lMass, capMass, GetRowLabels(pawn).mass, pawn, false, out var massBoosters);   // preformatted, see GetRowLabels
             Rect massTipRect = new Rect(rect.x + 6f, by, halfW, 20f);
             if (LoadoutUtility.TipWanted(massTipRect))
                 TooltipHandler.TipRegion(massTipRect, WithOverCapNote(LoadoutUtility.CarryCapacityTooltip(pawn, false, lMass, capMass, massBoosters), massOver));
@@ -2327,31 +2301,29 @@ namespace CEReloaded
             {
                 by += 22f;
                 float fullW = rect.width - 12f;
-                // Die Einfuege-Spalte ganz rechts kostet nur dann Breite, wenn wirklich etwas in der Ablage
-                // liegt (2026-08-13) - sonst teilen sich die vier Zellen die volle Reihe wie bisher.
+                // The paste column on the far right only takes width when something is actually on the
+                // clipboard - otherwise the four cells share the full row as before.
                 float pasteW = ClipboardHasAny() ? PasteColW + 6f : 0f;
                 float cellW = (fullW - 3 * 6f - pasteW) / 4f;
                 float cx = rect.x + 6f;
-                // Kategorie-Symbol vor jeder Zelle (2026-08-09): in der kompakten Ansicht sagt die
-                // Spaltenueberschrift, worum es geht - hier gab es keine, die vier Zellen standen unbeschriftet
-                // nebeneinander. Das Symbol wird VON der Zellbreite abgezogen, nicht zusaetzlich davorgesetzt,
-                // damit die Gesamtbreite der Reihe unveraendert bleibt und rechts nichts hinausrutscht.
+                // Category icon in front of each cell: in the compact view the column header says what the
+                // cell is about - here there was none, the four cells sat side by side unlabeled. The icon is
+                // taken FROM the cell width, not added in front of it, so the row's total width stays
+                // unchanged and nothing slips out on the right.
                 float catW;
-                // Hellgrauer Hintergrund pro Gruppe (2026-08-12). Eine Gruppe ist genau das,
-                // was hier ohnehin schon ein gemeinsames Rechteck hat: Kategorie-Symbol, Einfuege-Symbol,
-                // Auswahlknopf und Verfuegbarkeits-Rechteck. Kein neues Mass - `cellW` definiert die Gruppe
-                // seit jeher, sie war nur unsichtbar, weshalb die vier Zellen als acht lose Elemente
-                // nebeneinander gelesen wurden. 2px Luft nach oben/unten, damit die Flaeche den 24px-Inhalt
-                // umschliesst statt ihn zu beschneiden.
+                // Light grey background per group. A group is exactly what already shares one rectangle
+                // here: category icon, paste icon, pick button and availability rectangle. No new measure -
+                // `cellW` has always defined the group, it was just invisible, which is why the four cells
+                // read as eight loose elements side by side. 2px margin above/below so the area encloses the
+                // 24px content instead of clipping it.
                 void GroupBg() => Widgets.DrawBoxSolid(new Rect(cx, by - 2f, cellW, 28f), LoadoutUtility.ColGroupBg);
-                // Das Kategorie-Symbol gehoert zur KLICKFLAECHE der Zelle (2026-08-13, im Test aufgefallen:
-                // an der Stelle, an der der Tooltip 'Pack' erscheint, tat ein Klick nichts - erst
-                // rund 25 px weiter rechts oeffnete derselbe Klick den Pack-Picker). Und die
-                // Zahl passt: das Symbol traegt seinen eigenen Tooltip, liegt aber links VOR dem Knopf der
-                // Zelle (18px) und sitzt zugleich sichtbar innerhalb desselben grauen Gruppenkastens - es
-                // sieht also aus wie ein Teil der Zelle und war keiner.
-                // `extraHit` statt den Knopf nach links zu ziehen: Widgets.ButtonText malt seinen eigenen
-                // Hintergrund und wuerde das Symbol dabei uebermalen. ButtonInvisible zeichnet nichts.
+                // The category icon belongs to the cell's CLICK AREA (where the 'Pack' tooltip appeared, a
+                // click did nothing - only about 25 px further right did the same click open the pack
+                // picker). And the numbers add up: the icon carries its own tooltip, but sits to the left
+                // BEFORE the cell's button (18px) while visibly sitting inside the same grey group box - so
+                // it looked like part of the cell and wasn't.
+                // `extraHit` instead of pulling the button to the left: Widgets.ButtonText paints its own
+                // background and would paint over the icon. ButtonInvisible draws nothing.
                 Rect CatHit() => new Rect(cx, by, 18f, 24f);
                 GroupBg();
                 catW = LoadoutUtility.DrawCategoryIcon(new Rect(cx, by, cellW, 24f), LoadoutUtility.TexCatAmmo, "CER_AssignLoadouts_LabelAmmo".Translate());
@@ -2382,7 +2354,7 @@ namespace CEReloaded
             Rect breakdownRect = new Rect(rect.x + 5f, rect.y + 153f, rect.width - 10f, 45f);
             Widgets.DrawMenuSection(breakdownRect);
 
-            RowLabels breakLabels = GetRowLabels(pawn);   // Skills, Kapazitaeten und beide Texte vorgebaut, siehe GetRowLabels
+            RowLabels breakLabels = GetRowLabels(pawn);   // skills, capacities and both texts prebuilt, see GetRowLabels
             
             Text.Font = GameFont.Tiny;
             GUI.color = Color.gray;
@@ -2404,18 +2376,17 @@ namespace CEReloaded
             }
         }
 
-        // Dasselbe Fenster aus RimWorlds EIGENEM Zuweisungs-Reiter heraus (2026-09-04).
+        // The same window, opened from RimWorld's OWN assign tab.
         //
-        // Der Lazy-Umbau hat den Weg "Loadout-Zelle anklicken" ueberall auf das Waffen-Auswahlfenster
-        // umgestellt - nur nicht dort, wo CEs eigene Spalte sitzt. Das fiel in mehreren Tests
-        // hintereinander auf: "die Zelle oeffnet weiterhin nur das alte Auswahlmenue
-        // Nothing / Rollen / Save combo". Das war keine Design-Entscheidung, sondern die Stelle, an der
-        // der Umbau aufgehoert hat.
+        // The lazy rework switched the "click the loadout cell" path everywhere to the weapon picker -
+        // except where CE's own column sits. That cell kept opening only the old picker menu
+        // (Nothing / Roles / Save combo). That was not a design decision, just the point where the
+        // rework stopped.
         //
-        // Eine WEGWERF-Instanz, wenn kein Planer offen ist - genau die Bauform, die der Arm-my-Colony-
-        // Knopf auf demselben Reiter seit jeher benutzt: der Konstruktor liest nur den gespeicherten
-        // Oberflaechenzustand, und das Fenster selbst wird nie gezeigt. Ist der Planer offen, wird SEINE
-        // Instanz benutzt, damit Filter und Rollen-Schalter dieselben sind wie im sichtbaren Fenster.
+        // A THROWAWAY instance when no planner is open - exactly the construction the Arm-my-Colony
+        // button on the same tab has always used: the constructor only reads the saved UI state, and the
+        // window itself is never shown. If the planner is open, ITS instance is used, so filters and the
+        // role toggle are the same as in the visible window.
         public static void OpenWeaponPickerFor(Pawn pawn)
         {
             if (pawn == null) return;
@@ -2429,45 +2400,42 @@ namespace CEReloaded
         // The per-colonist loadout picker menu, shared by the full cards and the compact rows.
         internal void OpenLoadoutPickMenu(Pawn pawn, Loadout currentLoadout, bool hasLoadout, bool cannotFight)
         {
-            // Seit dem Lazy-Umbau (2026-09-01) ein Waffen-Auswahlfenster statt eines Loadout-FloatMenus:
-            // der Spieler waehlt die WAFFE (mit Score, Bestand, Gewicht), die geteilte Vorlage dahinter
-            // entsteht unsichtbar (EnsureDefaultLoadout). Handgebaute Loadouts und Rollen bleiben als
-            // eigene Sektion waehlbar - der klassische Weg faellt nicht weg, er ist nur nicht mehr der
-            // einzige. Generierte Vorlagen erscheinen NICHT mehr als Listeneintraege: sie sind
-            // Buchfuehrung, ihre Waffe steht ja schon in der Waffenliste.
+            // Since the lazy rework a weapon picker window instead of a loadout FloatMenu: the player picks
+            // the WEAPON (with score, stock, weight), and the shared template behind it is created invisibly
+            // (EnsureDefaultLoadout). Hand-built loadouts and roles remain selectable in their own section -
+            // the classic path doesn't go away, it's just no longer the only one. Generated templates NO
+            // longer appear as list entries: they are bookkeeping, and their weapon is already in the
+            // weapon list.
             Action nonePicked = () =>
             {
                 var defLoadout = LoadoutManager.Loadouts.FirstOrDefault(l => l.defaultLoadout);
                 Loadout cur = pawn.GetLoadout();
-                // NUR DIE WAFFE wegnehmen, nicht alles (2026-08-16): Pazifisten haben keine Waffe und
-                // trotzdem Equipment Packs - das muss weiter gehen.
-                // Die Gegenprobe steht direkt darunter im Code: die Pack-Zelle erlaubt
-                // einem Pazifisten ausdruecklich ein Pack, und packOnlyPawns teilt Kampfunfaehigen von sich
-                // aus welche zu. "Pack ohne Waffe" ist also ein vorgesehener Zustand - ueber DIESEN Weg war
-                // er nur nicht herstellbar.
-                // Ursache: pawn.SetLoadout(default) ersetzt den ganzen Anker, und an dem haengen Packs,
-                // Zweitwaffen und Einzelposten als Zusatz-Eltern. Jetzt bleibt der Anker stehen und
-                // verliert nur seinen Waffen-Elternteil (parentID -> Standard-Loadout). Die Zelle zeigt
-                // danach "None", weil DisplayLoadout am Standard-Loadout endet - genau wie vorher.
-                // Ist am Anker wirklich nichts dran, bleibt der alte, saubere Weg: sonst schleppt der
-                // Kolonist einen leeren Anker mit sich herum.
+                // Remove ONLY THE WEAPON, not everything: pacifists have no weapon and still have Equipment
+                // Packs - that has to keep working.
+                // The cross-check is right below in the code: the pack cell explicitly allows a pacifist a
+                // pack, and packOnlyPawns assigns packs to non-combatants on its own. "Pack without weapon"
+                // is therefore an intended state - it just couldn't be reached via THIS path.
+                // Cause: pawn.SetLoadout(default) replaces the whole anchor, and packs, sidearms and single
+                // items hang on it as extra parents. Now the anchor stays and only loses its weapon parent
+                // (parentID -> default loadout). The cell then shows "None", because DisplayLoadout ends at
+                // the default loadout - exactly as before.
+                // If there is really nothing on the anchor, the old clean path remains: otherwise the
+                // colonist would drag an empty anchor around.
                 bool hasExtras = cur != null && AmmoAssignmentUtility.IsAmmoLink(cur)
                     && (MultiParentUtility.GetExtraParents(cur).Count > 0
                         || (cur.OwnSlots != null && cur.OwnSlots.Count > 0));
                 if (hasExtras && defLoadout != null)
                 {
-                    // Die eigene Munition der abgenommenen Waffe geht MIT ihr (2026-09-03, im Test): die
-                    // Karte sagte danach "Waffe: keine" und ihre
-                    // Munitionszelle war leer, waehrend die Kolonie-Rechnung denselben Kolonisten
-                    // unveraendert unter "Zugewiesen an: Yttoyyn x150" fuehrte - zwei Stellen desselben
-                    // Fensters, die sich widersprachen, und der Widerspruch ueberlebte einen
-                    // Fenster-Neustart. Ursache: der Anker behaelt beim Umhaengen seine eigenen
-                    // Munitionsslots, und die Kolonie-Rechnung liest genau die.
-                    // UnseedOwnAmmoForDetached statt "alle eigenen Munitionsslots weg": es entfernt nur,
-                    // was aus der abgenommenen Vorlage stammt UND das keine verbliebene Waffe verschiessen
-                    // kann - eine persoenliche Munitionswahl fuer eine noch getragene Zweitwaffe bleibt
-                    // also stehen. NACH dem Umhaengen gerufen, weil es "was traegt er jetzt noch" aus
-                    // anchor.Slots liest.
+                    // The removed weapon's own ammo goes WITH it: the card afterwards said "Weapon: none"
+                    // and its ammo cell was empty, while the colony calculation still listed the same
+                    // colonist unchanged under "Assigned to: <name> x150" - two places in the same window
+                    // contradicting each other, and the contradiction survived a window restart. Cause:
+                    // when re-hung, the anchor keeps its own ammo slots, and the colony calculation reads
+                    // exactly those.
+                    // UnseedOwnAmmoForDetached instead of "remove all own ammo slots": it removes only what
+                    // came from the detached template AND that no remaining weapon can fire - a personal
+                    // ammo choice for a still-carried sidearm therefore stays. Called AFTER re-hanging,
+                    // because it reads "what does the colonist still carry" from anchor.Slots.
                     Loadout detachedTemplate = cur.ParentLoadout;
                     cur.parentID = defLoadout.UniqueID;
                     if (detachedTemplate != null && !detachedTemplate.defaultLoadout)
@@ -2479,50 +2447,49 @@ namespace CEReloaded
                 else pawn.SetLoadout(defLoadout);
                 CombatReadiness.Invalidate();   // 2026-08-01 - see ApplyPreviewPlan's apply() for why
             };
-            // "Kann nicht kaempfen" heisst KEINE WAFFE, nicht "gar nichts" (2026-08-14) - ein Baby
-            // (CannotCarryAnything) bekommt gar kein Fenster; ein Pazifist bekommt eins ohne Waffen-Sektion,
-            // mit "Keins" und den waffenfreien Loadouts/Rollen (der Sanitaeter-Fall).
+            // "Cannot fight" means NO WEAPON, not "nothing at all" - a baby (CannotCarryAnything) gets no
+            // window at all; a pacifist gets one without the weapon section, with "None" and the
+            // weapon-free loadouts/roles (the medic case).
             if (cannotFight && LoadoutUtility.CannotCarryAnything(pawn) && !hasLoadout)
             {
                 Messages.Message("CER_AssignLoadouts_CannotFightMsg".Translate(pawn.LabelShortCap), MessageTypeDefOf.RejectInput, false);
                 return;
             }
 
-            // Die Loadout-Sektion des Fensters: handgebaute Loadouts und Rollen. Ausgeschlossen sind
-            // Equipment Packs (reine Versorgung, wuerde die Waffe still ersetzen - 2026-07-30), die
-            // versteckten Pro-Kolonist-Anker (Befund 2026-09-01: die standen hier bisher ALS EINTRAEGE
-            // drin, mit rohem "[Pawn-Loadout] <id>"-Etikett - der Wizard schuetzt sich davor laengst)
-            // und generierte Vorlagen (deren Waffe steht schon in der Waffenliste).
+            // The window's loadout section: hand-built loadouts and roles. Excluded are Equipment Packs
+            // (pure supply, would silently replace the weapon), the hidden per-colonist anchors (these
+            // used to appear here AS ENTRIES, with a raw "[Pawn-Loadout] <id>" label - the wizard has long
+            // guarded against that) and generated templates (their weapon is already in the weapon list).
             bool showWeapons = roleMode != RoleAssignMode.RolesOnly && !cannotFight;
             Func<List<Loadout>> loadoutOptions = () => LoadoutManager.Loadouts
-                // Generierte Vorlagen KOMPLETT raus, auch die aktuelle (2026-09-02, laut Screenshot:
-                // die aktuelle Vorlage stand doppelt da - als Loadout-Zeile UND als markierte Waffe;
-                // ihre Waffe traegt die Markierung, das reicht).
+                // Generated templates COMPLETELY out, including the current one (otherwise the current
+                // template appeared twice - as a loadout row AND as the marked weapon; its weapon carries
+                // the mark, that is enough).
                 .Where(x => x != null && !x.defaultLoadout
                     && !EquipmentPackUtility.IsEquipmentPackLoadout(x)
                     && !AmmoAssignmentUtility.IsAmmoLink(x)
                     && !LoadoutUtility.IsGeneratedTemplate(x))
                 .Where(l =>
                 {
-                    // Beide Richtungen (2026-08-19): der Auswahlfilter folgt demselben Schalter wie der
-                    // Planer; das gerade zugewiesene Loadout bleibt immer sichtbar (sonst nicht abwaehlbar).
+                    // Both directions: the picker filter follows the same toggle as the planner; the
+                    // currently assigned loadout always stays visible (otherwise it couldn't be deselected).
                     if (l != currentLoadout)
                     {
                         bool isRole = RoleUtility.IsRoleLoadout(l);
                         if (roleMode == RoleAssignMode.RolesOnly && !isRole) return false;
                         if (roleMode == RoleAssignMode.NoRoles && isRole) return false;
                     }
-                    // Fuer einen Kampfunfaehigen bleiben genau die waffenfreien Vorlagen uebrig (Slots-
-                    // Vereinigung, damit eine erbende Rolle nicht durchrutscht; Schilde sind keine Waffe).
+                    // For a non-combatant exactly the weapon-free templates remain (slot union, so an
+                    // inheriting role doesn't slip through; shields are not weapons).
                     if (cannotFight && (l.Slots ?? new List<LoadoutSlot>()).Any(s => s.thingDef != null && s.thingDef.IsWeapon)) return false;
                     return true;
                 })
                 .OrderBy(x => RoleUtility.DisplayLabel(x))
                 .ToList();
 
-            // Ist die aktuelle Zuweisung eine generierte Vorlage, markiert das Fenster ihre WAFFE als
-            // gewaehlt - fuer den Spieler IST die Waffe die Zuweisung, das Vorlagen-Objekt existiert
-            // fuer ihn nicht.
+            // If the current assignment is a generated template, the window marks its WEAPON as
+            // selected - for the player the weapon IS the assignment; the template object doesn't exist
+            // for them.
             Loadout curDisplay = currentLoadout;
             ThingDef curWeapon = null;
             if (curDisplay != null && LoadoutUtility.IsGeneratedTemplate(curDisplay)
@@ -2532,10 +2499,10 @@ namespace CEReloaded
                 curDisplay = null;
             }
 
-            // Leeres Fenster verhindern (2026-09-03: bei Grunt und Shenny kam ein leeres "Choose weapon" -
-            // es soll ueberall so sein wie beim Baby): ein Kampfunfaehiger ohne Zuweisung
-            // und ohne ein einziges waffenfreies Loadout bekommt die Meldung statt eines Fensters, in
-            // dem ausser 'Keins' nichts steht.
+            // Prevent an empty window (some colonists got an empty "Choose weapon" - it should behave like
+            // the baby case everywhere): a non-combatant without an assignment
+            // and without a single weapon-free loadout gets the message instead of a window that contains
+            // nothing but 'None'.
             if (cannotFight && !hasLoadout && loadoutOptions().Count == 0)
             {
                 Messages.Message("CER_AssignLoadouts_CannotFightMsg".Translate(pawn.LabelShortCap), MessageTypeDefOf.RejectInput, false);
@@ -2543,22 +2510,22 @@ namespace CEReloaded
             }
 
             Pawn localPawn = pawn;
-            // Zuweisen und fertig - KEIN Nachschub-Popup an dieser Stelle (2026-08-10, bewusst so
-            // entschieden): der Fehlbestand wird beim Verlassen des Reiters gesammelt gezeigt
-            // (Dialog_CEReloadedTabs, Signaturvergleich gegen den Stand beim Betreten).
-            // Waffe wie Loadout laufen durch DENSELBEN Pfad: der Einzelauswahl-Modus materialisiert eine
-            // Waffe selbst (materializeWeapon) und liefert hier immer ein Loadout ab.
+            // Assign and done - NO supply popup at this point (a deliberate decision): the shortfall is
+            // shown collectively when leaving the tab (Dialog_CEReloadedTabs, signature comparison against
+            // the state on entry).
+            // Weapon and loadout go through the SAME path: the single-select mode materializes a weapon
+            // itself (materializeWeapon) and always delivers a loadout here.
             Action<Loadout> pickedSingle = lo =>
             {
                 AmmoAssignmentUtility.AssignTemplate(localPawn, lo);
-                CombatReadiness.Invalidate();   // 2026-08-01 - siehe ApplyPreviewPlan's apply()
+                CombatReadiness.Invalidate();   // 2026-08-01 - see ApplyPreviewPlan's apply()
             };
-            // "Kombination als Rolle sichern" ist hier RAUS (2026-09-03, gehoert nicht ins
-            // Auswahlfenster) - die Karten/Kompaktzeilen des Reiters tragen den Weg weiterhin.
+            // "Save combination as role" is OUT here (it doesn't belong in the picker window) - the tab's
+            // cards/compact rows still offer that path.
 
-            // EIN Fenster fuer beide Faelle (2026-09-02, nach dem Vorbild des Zweitwaffen-Fensters statt
-            // eines eigenen): dieselbe Dialog_PickPacks-Optik wie die Zweitwaffen-
-            // Checkliste, nur im Einzelauswahl-Modus. Die Waffenliste entsteht EINMAL beim Oeffnen.
+            // ONE window for both cases (modeled on the sidearm window instead of a separate one): the
+            // same Dialog_PickPacks look as the sidearm
+            // checklist, just in single-select mode. The weapon list is built ONCE on opening.
             List<ThingDef> mainChoices = showWeapons ? LoadoutUtility.MainWeaponChoices(curWeapon) : new List<ThingDef>();
             Find.WindowStack.Add(new Dialog_PickPacks(
                 "CER_PickWeapon_SubtitleAssign".Translate(pawn.LabelShortCap.ToString()).ToString(),
@@ -2568,7 +2535,7 @@ namespace CEReloaded
                 allOptions: loadoutOptions,
                 emptyMessage: "CER_PickWeapon_NothingMatches".Translate().ToString(),
                 displayLabel: lo => RoleUtility.DisplayLabel(lo) ?? "?",
-                // Getrennte Sektionen "Vanilla loadouts" und "Roles" (2026-09-03) statt eines Sammelkopfs.
+                // Separate "Vanilla loadouts" and "Roles" sections instead of one combined header.
                 groupLabel: lo => (RoleUtility.IsRoleLoadout(lo)
                     ? "CER_PickPacks_GroupRoles".Translate().ToString()
                     : "CER_PickPacks_GroupVanilla".Translate().ToString()),
@@ -2584,19 +2551,19 @@ namespace CEReloaded
                 weaponGroupLabel: d => (d.IsRangedWeapon && !d.IsMeleeWeapon
                     ? "CER_AssignLoadouts_RangedHeader".Translate().ToString()
                     : "CER_AssignLoadouts_MeleeHeader".Translate().ToString()),
-                // Kopierquelle: die aktuelle Zuweisung des Kolonisten (2026-09-03) - eingefuegt wird sie
-                // ueber die Einfuege-Spalte der Zeilen (Ablage-Sorte 'mainweapon').
+                // Copy source: the colonist's current assignment - it is pasted via the rows' paste
+                // column (clipboard kind 'mainweapon').
                 copyCurrent: () =>
                 {
                     Loadout c = AmmoAssignmentUtility.DisplayLoadout(localPawn.GetLoadout());
                     return c != null && !c.defaultLoadout ? c : null;
                 },
-                // Gesperrte Waffen: wurden Schloesser umgelegt und tragen Kolonisten laut Zuweisung
-                // noch gesperrte Waffen, fragt beim Schliessen eine Bestaetigung nach der Neuzuweisung -
-                // sie oeffnet die Auto-Vorschau mit keepAssigned an; der Loeser gibt von sich aus genau
-                // die Zeilen mit gesperrter Waffe frei (AssignPlanner: carriesDisabled), der Rest bleibt.
-                // "Go back" fuehrt ZURUECK ins Auswahlfenster (2026-09-03) - mit frisch
-                // gelesenem Zuweisungsstand, denn der Pick davor kann ihn geaendert haben.
+                // Locked weapons: if locks were toggled and colonists are, per their assignment, still
+                // carrying locked weapons, closing asks for confirmation of a reassignment - it opens the
+                // auto preview with keepAssigned on; the solver itself frees exactly the rows with a locked
+                // weapon (AssignPlanner: carriesDisabled), the rest stays.
+                // "Go back" leads BACK into the picker window - with freshly read assignment state, since
+                // the pick before it may have changed it.
                 onDisabledChanged: () =>
                 {
                     int carriers = LoadoutUtility.DisabledWeaponCarrierCount();
@@ -2627,21 +2594,22 @@ namespace CEReloaded
             GUI.color = new Color(1f, 1f, 1f, 0.55f);
             if (LoadoutUtility.ColumnHeader(new Rect(rect.x + 34f, rect.y, 104f, rect.height), "CER_AssignLoadouts_ColonistHeader".Translate(),
                 currentSortMode == SortMode.Name, sortDescending, true)) SetSort(SortMode.Name);
-            // Sortierbar wie die Namensspalte (2026-08-09) - dieselben Rects wie vorher, nur klickbar.
+            // Sortable like the name column - the same rects as before, just clickable.
             if (LoadoutUtility.ColumnHeader(new Rect(rect.x + 214f, rect.y, 80f, rect.height), "CER_AssignLoadouts_RangedHeader".Translate(),
                 currentSortMode == SortMode.Ranged, sortDescending, true)) SetSort(SortMode.Ranged);
             if (LoadoutUtility.ColumnHeader(new Rect(rect.x + 300f, rect.y, 80f, rect.height), "CER_AssignLoadouts_MeleeHeader".Translate(),
                 currentSortMode == SortMode.Melee, sortDescending, true)) SetSort(SortMode.Melee);
             // Weapon column starts right after the Melee bar actually ends (326+80+6), not at a stale 366f -
             // that used to be 40px INSIDE the melee bar's own rect, overlapping it (2026-07-30). Narrows
-            // the weapon column by the same 46px, which was also asked for separately.
+            // the weapon column by the same 46px.
             Widgets.Label(new Rect(rect.x + WeaponColX, rect.y, 100f, rect.height), "CER_AssignLoadouts_WeaponHeader".Translate());
 
-            // 80 -> 96 (2026-08-29: "177.1/92...." wurde neben dem Warnzeichen gekuerzt, und Platz war
-            // noch da). Kopf und Zeile identisch.
-            // 96 -> 112 (2026-08-30, im Test: '260.5/92...' und '95.5/92....' gekappt). Die Zelle
-            // traegt DREI Dinge: die Zahl (bis '999.9/999.9', Tiny ~55), das Traeger-Symbol (size+4 = 18) und das Warnzeichen
-            // (16) plus Innenabstand - rund 100 im Extremfall; 96 reichte nur ohne Symbol. Kopf und Zeile gleich.
+            // 80 -> 96: "177.1/92...." was truncated next to the warning sign, and there was still room.
+            // Header and row identical.
+            // 96 -> 112 ('260.5/92...' and '95.5/92....' were clipped). The cell carries THREE things: the
+            // number (up to '999.9/999.9', Tiny ~55), the carrier icon (size+4 = 18) and the warning sign (16)
+            // plus padding - about 100 in the extreme case; 96 was only enough without the icon. Header and
+            // row the same.
             float bulkW = 112f, massW = 112f;
             Rect bulkBar = new Rect(rect.xMax - bulkW - 4f, rect.y, bulkW, rect.height);
             Rect massBar = new Rect(bulkBar.x - 6f - massW, rect.y, massW, rect.height);
@@ -2651,10 +2619,10 @@ namespace CEReloaded
             // header label at all, the only one of the four not lined up with the others - see
             // DrawPawnRowCompact's own matching fix).
             const float compactCellW = 68f;
-            // Dieselbe Breitenrechnung wie in der Zeile darunter (2026-08-13): reserviert die Zeile eine
-            // Einfuege-Spalte, MUSS die Kopfzeile denselben Betrag abziehen - sonst stehen die vier
-            // Beschriftungen ab dem Moment schief ueber ihren Zellen, in dem etwas in der Ablage liegt.
-            // Genau diese Art Drift war der Grund fuer den Kopfzeilen-Fix vom 2026-08-01.
+            // The same width calculation as in the row below: if the row reserves a paste column, the
+            // header MUST subtract the same amount - otherwise the four labels sit askew over their cells
+            // the moment something is on the clipboard.
+            // Exactly this kind of drift was the reason for the earlier header fix.
             float headerPasteW = ClipboardHasAny() ? PasteColW + 6f : 0f;
             Rect loadoutBtnRect = new Rect(rect.x + WeaponColX, rect.y, massBar.x - 6f - (rect.x + WeaponColX) - 4 * compactCellW - headerPasteW - 24f, rect.height);
             Text.Anchor = TextAnchor.MiddleCenter;
@@ -2662,18 +2630,17 @@ namespace CEReloaded
             Widgets.Label(new Rect(loadoutBtnRect.xMax + 6f + compactCellW + 6f, rect.y, compactCellW, rect.height), "CER_AssignLoadouts_LabelPack".Translate());
             Widgets.Label(new Rect(loadoutBtnRect.xMax + 6f + 2 * (compactCellW + 6f), rect.y, compactCellW, rect.height), "CER_AssignLoadouts_LabelSidearm".Translate());
             Widgets.Label(new Rect(loadoutBtnRect.xMax + 6f + 3 * (compactCellW + 6f), rect.y, compactCellW, rect.height), "CER_AssignLoadouts_LabelOther".Translate());
-            // Die Einfuege-Spalte bekommt eine ueberSCHRIFT (2026-09-04). Der Platz war seit dem 13.08.
-            // reserviert, beschriftet war er nie - die Spalte bestand aus einem 26 Punkte breiten Symbol bei
-            // 65 % Deckkraft und sonst nichts. Zweimal ist sie im Test deshalb nicht gefunden worden, und
-            // beide Male hiess es, der Copy-Knopf verspreche eine Spalte, die es nicht gibt (2026-08-23 und heute).
-            // Beim ersten Mal ist nur das Symbol nachgetragen worden; ein Symbol ohne Namen in einer Tabelle,
-            // deren vier andere Spalten Namen tragen, liest sich aber wie Zierrat. Der vorige Fix
-            // war unvollstaendig.
-            // DRITTER Anlauf (2026-09-07, im Test: von der Paste-Ueberschrift waren nur einzelne Strichfragmente
-            // zu sehen): das Wort passte nicht in 26 Punkte und brach in Zeilen um, die der Kopf nicht hat.
-            // Jetzt steht dasselbe Symbol wie in den Zeilen darunter im Kopf - so weiss man, was die Spalte
-            // ist - und der Name wandert in den Erklaertext. Kein Text, der in eine Spalte passen muss,
-            // die schmaler ist als jedes Wort dafuer in dreizehn Sprachen.
+            // The paste column gets a HEADER. The space had long been reserved but was never labeled - the
+            // column consisted of a 26-point-wide icon at 65 % opacity and nothing else. It was overlooked
+            // twice because of that, and both times the Copy button seemed to promise a column that doesn't
+            // exist.
+            // The first time only the icon was added; but an icon without a name in a table whose four
+            // other columns carry names reads like decoration. The previous fix was incomplete.
+            // THIRD attempt (only scattered stroke fragments of the Paste header were visible): the word
+            // didn't fit into 26 points and wrapped into lines the header doesn't have.
+            // Now the header shows the same icon as the rows below it - so it's clear what the column is -
+            // and the name moves into the explanatory text. No text that has to fit into a column narrower
+            // than any word for it in thirteen languages.
             if (headerPasteW > 0f)
             {
                 Rect pasteHead = new Rect(loadoutBtnRect.xMax + 6f + 4 * (compactCellW + 6f), rect.y, PasteColW, rect.height);
@@ -2711,14 +2678,14 @@ namespace CEReloaded
             if (portrait != null) GUI.DrawTexture(portraitRect, portrait);
             TooltipHandler.TipRegion(portraitRect, new TipSignal(() => GetEquipmentTooltip(pawn) + "CER_AssignLoadouts_ClickToViewEditGear".Translate(), pawn.GetHashCode() * 37));
 
-            // 130 -> 104 (2026-08-31, siehe WeaponColX): der volle Name steht ohnehin im Mouseover.
+            // 130 -> 104 (see WeaponColX): the full name is in the mouseover anyway.
             Rect nameRect = new Rect(rect.x + 34f, rect.y, 104f, rect.height);
             Text.Anchor = TextAnchor.MiddleLeft;
             Widgets.Label(nameRect, pawn.LabelShortCap.Truncate(100f));
             Text.Anchor = TextAnchor.UpperLeft;
-            // Ganzer Block hinter die Maus-Pruefung (siehe LoadoutUtility.TipWanted): ToStringFull,
-            // BuildCapacityTooltip und die Verkettung liefen pro Zeile pro Bild, sichtbar wurde davon
-            // hoechstens eine.
+            // Whole block behind the mouse check (see LoadoutUtility.TipWanted): ToStringFull,
+            // BuildCapacityTooltip and the concatenation ran per row per frame, while at most one of them
+            // was ever visible.
             if (LoadoutUtility.TipWanted(nameRect))
             {
                 string fullName = pawn.Name != null ? pawn.Name.ToStringFull : pawn.LabelShort;
@@ -2732,17 +2699,17 @@ namespace CEReloaded
             // Save as Role - between the (now narrower) name and the skill bars. "Save" reads as a plain
             // action label at this width; the tooltip's own lead line spells out what it actually does
             // (2026-07-30: was labeled "Role", which read as a status/filter rather than an action button).
-            // 54f statt 44f (2026-08-26, gleiche Ueberlaufklasse wie der Kartenknopf: "Speichern" braucht
-            // mehr als 44) - bis zum Faehigkeitsbalken bei +226 ist Luft, und ButtonTextFit stuft den
-            // Rest ein, statt zwei Zeilen zu quetschen.
+            // 54f instead of 44f (same overflow class as the card button: the German "Save" label needs
+            // more than 44) - there is room up to the skill bar at +226, and ButtonTextFit scales the
+            // rest down instead of squeezing two lines.
             Rect saveRoleRectCompact = new Rect(rect.x + 144f, rect.y + (rect.height - 22f) / 2f, 54f, 22f);
             Loadout compactAssigned = pawn.GetLoadout();
             // See cardHasLoadout's own comment above - same DisplayLoadout-unwrap fix (2026-08-01).
             bool compactIsRole = RoleUtility.IsRoleLoadout(AmmoAssignmentUtility.DisplayLoadout(compactAssigned));
-            // DIESELBEN drei Faelle wie in der Kartenansicht (2026-08-16). Ich hatte den Umbau dort gemacht
-            // und diese Stelle stehen lassen - genau die Fehlerklasse, die in diesem Mod am haeufigsten
-            // vorkommt (zwei Zeichenstellen, eine angefasst). Hier passt "Rolle bearbeiten" nicht in 44
-            // Pixel, deshalb ein kurzes eigenes Wort; die Wirkung ist identisch.
+            // The SAME three cases as in the card view. The rework was first done there and this spot was
+            // left behind - exactly the bug class that occurs most often in this mod (two draw sites, one
+            // touched). "Edit role" doesn't fit into 44 pixels here, hence a short word of its own; the
+            // effect is identical.
             RowInfo rowInfo = GetRowInfo(pawn);
             bool compactHasPacks = rowInfo.hasPacks;
             bool compactHasLoadout = ((compactAssigned != null && !compactAssigned.defaultLoadout) || compactHasPacks) && !compactIsRole;
@@ -2790,24 +2757,25 @@ namespace CEReloaded
             float maxScore = SkillRecord.MaxLevel * 10f;
             Rect rBar = new Rect(rect.x + 200f, rect.y + 6f, 80f, 18f);
             Rect mBar = new Rect(rect.x + 286f, rect.y + 6f, 80f, 18f);
-            RowLabels rowLabels = GetRowLabels(pawn);   // vorformatiert, siehe GetRowLabels
+            RowLabels rowLabels = GetRowLabels(pawn);   // preformatted, see GetRowLabels
             DrawScoreBarPrebuilt(rBar, rangedScores[pawn], maxScore, rowLabels.rangedCompact);
             DrawScoreBarPrebuilt(mBar, meleeScores[pawn], maxScore, rowLabels.meleeCompact);
             Rect skillTipRect = new Rect(rBar.x, rect.y, 172f, rect.height);
             if (LoadoutUtility.TipWanted(skillTipRect)) TooltipHandler.TipRegion(skillTipRect, "CER_AssignLoadouts_RangedMeleeScoreTip".Translate());
 
-            // Eigener Abschnitt, damit zwischen den gemessenen Bloecken keine Luecke bleibt: in der
-            // Kartenansicht stecken dieselben drei Abfragen (GetLoadout, DisplayLoadout, CannotFight) in
-            // "Karte: Waffenknopf", hier stehen sie im Code vor den Balken. Beim Vergleich der Ansichten
-            // also zu "Kompakt: Waffenknopf" dazuzaehlen.
+            // Own section, so no gap remains between the measured blocks: in the card view the same three
+            // queries (GetLoadout, DisplayLoadout, CannotFight) are part of "Card: weapon button", here they
+            // sit in the code before the bars. When comparing the views, add them to "Compact: weapon
+            // button".
             // Right-aligned fixed cells: bulk, mass, loadout editor. The loadout button takes the middle remainder.
             // Mass and Bulk are the SAME width now (Mass made narrower, same as
             // Bulk) - was wider than Bulk for no real reason (Mass's "kg" suffix fits fine at this width too).
-            // 80 -> 96 (2026-08-29: "177.1/92...." wurde neben dem Warnzeichen gekuerzt, und Platz war
-            // noch da). Kopf und Zeile identisch.
-            // 96 -> 112 (2026-08-30, im Test: '260.5/92...' und '95.5/92....' gekappt). Die Zelle
-            // traegt DREI Dinge: die Zahl (bis '999.9/999.9', Tiny ~55), das Traeger-Symbol (size+4 = 18) und das Warnzeichen
-            // (16) plus Innenabstand - rund 100 im Extremfall; 96 reichte nur ohne Symbol. Kopf und Zeile gleich.
+            // 80 -> 96: "177.1/92...." was truncated next to the warning sign, and there was still room.
+            // Header and row identical.
+            // 96 -> 112 ('260.5/92...' and '95.5/92....' were clipped). The cell carries THREE things: the
+            // number (up to '999.9/999.9', Tiny ~55), the carrier icon (size+4 = 18) and the warning sign (16)
+            // plus padding - about 100 in the extreme case; 96 was only enough without the icon. Header and
+            // row the same.
             float bulkW = 112f, massW = 112f;
             Rect bulkBar = new Rect(rect.xMax - bulkW - 4f, rect.y + 6f, bulkW, 18f);
             Rect massBar = new Rect(bulkBar.x - 6f - massW, rect.y + 6f, massW, 18f);
@@ -2819,20 +2787,19 @@ namespace CEReloaded
             bool hasLoadout = currentLoadout != null && !currentLoadout.defaultLoadout;
             bool cannotFight = LoadoutUtility.CannotFight(pawn);
 
-            // Masse/Sperrigkeit kommen aus GetRowInfo (Frame-Cache statt einmal pro Durchgang) - die Rechnung
-            // selbst ist unveraendert, inklusive der Regel, dass sie am ANKER haengt und nicht an der
-            // entpackten Waffenvorlage (2026-08-14, im Test als Nebenbefund gemessen: ein Kolonist
-            // mit DREI direkt angehaengten Packs zeigte sonst 0.0/32.0 kg, weil die Waffen-Vorlage eines
-            // reinen Pack-Traegers das "None"-Objekt ist. Schwer wiegt es, weil die Ueberladungs-Warnung an
-            // genau dieser Zahl haengt: steht dort 0, warnt niemand).
+            // Mass/bulk come from GetRowInfo (frame cache instead of once per pass) - the calculation itself
+            // is unchanged, including the rule that it hangs off the ANCHOR and not the unwrapped weapon
+            // template (otherwise a colonist with THREE directly attached packs showed 0.0/32.0 kg, because
+            // the weapon template of a pure pack carrier is the "None" object. This matters because the
+            // overload warning depends on exactly this number: if it reads 0, nothing warns).
             float lMass = rowInfo.mass, lBulk = rowInfo.bulk;
             GetCapacities(pawn, out float capMass, out float capBulk);
 
             Text.Font = GameFont.Tiny;
-            // Dieselbe Ueberlast-Warnung wie in der Kartenansicht (2026-08-12) - zweite Fundstelle desselben
-            // Balkenpaares, per Grep mitgenommen, damit die kompakte Zeile nicht die einzige Ansicht ist, die
-            // ein nicht tragbares Loadout kommentarlos anzeigt.
-            bool massOverC = DrawCapacityBar(massBar, lMass, capMass, GetRowLabels(pawn).mass, pawn, false, out var massBoostersC);   // vorformatiert, siehe GetRowLabels
+            // The same overload warning as in the card view - second occurrence of the same pair of bars,
+            // found by grep, so the compact row isn't the only view that shows an uncarriable loadout
+            // without comment.
+            bool massOverC = DrawCapacityBar(massBar, lMass, capMass, GetRowLabels(pawn).mass, pawn, false, out var massBoostersC);   // preformatted, see GetRowLabels
             if (LoadoutUtility.TipWanted(massBar)) TooltipHandler.TipRegion(massBar, WithOverCapNote(LoadoutUtility.CarryCapacityTooltip(pawn, false, lMass, capMass, massBoostersC), massOverC));
             bool bulkOverC = DrawCapacityBar(bulkBar, lBulk, capBulk, GetRowLabels(pawn).bulk, pawn, true, out var bulkBoostersC);
             if (LoadoutUtility.TipWanted(bulkBar)) TooltipHandler.TipRegion(bulkBar, WithOverCapNote(LoadoutUtility.CarryCapacityTooltip(pawn, true, lBulk, capBulk, bulkBoostersC), bulkOverC));
@@ -2852,16 +2819,16 @@ namespace CEReloaded
             // undersized bare "+" button squeezed in before Mass, with no header label and no dash/icon+badge
             // rendering like its siblings - now just another call to the same DrawOtherItemsCell the card
             // view already uses).
-            // Dieselbe eine Einfuege-Spalte wie in der Kartenansicht (2026-08-13), hinter "Sonstiges" und
-            // vor dem Massebalken. Kostet nur Breite, wenn wirklich etwas in der Ablage liegt.
+            // The same single paste column as in the card view, after "Other" and before the mass bar.
+            // Only takes width when something is actually on the clipboard.
             float compactPasteW = ClipboardHasAny() ? PasteColW + 6f : 0f;
             const float compactCellW = 68f;
             float ammoCellW = compactCellW;
             float packCellW = compactCellW;
             float sidearmCellW = compactCellW;
             float otherCellW = compactCellW;
-            // Aus GetRowInfo (Frame-Cache): LoadoutMainAndSide baut die Slots-Union neu auf und legt vier
-            // LINQ-Zwischenlisten an - das lief pro Zeile pro Durchgang.
+            // From GetRowInfo (frame cache): LoadoutMainAndSide rebuilds the slot union and creates four
+            // intermediate LINQ lists - that used to run per row per pass.
             ThingDef rowMainW = rowInfo.mainW, rowSideW = rowInfo.sideW;
             Rect loadoutBtnRect = new Rect(rect.x + WeaponColX, rect.y + 3f, massBar.x - 6f - (rect.x + WeaponColX) - sidearmCellW - packCellW - ammoCellW - otherCellW - compactPasteW - 24f, 24f);
             DrawChangeAmmoCell(new Rect(loadoutBtnRect.xMax + 6f, rect.y + 3f, ammoCellW, 24f), pawn, currentLoadout, iconOnly: true);
@@ -2883,25 +2850,24 @@ namespace CEReloaded
             // every other cell in this row) - mirrors the card view's own btnHitRect convention exactly
             // (icon/label/WeaponDotRect below still use the full-width loadoutBtnRect, unaffected).
             Rect btnHitRect = new Rect(loadoutBtnRect.x, loadoutBtnRect.y, loadoutBtnRect.width - DotReserveW, loadoutBtnRect.height);
-            // Blautoene wie in CEs eigener Loadout-Spalte (2026-08-13: die Blau-Abstufungen unterscheiden
-            // Rollen und Waffen, so wie beim Vanilla-"Current loadout" draussen) - dunkleres Blau = Rolle,
-            // blasses = eigene Waffen-Vorlage. Das ist
-            // zugleich der Ersatz fuer das weggefallene Praefix: die Unterscheidung steckt jetzt in der
-            // Farbe statt in drei Zeichen Text.
-            // TintedButton statt DrawAtlas+ButtonText (2026-08-16, im Test gemessen): die zweite
-            // Haelfte hat die erste uebermalt, die Einfaerbung war deshalb NIE zu sehen - in beiden
-            // Ansichten und seit dem ersten Tag. Siehe LoadoutUtility.TintedButton.
-            // Siehe die Kartenansicht - dieselbe Regel aus derselben Funktion, damit die zwei Ansichten
-            // nicht wieder auseinanderlaufen koennen.
+            // Shades of blue as in CE's own loadout column (the blue shades distinguish roles and weapons,
+            // just like vanilla's "Current loadout" outside) - darker blue = role, pale = own weapon
+            // template. This is
+            // also the replacement for the dropped prefix: the distinction now lives in the color instead
+            // of in three characters of text.
+            // TintedButton instead of DrawAtlas+ButtonText: the second half painted over the first, so
+            // the tint was NEVER visible - in both views and from day one. See LoadoutUtility.TintedButton.
+            // See the card view - the same rule from the same function, so the two views cannot drift
+            // apart again.
             bool loadoutClicked = LoadoutUtility.TintedButton(btnHitRect, LoadoutUtility.LoadoutTintFor(compactAssigned));
             float ix = loadoutBtnRect.x + 5f;
             if (rowMainW != null) { Widgets.ThingIcon(new Rect(ix, loadoutBtnRect.y + 2f, 20f, 20f), rowMainW); ix += 22f; }
             if (rowSideW != null) { Widgets.ThingIcon(new Rect(ix, loadoutBtnRect.y + 2f, 20f, 20f), rowSideW); ix += 22f; }
             Text.Anchor = rowMainW != null ? TextAnchor.MiddleLeft : TextAnchor.MiddleCenter;
             Rect lblRect = LoadoutBtnLabelRect(loadoutBtnRect, ix, rowMainW != null);
-            // CellLabel statt DisplayLabel (Praefix weg) und eine Schriftgroesse kleiner (2026-08-13)
-            // - zusammen mit den 14px aus der Spaltenverschiebung
-            // reicht das fuer den ganzen Waffennamen, statt "W| R-6 ...".
+            // CellLabel instead of DisplayLabel (prefix gone) and one font size smaller
+            // - together with the 14px from the column shift
+            // that is enough for the whole weapon name instead of "W| R-6 ...".
             GameFont prevLblFont = Text.Font;
             Text.Font = GameFont.Tiny;
             Widgets.Label(lblRect, (hasLoadout ? LoadoutUtility.CellLabel(currentLoadout) : "CER_AssignLoadouts_NoneLoadout".Translate().ToString()).Truncate(lblRect.width));
@@ -2914,7 +2880,7 @@ namespace CEReloaded
             Rect weaponDotRect = WeaponDotRect(loadoutBtnRect);
             if (!Mouse.IsOver(weaponDotRect))
             {
-                // Siehe die gleichlautende Kette in DrawPawnCard - dasselbe pro Zeile pro Bild.
+                // See the identical chain in DrawPawnCard - the same per row per frame.
                 if (LoadoutUtility.TipWanted(loadoutBtnRect))
                 {
                     if (dragPawn != null && dragPawn != pawn)
@@ -2946,24 +2912,23 @@ namespace CEReloaded
 
         private void DrawChangeAmmoCellInner(Rect cell, Pawn pawn, Loadout currentLoadout, bool iconOnly, Rect? extraHit)
         {
-            // Auch ohne Hauptwaffe, sobald eine Zweitwaffe ueber CEs None-Loadout Munition braucht (2026-08-25,
-            // im Test gefunden): der Anker traegt deren Munition in seiner Slots-Vereinigung, die Zelle zeigte trotzdem
-            // den Strich und das Munitionsfenster war unerreichbar. Das Fenster selbst arbeitet ueber den Anker
-            // (GetAmmoLeaf), nicht ueber die Vorlage - es braucht keine Hauptwaffe.
+            // Also without a main weapon, as soon as a sidearm on CE's None loadout needs ammo: the anchor
+            // carries its ammo in its slot union, yet the cell still showed the dash and the ammo window was
+            // unreachable. The window itself works via the anchor (GetAmmoLeaf), not via the template - it
+            // needs no main weapon.
             bool hasLoadout = currentLoadout != null
                 && (!currentLoadout.defaultLoadout || GetAmmoCellState(pawn).pool.Count > 0);
             Text.Font = GameFont.Tiny;
             if (!hasLoadout)
             {
-                // Kompakte Ansicht: derselbe Helfer und dieselbe Geometrie wie jeder andere Leerzustand
-                // (2026-08-10: die Knoepfe hatten verschiedene Groessen; 2026-08-11 nachgebessert,
-                // der erste Anlauf hatte die Verschmaelerung vergessen und blieb 12px daneben). Vorher stand
-                // hier ein rohes Label ueber der vollen Zelle mit dem gerade gueltigen Anker - der Strich
-                // sass links oben statt mittig.
+                // Compact view: the same helper and the same geometry as every other empty state (the
+                // buttons had different sizes; the first fix forgot the narrowing and was 12px off).
+                // Previously this was a raw label over the full cell with the currently valid anchor - the
+                // dash sat top left instead of centered.
                 if (iconOnly)
                 {
-                    // Leerzustand auf DIESELBE Geometrie wie eine gefuellte Zelle (2026-08-11) - und das ist
-                    // seit 2026-08-14 die volle Zelle, siehe den Kommentar an DotReserveW.
+                    // Empty state on the SAME geometry as a filled cell - which is now the full cell, see
+                    // the comment at DotReserveW.
                     DrawCellDash(cell);
                     Text.Font = GameFont.Small;
                     return;
@@ -2984,11 +2949,11 @@ namespace CEReloaded
             List<LoadoutSlot> effective = ammoState.effective;
             List<ThingDef> pool = ammoState.pool;
             List<ThingDef> active = ammoState.active;
-            // pool leer = gar keine Munitionswaffe, nichts einzustellen; pool voll und active leer = braucht
-            // Munition, hat keine, echte Luecke.
-            // Der TEXT dazu entsteht erst im Zweig, der ihn wirklich zeichnet (2026-08-17,
-            // gemessen): in der kompakten Ansicht steht in dieser Zelle nur ein Symbol, der
-            // Text wurde also pro Kolonist pro Durchgang gebaut, uebersetzt und weggeworfen.
+            // pool empty = no ammo-using weapon at all, nothing to configure; pool full and active empty =
+            // needs ammo, has none, a real gap.
+            // The TEXT for it is only built in the branch that actually draws it (measured): in the
+            // compact view this cell only holds an icon, so the text was built, translated and thrown away
+            // per colonist per pass.
             bool noAmmoWarning = pool.Count > 0 && active.Count == 0;
             GUI.color = noAmmoWarning ? LoadoutUtility.ColBad : Color.white;
             // The status dot's own corner is reserved from the BUTTON's hit-rect (not just drawn visually
@@ -3012,8 +2977,8 @@ namespace CEReloaded
                     : "CER_AssignLoadouts_TypesCountFmt".Translate(active.Count.ToString()).ToString();
                 clicked = Widgets.ButtonText(btnRect, "CER_AssignLoadouts_AmmoPrefixFmt".Translate(summary.Truncate(btnRect.width - 44f))) | (extraHit.HasValue && Widgets.ButtonInvisible(extraHit.Value));
             }
-            // Geforderte Menge = die Slot-Menge DIESES Kolonisten fuer diese Sorte; die Begruendung dazu
-            // steht bei AmmoSegFor.
+            // Requested amount = THIS colonist's slot amount for this type; the reasoning is at
+            // AmmoSegFor.
             Rect ammoDot = DrawFulfillDot(cell, pawn, active, "CER_AssignLoadouts_LabelAmmo",
                 RichStock.Ammo, richNeedFor: d => effective.Where(s => s.thingDef == (ThingDef)d).Sum(s => s.count));
             GUI.color = Color.white;
@@ -3023,11 +2988,11 @@ namespace CEReloaded
                     ? "CER_AssignLoadouts_AmmoTipNoWeapon".Translate(pawn.LabelShortCap)
                     : noAmmoWarning
                         ? "CER_AssignLoadouts_AmmoTipNoneSetup".Translate(pawn.LabelShortCap)
-                        // AmmoCountFor statt effective.First(...): seit "Any ammo" als gesetzte Wahl zaehlt,
-                        // steht in `active` auch eine Sorte, die als GENERISCHER Slot dasteht und gar keinen
-                        // konkreten Slot hat - First() hat dafuer geworfen, und zwar in OnGUI, in jedem Bild,
-                        // solange der Zeiger auf der Zelle stand. Ausgerechnet im "Any ammo"-Fall, fuer den
-                        // die Ergaenzung gebaut wurde (2026-08-15, Review-Befund).
+                        // AmmoCountFor instead of effective.First(...): since "Any ammo" counts as a chosen
+                        // selection, `active` can also contain a type that exists only as a GENERIC slot and
+                        // has no concrete slot at all - First() threw for it, in OnGUI, every frame, as long
+                        // as the pointer was on the cell. Precisely in the "Any ammo" case the addition was
+                        // built for (found in review).
                         : "CER_AssignLoadouts_AmmoTipList".Translate(pawn.LabelShortCap, string.Join(", ", active.Select(d => d.LabelCap.ToString() + " x" + AmmoCountFor(effective, d)))))
                     + "CER_AssignLoadouts_AmmoTipClickSuffix".Translate());
             if (clicked) Find.WindowStack.Add(new Dialog_ChangeAmmo(pawn, currentLoadout));
@@ -3057,11 +3022,11 @@ namespace CEReloaded
 
         private static void DrawCellWarning(Rect cell)
         {
-            // Das PNG-Ausrufezeichen, mittig (2026-09-07: bei Munition kein normales Rufezeichen, sondern
-            // das PNG-Ausrufezeichen, in der Mitte).
-            // Der Text-Glyph war die letzte Stelle, die noch durch Text.CurFontStyle lief - siehe
-            // LoadoutUtility.DrawWarningBadge, warum das an jedem Ort anders aussah. Weiss auf der roten
-            // Zelle, nicht eingefaerbt.
+            // The PNG exclamation mark, centered (for ammo, not a plain text exclamation mark but the PNG
+            // one, in the middle).
+            // The text glyph was the last place still going through Text.CurFontStyle - see
+            // LoadoutUtility.DrawWarningBadge for why that looked different everywhere. White on the red
+            // cell, not tinted.
             Rect vc = VisualCell(cell);
             float s = Mathf.Min(16f, vc.height - 4f);
             LoadoutUtility.DrawExclamationGlyph(new Rect(vc.x + (vc.width - s) / 2f, vc.y + (vc.height - s) / 2f, s, s), Color.white);
@@ -3080,16 +3045,16 @@ namespace CEReloaded
         // Accepts a plain ThingDef OR a LoadoutGenericDef (e.g. a pack's "Any Medicine"/"Any Meal" slot) - a
         // generic has no single concrete def to check ownership/stock against, so it gets its own family-wide
         // resolution (LoadoutUtility.PawnAlreadyHasGeneric/GenericStockCount) instead of ThingDef's per-def cache.
-        // `needed` ist die vom Loadout GEFORDERTE Stueckzahl (2026-08-09). Vorher fragte diese Funktion nur
-        // "hat er ueberhaupt so etwas" - ein Kolonist mit 1 von 5 Medizin galt damit als fertig ausgeruestet,
-        // der Fuenfer-Verbandskasten war gruen, und weil gruen bedeutet "nichts zu tun", wurde auch kein
-        // Nachschub eingeplant. Default 1 lassen, damit die Aufrufer ohne Mengenbegriff (Waffe, Zweitwaffe -
-        // dort ist die geforderte Menge immer 1) sich exakt wie bisher verhalten.
-        // Das Urteil aus der gemeinsamen Reihum-Rechnung (siehe LoadoutClaims), wenn sie fuer genau diesen
-        // Kolonisten und genau diesen Gegenstand ueberhaupt eine Aussage hat. false heisst NICHT "vorhanden",
-        // sondern "nicht gefragt" - dann entscheidet der Aufrufer wie bisher weiter. Genau diese
-        // Unterscheidung ist der Grund fuer das evaluated-Set: ohne sie laese sich eine Zeile, die an gar
-        // keinem Kolonisten haengt (Vorschau im Loadout-Editor), stillschweigend als "im Lager".
+        // `needed` is the quantity the loadout REQUESTS. Previously this function only asked "does the
+        // colonist have such a thing at all" - a colonist with 1 of 5 medicine thus counted as fully
+        // equipped, the five-pack first-aid kit was green, and since green means "nothing to do", no
+        // resupply was planned either. Default 1 kept so callers without a quantity concept (weapon,
+        // sidearm - where the requested amount is always 1) behave exactly as before.
+        // The verdict from the shared turn-based calculation (see LoadoutClaims), if it has anything to
+        // say about exactly this colonist and exactly this item. false does NOT mean "available", but
+        // "not asked" - then the caller decides as before. Exactly this distinction is the reason for the
+        // evaluated set: without it a row not attached to any colonist (preview in the loadout editor)
+        // would silently read as "in storage".
         private static bool ClaimedStatus(Pawn pawn, Def d, out FulfillStatus status)
         {
             status = FulfillStatus.Missing;
@@ -3102,10 +3067,10 @@ namespace CEReloaded
                 : claims.itemMissing.TryGetValue(pawn, out Dictionary<Def, int> im) && im.ContainsKey(d);
             if (!short_) { status = FulfillStatus.Stored; return true; }
 
-            // Fehlt wirklich - dann bleibt nur noch die zweite, eigene Frage: wird es schon hergestellt?
-            // Fuer Waffen dieselbe Quelle wie bisher, fuer Gegenstaende die bildweise gecachte
-            // Bestandsaufstellung (ihr inProduction ist WeaponQueuedCount, nur eben einmal pro Def statt
-            // einmal pro Zelle). Ein generischer Slot hat kein einzelnes Rezept - der bleibt "fehlt".
+            // Really missing - then only the second, separate question remains: is it already being
+            // produced? For weapons the same source as before, for items the per-frame cached stock
+            // breakdown (its inProduction is WeaponQueuedCount, just once per def instead of once per
+            // cell). A generic slot has no single recipe - it stays "missing".
             if (d is ThingDef ptd)
             {
                 if (isWeaponish) { if (LoadoutUtility.WeaponHasActiveBill(ptd)) status = FulfillStatus.InProduction; }
@@ -3118,14 +3083,14 @@ namespace CEReloaded
             return true;
         }
 
-        // Der Memo-Speicher umschliesst seit 2026-08-27 die GANZE Funktion. Vorher sass er mitten im
-        // ThingDef-Zweig, also HINTER der Inventarabfrage und der Reihum-Rechnung - und die zwei Zweige
-        // darueber (generische Defs, Munition) hatten gar keinen. Ausgerechnet die generischen sind der
-        // Regelfall: ein Ausruestungspaket enthaelt "Any Medicine", "Any Perishable Meal", "Any Drugs".
-        // Gemessen kostete das 69 us je Aufruf bei 3330 Aufrufen je Sekunde.
-        // Gefahrlos, weil alle drei Zweige nur LESEN. Die einzige Stelle, die etwas veraendert, ist der
-        // Abzug vom Rest-Topf weiter unten - und der laeuft genau einmal je Schluessel, weil der zweite
-        // Aufruf hier oben schon zurueckkehrt. Das war beim alten, engeren Memo genauso.
+        // The memo now wraps the WHOLE function. Previously it sat in the middle of the ThingDef branch,
+        // i.e. AFTER the inventory query and the turn-based calculation - and the two branches above it
+        // (generic defs, ammo) had none at all. Yet the generic ones are the common case: an equipment
+        // pack contains "Any Medicine", "Any Perishable Meal", "Any Drugs". Measured, that cost 69 us per
+        // call at 3330 calls per second.
+        // Safe, because all three branches only READ. The only place that changes anything is the
+        // deduction from the remaining pool further down - and that runs exactly once per key, because
+        // the second call already returns up here. That was the same with the old, narrower memo.
         internal FulfillStatus SingleFulfillStatus(Pawn pawn, Def d, int needed = 1)
         {
             if (needed < 1) needed = 1;
@@ -3143,17 +3108,17 @@ namespace CEReloaded
             {
                 if (LoadoutUtility.PawnCarriedGenericCount(pawn, gd) >= needed) return FulfillStatus.Equipped;
                 if (ClaimedStatus(pawn, gd, out FulfillStatus gStatus)) return gStatus;
-                // Fallback fuer Zeilen, die (noch) an keinem Kolonisten haengen - z.B. eine ungespeicherte
-                // Vorschau im Loadout-Editor. >= needed statt > 0 (2026-08-17): "3 im Lager" hat einen
-                // Fuenferposten nie gedeckt, die Zelle sagte trotzdem gruen.
+                // Fallback for rows not (yet) attached to any colonist - e.g. an unsaved preview in the
+                // loadout editor. >= needed instead of > 0: "3 in storage" never covered a five-item entry,
+                // yet the cell said green.
                 if (LoadoutUtility.GenericStockCount(gd) >= needed) return FulfillStatus.Stored;
                 return FulfillStatus.Missing;   // no single recipe to be "in production" for
             }
             ThingDef td = d as ThingDef;
             if (td == null) return FulfillStatus.Missing;
             if (LoadoutUtility.PawnCarriedCount(pawn, td) >= needed) return FulfillStatus.Equipped;
-            // Die Reihum-Rechnung schlaegt jeden der Wege darunter, wo sie diesen Kolonisten und diesen
-            // Gegenstand kennt - sie ist dieselbe, aus der Bereitschaftsanzeige und Nachschub-Fenster lesen.
+            // The turn-based calculation beats every path below wherever it knows this colonist and this
+            // item - it is the same one the readiness display and the supply window read from.
             if (ClaimedStatus(pawn, td, out FulfillStatus claimed)) return claimed;
             // frameOwnedCache (BuildOwnedWeaponCounts) is WEAPON-only by design (IsWeapon || shield apparel) -
             // an ammo def (arrow, bullet, ...) never appears in it at all, so checking it here always missed
@@ -3177,25 +3142,25 @@ namespace CEReloaded
                 // "in storage"). Memoization matters too, not just the pool - DrawFulfillDot alone calls this
                 // twice per item (segment color, then tooltip text), which would double-decrement the SAME
                 // pawn's own single claim without it.
-                // Die geforderte MENGE gehoert in den Schluessel (2026-08-15, Review-Befund). Ohne sie
-                // entschied die ERSTE Zelle des Bildes fuer alle spaeteren mit: liegt Medizin x5 in einem
-                // Pack und Medizin x1 als Einzelposten, und die Kolonie hat 3 frei, dann merkte sich die
-                // Pack-Zelle 'fehlt' (3 < 5) und die Einzel-Zelle bekam dieselbe Antwort zurueck, obwohl
-                // 3 >= 1 - roter Streifen und Tooltip 'fehlt' neben drei freien Stueck im Lager. In
-                // umgekehrter Zeichenreihenfolge waere es ein falsches Gruen gewesen.
-                // Der eigentliche Zweck des Memos bleibt: DrawFulfillDot fragt pro Gegenstand zweimal
-                // (Segmentfarbe, dann Tooltip) - mit derselben Menge, also weiterhin derselbe Schluessel
-                // und kein zweiter Abzug vom Bild-Vorrat.
+                // The requested AMOUNT belongs in the key (found in review). Without it the FIRST cell of
+                // the frame decided for all later ones: with medicine x5 in a pack and medicine x1 as a
+                // single entry, and 3 free in the colony, the pack cell memoized 'missing' (3 < 5) and the
+                // single cell got the same answer back, although 3 >= 1 - a red bar and a 'missing' tooltip
+                // next to three free items in storage. In reverse drawing order it would have been a false
+                // green.
+                // The actual purpose of the memo remains: DrawFulfillDot asks twice per item (segment color,
+                // then tooltip) - with the same amount, so still the same key and no second deduction from
+                // the frame stock.
                 FulfillStatus result = FulfillStatus.Missing;
-                // Der Pool kennt NUR Waffen und Schilde (BuildOwnedWeaponCounts filtert auf IsWeapon bzw.
-                // Schild-Apparel). Alles andere - Medizin, Mahlzeiten, Drogen, Bauteile - steht dort nie drin,
-                // der Nachschlag ging also immer ins Leere und die Zelle zeichnete "fehlt", obwohl 200 Stueck
-                // im Lager lagen. Besonders irrefuehrend, weil der Tooltip DERSELBEN Zelle den echten Bestand
-                // nannte: Balken und Text widersprachen sich (2026-08-09 gefixt, Schwere hoch).
-                // Fuer Munition gab es dafuer laengst einen eigenen Zweig oben; Nicht-Waffen hatten nie einen.
-                // Bewusst dieselbe Quelle wie der Tooltip (ComputeItemOwnership), damit die beiden per
-                // Konstruktion nicht mehr auseinanderlaufen koennen - und bewusst freeStored, nicht der
-                // Gesamtbestand: was andere Kolonisten schon beanspruchen, ist fuer diesen hier nicht frei.
+                // The pool knows ONLY weapons and shields (BuildOwnedWeaponCounts filters on IsWeapon or
+                // shield apparel). Everything else - medicine, meals, drugs, components - is never in it,
+                // so the lookup always came up empty and the cell drew "missing" even with 200 in storage.
+                // Particularly misleading because the tooltip of the SAME cell named the real stock: bar
+                // and text contradicted each other.
+                // Ammo has long had its own branch above for this; non-weapons never had one.
+                // Deliberately the same source as the tooltip (ComputeItemOwnership), so the two cannot
+                // drift apart by construction - and deliberately freeStored, not total stock: what other
+                // colonists already claim is not free for this one.
                 bool poolKnowsIt = frameRemainingCache != null && frameRemainingCache.ContainsKey(td);
                 if (!poolKnowsIt && !td.IsWeapon && !LoadoutUtility.IsShieldApparel(td))
                 {
@@ -3219,25 +3184,24 @@ namespace CEReloaded
             return FulfillStatus.Missing;
         }
 
-        // WorstFulfillStatus ist am 2026-08-15 ersatzlos entfallen. Sie fiel beim Umbau von DrawFulfillDot
-        // auf: ihr einziger Aufrufer war die alte Fassung dieser Zelle, die den ganzen Inhalt auf ihren
-        // SCHLECHTESTEN Status zusammenfaltete. Seit der Harmonisierung vom 2026-07-30 zeichnet die Zelle
-        // stattdessen einen Abschnitt pro Gegenstand (ein Pack mit 2 ausgeruesteten und 1 fehlenden Teil
-        // zeigt gruen x2 / rot x1), und der Aufruf verschwand damals mit. Zurueckgeblieben war eine
-        // Methode ohne Aufrufer im ganzen Mod - geprueft per Grep ueber Source/, ausserhalb der
-        // kompilierten Artefakte kein Treffer, und sie ist internal, also auch nicht von aussen erreichbar.
+        // WorstFulfillStatus was removed without replacement. It came up while reworking DrawFulfillDot: its
+        // only caller was the old version of this cell, which folded the whole content into its WORST
+        // status. Since the harmonization the cell instead draws one segment per item (a pack with 2
+        // equipped parts and 1 missing shows green x2 / red x1), and the call disappeared back then. What
+        // remained was a method without callers anywhere in the mod - checked by grep over Source/, no hit
+        // outside the compiled artifacts, and it is internal, so not reachable from outside either.
 
-        // Geforderte Stueckzahl pro Def aus einer Menge von Loadouts (Pack-Slots, "Other"-Slots). Summiert
-        // ueber alle Slots, die auf denselben Def zeigen - zwei Packs mit je 3 Medizin fordern 6, nicht 3.
-        // Wird als neededFor an DrawFulfillDot gegeben, damit die Mengenpruefung in SingleFulfillStatus
-        // ueberhaupt eine Zahl zu vergleichen hat (2026-08-09).
-        // Gibt seit 2026-08-15 das WOERTERBUCH selbst zurueck statt eines Delegaten darauf
-        // (perf): das Woerterbuch braucht die Zelle ohnehin, der Delegat davor war
-        // eine zweite Zuweisung auf dem Heap - pro Zelle, pro Kolonist, pro Bild. Die Nachschlageregel
-        // ("unbekannt heisst 1") ist mit umgezogen, sie steht jetzt in NeededOf.
+        // Requested quantity per def from a set of loadouts (pack slots, "Other" slots). Summed over all
+        // slots that point to the same def - two packs with 3 medicine each request 6, not 3.
+        // Passed to DrawFulfillDot as neededFor, so the quantity check in SingleFulfillStatus has a number
+        // to compare at all.
+        // Returns the DICTIONARY itself instead of a delegate over it
+        // (perf): the cell needs the dictionary anyway, and the delegate in front of it was
+        // a second heap allocation - per cell, per colonist, per frame. The lookup rule
+        // ("unknown means 1") moved along with it and now lives in NeededOf.
         private static Dictionary<Def, int> NeededCountsFrom(IEnumerable<LoadoutSlot> slots)
         {
-            Dictionary<Def, int> need = new Dictionary<Def, int>(LoadoutUtility.DefRefComparer.Instance);   // siehe BuildClaimsUncached
+            Dictionary<Def, int> need = new Dictionary<Def, int>(LoadoutUtility.DefRefComparer.Instance);   // see BuildClaimsUncached
             if (slots != null)
                 foreach (LoadoutSlot s in slots)
                 {
@@ -3251,21 +3215,20 @@ namespace CEReloaded
         private static int NeededOf(Dictionary<Def, int> need, Def d)
             => d != null && need != null && need.TryGetValue(d, out int n) ? n : 1;
 
-        // Der koloniweite Bestandsaufriss fuer einen GEGENSTAND (Pack-Inhalt, "Sonstiges"), wie ihn der
-        // reiche Tooltip zeigt. Stand am 2026-08-15 dreimal wortgleich als Lambda an drei Aufrufstellen
-        // (Pack aus Rolle, Pack, Sonstiges) - eine Kopie zu aendern und die anderen zwei zu vergessen war
-        // hier nur eine Frage der Zeit. Als statische Methode kostet der Aufruf ausserdem keine
-        // Zuweisung auf dem Heap, waehrend jedes der drei Lambdas pro Zelle pro Bild eine brauchte,
-        // auch wenn der Tooltip gar nicht gebaut wurde.
-        // neededCount ist KOLONIWEIT und nicht der Bedarf dieses einen Kolonisten (2026-08-12: bei 3 auf
-        // Lager und Bedarf 10 (2x5) lautet der Tooltip richtig "3 assigned in
-        // storage, 7 missing"): der Bestand daneben kommt aus ComputeItemOwnership und ist koloniweit -
-        // beides muss dieselbe Menge meinen, sonst vergleicht der Balken Aepfel mit Birnen und die
-        // Fehlmenge faellt zu klein aus oder ganz weg.
-        // need: was DIESE Zelle verlangt (2026-08-16). Vorher stand hier ColonyWideAssignedNeed, also die
-        // Forderung der ganzen Kolonie - dieselbe Zahl in jeder Zelle, egal ob sie ein Stueck oder fuenf
-        // will. Der BESTAND bleibt koloniweit (das ist die Frage "wo liegt es"), nur die geforderte Menge
-        // ist jetzt die der Zelle - identisch zu WeaponSegFor und AmmoSegFor daneben.
+        // The colony-wide stock breakdown for an ITEM (pack content, "Other"), as shown by the rich
+        // tooltip. This used to exist three times word for word as a lambda at three call sites (pack
+        // from role, pack, other) - changing one copy and forgetting the other two was only a matter of
+        // time. As a static method the call also costs no heap allocation, whereas each of the three
+        // lambdas needed one per cell per frame, even when the tooltip wasn't built at all.
+        // neededCount is COLONY-WIDE and not this one colonist's need (with 3 in storage and a need of
+        // 10 (2x5) the tooltip correctly reads "3 assigned in
+        // storage, 7 missing"): the stock next to it comes from ComputeItemOwnership and is colony-wide -
+        // both must refer to the same quantity, otherwise the bar compares apples with oranges and the
+        // shortfall comes out too small or vanishes entirely.
+        // need: what THIS cell requests. Previously this was ColonyWideAssignedNeed, i.e. the whole
+        // colony's demand - the same number in every cell, whether it wants one item or five. The STOCK
+        // stays colony-wide (that's the question "where is it"), only the requested amount is now the
+        // cell's - identical to WeaponSegFor and AmmoSegFor next to it.
         private static LoadoutUtility.AvailabilitySegments ItemSegFor(Pawn pawn, Def d, int need)
         {
             LoadoutUtility.ComputeItemOwnership(d, out int carriedOnly, out int carriedAndAssigned, out int assignedInStore, out int freeStored, out int inProduction);
@@ -3273,20 +3236,19 @@ namespace CEReloaded
                 inProduction, pawn, d, neededCount: Mathf.Max(1, need));
         }
 
-        // Dasselbe fuer eine WAFFE - andere Bestandsquelle (GetWeaponInventory, dieselbe, die die
-        // Waffenuebersicht und der Hauptwaffen-Punkt benutzen). Die geforderte Menge bleibt beim Aufrufer:
-        // der Rollen-Zweig zaehlt sie aus den Slots der Rolle, der normale Zweig aus den angehaengten
-        // Zweitwaffen-Loadouts - das ist der einzige Unterschied zwischen den beiden Stellen und der
-        // Grund, warum hier ein Wert und kein Flag steht.
+        // The same for a WEAPON - a different stock source (GetWeaponInventory, the same one the weapon
+        // overview and the main weapon dot use). The requested amount stays with the caller: the role
+        // branch counts it from the role's slots, the normal branch from the attached sidearm loadouts -
+        // that is the only difference between the two sites and the reason why this is a value and not a
+        // flag.
         private static LoadoutUtility.AvailabilitySegments WeaponSegFor(Pawn pawn, Def d, int need)
             => LoadoutUtility.WeaponAvailability((ThingDef)d, pawn, need);
 
-        // Dritte Quelle: MUNITION. Wieder eine eigene Bestandsfunktion (GetAmmoOwnership), und wieder
-        // eine geforderte Menge, die nur der Aufrufer kennt - hier die Slot-Menge DIESES Kolonisten fuer
-        // diese Sorte (2026-08-01: der rote Abschnitt des Balkens kam aus der einfachen
-        // Statuseinstufung pro Gegenstand, waehrend dieser Tooltip gar keine geforderte Menge kannte -
-        // seine Zeile "Still missing" konnte deshalb nie erscheinen, obwohl der Balken daneben rot war.
-        // Die beiden widersprachen sich, statt dass einer den anderen erklaert).
+        // Third source: AMMO. Again its own stock function (GetAmmoOwnership), and again a requested
+        // amount only the caller knows - here THIS colonist's slot amount for this type (the bar's red
+        // segment came from the simple per-item status classification, while this tooltip knew no
+        // requested amount at all - so its "Still missing" line could never appear, even though the bar
+        // next to it was red. The two contradicted each other instead of one explaining the other).
         private static LoadoutUtility.AvailabilitySegments AmmoSegFor(Pawn pawn, Def d, int need)
         {
             LoadoutUtility.GetAmmoOwnership((ThingDef)d, out int carriedOnly, out int carriedAndAssigned, out int assignedInStore, out int freeStored, out int inProduction);
@@ -3294,25 +3256,24 @@ namespace CEReloaded
                 inProduction, pawn, (ThingDef)d, neededCount: need);
         }
 
-        // Welche Bestandsquelle der reiche Tooltip einer Zelle benutzt. Drei Domaenen, drei Funktionen -
-        // das war bis 2026-08-15 ein durchgereichtes Lambda pro Aufrufstelle, sechsmal, und drei davon
-        // wortgleich.
+        // Which stock source a cell's rich tooltip uses. Three domains, three functions - this used to be
+        // a lambda passed through per call site, six times, and three of them word for word identical.
         private enum RichStock { None, Item, Weapon, Ammo }
 
         private static LoadoutUtility.AvailabilitySegments RichSegFor(RichStock kind, Pawn pawn, Def d, Func<Def, int> needFor)
         {
             if (kind == RichStock.Weapon) return WeaponSegFor(pawn, d, needFor != null ? needFor(d) : 1);
             if (kind == RichStock.Ammo) return AmmoSegFor(pawn, d, needFor != null ? needFor(d) : 1);
-            // Dritter Zweig jetzt wie die zwei darueber: die Menge kommt vom Aufrufer (2026-08-16).
+            // Third branch now like the two above: the amount comes from the caller.
             return ItemSegFor(pawn, d, needFor != null ? needFor(d) : 1);
         }
 
-        // EINE Aufstellung fuer Streifen UND Tooltip (2026-08-30: der Streifen der
-        // Munitionszelle war komplett gruen bei 1 von 150 getragen, 500 in Produktion, 149 fehlend). Ursache:
-        // der Streifen fragte SingleFulfillStatus mit Bedarf 1 (neededFor war dort null), der Tooltip AmmoSegFor
-        // mit Bedarf 150 - EINE Frage, ZWEI Rechnungen, die haeufigste Fehlerklasse dieses Mods. Jetzt liest
-        // der Streifen dieselbe Aufstellung wie der Tooltip, gemerkt im 0,3-s-Block der Zeilen-Caches; der
-        // Tooltip trifft denselben Eintrag und kann dem Streifen deshalb nicht mehr widersprechen.
+        // ONE breakdown for bar AND tooltip (the ammo cell's bar was entirely green with 1 of 150 carried,
+        // 500 in production, 149 missing). Cause:
+        // the bar asked SingleFulfillStatus with a need of 1 (neededFor was null there), the tooltip asked
+        // AmmoSegFor with a need of 150 - ONE question, TWO calculations, the most common bug class in this
+        // mod. Now the bar reads the same breakdown as the tooltip, memoized in the row caches' 0.3 s
+        // block; the tooltip hits the same entry and therefore can no longer contradict the bar.
         private LoadoutUtility.AvailabilitySegments RichSegCached(RichStock kind, Pawn pawn, Def d, int need)
         {
             var key = (pawn, d, need, kind);
@@ -3322,15 +3283,15 @@ namespace CEReloaded
             return seg;
         }
 
-        // Der Streifen einer Zelle zeigt ANTEILIG, wo die Stuecke sind, die DIESER Kolonist braucht - nicht den
-        // Bestand der ganzen Kolonie (500 in Produktion sagen nichts ueber seine 150). Reihenfolge und Ausschluss
-        // nach Vorgabe: getragen (gruen), dann was ihm die Reihum-Rechnung aus dem Lager zuteilt (blau),
-        // dann Produktion NUR fuer den Rest, der sonst fehlt (beige), dann fehlt (rot). Kein Stueck steht in zwei
-        // Abschnitten - die Abschnitte duerfen sich nicht ueberschneiden. Der Tooltip daneben nennt
-        // weiterhin die vollen Kolonie-Zahlen; der Streifen ist ihre Uebersetzung auf diesen einen Bedarf.
-        // Getragen wird GEZAEHLT (PawnCarriedCount), nicht das 1-Stueck-Kaerbchen aus BuildAvailabilitySegments:
-        // bei 300 gefordert und 150 getragen soll der Streifen halb gruen sein, nicht zu 1/301.
-        // Ohne Kolonisten (koloniweite Sicht) gibt es keinen Bedarf - dann bleibt die Aufstellung, wie sie ist.
+        // A cell's bar shows PROPORTIONALLY where the items THIS colonist needs are - not the stock of the
+        // whole colony (500 in production say nothing about their 150). Order and exclusion as specified:
+        // carried (green), then what the turn-based calculation allots them from storage (blue), then
+        // production ONLY for the remainder that would otherwise be missing (beige), then missing (red). No
+        // item is in two segments - the segments must not overlap. The tooltip next to it still names
+        // the full colony numbers; the bar is their translation onto this one need.
+        // Carried is COUNTED (PawnCarriedCount), not the 1-item tick from BuildAvailabilitySegments:
+        // with 300 requested and 150 carried the bar should be half green, not 1/301.
+        // Without a colonist (colony-wide view) there is no need - then the breakdown stays as it is.
         private static LoadoutUtility.AvailabilitySegments CapToNeed(LoadoutUtility.AvailabilitySegments s, Pawn pawn, Def d, int need)
         {
             if (pawn == null) return s;
@@ -3341,25 +3302,25 @@ namespace CEReloaded
                 : LoadoutUtility.PawnCarriedGenericCount(pawn, d as LoadoutGenericDef);
             int rem = need;
             r.equippedByPawn = Mathf.Clamp(carried, 0, rem); rem -= r.equippedByPawn;
-            // Zuteilung der Reihum-Rechnung = Getragenes + sein Anteil am freien Bestand (BuildClaimsUncached);
-            // -1 heisst 'nicht gefragt' (keine Vorlage), dann zaehlt der freie Bestand ungeteilt.
+            // Allocation from the turn-based calculation = carried + their share of the free stock
+            // (BuildClaimsUncached); -1 means 'not asked' (no template), then the free stock counts undivided.
             int alloc = ClaimedAllocation(pawn, d);
             int store = alloc >= 0 ? Mathf.Max(0, alloc - carried) : Mathf.Max(0, s.assignedInStore + s.available);
-            // Der Lageranteil ist BLAU - 'ihm zugeteilt, im Lager, muss er noch holen' (2026-08-30): vier
-            // Farben im Streifen, alle auf DIESEN
-            // Kolonisten bezogen - gruen getragen, blau zu holen, beige in Produktion, rot fehlt. Erklaert wird das
-            // nicht durch eine Gelb-Aufteilung, sondern durch einen eigenen Block oben im Tooltip (PawnBlock), der
-            // genau diese vier Zahlen nennt; die koloniweite Aufstellung steht darunter als Info.
+            // The storage share is BLUE - 'allotted to them, in storage, still to be fetched': four
+            // colors in the bar, all relative to THIS
+            // colonist - green carried, blue to fetch, beige in production, red missing. This is explained
+            // not by a yellow split but by a separate block at the top of the tooltip (PawnBlock) that
+            // names exactly these four numbers; the colony-wide breakdown sits below it as info.
             r.assignedInStore = Mathf.Clamp(store, 0, rem); rem -= r.assignedInStore;
             r.inProduction = Mathf.Clamp(s.inProduction, 0, rem); rem -= r.inProduction;
             r.missing = rem;
             return r;
         }
 
-        // Der obere Block eines Zellen-Tooltips (2026-08-30): die vier Farben des Streifens mit den Zahlen
-        // DIESES Kolonisten - Ueberschrift 'Fuer <Name> (braucht N):', dann gruen/blau/beige/rot, dieselben Hex-Werte
-        // wie im Streifen und in der koloniweiten Aufstellung, damit Farbe = Bedeutung ueberall gleich ist.
-        // 'Missing' heisst: weder getragen noch im Lager fuer ihn noch in Produktion.
+        // The top block of a cell tooltip: the bar's four colors with THIS colonist's numbers - heading
+        // 'For <name> (needs N):', then green/blue/beige/red, the same hex values as in the bar and the
+        // colony-wide breakdown, so color = meaning is the same everywhere.
+        // 'Missing' means: neither carried nor in storage for them nor in production.
         private static string PawnBlock(Pawn pawn, LoadoutUtility.AvailabilitySegments part, int need)
         {
             if (pawn == null) return "";
@@ -3372,11 +3333,11 @@ namespace CEReloaded
             return sb.ToString();
         }
 
-        // Zellen-Tooltip fuer EINEN Posten: Name, Kolonisten-Block, Leerzeile, koloniweite Aufstellung (Info).
-        // `compact`: KURZFORM ab drei Posten in einer Zelle (2026-08-30: Waffen-Erklaertext hoeher als der
-        // Bildschirm: ein CE-eigenes Loadout mit fuenf Posten gab fuenf Bloecke zu je 17 Zeilen, der Kasten begann
-        // oberhalb der Bildkante, bei 2560x1440). Dann steht die koloniweite Aufstellung in EINER Zeile je Posten, ohne
-        // 'Carried by'/'Assigned to' - der Kolonisten-Block bleibt, er ist der Sinn der Zelle.
+        // Cell tooltip for ONE entry: name, colonist block, blank line, colony-wide breakdown (info).
+        // `compact`: SHORT FORM from three entries in a cell upward (the weapon explanation was taller than
+        // the screen: a CE-native loadout with five entries produced five blocks of 17 lines each, and the
+        // box started above the screen edge at 2560x1440). Then the colony-wide breakdown is ONE line per
+        // entry, without 'Carried by'/'Assigned to' - the colonist block stays, it is the point of the cell.
         private string CellItemTooltip(RichStock kind, Pawn pawn, Def d, int need, string heading, bool compact = false)
         {
             LoadoutUtility.AvailabilitySegments seg = RichSegCached(kind, pawn, d, need);
@@ -3401,9 +3362,9 @@ namespace CEReloaded
             sum.ground += part.ground;
         }
 
-        // Die Orts-Aufstellung zur selben Domaene - drei Bestandsquellen, drei Aufstellungen, damit keine
-        // Zelle die eines fremden Topfes zeigt. Ein generischer Slot ("Any Perishable Meal") hat keinen
-        // eigenen Ort, deshalb dort null statt einer erfundenen Zeile.
+        // The location breakdown for the same domain - three stock sources, three breakdowns, so no cell
+        // shows one from a foreign pool. A generic slot ("Any Perishable Meal") has no location of its
+        // own, hence null there instead of an invented line.
         private static string LocationTipFor(RichStock kind, Def d)
         {
             if (kind == RichStock.Weapon) return LoadoutUtility.BuildWeaponLocationTooltip(d as ThingDef);
@@ -3420,28 +3381,26 @@ namespace CEReloaded
         // highlight, no click registering there) is for the button's own rect to never extend under it.
         private const float DotReserveW = 13f;
 
-        // Beschriftung des Waffenknopfes: sie endete bisher bei xMax-6 und lief damit UNTER den
-        // Statuspunkt und ueber den gezeichneten Knopfrand hinaus (der Knopf selbst hoert bei
-        // xMax-DotReserveW auf) - genau die '...' aus dem Befund vom 2026-08-31. Eine
-        // Funktion fuer beide Ansichten, damit die Kappung nicht wieder nur an einer Stelle stimmt:
-        // Karte und kompakte Zeile hatten denselben Rechenfehler, zweimal getippt.
+        // Weapon button label: it used to end at xMax-6 and thus ran UNDER the status dot and past the
+        // drawn button border (the button itself ends at xMax-DotReserveW) - exactly the truncation '...'
+        // that was observed. One function for both views, so the clipping isn't right in only one place
+        // again: card and compact row had the same calculation error, typed twice.
         private static Rect LoadoutBtnLabelRect(Rect btnRect, float iconEndX, bool hasIcons) => hasIcons
-            // Max(0) und nicht Max(12): steht die Ablage-Spalte im Weg UND traegt der Kolonist zwei Waffen,
-            // bleibt fuer Text wirklich kein Platz - dann lieber gar keiner als drei Punkte ueber dem Statuspunkt.
+            // Max(0) and not Max(12): if the clipboard column is in the way AND the colonist carries two
+            // weapons, there really is no room left for text - better none than three dots over the status dot.
             ? new Rect(iconEndX + 2f, btnRect.y, Mathf.Max(0f, btnRect.xMax - DotReserveW - 2f - (iconEndX + 2f)), btnRect.height)
             : new Rect(btnRect.x, btnRect.y, btnRect.width - DotReserveW, btnRect.height);
 
-        // NoPasteStripW (24px, links von jeder Zelle abgezogen) ist am 2026-08-14 ersatzlos entfallen -
-        // hier steht nur noch, warum, damit es niemand "wieder repariert". Der Streifen war der Platz des
-        // ZELLEIGENEN Einfuege-Knopfs (DrawPasteButton, pasteW 20 + gap 4). Pack und Sidearm hatten so
-        // einen, Munition und Sonstiges nicht - die zwei reservierten die Breite deshalb leer mit, damit
-        // alle vier gleich breit blieben (2026-08-01). Am 2026-08-13 ist der Knopf aus den Zellen
-        // verschwunden und durch EINE gemeinsame Spalte ganz rechts ersetzt worden (DrawPasteColumn);
-        // Pack/Sidearm haben ihren Abzug dabei verloren, Munition/Sonstiges und saemtliche Leer- und
-        // Rollen-Zweige haben ihn behalten. Ergebnis: "die buttons von pack und others sind
-        // verschieden breit" - genau 24px, und zwar nur, sobald in Pack/Sidearm wirklich etwas drin war
-        // (der Leerzweig zog ja weiter ab). Reserviert wird jetzt nur noch das, was es wirklich gibt: der
-        // Streifen des Verfuegbarkeitsbalkens rechts (DotReserveW).
+        // NoPasteStripW (24px, subtracted on the left of every cell) was removed without replacement -
+        // this note only remains to explain why, so nobody "fixes it back". The strip was the space of
+        // the cell's OWN paste button (DrawPasteButton, pasteW 20 + gap 4). Pack and Sidearm had one, Ammo
+        // and Other did not - those two reserved the width empty so all four stayed equally wide. Later
+        // the button disappeared from the cells and was replaced by ONE shared column on the far right
+        // (DrawPasteColumn); Pack/Sidearm lost their deduction then, while Ammo/Other and all empty and
+        // role branches kept it. Result: the Pack and Other buttons had different widths - exactly 24px,
+        // and only once Pack/Sidearm actually contained something (the empty branch still subtracted).
+        // Now only what actually exists is reserved: the availability bar's strip on the right
+        // (DotReserveW).
 
         // A small notification-style badge in a cell's own top-right corner - same spot regardless of the
         // cell's width/height, so it lines up consistently whether the cell is a small icon-only compact
@@ -3452,59 +3411,59 @@ namespace CEReloaded
         // its own wider cell tooltip while the mouse is over the dot: RimWorld stacks EVERY TipRegion whose
         // rect contains the cursor, so a cell-wide tooltip registered on top of the dot's own small one used
         // to show BOTH at once, bleeding into each other. The dot must win outright in its own corner.
-        // richStock: welche echte Bestandsaufstellung der Tooltip zeigt (koloniweit getragen/zugewiesen/
-        // gelagert/in Produktion, statt nur des zusammengefallenen Urteils fuer diesen einen Kolonisten).
-        // Gesetzt, bekommt der Tooltip einen vollen Block pro Gegenstand statt einer flachen Zeile
-        // "- Gegenstand: Status" (2026-08-01, dieselbe geteilte Balken+Tooltip-Logik, die die Owned-Spalte
-        // im Weapon-Loadouts-Tab schon benutzt - hier nur einmal pro Gegenstand, weil eine Zelle mehrere
-        // buendeln kann). RichStock.None heisst flacher Text wie frueher.
-        // richNeedFor: die geforderte Menge fuer Weapon/Ammo, die nur der Aufrufer kennt. Item braucht sie
-        // nicht - dort ist der Bedarf koloniweit und steckt in ItemSegFor.
+        // richStock: which real stock breakdown the tooltip shows (colony-wide carried/assigned/
+        // stored/in production, instead of only the collapsed verdict for this one colonist).
+        // When set, the tooltip gets a full block per item instead of a flat line
+        // "- item: status" (the same shared bar+tooltip logic the Owned column in the Weapon Loadouts
+        // tab already uses - here once per item, because a cell can bundle several).
+        // RichStock.None means flat text as before.
+        // richNeedFor: the requested amount for Weapon/Ammo that only the caller knows. Item doesn't need
+        // it - there the need is colony-wide and lives in ItemSegFor.
         //
-        // War bis 2026-08-15 EIN Parameter `Func<Def, AvailabilitySegments> richSegFor`, und jede der
-        // SECHS Aufrufstellen reichte ihr eigenes Lambda herein. Drei davon
-        // waren wortgleich. Jetzt sagt der Aufrufer nur noch, WELCHE Bestandsquelle gilt, und die drei
-        // Item-Lambdas fallen als Heap-Zuweisung ganz weg: sie wurden pro Zelle pro Kolonist pro BILD
-        // gebaut und in aller Regel nie aufgerufen, denn der Tooltip-Text entsteht seit dem
-        // TipWanted-Guard unten ohnehin nur unter der Maus.
-        // itemLabelKey ist der SCHLUESSEL, nicht der fertige Text (2026-08-17):
-        // gebraucht wird er nur im Tooltip-Zweig ganz unten, uebersetzt wurde er bisher aber an jeder der
-        // sechs Aufrufstellen sofort - vier Zellen je Kolonist je Durchgang, und jede Uebersetzung legt eine
-        // Zeichenkette an. Ein Schluessel-Literal legt nichts an.
-        // Der Erklaertext einer gesperrten Rollen-Zelle - EINE Stelle fuer alle drei (Pack, Zweitwaffe,
-        // Sonstiges), damit sie nicht wieder auseinanderlaufen: die drei Zweige hatten schon zweimal
-        // unterschiedlich viel (erst fehlte in zweien die Sperre selbst, dann in einem der Streifen).
+        // This used to be ONE parameter `Func<Def, AvailabilitySegments> richSegFor`, and each of the
+        // SIX call sites passed in its own lambda. Three of them
+        // were word for word identical. Now the caller only says WHICH stock source applies, and the three
+        // item lambdas disappear entirely as heap allocations: they were built per cell per colonist per
+        // FRAME and as a rule never called, because since the TipWanted guard below the tooltip text is
+        // only built under the mouse anyway.
+        // itemLabelKey is the KEY, not the finished text:
+        // it is only needed in the tooltip branch at the very bottom, but used to be translated right away
+        // at each of the six call sites - four cells per colonist per pass, and each translation allocates
+        // a string. A key literal allocates nothing.
+        // The explanation text of a locked role cell - ONE place for all three (pack, sidearm, other), so
+        // they don't drift apart again: the three branches had already diverged twice (first the lock
+        // itself was missing in two, then the bar in one).
         //
-        // OHNE TipWanted-Vorfilter, anders als die reichen Tooltips daneben (2026-08-23): der Text hier
-        // ist zwei Translate-Aufrufe und eine Verkettung, keine koloniweite Bestandsaufnahme - der
-        // Filter haette also nichts gespart und war eine zusaetzliche Bedingung zwischen "Maus ist
-        // drueber" und "Text erscheint". Genau das war der Befund im Test: gesperrte Zellen
-        // gaben beim Zeigen GAR KEINEN Text, waehrend dieselbe Zelle bei einem Kolonisten ohne Rolle
-        // einen hatte. TooltipHandler.TipRegion prueft Mouse.IsOver ohnehin selbst.
+        // WITHOUT a TipWanted pre-filter, unlike the rich tooltips next to it: the text here is two
+        // Translate calls and a concatenation, not a colony-wide stock survey - so the filter would have
+        // saved nothing and was an extra condition between "mouse is over it" and "text appears". That
+        // was exactly the observed symptom: locked cells showed NO text at all on hover, while the same
+        // cell for a colonist without a role had one. TooltipHandler.TipRegion checks Mouse.IsOver itself
+        // anyway.
         //
-        // Das Diagnoselogging von hier ist RAUS (2026-08-23, nach dem Fund): im
-        // Nachtest zeigten alle drei Zellen Text, das Log wurde gar nicht gebraucht.
+        // The diagnostic logging that was here has been REMOVED after the finding: on retest all three
+        // cells showed text, and the log wasn't needed at all.
         //
-        // Was die Ursache war, bleibt UNBEWIESEN, und das gehoert hierher, damit es niemand spaeter als
-        // geklaert liest: gebaut wurde der Wegfall des TipWanted-Vorfilters an Pack und Zweitwaffe. An der
-        // dritten Zelle (Sonstiges), die im Test ebenfalls als textlos aufgefallen war, ist funktional
-        // NICHTS geaendert worden - sie wurde nur in diesen Aufruf verschoben. Fuer diese eine Zelle war
-        // der Befund also sehr wahrscheinlich falsch, und damit ist auch fuer die anderen beiden nicht
-        // sicher, ob der Vorfilter wirklich der Grund war. Wer das hier wieder anfasst: die drei Zellen
-        // laufen bewusst durch EINEN Aufruf, damit sie nicht erneut auseinanderlaufen.
+        // What the cause was remains UNPROVEN, and that belongs here so nobody later reads it as settled:
+        // what was built is the removal of the TipWanted pre-filter on Pack and Sidearm. On the third
+        // cell (Other), which had also been reported as textless, NOTHING was changed functionally - it
+        // was only moved into this call. For that one cell the report was therefore very likely wrong,
+        // which also makes it uncertain whether the pre-filter was really the cause for the other two.
+        // If you touch this again: the three cells deliberately go through ONE call so they don't drift
+        // apart again.
         private static void RoleCellTip(Rect cell, TaggedString text)
         {
             TooltipHandler.TipRegion(cell, text);
         }
 
-        // Wiederverwendete Puffer statt `Where().Distinct().ToList()` je Aufruf (2026-08-27, perf-cell-row-next).
-        // Diese Funktion laeuft VIER MAL je Kolonist je Durchgang - bei 12 Kolonisten und 143 Durchgaengen
-        // sind das rund 6900 Aufrufe je Sekunde, und jeder hat bisher vier Objekte auf dem Haufen angelegt
-        // (Where-Iterator, Distinct-Iterator, dessen internes Set, die Liste), die alle im selben Bild wieder
-        // Muell waren. Gemessen wurden 39 MB/s Neuanlage im Assign-Reiter; das hier ist ein Posten davon.
-        // Die Liste verlaesst die Funktion nie - sie wird nur durchlaufen und fuer den Tooltip gelesen.
-        // Semantik unveraendert: HashSet mit dem Standardvergleich verhaelt sich wie Distinct(), und die
-        // Reihenfolge des ersten Vorkommens bleibt erhalten, weil die Liste in Durchlaufreihenfolge waechst.
+        // Reused buffers instead of `Where().Distinct().ToList()` per call.
+        // This function runs FOUR TIMES per colonist per pass - with 12 colonists and 143 passes that is
+        // about 6900 calls per second, and each one used to allocate four heap objects (Where iterator,
+        // Distinct iterator, its internal set, the list), all of which were garbage again within the same
+        // frame. 39 MB/s of new allocations were measured in the Assign tab; this is one item of that.
+        // The list never leaves the function - it is only iterated and read for the tooltip.
+        // Semantics unchanged: a HashSet with the default comparer behaves like Distinct(), and the order
+        // of first occurrence is preserved because the list grows in iteration order.
         private static readonly List<Def> fulfillBuf = new List<Def>();
         private static readonly HashSet<Def> fulfillSeen = new HashSet<Def>();
         private static bool fulfillBufInUse;
@@ -3512,9 +3471,9 @@ namespace CEReloaded
         private Rect DrawFulfillDot(Rect cell, Pawn pawn, IEnumerable<Def> defs, string itemLabelKey,
             RichStock richStock = RichStock.None, Dictionary<Def, int> neededFor = null, Func<Def, int> richNeedFor = null)
         {
-            // Der Wiedereintritts-Schutz ist Vorsorge, kein bekannter Fall: heute ruft nichts unterhalb dieser
-            // Funktion sie erneut auf. Wer das spaeter tut, bekommt eine eigene Liste statt eines still
-            // ueberschriebenen Puffers - das ist der Unterschied zwischen langsam und falsch.
+            // The re-entrancy guard is a precaution, not a known case: today nothing below this function
+            // calls it again. Whoever does so later gets their own list instead of a silently overwritten
+            // buffer - that is the difference between slow and wrong.
             bool ownBuf = !fulfillBufInUse;
             List<Def> list;
             if (ownBuf)
@@ -3546,9 +3505,9 @@ namespace CEReloaded
             var seg = new LoadoutUtility.AvailabilitySegments { missingIsPawnSpecific = pawn != null, pawnContext = pawn != null };
             foreach (Def d in list)
             {
-                // Reiche Zellen (alle vier heute): der Streifen rechnet mit DERSELBEN Aufstellung wie der Tooltip
-                // darunter und mit dem Bedarf, den der Aufrufer nennt - anteilig auf diesen Kolonisten gekappt
-                // (2026-08-30). Der Zweig darunter bleibt fuer RichStock.None.
+                // Rich cells (all four today): the bar computes with the SAME breakdown as the tooltip
+                // below and with the need the caller names - capped proportionally to this colonist.
+                // The branch below remains for RichStock.None.
                 if (richStock != RichStock.None)
                 {
                     int need = richNeedFor != null ? richNeedFor(d) : NeededOf(neededFor, d);
@@ -3558,17 +3517,17 @@ namespace CEReloaded
                 switch (SingleFulfillStatus(pawn, d, NeededOf(neededFor, d)))
                 {
                     case FulfillStatus.Equipped: seg.equippedByPawn++; break;
-                    // ZUGEWIESEN UND IM LAGER, nicht "frei verfuegbar" (2026-08-18: die Anzeige war gelb statt
-                    // blau - "Assigned and in storage" ist blau, und die vertikale Bestandsanzeige nutzt die
-                    // zentralen Farbcodes).
-                    // Der Fehler sass in der Zuordnung, nicht in den Farben: die Liste
-                    // dieser Zelle IST das, was dieser Kolonist braucht - ein Stueck davon im Lager ist also
-                    // per Definition "ihm zugewiesen und im Lager" (blau) und nie "frei verfuegbar" (mit
-                    // Kolonist im Blick gelb). Der reiche Mouseover daneben hat es die ganze Zeit richtig
-                    // gesagt ("Assigned, in storage: 3"), nur der Balken nicht - dieselbe Frage, zwei
-                    // Antworten.
-                    // Ohne Kolonisten-Bezug bleibt es beim alten Topf: dann gibt es niemanden, dem es
-                    // zugewiesen waere.
+                    // ASSIGNED AND IN STORAGE, not "freely available" (the display was yellow instead of
+                    // blue - "Assigned and in storage" is blue, and the vertical stock display uses the
+                    // central color codes).
+                    // The bug was in the mapping, not in the colors: this cell's list
+                    // IS what this colonist needs - an item of it in storage is therefore by definition
+                    // "assigned to them and in storage" (blue) and never "freely available" (yellow, with a
+                    // colonist in view). The rich mouseover next to it said it correctly all along
+                    // ("Assigned, in storage: 3"), only the bar didn't - the same question, two
+                    // answers.
+                    // Without a colonist reference the old pool stays: then there is no one it would be
+                    // assigned to.
                     case FulfillStatus.Stored:
                         if (pawn != null) seg.assignedInStore++; else seg.available++;
                         break;
@@ -3585,43 +3544,43 @@ namespace CEReloaded
             // always means both show - the fix has to be "don't let the rects overlap", not a draw-order trick.
             Rect outline = new Rect(cell.xMax - 10f, cell.y, 10f, cell.height);
             LoadoutUtility.DrawAvailabilityBar(outline, seg, horizontal: false, drawTooltip: false);
-            // AB HIER NUR NOCH UNTER DER MAUS (2026-08-13). Der Balken oben muss
-            // in jedem Bild gezeichnet werden, der TEXT darunter nicht - und er ist der teure Teil: pro
-            // Gegenstand eine volle koloniweite Aufstellung (richSegFor -> ComputeItemOwnership,
-            // ColonyWideAssignedNeed, BuildAvailabilityTooltip), zusammengesetzt zu einem mehrzeiligen
-            // String, danach von RimWorld verworfen, weil die Maus woanders steht. Diese Zelle gibt es
-            // viermal pro Kolonist. Siehe LoadoutUtility.TipWanted, warum das Verwerfen garantiert ist.
+            // FROM HERE ON ONLY UNDER THE MOUSE. The bar above has to
+            // be drawn every frame, the TEXT below does not - and it is the expensive part: per item a full
+            // colony-wide breakdown (richSegFor -> ComputeItemOwnership, ColonyWideAssignedNeed,
+            // BuildAvailabilityTooltip), assembled into a multi-line string, then discarded by RimWorld
+            // because the mouse is elsewhere. This cell exists four times per colonist. See
+            // LoadoutUtility.TipWanted for why the discarding is guaranteed.
             if (!LoadoutUtility.TipWanted(outline)) return outline;
             string itemLabel = itemLabelKey.Translate().ToString();
             string tip;
             if (richStock != RichStock.None)
             {
-                // extraTip = die "wo liegt es / wer traegt es / wem ist es zugewiesen"-Aufstellung
-                // (2026-08-15, im Test gefunden: eine 'Zugewiesen an'-Liste kam in KEINEM der beiden
-                // Tooltips vor - weder bei der Rolle noch beim direkt angehaengten Pack). Das war eine
-                // echte Luecke: JEDER andere
-                // Verfuegbarkeitsbalken des Mods reicht diese Aufstellung an BuildAvailabilityTooltip
-                // durch, ausgerechnet die vier Zellen des Assign-Tabs nicht - dabei ist "wer hat die
-                // Medizin eigentlich" dort die naheliegendste Frage.
-                // Ohne eigenen TipWanted-Guard: dieser ganze Block sitzt schon hinter einem (oben), er
-                // laeuft also nur unter der Maus.
-                // Der Bedarf DIESER Zelle, nicht der der ganzen Kolonie (2026-08-16, im Test: Pack-Zelle und
-                // Sonstiges-Zelle desselben Kolonisten waren fuer
-                // denselben Gegenstand WORTGLEICH, und bei 3 vorhandenen Medizin meldete die 1-Stueck-Zelle
-                // denselben Mangel wie die 5-Stueck-Zelle).
-                // Die Waffen- und die Munitionszelle machen es laengst richtig: koloniweiter BESTAND, aber
-                // die geforderte MENGE aus dem Aufrufer - genau die Mischung, die "davon fehlen dir noch X"
-                // ueberhaupt beantwortbar macht. Nur die Gegenstandszelle nahm ColonyWideAssignedNeed, und
-                // damit war ihre Fehlmenge in jeder Zelle dieselbe.
-                // Faellt auf die Mengentabelle der Zelle zurueck (neededFor) - dieselbe, aus der auch die
-                // Balkenfarbe ihre Menge nimmt. Streifen und Text reden damit endlich ueber dieselbe Zahl.
+                // extraTip = the "where is it / who carries it / who is it assigned to" breakdown
+                // (an 'Assigned to' list appeared in NEITHER of the two tooltips - neither for the role
+                // nor for the directly attached pack). That was a
+                // real gap: EVERY other
+                // availability bar in the mod passes this breakdown on to BuildAvailabilityTooltip, but
+                // not the four cells of the Assign tab - even though "who actually has the medicine" is
+                // the most obvious question there.
+                // No TipWanted guard of its own: this whole block already sits behind one (above), so
+                // it only runs under the mouse.
+                // The need of THIS cell, not of the whole colony (the pack cell and the Other cell of the
+                // same colonist were WORD FOR WORD identical for
+                // the same item, and with 3 medicine available the 1-item cell reported
+                // the same shortage as the 5-item cell).
+                // The weapon and ammo cells have long done it right: colony-wide STOCK, but the
+                // requested AMOUNT from the caller - exactly the mix that makes "you are still missing X"
+                // answerable at all. Only the item cell took ColonyWideAssignedNeed, and so its shortfall
+                // was the same in every cell.
+                // Falls back to the cell's quantity table (neededFor) - the same one the bar color takes
+                // its amount from. Bar and text finally talk about the same number.
                 Func<Def, int> cellNeedFor = richNeedFor ?? (dd => NeededOf(neededFor, dd));
-                // Die Ueberschrift je Gegenstand geht als Parameter hinein (2026-08-17) - hier ging es bisher
-                // nur deshalb gut, weil string.Join ToString() ruft und dabei die Tags stehen laesst. Das ist
-                // dieselbe Bauform, an der die Waffen-Zelle ihre Farben verloren hat, nur zufaellig auf der
-                // heilen Seite. Zufall ist keine Absicherung.
-                // Je Posten: Kolonisten-Block oben (die Streifen-Farben mit SEINEN Zahlen), darunter die
-                // koloniweite Aufstellung als Info (2026-08-30).
+                // The per-item heading is passed in as a parameter - this only worked before because
+                // string.Join calls ToString() and leaves the tags intact. That is the same construction
+                // through which the weapon cell lost its colors, just accidentally on the safe side.
+                // Luck is not a safeguard.
+                // Per entry: colonist block on top (the bar colors with THEIR numbers), below it the
+                // colony-wide breakdown as info.
                 tip = itemLabel + ":\n\n" + string.Join("\n\n", list.Select(d =>
                     CellItemTooltip(richStock, pawn, d, cellNeedFor(d), "<b>" + d.LabelCap.ToString() + "</b>", compact: list.Count > 2)));
             }
@@ -3630,20 +3589,20 @@ namespace CEReloaded
                 // Per-item breakdown, not one aggregate word - "missing" alone doesn't say WHICH of several
                 // items (a pack can hold several slots, a pawn can carry several ammo types) is the actual
                 // gap. Same "- item: status" convention as Dialog_SquadSetup's own Supply-badge tooltip.
-                // Dieselbe Mengenpruefung wie die Segmente darueber (2026-08-09) - sonst behauptet der Tooltip
-                // "ausgeruestet", waehrend der Streifen daneben rot ist, und das ist genau die Sorte
-                // Widerspruch, die diese Zelle schon einmal produziert hat.
-                // .ToString() an jedem LabelCap (2026-08-17, dieselbe Falle wie beim Waffen-Tooltip, per
-                // Regel-7-Grep gefunden): ohne das wird der ganze Einzeiler zu einer TaggedString, und ihre
-                // Rueckwandlung in `string tip` loescht die Farbe, die FulfillWordColored gerade gesetzt hat -
-                // das Statuswort stand hier also schwarz-weiss da. Die Mehrzeiler-Zweige kamen nur davon,
-                // weil string.Join ueber ToString() geht.
+                // The same quantity check as the segments above - otherwise the tooltip claims
+                // "equipped" while the bar next to it is red, and that is exactly the kind of
+                // contradiction this cell has produced before.
+                // .ToString() on every LabelCap (same trap as in the weapon tooltip, found by grepping
+                // for the same pattern): without it the whole one-liner becomes a TaggedString, and its
+                // conversion back into `string tip` strips the color FulfillWordColored just set -
+                // so the status word appeared here in black and white. The multi-line branches only got
+                // away with it because string.Join goes through ToString().
                 tip = list.Count == 1
                     ? itemLabel + ": " + list[0].LabelCap.ToString() + " - " + LoadoutUtility.FulfillWordColored(SingleFulfillStatus(pawn, list[0], NeededOf(neededFor, list[0]))) + "."
                     : itemLabel + ":\n" + string.Join("\n", list.Select(d => "- " + d.LabelCap.ToString() + ": " + LoadoutUtility.FulfillWordColored(SingleFulfillStatus(pawn, d, NeededOf(neededFor, d)))));
             }
-            // Feste Id je Zelle (2026-08-30, siehe LoadoutUtility.DrawFetchGearButton): der Text nennt Bestand und
-            // Produktion, die sich im Spiel laufend aendern - ohne feste Id geht der Kasten bei jeder Aenderung zu.
+            // Fixed id per cell (see LoadoutUtility.DrawFetchGearButton): the text names stock and
+            // production, which change constantly during play - without a fixed id the box closes on every change.
             string tipText = tip;
             TooltipHandler.TipRegion(outline, new TipSignal(() => tipText, TipId(pawn, list != null && list.Count > 0 ? list[0] : null, 0x11)));
             return outline;
@@ -3668,10 +3627,10 @@ namespace CEReloaded
         private void DrawWeaponStatusDot(Rect btnRect, Pawn pawn, ThingDef mainW)
         {
             if (mainW == null) return;
-            FulfillStatus status = SingleFulfillStatus(pawn, mainW);   // fuer den Werkbank-Klick unten
-            // ALLE Posten, die diese Zelle vertritt (2026-08-30) - bei unseren Vorlagen genau die
-            // Hauptwaffe, bei einem CE-eigenen Loadout auch Gladius, Mahlzeiten, Medizin. Anteilig wie die
-            // Nachbarzellen (CapToNeed), aus derselben Aufstellung wie der Tooltip.
+            FulfillStatus status = SingleFulfillStatus(pawn, mainW);   // for the workbench click below
+            // ALL entries this cell represents - for our templates exactly the main weapon, for a CE-native
+            // loadout also gladius, meals, medicine. Proportional like the neighbouring cells (CapToNeed),
+            // from the same breakdown as the tooltip.
             List<WeaponCellItem> items = GetRowInfo(pawn).weaponCellItems;
             var seg = new LoadoutUtility.AvailabilitySegments { missingIsPawnSpecific = pawn != null, pawnContext = pawn != null };
             if (items != null && items.Count > 0)
@@ -3682,13 +3641,13 @@ namespace CEReloaded
             Rect outline = WeaponDotRect(btnRect);
             LoadoutUtility.DrawAvailabilityBar(outline, seg, horizontal: false, drawTooltip: false);
 
-            // Der KLICK bleibt ungebremst - er muss in jedem Bild angeboten werden, sonst geht er verloren.
-            // Nur der Tooltip-TEXT darunter wandert hinter die Maus-Pruefung (siehe LoadoutUtility.TipWanted):
-            // er zieht eine volle Bestandsaufstellung und lief bisher pro Kolonist pro Bild.
-            // Mouse.IsOver zuerst (2026-08-13): FindActiveBillBench ist als
-            // einzige der Auftrags-Abfragen UNGECACHT und laeuft ueber jede Werkbank und jeden Auftragsstapel.
-            // Der Klick darunter kann ohnehin nur ausloesen, wenn der Zeiger drin steht - also braucht auch
-            // die Suche nach der Werkbank nur dann zu laufen.
+            // The CLICK stays unthrottled - it has to be offered every frame, otherwise it gets lost.
+            // Only the tooltip TEXT below moves behind the mouse check (see LoadoutUtility.TipWanted):
+            // it pulls a full stock breakdown and used to run per colonist per frame.
+            // Mouse.IsOver first: FindActiveBillBench is the
+            // only one of the bill queries that is UNCACHED and walks every workbench and every bill stack.
+            // The click below can only trigger when the pointer is inside anyway - so the workbench search
+            // only needs to run then too.
             if (!Mouse.IsOver(outline)) return;
             Building_WorkTable queuedBench = status == FulfillStatus.InProduction ? LoadoutUtility.FindActiveBillBench(mainW) : null;
             if (queuedBench != null && Widgets.ButtonInvisible(outline)) LoadoutUtility.OpenBillsTab(queuedBench);
@@ -3700,19 +3659,18 @@ namespace CEReloaded
             // instead of a flat "status word" line - the bar's own color still comes from `seg`/SingleFulfill
             // Status above (the fast, per-frame-claim-decrementing check correct for THIS pending plan), only
             // the TOOLTIP TEXT is upgraded to the full Total/Equipped/Available/... block.
-            // Vierte Fundstelle desselben Rumpfs (2026-08-15, per Regel-7-Grep vom SYMPTOM aus - gesucht
-            // war BuildAvailabilityTooltip, nicht die Funktion, die ich gerade angefasst hatte). need = 0
-            // ist hier KEINE Willkuer, sondern genau das, was der Aufruf vorher tat: er liess neededCount
-            // weg, und dessen Vorgabewert ist 0 - damit bleibt der rote "fehlt"-Abschnitt aus. Mit 1 haette
-            // dieser Tooltip bei einer Waffe ohne Bestand plotzlich eine Fehlmenge behauptet, die die
-            // anderen Zellen dort nicht zeigen.
-            // Seit 2026-08-30 mit Bedarf 1 statt 0 und aus dem Cache - dieselbe Zahl wie im Streifen darueber.
+            // Fourth occurrence of the same body (found by grepping from the SYMPTOM - the search was for
+            // BuildAvailabilityTooltip, not for the function that had just been changed). need = 0
+            // is NOT arbitrary here but exactly what the call did before: it omitted neededCount, whose
+            // default is 0 - so the red "missing" segment stays off. With 1 this tooltip would suddenly
+            // have claimed a shortfall for a weapon without stock that the other cells there don't show.
+            // Now uses need 1 instead of 0 and comes from the cache - the same number as in the bar above.
             var richSeg = RichSegCached(RichStock.Weapon, pawn, mainW, 1);
-            // Ueberschrift und Schlusszeile gehen als PARAMETER hinein, statt aussen herumgebaut zu werden
-            // (2026-08-17: im Tooltip fehlte die Faerbung, mit Screenshots belegt). Der alte
-            // Ausdruck machte aus der ganzen Kette eine TaggedString, und deren Rueckwandlung in `string tip`
-            // loeschte jedes <color>, das die Aufstellung gerade eingebaut hatte - der Waffen-Tooltip war
-            // deshalb als einziger schneeweiss. Begruendung in voller Laenge ueber BuildAvailabilityTooltip.
+            // Heading and closing line are passed in as PARAMETERS instead of being built around it (the
+            // tooltip was missing its coloring). The old
+            // expression turned the whole chain into a TaggedString, and its conversion back into `string tip`
+            // stripped every <color> the breakdown had just inserted - the weapon tooltip was therefore the
+            // only one that was plain white. Full reasoning above BuildAvailabilityTooltip.
             string trailer = "CER_AssignLoadouts_CurrentlyEquippedFmt".Translate(equippedName).ToString();
             if (queuedBench != null) trailer += "CER_AssignLoadouts_QueuedOnBenchFmt".Translate(queuedBench.LabelCap).ToString();
             if (items == null || items.Count <= 1)
@@ -3721,17 +3679,17 @@ namespace CEReloaded
                 TooltipHandler.TipRegion(outline, new TipSignal(() => oneTip, TipId(pawn, mainW, 0x12)));
                 return;
             }
-            // Ein Block je Posten, wie die Pack-Zelle es fuer ihren Inhalt macht (2026-08-30: im Tooltip stehen
-            // alle Posten). Die Hauptwaffe steht vorn, die Schlusszeile bleibt.
+            // One block per entry, as the pack cell does for its contents (the tooltip lists all entries).
+            // The main weapon comes first, the closing line stays.
             string tip = string.Join("\n\n", items.Select(it =>
                 CellItemTooltip(it.kind, pawn, it.def, it.need, "<b>" + it.def.LabelCap.ToString() + (it.need > 1 ? " x" + it.need : "") + "</b>", compact: items.Count > 2)));
             string weaponTip = tip + "\n\n" + trailer;
             TooltipHandler.TipRegion(outline, new TipSignal(() => weaponTip, TipId(pawn, mainW, 0x13)));
         }
 
-        // Hier gehoert die VOLLE Zelle herein, nicht der Knopf-Rect - VisualCell() zieht DotReserveW
-        // selbst ab. (2026-08-10 kurz falsch herum gebaut und sofort zurueckgenommen: den schon
-        // verschmaelerten Knopf-Rect zu uebergeben haette den Abzug verdoppelt.)
+        // This takes the FULL cell, not the button rect - VisualCell() subtracts DotReserveW itself.
+        // (Briefly built the other way round and immediately reverted: passing the already narrowed
+        // button rect would have doubled the deduction.)
         private static void DrawCellIcon(Rect cell, ThingDef icon, int overflowCount)
         {
             Rect vc = VisualCell(cell);
@@ -3746,12 +3704,11 @@ namespace CEReloaded
                 GUI.color = new Color(1f, 1f, 1f, 0.75f);
                 Text.Font = GameFont.Tiny;
                 Text.Anchor = TextAnchor.LowerLeft;
-                // Das Abzeichen wird nach LINKS gerueckt, wenn es sonst hinausliefe - NICHT in der Breite
-                // gekappt (2026-08-12, im Test gefunden: das Abzeichen zeigte nur '2' statt '+2' - das Plus
-                // war abgeschnitten). Genau das war der Fehler der ersten Deckelung vom
-                // 2026-08-10: sie begrenzte die BREITE auf vc.xMax, und sobald der Rest schmaler war als
-                // der Text, schnitt Unity ihn ab. Der Text muss immer ganz da sein; verschieben darf man
-                // ihn, abschneiden nicht.
+                // The badge is shifted to the LEFT if it would otherwise run out - NOT clipped in width
+                // (the badge showed only '2' instead of '+2' - the plus was cut off). That was exactly the
+                // bug of the first cap: it limited the WIDTH to vc.xMax, and as soon as the remainder was
+                // narrower than the text, Unity cut it off. The text must always be complete; it may be
+                // moved, not clipped.
                 string badge = "CER_AssignLoadouts_OverflowCountFmt".Translate(overflowCount.ToString());
                 float badgeW = Text.CalcSize(badge).x + 1f;
                 float badgeX = Mathf.Min(iconRect.xMax - 2f, vc.xMax - badgeW);
@@ -3801,8 +3758,8 @@ namespace CEReloaded
                 GUI.color = new Color(1f, 1f, 1f, 0.35f);
                 if (iconOnly)
                 {
-                    // Leerzustand auf DIESELBE Geometrie wie eine gefuellte Zelle (2026-08-11) - und das ist
-                    // seit 2026-08-14 die volle Zelle, siehe den Kommentar an DotReserveW.
+                    // Empty state on the SAME geometry as a filled cell - which is now the full cell, see
+                    // the comment at DotReserveW.
                     DrawCellDash(cell);
                     Text.Font = GameFont.Small;
                     return;
@@ -3822,23 +3779,22 @@ namespace CEReloaded
             if (RoleUtility.IsRoleLoadout(currentLoadout))
             {
                 Dialog_SquadSetup.ExtractRoleDisplayContent(currentLoadout, out _, out List<Def> roleContent);
-                // Volle Zelle, exakt wie jeder andere Pfad (2026-08-12 stand hier ein 24px-Streifen, damit
-                // der Rollen-Zweig genauso breit zeichnete wie der normale; seit 2026-08-14 zieht ihn kein
-                // Pfad mehr ab, siehe Kommentar an DotReserveW). Ein Einfuege-Knopf gehoert hier ohnehin
-                // nicht hin - eine Rolle bearbeitet man im Roles-Tab, nicht pro Kolonist.
+                // Full cell, exactly like every other path (there used to be a 24px strip here so the role
+                // branch drew as wide as the normal one; no path subtracts it any more, see the comment at
+                // DotReserveW). A paste button doesn't belong here anyway - a role is edited in the Roles
+                // tab, not per colonist.
                 Rect roleCell = cell;
                 Rect roleBtnRect = new Rect(roleCell.x, roleCell.y, roleCell.width - DotReserveW, roleCell.height);
-                // SICHTBAR deaktiviert statt nur wirkungslos (2026-08-15): ein Teil, der sich wegen einer
-                // Rolle nicht aendern laesst, bekommt einen ausgegrauten Knopf - nichts Eigenes, so wie
-                // Vanilla es machen wuerde.
-                // Genau das tut GUI.enabled = false: RimWorlds eigener Knopf zeichnet sich damit grau und
-                // nimmt keinen Klick an - kein Nachbau, keine eigene Farbe (nie
-                // durchstreichen fuer "deaktiviert"). Nur die Knopfflaeche, nicht der Inhalt: Symbol,
-                // Zahl und Verfuegbarkeits-Streifen darunter sind Information und bleiben lesbar.
-                // Eigener Grauton statt GUI.enabled (2026-08-16, im Test paarweise gemessen:
-                // gesperrte und normale Zelle lieferten beide 106,81,46, Abweichung null). GUI.enabled
-                // sperrt den Klick - gezeichnet hat es nie etwas, weil RimWorlds Knopfgrafik ueber
-                // GUI.DrawTexture laeuft. Siehe LoadoutUtility.TintedButton.
+                // VISIBLY disabled instead of merely ineffective: a part that can't be changed because of a
+                // role gets a greyed-out button - nothing custom, the way vanilla would do it.
+                // That is exactly what GUI.enabled = false does: RimWorld's own button draws itself grey and
+                // accepts no click - no reimplementation, no custom color (never
+                // strike through for "disabled"). Only the button surface, not the content: icon,
+                // number and availability bar below are information and stay readable.
+                // Own grey tone instead of GUI.enabled (measured side by side: locked and normal cells both
+                // rendered 106,81,46, zero difference). GUI.enabled
+                // blocks the click - it never drew anything, because RimWorld's button graphic goes through
+                // GUI.DrawTexture. See LoadoutUtility.TintedButton.
                 LoadoutUtility.TintedButton(roleBtnRect, null, disabled: true);
                 if (roleContent.Count == 0) DrawCellDash(roleCell);
                 else
@@ -3847,16 +3803,15 @@ namespace CEReloaded
                     DrawCellIcon(roleCell, repIcon, roleContent.Count > 1 ? roleContent.Count : 0);
                 }
                 Text.Font = GameFont.Small;
-                // Der Verfuegbarkeits-Streifen fehlte in DIESEM Zweig komplett (2026-08-14, im Test
-                // gemessen): ein Kolonist mit direkt angehaengtem Pack bekam sein farbiges Rechteck, ein
-                // Kolonist mit demselben Pack ueber eine ROLLE gar keins - ausgerechnet dort, wo am ehesten
-                // etwas fehlt. Der Zweig kehrt vor dem Aufruf weiter unten zurueck und hatte nie einen
-                // eigenen.
-                // CarriedPackSlots, dieselbe Quelle wie der normale Pfad: die kennt Pack-Inhalte AUS EINER
-                // ROLLE (GetPawnPacks kennt nur direkt angehaengte Pack-Objekte, und ueber eine Rolle kommt
-                // keins - genau deshalb ist diese Funktion am 13.08. entstanden). Damit beantworten beide
-                // Zweige die Frage aus demselben Topf, statt zwei Rechnungen zu haben.
-                // Aus GetRowInfo (Frame-Cache) - dieselbe Quelle wie der normale Zweig unten.
+                // The availability bar was missing entirely in THIS branch: a colonist with a directly
+                // attached pack got its colored rectangle, a colonist with the same pack via a ROLE got
+                // none at all - precisely where something is most likely missing. The branch returns before
+                // the call further down and never had its own.
+                // CarriedPackSlots, the same source as the normal path: it knows pack contents FROM A
+                // ROLE (GetPawnPacks only knows directly attached pack objects, and none come via a role -
+                // that is exactly why this function was created). So both branches answer the question
+                // from the same pool instead of having two calculations.
+                // From GetRowInfo (frame cache) - the same source as the normal branch below.
                 List<LoadoutSlot> rolePackSlots = GetRowInfo(pawn).packSlots;
                 Rect rolePackDot = DrawFulfillDot(roleCell, pawn, rolePackSlots.Select(s => (Def)s.thingDef ?? s.genericDef),
                     "CER_AssignLoadouts_LabelPack",
@@ -3868,18 +3823,17 @@ namespace CEReloaded
                 return;
             }
 
-            // Kein eigener Einfuege-Streifen mehr in dieser Zelle (2026-08-13): es gibt genau EINE Spalte
-            // dafuer, ganz rechts hinter "Sonstiges" - siehe DrawPasteColumn. Die Zelle bekommt dadurch die
-            // Breite zurueck, die sie hier dauerhaft reserviert hatte, obwohl die Ablage immer nur ein
-            // Objekt haelt.
+            // No paste strip of its own in this cell any more: there is exactly ONE column for that, on the
+            // far right after "Other" - see DrawPasteColumn. The cell thereby gets back the width it had
+            // permanently reserved here, even though the clipboard only ever holds one object.
             // Per-pawn, via the pawn's own hidden personal anchor (AmmoAssignmentUtility) - never the
             // shared template, so two colonists on the same weapon loadout can carry different packs. A
             // pawn can carry several packs at once, so this opens a checklist rather than a single-pick FloatMenu.
             List<Loadout> attached = GetRowInfo(pawn).packs;
-            // Als lokale Funktion statt als Variable (2026-08-13): in der
-            // kompakten Ansicht (iconOnly) braucht sie NUR der Tooltip, und der wird seit heute nur
-            // noch unter der Maus gebaut. Vorher lief die Verkettung pro Zelle pro Zeile pro Bild ins
-            // Leere. Direkt aufgerufen kostet eine lokale Funktion keine Zuweisung auf dem Heap.
+            // As a local function instead of a variable: in the
+            // compact view (iconOnly) ONLY the tooltip needs it, and that is now only built
+            // under the mouse. Previously the concatenation ran per cell per row per frame for
+            // nothing. Called directly, a local function costs no heap allocation.
             string Label() => attached.Count > 0 ? string.Join(", ", attached.Select(a => EquipmentPackUtility.StripMarker(a.label))) : "CER_AssignLoadouts_PackNoneLabel".Translate().ToString();
             Rect btnRect = new Rect(cell.x, cell.y, cell.width - DotReserveW, cell.height);
             bool clicked;
@@ -3893,14 +3847,14 @@ namespace CEReloaded
             {
                 clicked = Widgets.ButtonText(btnRect, "CER_AssignLoadouts_PackPrefixFmt".Translate(Label().Truncate(btnRect.width - 40f))) | (extraHit.HasValue && Widgets.ButtonInvisible(extraHit.Value));
             }
-            // ItemSegFor gibt die echte koloniweite Aufstellung fuer einen Pack-Gegenstand (konkret oder
-            // generisch) - dieselbe Quelle, die auch der Pack-Editor benutzt, statt eines zweiten
-            // Bestands-Durchlaufs hier. BuildAvailabilitySegments nimmt dort auch einen generischen Def
-            // (2026-08-01: "Any Perishable Meal" zeigte immer "Equipped: 0", obwohl der
-            // Kolonist eine passende Mahlzeit traegt).
-            // Inhalt aus CarriedPackSlots (2026-08-13) - siehe dessen Kommentar: `attached` kennt nur direkt
-            // angehaengte Pack-OBJEKTE, und was ueber eine Rolle kommt, ist keins. Genau deshalb fehlte im
-            // Tooltip ausgerechnet der Inhalt, der aus der Rolle stammte.
+            // ItemSegFor returns the real colony-wide breakdown for a pack item (concrete or
+            // generic) - the same source the pack editor uses, instead of a second
+            // stock pass here. BuildAvailabilitySegments also accepts a generic def there
+            // ("Any Perishable Meal" always showed "Equipped: 0" even though the
+            // colonist carried a matching meal).
+            // Contents from CarriedPackSlots - see its comment: `attached` only knows directly
+            // attached pack OBJECTS, and what comes via a role isn't one. That is exactly why the
+            // tooltip was missing precisely the contents that came from the role.
             List<LoadoutSlot> packSlots = GetRowInfo(pawn).packSlots;
             Rect packDot = DrawFulfillDot(cell, pawn, packSlots.Select(s => (Def)s.thingDef ?? s.genericDef), "CER_AssignLoadouts_LabelPack",
                 RichStock.Item, neededFor: GetRowInfo(pawn).packNeeded);
@@ -3924,20 +3878,20 @@ namespace CEReloaded
         // with the cell behind it made this trivial to misclick before). A no-op returning `cell` unchanged
         // when nothing of the matching kind has been copied yet, so callers can unconditionally reassign
         // their own `cell` to this call's result with zero cost on the common path.
-        // EINE Einfuege-Spalte fuer die ganze Zellenreihe (2026-08-13: rechts nach "Sonstiges", im
-        // Leerzustand ganz verschwunden). Vorher hatte jede Zelle ihren eigenen
-        // Einfuege-Streifen und reservierte dessen Breite dauerhaft - vier Streifen fuer eine Ablage, die
-        // immer nur EIN Objekt haelt. Der Platz ging an vier Stellen verloren, und
-        // genutzt wurde immer nur eine.
-        // Die Spalte weiss selbst, was gerade in der Ablage liegt, und schreibt es an die richtige Stelle -
-        // deshalb steht die Zuordnung Kennung -> Schreibziel hier und nicht mehr in den Zellen.
-        // PasteColW ist 0, wenn nichts Passendes in der Ablage liegt: die Spalte verschwindet dann ganz und
-        // die vier Zellen bekommen den Platz.
+        // ONE paste column for the whole cell row (on the right after "Other", disappearing entirely when
+        // empty). Previously each cell had its own
+        // paste strip and reserved its width permanently - four strips for a clipboard that
+        // only ever holds ONE object. The space was lost in four places, and
+        // only one was ever used.
+        // The column itself knows what is currently on the clipboard and writes it to the right place -
+        // that is why the mapping kind -> write target lives here and no longer in the cells.
+        // PasteColW is 0 when nothing matching is on the clipboard: the column then disappears entirely
+        // and the four cells get the space.
         internal const float PasteColW = 26f;
 
-        // Der cannotFight-Schutz aus DrawSidearmCell, hierher gezogen, damit ihn beide Ansichten benutzen
-        // (2026-08-13). Einfuegen umgeht die Klick-Sperre der Zelle - ohne diese Pruefung bekaeme ein
-        // Pazifist eine Zweitwaffe, sobald irgendwo Kopieren gedrueckt wurde (Fix vom 2026-08-01).
+        // The cannotFight guard from DrawSidearmCell, moved here so both views use it.
+        // Pasting bypasses the cell's click lock - without this check a pacifist would get a sidearm
+        // as soon as Copy was pressed anywhere.
         internal static void PasteSidearmsGuarded(Pawn pawn, Loadout currentLoadout, List<Loadout> updated)
         {
             if (LoadoutUtility.CannotFight(pawn))
@@ -3952,13 +3906,13 @@ namespace CEReloaded
             || LoadoutClipboard.HasContent("sidearm") || LoadoutClipboard.HasContent("ammo")
             || LoadoutClipboard.HasContent("other") || LoadoutClipboard.HasContent("mainweapon");
 
-        // Sonstige Gegenstaende eines Kolonisten uebernehmen (2026-08-25: "Add other item" hatte keinen
-        // Copy-Knopf und damit auch kein Einfuegen). Gleiche Form wie PasteAmmo:
-        // auf den persoenlichen Anker, erst die eigenen Sonstiges-Slots raeumen (alles, was weder Waffe noch
-        // Munition ist - genau die Menge, die DrawOtherItemsCellInner zeigt), dann die kopierten setzen.
-        // Eine leere Ablage raeumt nur, wie bei Packs. Ohne Vorlage laesst sich kein Anker aufspannen - dann
-        // false, und der Aufrufer meldet nichts (wie PasteAmmo). CEs "None"-Loadout reicht als Vorlage, genau
-        // wie bei Packs und Zweitwaffen.
+        // Take over a colonist's other items ("Add other item" had no Copy button and therefore no
+        // paste either). Same shape as PasteAmmo:
+        // onto the personal anchor, first clear its own Other slots (everything that is neither weapon nor
+        // ammo - exactly the set DrawOtherItemsCellInner shows), then set the copied ones.
+        // An empty clipboard only clears, as with packs. Without a template no anchor can be set up - then
+        // false, and the caller reports nothing (like PasteAmmo). CE's "None" loadout suffices as a
+        // template, just as for packs and sidearms.
         internal static bool PasteOtherItems(Pawn pawn, Loadout currentLoadout, List<LoadoutSlot> slots)
         {
             if (pawn == null) return false;
@@ -3974,26 +3928,26 @@ namespace CEReloaded
             return true;
         }
 
-        // Munition eines Kolonisten uebernehmen (2026-08-13). Schreibt auf denselben persoenlichen Anker,
-        // den auch das Munitions-Fenster benutzt: erst dessen eigene Munitionsslots raeumen, dann die
-        // kopierten setzen. SetAmmoCleared wie dort - bleibt nach dem Einfuegen gar keine Munition uebrig,
-        // muss der Anker ausdruecklich als "geleert" gelten, sonst kommt die Vorlagen-Voreinstellung still
-        // zurueck (siehe Dialog_ChangeAmmo, derselbe Fall beim Abhaken der letzten Sorte).
+        // Take over a colonist's ammo. Writes to the same personal anchor
+        // the ammo window uses: first clear its own ammo slots, then set the
+        // copied ones. SetAmmoCleared as there - if no ammo at all remains after pasting, the anchor must
+        // explicitly count as "cleared", otherwise the template default silently comes back (see
+        // Dialog_ChangeAmmo, the same case when unticking the last type).
         internal static bool PasteAmmo(Pawn pawn, Loadout currentLoadout, List<LoadoutSlot> slots)
         {
             if (pawn == null) return false;
-            // pawn.GetLoadout() als dritter Rueckgriff wie in PasteOtherItems: ohne ihn war ein Kolonist
-            // mit null-currentLoadout der eine Pfad, auf dem der Klick GAR NICHTS sagte - kein Schreiben,
-            // keine Meldung (return false heisst fuer den Aufrufer "schon gemeldet", was hier nie stimmte).
+            // pawn.GetLoadout() as a third fallback as in PasteOtherItems: without it, a colonist with a
+            // null currentLoadout was the one path on which the click said NOTHING AT ALL - no write,
+            // no message (return false means "already reported" to the caller, which was never true here).
             Loadout template = AmmoAssignmentUtility.DisplayLoadout(currentLoadout) ?? currentLoadout ?? pawn.GetLoadout();
             if (template == null) return false;
             Loadout link = AmmoAssignmentUtility.EnsureAmmoLink(pawn, template);
             if (link == null) return false;
 
-            // Leere Ablage raeumt das Ziel auf - der Vertrag steht seit je an LoadoutClipboard.CopyAmmo
-            // ("einfuegen raeumt beim Ziel auf"), war aber nie gebaut: eine leere Kopie lief in die
-            // "passt nichts"-Meldung bzw. tat still gar nichts, und die Einfuege-Spalte versprach ein
-            // Einfuegen, das es strukturell nicht geben konnte (Lauf 2026-08-26, Rollen-Kolonist).
+            // An empty clipboard clears the target - the contract has always been stated at
+            // LoadoutClipboard.CopyAmmo ("pasting clears the target"), but was never built: an empty copy
+            // ran into the "nothing fits" message or silently did nothing, and the paste column promised a
+            // paste that structurally could not exist (seen on a role colonist).
             List<LoadoutSlot> srcAll = slots ?? new List<LoadoutSlot>();
             if (srcAll.Count == 0)
             {
@@ -4004,15 +3958,15 @@ namespace CEReloaded
                 return true;
             }
 
-            // Nur uebernehmen, was zu einer Waffe DIESES Kolonisten passt (2026-08-13, Variante
-            // "b) mit deutlicher Warnmeldung").
-            // Vorher landete alles unveraendert auf seinem Anker - und weil eine eigene Munitionsliste JEDE
-            // geerbte verdraengt (Patch_Loadout_MultiParentSlots), stand ein Kolonist mit anderer Waffe danach
-            // ganz ohne passende Munition da: seine eigenen Sorten weg, die eingefuegten gehoeren zu keiner
-            // seiner Waffen. Im Test genau so gemessen (.45 Colt auf einen KS-23-Traeger).
-            // Bleibt nichts uebrig, wird GAR NICHTS geschrieben - sonst waere er nach dem Einfuegen schlechter
-            // dran als vorher, und das ist der Fall, den (b) ausdruecklich verhindern soll.
-            var fitting = new HashSet<Def>(LoadoutUtility.DefRefComparer.Instance);   // siehe BuildClaimsUncached
+            // Only take over what fits a weapon of THIS colonist (with a clear warning message for the
+            // rest).
+            // Previously everything landed unchanged on their anchor - and because an own ammo list
+            // displaces EVERY inherited one (Patch_Loadout_MultiParentSlots), a colonist with a different
+            // weapon was left without any matching ammo: their own types gone, the pasted ones belonging to
+            // none of their weapons. Observed exactly like that (.45 Colt pasted onto a KS-23 carrier).
+            // If nothing remains, NOTHING is written - otherwise they would be worse off after pasting than
+            // before, which is exactly the case the warning variant is meant to prevent.
+            var fitting = new HashSet<Def>(LoadoutUtility.DefRefComparer.Instance);   // see BuildClaimsUncached
             if (link.Slots != null)
                 foreach (LoadoutSlot ws in link.Slots)
                     if (ws.thingDef != null && ws.thingDef.IsWeapon && !LoadoutUtility.IsSelfAmmoWeapon(ws.thingDef))
@@ -4034,79 +3988,77 @@ namespace CEReloaded
                 link.RemoveSlot(own);
             foreach (LoadoutSlot s in slots ?? new List<LoadoutSlot>())
                 link.AddSlot(s.thingDef != null ? new LoadoutSlot(s.thingDef, s.count) : new LoadoutSlot(s.genericDef, s.count));
-            // IsAmmoSlot (2026-08-14): eingefuegt werden auch generische Eintraege ("Any ammo for X"). Mit
-            // dem alten Nur-Konkret-Test galt ein rein generisches Einfuegen als "gar keine Munition" und
-            // markierte den Kolonisten als bewusst leer - er stand damit spaeter ohne alles da.
+            // IsAmmoSlot: generic entries ("Any ammo for X") get pasted too. With the old concrete-only
+            // test a purely generic paste counted as "no ammo at all" and marked the colonist as
+            // deliberately empty - they later ended up with nothing.
             AmmoAssignmentUtility.SetAmmoCleared(link, !link.OwnSlots.Any(LoadoutUtility.IsAmmoSlot));
             LoadoutUtility.InvalidateAmmoOwnership();
-            // Beim TEILfall hat PasteAmmo schon selbst gemeldet, was uebernommen und was weggelassen wurde -
-            // dann waere die pauschale Erfolgsmeldung des Aufrufers eine zweite, ungenauere Aussage ueber
-            // denselben Klick. false heisst hier also nicht "fehlgeschlagen", sondern "ich habe es schon gesagt".
+            // In the PARTIAL case PasteAmmo has already reported itself what was taken over and what was
+            // left out - the caller's blanket success message would then be a second, less precise
+            // statement about the same click. So false here doesn't mean "failed" but "already reported".
             return dropped == 0;
         }
 
-        // Zeichnet die Spalte und schreibt beim Klick dorthin, wo der Inhalt hingehoert.
+        // Draws the column and, on click, writes the content to where it belongs.
         internal static void DrawPasteColumn(Rect r, Pawn pawn, Loadout currentLoadout,
             Action<List<Loadout>> applyPacks, Action<List<Loadout>> applySidearms, Action<Loadout> applyMain = null)
         {
             bool isPack = LoadoutClipboard.HasContent("pack");
             bool isSide = LoadoutClipboard.HasContent("sidearm");
             bool isAmmo = LoadoutClipboard.HasContent("ammo");
-            // Sonstiges als vierte Sorte (2026-08-25: "Add other item" hatte keinen Copy-Knopf und damit
-            // auch kein Einfuegen) - Slot-Kopien wie bei Munition, siehe
-            // LoadoutClipboard.CopyOther und PasteOtherItems.
+            // Other as the fourth kind ("Add other item" had no Copy button and therefore no paste
+            // either) - slot copies as with ammo, see
+            // LoadoutClipboard.CopyOther and PasteOtherItems.
             bool isOther = LoadoutClipboard.HasContent("other");
-            // Hauptwaffen-Zuweisung als fuenfte Sorte (2026-09-03, "choose a weapon soll auch einen copy
-            // button bekommen, und beim einfuegen dann beruecksichtigt werden") - kopiert im
-            // Auswahlfenster, eingefuegt hier.
+            // Main weapon assignment as the fifth kind (the weapon picker has a Copy button too, and
+            // pasting must honor it) - copied in the picker window, pasted here.
             bool isMain = applyMain != null && LoadoutClipboard.HasContent("mainweapon");
             if (!isPack && !isSide && !isAmmo && !isOther && !isMain) return;
             string label = (isPack ? "CER_AssignLoadouts_LabelPack"
                 : isSide ? "CER_AssignLoadouts_LabelSidearmsPlural"
                 : isOther ? "CER_AssignLoadouts_LabelOther"
                 : isMain ? "CER_AssignLoadouts_LabelMainWeapon" : "CER_AssignLoadouts_LabelAmmo").Translate();
-            // Ein sichtbarer Streifen, nicht nur ein Hervorheben unter der Maus (2026-09-04, zweiter Befund
-            // derselben Sache): eine Spalte, die man erst sieht, wenn die Maus zufaellig darauf steht, ist
-            // fuer jeden unsichtbar, der sie SUCHT. Dezent bleibt sie trotzdem - dieselbe Zurueckhaltung wie
-            // beim Symbol ("das paste icon ist etwas zu zach, mach das dezenter").
+            // A visible strip, not just a highlight under the mouse: a column you only see when the mouse
+            // happens to rest on it is invisible to anyone LOOKING for it. It stays subtle nonetheless -
+            // the same restraint as with the icon.
             GUI.color = new Color(1f, 1f, 1f, 0.07f);
             GUI.DrawTexture(r, BaseContent.WhiteTex);
             GUI.color = Color.white;
             if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            // DAS SYMBOL, das beim Zusammenlegen verlorengegangen ist (2026-08-23, im Test aufgefallen:
-            // "'Copy' verweist auf eine Einfuege-Spalte, die ich nicht gefunden habe" - an vier Stellen gesucht).
-            // Kein Wunder: diese Spalte zeichnete AUSSER einem Hervorheben
-            // unter der Maus nichts. Sie war eine unsichtbare Klickflaeche, und ein Erklaertext, den man
-            // nur findet, wenn man zufaellig darueberfaehrt, hilft niemandem.
-            // Die abgeloeste zelleigene Fassung (DrawPasteButton, direkt darunter, hat seit dem
-            // Zusammenlegen keine Aufrufer mehr) hat das Symbol die ganze Zeit gezeichnet - beim
-            // Umbau ist genau diese eine Zeile nicht mitgewandert. Gleiche Deckkraft wie dort, damit
-            // die Spalte dezent bleibt: das Einfuege-Symbol soll dezent und weiss sein, nicht bunt.
+            // THE ICON that was lost when the columns were merged (the Copy tooltip pointed to a paste
+            // column that could not be found).
+            // No wonder: apart from a highlight
+            // under the mouse this column drew nothing. It was an invisible click area, and an explanation
+            // you only find by accidentally hovering over it helps nobody.
+            // The replaced per-cell version (DrawPasteButton, directly below, has had no callers since the
+            // merge) drew the icon all along - this one line just didn't move over in the
+            // rework. Same opacity as there, so the
+            // column stays subtle: the paste icon should be subtle and white, not colorful.
             GUI.color = new Color(1f, 1f, 1f, 0.65f);
             LoadoutUtility.DrawPasteIcon(r.ContractedBy(2f));
             GUI.color = Color.white;
 
             if (Widgets.ButtonInvisible(r))
             {
-                // Fehlt diese Zeile, waehrend die MouseUp-Zeile darueber steht, liegt es am Klick selbst
-                // und nicht an einer der Sperren darunter.
-                // Die Vollzugsmeldung erst NACH der Vorbedingung (2026-08-13, im Test gefunden):
-                // vorher lief sie unbedingt, auch wenn das Ziel die Zweitwaffe gar nicht annehmen konnte -
-                // "Pasted..." fuer etwas, das nie passiert ist. Die Pruefung steht hier und nicht nur in den
-                // beiden apply-Aktionen, weil nur hier bekannt ist, ob die MELDUNG noch kommen soll.
-                // DREI Wege, EINE Rueckmeldungsregel (2026-08-13, im Test: Munition meldete immer etwas,
-                // auch faelschlich; Packs und Zweitwaffen meldeten gar nichts - als Spieler wusste man nach
-                // dem Klick nicht, ob etwas passiert ist).
-                // Zwei getrennte Fehler steckten darin. Erstens lief die pauschale Erfolgsmeldung frueher
-                // UNBEDINGT, auch wenn PasteAmmo gerade abgelehnt hatte - dann standen "Nichts eingefuegt"
-                // und "Eingefuegt" gleichzeitig da. Zweitens gab es sie fuer Packs und Zweitwaffen gar nicht,
-                // weil deren apply-Aktionen still sind.
-                // Jetzt sagt der Schreibende zurueck, ob er wirklich geschrieben hat (PasteAmmo), und die
-                // Erfolgsmeldung kommt genau dann - fuer alle drei Sorten gleich.
-                // Rollen-Kolonisten nehmen nichts an (2026-08-25): ihre Pack-, Zweitwaffen-
-                // und Sonstiges-Zellen sind gesperrt ("edit the Role itself"), die Einfuege-Spalte schrieb aber
-                // trotzdem auf den Anker - unsichtbar, und ohne Rueckweg ausser einer leeren Ablage. Munition
-                // bleibt erlaubt, die Munitionszelle ist bei Rollen bearbeitbar.
+                // If this line is missing while the MouseUp line above is present, the problem is the click
+                // itself and not one of the locks below.
+                // The completion message only AFTER the precondition: previously it ran
+                // unconditionally, even when the target could not accept the sidearm at all -
+                // "Pasted..." for something that never happened. The check sits here and not only in the
+                // two apply actions, because only here is it known whether the MESSAGE should still come.
+                // THREE paths, ONE feedback rule (ammo always reported something, even wrongly; packs and
+                // sidearms reported nothing at all - after the click the player couldn't tell whether
+                // anything had happened).
+                // Two separate bugs were involved. First, the blanket success message used to run
+                // UNCONDITIONALLY, even when PasteAmmo had just declined - then "Nothing pasted"
+                // and "Pasted" showed at the same time. Second, it didn't exist for packs and sidearms at
+                // all, because their apply actions are silent.
+                // Now the writer reports back whether it really wrote (PasteAmmo), and the
+                // success message comes exactly then - the same for all three kinds.
+                // Role colonists accept nothing: their pack, sidearm
+                // and Other cells are locked ("edit the Role itself"), but the paste column still wrote
+                // to the anchor - invisibly, and with no way back except an empty clipboard. Ammo
+                // stays allowed, the ammo cell is editable for roles.
                 if ((isPack || isSide || isOther) && RoleUtility.IsRoleLoadout(currentLoadout))
                 {
                     Messages.Message("CER_AssignLoadouts_PasteRoleRejectMsg".Translate(pawn.LabelShortCap), MessageTypeDefOf.RejectInput, false);
@@ -4115,13 +4067,12 @@ namespace CEReloaded
                 {
                     Messages.Message("CER_AssignLoadouts_CannotFightMsg".Translate(pawn.LabelShortCap), MessageTypeDefOf.RejectInput, false);
                 }
-                // Dieselbe Grenze fuer PACKS wie die Pack-Zelle selbst (2026-08-15, Review-Befund): die
-                // Zelle eines Babys zeigt nur einen Strich, die Einfuege-Spalte hat frueher trotzdem
-                // geschrieben und "Eingefuegt" gemeldet. Danach hing das Pack an einem Kolonisten, der es
-                // ueber die eigene Zelle nicht mehr loswerden konnte - es gab dort keinen Bedienweg mehr.
-                // Die Vorschau-Zwillingsstelle in Dialog_SquadSetup prueft das laengst; hier stand es nur
-                // fuer Zweitwaffen. Als Meldung und nicht als verschwundener Knopf, aus demselben Grund
-                // wie eine Zeile darueber: ein Klick ohne jede Rueckmeldung war schon einmal ein Fehlerbericht.
+                // The same limit for PACKS as the pack cell itself (found in review): a baby's cell shows
+                // only a dash, but the paste column used to write anyway and report "Pasted". Afterwards the
+                // pack hung on a colonist who could no longer get rid of it via their own cell - there was
+                // no control path left. The preview twin in Dialog_SquadSetup has long checked this; here it
+                // was only done for sidearms. As a message and not as a vanished button, for the same reason
+                // as one line above: a click without any feedback looks like a bug.
                 else if ((isPack || isOther) && LoadoutUtility.CannotCarryAnything(pawn))
                 {
                     Messages.Message("CER_AssignLoadouts_CannotCarryMsg".Translate(pawn.LabelShortCap), MessageTypeDefOf.RejectInput, false);
@@ -4133,8 +4084,8 @@ namespace CEReloaded
                     else if (isSide) applySidearms(LoadoutClipboard.Items);
                     else if (isMain)
                     {
-                        // Nur eine noch existierende Vorlage einfuegen - die Ablage kann eine inzwischen
-                        // geloeschte halten (z.B. nach 'Delete own loadouts').
+                        // Only paste a template that still exists - the clipboard may hold one that has since
+                        // been deleted (e.g. after 'Delete own loadouts').
                         Loadout mlo = (LoadoutClipboard.Items ?? new List<Loadout>())
                             .FirstOrDefault(l => l != null && LoadoutManager.Loadouts.Contains(l));
                         if (mlo != null) applyMain(mlo);
@@ -4149,15 +4100,15 @@ namespace CEReloaded
             if (LoadoutUtility.TipWanted(r)) TooltipHandler.TipRegion(r, "CER_AssignLoadouts_PasteTipFmt".Translate(label, LoadoutClipboard.SourceLabel, pawn.LabelShortCap));
         }
 
-        // kind = feste Kennung ("pack"/"sidearm"), label = was in Meldung und Tooltip steht. Getrennt seit
-        // 2026-08-13: vorher war beides derselbe uebersetzte String, und der Knopf erschien nur, wenn zwei
-        // verschiedene Keyed-Schluessel zufaellig denselben Wert hatten (siehe LoadoutClipboard.HasContent).
+        // kind = fixed identifier ("pack"/"sidearm"), label = what appears in the message and tooltip.
+        // Kept separate because both used to be the same translated string, and the button only appeared
+        // when two different Keyed keys happened to have the same value (see LoadoutClipboard.HasContent).
         //
-        // OHNE AUFRUFER seit dem Zusammenlegen auf die gemeinsame Spalte (DrawPasteColumn, direkt darueber).
-        // Absichtlich stehen geblieben ist das nicht - es ist ein Rest, und er war 2026-08-23 sogar
-        // schaedlich: er hielt als einziger das Einfuege-Symbol, waehrend die Spalte, die ihn abgeloest hat,
-        // gar nichts zeichnete. Wer hier etwas aendert, aendert wahrscheinlich die falsche Stelle - die
-        // benutzte ist DrawPasteColumn.
+        // NO CALLERS since the merge into the shared column (DrawPasteColumn, directly above).
+        // It was not kept on purpose - it is a leftover, and at one point it was even
+        // harmful: it alone held the paste icon, while the column that replaced it
+        // drew nothing at all. Whoever changes something here is probably changing the wrong place - the
+        // one in use is DrawPasteColumn.
         internal static Rect DrawPasteButton(Rect cell, string kind, string label, Pawn pawn, Action<List<Loadout>> apply)
         {
             const float pasteW = 20f, gap = 4f;
@@ -4200,24 +4151,24 @@ namespace CEReloaded
 
         private void DrawSidearmCellInner(Rect cell, Pawn pawn, Loadout currentLoadout, bool iconOnly, Rect? extraHit)
         {
-            // Keine Hauptwaffe noetig (2026-08-25): Balork hatte "Weapon: None", eine eingefuegte
-            // Hellebarde erhoehte seine Sperrigkeit, die Zelle zeigte sie aber nicht. Zweitwaffen ohne
-            // Hauptwaffe zuzulassen ging, solange es keine technische Grenze gibt.
-            // Es gibt keine: die Zweitwaffe haengt wie ein Pack am persoenlichen Anker des Kolonisten
-            // (SetPawnSidearms -> EnsureAmmoLink), und der laesst sich auch ueber CEs "None"-Loadout
-            // aufspannen - genau das hat das Einfuegen bewiesen. Nur diese Zelle sperrte auf "hat ein
-            // Loadout" und war damit das Schlupfloch: Einfuegen schrieb, die Zelle schwieg, und erst eine
-            // spaeter zugewiesene Waffe machte die laengst haengende Zweitwaffe sichtbar.
-            // Jetzt dieselbe Grenze wie die Pack-Zelle: nur wer gar nichts tragen kann, bekommt den Strich.
-            // Der Nullfall bleibt (ein Pawn ohne Inventar hat gar kein Loadout-Objekt).
+            // No main weapon needed: a colonist with "Weapon: None" had a pasted halberd that increased
+            // their bulk, but the cell didn't show it. Allowing sidearms without a main weapon was fine
+            // as long as there was no technical limit.
+            // There is none: the sidearm hangs on the colonist's personal anchor like a pack
+            // (SetPawnSidearms -> EnsureAmmoLink), and that can also be spanned over CE's "None" loadout -
+            // exactly what pasting proved. Only this cell was gated on "has a
+            // loadout" and was thus the loophole: pasting wrote, the cell stayed silent, and only a
+            // later-assigned weapon made the long-attached sidearm visible.
+            // Now the same limit as the pack cell: only a colonist who can't carry anything gets the dash.
+            // The null case remains (a pawn without inventory has no loadout object at all).
             Text.Font = GameFont.Tiny;
             if (currentLoadout == null || LoadoutUtility.CannotCarryAnything(pawn))
             {
                 GUI.color = new Color(1f, 1f, 1f, 0.35f);
                 if (iconOnly)
                 {
-                    // Leerzustand auf DIESELBE Geometrie wie eine gefuellte Zelle (2026-08-11) - und das ist
-                    // seit 2026-08-14 die volle Zelle, siehe den Kommentar an DotReserveW.
+                    // Empty state on the SAME geometry as a filled cell - which is now the full cell, see
+                    // the comment at DotReserveW.
                     DrawCellDash(cell);
                     Text.Font = GameFont.Small;
                     return;
@@ -4236,30 +4187,30 @@ namespace CEReloaded
             if (RoleUtility.IsRoleLoadout(currentLoadout))
             {
                 Dialog_SquadSetup.ExtractRoleDisplayContent(currentLoadout, out List<ThingDef> roleContent, out _);
-                // Volle Zelle, exakt wie jeder andere Pfad (2026-08-12 stand hier ein 24px-Streifen, damit
-                // der Rollen-Zweig genauso breit zeichnete wie der normale; seit 2026-08-14 zieht ihn kein
-                // Pfad mehr ab, siehe Kommentar an DotReserveW). Ein Einfuege-Knopf gehoert hier ohnehin
-                // nicht hin - eine Rolle bearbeitet man im Roles-Tab, nicht pro Kolonist.
+                // Full cell, exactly like every other path (there used to be a 24px strip here so the role
+                // branch drew as wide as the normal one; no path subtracts it any more, see the comment at
+                // DotReserveW). A paste button doesn't belong here anyway - a role is edited in the Roles
+                // tab, not per colonist.
                 Rect roleCell = cell;
                 Rect roleBtnRect = new Rect(roleCell.x, roleCell.y, roleCell.width - DotReserveW, roleCell.height);
-                // SICHTBAR deaktiviert, wie in der Pack-Zelle (2026-08-15): bei Rollen nicht benutzbare
-                // Knoepfe sind ausgegraut, so wie Vanilla es macht. Umgesetzt war das zuerst nur an
-                // EINER von DREI Stellen.
-                // Es gibt drei Rollen-Zweige in dieser Datei (Pack, Zweitwaffe, Sonstiges); nur der
-                // erste bekam GUI.enabled = false, die anderen zwei zeichneten weiter einen ganz
-                // normalen Knopf - und der Test hatte genau die eine Zelle geprueft, die schon gefixt war.
-                // Eigener Grauton statt GUI.enabled (2026-08-16, im Test paarweise gemessen:
-                // gesperrte und normale Zelle lieferten beide 106,81,46, Abweichung null). GUI.enabled
-                // sperrt den Klick - gezeichnet hat es nie etwas, weil RimWorlds Knopfgrafik ueber
-                // GUI.DrawTexture laeuft. Siehe LoadoutUtility.TintedButton.
+                // VISIBLY disabled, as in the pack cell: buttons unusable because of a role are greyed
+                // out, the way vanilla does it. At first this was implemented in only
+                // ONE of THREE places.
+                // There are three role branches in this file (pack, sidearm, other); only the
+                // first got GUI.enabled = false, the other two kept drawing a perfectly
+                // normal button - and verification had covered exactly the one cell that was already fixed.
+                // Own grey tone instead of GUI.enabled (measured side by side: locked and normal cells both
+                // rendered 106,81,46, zero difference). GUI.enabled
+                // blocks the click - it never drew anything, because RimWorld's button graphic goes through
+                // GUI.DrawTexture. See LoadoutUtility.TintedButton.
                 LoadoutUtility.TintedButton(roleBtnRect, null, disabled: true);
                 if (roleContent.Count == 0) DrawCellDash(roleCell);
                 else DrawCellIcon(roleCell, roleContent[0], roleContent.Count > 1 ? roleContent.Count : 0);
                 Text.Font = GameFont.Small;
-                // Zweite Fundstelle desselben Lochs (2026-08-14, per Suche vom SYMPTOM aus - aufgefallen
-                // war nur die Pack-Zelle): auch der Rollen-Zweig der Zweitwaffen-Zelle zeichnete gar keinen
-                // Verfuegbarkeits-Streifen. Dieselbe Bestandsquelle wie der normale Pfad unten
-                // (GetWeaponInventory), die geforderte Menge aus den Slots der Rolle selbst.
+                // Second occurrence of the same hole (found by searching from the SYMPTOM - only the pack
+                // cell had been noticed): the sidearm cell's role branch didn't draw any
+                // availability bar either. The same stock source as the normal path below
+                // (GetWeaponInventory), the requested amount from the role's own slots.
                 Rect roleSideDot = DrawFulfillDot(roleCell, pawn, roleContent.Cast<Def>(),
                     "CER_AssignLoadouts_LabelSidearm",
                     RichStock.Weapon, richNeedFor: d => currentLoadout?.Slots?.Where(s => s.thingDef == (ThingDef)d).Sum(s => Mathf.Max(1, s.count)) ?? 1);
@@ -4270,20 +4221,20 @@ namespace CEReloaded
                 return;
             }
 
-            // Kein eigener Einfuege-Streifen mehr in dieser Zelle (2026-08-13) - es gibt eine gemeinsame
-            // Spalte ganz rechts, siehe DrawPasteColumn. Der cannotFight-Schutz von 2026-08-01 ist dorthin
-            // mitgewandert und NICHT entfallen: er hing an genau diesem Callback und war noetig, weil das
-            // Einfuegen die Klick-Sperre weiter unten umgeht - ein Pazifist bekam sonst eine Zweitwaffe,
-            // sobald irgendwo Kopieren gedrueckt worden war.
+            // No paste strip of its own in this cell any more - there is a shared column on the far right,
+            // see DrawPasteColumn. The cannotFight guard moved there along with it and was NOT
+            // dropped: it hung on exactly this callback and was needed because pasting bypasses the click
+            // lock further down - otherwise a pacifist got a sidearm as soon as Copy had been pressed
+            // anywhere.
             List<Loadout> attached = GetRowInfo(pawn).sidearms;
-            // Als lokale Funktion statt als Variable (2026-08-13): in der
-            // kompakten Ansicht (iconOnly) braucht sie NUR der Tooltip, und der wird seit heute nur
-            // noch unter der Maus gebaut. Vorher lief die Verkettung pro Zelle pro Zeile pro Bild ins
-            // Leere. Direkt aufgerufen kostet eine lokale Funktion keine Zuweisung auf dem Heap.
-            // CellLabel statt des rohen Etiketts (2026-08-18, im Test aufgefallen: der Mouseover sagte
-            // "Sidearms attached: W| satchel charge", waehrend dieselbe Zweitwaffe in RimWorlds Loadout-Spalte
-            // und im Dropdown der Karte laengst ohne Vorsilbe steht). Vergessene Fundstelle desselben Fixes -
-            // die Pack-Zelle zwei Bildschirmseiten darueber raeumt ihre Etiketten seit dem 16.08. auf.
+            // As a local function instead of a variable: in the
+            // compact view (iconOnly) ONLY the tooltip needs it, and that is now only built
+            // under the mouse. Previously the concatenation ran per cell per row per frame for
+            // nothing. Called directly, a local function costs no heap allocation.
+            // CellLabel instead of the raw label (the mouseover said
+            // "Sidearms attached: W| satchel charge", while the same sidearm in RimWorld's loadout column
+            // and in the card's dropdown had long been shown without prefix). A forgotten occurrence of the
+            // same fix - the pack cell two screens above already cleans up its labels.
             string Label() => attached.Count > 0 ? string.Join(", ", attached.Select(a => LoadoutUtility.CellLabel(a))) : "CER_AssignLoadouts_SidearmNoneLabel".Translate().ToString();
             Rect btnRect = new Rect(cell.x, cell.y, cell.width - DotReserveW, cell.height);
             bool clicked;
@@ -4301,9 +4252,8 @@ namespace CEReloaded
             // weapon domain (GetWeaponInventory), not the pack-item or ammo-slot domains, so the rich tooltip
             // uses the SAME empire-wide-stock function the main weapon dot below (and the Weapon Loadouts
             // tab's own Owned column) already calls.
-            // neededCount = wie viele angehaengte Zweitwaffen-Loadouts auf genau diese Waffe hinauslaufen,
-            // jedes mit seiner eigenen Slot-Menge (2026-08-01, dieselbe globale Korrektur wie in der
-            // Munitionszelle darueber).
+            // neededCount = how many attached sidearm loadouts resolve to exactly this weapon, each with
+            // its own slot amount (the same global correction as in the ammo cell above).
             Rect sidearmDot = DrawFulfillDot(cell, pawn, GetRowInfo(pawn).sidearmIcons, "CER_AssignLoadouts_LabelSidearm",
                 RichStock.Weapon, richNeedFor: d => attached.Where(a => RepresentativeIcon(a) == (ThingDef)d)
                     .Sum(a => a.Slots?.FirstOrDefault(s => s.thingDef == (ThingDef)d)?.count ?? 1));
@@ -4333,8 +4283,8 @@ namespace CEReloaded
                     scoreFn: SidearmAssignmentUtility.ScoreOf,
                     showSidearmBulkCap: true,
                     availDefFn: RepresentativeIcon, sourceLabel: pawn.LabelShortCap, checkProductionOnClose: true,
-                    // Lazy-Umbau (2026-09-01): Waffen ohne Vorlage als eigene Sektion - Anhaken erzeugt
-                    // die geteilte Vorlage im Hintergrund und haengt sie wie jede andere an.
+                    // Lazy rework: weapons without a template as their own section - ticking one creates
+                    // the shared template in the background and attaches it like any other.
                     weaponOptions: () => LoadoutUtility.WeaponsWithoutTemplate(),
                     materializeWeapon: Dialog_GenerateLoadouts.EnsureDefaultLoadout));
             }
@@ -4361,8 +4311,8 @@ namespace CEReloaded
                 GUI.color = new Color(1f, 1f, 1f, 0.35f);
                 if (iconOnly)
                 {
-                    // Leerzustand auf DIESELBE Geometrie wie eine gefuellte Zelle (2026-08-11) - und das ist
-                    // seit 2026-08-14 die volle Zelle, siehe den Kommentar an DotReserveW.
+                    // Empty state on the SAME geometry as a filled cell - which is now the full cell, see
+                    // the comment at DotReserveW.
                     DrawCellDash(cell);
                     Text.Font = GameFont.Small;
                     return;
@@ -4378,22 +4328,22 @@ namespace CEReloaded
             // from its own flat Slots union, so a plain dash + explanatory tooltip is the honest answer.
             if (RoleUtility.IsRoleLoadout(currentLoadout))
             {
-                // Volle Zelle, exakt wie jeder andere Pfad (2026-08-12 stand hier ein 24px-Streifen, damit
-                // der Rollen-Zweig genauso breit zeichnete wie der normale; seit 2026-08-14 zieht ihn kein
-                // Pfad mehr ab, siehe Kommentar an DotReserveW). Ein Einfuege-Knopf gehoert hier ohnehin
-                // nicht hin - eine Rolle bearbeitet man im Roles-Tab, nicht pro Kolonist.
+                // Full cell, exactly like every other path (there used to be a 24px strip here so the role
+                // branch drew as wide as the normal one; no path subtracts it any more, see the comment at
+                // DotReserveW). A paste button doesn't belong here anyway - a role is edited in the Roles
+                // tab, not per colonist.
                 Rect roleCell = cell;
                 Rect roleBtnRect = new Rect(roleCell.x, roleCell.y, roleCell.width - DotReserveW, roleCell.height);
-                // SICHTBAR deaktiviert, wie in der Pack-Zelle - dritte und letzte Fundstelle (2026-08-15): bei
-                // Rollen nicht benutzbare Knoepfe sind ausgegraut, so wie Vanilla es macht. Umgesetzt war das
-                // zuerst nur an EINER von DREI Stellen.
-                // Es gibt drei Rollen-Zweige in dieser Datei (Pack, Zweitwaffe, Sonstiges); nur der
-                // erste bekam GUI.enabled = false, die anderen zwei zeichneten weiter einen ganz
-                // normalen Knopf - und der Test hatte genau die eine Zelle geprueft, die schon gefixt war.
-                // Eigener Grauton statt GUI.enabled (2026-08-16, im Test paarweise gemessen:
-                // gesperrte und normale Zelle lieferten beide 106,81,46, Abweichung null). GUI.enabled
-                // sperrt den Klick - gezeichnet hat es nie etwas, weil RimWorlds Knopfgrafik ueber
-                // GUI.DrawTexture laeuft. Siehe LoadoutUtility.TintedButton.
+                // VISIBLY disabled, as in the pack cell - third and last occurrence: buttons unusable
+                // because of a role are greyed out, the way vanilla does it. At first this was implemented
+                // in only ONE of THREE places.
+                // There are three role branches in this file (pack, sidearm, other); only the
+                // first got GUI.enabled = false, the other two kept drawing a perfectly
+                // normal button - and verification had covered exactly the one cell that was already fixed.
+                // Own grey tone instead of GUI.enabled (measured side by side: locked and normal cells both
+                // rendered 106,81,46, zero difference). GUI.enabled
+                // blocks the click - it never drew anything, because RimWorld's button graphic goes through
+                // GUI.DrawTexture. See LoadoutUtility.TintedButton.
                 LoadoutUtility.TintedButton(roleBtnRect, null, disabled: true);
                 DrawCellDash(roleCell);
                 Text.Font = GameFont.Small;
@@ -4408,10 +4358,10 @@ namespace CEReloaded
             List<LoadoutSlot> otherSlots = anchor?.OwnSlots
                 ?.Where(s => s.thingDef != null && !s.thingDef.IsWeapon && !LoadoutUtility.IsAmmoDef(s.thingDef))
                 .ToList() ?? new List<LoadoutSlot>();
-            // Als lokale Funktion statt als Variable (2026-08-13): in der
-            // kompakten Ansicht (iconOnly) braucht sie NUR der Tooltip, und der wird seit heute nur
-            // noch unter der Maus gebaut. Vorher lief die Verkettung pro Zelle pro Zeile pro Bild ins
-            // Leere. Direkt aufgerufen kostet eine lokale Funktion keine Zuweisung auf dem Heap.
+            // As a local function instead of a variable: in the
+            // compact view (iconOnly) ONLY the tooltip needs it, and that is now only built
+            // under the mouse. Previously the concatenation ran per cell per row per frame for
+            // nothing. Called directly, a local function costs no heap allocation.
             string Label() => otherSlots.Count > 0
                 ? string.Join(", ", otherSlots.Select(s => s.thingDef.LabelCap.ToString()))
                 : "CER_AssignLoadouts_OtherNoneLabel".Translate().ToString();
@@ -4429,10 +4379,10 @@ namespace CEReloaded
             }
             // ComputeItemOwnership, same generic-item stock check the Pack cell's own tooltip already uses -
             // correct for an arbitrary carryable ThingDef, not just weapons/ammo.
-            // ItemSegFor, dieselbe Bestandsquelle wie die Pack-Zelle - richtig fuer einen beliebigen
-            // tragbaren ThingDef, nicht nur fuer Waffen/Munition. Der koloniweite Bedarf steckt dort mit
-            // drin, aus demselben Grund wie in der Pack-Zelle: diese Zelle trug exakt dieselbe Mischung
-            // aus koloniweitem Bestand und Ein-Pawn-Bedarf (per Suche gefunden).
+            // ItemSegFor, the same stock source as the pack cell - correct for any
+            // carryable ThingDef, not just weapons/ammo. The colony-wide need is included there,
+            // for the same reason as in the pack cell: this cell carried exactly the same mix
+            // of colony-wide stock and single-pawn need (found by search).
             Rect otherDot = DrawFulfillDot(cell, pawn, otherSlots.Select(s => s.thingDef), "CER_AssignLoadouts_LabelOther",
                 RichStock.Item, neededFor: NeededCountsFrom(otherSlots));
             Text.Font = GameFont.Small;
@@ -4480,24 +4430,24 @@ namespace CEReloaded
                 Messages.Message("CER_AssignLoadouts_SwapCannotFightMsg".Translate(), MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            // ====== Die VORLAGEN tauschen, nicht die Anker (2026-09-04) ======
+            // ====== Swap the TEMPLATES, not the anchors ======
             //
-            // Befund im Test: "Swapped loadouts: Mack and Ryder." - INNERHALB des Fensters hielt das,
-            // nach dem Schliessen des Planers stand wieder die AUSGANGSLAGE. Gegenprobe: eine
-            // Einzelzuweisung ueber die Zelle ueberlebt das Schliessen sehr wohl - es hing also am Ziehen.
+            // Observed: "Swapped loadouts: <A> and <B>." - WITHIN the window it held, but after closing
+            // the planner the ORIGINAL state was back. Cross-check: a single assignment via the cell does
+            // survive closing - so it was specific to dragging.
             //
-            // Ursache: pawn.GetLoadout() liefert bei einem personalisierten Kolonisten seinen ANKER, nicht
-            // die geteilte Vorlage (siehe AmmoAssignmentUtility) - und nach einem Arm-my-Colony-Durchlauf
-            // hat praktisch jeder einen. Getauscht wurden also die Anker: A wurde B's Anker zugewiesen und
-            // umgekehrt. Der Anker-Schutz in Patch_Utility_Loadouts_SetLoadout tritt dabei ausdruecklich
-            // BEISEITE (IsAmmoLink -> "das ist eine echte Direktzuweisung"), also blieb es bei der rohen
-            // Zuweisung. Zwei Kolonisten hingen danach an fremden Ankern - ein Zustand, den das naechste
-            // Aufraeumen wieder geradezieht. Genau deshalb sah der Tausch im offenen Fenster richtig aus
-            // und war nach dem Schliessen weg.
+            // Cause: pawn.GetLoadout() returns a personalized colonist's ANCHOR, not the
+            // shared template (see AmmoAssignmentUtility) - and after an Arm-my-Colony run
+            // practically everyone has one. So the anchors were swapped: A was assigned B's anchor and
+            // vice versa. The anchor guard in Patch_Utility_Loadouts_SetLoadout explicitly steps
+            // ASIDE for that (IsAmmoLink -> "this is a real direct assignment"), so the raw
+            // assignment stood. Two colonists then hung on foreign anchors - a state the next
+            // cleanup straightens out again. That is exactly why the swap looked right in the open window
+            // and was gone after closing.
             //
-            // Richtig ist, was der Einzelweg tut: die VORLAGE lesen (DisplayLoadout schaut durch den Anker)
-            // und ueber AssignTemplate setzen - das haengt den EIGENEN Anker jedes Kolonisten an die neue
-            // Vorlage um und nimmt Packs, Zweitwaffen und persoenliche Munition mit.
+            // Correct is what the single path does: read the TEMPLATE (DisplayLoadout looks through the
+            // anchor) and set it via AssignTemplate - that re-hangs each colonist's OWN anchor onto the new
+            // template and takes packs, sidearms and personal ammo along.
             Loadout la = AmmoAssignmentUtility.DisplayLoadout(a.GetLoadout());
             Loadout lb = AmmoAssignmentUtility.DisplayLoadout(b.GetLoadout());
             bool aHas = la != null && !la.defaultLoadout, bHas = lb != null && !lb.defaultLoadout;
@@ -4513,17 +4463,17 @@ namespace CEReloaded
             }
             // Extra parents (Packs) live keyed by the anchor Loadout's OWN UniqueID, not the pawn, so
             // swapping which pawn is assigned to which anchor object carries them along automatically.
-            // NIE null (2026-08-13, im CE-Dekompilat bestaetigt): CEs
-            // GetLoadout heilt nur einen FEHLENDEN Schluessel, ein Schluessel mit Wert null bleibt fuer
-            // immer null - und CEs eigene Loadout-Spalte macht ungeschuetzt pawn.GetLoadout().label.
-            // Fehlszenario: A hat eine Vorlage, B nicht; A per Ziehen auf B - danach wirft CEs native
-            // Loadouts-Tabelle in A's Zeile pro Bild eine NullReferenceException.
-            // Ueberall sonst im Mod steht dafuer das Default-Loadout ("keine Zuweisung"), siehe
-            // ArmUnassignAll; das war die einzige Stelle mit null.
+            // NEVER null (confirmed in the CE decompile): CE's
+            // GetLoadout only heals a MISSING key; a key with value null stays null
+            // forever - and CE's own loadout column does pawn.GetLoadout().label unguarded.
+            // Failure scenario: A has a template, B doesn't; drag A onto B - afterwards CE's native
+            // loadouts table throws a NullReferenceException in A's row every frame.
+            // Everywhere else in the mod the default loadout ("no assignment") stands for this, see
+            // ArmUnassignAll; this was the only place with null.
             Loadout noneLo = LoadoutManager.Loadouts.FirstOrDefault(l => l.defaultLoadout);
-            // Ueber AssignTemplate statt SetLoadout, wo es wirklich eine Vorlage gibt - siehe oben. Der
-            // Weg auf "keine Vorlage" bleibt SetLoadout(none): AssignTemplate lehnt null/Default ab, und
-            // fuer das Abhaengen ist die rohe Zuweisung die richtige (dieselbe Zusage wie ArmUnassignAll).
+            // Via AssignTemplate instead of SetLoadout where there really is a template - see above. The
+            // path to "no template" stays SetLoadout(none): AssignTemplate rejects null/default, and
+            // for detaching the raw assignment is the right one (the same guarantee as ArmUnassignAll).
             if (bHas) AmmoAssignmentUtility.AssignTemplate(a, lb); else a.SetLoadout(noneLo);
             if (aHas) AmmoAssignmentUtility.AssignTemplate(b, la); else b.SetLoadout(noneLo);
             LoadoutUtility.InvalidateAmmoOwnership();
@@ -4625,7 +4575,7 @@ namespace CEReloaded
             LoadoutUtility.ScoreBar(rect, score, maxScore, label);
         }
 
-        // Mit vorgebauter Beschriftung (GetRowLabels) - erspart je Durchgang eine Uebersetzung mit Argumenten.
+        // With prebuilt labels (GetRowLabels) - saves one translation with arguments per pass.
         private void DrawScoreBarPrebuilt(Rect rect, float score, float maxScore, string prebuilt)
         {
             LoadoutUtility.ScoreBar(rect, score, maxScore, null, prebuiltLabel: prebuilt);

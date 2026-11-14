@@ -31,14 +31,14 @@ namespace CEReloaded
 
         public static void Postfix()
         {
-            // NUR im Repaint (2026-09-03: das Feld wurde jedes Bild angemeldet, aber nie gezeichnet).
-            // WindowStack.ImmediateWindow steigt
-            // bei jedem anderen Ereignistyp in der ersten Zeile wieder aus, meldet also nichts an. Unity
-            // schickt pro Bild ZUERST das Layout-Ereignis und erst danach Repaint, beide mit demselben
-            // Time.frameCount: der Riegel darunter verbrauchte das Bild im Layout-Durchgang (wo die
-            // Anmeldung wirkungslos ist) und liess den Repaint-Durchgang gar nicht mehr durch. Das Feld
-            // wurde damit nie EIN einziges Mal wirklich angemeldet - der Reiter selbst wird von RimWorld in
-            // genau so einem ImmediateWindow gezeichnet, wir haengen also am gleichen Mechanismus.
+            // ONLY in Repaint (the panel was registered every frame but never drawn).
+            // WindowStack.ImmediateWindow bails out
+            // in its first line for every other event type, so it registers nothing. Unity sends
+            // the Layout event FIRST each frame and Repaint only afterwards, both with the same
+            // Time.frameCount: the guard below consumed the frame in the Layout pass (where
+            // registration has no effect) and never let the Repaint pass through. The panel was
+            // therefore never registered even ONCE - the tab itself is drawn by RimWorld in exactly
+            // such an ImmediateWindow, so we rely on the same mechanism.
             if (Event.current == null || Event.current.type != EventType.Repaint) return;
             if (Time.frameCount == lastFrame) return;   // CE's FillTab may chain through the vanilla one - one panel per frame
             Pawn pawn = Find.Selector.SingleSelectedThing as Pawn;
@@ -52,12 +52,12 @@ namespace CEReloaded
             const float panelW = 340f;
             float x = tab.xMax - 1f;
             if (x + panelW > UI.screenWidth) x = tab.x - panelW + 1f;
-            // AUF DEM SCHIRM HALTEN (2026-08-30: das Gear-Tab-Feld fehlte): dieses Feld haengt
-            // NEBEN dem Reiter, nicht darin - und wie breit der Reiter ist, bestimmt seit RimWorld 1.6 nicht mehr
-            // nur RimWorld. Ersetzt ein anderer Mod den Ausruestungs-Reiter durch einen deutlich breiteren (der
-            // Testlauf hatte 'Nice Inventory Tab CE Integration' aktiv), landen beide Kandidaten - rechts daneben
-            // und links daneben - ausserhalb des Bildschirms, und das Feld ist da, aber unsichtbar. Geklemmt sieht
-            // man es notfalls halb ueber dem Reiter statt gar nicht.
+            // KEEP IT ON SCREEN (the gear tab panel was missing): this panel hangs
+            // NEXT TO the tab, not inside it - and since RimWorld 1.6 the tab's width is no longer
+            // decided by RimWorld alone. If another mod replaces the gear tab with a much wider one (for
+            // example 'Nice Inventory Tab CE Integration'), both candidates - to the right and
+            // to the left - end up off screen, and the panel exists but is invisible. Clamped, it shows
+            // at worst half over the tab instead of not at all.
             x = Mathf.Clamp(x, 0f, Mathf.Max(0f, UI.screenWidth - panelW));
             float y = Mathf.Clamp(tab.y, 0f, Mathf.Max(0f, UI.screenHeight - Mathf.Min(tab.height, UI.screenHeight)));
             Rect panelRect = new Rect(x, y, panelW, Mathf.Min(tab.height, UI.screenHeight));
@@ -75,8 +75,8 @@ namespace CEReloaded
             public bool genericIcon;
             public int need, carried;
             public int stored;          // -1 = unknown (generics: matching every map thing is too hot for a UI cache)
-            // Wie viel des oben gezaehlten Bestands als "nicht aufsammeln" markiert ist (2026-08-09) -
-            // zieht das gemeinsame "!" auf die Statusanzeige dieser Zeile.
+            // How much of the stock counted above is marked "do not pick up" -
+            // puts the shared "!" on this row's status display.
             public int forbidden;
             public bool inProduction;
         }
@@ -144,8 +144,8 @@ namespace CEReloaded
                         {
                             List<Thing> things = map.listerThings.ThingsOfDef(d);
                             if (things != null)
-                                // "Nicht aufsammeln"-Bestand zaehlt mit (2026-08-09, siehe
-                                // LoadoutUtility.IsMarkedDoNotPickUp); das Rufezeichen an der Zelle sagt es dazu.
+                                // "Do not pick up" stock counts too (see
+                                // LoadoutUtility.IsMarkedDoNotPickUp); the exclamation mark on the cell says so.
                                 foreach (Thing t in things)
                                     if (!LoadoutUtility.IsHiddenInFog(t) && !(t.ParentHolder is Pawn_EquipmentTracker || t.ParentHolder is Pawn_InventoryTracker || t.ParentHolder is Pawn_CarryTracker))
                                         st.stored += t.stackCount;
@@ -210,21 +210,21 @@ namespace CEReloaded
                 // per-pawn "extra ammo" leaf's raw label - the item list below still reads `lo` (the raw
                 // assignment) directly, so any extra ammo still counts there regardless of this label.
                 string displayLabel = AmmoAssignmentUtility.ComposedDisplayLabel(pawn);
-                // ====== Gegen die FERTIGE, fett gesetzte Zeile messen (2026-09-04) ======
+                // ====== Measure against the FINISHED, bold line ======
                 //
-                // Befund beim Steam-Screenshot: die Loadout-Bezeichnung 'R-6 charge rifle +satchel charge,
-                // Base Su...' wurde zweizeilig gesetzt, und ihre ERSTE Zeile lag UEBER der Ueberschrift
-                // 'Loadout'.
+                // A long loadout label ('R-6 charge rifle +satchel charge, Base Su...') was laid out
+                // on two lines, and its FIRST line sat ABOVE the 'Loadout'
+                // header.
                 //
-                // Die Ursache ist eine halbe Messung: Truncate hat den ROHTEXT gemessen, gezeichnet wurde
-                // er aber durch den Schluessel in <b>...</b> - und fett ist breiter. Der "gekuerzte" Text
-                // passte also doch nicht, WordWrap hat ihn auf zwei Zeilen gebrochen, und weil der Anker
-                // MiddleLeft ist, wird ein zweizeiliger Block in einem 26 Punkte hohen Rechteck mittig
-                // gesetzt: die erste Zeile ragt nach OBEN heraus, genau auf die Ueberschrift.
+                // The cause is a half measurement: Truncate measured the RAW text, but it was drawn
+                // through the key wrapped in <b>...</b> - and bold is wider. So the "truncated" text
+                // did not fit after all, WordWrap broke it onto two lines, and because the anchor is
+                // MiddleLeft, a two-line block is centered vertically in a 26-point-high rect:
+                // the first line sticks out at the TOP, right onto the header.
                 //
-                // Zwei Griffe, beide noetig: gegen die fertige Zeichenkette messen (dann stimmt die
-                // Kuerzung), und WordWrap aus (ein Titel ist einzeilig - sonst reisst der naechste
-                // Sonderfall dasselbe Loch wieder auf).
+                // Two fixes, both needed: measure against the finished string (then the truncation
+                // is right), and turn WordWrap off (a title is single-line - otherwise the next
+                // edge case tears the same hole open again).
                 float titleAvail = inRect.xMax - ix - 8f;
                 bool prevWrapTitle = Text.WordWrap;
                 Text.WordWrap = false;
@@ -232,8 +232,8 @@ namespace CEReloaded
                 float fullW = Text.CalcSize("CER_GearTabLoadoutPanel_TitleBold".Translate(shownTitle).ToString()).x;
                 if (fullW > titleAvail && shownTitle.Length > 3)
                 {
-                    // Erst proportional grob kuerzen, dann feinschleifen - zwei bis drei Messungen statt
-                    // einer je Zeichen (das hier laeuft in jedem Bild).
+                    // First truncate roughly in proportion, then fine-tune - two to three measurements
+                    // instead of one per character (this runs every frame).
                     int keep = Mathf.Clamp(Mathf.FloorToInt(shownTitle.Length * (titleAvail / fullW)) - 1, 1, shownTitle.Length);
                     shownTitle = shownTitle.Substring(0, keep);
                     while (shownTitle.Length > 1
@@ -245,7 +245,7 @@ namespace CEReloaded
                     "CER_GearTabLoadoutPanel_TitleBold".Translate(shownTitle));
                 Text.WordWrap = prevWrapTitle;
                 Text.Anchor = TextAnchor.UpperLeft;
-                // Der volle Name im Mouseover - gekuerzt wird nur die Anzeige, die Auskunft bleibt.
+                // The full name in the tooltip - only the display is truncated, the information stays.
                 if (LoadoutUtility.TipWanted(new Rect(ix + 2f, y, titleAvail, 26f)) && shownTitle != displayLabel)
                     TooltipHandler.TipRegion(new Rect(ix + 2f, y, titleAvail, 26f), displayLabel);
                 y += 30f;
@@ -275,10 +275,10 @@ namespace CEReloaded
 
                     if (st.iconDef != null)
                     {
-                        // genericIcon heisst: das ist die WAFFE, gezeichnet fuer "irgendeine Munition dafuer".
-                        // Dann gehoert die Munitionsmarke oben rechts dazu (2026-08-13, zweite Fundstelle nach
-                        // Dialog_ChangeAmmo) - sonst steht die Waffe hier ohne jeden Unterschied zu einer Zeile,
-                        // die wirklich die Waffe meint, und nur das gedimmte Weiss trennt die beiden.
+                        // genericIcon means: this is the WEAPON, drawn for "any ammo for it".
+                        // Then the ammo badge in the top-right belongs to it (second occurrence after
+                        // Dialog_ChangeAmmo) - otherwise the weapon would sit here indistinguishable from a
+                        // row that really means the weapon, with only the dimmed white separating the two.
                         Rect gearIcon = new Rect(0f, ry + 1f, 22f, 22f);
                         if (st.genericIcon)
                         {
@@ -314,14 +314,14 @@ namespace CEReloaded
                     Widgets.Label(new Rect(view.width - 66f, ry + 4f, 66f, 18f), status);
                     Text.Font = GameFont.Small;
                     GUI.color = Color.white;
-                    // Das gemeinsame "!" auf der Bestandsanzeige dieser Zeile (2026-08-09) - eigener Tooltip
-                    // aus, die ganze Zeile hat unten schon einen und der kleinere wuerde ihn schlucken.
+                    // The shared "!" on this row's stock display - its own tooltip off, the whole row
+                    // already has one below and the smaller one would swallow it.
                     LoadoutUtility.DrawForbiddenMark(statusDot, st.forbidden, tooltip: false);
 
-                    // TipWanted davor (2026-08-17, zweite Fundstelle desselben Musters):
-                    // dieser Text wurde PRO ZEILE PRO DURCHGANG aus bis zu sechs Uebersetzungen zusammengesetzt,
-                    // obwohl hoechstens eine Zeile pro Bild unter der Maus liegt - und der Ausruestungs-Reiter
-                    // ist waehrend des normalen Spielens praktisch dauernd offen.
+                    // TipWanted first (second occurrence of the same pattern):
+                    // this text was assembled PER ROW PER PASS from up to six translations,
+                    // although at most one row per frame is under the mouse - and the gear tab
+                    // is open practically all the time during normal play.
                     if (LoadoutUtility.TipWanted(row))
                     TooltipHandler.TipRegion(row,
                         (st.def != null ? st.def.LabelCap.ToString() : "CER_GearTabLoadoutPanel_UnknownItem".Translate().ToString())
@@ -339,29 +339,29 @@ namespace CEReloaded
             }
 
             // Jump buttons: CE editor for THIS loadout, and the CE Reloaded workflow entry point.
-            // Zwei Knoepfe statt drei (Lazy-Umbau 2026-09-01): der "Generate"-Sprung fuehrte in den
-            // Weapon-Loadouts-Reiter, und den gibt es nicht mehr - Waffen waehlt man beim Zuweisen.
+            // Two buttons instead of three (lazy-template rework): the "Generate" jump led to the
+            // Weapon Loadouts tab, which no longer exists - weapons are picked when assigning.
             float bw = (inRect.width - 6f) / 2f;
             float by = inRect.yMax - 28f;
             Rect b1 = new Rect(inRect.x, by, bw, 28f);
             Rect b2 = new Rect(inRect.x + bw + 6f, by, bw, 28f);
 
-            // Die Knoepfe teilen EINE Schriftstufe (de-buttontext-sweep, 2026-08-29) - siehe
-            // LoadoutUtility.ButtonRowFont; bw ist fest, die Texte sind uebersetzt.
+            // The buttons share ONE font size - see
+            // LoadoutUtility.ButtonRowFont; bw is fixed, the texts are translated.
             string editLbl = "CER_GearTabLoadoutPanel_EditButton".Translate().ToString();
             string assignLbl = "CER_GearTabLoadoutPanel_AssignButton".Translate().ToString();
             GameFont rowFont = LoadoutUtility.ButtonRowFont((b1, editLbl), (b2, assignLbl));
             GameFont prevRowFont = Text.Font;
             Text.Font = rowFont;
-            // Die echte VORLAGE oeffnen, nicht den Anker (2026-09-04): CEs eigener Loadout-Editor ging mit
-            // dem Namen '[Pawn-Loadout] Sammy 441509' auf und zeigte als Inhalt nur EINE Zeile, 'Knife 1'.
+            // Open the real TEMPLATE, not the anchor: CE's own loadout editor opened with a name like
+            // '[Pawn-Loadout] <name> <id>' and showed only ONE row as content, 'Knife 1'.
             //
-            // Beides ist dieselbe Ursache: `lo` ist pawn.GetLoadout(), und das ist bei einem
-            // personalisierten Kolonisten sein interner Anker - daher der rohe Name samt Pawn-ID, und daher
-            // der halbe Inhalt (der Anker traegt nur die persoenlichen Extras, die Waffe steht in der
-            // Vorlage darueber). Jede andere Stelle im Mod, die CEs Editor oeffnet, uebergibt eine echte
-            // Vorlage; nur diese hier nicht. DisplayLoadout schaut durch den Anker - dieselbe Frage,
-            // dieselbe Antwort wie ueberall sonst.
+            // Both have the same cause: `lo` is pawn.GetLoadout(), and for a personalized colonist that
+            // is their internal anchor - hence the raw name with the pawn ID, and hence only half the
+            // content (the anchor only carries the personal extras, the weapon is in the template
+            // above it). Every other place in the mod that opens CE's editor passes a real template;
+            // only this one did not. DisplayLoadout looks through the anchor - same question,
+            // same answer as everywhere else.
             Loadout editTarget = AmmoAssignmentUtility.DisplayLoadout(lo);
             if (editTarget != null && editTarget.defaultLoadout) editTarget = null;
             if (editTarget != null)
@@ -375,8 +375,8 @@ namespace CEReloaded
                 GUI.color = Color.white;
             }
             if (LoadoutUtility.TipWanted(b1))
-                // Am editTarget haengen, nicht mehr am rohen Anker - sonst verspricht der Erklaertext
-                // "bearbeiten" an einem ausgegrauten Knopf (2026-09-04).
+                // Depend on editTarget, no longer on the raw anchor - otherwise the explanation text
+                // promises "edit" on a greyed-out button.
                 TooltipHandler.TipRegion(b1, editTarget != null ? "CER_GearTabLoadoutPanel_EditTooltipHasLoadout".Translate().ToString() : "CER_GearTabLoadoutPanel_EditTooltipNoLoadout".Translate().ToString());
 
             if (LoadoutUtility.ButtonTextFit(b2, assignLbl)) OpenTabs();
@@ -386,9 +386,9 @@ namespace CEReloaded
 
         private static void OpenTabs()
         {
-            // Reuse an already-open tabs window (2026-09-01) - dieselbe Korrektur, die
-            // Patch_LoadoutEditButton und LoadoutUtility.OpenBillOverview laengst tragen: zwei parallele
-            // Dialog_CEReloadedTabs heisst zwei getrennte Assign-Instanzen, die sich nicht sehen.
+            // Reuse an already-open tabs window - the same fix that Patch_LoadoutEditButton and
+            // LoadoutUtility.OpenBillOverview already carry: two parallel Dialog_CEReloadedTabs mean two
+            // separate Assign instances that don't see each other.
             Dialog_CEReloadedTabs tabs = Find.WindowStack.Windows.OfType<Dialog_CEReloadedTabs>().FirstOrDefault();
             if (tabs != null) { tabs.JumpToAssign(); return; }
             tabs = new Dialog_CEReloadedTabs();

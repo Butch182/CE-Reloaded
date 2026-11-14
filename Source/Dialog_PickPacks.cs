@@ -25,15 +25,15 @@ namespace CEReloaded
         private readonly string windowTitle;
         private readonly string subtitle;
         // Short, stable identifier for the Copy button's clipboard source (2026-08-01 fix:
-        // the paste tooltip elsewhere used to show the ENTIRE instructional subtitle verbatim, e.g. "Sachiko
+        // the paste tooltip elsewhere used to show the ENTIRE instructional subtitle verbatim, e.g. "<pawn>
         // - tick which Weapon Loadout(s) to carry as a sidearm. Changes apply immediately." as if that whole
         // sentence were a "source" - confusing, and sometimes outright misleading (a subtitle warning
         // "nothing applies until Apply" pasted into a context where it DOES apply immediately). Defaults to
         // subtitle for any caller that doesn't bother passing one, so this is purely additive.
         private readonly string sourceLabel;
         private readonly string itemColumnLabel;
-        // Feste Kennung fuer die Zwischenablage - NICHT der uebersetzte Spaltenname (2026-08-13, siehe
-        // LoadoutClipboard.HasContent). Standard "pack", weil das der urspruengliche Zweck dieses Dialogs ist.
+        // Fixed identifier for the clipboard - NOT the translated column name (see LoadoutClipboard.HasContent).
+        // Defaults to "pack", because that is this dialog's original purpose.
         private readonly string clipboardKind;
         private readonly string emptyMessage;
         private readonly Func<List<Loadout>> allOptions;
@@ -45,14 +45,12 @@ namespace CEReloaded
         // (e.g. "Backup weapons" rows first, then "Explosives", then "Shields"); this dialog just detects the
         // boundary. Null (the default) draws a plain flat list, unchanged from before - only a caller that
         // actually mixes categories (the Sidearm picker) needs to pass one.
-        // Ein groupLabel, das fuer eine Gruppe NULL zurueckgibt, bekommt gar keine Zwischenzeile - ihre
-        // Zeilen sitzen direkt unter den Spaltenueberschriften (2026-08-15: eine zusaetzliche Zwischenzeile
-        // "Backup weapons" unter den Spaltenueberschriften war doppelt). Die
-        // Entscheidung, WELCHE Gruppe die stillschweigende ist, gehoert dem Aufrufer und nicht diesem
-        // Dialog: "die erste unterdruecken" waere falsch, sobald eine Kolonie gar keine gewoehnlichen
-        // Zweitwaffen hat und die Liste mit "Explosives" anfaengt - dann waere ausgerechnet die Gruppe
-        // unbeschriftet, deren Name etwas sagt. Hoehenrechnung und Zeichenschleife pruefen beide auf
-        // denselben Wechsel, eine null-Gruppe faellt also in beiden gleich heraus.
+        // A groupLabel that returns NULL for a group gets no separator row at all - its rows sit directly below
+        // the column headers (an extra "Backup weapons" separator below the column headers was redundant). The
+        // decision WHICH group is the silent one belongs to the caller, not to this dialog: "suppress the first"
+        // would be wrong as soon as a colony has no ordinary sidearms at all and the list starts with
+        // "Explosives" - then precisely the group whose name says something would be unlabeled. The height
+        // calculation and the draw loop both check for the same change, so a null group drops out of both alike.
         private readonly Func<Loadout, string> groupLabel;
         // Optional: a comparative 0..100 score (LoadoutUtility.GetWeaponScore/GetShieldScore) shown as its
         // own column - only the Sidearm picker's mixed weapon/explosive/shield pool has one; a plain
@@ -72,65 +70,59 @@ namespace CEReloaded
         // there is real yet (a pending pin, not applied until Apply), so checking for missing production
         // before anything was actually committed would be checking against state that doesn't exist.
         private readonly bool checkProductionOnClose;
-        // Lazy-Umbau (2026-09-01): Waffen OHNE existierende Vorlage als eigene Sektion unter den Loadout-
-        // Zeilen. Beim Anhaken laeuft materializeWeapon (EnsureDefaultLoadout) - die geteilte Vorlage
-        // entsteht genau dann, und im naechsten Bild ist die Waffe eine normale Loadout-Zeile (allOptions
-        // enthaelt sie, weaponOptions nicht mehr). Beide null -> Verhalten unveraendert.
+        // Lazy rework: weapons WITHOUT an existing template as their own section below the loadout rows. Ticking
+        // one runs materializeWeapon (EnsureDefaultLoadout) - the shared template is created at exactly that
+        // moment, and in the next frame the weapon is a normal loadout row (allOptions contains it, weaponOptions
+        // no longer does). Both null -> behavior unchanged.
         private readonly Func<List<ThingDef>> weaponOptions;
         private readonly Func<ThingDef, Loadout> materializeWeapon;
-        // EINZELAUSWAHL-Modus (2026-09-02, nach dem Vorbild des Zweitwaffen-Fensters statt eines eigenen
-        // Fensters): dasselbe Fenster traegt jetzt auch die
-        // Hauptwaffen-Auswahl. Radio statt Haken, ein Klick waehlt und schliesst; optional eine
-        // "Keins"/"Auto"-Zeile ganz oben und ein Zusatzknopf unten (z.B. "Kombination als Rolle sichern").
-        // Der Kopieren-Knopf entfaellt in diesem Modus - eine Einzelauswahl ist keine Menge.
+        // SINGLE-SELECT mode (modeled on the sidearm window instead of a separate window): the same window now
+        // also hosts the main weapon selection. Radio instead of checkbox, one click selects and closes;
+        // optionally a "None"/"Auto" row at the very top and an extra button at the bottom (e.g. "Save combination
+        // as role"). The Copy button is dropped in this mode - a single selection is not a set.
         private readonly bool singleSelect;
         private readonly Action<Loadout> onPickedSingle;
         private readonly Action onNonePicked;
         private readonly string noneLabel;
         private readonly Loadout currentSingle;
         private readonly ThingDef currentWeaponSingle;
-        // Gruppiert die WAFFEN-Sektion (z.B. Fernkampf/Nahkampf) analog zu groupLabel fuer die Loadouts;
-        // null -> eine einzelne "Waffen"-Zwischenzeile wie bisher.
+        // Groups the WEAPON section (e.g. ranged/melee) analogous to groupLabel for the loadouts;
+        // null -> a single "Weapons" separator row as before.
         private readonly Func<ThingDef, string> weaponGroupLabel;
-        // Wieviele Exemplare der LEBENDE Vorschau-Plan schon anderen zugedacht hat (Knappheits-Fix
-        // 2026-07-31, uebernommen aus dem alten Pin-Menue) - erscheint als Zeile im Verfuegbarkeits-Tooltip.
+        // How many copies the LIVE preview plan has already earmarked for others (scarcity fix, carried over from
+        // the old pin menu) - shows up as a line in the availability tooltip.
         private readonly Func<ThingDef, int> reservedFn;
         private readonly string extraActionLabel;
         private readonly Action extraAction;
-        // Sperr-Schalter (2026-09-03): wird waehrend dieser Fensteroeffnung
-        // irgendein Schloss umgelegt, feuert beim Schliessen dieser Rueckruf - der Zuweisungs-Reiter
-        // haengt daran die Neuzuweisungs-Nachfrage, die Pin-Vorschau ein stilles Neurechnen.
+        // Lock switch: if any lock is toggled while this window is open, this callback fires on close - the
+        // Assign tab hooks the reassignment prompt onto it, the pin preview a silent recompute.
         private readonly Action onDisabledChanged;
         private bool locksTouched;
-        // Kopierquelle des Einzelmodus (2026-09-03, "choose a weapon soll auch einen copy button
-        // bekommen"): liefert die aktuelle Zuweisung des Kolonisten, null = nichts zu kopieren.
+        // Copy source for single-select mode (the weapon picker gets a Copy button too): returns the colonist's
+        // current assignment, null = nothing to copy.
         private readonly Func<Loadout> copyCurrent;
-        // Eingeklappte Gruppenleisten, je Fensteroeffnung (2026-09-03, "mach die submenues collapsable").
+        // Collapsed group bars, per window opening.
         private readonly HashSet<string> collapsedGroups = new HashSet<string>();
-        // "Nicht verwenden"-Symbole als eigene, ersetzbare PNGs (2026-09-03, "die lock items sind ein
-        // witz ... mal ein symbol png dass ich ersetzen kann"): Textures/UI/Icon_DoNotUse.png (gesperrt)
-        // und Icon_DoNotUseOff.png (frei).
+        // "Do not use" icons as separate, replaceable PNGs (the previous lock items were unclear):
+        // Textures/UI/Icon_DoNotUse.png (locked) and Icon_DoNotUseOff.png (unlocked).
         private static Texture2D texDoNotUseOn, texDoNotUseOff;
         internal static Texture2D TexDoNotUseOn => texDoNotUseOn ?? (texDoNotUseOn = ContentFinder<Texture2D>.Get("UI/Icon_DoNotUse", false) ?? BaseContent.BadTex);
         internal static Texture2D TexDoNotUseOff => texDoNotUseOff ?? (texDoNotUseOff = ContentFinder<Texture2D>.Get("UI/Icon_DoNotUseOff", false) ?? BaseContent.BadTex);
-        // Vorgaben je Waffe einmal pro Fensterlebensdauer - BuildDefaultSettings scannt Munitionslisten,
-        // das darf nicht pro Zeile und Bild laufen (dieselbe Grundlast-Klasse wie bei der Bildraten-Drosselung).
+        // Defaults per weapon once per window lifetime - BuildDefaultSettings scans ammo lists, which must not run
+        // per row and frame (the same baseline-load class as the frame-rate throttling).
         private readonly Dictionary<ThingDef, List<LoadoutSlot>> weaponSlotsCache = new Dictionary<ThingDef, List<LoadoutSlot>>();
         private readonly Dictionary<ThingDef, (float mass, float bulk)> weaponMassBulkCache = new Dictionary<ThingDef, (float, float)>();
-        // Ausbau 2026-09-02 (am selben Abend nachjustiert): Schaden-Spalte,
-        // Produktionskosten auch fuer Waffen-Zeilen, sortierbare Spaltenkoepfe (immer aktiv, Vorgabe
-        // Score absteigend, sortiert INNERHALB der Gruppen - die Zwischenzeilen bleiben stehen),
-        // Verfuegbarkeits-Filter wie im alten Waffen-Reiter. Eine Zugewiesen-Spalte war kurz drin und ist
-        // wieder raus; ebenso die Radio-Punkte im Einzelmodus - ein Klick auf die
-        // Zeile waehlt, die aktuelle Wahl traegt die Auswahl-Hinterlegung.
+        // Extensions: damage column, production cost for weapon rows too, sortable column headers (always
+        // active, default score descending, sorted WITHIN the groups - the separator rows stay in place),
+        // availability filter as in the old weapons tab. An Assigned column was in briefly and was removed again;
+        // likewise the radio dots in single-select mode - a click on the row selects, the current choice carries
+        // the selection highlight.
         private enum PickSort { Name, Score, Special, Avail, Cost, Mass }
         private PickSort pickSort = PickSort.Score;
         private bool pickSortDesc = true;
-        // Vorgabe IMMER "Available" -
-        // bewusst nicht persistiert, jedes Oeffnen startet gleich.
+        // Default is ALWAYS "Available" - deliberately not persisted, every opening starts the same.
         private WeaponFilterMode pickerFilter = WeaponFilterMode.AvailableWeapons;
-        // Zweite Filtergruppe (2026-09-02 spaet, "fuege rechts noch drei filter ein ... kombinierend"):
-        // Waffentyp, UND-verknuepft mit der Verfuegbarkeit. -1 = alle Typen.
+        // Second filter group: weapon type, AND-combined with availability. -1 = all types.
         private int typeFilter = -1;
         private static int WeaponTypeOf(ThingDef d)
         {
@@ -147,7 +139,7 @@ namespace CEReloaded
         private string search = "";
         private Vector2 scroll;
 
-        // Einmal pro Fensteroeffnung, nicht pro Bild - das ist ein Kolonie-Scan.
+        // Once per window opening, not per frame - this is a colony scan.
         private void EnsurePickerCaches()
         {
             if (ownedCounts == null) ownedCounts = Dialog_AssignLoadouts.BuildOwnedWeaponCounts();
@@ -175,10 +167,10 @@ namespace CEReloaded
             return 0f;
         }
 
-        // Sortiert INNERHALB der Gruppen (2026-09-02: sonst kamen die Zwischenueberschriften
-        // durcheinander): der Gruppenindex aus der Aufruferreihenfolge bleibt Primaerschluessel - die
-        // Zwischenzeilen stehen fest, nur die Zeilen darunter ordnen sich um. LINQ-OrderBy ist stabil,
-        // eine Liste ohne Sortierschluessel (Pack-Picker ohne Score) behaelt also ihre Reihenfolge.
+        // Sorts WITHIN the groups (otherwise the separator headers got mixed up): the group index from the
+        // caller's order stays the primary key - the separator rows stay fixed, only the rows below them
+        // reorder. LINQ OrderBy is stable, so a list without a sort key (pack picker without score) keeps its
+        // order.
         private List<ThingDef> SortedWeapons(List<ThingDef> list)
         {
             Dictionary<string, int> gidx = new Dictionary<string, int>();
@@ -188,8 +180,8 @@ namespace CEReloaded
                 if (!gidx.TryGetValue(g, out int i)) { i = gidx.Count; gidx[g] = i; }
                 return i;
             }
-            foreach (ThingDef d in list) GroupIdx(d);   // Gruppenreihenfolge = erstes Auftreten
-            // Gesperrte ans GRUPPENende - sichtbar und entsperrbar, aber hinten.
+            foreach (ThingDef d in list) GroupIdx(d);   // group order = first occurrence
+            // Locked ones go to the END of the group - visible and unlockable, but at the back.
             IOrderedEnumerable<ThingDef> o = list.OrderBy(GroupIdx)
                 .ThenBy(d => LoadoutUtility.IsWeaponDisabled(d) ? 1 : 0);
             if (pickSort == PickSort.Name)
@@ -209,8 +201,8 @@ namespace CEReloaded
             return 0f;
         }
 
-        // Ein Auswahlknopf, der beim Klick sein Menue baut - die Optionen entstehen also erst beim
-        // Oeffnen und nicht in jedem Bild (die Liste kostet je Eintrag eine Uebersetzung).
+        // A selection button that builds its menu on click - so the options are only created when opening, not
+        // every frame (the list costs one translation per entry).
         private static void FilterDropdown(Rect r, string label, string tip, Func<List<FloatMenuOption>> build)
         {
             if (LoadoutUtility.ButtonTextFit(r, label))
@@ -221,8 +213,8 @@ namespace CEReloaded
             if (!string.IsNullOrEmpty(tip) && LoadoutUtility.TipWanted(r)) TooltipHandler.TipRegion(r, tip);
         }
 
-        // Beschriftungen der beiden Filter - je EINE Stelle, damit Knopftext und Menueeintrag nicht
-        // auseinanderlaufen koennen (das ist die haeufigste Fehlerklasse in diesem Mod).
+        // Labels of both filters - ONE place each, so button text and menu entry cannot drift apart (the most
+        // common bug class in this mod).
         private static string PickerFilterLabel(WeaponFilterMode m)
         {
             if (m == WeaponFilterMode.ResearchedWeapons) return "CER_GenerateLoadouts_RadioResearched".Translate().ToString();
@@ -253,8 +245,8 @@ namespace CEReloaded
                 return i;
             }
             foreach (Loadout l in list) GroupIdx(l);
-            // Gesperrte ans GRUPPENende, genau wie bei den Waffenzeilen (2026-09-04) - sichtbar und
-            // entsperrbar, aber nicht mehr im Weg.
+            // Locked ones go to the END of the group, just like the weapon rows - visible and unlockable, but no
+            // longer in the way.
             IOrderedEnumerable<Loadout> o = list.OrderBy(GroupIdx)
                 .ThenBy(l => LoadoutUtility.IsLoadoutDisabled(l) ? 1 : 0);
             if (pickSort == PickSort.Name)
@@ -263,11 +255,10 @@ namespace CEReloaded
             return (pickSortDesc ? o.ThenByDescending(LoadoutSortValue) : o.ThenBy(LoadoutSortValue)).ToList();
         }
 
-        // Schaden-Spalte: intrinsische Effekte der Waffe, dahinter die Effekte der Standard-Munition MIT
-        // Munitions-Plakette (DrawAmmoEffectIcons) - normale und Munitions-Effekte unterscheidbar
-        // (2026-09-02). EIN Sammel-Tooltip ueber die ganze Zelle mit allen Zeilen samt Details
-        // (am selben Abend wiederhergestellt) - die Zeichner sammeln
-        // ihre Zeilen ein statt Einzel-Tooltips zu registrieren; abgeschnittene Symbole stehen trotzdem drin.
+        // Damage column: intrinsic effects of the weapon, followed by the effects of the default ammo WITH an
+        // ammo badge (DrawAmmoEffectIcons) - normal and ammo effects can be told apart. ONE combined tooltip over
+        // the whole cell with all lines and details - the drawers collect their lines instead of registering
+        // individual tooltips; clipped icons are still included.
         private void DrawDamageCell(float x, float rowY, ThingDef weapon, IEnumerable<LoadoutSlot> slots)
         {
             if (weapon == null) return;
@@ -289,28 +280,25 @@ namespace CEReloaded
                 TooltipHandler.TipRegion(new Rect(x, rowY, DamageColW - 8f, RowH), string.Join("\n\n", tipLines));
         }
 
-        // 46 -> 32 (2026-08-13: zu viel Zeilenabstand bei den Eintraegen). Aus der
-        // Inhaltskette abgeleitet statt geraten, wie bei den anderen beiden Listen: das hoechste Element in
-        // einer Zeile ist die Materialleiste mit 26px, danach kommen die Masse/Sperrigkeits-Balken mit 22px
-        // und alles andere ist 16-20px. Jedes davon wird ueber (RowH - h) / 2 mittig gesetzt, ist also von
-        // der Zeilenhoehe unabhaengig. 32 laesst dem groessten Element 3px Luft nach oben und unten und
-        // schrumpft nichts vom Inhalt - genau der Fehler, der beim Schwester-Popup zu vermeiden war.
-        // Dieselbe Zahl fuer Zweitwaffen- und Pack-Auswahl: es ist derselbe Dialog, der Befund betraf
-        // beide.
+        // 46 -> 32 (too much spacing between entries). Derived from the content chain instead of guessed, as
+        // with the other two lists: the tallest element in a row is the materials strip at 26px, then the
+        // mass/bulk bars at 22px, and everything else is 16-20px. Each of them is centered via (RowH - h) / 2,
+        // so it is independent of the row height. 32 leaves the largest element 3px of air above and below and
+        // shrinks none of the content - exactly the mistake to avoid that happened in the sister popup.
+        // The same number for the sidearm and pack picker: it is the same dialog, and the problem affected both.
         private const float RowH = 32f;
-        // Breiten neu aufgeteilt 2026-08-15 (Sidearms- und Score-Spalte breiter, auf Kosten der Luecke
-        // zwischen Contents und Mass/Bulk).
-        // Gemessen statt geraten, mit einem Layout-Renderer: die Zeile ist 948px breit (Fenster 1000 - 2x18
-        // Rand - 16 Rollbalken). Was wohin ging:
-        //   NameColX   200 -> 234  (+34) - der Name war der einzige abgeschnittene Text der Zeile
+        // Widths redistributed (Sidearms and Score columns wider, at the expense of the gap between Contents and
+        // Mass/Bulk).
+        // Measured instead of guessed, with a layout renderer: the row is 948px wide (window 1000 - 2x18
+        // margin - 16 scrollbar). What went where:
+        //   NameColX   200 -> 234  (+34) - the name was the only clipped text in the row
         //   ScoreColW   64 ->  76  (+12)
-        //   AvailColW   46 ->  80  (+34) - die nackte Zahl wurde der Verfuegbarkeitsbalken, der braucht Platz
-        //   MaterialsColW 230 -> 210 (-20) - GESCHENKT, kein Verlust: DrawIngredientCell bricht bei
-        //     x + w - 22, also passen in 200px genau dieselben 8 Symbole wie vorher in 220px.
-        // Die restlichen 60px kommen aus der Contents-Luecke. Schmalster Fall (Zweitwaffen-Picker, Score
-        // UND Avail sichtbar): 150px Inhalt = 6 Symbole a 25px. Ein Waffen-Loadout hat Waffe + Munition,
-        // also 2-4; die vollen sechs gibt es nur bei Equipment Packs, und die zeigen weder Score noch Avail
-        // und behalten deshalb 306px.
+        //   AvailColW   46 ->  80  (+34) - the bare number became the availability bar, which needs room
+        //   MaterialsColW 230 -> 210 (-20) - FREE, no loss: DrawIngredientCell breaks at
+        //     x + w - 22, so exactly the same 8 icons fit into 200px as before into 220px.
+        // The remaining 60px come from the Contents gap. Narrowest case (sidearm picker, Score AND Avail
+        // visible): 150px of content = 6 icons at 25px. A weapon loadout has weapon + ammo, so 2-4; the full
+        // six only occur with Equipment Packs, which show neither Score nor Avail and so keep 306px.
         private const float NameColX = 234f;
         private const float ScoreColW = 76f;
         private const float AvailColW = 80f;
@@ -322,9 +310,9 @@ namespace CEReloaded
         {
             get
             {
-                // Waffen-Sektion zaehlt mit (2026-09-02) - im Hauptwaffen-Modus stellt sie fast alle
-                // Zeilen, ohne sie waere das Fenster ein Schlitz. Und mit den zwei Zusatzspalten
-                // (Schaden, Zugewiesen) braucht das Fenster mehr Breite als die reine Pack-Liste.
+                // The weapon section counts too - in main weapon mode it provides almost all rows, without it the
+                // window would be a slit. And with the two extra columns (damage, assigned) the window needs more
+                // width than the plain pack list.
                 int count = Mathf.Max(1, allOptions().Count + (weaponOptions != null ? weaponOptions().Count : 0));
                 // Doubled from the original estimate - a handful of rows used to force an immediate scroll
                 // with no room to compare more than 2-3 at a glance.
@@ -334,8 +322,8 @@ namespace CEReloaded
             }
         }
 
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Do not slide under RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without a collision this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -394,9 +382,8 @@ namespace CEReloaded
         // production for it, since nothing in this picker's own live-mutation callers ever checked). Gated on
         // checkProductionOnClose so the SquadSetup preview's own two call sites (pending pin, nothing real
         // yet) are unaffected.
-        // Gleicher Schnappschuss-Vergleich wie im Tabs-Fenster (2026-08-09): dieser Picker mutiert live,
-        // ein Oeffnen-und-wieder-Zumachen
-        // ohne Auswahl darf den Nachschub-Dialog nicht ausloesen.
+        // Same snapshot comparison as in the tabs window: this picker mutates live, so opening and closing it
+        // again without a selection must not trigger the resupply dialog.
         private string openSignature;
 
         public override void PostOpen()
@@ -408,13 +395,13 @@ namespace CEReloaded
         public override void PostClose()
         {
             base.PostClose();
-            // Sperr-Schalter wurden umgelegt: der Aufrufer entscheidet, was folgt -
-            // Zuweisungs-Reiter fragt nach Neuzuweisung der Traeger, die Pin-Vorschau rechnet still neu.
+            // Lock switches were toggled: the caller decides what follows - the Assign tab asks about
+            // reassigning the carriers, the pin preview silently recomputes.
             if (locksTouched) onDisabledChanged?.Invoke();
             if (!checkProductionOnClose) return;
-            // Nicht, solange das Tab-Fenster offen ist (2026-08-14) - siehe die ausfuehrliche Begruendung in
-            // Dialog_ChangeAmmo.PostClose. Dort sammelt CheckSupplyOnLeavingAssign denselben Hinweis einmal
-            // am Ende ein; hier zusaetzlich zu fragen macht aus jedem angehaengten Pack eine Rueckfrage.
+            // Not while the tabs window is open - see the full reasoning in Dialog_ChangeAmmo.PostClose. There
+            // CheckSupplyOnLeavingAssign collects the same prompt once at the end; asking here as well turns every
+            // attached pack into a prompt.
             if (Find.WindowStack?.WindowOfType<Dialog_CEReloadedTabs>() != null) return;
             if (openSignature == null || LoadoutUtility.AssignmentSignature() != openSignature)
                 LoadoutUtility.CheckAndOpenMissingProductionPopup();
@@ -432,21 +419,19 @@ namespace CEReloaded
             float y = 66f;
             search = LoadoutUtility.SearchBox(0f, y, search);
 
-            // Verfuegbarkeits-Filter neben der Suche (2026-09-02, die Filter aus dem alten Reiter)
-            // - dieselben drei Radios mit denselben Schluesseln wie im alten
-            // Waffen-Reiter, ueber den messenden Radio-Helfer (der RadioButtonLabeled-Umbruch von gestern
-            // war genau die Bauform, die dieser Helfer vermeidet). Wirkt NUR auf die Waffen-Sektion.
+            // Availability filter next to the search (the filters from the old tab) - the same three radios with
+            // the same keys as in the old weapons tab, via the measuring radio helper (the RadioButtonLabeled
+            // wrapping issue was exactly the pattern this helper avoids). Affects ONLY the weapon section.
             if (WeaponCols)
             {
                 EnsurePickerCaches();
-                // ===== Zwei Auswahlknoepfe statt acht Radios (2026-09-04) =====
+                // ===== Two selection buttons instead of eight radios =====
                 //
-                // Befund: bei den Optionen oben fehlten die Rollen, und die Radiobuttons nahmen zu viel
-                // Platz ein - daher Auswahlknoepfe. Beides stimmte -
-                // acht Radios brauchten die ganze Kopfzeile, und "Vanilla loadouts" wurde am rechten
-                // Rand schon abgeschnitten; fuer einen sechsten Typ (Rollen) war ohnehin kein Platz.
-                // Zwei Knoepfe brauchen zusammen rund 300 Punkte statt gut 900, und ein Auswahlmenue
-                // waechst mit jeder weiteren Wahl, ohne dass die Zeile breiter wird.
+                // The roles were missing from the options at the top, and the radio buttons took up too much
+                // space - hence selection buttons. Eight radios needed the whole header row, and "Vanilla
+                // loadouts" was already clipped at the right edge; there was no room for a sixth type (roles)
+                // anyway. Two buttons need about 300 points together instead of well over 900, and a selection
+                // menu grows with every further choice without the row getting wider.
                 float wfX = 300f;
                 Rect availBtn = new Rect(wfX, y, 168f, 24f);
                 FilterDropdown(availBtn, "CER_PickPacks_FilterShowFmt".Translate(PickerFilterLabel(pickerFilter)).ToString(),
@@ -462,8 +447,8 @@ namespace CEReloaded
                 });
                 wfX = availBtn.xMax + 8f;
 
-                // Zweite Gruppe: Waffentyp. Nur im Einzelmodus - in der Zweitwaffen-Checkliste saesse sie
-                // dem Sperrigkeits-Feld rechts oben im Weg.
+                // Second group: weapon type. Only in single-select mode - in the sidearm checklist it would get in
+                // the way of the bulk field at the top right.
                 if (singleSelect)
                 {
                     Rect typeBtn = new Rect(wfX, y, 168f, 24f);
@@ -471,9 +456,9 @@ namespace CEReloaded
                         "CER_PickPacks_FilterTypeTip".Translate(), () =>
                     {
                         var opts = new List<FloatMenuOption>();
-                        // -1 alle, 0 Fernkampf, 1 Nahkampf, 2 Sonstige, 3 Vanilla-Loadouts, 4 Rollen.
-                        // Die 4 ist neu (2026-09-04, "fehlt uns noch roles oder?") - vorher liess sich
-                        // auf Rollen nicht filtern, obwohl sie eine eigene Sektion der Liste sind.
+                        // -1 all, 0 ranged, 1 melee, 2 other, 3 vanilla loadouts, 4 roles.
+                        // 4 is new - previously roles could not be filtered on, although they are a separate
+                        // section of the list.
                         foreach (int t in new[] { -1, 0, 1, 2, 3, 4 })
                         {
                             int captured = t;
@@ -494,11 +479,10 @@ namespace CEReloaded
                     Rect bulkField = new Rect(inRect.width - 70f, y, 70f, 24f);
                     string prevBulk = s.sidearmMaxBulk;
                     s.sidearmMaxBulk = Widgets.TextField(bulkField, s.sidearmMaxBulk);
-                    // Der Wert lebt in den MOD-Einstellungen (spielstand-uebergreifend), aber nichts in diesem
-                    // Dialog hat ihn je weggeschrieben - RimWorld speichert nur beim Schliessen des eigenen
-                    // Einstellungsfensters. Er wirkte also sofort und war beim naechsten Start wieder weg, was
-                    // sich anfuehlte, als haette er gar keine Wirkung (2026-08-09). Nur bei echter Aenderung
-                    // schreiben, nicht pro Frame - Write() geht auf die Platte.
+                    // The value lives in the MOD settings (across saves), but nothing in this dialog ever wrote it
+                    // out - RimWorld only saves when its own settings window closes. So it took effect immediately
+                    // and was gone again on the next start, which felt as if it had no effect at all. Only write
+                    // on a real change, not per frame - Write() goes to disk.
                     if (s.sidearmMaxBulk != prevBulk) CEReloadedMod.settings.Write();
                     TooltipHandler.TipRegion(new Rect(bulkLbl.x, y, 230f, 24f),
                         "CER_PickPacks_SidearmBulkCapTooltip".Translate());
@@ -512,14 +496,13 @@ namespace CEReloaded
             if (!string.IsNullOrEmpty(search))
                 packs = packs.Where(p => displayLabel(p) != null && displayLabel(p).IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
-            // "Max sidearm bulk" WIRKT jetzt auch hier (2026-08-25: das Feld hatte keine Auswirkung).
-            // Das Feld stand in diesem Fenster und tat fuer diese Liste nichts - es war
-            // nur der Wert fuer den Automatik-Picker. Wer eine Zahl in ein Feld ueber einer Liste tippt,
-            // erwartet, dass die Liste reagiert. Also dieselbe Regel wie im Loeser (PickSidearm: Waffen-
-            // Sperrigkeit ueber der Grenze faellt raus; Sprengmittel und Schilde sind dort nie begrenzt, hier
-            // auch nicht - siehe SidearmAssignmentUtility.CapRelevantBulk). Ein angehaktes Loadout bleibt
-            // IMMER sichtbar, sonst koennte man es nicht mehr abwaehlen. Die Zahl der Ausgeblendeten steht
-            // unten in der Leiste, damit "wo ist mein Loadout hin" eine Antwort hat.
+            // "Max sidearm bulk" now takes effect here too (the field had no effect). The field sat in this
+            // window and did nothing for this list - it was only the value for the automatic picker. Anyone who
+            // types a number into a field above a list expects the list to react. So the same rule as in the
+            // solver (PickSidearm: weapon bulk over the limit drops out; explosives and shields are never capped
+            // there, and not here either - see SidearmAssignmentUtility.CapRelevantBulk). A ticked loadout ALWAYS
+            // stays visible, otherwise it could not be unticked. The number of hidden ones is shown in the bar
+            // at the bottom, so "where did my loadout go" has an answer.
             int hiddenByCap = 0;
             float capValue = 0f;
             if (showSidearmBulkCap)
@@ -531,9 +514,9 @@ namespace CEReloaded
                 hiddenByCap = before - packs.Count;
             }
 
-            // Die Waffen-Sektion (Lazy-Umbau 2026-09-01): dieselbe Suche, dieselbe Sperrigkeitsgrenze wie
-            // die Loadout-Zeilen (Granaten sind wie im Loeser von der Grenze ausgenommen - PickGrenade
-            // kennt keine, siehe SidearmAssignmentUtility.CapRelevantBulk).
+            // The weapon section (lazy rework): the same search, the same bulk limit as the loadout rows (grenades
+            // are exempt from the limit as in the solver - PickGrenade has none, see
+            // SidearmAssignmentUtility.CapRelevantBulk).
             List<ThingDef> weapons = weaponOptions != null && materializeWeapon != null
                 ? (weaponOptions() ?? new List<ThingDef>()) : new List<ThingDef>();
             if (!string.IsNullOrEmpty(search))
@@ -545,7 +528,7 @@ namespace CEReloaded
                 hiddenByCap += beforeW - weapons.Count;
             }
 
-            // Verfuegbarkeits-Filter (nur Waffen-Sektion; die aktuelle Waffe bleibt immer sichtbar).
+            // Availability filter (weapon section only; the current weapon always stays visible).
             if (WeaponCols && weapons.Count > 0 && pickerFilter != WeaponFilterMode.AllWeapons)
             {
                 EnsurePickerCaches();
@@ -555,23 +538,23 @@ namespace CEReloaded
                         : Dialog_GenerateLoadouts.IsResearched(d))).ToList();
             }
 
-            // Typ-Filter (zweite Gruppe, UND-verknuepft mit der Verfuegbarkeit) - wirkt auf Waffen- UND
-            // Loadout-Zeilen (deren Typ ueber die repraesentative Waffe; ohne Waffe immer sichtbar).
-            // KEIN Immer-sichtbar mehr fuer die aktuelle Wahl (2026-09-03: die Ruger Mini stand unter
-            // "others"): die aktuelle Waffe umging jeden Typ-Filter und stand dann als
-            // einzige Fernkampfwaffe unter einer fremden Filterwahl - ein Typ-Filter ist eine Sichtlinse,
-            // keine Verfuegbarkeitsfrage).
+            // Type filter (second group, AND-combined with availability) - affects weapon AND loadout rows (their
+            // type via the representative weapon; without a weapon always visible).
+            // NO always-visible exception for the current choice any more (a Ruger Mini showed up under
+            // "others"): the current weapon bypassed every type filter and then appeared as the only ranged
+            // weapon under an unrelated filter choice - a type filter is a view lens, not an availability
+            // question.
             if (WeaponCols && singleSelect && typeFilter >= 0)
             {
                 if (typeFilter == 3)
                 {
-                    // Nur Vanilla-Loadouts: Waffenliste leer, Rollen raus.
+                    // Vanilla loadouts only: weapon list empty, roles out.
                     weapons = new List<ThingDef>();
                     packs = packs.Where(l => !RoleUtility.IsRoleLoadout(l)).ToList();
                 }
                 else if (typeFilter == 4)
                 {
-                    // Nur Rollen (2026-09-04) - das Gegenstueck zu 3, gleiche Bauform.
+                    // Roles only - the counterpart to 3, same pattern.
                     weapons = new List<ThingDef>();
                     packs = packs.Where(l => RoleUtility.IsRoleLoadout(l)).ToList();
                 }
@@ -586,8 +569,7 @@ namespace CEReloaded
                 }
             }
 
-            // Sortierung IMMER aktiv (2026-09-02, nachjustiert: Vorgabe ist Score) -
-            // innerhalb der Gruppen, die Zwischenzeilen stehen fest.
+            // Sorting is ALWAYS active (default is score) - within the groups, the separator rows stay fixed.
             EnsurePickerCaches();
             weapons = SortedWeapons(weapons);
             packs = SortedLoadouts(packs);
@@ -606,7 +588,7 @@ namespace CEReloaded
                 GUI.color = Color.white;
             }
 
-            // Close und Copy teilen EINE Schriftstufe (de-buttontext-sweep, 2026-08-29) - siehe LoadoutUtility.ButtonRowFont.
+            // Close and Copy share ONE font size - see LoadoutUtility.ButtonRowFont.
             Rect closeRect = new Rect(0, inRect.height - bottomBarH + 6f, 120f, 30f);
             Rect copyRect = new Rect(128f, inRect.height - bottomBarH + 6f, 120f, 30f);
             string closeLbl = "CER_PickPacks_CloseButton".Translate().ToString();
@@ -618,8 +600,7 @@ namespace CEReloaded
             if (singleSelect)
             {
                 float bx = 128f;
-                // Kopieren der AKTUELLEN Zuweisung (2026-09-03, "choose a weapon soll auch einen copy
-                // button bekommen") - Ablage-Sorte 'mainweapon', die Einfuege-Spalte der Zeilen nimmt sie an.
+                // Copy the CURRENT assignment - clipboard kind 'mainweapon', the rows' paste column accepts it.
                 if (copyCurrent != null)
                 {
                     Loadout curCopy = copyCurrent();
@@ -628,18 +609,17 @@ namespace CEReloaded
                     if (LoadoutUtility.ButtonTextFit(copyBtn, "CER_PickPacks_CopyButton".Translate().ToString()) && curCopy != null)
                     {
                         LoadoutClipboard.Copy("mainweapon", new List<Loadout> { curCopy }, sourceLabel);
-                        // Die Meldung sagt seit 2026-09-04 auch, WOHIN eingefuegt wird. "Kopiert." allein
-                        // laesst den Spieler mit einem Erklaertext zurueck, der eine "Einfuege-Spalte"
-                        // verspricht - und die steht in einem anderen Fenster, das er dafuer erst oeffnen
-                        // muss. Zweimal als Fehler aufgefallen (siehe DrawPasteColumn).
+                        // The message also says WHERE it gets pasted. "Copied." alone leaves the player with an
+                        // explanation that promises a "paste column" - which sits in a different window they first
+                        // have to open. This tripped people up twice (see DrawPasteColumn).
                         Messages.Message("CER_PickPacks_CopiedWeaponMsgFmt".Translate(LoadoutUtility.LoadoutDisplayName(curCopy), sourceLabel), MessageTypeDefOf.TaskCompletion, false);
                     }
                     GUI.color = Color.white;
                     TooltipHandler.TipRegion(copyBtn, "CER_PickPacks_CopyWeaponTip".Translate());
                     bx += 128f;
                 }
-                // Alle eigenen (Vanilla-)Loadouts loeschen (2026-09-03, "Delete all own loadouts <n>") -
-                // Rollen bleiben unberuehrt; die Liste holt sich allOptions() beim naechsten Bild frisch.
+                // Delete all own (vanilla) loadouts - roles stay untouched; allOptions() fetches the list fresh
+                // on the next frame.
                 List<Loadout> ownDeletable = (allOptions() ?? new List<Loadout>()).Where(l => l != null && !RoleUtility.IsRoleLoadout(l)).ToList();
                 if (ownDeletable.Count > 0)
                 {
@@ -681,8 +661,8 @@ namespace CEReloaded
                 : "CER_PickPacks_CopyTooltipEmpty".Translate());
         }
 
-        // emptyOverride: der Text fuer eine leere Liste, wenn der Grund nicht Suche/keine Optionen ist
-        // (2026-08-25: alles von der Sperrigkeitsgrenze ausgeblendet).
+        // emptyOverride: the text for an empty list when the reason is not search/no options (everything hidden
+        // by the bulk limit).
         private void DrawPackList(Rect rect, List<Loadout> packs, List<ThingDef> weapons, string emptyOverride = null)
         {
             // No boxed panel background - matches the plain, direct-on-window-background look Dialog_
@@ -693,10 +673,9 @@ namespace CEReloaded
             if (packs.Count == 0 && weapons.Count == 0)
             {
                 GUI.color = new Color(1f, 1f, 1f, 0.5f);
-                // Ohne Suchtext ist "Keine Treffer fuer \"\"" keine Auskunft, sondern ein leeres
-                // Anfuehrungszeichenpaar (2026-09-04, im Test am Typ-Filter "Vanilla
-                // loadouts" in einem Spielstand ohne handgebaute Loadouts). Dann sagt der Satz, was
-                // wirklich los ist: der FILTER zeigt nichts, nicht die Suche.
+                // Without a search text, "No matches for \"\"" is no information but an empty pair of quotes (seen
+                // with the type filter "Vanilla loadouts" in a save without hand-built loadouts). Then the
+                // sentence says what is really going on: the FILTER shows nothing, not the search.
                 Widgets.Label(inner, emptyOverride ?? (allOptions().Count == 0 ? emptyMessage
                     : string.IsNullOrEmpty(search)
                         ? "CER_PickPacks_NoneOfThisType".Translate().ToString()
@@ -712,9 +691,9 @@ namespace CEReloaded
             float rowSpaceW = inner.width - 16f;
             float statsColW = MassBulkColW + MaterialsColW;
 
-            // Sortierbare Koepfe (2026-09-02, alle Spalten sortierbar): Klick sortiert,
-            // zweiter Klick dreht die Richtung; sortiert wird immer (Vorgabe Score absteigend), innerhalb
-            // der Gruppen. Nur die Inhalts-Spalte sortiert nicht (eine Symbolleiste hat kein Mass).
+            // Sortable headers (all columns sortable): click sorts, a second click reverses the direction; sorting
+            // is always on (default score descending), within the groups. Only the contents column does not sort
+            // (an icon strip has no measure).
             Text.Font = GameFont.Tiny;
             void HeaderCell(Rect r, string lbl, PickSort mode)
             {
@@ -729,8 +708,8 @@ namespace CEReloaded
             if (showScore) { HeaderCell(new Rect(hx, inner.y, ScoreColW - 6f, 18f), "CER_PickPacks_ScoreColumnHeader".Translate(), PickSort.Score); hx += ScoreColW; }
             if (WeaponCols)
             {
-                // Schaden-Spalte (2026-09-02, "die damage types bitte listen"): dieselben Symbole und
-                // derselbe Kopf wie die Besonderheit-Spalte des alten Waffen-Reiters.
+                // Damage column (lists the damage types): the same icons and the same header as the special column
+                // of the old weapons tab.
                 HeaderCell(new Rect(hx, inner.y, DamageColW - 6f, 18f), "CER_GenerateLoadouts_ColSpecial".Translate(), PickSort.Special);
                 hx += DamageColW;
             }
@@ -738,9 +717,8 @@ namespace CEReloaded
             GUI.color = new Color(1f, 1f, 1f, 0.55f);
             Widgets.Label(new Rect(inner.x + contentsColX, inner.y, rowSpaceW - statsColW - contentsColX - 6f, 18f), "CER_PickPacks_ContentsColumnHeader".Translate());
             GUI.color = Color.white;
-            // Produktionskosten VOR Masse/Sperrigkeit (2026-08-15, Spalten getauscht). Nur die Reihenfolge
-            // im rechten Block dreht sich;
-            // die Zeile unten liest dieselben zwei Konstanten in derselben neuen Reihenfolge.
+            // Production cost BEFORE mass/bulk (columns swapped). Only the order in the right block changes; the
+            // row below reads the same two constants in the same new order.
             HeaderCell(new Rect(inner.x + rowSpaceW - statsColW, inner.y, MaterialsColW - 6f, 18f), "CER_PickPacks_ProductionCostColumnHeader".Translate(), PickSort.Cost);
             HeaderCell(new Rect(inner.x + rowSpaceW - statsColW + MaterialsColW, inner.y, MassBulkColW - 6f, 18f), "CER_PickPacks_MassBulkColumnHeader".Translate(), PickSort.Mass);
             Text.Font = GameFont.Small;
@@ -749,11 +727,11 @@ namespace CEReloaded
             Rect listArea = new Rect(inner.x, inner.y + HeaderH + 4f, inner.width, inner.height - HeaderH - 4f);
             const float groupHeaderH = 26f;
 
-            // ===== Gruppen als einklappbare Segmente (2026-09-03, "mach die submenues collapsable") =====
-            // Loadout- und Waffen-Sektion werden EINE Segmentliste; jede Gruppe mit Kopfzeile ist eine
-            // Leiste mit Pfeil und Zaehler, Klick klappt ein/aus (collapsedGroups, je Fensteroeffnung).
-            // Zeilen ohne Gruppenkopf (groupLabel liefert null) bleiben immer sichtbar - dieselbe
-            // Konvention wie bisher ("die stillschweigende Gruppe gehoert dem Aufrufer").
+            // ===== Groups as collapsible segments =====
+            // The loadout and weapon sections become ONE segment list; every group with a header is a bar with an
+            // arrow and a count, a click collapses/expands it (collapsedGroups, per window opening).
+            // Rows without a group header (groupLabel returns null) always stay visible - the same convention as
+            // before ("the silent group belongs to the caller").
             var segments = new List<(string header, List<Loadout> los, List<ThingDef> defs)>();
             {
                 string curG = null; List<Loadout> bucket = null; bool first = true;
@@ -803,12 +781,12 @@ namespace CEReloaded
             List<Loadout> current = getCurrent() ?? new List<Loadout>();
             Widgets.BeginScrollView(listArea, ref scroll, viewRect);
             float ry = 0f;
-            // "Keins"/"Auto"-Zeile des Einzelauswahl-Modus, ganz oben - dieselbe Radio-Optik wie die
-            // Zeilen darunter, damit sie als gleichwertige Wahl liest.
+            // "None"/"Auto" row of single-select mode, at the very top - the same radio look as the rows below,
+            // so it reads as an equal choice.
             if (singleSelect && onNonePicked != null)
             {
-                // Keine Radios mehr (2026-09-02, nachjustiert: "entferne den radiobutton komplett") -
-                // die ganze Zeile ist der Klick, die aktuelle Wahl traegt die Auswahl-Hinterlegung.
+                // No more radios: the whole row is the click target, the current choice carries the selection
+                // highlight.
                 Rect noneRow = new Rect(0, ry, viewRect.width, RowH);
                 bool noneOn = currentSingle == null && currentWeaponSingle == null;
                 if (noneOn) Widgets.DrawHighlightSelected(noneRow);
@@ -828,8 +806,8 @@ namespace CEReloaded
                 bool open = true;
                 if (hasHeader)
                 {
-                    // Gestylte, klickbare Gruppenleiste (2026-09-03): dezenter Balken, Auf/Zu-Pfeil,
-                    // Name + Zeilenzahl. Die ganze Leiste ist die Klickflaeche.
+                    // Styled, clickable group bar: subtle bar, open/closed arrow, name + row count. The whole bar
+                    // is the click area.
                     Rect bar = new Rect(0, ry, viewRect.width, groupHeaderH - 3f);
                     bool segCollapsed = collapsedGroups.Contains(seg.header);
                     Widgets.DrawBoxSolid(bar, new Color(1f, 1f, 1f, segCollapsed ? 0.05f : 0.08f));
@@ -868,10 +846,10 @@ namespace CEReloaded
             Widgets.EndScrollView();
         }
 
-        // Eine Waffen-Zeile der Waffen-Sektion: gleiche Spalten wie eine Loadout-Zeile, nur aus der
-        // Vorgabe gerechnet (DefaultSlotsFor/DefaultMassBulkFor), aus der beim Anhaken die geteilte
-        // Vorlage entsteht. Die Produktionskosten-Spalte bleibt leer - eine Vorlage, die es noch nicht
-        // gibt, hat keinen Auftrag; die Verfuegbarkeit der Waffe selbst steht im Avail-Balken.
+        // A weapon row of the weapon section: same columns as a loadout row, just computed from the defaults
+        // (DefaultSlotsFor/DefaultMassBulkFor) from which the shared template is created on ticking. The
+        // production cost column stays empty - a template that does not exist yet has no bill; the weapon's own
+        // availability is shown in the Avail bar.
         private void DrawWeaponRow(Rect row, ThingDef w, List<Loadout> current, bool showScore, bool showAvail, float contentsColX, float statsColW)
         {
             if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
@@ -881,14 +859,13 @@ namespace CEReloaded
             float iconX;
             if (singleSelect)
             {
-                // Kein Radio mehr (2026-09-02, nachjustiert): die ganze Zeile waehlt, die aktuelle
-                // Waffe traegt die Auswahl-Hinterlegung.
+                // No more radio: the whole row selects, the current weapon carries the selection highlight.
                 if (w == currentWeaponSingle) Widgets.DrawHighlightSelected(row);
-                // Sperr-Schalter (2026-09-03) - VOR dem Zeilen-Klick, sonst frisst
-                // der unsichtbare Zeilenknopf den Klick auf das Schloss. Gesperrt: Zeile ausgegraut,
-                // nicht waehlbar, steht am Gruppenende (SortedWeapons); der Schalter bleibt bedienbar.
-                // Eigene, ersetzbare Symbole statt RimWorlds Verbots-Hand (2026-09-03, der Finger war als
-                // Symbol unklar) - Textures/UI/Icon_DoNotUse(.Off).png.
+                // Lock switch - BEFORE the row click, otherwise the invisible row button eats the click on the lock.
+                // Locked: row greyed out, not selectable, placed at the end of the group (SortedWeapons); the switch
+                // stays usable.
+                // Custom, replaceable icons instead of RimWorld's forbid hand (the finger was unclear as an icon) -
+                // Textures/UI/Icon_DoNotUse(.Off).png.
                 Rect lockRect = new Rect(row.x + NameColX - 24f, row.y + (RowH - 18f) / 2f, 18f, 18f);
                 GUI.color = new Color(1f, 1f, 1f, locked || Mouse.IsOver(row) ? 1f : 0.3f);
                 if (Widgets.ButtonImage(lockRect, locked ? TexDoNotUseOn : TexDoNotUseOff))
@@ -909,8 +886,8 @@ namespace CEReloaded
                 picked = newOn;
                 iconX = row.x + 30f;
             }
-            // Waffensymbol vor dem Namen - die Loadout-Zeilen haben keins, aber bei einer reinen
-            // Waffenliste traegt es die Wiedererkennung (2026-09-02).
+            // Weapon icon before the name - loadout rows have none, but in a plain weapon list it carries the
+            // recognition.
             if (locked) GUI.color = new Color(1f, 1f, 1f, 0.4f);
             Widgets.ThingIcon(new Rect(iconX, row.y + (RowH - 24f) / 2f, 24f, 24f), w);
             Rect nameRect = new Rect(iconX + 30f, row.y, row.x + NameColX - (iconX + 30f) - (singleSelect ? 30f : 4f), RowH);
@@ -918,9 +895,8 @@ namespace CEReloaded
             Widgets.Label(nameRect, w.LabelCap.ToString().Truncate(nameRect.width - 4f));
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = Color.white;
-            // Der ausfuehrliche Waffen-Tooltip wie im alten Waffen-Reiter (2026-09-02):
-            // Name + Beschreibung am Namen, die Wertungs-Herleitung am Balken. TipWanted davor - der
-            // Text entstuende sonst pro Zeile und Bild.
+            // The detailed weapon tooltip as in the old weapons tab: name + description on the name, the score
+            // derivation on the bar. TipWanted first - otherwise the text would be built per row and frame.
             if (LoadoutUtility.TipWanted(nameRect))
                 TooltipHandler.TipRegion(nameRect, w.LabelCap.ToString() + "\n\n" + (w.description ?? ""));
             if (!singleSelect && Widgets.ButtonInvisible(nameRect)) picked = true;
@@ -961,8 +937,8 @@ namespace CEReloaded
                 if (LoadoutUtility.TipWanted(availRect))
                 {
                     availTip = LoadoutUtility.BuildWeaponLocationTooltip(w);
-                    // Knappheits-Zeile aus dem alten Pin-Menue (2026-07-31): was der LEBENDE Vorschau-Plan
-                    // schon anderen zugedacht hat, weiss der Kolonie-Bestandsbalken nicht.
+                    // Scarcity line from the old pin menu: the colony stock bar does not know what the LIVE preview
+                    // plan has already earmarked for others.
                     int reserved = reservedFn != null ? reservedFn(w) : 0;
                     if (reserved > 0)
                         availTip = (availTip ?? "") + "\n" + "CER_PickWeapon_ReservedTipFmt".Translate(reserved.ToString()).ToString();
@@ -970,14 +946,14 @@ namespace CEReloaded
                 LoadoutUtility.DrawAvailabilityBar(availRect, seg, horizontal: true, availTip);
             }
 
-            // KEIN Inhalts-Streifen mehr fuer Waffen-Zeilen (2026-09-03, "contents zeig nur etwas an bei
-            // roles und vanilla loadouts, beim rest nicht") - Waffe+Standard-Munition stehen ohnehin in
-            // Name und Schaden-Spalte; die Slots braucht nur noch die Kostenrechnung.
+            // NO contents strip for weapon rows any more (contents are only shown for roles and vanilla loadouts)
+            // - weapon + default ammo are already shown in the name and damage column; the slots are only needed
+            // for the cost calculation.
             List<LoadoutSlot> slots = WeaponSlots(w);
 
             float statsX = row.width - statsColW;
-            // Produktionskosten der Vorgabe (2026-09-02, "production cost ist ueberall leer"): dieselbe
-            // Rechnung wie bei den Loadout-Zeilen, nur aus der Slot-Vorgabe statt einem Loadout-Objekt.
+            // Production cost of the defaults (it was empty everywhere): the same calculation as for the loadout
+            // rows, just from the default slots instead of a loadout object.
             if (!weaponCostCache.TryGetValue(w, out Dictionary<ThingDef, int> wCosts))
             {
                 wCosts = LoadoutUtility.GetSlotsProductionCosts(slots);
@@ -996,13 +972,12 @@ namespace CEReloaded
             Rect nameRect = new Rect(row.x + 30f, row.y, NameColX - 34f, RowH);
             if (singleSelect)
             {
-                // Einzelauswahl ohne Radio (2026-09-02, nachjustiert): die GANZE Zeile waehlt und
-                // schliesst; die aktuelle Wahl traegt die Auswahl-Hinterlegung.
+                // Single-select without radio: the WHOLE row selects and closes; the current choice carries the
+                // selection highlight.
                 if (pack == currentSingle) Widgets.DrawHighlightSelected(row);
-                // Sperr-Schalter auch fuer ROLLEN und Loadouts (2026-09-04, mit allen Folgen) - identisch
-                // zur Waffenzeile: VOR dem
-                // Zeilen-Klick gezeichnet, sonst frisst der unsichtbare Zeilenknopf den Klick aufs Schloss.
-                // Nur in der Einzelauswahl; die Pack-Checkliste kennt kein Sperren.
+                // Lock switch for ROLES and loadouts too (with all consequences) - identical to the weapon row:
+                // drawn BEFORE the row click, otherwise the invisible row button eats the click on the lock.
+                // Only in single-select mode; the pack checklist has no locking.
                 bool loLocked = LoadoutUtility.IsLoadoutDisabled(pack);
                 Rect loLockRect = new Rect(row.x + NameColX - 24f, row.y + (RowH - 18f) / 2f, 18f, 18f);
                 GUI.color = new Color(1f, 1f, 1f, loLocked || Mouse.IsOver(row) ? 1f : 0.3f);
@@ -1031,11 +1006,10 @@ namespace CEReloaded
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(nameRect, displayLabel(pack).Truncate(nameRect.width - 4f));
                 Text.Anchor = TextAnchor.UpperLeft;
-                // Der NAME schaltet mit (2026-08-28, beim Selbsttest selbst hineingelaufen: ein Klick auf
-                // "Shield Kit" tat gar nichts, nur das 24x24-Kaestchen davor reagierte). RimWorlds eigener
-                // beschrifteter Haken schaltet ueberall sonst auf der ganzen Beschriftung - hier sah die
-                // Beschriftung aus wie ein Ziel und war keins. Bewusst NUR die Namensspalte und nicht die
-                // ganze Zeile: rechts davon liegen Inhalts- und Materialzellen mit eigenen Tooltips.
+                // The NAME toggles too (a click on "Shield Kit" did nothing, only the 24x24 box in front of it
+                // reacted). RimWorld's own labeled checkbox toggles on the whole label everywhere else - here the
+                // label looked like a target and was not one. Deliberately ONLY the name column and not the whole
+                // row: to its right are the contents and materials cells with their own tooltips.
                 if (Widgets.ButtonInvisible(nameRect)) newOn = !on;
 
                 if (newOn != on)
@@ -1063,23 +1037,22 @@ namespace CEReloaded
 
             if (showAvail)
             {
-                // Der gemeinsame Verfuegbarkeitsbalken statt der nackten Zahl (2026-08-15). Exakt die
-                // Bauform, die
-                // die Waffenuebersicht fuer dieselbe Frage schon benutzt: GetWeaponInventory -> die vier
-                // Toepfe getragen / zugewiesen-und-getragen / zugewiesen-im-Lager / frei im Lager, plus was
-                // an der Werkbank haengt. OHNE Pawn-Kontext, obwohl der Picker fuer einen Kolonisten offen
-                // ist - der Balken faerbt "frei im Lager" dann gruen statt gelb, und das ist hier die
-                // richtige Aussage: die Frage der Zeile ist "gibt es das ueberhaupt", nicht "hat DIESER
-                // Kolonist es schon". Gegenprobe zur alten Anzeige: die zeigte stored-demanded, also genau
-                // den gruenen Abschnitt - es geht nichts verloren, es kommt nur der Rest dazu.
-                // Vorher war das eine Ampelzahl (gruen 2+, gelb 1, rot 0) aus ComputeAvailability.
+                // The shared availability bar instead of the bare number. Exactly the pattern the weapon overview
+                // already uses for the same question: GetWeaponInventory -> the four pools carried /
+                // assigned-and-carried / assigned-in-storage / free in storage, plus what is queued at the
+                // workbench. WITHOUT pawn context, although the picker is open for one colonist - the bar then
+                // colors "free in storage" green instead of yellow, and that is the right statement here: the
+                // row's question is "does this exist at all", not "does THIS colonist already have it". Cross-check
+                // against the old display: it showed stored-demanded, i.e. exactly the green segment - nothing is
+                // lost, only the rest is added.
+                // Previously this was a traffic-light number (green 2+, yellow 1, red 0) from ComputeAvailability.
                 ThingDef mainDef = availDefFn(pack);
                 Rect availRect = new Rect(afterName + 4f, row.y + (RowH - 20f) / 2f, AvailColW - 12f, 20f);
                 if (mainDef != null)
                 {
                     var seg = LoadoutUtility.WeaponAvailability(mainDef);
-                    // TipWanted davor: BuildWeaponLocationTooltip laeuft ueber alle Karten und alle
-                    // Kolonisten, und dieser Balken steht in JEDER Zeile der Liste.
+                    // TipWanted first: BuildWeaponLocationTooltip runs over all maps and all colonists, and this bar
+                    // sits in EVERY row of the list.
                     LoadoutUtility.DrawAvailabilityBar(availRect, seg, horizontal: true,
                         LoadoutUtility.TipWanted(availRect) ? LoadoutUtility.BuildWeaponLocationTooltip(mainDef) : null);
                 }
@@ -1089,11 +1062,11 @@ namespace CEReloaded
             float contentsW = row.width - statsColW - contentsColX - 8f;
             DrawContentsStrip(new Rect(row.x + contentsColX, row.y, contentsW, RowH), slots);
 
-            // Rechter Block, seit 2026-08-15 in der Reihenfolge Produktionskosten -> Masse/Sperrigkeit.
+            // Right block, in the order production cost -> mass/bulk.
             float statsX = row.width - statsColW;
 
             Dictionary<ThingDef, int> prodCosts = LoadoutUtility.GetLoadoutProductionCosts(pack);
-            // Ohne Mengen: 200px Spalte, siehe DrawTotalCostLine. Die Zahlen stehen im Tooltip der Zelle.
+            // Without amounts: 200px column, see DrawTotalCostLine. The numbers are in the cell's tooltip.
             LoadoutUtility.DrawTotalCostLine(statsX, row.y + (RowH - 26f) / 2f, MaterialsColW - 10f, prodCosts, "", labelW: 0f, showCounts: false);
 
             LoadoutUtility.GetLoadoutMassBulk(pack, out float mass, out float bulk);

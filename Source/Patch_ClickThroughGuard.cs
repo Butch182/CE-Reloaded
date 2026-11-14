@@ -4,17 +4,16 @@ using Verse;
 
 namespace CEReloaded
 {
-    // ====== Der Klick-Durchschlag beim Schliessen unserer Fenster (2026-08-19) ======
+    // ====== Click-through when closing our windows ======
     //
-    // Mehrfach im Test aufgetreten, immer gleich: ein Klick auf "Cancel" im
-    // Nachschub-Fenster oder in "Arm my Colony" schliesst das Fenster UND oeffnet gleichzeitig das
-    // Auswahlmenue, das an derselben Bildschirmstelle in RimWorlds Zuweisungs-Reiter darunterliegt -
-    // beide Male die Spalte "Food policy" mit Lavish/Fine/Simple/...
+    // Reproducible, always the same way: clicking "Cancel" in the supply window or in "Arm my Colony"
+    // closes the window AND at the same time opens the dropdown that sits at the same screen position in
+    // RimWorld's Assign tab underneath - both times the "Food policy" column with Lavish/Fine/Simple/...
     //
-    // Die Ursache steht in RimWorlds eigenem Code und ist keine Nachlaessigkeit von uns:
-    // RimWorlds Richtlinien-Spalten zeichnen ihre Zelle mit Widgets.Dropdown, und das laeuft ueber
-    // Widgets.ButtonInvisibleDraggable. Diese Funktion fragt NICHT das IMGUI-Ereignis ab, sondern
-    // Unitys Polling:
+    // The cause is in RimWorld's own code, not a mistake on our side:
+    // RimWorld's policy columns draw their cell with Widgets.Dropdown, which goes through
+    // Widgets.ButtonInvisibleDraggable. That function does NOT query the IMGUI event but
+    // Unity's polling:
     //
     //     if (Input.GetMouseButtonDown(0) && Mouse.IsOver(butRect))
     //         buttonInvisibleDraggable_activeControl = controlID;
@@ -22,25 +21,25 @@ namespace CEReloaded
     //     if (buttonInvisibleDraggable_activeControl == controlID && Input.GetMouseButtonUp(0)
     //         && Mouse.IsOver(butRect)) return DraggableResult.Pressed;
     //
-    // Input.GetMouseButtonDown ist im ganzen BILD wahr - fuer jeden Zeichendurchgang, unabhaengig
-    // davon, ob ein Ereignis schon verbraucht wurde und welches Fenster obenauf liegt. Genau deshalb
-    // hilft absorbInputAroundWindow hier nicht: das arbeitet auf der Ereignis-Seite, und diese Stelle
-    // liest die andere. Der Zeigerdruck bewaffnet also die Zelle darunter, waehrend unser Fenster noch
-    // offen ist; beim Loslassen ist unser Fenster weg, die Zelle liegt frei, und sie feuert.
-    // buttonInvisibleDraggable_activeControl ist dabei EIN globales Feld - es merkt sich genau einen
-    // bewaffneten Knopf, und der ueberlebt das Schliessen unseres Fensters.
+    // Input.GetMouseButtonDown is true for the whole FRAME - for every draw pass, regardless of whether
+    // an event was already consumed or which window is on top. That is exactly why
+    // absorbInputAroundWindow does not help here: it works on the event side, and this code reads the
+    // other one. So the mouse press arms the cell underneath while our window is still open; on release
+    // our window is gone, the cell is exposed, and it fires.
+    // buttonInvisibleDraggable_activeControl is ONE global field - it remembers exactly one armed
+    // button, and that survives our window closing.
     //
-    // Deshalb der Fix genau dort: schliesst eines UNSERER Fenster, wird die Bewaffnung geloescht.
-    // Das kann nichts Erwuenschtes abbrechen - wer gerade unser modales Fenster bedient hat, hatte
-    // keinen laufenden Zieh-Vorgang in RimWorlds Tabelle darunter, die war ja gesperrt.
-    // Absichtlich auf unsere eigenen Fenster begrenzt (Namensraum-Pruefung): fuer RimWorlds eigene
-    // Fenster ist dieses Verhalten deren Sache, und ein globaler Eingriff waere eine Aenderung an
-    // fremdem Verhalten ohne Befund.
+    // Hence the fix right there: when one of OUR windows closes, the armed state is cleared.
+    // That cannot cancel anything wanted - whoever was just using our modal window had no drag in
+    // progress in RimWorld's table underneath, since that table was blocked.
+    // Deliberately limited to our own windows (namespace check): for RimWorld's own windows this
+    // behavior is their business, and a global intervention would change foreign behavior without
+    // a known problem.
     [HarmonyPatch(typeof(WindowStack), nameof(WindowStack.TryRemove), new[] { typeof(Window), typeof(bool) })]
     public static class Patch_ClickThroughGuard
     {
-        // Privates Feld, deshalb ueber AccessTools. Null-tolerant: benennt RimWorld es einmal um,
-        // faellt nur dieser Schutz aus - nichts anderes haengt daran.
+        // Private field, hence AccessTools. Null-tolerant: if RimWorld ever renames it, only this
+        // guard is lost - nothing else depends on it.
         private static readonly FieldInfo ActiveControl =
             AccessTools.Field(typeof(Widgets), "buttonInvisibleDraggable_activeControl");
 

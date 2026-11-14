@@ -34,12 +34,12 @@ namespace CEReloaded
         // Loadout's label for us).
         public const string PackMarkerPrefix = "[Pack]";
 
-        // ============ Erkennung ueber die Identitaet (2026-08-17) ============
-        // Sein Auftrag: "wir wollen nichts mehr erkennen an irgendwelchen praefixes". Dieselbe Loesung, die
-        // Waffen-Vorlagen ueber managedLoadoutIds laengst haben und die Rollen heute bekommen haben: ein Pack
-        // wird beim Anlegen eingetragen, und das Etikett entscheidet nichts mehr.
-        // Der Marker-Rueckfall bleibt fuer Packs, die vor dieser Aenderung entstanden sind - er heilt sich
-        // selbst, sobald so ein Pack einmal angefasst wird (MarkAsPack unten).
+        // ============ Detection by identity ============
+        // Packs are no longer recognized by any name prefix. Same solution that weapon templates already
+        // have via managedLoadoutIds and that roles use too: a pack is registered when it is created, and
+        // the label no longer decides anything.
+        // The marker fallback stays for packs created before this change - it heals itself
+        // as soon as such a pack is touched once (MarkAsPack below).
         public static bool IsEquipmentPackLoadout(Loadout lo)
         {
             if (lo == null) return false;
@@ -47,7 +47,7 @@ namespace CEReloaded
             return comp != null && comp.packLoadoutIds.Contains(lo.UniqueID);
         }
 
-        // NACH LoadoutManager.AddLoadout aufrufen - die UniqueID vergibt erst der Manager.
+        // Call AFTER LoadoutManager.AddLoadout - the manager assigns the UniqueID.
         public static void MarkAsPack(Loadout lo)
         {
             if (lo == null) return;
@@ -74,19 +74,19 @@ namespace CEReloaded
         // own configurable prefix) - changing it can never un-recognize an already-authored pack, since
         // nothing ever matches packs BY the display prefix. Read-only display use ONLY - see BareName above
         // for anything that feeds back into an editable name field.
-        // Reicht seit 2026-08-16 an LoadoutUtility.LoadoutDisplayName durch - EINE Stelle entscheidet, wie ein
-        // Name aussieht, statt dass jede Stelle selbst bastelt. Der Name bleibt, weil die Aufrufstellen
-        // damit lesbar sind. BareName daneben ist etwas anderes und bleibt: das ist der EDITIERBARE Name.
+        // Delegates to LoadoutUtility.LoadoutDisplayName - ONE place decides how a name looks, instead of
+        // every call site building its own. The method stays because it keeps the call sites readable.
+        // BareName next to it is something else and stays: that is the EDITABLE name.
         public static string StripMarker(string label) => LoadoutUtility.LoadoutDisplayName(label);
 
         public static List<Loadout> AllEquipmentPacks() =>
             LoadoutManager.Loadouts.Where(l => l != null && !l.defaultLoadout && IsEquipmentPackLoadout(l)).ToList();
 
-        // Wer traegt dieses Pack WIRKLICH - ueber den eigenen Anker (Extra-Elternteil, der normale Weg)
-        // ODER ueber eine zugewiesene Rolle, die das Pack selbst als Extra-Elternteil mitbringt
-        // (CommitRole haengt es an, statt es einzuschmelzen). Fuer die Traeger-Raute im Packs-Reiter
-        // (2026-09-01) - dieselbe Frage, die Supply Loadouts pro GEGENSTAND laengst
-        // beantwortet, hier pro PACK-OBJEKT. Namen wie ueberall LabelShortCap, dedupliziert.
+        // Who ACTUALLY carries this pack - via their own anchor (extra parent, the normal path)
+        // OR via an assigned role that brings the pack along as its own extra parent
+        // (CommitRole attaches it instead of merging it in). Used for the carrier diamond in the Packs tab -
+        // the same question Supply Loadouts already answers per ITEM, here per PACK OBJECT.
+        // Names use LabelShortCap as everywhere, deduplicated.
         public static List<string> PackWearerNames(Loadout pack)
         {
             var names = new List<string>();

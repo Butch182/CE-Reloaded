@@ -8,7 +8,7 @@ namespace CEReloaded
     public class CEReloadedSettings : ModSettings
     {
         // Skill requirement ranges default to the full min..max the game supports (vanilla 0..20; read from
-        // SkillRecord so it tracks whatever the running game/mods define). The user can narrow it afterwards.
+        // SkillRecord so it tracks whatever the running game/mods define). Players can narrow it afterwards.
         public int ammoBillMinSkill = 0;
         public int ammoBillMaxSkill = SkillRecord.MaxLevel;
         public int weaponBillMinSkill = 0;
@@ -53,32 +53,29 @@ namespace CEReloaded
         public static PresetTuning DefaultPresetAntiMech() => new PresetTuning
         { pool = 0.3f, mech = 0.75f, count = 0.35f, ammoVar = 0.65f, craft = 0.3f, melee = 0.35f, diversity = 0.6f, budget = 0.9f, packCoverage = 0.5f };
         // Economy is the frugal preset: the low pool trims shields further via the pool-gate in RecomputeGenerate.
-        // budget = 0 seit 2026-08-14 (vorher 0.35): Economy soll "cheap weapons" auf das Minimum setzen
-        // - das ist DER Regler, um den es bei diesem Knopf geht, also
-        // steht er hier am Anschlag. craft bleibt bewusst knapp ueber 0 (0.15) und nicht auf 0: 0 heisst
-        // "baue NICHTS" (AssignPlanner wirft Kandidaten ohne Bestand dann ganz raus) und waere damit nur eine
-        // zweite Kopie von "Available items". Gewollt ist diese Reihenfolge - erst nehmen, was da ist, und
-        // wenn nichts da ist, die GUENSTIGE Variante nachbauen.
+        // budget = 0 (was 0.35): Economy is meant to push "cheap weapons" to the minimum - that is THE dial this
+        // button is about, so it sits at the stop here. craft deliberately stays just above 0 (0.15), not at 0:
+        // 0 means "build NOTHING" (AssignPlanner then drops candidates without stock entirely) and would just be a
+        // second copy of "Available items". The intended order is: take what is there first, and if nothing is
+        // there, craft the CHEAP variant.
         //
-        // ====== diversity 0.7 -> 0.15 (2026-08-19), und DAS war die Ursache des zweiten Befunds ======
-        // Befund: Economy produzierte immer noch extrem viel. Ein Screenshot zeigte die Ursache:
-        // "Cheap weapons" stand ganz links, der Regler kam also an; geplant
-        // wurden trotzdem Kord 6P50, MG 338, T-9 Werfer, SKS und KS-23 nebeneinander.
-        // Nachgerechnet an AssignPlanner: der Preisabzug fuer eine zu bauende Waffe liegt bei
-        // priceWeight * Kostenanteil, mindestens 45 Punkte. Der Wiederholungsabzug daneben ist
-        // diversity * 55 * (wie oft schon vergeben) - bei 0.7 also 38.5 fuer den ZWEITEN Kolonisten mit
-        // derselben Waffe, 77 fuer den dritten, dazu diversity * 25 Bonus fuer jede noch unbesetzte
-        // Waffenklasse (SupportMG, Marksman, CQC, Launcher). Bei neun Kolonisten ueberholt dieser Abzug den
-        // Preis ab dem dritten - danach gewinnt jede teure Waffe, einfach weil sie neu ist. Der
-        // Budget-Regler kann dagegen nichts ausrichten, egal wie weit links er steht.
-        // Sparsam heisst bei Waffen: EINE Sorte, ein Kaliber, eine Fertigungskette, in Menge gebaut.
-        // Genau das ist die linke Seite dieses Reglers ("Always use best"), und deshalb steht er hier jetzt
-        // fast am Anschlag statt in der Mitte. Nicht auf 0: eine Nahkampf- und eine Fernkampfwahl darf sich
-        // weiterhin unterscheiden, und ein Kolonist, dem die Waffe gar nicht liegt, soll nicht dieselbe
-        // aufgezwungen bekommen.
-        // Bestand: diese Presets gehen ueber Scribe_Deep, der ALTE Wert steht also wirklich in der
-        // gespeicherten Einstellungsdatei - ein geaenderter Werksstandard allein erreicht dort niemanden.
-        // Deshalb steht unten in ExposeData eine Migrationszeile, genau wie fuer budget 0.35 -> 0.
+        // ====== diversity 0.7 -> 0.15, and THAT was the cause of excessive production ======
+        // Symptom: Economy still produced far too much. With "Cheap weapons" all the way left (so the dial did
+        // take effect), the plan still contained Kord 6P50, MG 338, T-9 launcher, SKS and KS-23 side by side.
+        // Worked through in AssignPlanner: the price penalty for a weapon that must be crafted is
+        // priceWeight * cost share, at least 45 points. The repetition penalty next to it is
+        // diversity * 55 * (times already assigned) - at 0.7 that is 38.5 for the SECOND colonist with the same
+        // weapon, 77 for the third, plus a diversity * 25 bonus for every still-unfilled weapon class
+        // (SupportMG, Marksman, CQC, Launcher). With nine colonists this penalty overtakes the price from the
+        // third one on - after that every expensive weapon wins simply because it is new. The budget dial can do
+        // nothing against that, however far left it is.
+        // Frugal, for weapons, means ONE type, one caliber, one production chain, built in quantity. That is
+        // exactly the left end of this dial ("Always use best"), which is why it now sits close to the stop
+        // instead of the middle. Not at 0: a melee and a ranged pick may still differ, and a colonist who is bad
+        // with the weapon should not have the same one forced on them.
+        // Existing settings: these presets go through Scribe_Deep, so the OLD value really is stored in the
+        // saved settings file - changing the factory default alone reaches nobody there.
+        // Hence the migration line in ExposeData below, same as for budget 0.35 -> 0.
         public static PresetTuning DefaultPresetEconomy() => new PresetTuning
         { pool = 0.15f, mech = 0.5f, count = 0.35f, ammoVar = 0.3f, craft = 0.15f, melee = 0.35f, diversity = 0.15f, budget = 0f, packCoverage = 0.2f };
         public static PresetTuning DefaultPresetBestGear() => new PresetTuning
@@ -124,28 +121,25 @@ namespace CEReloaded
             // IsGeneratedPack), so a hand-built template/pack survives a scoped reset.
             public LoadoutUtility.BillDeleteScope deleteAmmoBills, deleteWeaponBills, deleteWeaponLoadouts, deleteEquipmentPacks;
 
-            // ============ Ein fehlender Schluessel muss die Vorgabe DIESES MODUS bedeuten (2026-08-17) ============
-            // Befund: bei Aggressive sollten "delete weapon loadouts" und "delete equipment packs" auf die
-            // mittlere Spalte wechseln, taten es aber nicht. Ein "einmal Zuruecksetzen druecken" waere zu
-            // bequem gewesen - es haette einen kaputten Zustand gelassen und einen Handgriff verlangt, den
-            // niemand macht.
+            // ============ A missing key must mean THIS MODE's default ============
+            // Symptom: in Aggressive, "delete weapon loadouts" and "delete equipment packs" were supposed to
+            // switch to the middle column but did not. "Just press Reset once" would have been too easy a way
+            // out - it would leave a broken state and demand a manual step nobody takes.
             //
-            // Der Mechanismus: Scribe_Deep.Look baut beim Laden ein FRISCHES ArmModePreset und ruft darauf
-            // ExposeData. DefaultArmAggressive() kommt danach nie zum Zug, weil das Ergebnis nicht null ist.
-            // Fehlte ein Schluessel in der Datei - und in seiner fehlen genau diese zwei, sie sind erst am
-            // 2026-08-01 dazugekommen -, dann entschied der hier hingeschriebene Vorgabewert. Der stand fuer
-            // ALLE DREI Modi auf None, also "behalten". Der Aggressive-Modus hat damit dauerhaft das Gegenteil
-            // dessen getan, was sein eigener Werksstand sagt.
+            // The mechanism: on load, Scribe_Deep.Look builds a FRESH ArmModePreset and calls ExposeData on it.
+            // DefaultArmAggressive() never gets a say afterwards, because the result is not null. If a key was
+            // missing from the file - and older files lack exactly these two, they were added later - the
+            // default value written here decided. That was None ("keep") for ALL THREE modes, so Aggressive
+            // permanently did the opposite of what its own factory default says.
             //
-            // Das ist KEINE Migration (Migrationslogik ist vor dem ersten Release bewusst entfernt worden,
-            // 2026-08-02) - hier wird nichts umgeschrieben und nichts erkannt. Der Vorgabewert
-            // ist nur endlich der richtige: der des Modus statt der des Feldes. Ein Schluessel, der in der
-            // Datei STEHT, gewinnt weiterhin - eine bewusst gewaehlte Einstellung bleibt also unangetastet.
-            // Ein eigenes Feld dafuer geht NICHT: Scribe_Deep baut beim Laden ein frisches Objekt ueber
-            // Activator und ruft darauf ExposeData - alles, was ein Aufrufer vorher gesetzt haette, ist da
-            // schon weg. Deshalb eine statische Ablage, die der Aufrufer unmittelbar VOR Scribe_Deep.Look
-            // setzt und danach wieder leert (siehe LoadArmPreset). Scribe_Deep.Look laeuft synchron, es kann
-            // also nichts dazwischenkommen.
+            // This is NOT a migration (migration logic was deliberately removed before the first release) -
+            // nothing is rewritten or detected here. The default value is simply the right one now: the mode's
+            // instead of the field's. A key that IS in the file still wins, so a deliberately chosen setting
+            // stays untouched.
+            // A dedicated field for this does NOT work: on load Scribe_Deep builds a fresh object via Activator
+            // and calls ExposeData on it - anything a caller set beforehand is already gone. Hence a static slot
+            // that the caller sets immediately BEFORE Scribe_Deep.Look and clears afterwards (see LoadArmPreset).
+            // Scribe_Deep.Look runs synchronously, so nothing can interfere.
             internal static ArmModePreset LoadingDefaults;
 
             private static LoadoutUtility.BillDeleteScope Def(System.Func<ArmModePreset, LoadoutUtility.BillDeleteScope> pick,
@@ -158,8 +152,8 @@ namespace CEReloaded
                 Scribe_Values.Look(ref deleteAmmoBills, "deleteAmmoBillsScope", Def(p => p.deleteAmmoBills, LoadoutUtility.BillDeleteScope.None));
                 Scribe_Values.Look(ref deleteWeaponBills, "deleteWeaponBillsScope", Def(p => p.deleteWeaponBills, LoadoutUtility.BillDeleteScope.None));
                 Scribe_Values.Look(ref deleteWeaponLoadouts, "deleteWeaponLoadoutsScope", Def(p => p.deleteWeaponLoadouts, LoadoutUtility.BillDeleteScope.None));
-                // Der Schritt ist seit 2026-09-06 zweistufig (aus / von Hand gebaute loeschen); ein gespeichertes
-                // ManagedOnly - die alte Aggressive-Vorgabe - heisst jetzt "aus", nicht "alles".
+                // This step is two-level now (off / delete hand-built ones); a saved ManagedOnly - the old
+                // Aggressive default - now means "off", not "everything".
                 if (Scribe.mode == LoadSaveMode.LoadingVars && deleteWeaponLoadouts == LoadoutUtility.BillDeleteScope.ManagedOnly)
                     deleteWeaponLoadouts = LoadoutUtility.BillDeleteScope.None;
                 Scribe_Values.Look(ref deleteEquipmentPacks, "deleteEquipmentPacksScope", Def(p => p.deleteEquipmentPacks, LoadoutUtility.BillDeleteScope.None));
@@ -174,19 +168,18 @@ namespace CEReloaded
         { resetPawns = false, deleteAmmoBills = LoadoutUtility.BillDeleteScope.None, deleteWeaponBills = LoadoutUtility.BillDeleteScope.None, deleteWeaponLoadouts = LoadoutUtility.BillDeleteScope.None, deleteEquipmentPacks = LoadoutUtility.BillDeleteScope.None, createAmmoBills = true };
         public static ArmModePreset DefaultArmNormal() => new ArmModePreset
         { resetPawns = true, deleteAmmoBills = LoadoutUtility.BillDeleteScope.ManagedOnly, deleteWeaponBills = LoadoutUtility.BillDeleteScope.ManagedOnly, deleteWeaponLoadouts = LoadoutUtility.BillDeleteScope.None, deleteEquipmentPacks = LoadoutUtility.BillDeleteScope.None, createAmmoBills = true };
-        // Die zwei LISTEN-Zeilen stehen auf ManagedOnly, nicht auf All (2026-08-16): Aggressive soll
-        // "delete weapons" und "delete equipment packs" auf die Normal-Option setzen, nicht auf Cautious.
-        // Standen beide auf None, war Aggressive ein Modus, der in zwei Zeilen gar nichts tut - ein
-        // Widerspruch zu seinem eigenen Namen.
-        // ManagedOnly und nicht All, weil der Unterschied hier ein anderer ist als bei den Auftraegen: ein
-        // Auftrag ist in einer Minute neu gestellt, eine von Hand gebaute Waffen-Vorlage oder ein selbst
-        // zusammengestelltes Pack ist Arbeit, die niemand wiederherstellen kann. "Alles, was der Assistent
-        // selbst angelegt hat" ist die aggressivste Stufe, die noch aufraeumt statt zu zerstoeren.
+        // The two LIST rows are on ManagedOnly, not All: Aggressive should set "delete weapons" and
+        // "delete equipment packs" to the Normal option, not the Cautious one. With both on None, Aggressive was
+        // a mode that did nothing at all in two rows - contradicting its own name.
+        // ManagedOnly rather than All because the trade-off differs from bills: a bill is re-created in a
+        // minute, but a hand-built weapon loadout or a hand-assembled pack is work nobody can restore.
+        // "Everything the wizard created itself" is the most aggressive level that still cleans up rather
+        // than destroys.
         public static ArmModePreset DefaultArmAggressive() => new ArmModePreset
         { resetPawns = true, deleteAmmoBills = LoadoutUtility.BillDeleteScope.All, deleteWeaponBills = LoadoutUtility.BillDeleteScope.All, deleteWeaponLoadouts = LoadoutUtility.BillDeleteScope.None, deleteEquipmentPacks = LoadoutUtility.BillDeleteScope.ManagedOnly, createAmmoBills = true };
 
-        // Setzt die Werksvorgaben dieses Modus, solange Scribe_Deep das Objekt aufbaut, und raeumt sie
-        // danach wieder weg - damit sie nicht versehentlich fuer den naechsten Modus gelten.
+        // Sets this mode's factory defaults while Scribe_Deep builds the object, and clears them afterwards -
+        // so they do not accidentally apply to the next mode.
         private static void LoadArmPreset(ref ArmModePreset field, string label, ArmModePreset factory)
         {
             ArmModePreset.LoadingDefaults = factory;
@@ -208,10 +201,10 @@ namespace CEReloaded
         public string defAmmoSniper = "60";
         public string defAmmoLMG = "250";
         public string defAmmoShotgun = "50";
-        // Pistolen hatten bis 2026-08-09 gar keinen eigenen Wert und fielen auf defAmmoDefault = 150 zurueck,
-        // also Sturmgewehr-Menge. Eine Pistole ist fast immer die ZWEITwaffe, ihre Munition kommt also OBEN
-        // DRAUF auf die der Hauptwaffe. 24 = zwei bis drei Magazine (CE-Pistolenmagazine fassen 7-15) - genug
-        // fuer den Zweck einer Zweitwaffe ("die Hauptwaffe ist leer oder klemmt"), ohne Ballast.
+        // Pistols had no value of their own until now and fell back to defAmmoDefault = 150, i.e. the assault
+        // rifle amount. A pistol is almost always the SECONDARY weapon, so its ammo comes ON TOP of the main
+        // weapon's. 24 = two to three magazines (CE pistol magazines hold 7-15) - enough for a sidearm's job
+        // ("the main weapon is empty or jammed") without dead weight.
         public string defAmmoPistol = "24";
         public string defAmmoBow = "40";
         public string defAmmoLauncher = "20";
@@ -264,15 +257,14 @@ namespace CEReloaded
         public bool alertAmmoNotProduced = true;
         public string alertAmmoStockThreshold = "0";   // only warn if fewer than X rounds stockpiled (0 = always when no bill)
         public bool alertLowAmmo = true;
-        // Ab wie vielen fehlenden Magazinen die Warnung "wenig Munition" kommt (2026-08-09): einstellbar,
-        // Vorgabe bleibt 2 Magazine. Stand vorher hartkodiert auf 2,
-        // waehrend die CE-Community mit 5-6 Magazinen pro Gefecht rechnet - wer die Zahl hoeher will, kann
-        // sie jetzt stellen, ohne dass der Mod fuer alle eine Balance-Entscheidung trifft.
+        // How many missing magazines trigger the "low ammo" alert: configurable, default stays at 2 magazines.
+        // It used to be hardcoded to 2, while the CE community plans for 5-6 magazines per fight - anyone who
+        // wants a higher number can set it now, without the mod making a balance decision for everyone.
         public string alertLowAmmoMags = "2";
         public bool alertOverloaded = true;
         public bool alertWeaponUnavailable = true;
         public bool alertCapacityBlocked = true;
-        // Neue achte Kategorie (2026-08-09) - siehe ReadinessIssue.AssignedNotCarried.
+        // Eighth category - see ReadinessIssue.AssignedNotCarried.
         public bool alertAssignedNotCarried = true;
 
         // Default column the Generate Loadouts weapon list sorts by when the tab opens.
@@ -292,8 +284,8 @@ namespace CEReloaded
         // Assign Loadouts tab - default states of its controls (the fine-tuning sliders live in the auto-assign
         // preview popup and are remembered per save instead).
         public AssignLoadoutFilter autoAssignLoadoutFilter = AssignLoadoutFilter.AvailableMainWeapon;
-        // Aus dem bool `autoAssignRolesOnly` geworden (2026-08-19) - siehe RoleAssignMode. Der alte
-        // Wert wird beim Laden uebernommen, siehe die Migration in ExposeData.
+        // Replaces the old bool `autoAssignRolesOnly` - see RoleAssignMode. The old value is carried over on
+        // load, see the migration in ExposeData.
         public RoleAssignMode autoAssignRoleMode = RoleAssignMode.Mixed;
 
 
@@ -314,50 +306,43 @@ namespace CEReloaded
             if (presetRanged == null) presetRanged = DefaultPresetRanged();
             if (presetAll == null) presetAll = DefaultPresetAll();
             if (presetPreferAvailable == null) presetPreferAvailable = DefaultPresetPreferAvailable();
-            // Ueber LoadArmPreset statt direkt (2026-08-17, Aggressive-Modus): ein
-            // Schluessel, der in der Datei FEHLT, muss die Vorgabe DIESES MODUS bedeuten und nicht die des
-            // Feldes. Begruendung in voller Laenge an ArmModePreset.LoadingDefaults.
+            // Via LoadArmPreset rather than directly: a key MISSING from the file must mean THIS MODE's default,
+            // not the field's. Full reasoning at ArmModePreset.LoadingDefaults.
             LoadArmPreset(ref armCautious, "armCautious", DefaultArmCautious());
             LoadArmPreset(ref armNormal, "armNormal", DefaultArmNormal());
             LoadArmPreset(ref armAggressive, "armAggressive", DefaultArmAggressive());
-            // Die drei BillDeleteScope-Migrationen, die hier standen, sind am 2026-08-02 entfernt worden
-            // (vor dem ersten Release gibt es keine alten Einstellungsdateien zu ueberbruecken).
-            // Sie sollten Einstellungsdateien aus frueheren Entwicklungsstaenden ueberbruecken, indem
-            // sie ein gespeichertes None/None auf den heutigen Werksstand hochzogen.
-            // Zwei Gruende, warum das Entfernen hier unbedenklich ist: erstens standen sie ungegated in
-            // ExposeData und liefen damit auch beim SPEICHERN, was jede bewusst auf None gestellte
-            // Arm-Einstellung noch in derselben Spielsitzung wieder hochkippte - sie waren also selbst der
-            // Bug. Zweitens ist die Richtung des Ausfalls harmlos: ohne sie bleibt eine alte Datei bei
-            // None/None stehen, der Aggressive-Modus loescht dann WENIGER als gedacht statt mehr.
-            // Ein brandneuer Einstellungsstand bekommt ohnehin DefaultArmAggressive() = All/All.
-            // Steht der Aggressive-Modus nach einem Update auf None: einmal in den Presets-Tab
-            // und auf All stellen, das war es.
+            // The three BillDeleteScope migrations that used to be here were removed (before the first release
+            // there are no old settings files to bridge).
+            // They were meant to bridge settings files from earlier development builds by raising a saved
+            // None/None to the current factory default.
+            // Two reasons why removing them is safe: first, they ran ungated in ExposeData and therefore also
+            // on SAVE, which flipped any Arm setting deliberately set to None back up within the same game
+            // session - they were the bug themselves. Second, the failure direction is harmless: without them an
+            // old file stays at None/None, and Aggressive then deletes LESS than intended rather than more.
+            // A brand-new settings file gets DefaultArmAggressive() = All/All anyway.
+            // If Aggressive is on None after an update: set it to All once in the Presets tab, done.
             // One-time migration: a settings file saved before this preset's "count" default changed from
             // 0.35 to 1f (see DefaultPresetPreferAvailable's own comment) still has the stale 0.35 baked in -
             // the field initializer above only ever applies to a BRAND NEW file, never overwrites an
             // already-loaded value. Narrow and exact on purpose: only touches the specific old default,
             // never a value the player deliberately chose afterwards.
-            // NUR beim LADEN (2026-08-13): ExposeData laeuft auch beim
-            // SPEICHERN, und ungegated hat diese Zeile dort einen frisch getippten Wert wieder
-            // ueberschrieben. Das Preset-Gitter benutzt Widgets.TextFieldNumeric - wer dort von Hand 0.35
-            // eintippt und die Einstellungen schliesst, dessen Zahl stand korrekt in der Datei und war im
-            // Speicher schon wieder 1.0; beim naechsten Schreiben landete die 1.0 dann auch auf der Platte.
-            // Genau die Bauform, die der Kommentarblock ueber den entfernten BillDeleteScope-Migrationen
-            // als "sie waren also selbst der Bug" beschreibt - dieselbe Falle, eine Migration weiter.
+            // LOAD ONLY: ExposeData also runs on SAVE, and ungated this line overwrote a freshly typed value
+            // there. The preset grid uses Widgets.TextFieldNumeric - typing 0.35 by hand and closing the settings
+            // wrote the correct number to the file, but in memory it was already back to 1.0; the next write then
+            // put the 1.0 on disk too. Exactly the pattern the comment above the removed BillDeleteScope
+            // migrations describes as "they were the bug themselves" - the same trap, one migration later.
             if (Scribe.mode == LoadSaveMode.LoadingVars
                 && Mathf.Approximately(presetPreferAvailable.count, 0.35f)) presetPreferAvailable.count = 1f;
-            // Dieselbe Bauform, gleiche Begruendung, fuer Economy budget 0.35 -> 0 (2026-08-14). Ohne diese
-            // Zeile bliebe die Aenderung (Economy setzt guenstige Waffen auf das Minimum) in
-            // jedem bestehenden Spiel unsichtbar: in der gespeicherten Einstellungsdatei steht 0.35, und ein
-            // geaenderter Werksstandard erreicht nur eine brandneue Datei. Genau wie oben nur beim LADEN
-            // und nur auf den exakten alten Standardwert - wer spaeter selbst 0.35 eintippt, behaelt ihn
-            // bis zum naechsten Spielstart.
+            // Same pattern, same reasoning, for Economy budget 0.35 -> 0. Without this line the change (Economy
+            // sets cheap weapons to the minimum) would stay invisible in every existing game: the saved settings
+            // file has 0.35, and a changed factory default only reaches a brand-new file. As above, LOAD ONLY and
+            // only for the exact old default - anyone who types 0.35 themselves later keeps it until the next
+            // game start.
             if (Scribe.mode == LoadSaveMode.LoadingVars
                 && Mathf.Approximately(presetEconomy.budget, 0.35f)) presetEconomy.budget = 0f;
-            // Dieselbe Bauform fuer Economy diversity 0.7 -> 0.15 (2026-08-19, zweiter Befund: Economy
-            // produzierte immer noch extrem viel) - Begruendung bei
-            // DefaultPresetEconomy. Nur beim LADEN und nur auf den exakten alten Standardwert; wer selbst
-            // 0.7 eingetragen hat, behaelt ihn.
+            // Same pattern for Economy diversity 0.7 -> 0.15 (Economy still produced far too much) - reasoning at
+            // DefaultPresetEconomy. LOAD ONLY and only for the exact old default; anyone who entered 0.7
+            // themselves keeps it.
             if (Scribe.mode == LoadSaveMode.LoadingVars
                 && Mathf.Approximately(presetEconomy.diversity, 0.7f)) presetEconomy.diversity = 0.15f;
             Scribe_Values.Look(ref ammoBillMinSkill, "ammoBillMinSkill", 0);
@@ -417,16 +402,14 @@ namespace CEReloaded
             Scribe_Values.Look(ref defSidearmFilter, "defSidearmFilter", WeaponFilterMode.ResearchedWeapons);
             Scribe_Values.Look(ref defAmmoFilter, "defAmmoFilter", AmmoFilterMode.AllAmmo);
             Scribe_Values.Look(ref defAmmoBillFilter, "defAmmoBillFilter", AmmoBillFilterMode.AssignedLoadouts);
-            // "Created loadouts" gibt es seit 2026-09-07 nicht mehr (siehe AmmoBillFilterMode).
+            // "Created loadouts" no longer exists (see AmmoBillFilterMode).
             if (defAmmoBillFilter == AmmoBillFilterMode.AvailableLoadouts) defAmmoBillFilter = AmmoBillFilterMode.AssignedLoadouts;
 
             Scribe_Values.Look(ref autoAssignLoadoutFilter, "autoAssignLoadoutFilter", AssignLoadoutFilter.AvailableMainWeapon);
             Scribe_Values.Look(ref autoAssignRoleMode, "autoAssignRoleMode", RoleAssignMode.Mixed);
-            // Migration vom alten bool (2026-08-19). Ohne sie faellt jeder, der "Roles only" angehakt
-            // hatte, stillschweigend auf "gemischt" zurueck - eine Verhaltensaenderung, die niemand
-            // angeordnet hat. Nur beim LADEN, und nur wenn der alte Knoten ueberhaupt in der Datei
-            // steht: Scribe_Values schreibt einen Vorgabewert nicht mit, ein nie angefasstes "false"
-            // gibt es dort also gar nicht.
+            // Migration from the old bool. Without it, anyone who had "Roles only" ticked would silently fall
+            // back to "mixed" - a behavior change nobody asked for. LOAD ONLY, and only if the old node is in the
+            // file at all: Scribe_Values does not write a default value, so an untouched "false" is never there.
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 bool legacyRolesOnly = false;

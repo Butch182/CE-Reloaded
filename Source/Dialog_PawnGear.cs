@@ -17,8 +17,8 @@ namespace CEReloaded
         private Vector2 scroll;
 
         public override Vector2 InitialSize => new Vector2(500f, 640f);
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();

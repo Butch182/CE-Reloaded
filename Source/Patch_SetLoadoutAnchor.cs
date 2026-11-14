@@ -26,13 +26,13 @@ namespace CEReloaded
         public static bool Prefix(Pawn pawn, Loadout loadout)
         {
             if (pawn == null) return true;
-            // Waehrend der Deinstallations-Vorbereitung wird der Anker gerade aufgeloest - nicht dorthin umlenken.
+            // While preparing the save for uninstall the anchor is being dissolved - don't redirect to it.
             if (SaveCleanseUtility.Running) return true;
             // Inside CE's own native picker (per-pawn column quick-pick) or its native loadout browser -
             // step completely out of the way, same scoping the availability-coloring exclusion already uses.
-            // InsideNativeLoadoutPick ergaenzt (2026-08-09): CurrentDoCellPawn allein greift hier nie, weil
-            // CEs Dropdown das Menue nur BAUT und die Auswahl einen Frame spaeter feuert - siehe die
-            // ausfuehrliche Begruendung an der Stelle, wo das Flag gesetzt wird.
+            // InsideNativeLoadoutPick added: CurrentDoCellPawn alone never applies here, because CE's dropdown
+            // only BUILDS the menu and the selection fires one frame later - see the detailed reasoning where
+            // the flag is set.
             if (Patch_LoadoutTooltip.CurrentDoCellPawn != null || Patch_LoadoutTooltip.InsideVanillaLoadoutEditor
                 || Patch_LoadoutTooltip.InsideNativeLoadoutPick) return true;
             // Assigning one of our own internal markers IS a genuine direct assignment - EnsureAmmoLink's

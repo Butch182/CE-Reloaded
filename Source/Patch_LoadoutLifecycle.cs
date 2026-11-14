@@ -6,25 +6,25 @@ using CombatExtended;
 
 namespace CEReloaded
 {
-    // Zwei Anliegen am Geburts- und Sterbepunkt jedes CE-Loadouts.
+    // Two concerns at the birth and death of every CE loadout.
     //
-    // 1) HYGIENE (immer aktiv): CE vergibt Loadout-IDs als Max+1 und RECYCELT sie damit nach jedem
-    //    Loeschen (LoadoutManager.GetUniqueLoadoutID, dekompiliert nachgelesen). Unsere Nebenbuecher
-    //    (Rollen-, Pack-, Managed-, AmmoCleared-, ExtraParents-, PackPlan-Zuordnungen) und CEs eigene
-    //    parentID-Ketten koennen Zahlen halten, deren Loadout ueber CEs EIGENE Wege verschwunden ist
-    //    (CE-Editor, fremde Mods) - LoadoutDeletionUtility putzt nur, was durch UNSERE Loeschpfade
-    //    geht. Ein NEU angelegtes Loadout, das so eine Zahl erbt, gilt sonst ab der ersten Sekunde als
-    //    Rolle/Pack/"bewusst ohne Munition", oder stehengebliebene Kind-parentIDs haengen sich an das
-    //    voellig fremde neue Objekt. Deshalb wird die ID bei der Geburt ueberall vergessen. Sicher,
-    //    weil jede Registrierung im Mod erst NACH LoadoutManager.AddLoadout laeuft - die UniqueID
-    //    entsteht erst dort, das steht als Kommentar an allen Aufrufstellen.
+    // 1) HYGIENE (always active): CE assigns loadout IDs as max+1 and therefore RECYCLES them after
+    //    every deletion (LoadoutManager.GetUniqueLoadoutID, verified in decompiled code). Our side
+    //    records (role, pack, managed, AmmoCleared, ExtraParents, PackPlan mappings) and CE's own
+    //    parentID chains can hold numbers whose loadout vanished through CE's OWN paths (CE editor,
+    //    other mods) - LoadoutDeletionUtility only cleans up what goes through OUR deletion paths. A
+    //    NEWLY created loadout that inherits such a number would otherwise count as a role/pack/
+    //    "deliberately without ammo" from its first second, or leftover child parentIDs would attach
+    //    to the completely unrelated new object. So the ID is forgotten everywhere at birth. Safe,
+    //    because every registration in the mod runs only AFTER LoadoutManager.AddLoadout - the
+    //    UniqueID is only created there, which is noted as a comment at every call site.
     //
-    // 2) Die Aufruferkette (Caller) bleibt - sie steht in der Fehlerzeile des SetLoadoutById-Netzes
-    //    weiter unten und ist dort der einzige Hinweis, WER eine tote Loadout-Nummer gefragt hat.
+    // 2) The caller chain stays - it is part of the error line of the SetLoadoutById safety net
+    //    further down, and there it is the only clue as to WHO asked for a dead loadout number.
     //
-    // AUSGEBAUT 2026-09-06: das Diagnoselogging fuer den Zuweisungs-Verlust. Es hat in drei vollen
-    // Zuweisungslaeufen nichts gefangen, und der Lazy-Umbau hat genau die Objekt-Buchhaltung entfernt,
-    // in der der Verlust vermutet wurde.
+    // REMOVED: the diagnostic logging for lost assignments. It caught nothing in three full
+    // assignment runs, and the lazy-template rework removed exactly the object bookkeeping in which
+    // the loss was suspected.
 
     public static class LoadoutLifecycleDiag
     {
@@ -54,30 +54,30 @@ namespace CEReloaded
         }
     }
 
-    // Eine tote Loadout-Nummer darf kein Ausrufezeichen werfen (2026-09-04).
+    // A dead loadout number must not throw an exception.
     //
-    // Im Player.log eines Testlaufs stand genau EINE Ausnahme, unmittelbar nach unserer eigenen
-    // ADD-Zeile fuer eine frisch angelegte Rolle:
+    // A Player.log contained exactly ONE exception, immediately after our own
+    // ADD line for a freshly created role:
     //   ArgumentNullException: Value cannot be null. Parameter name: loadout
     //     at CombatExtended.Utility_Loadouts.SetLoadoutById (Verse.Pawn pawn, System.Int32 loadoutId)
     //     (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke
     //     Rethrow as TargetInvocationException
     //
-    // CEs Fassung ist zwei Zeilen lang: GetLoadoutById(id), und ist das Ergebnis null, fliegt eine
-    // ArgumentNullException. Nachgesehen (dekompiliert) ruft CE selbst diese Methode NIRGENDS auf, und
-    // dieser Mod auch nicht - der Aufrufer kommt ueber Reflexion von aussen. Wer das ist, sagt der Stapel
-    // nicht: RimWorld kuerzt ihn beim Rethrow ab.
+    // CE's version is two lines long: GetLoadoutById(id), and if the result is null an
+    // ArgumentNullException is thrown. Checked (decompiled): CE itself calls this method NOWHERE, and
+    // neither does this mod - the caller comes in via reflection from outside. The stack doesn't say
+    // who: RimWorld truncates it on rethrow.
     //
-    // Was hier trotzdem sicher feststeht: es wurde nach einer Nummer gefragt, die es nicht (mehr) gibt -
-    // und genau das ist in diesem Spiel ein NORMALER Zustand, kein Programmfehler. CE vergibt IDs als
-    // Max+1 und recycelt sie deshalb nach jedem Loeschen (siehe oben); jede Zahl, die irgendwo laenger
-    // liegt als das Objekt dahinter, zeigt irgendwann ins Leere. Eine Ausnahme aus einer Zeichenroutine
-    // reisst dabei den Rest des Bildaufbaus mit, und der Spieler sieht ein halb gezeichnetes Fenster.
+    // What is certain anyway: a number was requested that does not exist (anymore) - and in this
+    // game that is a NORMAL state, not a bug. CE assigns IDs as max+1 and therefore recycles them
+    // after every deletion (see above); any number kept somewhere longer than the object behind it
+    // eventually points into nothing. An exception from a drawing routine takes the rest of the frame
+    // with it, and the player sees a half-drawn window.
     //
-    // Deshalb: kein Wurf, sondern ein benanntes Nichts - plus EINE Fehlerzeile, die die Nummer und die
-    // Aufruferkette nennt. Damit ist der naechste Auftritt kein Raetsel mehr, sondern eine Adresse.
-    // Ein AUFLOESBARES Loadout laeuft unveraendert durch CEs eigenen Weg (und damit durch unseren
-    // Anker-Patch auf SetLoadout).
+    // Hence: no throw, but a named nothing - plus ONE error line naming the number and the caller
+    // chain. That way the next occurrence is not a mystery but an address.
+    // A RESOLVABLE loadout passes unchanged through CE's own path (and thus through our anchor
+    // patch on SetLoadout).
     [HarmonyPatch(typeof(Utility_Loadouts), nameof(Utility_Loadouts.SetLoadoutById))]
     public static class Patch_Utility_Loadouts_SetLoadoutById
     {

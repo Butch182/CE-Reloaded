@@ -39,23 +39,22 @@ namespace CEReloaded
         private List<ReplaceableAmmoSlot> allSlots = new List<ReplaceableAmmoSlot>();
         private AmmoFilter currentFilter = AmmoFilter.Researched;
         private Vector2 scrollPosition = Vector2.zero;
-        // Volltextsuche wie in jeder anderen Liste des Mods (2026-08-14) - dieses Fenster war das einzige
-        // ohne, bei ueber 60 Zeilen. Sie filtert NUR die ANZEIGE: `ApplyChanges` laeuft weiterhin ueber
-        // `allSlots`, eine vor dem Tippen getroffene Auswahl geht also nicht verloren, nur weil ihre Zeile
-        // gerade nicht sichtbar ist.
+        // Full-text search like every other list in the mod - this window was the only one without it,
+        // with over 60 rows. It filters ONLY the DISPLAY: `ApplyChanges` still runs over `allSlots`, so a
+        // selection made before typing is not lost just because its row is currently hidden.
         private string search = "";
-        // "N von M waehlbar" neben den Filter-Radios. Der Filter hier entscheidet ausschliesslich, welche
-        // Munition im AUSWAHLMENUE einer Zeile steht - an der Liste selbst aendert er per Definition nichts
-        // (die zeigt, was in den Vorlagen STEHT, und gerade die unerforschte Sorte will man ja ersetzen).
-        // Genau das war das Problem: der Umschalter sah tot aus, weil seine Wirkung erst zwei Klicks spaeter
-        // sichtbar wurde. Statt die Liste falsch zu filtern, sagt die Zahl sofort, was er tut.
-        // Gemerkt gegen den Filterwert, damit AmmoProducibleNow nicht pro Bild ueber alle Sorten laeuft.
+        // "N of M selectable" next to the filter radios. The filter here only decides which ammo appears
+        // in a row's PICKER MENU - by definition it changes nothing about the list itself (that shows
+        // what the templates CONTAIN, and the unresearched type is exactly what one wants to replace).
+        // That was the problem: the toggle looked dead because its effect only became visible two
+        // clicks later. Instead of filtering the list wrongly, the number says right away what it does.
+        // Cached against the filter value so AmmoProducibleNow doesn't run over all types every frame.
         private AmmoFilter choiceCountFor = (AmmoFilter)(-1);
         private int choiceCountAllowed, choiceCountTotal;
         
         public override Vector2 InitialSize => new Vector2(800f, 600f);
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -158,10 +157,10 @@ namespace CEReloaded
             Widgets.Label(new Rect(0f, 0f, inRect.width, 35f), "CER_MassReplaceAmmo_Title".Translate());
             Text.Font = GameFont.Small;
 
-            // Hinweiszeile, wenn es hier wirklich etwas zu holen gibt (2026-08-13). Dieselbe Rechnung wie
-            // in der Bereitschaftsanzeige, die einen hierher schickt -
-            // damit die beiden nie verschiedene Zahlen nennen. Die betroffenen Zeilen sind unten zusaetzlich
-            // eingefaerbt, sonst muesste man die Namen von Hand vergleichen.
+            // Hint line when there really is something to gain here. Same calculation as in the readiness
+            // display that sends you here -
+            // so the two never show different numbers. The affected rows below are also tinted,
+            // otherwise the names would have to be compared by hand.
             List<Loadout> betterAmmo = LoadoutUtility.TemplatesWithBetterAmmo();
             if (betterAmmo.Count > 0)
             {
@@ -183,22 +182,21 @@ namespace CEReloaded
             FilterRadio("CER_MassReplaceAmmo_FilterResearched".Translate(), AmmoFilter.Researched);
             FilterRadio("CER_MassReplaceAmmo_FilterAvailable".Translate(), AmmoFilter.Available);
 
-            // Das Suchfeld sitzt in der Zeile DARUNTER, rechts, neben dem Zaehler (2026-08-15: auf dem
-            // Bildschirm stand woertlich "Available ammoSearch:" - das dritte
-            // Radio und die Beschriftung des Suchfelds stiessen ohne Abstand aneinander).
-            // Die alte Rechnung ging von "die drei Radios enden bei rund x=354" aus. Das ist keine
-            // Konstante, sondern haengt an der LAENGE der drei uebersetzten Beschriftungen; im Englischen
-            // reichte es schon nicht. Statt die Zahl 284 zu drehen wandert das Feld
-            // in die Zeile, in der links nur der kurze Zaehlertext steht - dort kann es bei keiner Breite
-            // und in keiner Sprache mit den Radios kollidieren.
-            // SearchBox belegt ab x: 60 (Beschriftung) + 200 (Feld) + 24 (X-Knopf) = 284.
+            // The search field sits in the row BELOW, on the right, next to the counter (the third radio
+            // label and the search field's label used to run into each other without any gap).
+            // The old calculation assumed "the three radios end at roughly x=354". That is not a
+            // constant but depends on the LENGTH of the three translated labels; even in English it was
+            // not enough. Instead of tweaking the number 284, the field moves
+            // to the row where only the short counter text sits on the left - there it cannot collide
+            // with the radios at any width or in any language.
+            // SearchBox occupies from x: 60 (label) + 200 (field) + 24 (X button) = 284.
             search = LoadoutUtility.SearchBox(inRect.width - 284f, filterY + 26f, search);
 
-            // Sofortige Rueckmeldung auf den Umschalter - siehe choiceCountFor.
+            // Immediate feedback for the toggle - see choiceCountFor.
             RefreshChoiceCount();
             GUI.color = new Color(1f, 1f, 1f, 0.6f);
             Text.Font = GameFont.Tiny;
-            // Breite endet vor dem Suchfeld, damit der (im Deutschen lange) Zaehlertext nicht darunter laeuft.
+            // Width ends before the search field, so the counter text (long in German) doesn't run under it.
             Widgets.Label(new Rect(84f, filterY + 30f, Mathf.Max(60f, inRect.width - 84f - 292f), 18f),
                 "CER_MassReplaceAmmo_ChoicesCount".Translate(choiceCountAllowed.ToString(), choiceCountTotal.ToString()));
             Text.Font = GameFont.Small;
@@ -214,8 +212,8 @@ namespace CEReloaded
                     || (s.SelectionLabel ?? "").ToLower().Contains(needle)).ToList();
             }
 
-            // 96 statt 90: in der zweiten Zeile steht jetzt nicht nur der 18px-Zaehler, sondern auch das
-            // 24px hohe Suchfeld (2026-08-15) - sonst schneidet die Trennlinie es an.
+            // 96 instead of 90: the second row now holds not only the 18px counter but also the
+            // 24px-high search field - otherwise the separator line cuts into it.
             float listY = LoadoutUtility.Divider(96f, inRect.width);
             Rect viewRect = new Rect(0f, 0f, inRect.width - 16f, visible.Count * 30f);
             Rect scrollRect = new Rect(0f, listY, inRect.width, inRect.height - listY - 50f);
@@ -238,9 +236,9 @@ namespace CEReloaded
                 string rowLabel = "CER_MassReplaceAmmo_RowLabel".Translate(LoadoutUtility.LoadoutDisplayName(rSlot.loadout), rSlot.originalLabel);
                 float lx = 0f;
                 if (rSlot.originalAmmo != null) { Widgets.ThingIcon(new Rect(0f, rowY + 2f, 20f, 20f), rSlot.originalAmmo); lx = 24f; }
-                // Eingefaerbt, wenn genau diese Vorlage neu erforschte Munition bekommen koennte - siehe die
-                // Hinweiszeile oben. Nur die Schriftfarbe, kein Hintergrund: die Zeile bleibt anklickbar und
-                // liest sich wie jede andere, sie faellt nur auf.
+                // Tinted when exactly this template could get newly researched ammo - see the hint line
+                // above. Only the text color, no background: the row stays clickable and reads like any
+                // other, it just stands out.
                 bool rowHasBetter = betterAmmo.Contains(rSlot.loadout);
                 if (rowHasBetter) GUI.color = LoadoutUtility.ColWarn;
                 Widgets.Label(new Rect(lx, rowY + 2f, viewRect.width - 340f - lx, 24f), rowLabel.Truncate(viewRect.width - 340f - lx));
@@ -343,10 +341,10 @@ namespace CEReloaded
             }
         }
 
-        // Wie viele der ueberhaupt vorkommenden Munitionssorten der aktuelle Filter zur Auswahl zulaesst.
-        // Dieselben drei Bedingungen wie im Auswahlmenue unten - bewusst dieselbe Rechnung, sonst nennt die
-        // Zahl etwas anderes, als das Menue dann anbietet. Nur neu gerechnet, wenn der Filter sich geaendert
-        // hat: AmmoProducibleNow geht ueber die gebauten Werkbaenke der Kolonie.
+        // How many of the ammo types that occur at all the current filter allows for selection.
+        // Same three conditions as in the picker menu below - deliberately the same calculation,
+        // otherwise the number would say something different from what the menu then offers. Only
+        // recomputed when the filter changed: AmmoProducibleNow goes over the colony's built workbenches.
         private void RefreshChoiceCount()
         {
             if (choiceCountFor == currentFilter) return;
@@ -394,16 +392,16 @@ namespace CEReloaded
                 // slot on the SAME loadout already used produced two separate LoadoutSlot objects for the
                 // same def - every def-keyed slot lookup elsewhere in the mod only ever finds the first one,
                 // leaving the second an invisible stale duplicate carrying real demand nobody could see or edit).
-                // OwnSlots, NICHT Slots (2026-08-09). Slots ist die Vereinigung aus eigenen und GEERBTEN
-                // Eintraegen, RemoveSlot fasst aber nur die eigenen an. Ein Treffer auf einem geerbten Eintrag
-                // lief also ins Leere - entfernt wurde nichts, und direkt danach kam per AddSlot ein zweiter
-                // Eintrag derselben Sorte dazu. Ergebnis: dieselbe Munition zweimal im Loadout, und jede
-                // def-basierte Suche im Rest des Mods findet nur die erste davon.
-                // Genau diese Falle steht schon im Klassenkommentar oben als Grund, warum der SUCHLAUF auf
-                // OwnSlots beschraenkt wurde - das Uebernehmen hat dieselbe Behandlung nie bekommen.
-                // Fachlich ist das auch die richtige Lesart: aendert man geerbte Munition, soll
-                // ein PERSOENLICHER Eintrag entstehen, der die Vererbung ersetzt. Genau das passiert jetzt -
-                // der geerbte Eintrag bleibt unangetastet, der neue eigene ueberschreibt ihn.
+                // OwnSlots, NOT Slots. Slots is the union of own and INHERITED entries, but RemoveSlot only
+                // touches own ones. A match on an inherited entry therefore went nowhere - nothing was
+                // removed, and right afterwards AddSlot added a second entry of the same type. Result: the
+                // same ammo twice in the loadout, and every def-based lookup in the rest of the mod only
+                // finds the first one.
+                // This exact trap is already named in the class comment above as the reason the SCAN was
+                // restricted to OwnSlots - applying the changes never got the same treatment.
+                // Semantically it is also the right reading: changing inherited ammo should create a
+                // PERSONAL entry that replaces the inheritance. That is exactly what happens now -
+                // the inherited entry stays untouched, the new own one overrides it.
                 foreach (var ammoGroup in changedSlots.Where(s => s.selectedAmmo != null).GroupBy(s => s.selectedAmmo))
                 {
                     int count = ammoGroup.Max(s => s.slot.count);

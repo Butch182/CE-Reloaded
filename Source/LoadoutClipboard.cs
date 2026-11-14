@@ -16,16 +16,16 @@ namespace CEReloaded
         // clipboard should only ever offer to paste into a Pack cell, never a Sidearm one.
         public static string Kind { get; private set; }
         public static List<Loadout> Items { get; private set; }
-        // Zweite Nutzlast (2026-08-13: Munition hatte keinen Copy-Knopf, die anderen Spalten schon):
-        // Munition ist kein Loadout-Objekt, sondern eine Liste von Slots auf dem persoenlichen Anker eines
-        // Kolonisten. Deshalb ein eigenes Feld statt eines Umwegs - Items bleibt fuer Packs und Zweitwaffen
-        // genau wie bisher, und eine Ablage traegt immer nur EINE Sorte (Kind entscheidet, welche).
-        // Kopiert werden Kopien der Slots, nicht die Slots selbst: sonst haenge zwei Kolonisten am selben
-        // Objekt und eine Mengenaenderung beim zweiten aendert still auch den ersten.
+        // Second payload (ammo had no Copy button while the other columns did):
+        // ammo is not a loadout object but a list of slots on a colonist's personal anchor. Hence its
+        // own field instead of a detour - Items stays exactly as before for packs and sidearms, and a
+        // clipboard only ever holds ONE kind (Kind decides which).
+        // Copies of the slots are copied, not the slots themselves: otherwise two colonists would hang
+        // on the same object and a quantity change on the second would silently change the first too.
         public static List<LoadoutSlot> AmmoSlots { get; private set; }
-        // Dritte Nutzlast (2026-08-25: "Add other item" hatte keinen Copy-Knopf und damit auch kein
-        // Einfuegen): die sonstigen Gegenstaende eines Kolonisten, wie Munition
-        // Slot-Kopien vom persoenlichen Anker. Kind = "other".
+        // Third payload ("Add other item" had no Copy button and therefore no paste either): a
+        // colonist's other items, stored like ammo as slot copies from the personal anchor.
+        // Kind = "other".
         public static List<LoadoutSlot> OtherSlots { get; private set; }
         public static string SourceLabel { get; private set; }
 
@@ -52,8 +52,8 @@ namespace CEReloaded
             SourceLabel = sourceLabel;
         }
 
-        // Munition kopieren. Leere Auswahl ist erlaubt und bedeutet dasselbe wie bei Packs: einfuegen
-        // raeumt beim Ziel auf.
+        // Copy ammo. An empty selection is allowed and means the same as for packs: pasting
+        // clears the target.
         public static void CopyAmmo(IEnumerable<LoadoutSlot> slots, string sourceLabel)
         {
             sourceGame = Current.Game;
@@ -71,21 +71,20 @@ namespace CEReloaded
         // pasting it onto another pawn clears their packs/sidearms, standing in for a
         // dedicated delete/clear button that doesn't exist. Kind is only ever set together with Items inside
         // Copy() (both null until then), so this still correctly reads "nothing copied this session" as false.
-        // An das Spiel gebunden, in dem kopiert wurde (2026-08-09). Der Kommentar oben behauptet seit
-        // jeher, beim Laden werde geleert - das rief nur nie jemand auf. Ein static ueberlebt den
-        // Spielstandwechsel, also bot die Zwischenablage in Save B noch Loadout-Objekte aus Save A an.
-        // Statt einen Lade-Hook zu patchen wird der Bezug hier geprueft: eine andere Game-Instanz
-        // heisst leere Zwischenablage. Kostet nichts und kann nicht vergessen werden.
+        // Bound to the game in which the copy was made. The comment above always claimed the clipboard
+        // was cleared on load - but nothing ever called that. A static survives switching saves, so the
+        // clipboard in save B still offered loadout objects from save A.
+        // Instead of patching a load hook, the reference is checked here: a different Game instance
+        // means an empty clipboard. Costs nothing and cannot be forgotten.
         private static Game sourceGame;
 
-        // `kind` ist seit 2026-08-13 eine FESTE Kennung ("pack" / "sidearm"), kein uebersetzter Text mehr.
-        // Vorher lag hier die Spaltenbeschriftung des Auswahlfensters drin und die Einfuege-Seite verglich
-        // sie gegen ihren eigenen uebersetzten Text - zwei verschiedene Keyed-Schluessel, deren Werte
-        // zufaellig gleich sein mussten, damit ein Knopf ueberhaupt erscheint. Genau daran ist der
-        // Einfuege-Knopf fuer Packs in jeder Nicht-Englisch-Sprache gestorben.
-        // Der Fix von damals hat beide Seiten auf gleich lautende Strings gezogen; das hat gehalten, aber
-        // nur solange niemand eine der beiden Uebersetzungen anfasst. Eine Kennung, die nie uebersetzt wird,
-        // kann gar nicht mehr auseinanderlaufen.
+        // `kind` is a FIXED identifier ("pack" / "sidearm"), no longer translated text.
+        // It used to hold the picker window's column label, and the paste side compared it against its
+        // own translated text - two different Keyed keys whose values happened to have to match for a
+        // button to appear at all. That is exactly what killed the paste button for packs in every
+        // non-English language.
+        // The earlier fix aligned both sides on identical strings; that held, but only as long as
+        // nobody touched either translation. An identifier that is never translated cannot drift apart.
         public static bool HasContent(string kind)
         {
             if (sourceGame != null && !ReferenceEquals(sourceGame, Current.Game))

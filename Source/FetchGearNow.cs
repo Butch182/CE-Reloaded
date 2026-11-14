@@ -10,29 +10,29 @@ using Verse.AI;
 
 namespace CEReloaded
 {
-    // "Fetch gear now" (2026-08-30): ein Knopf, der alle zwingt, ihre Ausruestung SOFORT abzuholen.
+    // "Fetch gear now": a button that makes everyone pick up their equipment IMMEDIATELY.
     //
-    // Warum CE das nicht von selbst tut, dekompiliert nachgelesen (CombatExtended.JobGiver_UpdateLoadout):
-    // der Abhol-Geber steht im Denkbaum mit Prioritaet 2,8 UNTER der Arbeit (5,5 / 9) und bekommt nur dann
-    // Prioritaet 30, wenn seine Drossel (_throttle, 1800 Ticks = 30 s je Kolonist) abgelaufen ist. Der Denkbaum
-    // wird ohnehin erst am Ende des laufenden Jobs befragt. Liefert der Geber einen Job, setzt er die Drossel
-    // sofort wieder auf "abgelaufen" und holt so Stueck fuer Stueck weiter - liefert er KEINEN (noch nichts im
-    // Lager, gerade erst zugewiesen), sperrt er 30 Sekunden. Nach einem Arm-my-Colony-Durchlauf heisst das:
-    // erst den laufenden Job zu Ende, dann bis zu 30 s warten, dann holen. Es sieht aus, als taete sich nichts.
+    // Why CE doesn't do this by itself, verified in decompiled code (CombatExtended.JobGiver_UpdateLoadout):
+    // the pickup giver sits in the think tree at priority 2.8, BELOW work (5.5 / 9), and only gets
+    // priority 30 when its throttle (_throttle, 1800 ticks = 30 s per colonist) has expired. The think tree
+    // is only consulted at the end of the current job anyway. If the giver returns a job, it immediately
+    // resets the throttle to "expired" and so keeps fetching piece by piece - if it returns NONE (nothing in
+    // storage yet, just assigned), it locks for 30 seconds. After an Arm my Colony run that means: finish
+    // the current job first, then wait up to 30 s, then fetch. It looks as if nothing is happening.
     //
-    // Der Knopf macht genau zwei Dinge je Kolonist: die Drossel auf "abgelaufen" stellen (damit CEs eigener
-    // Geber danach von selbst weiterholt, bis nichts mehr fehlt) und den ERSTEN Abhol-Job als Spielerbefehl
-    // setzen - das unterbricht wie ein Rechtsklick-Befehl, aber keinen Job, den der Spieler auch sonst nicht
-    // unterbrechen darf (Operation, Gefangenentransport); dort holt er, sobald der Job endet, weil die
-    // Drossel offen bleibt. Kein eigener Harmony-Patch, kein eigener Job: CEs Job, CEs Auswahl, CEs Reihenfolge.
+    // The button does exactly two things per colonist: set the throttle to "expired" (so CE's own giver
+    // then keeps fetching by itself until nothing is missing) and issue the FIRST pickup job as a player
+    // order - that interrupts like a right-click order, but no job the player could not otherwise interrupt
+    // either (surgery, prisoner transport); there the colonist fetches as soon as the job ends, because the
+    // throttle stays open. No Harmony patch of its own, no job of its own: CE's job, CE's choice, CE's order.
     public static class FetchGearNow
     {
-        // Sicherheitsnetz (2026-08-30, Ziel: sie holen ALLES und nicht nur 1 Item):
-        // solange ein Kolonist im Abholmodus ist, liefert CEs Geber Prioritaet 30 (Harmony-Prefix unten), egal
-        // was seine Drossel sagt - bis CE selbst 'nichts mehr zu holen' meldet (TryGiveJob == null, Postfix).
-        // Damit haengt 'alles' nicht an einem Detail in CEs Drossel-Logik. Grenzen: eingezogen, kampfunfaehig,
-        // Schlafenszeit im Zeitplan oder Ruhebedarf unter 20 % beenden den Modus, ebenso 10000 Ticks (4 h
-        // Spielzeit) - ein unerreichbarer Gegenstand darf niemanden fuer immer binden.
+        // Safety net (goal: they fetch EVERYTHING and not just 1 item):
+        // while a colonist is in fetch mode, CE's giver returns priority 30 (Harmony prefix below), no matter
+        // what its throttle says - until CE itself reports 'nothing left to fetch' (TryGiveJob == null, postfix).
+        // That way 'everything' does not depend on a detail of CE's throttle logic. Limits: drafted, downed,
+        // sleep time in the schedule or rest need below 20 % end the mode, as do 10000 ticks (4 h of
+        // game time) - an unreachable item must not bind anyone forever.
         private const int ForcedMaxTicks = 10000;
         private static readonly Dictionary<int, int> forcedSince = new Dictionary<int, int>();
         private static Game forcedGame;
@@ -52,25 +52,25 @@ namespace CEReloaded
 
         public static void Release(Pawn p) { if (p != null) forcedSince.Remove(p.thingIDNumber); }
 
-        // Vorschau fuer den Mouseover des Knopfs (2026-08-30: 'was breche ich jetzt ab, und was holt der
-        // Pawn' - auch bei grossen Kolonien). Bewusst NICHT ueber CEs GetUpdateLoadoutJob (das sucht je Kolonist ueber
-        // die Karte und liefert ohnehin nur den NAECHSTEN Gegenstand), sondern billig: je Slot des Loadouts 'gefordert
-        // minus getragen', und ob davon etwas im Lager/am Boden liegt (beide Zaehler 1 s gecacht). Was nicht im Lager
-        // liegt, wird als 'nichts da' genannt - das holt auch der Knopf nicht. Der laufende Job kommt aus RimWorlds
-        // eigenem Bericht (GetReport). Text nur unter der Maus gebaut und 0,5 s gemerkt; hoechstens MaxPawnLines
-        // Kolonisten mit je hoechstens MaxItemsPerPawn Posten, der Rest als '... und N weitere'.
-        // ZEILEN-Budget statt Kolonisten-Budget (2026-08-30, grosse Kolonie: zwoelf Kolonisten zu je zwei
-        // bis drei Zeilen waren bei 1440 Bildpunkten und Skalierung 1.25 schon hoeher als der Schirm). Ein Kolonist kostet
-        // eine Zeile (uebersprungen) oder zwei (Taetigkeit + Posten).
+        // Preview for the button's tooltip ('what am I interrupting now, and what will the pawn fetch' -
+        // also for large colonies). Deliberately NOT via CE's GetUpdateLoadoutJob (that searches the map per
+        // colonist and only returns the NEXT item anyway), but cheaply: per loadout slot 'required minus
+        // carried', and whether any of it lies in storage/on the ground (both counters cached for 1 s). What is
+        // not in storage is named as 'nothing there' - the button won't fetch that either. The current job comes
+        // from RimWorld's own report (GetReport). Text only built under the mouse and kept for 0.5 s; at most
+        // MaxPawnLines colonists with at most MaxItemsPerPawn items each, the rest as '... and N more'.
+        // LINE budget instead of colonist budget (large colony: twelve colonists at two to three lines each
+        // were already taller than the screen at 1440 pixels and 1.25 scaling). A colonist costs
+        // one line (skipped) or two (activity + items).
         private const int MaxLines = 20, MaxItemsPerPawn = 4;
         private static string previewCache;
         private static float previewAt = -99f;
 
         public static string PreviewTooltip()
         {
-            // 0,5 -> 2 Sekunden (2026-08-30): der Kasten bleibt jetzt offen, aber sein
-            // Inhalt sprang zweimal je Sekunde um, weil jede Zeile die laufende Taetigkeit nennt. Zwei Sekunden sind
-            // langsam genug zum Lesen und schnell genug, um noch zu zeigen, was gerade passiert.
+            // 0.5 -> 2 seconds: the box now stays open, but its content
+            // flipped twice per second because every line names the current activity. Two seconds are
+            // slow enough to read and fast enough to still show what is happening.
             if (previewCache != null && Time.realtimeSinceStartup - previewAt < 2f) return previewCache;
             previewAt = Time.realtimeSinceStartup;
             StringBuilder sb = new StringBuilder();
@@ -97,9 +97,9 @@ namespace CEReloaded
                 sb.Append(" - <color=#9A9A9A>").Append("CER_LoadoutUtility_FetchGearPreviewNow".Translate(now).ToString());
                 if (!interruptible) sb.Append("CER_LoadoutUtility_FetchGearPreviewFinishesFirst".Translate().ToString());
                 sb.Append("</color>\n    ");
-                // Ohne die Vorrede "nothing to fetch right now -" (2026-08-30: zu sperrig).
-                // Sie sagte nichts, was nicht schon dastand: jeder Posten traegt sein eigenes "(none in stock)", und die
-                // rote Farbe der Zeile sagt den Rest.
+                // Without the preamble "nothing to fetch right now -" (too bulky).
+                // It said nothing that wasn't already there: every item carries its own "(none in stock)", and
+                // the line's red color says the rest.
                 if (fetchable == 0)
                     sb.Append("<color=#E67E5E>").Append(string.Join(", ", items)).Append("</color>");
                 else
@@ -136,17 +136,17 @@ namespace CEReloaded
             return report.CapitalizeFirst();
         }
 
-        // 'gefordert minus getragen' je Slot; Munition, Waffen, Packs, Generics - alles, was die Slots-Vereinigung
-        // nennt (Anker + Vorlage + Packs + Zweitwaffen). fetchable = Posten, von denen etwas im Lager oder am Boden
-        // liegt UND die der Kolonist ueberhaupt noch tragen kann. wontFit = im Lager, aber kein Platz mehr.
+        // 'required minus carried' per slot; ammo, weapons, packs, generics - everything the Slots union
+        // names (anchor + template + packs + sidearms). fetchable = items of which something lies in storage
+        // or on the ground AND which the colonist can still carry at all. wontFit = in storage, but no room left.
         //
-        // KAPAZITAET ZAEHLT MIT (2026-09-01: bei vollem Bulk tat 'Fetch gear now' nichts mehr):
-        // CEs Job-Geber prueft VOR jedem Aufheben CanFitInInventory und liefert
-        // bei vollem Bulk/Gewicht schlicht KEINEN Job (dekompiliert, JobGiver_UpdateLoadout.GetPrioritySlot) -
-        // kein Langsamer-Werden, einfach nichts. Diese Vorschau versprach genau solchen Kolonisten weiter
-        // 'fetches: ...'. Jetzt sagt sie es je Posten ehrlich: '(won't fit - carrying limit reached)', mit
-        // derselben Prueffunktion, die CE selbst benutzt. Die Bereitschaftsanzeige kannte den Zustand laengst
-        // ('capacity blocked' -> open gear, CombatReadinessAlerts) - die Fetch-Seite war die Luecke.
+        // CAPACITY COUNTS TOO (with full bulk 'Fetch gear now' used to do nothing):
+        // CE's job giver checks CanFitInInventory BEFORE every pickup and simply returns NO job
+        // at full bulk/weight (decompiled, JobGiver_UpdateLoadout.GetPrioritySlot) -
+        // no slowing down, just nothing. This preview kept promising such colonists
+        // 'fetches: ...'. Now it says so honestly per item: '(won't fit - carrying limit reached)', using
+        // the same check function CE itself uses. The readiness display already knew this state
+        // ('capacity blocked' -> open gear, CombatReadinessAlerts) - the fetch side was the gap.
         private static List<string> MissingItems(Pawn p, Loadout lo, out int fetchable, out int wontFit)
         {
             var lines = new List<string>();
@@ -170,15 +170,15 @@ namespace CEReloaded
                     have = LoadoutUtility.PawnCarriedCount(p, s.thingDef);
                     if (p.equipment?.Primary != null && p.equipment.Primary.def == s.thingDef) have += 1;
                     inStock = LoadoutUtility.StoredStockCount(s.thingDef) + LoadoutUtility.GroundStockCount(s.thingDef) > 0;
-                    // Dieselbe Frage, die CEs Geber stellt - passt EIN Stueck davon noch?
+                    // The same question CE's giver asks - does ONE piece of it still fit?
                     fits = capInv == null || capInv.CanFitInInventory(s.thingDef, out int _);
                 }
                 else
                 {
                     have = LoadoutUtility.PawnCarriedGenericCount(p, s.genericDef);
                     inStock = LoadoutUtility.GenericStockCount(s.genericDef) > 0;
-                    // Generische Slots ('Any Medicine') haben kein einzelnes Def zum Wiegen - dort entscheidet
-                    // der Pauschalzustand 'Kolonist ist voll' (dieselbe Schwelle wie die Bereitschaftsanzeige).
+                    // Generic slots ('Any Medicine') have no single def to weigh - there the blanket state
+                    // 'colonist is full' decides (same threshold as the readiness display).
                     fits = !pawnFull;
                 }
                 int missing = s.count - have;
@@ -194,12 +194,12 @@ namespace CEReloaded
             return lines;
         }
 
-        // Dieselbe Schwelle wie CombatReadinessAlerts' 'capacity blocked' (dort seit 2026-08-13): praktisch
-        // randvoll in Bulk ODER Gewicht - mehr nimmt CEs Geber nicht mehr an.
+        // Same threshold as CombatReadinessAlerts' 'capacity blocked': practically
+        // full in bulk OR weight - CE's giver accepts nothing more beyond that.
         private static bool PawnFull(CompInventory inv)
             => inv != null && (inv.currentBulk >= inv.capacityBulk - 0.01f || inv.currentWeight >= inv.capacityWeight - 0.01f);
 
-        // Wuerde holen, kann aber nicht mehr tragen - fuer die ehrlichen Knopf-Meldungen.
+        // Would fetch, but can't carry any more - for the honest button messages.
         public static bool CapacityBlocked(Pawn p)
         {
             Loadout lo = p?.GetLoadout();
@@ -208,13 +208,13 @@ namespace CEReloaded
             return wontFit > 0;
         }
 
-        // CEs Drossel ist privat; ueber Harmony gelesen, mit Rueckfall: fehlt das Feld nach einem CE-Update,
-        // bleibt der Befehl fuer den ersten Gegenstand erhalten, nur das Weiterholen liegt dann wieder bei CE.
+        // CE's throttle is private; read via Harmony, with a fallback: if the field is missing after a CE update,
+        // the order for the first item still works, only the continued fetching is left to CE again.
         private static readonly System.Reflection.FieldInfo throttleField = AccessTools.Field(typeof(JobGiver_UpdateLoadout), "_throttle");
 
-        // Wer darf losgeschickt werden: gespawnte, freie Kolonisten, die stehen und nicht eingezogen sind.
-        // Schlafende und Kampfunfaehige bleiben liegen, Zusammenbrueche werden nicht unterbrochen, Karawanen
-        // haben kein Lager zum Holen.
+        // Who may be sent: spawned, free colonists who are standing and not drafted.
+        // Sleeping and downed colonists are left alone, mental breaks are not interrupted, caravans
+        // have no storage to fetch from.
         public static bool Eligible(Pawn p)
         {
             return p != null && p.Spawned && !p.Dead && !p.Downed && !p.Drafted && !p.InMentalState
@@ -222,8 +222,8 @@ namespace CEReloaded
                 && p.health != null && p.health.capacities.CapableOf(PawnCapacityDefOf.Moving);
         }
 
-        // Liefert, wie viele Kolonisten einen Abhol-Job bekommen haben. `withLoadout` zaehlt alle geeigneten
-        // mit einer Beladung - die Differenz sind die, bei denen CE nichts mehr zu holen sieht.
+        // Returns how many colonists got a pickup job. `withLoadout` counts all eligible ones
+        // with a loadout - the difference are those for whom CE sees nothing left to fetch.
         public static int Trigger(out int withLoadout, out int skipped, out int blockedFull)
         {
             int started = 0;
@@ -233,21 +233,21 @@ namespace CEReloaded
             {
                 Loadout lo = p.GetLoadout();
                 if (lo == null || lo.defaultLoadout) continue;
-                // Uebersprungene mitzaehlen (2026-08-30: '7 checked' neben einer Vorschau mit zehn Namen - die
-                // drei im Bett bzw. im Zusammenbruch fehlten in der Zahl, ohne dass die Meldung es sagte).
+                // Count skipped ones too ('7 checked' next to a preview with ten names - the three in bed
+                // or in a mental break were missing from the number without the message saying so).
                 if (!Eligible(p)) { skipped++; continue; }
                 withLoadout++;
                 if (TryStart(p, lo, throttle)) started++;
-                // CE gab keinen Job, obwohl Holbares im Lager laege - er ist VOLL (2026-09-01).
-                // Ohne diese Zahl las sich die Meldung wie 'alles erledigt', waehrend der Kolonist mit
-                // leerer Beladung und randvollem Rucksack stehen bleibt.
+                // CE gave no job although something fetchable lies in storage - the colonist is FULL.
+                // Without this number the message read like 'all done', while the colonist stands
+                // there with an empty loadout and a stuffed backpack.
                 else if (CapacityBlocked(p)) blockedFull++;
             }
             return started;
         }
 
-        // EIN Kolonist, aus dem Klick-Menue der Bereitschaftsanzeige (2026-08-30): 'liegt im Lager, nicht abgeholt'
-        // und 'zugewiesen, traegt nichts' fuehren jetzt hierher statt in seine Ausruestung.
+        // ONE colonist, from the readiness display's click menu: 'in storage, not picked up'
+        // and 'assigned, carrying nothing' now lead here instead of to their gear.
         public static bool TriggerFor(Pawn p, bool quiet = false)
         {
             bool ok = false;
@@ -257,33 +257,33 @@ namespace CEReloaded
                 if (lo != null && !lo.defaultLoadout)
                     ok = TryStart(p, lo, throttleField?.GetValue(null) as Dictionary<int, int>);
             }
-            if (quiet) return ok;   // Sammelgriff aus dem Bereitschafts-Menue: EINE Meldung fuer alle, nicht 24
+            if (quiet) return ok;   // bulk action from the readiness menu: ONE message for all, not 24
             if (ok) Messages.Message("CER_LoadoutUtility_FetchGearMsgOne".Translate(p.LabelShortCap), p, MessageTypeDefOf.TaskCompletion, false);
-            // 'Nichts zu holen' und 'kann nichts mehr TRAGEN' sind zwei verschiedene Antworten (2026-09-01).
+            // 'Nothing to fetch' and 'can't CARRY any more' are two different answers.
             else if (CapacityBlocked(p)) Messages.Message("CER_LoadoutUtility_FetchGearMsgOneFull".Translate(p.LabelShortCap), p, MessageTypeDefOf.RejectInput, false);
-            // Und eine DRITTE (2026-09-03): ein Menueeintrag versprach
-            // "fetch now" und die Antwort darauf lautete "Isolde: Nothing to fetch right now"). Der
-            // Eintrag entsteht aus UNSERER Bestandsrechnung (AnythingFetchable: liegt etwas Passendes
-            // erreichbar herum), der Klick aus CEs Job-Geber - und der lehnt aus Gruenden ab, die unsere
-            // Rechnung nicht kennt (der Stapel ist von jemand anderem reserviert, der Kolonist kommt
-            // gerade nicht hin, ein anderer Auftrag laeuft). Beide Rechnungen zusammenzulegen geht nicht:
-            // CEs Job-Geber LASST den Kolonisten unterwegs Ueberschuss fallen, ihn nur zum Fragen
-            // aufzurufen waere eine Nebenwirkung. Also sagt die Meldung wenigstens die Wahrheit -
-            // "gerade nicht" statt "gar nichts", denn "gar nichts" schickt den Spieler in den Nachschub,
-            // wo er nichts zu tun findet.
+            // And a THIRD: a menu entry promised "fetch now" and the answer was "Nothing to fetch right
+            // now". The
+            // entry comes from OUR stock calculation (AnythingFetchable: something suitable lies
+            // around reachable), the click from CE's job giver - and that one declines for reasons our
+            // calculation doesn't know (the stack is reserved by someone else, the colonist can't
+            // reach it right now, another order is running). Merging both calculations is not possible:
+            // CE's job giver makes the colonist DROP surplus along the way, so calling it just to ask
+            // would be a side effect. So the message at least tells the truth -
+            // "not right now" instead of "nothing at all", because "nothing at all" sends the player to
+            // the supply window, where there is nothing to do.
             else if (AnythingFetchable(p)) Messages.Message("CER_LoadoutUtility_FetchGearMsgOneBusy".Translate(p.LabelShortCap), p, MessageTypeDefOf.RejectInput, false);
             else Messages.Message("CER_LoadoutUtility_FetchGearMsgOneNone".Translate(p.LabelShortCap), p, MessageTypeDefOf.RejectInput, false);
             return ok;
         }
 
-        // Fuer das Bereitschafts-Menue (2026-08-30: 'Cloud (assigned but empty-handed) - fetch now' antwortete
-        // 'Nothing to fetch right now' - sein Posten lag nirgends). Liegt fuer diesen Kolonisten ueberhaupt etwas Holbares?
+        // For the readiness menu (an 'assigned but empty-handed - fetch now' entry answered 'Nothing to
+        // fetch right now' because the item was nowhere). Is there anything fetchable for this colonist at all?
         public static void TriggerAll(List<Pawn> pawns)
         {
-            // Sammelgriff aus dem Bereitschafts-Menue: alle auf einmal, EINE Meldung.
+            // Bulk action from the readiness menu: everyone at once, ONE message.
             int ok = 0;
             foreach (Pawn p in pawns) if (TriggerFor(p, quiet: true)) ok++;
-            // Einzahl auch hier - zweite Aufrufstelle desselben Schluessels (2026-09-04, Regel-7-Grep).
+            // Singular here too - second call site of the same key.
             if (ok == 1) Messages.Message("CER_LoadoutUtility_FetchGearMsgSentOne".Translate(), MessageTypeDefOf.TaskCompletion, false);
             else if (ok > 0) Messages.Message("CER_LoadoutUtility_FetchGearMsgSent".Translate(ok.ToString()), MessageTypeDefOf.TaskCompletion, false);
             else Messages.Message("CER_LoadoutUtility_FetchGearMsgNone".Translate(pawns.Count.ToString(), "0"), MessageTypeDefOf.RejectInput, false);
@@ -301,23 +301,23 @@ namespace CEReloaded
         {
             Job job = JobGiver_UpdateLoadout.GetUpdateLoadoutJob(p);
             if (job == null) return false;
-            // "abgelaufen" = dieselbe Marke, die CE selbst setzt, wenn es weiterholen will (TicksGame - 1801).
+            // "expired" = the same mark CE itself sets when it wants to keep fetching (TicksGame - 1801).
             if (throttle != null) throttle[p.thingIDNumber] = GenTicks.TicksGame - 1801;
             forcedSince[p.thingIDNumber] = GenTicks.TicksGame;
             if (!p.jobs.TryTakeOrderedJob(job, JobTag.Misc))
             {
-                // Laufender Job nicht unterbrechbar - der Kolonist holt, sobald er fertig ist (Drossel offen).
+                // Current job not interruptible - the colonist fetches as soon as it is done (throttle open).
                 JobMaker.ReturnToPool(job);
             }
             return true;
         }
 
-        // Die Diagnosezeile [CER DIAG fetch] (2026-08-30) ist wieder raus: sie hat gezeigt, dass CE fuer Munition alles
-        // gruen sah (die Fehlmenge war unsere - das Magazin, siehe LoadoutUtility.MagazineAmmoCount) und dass der Stickbomb-
-        // Slot in lo.Slots gar nicht ankam (Patch_Loadout_MultiParentSlots.IsRealAmmoSlot).
+        // The diagnostic line [CER DIAG fetch] is gone again: it showed that CE saw everything green for ammo
+        // (the shortfall was ours - the magazine, see LoadoutUtility.MagazineAmmoCount) and that the stickbomb
+        // slot never arrived in lo.Slots at all (Patch_Loadout_MultiParentSlots.IsRealAmmoSlot).
     }
 
-    // Waehrend des Abholmodus gewinnt der Abhol-Geber jede Jobwahl (30 schlaegt Arbeit 5,5/9 und Freizeit).
+    // During fetch mode the pickup giver wins every job choice (30 beats work 5.5/9 and recreation).
     [HarmonyPatch(typeof(JobGiver_UpdateLoadout), "GetPriority")]
     public static class Patch_JobGiver_UpdateLoadout_GetPriority_FetchNow
     {
@@ -329,8 +329,8 @@ namespace CEReloaded
         }
     }
 
-    // CE sagt 'nichts mehr zu holen' (null) - dann ist der Abholmodus vorbei und der Kolonist geht zurueck an
-    // seine Arbeit. Ein Job (nicht null) laesst den Modus stehen: das naechste Stueck folgt am Jobende.
+    // CE says 'nothing left to fetch' (null) - then fetch mode is over and the colonist returns to
+    // work. A job (not null) keeps the mode: the next piece follows at the end of the job.
     [HarmonyPatch(typeof(JobGiver_UpdateLoadout), "TryGiveJob")]
     public static class Patch_JobGiver_UpdateLoadout_TryGiveJob_FetchNow
     {

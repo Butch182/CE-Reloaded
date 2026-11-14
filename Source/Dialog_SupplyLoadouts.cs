@@ -8,7 +8,7 @@ using CombatExtended;
 
 namespace CEReloaded
 {
-    // The unified "make these loadouts real" popup (WORKFLOW_OVERHAUL_PLAN.md section 2). Replaces
+    // The unified "make these loadouts real" popup. Replaces
     // Dialog_ProduceMissingWeapons and the old reactive Generate-time "resolve generic ammo" popup with
     // ONE dialog covering four independent sections - Main weapons / Sidearms & grenades / Shields / Ammunition -
     // each hidden entirely when empty, so it works standalone for any subset (e.g. ammo-only when called from the
@@ -26,31 +26,30 @@ namespace CEReloaded
             // LoadoutUtility.ScanMissingAssignedPackItems. Already resolved to concrete ThingDefs (a bill
             // always targets one recipe, so any generic slot's family is picked down to one member upstream).
             public Dictionary<ThingDef, int> packItems;
-            // Zu jedem dieser konkreten Defs der Def, an dem der BEDARF haengt (2026-08-19,
-            // supply-medicine-row-numbers). Bei "Any Medicine" ist das der generische Def, waehrend der
-            // Schluessel oben das Herstellungsziel ist - der Verfuegbarkeits-Balken muss den Bedarfs-Def
-            // fragen, sonst beantwortet er eine andere Frage als der Equipment-Packs-Reiter und liest sich
-            // bei 600 gefordert / 75 vorhanden als voll gedeckt. Fehlt der Eintrag, gilt das konkrete Def.
+            // For each of these concrete defs, the def the DEMAND is attached to. For "Any Medicine" that is the
+            // generic def, while the key above is the production target - the availability bar must ask the
+            // demand def, otherwise it answers a different question than the Equipment Packs tab and reads as
+            // fully covered at 600 required / 75 available. Without an entry the concrete def applies.
             public Dictionary<ThingDef, Def> packItemDemandDefs;
 
-            // ============ IST `count` schon um laufende Auftraege bereinigt? (2026-08-18) ============
+            // ============ Is `count` already net of running bills? ============
             //
-            // Im Test gemessen: ein Doppelabzug. 7 Traeger, 3 in Arbeit, 0 vorhanden - der
-            // Verfuegbarkeits-Tooltip derselben Zeile sagt korrekt "Still missing: 4", das Mengenfeld
-            // schlaegt 1 vor. 7 minus 3 minus 3.
+            // Observed: a double subtraction. 7 carriers, 3 in production, 0 in stock - the availability
+            // tooltip of the same row correctly says "Still missing: 4", the quantity field suggests 1.
+            // 7 minus 3 minus 3.
             //
-            // Die Ursache ist keine Fehlrechnung, sondern eine unausgesprochene Annahme an der Naht: die
-            // Zahl in mainWeapons/secondaryWeapons bedeutet je nach Erbauer etwas anderes.
-            //   ScanMissingAssignedWeapons zieht laufende Auftraege bereits ab (2026-07-31, damit die
-            //     "habe ich etwas zu produzieren vergessen"-Pruefung nicht meldet, was laengst eingereiht ist).
-            //   ComputeMissingSplit und ComputeMissingForCreatedLoadouts tun das NICHT.
-            // BuildWeaponEntry zog danach noch einmal ab - fuer die zweite Sorte richtig, fuer die erste
-            // doppelt. Die Pack-Zeile daneben laesst den zweiten Abzug ausdruecklich weg und begruendet es
-            // genau so; die Waffen-Zeile hat dieselbe Ueberlegung nie bekommen.
+            // The cause is not a miscalculation but an unstated assumption at the seam: the number in
+            // mainWeapons/secondaryWeapons means something different depending on who built it.
+            //   ScanMissingAssignedWeapons already subtracts running bills (so the "did I forget to produce
+            //     something" check doesn't report what has long been queued).
+            //   ComputeMissingSplit and ComputeMissingForCreatedLoadouts do NOT.
+            // BuildWeaponEntry then subtracted again - right for the second kind, double for the first. The
+            // pack row next to it explicitly skips the second subtraction and gives exactly this reason; the
+            // weapon row never got the same consideration.
             //
-            // Statt eine der beiden Rechnungen umzustellen (beide sind fuer ihren Zweck richtig) sagt der
-            // Erbauer jetzt, was seine Zahl bedeutet. Vorgabe false = "roher Bedarf", also das bisherige
-            // Verhalten fuer alle, die nichts setzen.
+            // Instead of changing either calculation (both are right for their purpose), the builder now states
+            // what its number means. Default false = "raw demand", i.e. the previous behavior for everyone who
+            // doesn't set it.
             public bool weaponCountsNetOfProduction;
             // Ammo: either pre-resolved (Generate flow's dry-run) or computed from assigned pawns' actual loadouts
             // (Assign flow, via LoadoutUtility.ComputeAmmoNeedForAssignedPawns before building this Request).
@@ -59,7 +58,7 @@ namespace CEReloaded
             public Dictionary<ThingDef, Building_WorkTable> ammoBenches;
             // Assig. column, split into two ALWAYS-independent indicators (2026-08-02) - it used to be one
             // dict-set whose MEANING silently flipped between "real pawn" and "loadout template" depending on
-            // which scope radio was active (two screenshots of the same colonist showing
+            // which scope radio was active (the same colonist could show
             // wildly different "assigned" counts). Now every caller populates both regardless of which scope
             // drives the visible row/count numbers: assignedUsedBy/weaponAssignedUsedBy = real colonists
             // (diamond icon), templateUsedBy/weaponTemplateUsedBy = managed Loadout templates (circle icon).
@@ -72,10 +71,9 @@ namespace CEReloaded
             public Action onBack;   // set when there is a previous step to return to (e.g. the assign preview)
             public ArmReport armReport;   // Arm-my-Colony run: record what actually gets queued on confirm
 
-            // Der Bereichs-Streifen "Consider assigned weapons / created loadouts" (2026-08-01) ist am
-            // 2026-09-07 entfallen: seit dem Lazy-Umbau gibt es je benutzter Waffe eine Vorlage, beide
-            // Umfaenge waren
-            // dieselbe Menge. Das Fenster rechnet nur noch mit den zugewiesenen Waffen.
+            // The scope strip "Consider assigned weapons / created loadouts" was removed: since lazy creation
+            // there is one template per used weapon, so both scopes were the same set. The window now only
+            // works with the assigned weapons.
             // Ammo/weapon bills nobody currently demands - opt-OUT, not opt-in
             // (2026-08-01, by design): every candidate shows checked by default; the player unchecks
             // individual ones they want to keep. Whatever's still checked when Confirm is clicked gets pruned
@@ -112,8 +110,8 @@ namespace CEReloaded
             // GetWeaponInventory. Branching DrawWeaponEntry's availability bar on e.weapon.IsWeapon instead of
             // this used to understate pack-sourced utility weapons' real demand (2026-07-31 fix).
             public bool isPackItem;
-            // Nur fuer Pack-Zeilen gesetzt und nur fuer die BESTANDSFRAGE gedacht - siehe
-            // Request.packItemDemandDefs. Null heisst "identisch mit weapon".
+            // Only set for pack rows and only meant for the STOCK question - see Request.packItemDemandDefs.
+            // Null means "same as weapon".
             public Def demandDef;
         }
 
@@ -162,8 +160,8 @@ namespace CEReloaded
         private bool sortDescending = false;
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1192f, UI.screenWidth - 40f), Mathf.Min(760f, UI.screenHeight - 40f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Don't slide under RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without a collision this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -173,32 +171,32 @@ namespace CEReloaded
         // UsedX's own column widened from 32 to 60 (2026-08-02, everything from IngX on shifted +32) to fit
         // TWO indicators side by side (diamond=assigned, circle=used in loadout) instead of one - see
         // DrawAssignmentIndicators.
-        // KORRIGIERT 2026-08-18: der Satz, der hier stand ("~90px Luft, kein Ueberlaufrisiko bei der
-        // Maximalbreite 1160"), stimmt nicht mehr: bei schmalen Bildschirmen reicht der Platz nicht.
-        // Die Maximalbreite ist laengst 1192 (InitialSize eine Zeile darueber), und die Zeile endet heute
-        // bei 1124 - Luft ist also nur noch, solange das Fenster wirklich seine Maximalbreite bekommt.
-        // Die harte Rechnung: rechte Kante 1124 -> noetige Fensterbreite 1176 -> noetige Bildschirmbreite
-        // 1216 (InitialSize nimmt Bildschirmbreite minus 40). Darunter ragen Werkbank-Knopf, Sprung- und
-        // Info-Symbol aus dem Fenster, und einen waagrechten Schieber gibt es hier nicht: sie sind dann
-        // nicht abgeschnitten, sondern unerreichbar. Ein Kommentar, der eine ueberholte Zahl behauptet, ist
-        // gefaehrlicher als gar keiner - die naechste Aenderung wuerde daraus weiterrechnen.
+        // CORRECTED: the sentence that used to be here ("~90px of slack, no overflow risk at the max width
+        // 1160") is no longer true: on narrow screens the space is not enough.
+        // The max width has long been 1192 (InitialSize one line above), and the row now ends at 1124 - so
+        // there is slack only as long as the window really gets its max width.
+        // The hard math: right edge 1124 -> required window width 1176 -> required screen width 1216
+        // (InitialSize takes screen width minus 40). Below that the workbench button, jump and info icons
+        // stick out of the window, and there is no horizontal scrollbar here: they are then not clipped but
+        // unreachable. A comment that asserts an outdated number is more dangerous than none at all - the
+        // next change would keep calculating from it.
         private const float IconX = 26f, NameX = 52f;
-        // ---- Spaltenlage bei schmalem Fenster (2026-08-25: Weg (a) mit Rueckfall (b)) ----
-        // Die Zeile zeichnete an festen X. Unter 1216 Bildbreite (oder mit UI-Skalierung) ragten Werkbank,
-        // Sprung- und Info-Symbol aus der Sicht - und weil es keinen waagrechten Bildlauf gab, waren sie
-        // UNERREICHBAR, nicht nur abgeschnitten. Jetzt rutschen alle Spalten ab "Special" um colShift nach
-        // links, und die Namensspalte gibt die Breite ab, bis NameMinW erreicht ist (Weg a). Reicht auch das
-        // nicht, bleibt die Zeile breiter als die Sicht, und viewRect wird auf die Zeilenbreite gesetzt -
-        // RimWorlds ScrollView zeigt dann von selbst einen waagrechten Balken (Weg b als Rueckfall): unbequem,
-        // aber nichts ist mehr unerreichbar. Die Kopfzeile benutzt dieselben Werte, steht aber ausserhalb der
-        // ScrollView - beim Rueckfall wandert sie nicht mit; das ist der Preis des Rueckfalls, nicht des Wegs (a).
-        // Basiswerte = die bisherigen festen X; ein separater Layout-Renderer (SupplyLoadouts_RowsAt)
-        // rechnet mit denselben Zahlen.
+        // ---- Column layout in a narrow window (approach (a) with fallback (b)) ----
+        // The row drew at fixed X positions. Below 1216 screen width (or with UI scaling) the workbench, jump
+        // and info icons stuck out of view - and since there was no horizontal scrolling they were
+        // UNREACHABLE, not just clipped. Now all columns from "Special" onward shift left by colShift, and the
+        // name column gives up width until NameMinW is reached (approach a). If even that is not enough, the
+        // row stays wider than the view and viewRect is set to the row width - RimWorld's ScrollView then
+        // shows a horizontal bar on its own (approach b as fallback): inconvenient, but nothing is
+        // unreachable anymore. The header row uses the same values but sits outside the ScrollView - in the
+        // fallback it does not scroll along; that is the price of the fallback, not of approach (a).
+        // Base values = the previous fixed X positions; a separate layout renderer (SupplyLoadouts_RowsAt)
+        // calculates with the same numbers.
         private const float SpecialXBase = 240f, UsedXBase = 320f, IngXBase = 390f, MaterialXBase = 546f;
         private const float BatchXBase = 676f;   // batch-count field, restored 2026-07-30 - paired with CountX, synced both ways
         private const float CountXBase = 768f;   // absolute target count (shifted right from its old 644f slot to make room for BatchX)
         private const float NameMinW = 90f;
-        private static float colShift;   // <= 0; je Zeichendurchgang aus der Sichtbreite gesetzt (UpdateColumnShift)
+        private static float colShift;   // <= 0; set from the view width on every draw pass (UpdateColumnShift)
         private static float SpecialX => SpecialXBase + colShift;
         private static float UsedX => UsedXBase + colShift;
         private static float IngX => IngXBase + colShift;
@@ -209,37 +207,34 @@ namespace CEReloaded
         private static float BenchX => BenchXBase + colShift;
         private static float JumpX => BenchX + BenchBtnW + 8f;
         private static float InfoX => JumpX + 22f;
-        // Rechte Kante der Zeile ohne Schiebung (Info-Ende) und nach Schiebung.
+        // Right edge of the row without shift (end of Info) and after shift.
         private const float RowRightEdge = BenchXBase + BenchBtnW + 8f + 22f + 18f;   // = 1124
         private static float RowWidth => RowRightEdge + colShift;
         private static void UpdateColumnShift(float viewWidth)
             => colShift = Mathf.Clamp(viewWidth - RowRightEdge, -(SpecialXBase - NameX - 4f - NameMinW), 0f);
-        // BenchBtnW 54 -> 74 und die Folgespalten daraus abgeleitet statt zweimal 54 von Hand (2026-08-13,
-        // Werkbank-Spalte). Die 20px kommen NICHT aus einer Nachbarspalte, sondern aus der
-        // Fensterbreite: rechts war kein Millimeter frei (Info endete exakt auf der Kante der Liste), deshalb
-        // ist InitialSize um 32 gewachsen. Gerechnet auf 1920: Liste 1140 breit, rechte Kante 1124 - das
-        // gilt NUR ab 1216 Bildschirmbreite, siehe die Rechnung bei IconX oben.
-        private const float ProdXBase = 832f, BenchXBase = 1002f;   // ProdX/BenchX/JumpX/InfoX: siehe die Schiebung bei IconX
-        // Die Werkbank-Spalte zeigt entweder einen Knopf (BenchIconButton, 54x24 ab y+2) oder - wenn es gar
-        // keine passende Bank gibt - ein Warnzeichen. Das sass linksbuendig am Spaltenanfang und damit
-        // sichtbar neben der Achse der Knoepfe in den Zeilen darueber und darunter (2026-08-12: zentriert
-        // zu den Workbench-Knoepfen). Einmal hier abgeleitet statt
-        // an drei Aufrufstellen wiederholt, damit es nicht wieder auseinanderlaeuft.
+        // BenchBtnW 54 -> 74, with the following columns derived from it instead of hand-writing 54 twice. The
+        // 20px do NOT come from a neighboring column but from the window width: there was not a millimeter
+        // free on the right (Info ended exactly on the list's edge), which is why InitialSize grew by 32.
+        // Calculated at 1920: list 1140 wide, right edge 1124 - this holds ONLY from 1216 screen width up,
+        // see the math at IconX above.
+        private const float ProdXBase = 832f, BenchXBase = 1002f;   // ProdX/BenchX/JumpX/InfoX: see the shift at IconX
+        // The workbench column shows either a button (BenchIconButton, 54x24 from y+2) or - when there is no
+        // suitable bench at all - a warning sign. That sat left-aligned at the column start and thus visibly
+        // off the axis of the buttons in the rows above and below (now centered on the Workbench buttons).
+        // Derived once here instead of repeated at three call sites, so they don't drift apart again.
         private const float BenchBtnW = 74f, BenchBtnH = 24f, BenchWarnSize = 18f;
         private static Rect BenchWarnRect(float y) => new Rect(
             BenchX + (BenchBtnW - BenchWarnSize) / 2f, y + 2f + (BenchBtnH - BenchWarnSize) / 2f,
             BenchWarnSize, BenchWarnSize);
 
-        // Der Sperrgrund gehoert IN die Zeile, nicht nur in den Tooltip (2026-08-13):
-        // "Rezept da, Forschung fertig, aber keine passende Werkbank" zeichnete
-        // bis dahin nur ein Warnzeichen ganz rechts, und wer nicht mit der Maus draufging, sah eine
-        // ausgegraute Zeile ohne jede Begruendung - das liest sich als Fehler des Mods.
-        // Die Spalte ist dieselbe, in der der !craftable-Zweig seinen Grund schon nennt, damit alle
-        // Sperrgruende auf einer Achse stehen. Die BREITE kommt aus den beiden Spaltenanfaengen, nicht aus
-        // einer geratenen Zahl, und LabelCell kuerzt hart darauf - genau diese Zelle war am 2026-08-02
-        // geleert worden, weil ein ungekuerztes Widgets.Label sie ueberlaufen liess. Der volle Satz steht
-        // weiterhin im Tooltip, hier wie dort.
-        private const float ReasonCellW = ProdXBase - MaterialXBase - 8f;   // beide Spalten rutschen gleich, die Breite bleibt
+        // The block reason belongs IN the row, not just in the tooltip: "recipe available, research done, but
+        // no suitable workbench" used to draw only a warning sign at the far right, and anyone not hovering
+        // it saw a greyed-out row without any reason - which reads as a bug in the mod.
+        // The column is the same one in which the !craftable branch already states its reason, so all block
+        // reasons sit on one axis. The WIDTH comes from the two column starts, not from a guessed number, and
+        // LabelCell truncates hard to it - this very cell had once been emptied because an untruncated
+        // Widgets.Label overflowed it. The full sentence is still in the tooltip, here as there.
+        private const float ReasonCellW = ProdXBase - MaterialXBase - 8f;   // both columns shift equally, the width stays
         private static void DrawBlockedReasonCell(float y, string text, string tip)
         {
             Rect r = new Rect(MaterialX, y, ReasonCellW, 24f);
@@ -257,13 +252,13 @@ namespace CEReloaded
             absorbInputAroundWindow = true;
 
             DropObsoleteFromProduceLists(req);
-            // EINE Aenderung, EIN Angebot (2026-08-16): nach einer Aenderung das Nachschub-Fenster
-            // anzubieten ist gut, beim Reiterwechsel noch einmal ist zu viel.
-            // Hier statt an den Aufrufern, weil JEDER Weg zum Nachschub-Fenster durch diesen
-            // Konstruktor laeuft - eine Marke pro Aufrufer waere beim naechsten Einstieg wieder
-            // unvollstaendig. Was danach mit dem Fenster passiert (produzieren oder Cancel), aendert daran
-            // nichts: angeboten wurde es, und ein zweites Mal fuer dieselbe Aenderung zu fragen ist genau
-            // das Nerven, das vermieden werden soll. Der dauerhafte Zustand steht ohnehin in der Bereitschaftsanzeige.
+            // ONE change, ONE offer: offering the supply window after a change is good, offering it again on a
+            // tab switch is too much.
+            // Here rather than at the callers, because EVERY path to the supply window goes through this
+            // constructor - a flag per caller would be incomplete again at the next entry point. What happens
+            // with the window afterwards (produce or Cancel) changes nothing: it was offered, and asking a
+            // second time for the same change is exactly the nagging to avoid. The persistent state is shown in
+            // the readiness display anyway.
             LoadoutUtility.lastSupplyOfferSignature = LoadoutUtility.AssignmentSignature();
 
             WeaponEntry WithNames(WeaponEntry we)
@@ -277,12 +272,11 @@ namespace CEReloaded
                 foreach (var kvp in Order(req.secondaryWeapons)) secEntries.Add(WithNames(BuildWeaponEntry(kvp.Key, kvp.Value, req.weaponCountsNetOfProduction)));
             if (req.shields != null)
                 foreach (var kvp in Order(req.shields)) shieldEntries.Add(WithNames(BuildWeaponEntry(kvp.Key, kvp.Value, req.weaponCountsNetOfProduction)));
-            // Ein Def, der schon in einer Waffen-/Schild-Sektion steht, darf NICHT zusaetzlich als
-            // Pack-Gegenstand erscheinen: ein Schild in einem Equipment Pack erzeugt seinen Bedarf in
-            // BEIDEN Request-Buckets (shieldMissing via ComputeMissingSplit UND missingPackItems via
-            // ScanMissingAssignedPackItems - dieselben Pack-Slots, zweimal gelesen). GenerateAll und
-            // ComputeTotalCost concatenieren alle vier Listen, aus einem Bedarf wuerden also zwei
-            // Auftraege (2026-08-26, Pavise im Shield Kit: 3 fehlend -> 6 produziert).
+            // A def that already appears in a weapon/shield section must NOT also appear as a pack item: a shield
+            // in an Equipment Pack creates its demand in BOTH request buckets (shieldMissing via
+            // ComputeMissingSplit AND missingPackItems via ScanMissingAssignedPackItems - the same pack slots,
+            // read twice). GenerateAll and ComputeTotalCost concatenate all four lists, so one demand would
+            // become two bills (a pavise in the Shield Kit: 3 missing -> 6 produced).
             var weaponSectionDefs = new HashSet<ThingDef>();
             foreach (WeaponEntry we in mainEntries) weaponSectionDefs.Add(we.weapon);
             foreach (WeaponEntry we in secEntries) weaponSectionDefs.Add(we.weapon);
@@ -311,19 +305,16 @@ namespace CEReloaded
             // auto-detected "obsolete" candidate already checked meant a player who wasn't specifically here
             // to prune bills could confirm and delete production they never reviewed. Empty by default now;
             // the player must deliberately tick each one they actually want gone.
-            // 2026-08-09 wieder VORBELEGT: angehakt, also loeschen, ist der Default. Der Kommentar darueber
-            // beschreibt die Gegenposition von Anfang August - bewusst geaendert, kein
-            // Versehen. Die Erkennung selbst bleibt der wunde Punkt: ein falsch erkannter Auftrag ist
-            // mit Vorbelegung nur noch einen Confirm-Klick vom Loeschen entfernt - wenn die
-            // Obsolet-Erkennung etwas falsch einordnet, schlaegt es hier durch.
-            // 2026-08-14: vorbelegt wird nur noch, was UNSER Assistent selbst angelegt hat (die sind
-            // opt-out). Ein von Hand
-            // gesetzter Auftrag wird weiterhin VORGESCHLAGEN, aber ohne Haken - er verlangt eine bewusste
-            // Entscheidung ("MANUELL angelegte auftraege sind default OFF, also opt in").
-            // Das entschaerft genau den Fall, der die Entscheidung ausgeloest hat: ein Auftrag, den der
-            // Spieler eine Minute vorher selbst angelegt hat, stand angehakt zum Loeschen da, weil kein
-            // Loadout ihn verlangt. Der Vorschlag stimmt weiterhin - nur der vorbelegte Haken war der
-            // Unterschied zwischen "Hinweis" und "ein Klick vom Datenverlust entfernt".
+            // PRE-CHECKED again: checked, i.e. delete, is the default. The comment above describes the opposite
+            // position from earlier - changed deliberately, not by accident. The detection itself remains the
+            // weak spot: with pre-checking, a misdetected bill is only one Confirm click away from deletion - if
+            // the obsolete detection misclassifies something, it shows up here.
+            // Later refined: only what OUR wizard created itself is pre-checked (those are opt-out). A bill set
+            // up by hand is still SUGGESTED, but unchecked - it requires a deliberate decision (manually created
+            // bills default to OFF, i.e. opt-in).
+            // This defuses exactly the case behind the decision: a bill the player had created a minute earlier
+            // showed up checked for deletion because no loadout demands it. The suggestion is still correct -
+            // only the pre-checked box was the difference between "a hint" and "one click away from data loss".
             obsoleteAmmoChecked = new HashSet<ThingDef>(obsoleteAmmoCandidates.Where(LoadoutUtility.AllBillsForDefAreOurs));
             onPruneObsoleteAmmo = req.onPruneObsoleteAmmo;
             obsoleteWeaponCandidates = req.obsoleteWeaponCandidates ?? new List<ThingDef>();
@@ -362,8 +353,8 @@ namespace CEReloaded
             return n;
         }
 
-        // netOfProduction: siehe Request.weaponCountsNetOfProduction - true heisst "die Zahl ist schon um
-        // laufende Auftraege bereinigt, zieh sie kein zweites Mal ab".
+        // netOfProduction: see Request.weaponCountsNetOfProduction - true means "the number is already net of
+        // running bills, don't subtract them a second time".
         private static WeaponEntry BuildWeaponEntry(ThingDef weapon, int count, bool netOfProduction = false)
         {
             WeaponEntry e = new WeaponEntry { weapon = weapon, countStr = count.ToString() };
@@ -374,12 +365,11 @@ namespace CEReloaded
 
             if (e.craftable)
             {
-                // Die Bankliste kommt aus dem REZEPT, das wirklich in Auftrag geht - nicht aus dem
-                // Produkt (2026-09-04, Absturz: "satchel charge an der Munitionsbank").
-                // GetWorkbenchesFor(weapon) vereinigt die Baenke ALLER Rezepte, die diesen Gegenstand
-                // herstellen; angelegt wird der Auftrag dann mit e.recipe. Bei einem Gegenstand mit
-                // mehreren Rezepten konnte so eine Bank herauskommen, die genau dieses Rezept nicht
-                // fuehrt - und RimWorlds Auftragsstapel nimmt das kommentarlos an.
+                // The bench list comes from the RECIPE that actually gets queued - not from the product (crash:
+                // "satchel charge at the ammo bench"). GetWorkbenchesFor(weapon) unites the benches of ALL recipes
+                // that make this item; the bill is then created with e.recipe. For an item with several recipes
+                // this could yield a bench that doesn't offer exactly this recipe - and RimWorld's bill stack
+                // accepts that without complaint.
                 e.benches = LoadoutUtility.BenchesForRecipe(e.recipe);
                 if (CEReloadedMod.settings != null && CEReloadedMod.settings.hideDuplicateBenches)
                 {
@@ -425,26 +415,24 @@ namespace CEReloaded
         // in-production stock via LoadoutUtility.ComputeItemOwnership, so subtracting queued count again here
         // would double-count it).
 
-        // ====== EINE Rechnung fuer den Verfuegbarkeits-Balken einer Zeile (2026-08-19) ======
-        // Vorher stand sie nur im Normalfall; die zwei Frueh-Ausstiege der Zeile (kein Rezept, keine
-        // Werkbank) bauten ihren eigenen Balken - und zwar aus GetWeaponInventory, das fuer einen
-        // Pack-Inhalt naturgemaess null liefert. Im Test gemessen: ohne Drug lab sagte
-        // die Medizin-Zeile Total 0 / Available 0 / alles 0, waehrend der Equipment-Packs-Reiter im selben
-        // Moment Total 77 / Assigned in storage 67 / Assigned & carried 8 zeigte.
-        // Dieselbe Fehlerklasse wie der urspruengliche Befund - repariert war nur der Hauptzweig,
-        // die zwei Ausstiege daneben nicht.
-        // Ob eine Werkbank dasteht, aendert nichts daran, WIEVIEL die Kolonie hat. Es aendert nur, ob sich
-        // etwas herstellen laesst - und das sagt die Zeile ohnehin in eigenen Worten.
+        // ====== ONE calculation for a row's availability bar ======
+        // It used to exist only for the normal case; the row's two early exits (no recipe, no workbench) built
+        // their own bar - from GetWeaponInventory, which naturally returns zero for pack contents. Observed:
+        // without a drug lab the medicine row said Total 0 / Available 0 / everything 0, while the Equipment
+        // Packs tab at the same moment showed Total 77 / Assigned in storage 67 / Assigned & carried 8.
+        // The same class of bug as the original one - only the main branch had been fixed, not the two exits
+        // next to it.
+        // Whether a workbench exists doesn't change HOW MUCH the colony has. It only changes whether something
+        // can be produced - and the row says that in its own words anyway.
         private static LoadoutUtility.AvailabilitySegments RowAvailability(WeaponEntry e, int inProd)
         {
             if (!e.isPackItem)
             {
-                // NICHT auf LoadoutUtility.WeaponAvailability umstellen (2026-08-15, als vier andere Kopien
-                // dieser Rechnung dorthin zusammengezogen wurden): das `inProd` oben zaehlt nur die
-                // Auftraege zum REZEPT DIESER ZEILE (QueuedFromBills ueber e.recipe), waehrend
-                // WeaponQueuedCount jeden Auftrag nimmt, der die Waffe irgendwie herstellt. Bei mehreren
-                // Rezepten fuer dieselbe Waffe sind das verschiedene Zahlen, und diese Zeile MEINT ihr
-                // eigenes Rezept - sie steht neben dessen Werkbank und dessen Materialien.
+                // Do NOT switch to LoadoutUtility.WeaponAvailability (four other copies of this calculation were
+                // consolidated there): the `inProd` above only counts bills for THIS ROW'S RECIPE (QueuedFromBills
+                // via e.recipe), while WeaponQueuedCount takes every bill that makes the weapon in any way. With
+                // several recipes for the same weapon those are different numbers, and this row MEANS its own
+                // recipe - it sits next to that recipe's workbench and materials.
                 LoadoutUtility.GetWeaponInventory(e.weapon, out int wTotal, out int wCarried, out int wStored, out int wAssigned);
                 int wCarriedAndAssigned = Mathf.Min(wCarried, wAssigned);
                 int wCarriedOnly = wCarried - wCarriedAndAssigned;
@@ -463,32 +451,31 @@ namespace CEReloaded
                 // Pack item (medicine/food/drug/utility) - ownership comes from AmmoAssignmentUtility.
                 // GetPawnPacks demand, not a Weapon Loadout slot, and there's no "equipped" concept either
                 // (never worn/wielded) - GetWeaponInventory would just read zero/wrong numbers here.
-                // Bestand IMMER gegen den Bedarfs-Def (2026-08-19, supply-medicine-row-numbers) - `e.weapon`
-                // ist das Herstellungsziel, und wer damit fragt, bekommt fuer einen generisch geforderten
-                // Pack-Inhalt "nichts zugewiesen, alles frei" zurueck: ComputeItemOwnership zaehlt bei einem
-                // konkreten Def nur konkret benannte Pack-Eintraege als Bedarf. Gemessen: derselbe Bestand
-                // stand im Equipment-Packs-Reiter als "Assigned, in storage: 75 / Available: 0", hier als
-                // "Assigned: 0 / Available: 75" - bei 600 geforderter Medizin.
+                // Stock ALWAYS against the demand def - `e.weapon` is the production target, and asking with it
+                // returns "nothing assigned, everything free" for a generically demanded pack item:
+                // ComputeItemOwnership only counts explicitly named pack entries as demand for a concrete def.
+                // Measured: the same stock showed in the Equipment Packs tab as "Assigned, in storage: 75 /
+                // Available: 0", and here as "Assigned: 0 / Available: 75" - with 600 medicine required.
                 Def availDef = e.demandDef ?? e.weapon;
                 LoadoutUtility.ComputeItemOwnership(availDef, out int pCarriedOnly, out int pCarriedAndAssigned, out int pAssignedInStore, out int pFreeStored, out _);
-                // neededCount wie im Waffen-Zweig darueber (2026-08-19): der fehlte hier als einziger, und
-                // ohne ihn kann der Balken gar keinen roten Fehlmengen-Abschnitt haben - eine Zeile, die es
-                // nur GIBT, weil etwas fehlt, stand damit komplett gruen da. Die Zahl ist dieselbe, die der
-                // Waffen-Zweig nimmt: der Gesamtbedarf, nicht die Fehlmenge (die steckt schon in seg.missing).
+                // neededCount as in the weapon branch above: it was the only one missing here, and without it the
+                // bar can't have a red shortfall segment at all - a row that only EXISTS because something is
+                // missing showed up fully green. The number is the same the weapon branch uses: total demand, not
+                // the shortfall (that is already in seg.missing).
                 return LoadoutUtility.BuildAvailabilitySegments(pCarriedOnly, pCarriedAndAssigned, pAssignedInStore, pFreeStored, inProd,
                     def: availDef, neededCount: LoadoutUtility.ColonyWideAssignedNeed(availDef));
             }
         }
-        // ====== Dasselbe fuer die MUNITIONS-Zeilen (2026-08-22) ======
-        // Sie bauten ihre Segmente von Hand und gaben fuer beide Getragen-Toepfe eine feste 0 mit. Folge, im
-        // Test gesehen: die Zeile '.45 Colt (FMJ)' sagte oben 'Total: 0' und listete direkt darunter
-        // 'Carried by: Yttoyyn x1'. Zwei Aussagen in EINEM Tooltip, die sich widersprechen - der Ortstooltip
-        // liest das Inventar, die Zahlen darueber taten es nicht.
-        // Seine Vermutung war ein geladenes Magazin; das war es nicht, es waren die fest verdrahteten Nullen.
-        // LoadoutUtility.GetAmmoOwnership liefert genau die Fuenfer-Aufstellung, die der Assign-Reiter, das
-        // Munitions-Fenster und der Auftrags-Reiter laengst benutzen - dieses Fenster war der einzige Ausreisser.
-        // neededCount bleibt, denn nur dann hat der Balken seinen roten Fehlmengen-Abschnitt: Gesamtbedarf =
-        // was schon getragen UND zugewiesen ist, plus was noch aus dem Lager kommen muss.
+        // ====== The same for the AMMO rows ======
+        // They built their segments by hand and passed a fixed 0 for both carried buckets. Result: the row
+        // '.45 Colt (FMJ)' said 'Total: 0' at the top and listed 'Carried by: <colonist> x1' right below it.
+        // Two contradicting statements in ONE tooltip - the location tooltip reads the inventory, the
+        // numbers above it didn't.
+        // It was not a loaded magazine, it was the hard-wired zeros.
+        // LoadoutUtility.GetAmmoOwnership returns exactly the five-way breakdown that the Assign tab, the ammo
+        // window and the bills tab have long been using - this window was the only outlier.
+        // neededCount stays, because only then does the bar have its red shortfall segment: total demand =
+        // what is already carried AND assigned, plus what still has to come from storage.
         private static LoadoutUtility.AvailabilitySegments AmmoRowAvailability(ThingDef ammoDef)
         {
             LoadoutUtility.GetAmmoOwnership(ammoDef, out int co, out int ca, out int ais, out int fs, out int ip);
@@ -497,11 +484,11 @@ namespace CEReloaded
                 def: ammoDef, neededCount: ca + demandedFromStorage);
         }
 
-        // Die "wo liegt es / wer traegt es / wem ist es zugewiesen"-Aufstellung einer Gegenstandszeile.
-        // Als eigene Funktion (2026-08-23), damit die drei Aufrufer die Frage nicht dreimal verschieden
-        // beantworten - die blockierten Zweige (kein Rezept, keine Werkbank) hatten sie gar nicht, der
-        // normale hatte sie inline. Der Produktions-Abschnitt kommt weiterhin nur im normalen Zweig
-        // dazu: wo nichts hergestellt werden kann, ist auch nichts in Produktion.
+        // The "where is it / who carries it / who is it assigned to" breakdown of an item row.
+        // A function of its own so the three callers don't answer the question three different ways - the
+        // blocked branches (no recipe, no workbench) didn't have it at all, the normal one had it inline. The
+        // production section is still only added in the normal branch: where nothing can be produced, nothing
+        // is in production either.
         private static string RowLocationTip(WeaponEntry e)
         {
             return e.isPackItem
@@ -518,7 +505,7 @@ namespace CEReloaded
 
             if (e.craftable)
             {
-                // Zwilling der Waffenzeile darueber - dieselbe Quelle, dieselbe Begruendung (2026-09-04).
+                // Twin of the weapon row above - same source, same reasoning.
                 e.benches = LoadoutUtility.BenchesForRecipe(e.recipe);
                 if (CEReloadedMod.settings != null && CEReloadedMod.settings.hideDuplicateBenches)
                 {
@@ -543,9 +530,9 @@ namespace CEReloaded
             return e;
         }
 
-        // Ueber LoadoutUtility.QueuedFromBills, nicht mehr mit eigener Formel: hier stand die alte, zu
-        // optimistische Rechnung, und ihr Ergebnis geht in `remaining = count - queued` - eine Zeile wurde
-        // damit abgewaehlt und auf 0 gesetzt, obwohl der Auftrag die Luecke gar nicht deckt.
+        // Via LoadoutUtility.QueuedFromBills, no longer with its own formula: the old, too optimistic calculation
+        // used to be here, and its result feeds `remaining = count - queued` - a row was deselected and set to
+        // 0 even though the bill doesn't cover the gap at all.
         private static int QueuedCount(RecipeDef recipe)
         {
             if (recipe == null) return 0;
@@ -563,27 +550,26 @@ namespace CEReloaded
         // Ammo (generic auto-resolved eagerly; a per-row link lets the player switch to another family member)
         // ================================================================================================
 
-        // Ein Def darf nie gleichzeitig in einer HERSTELLEN- und in einer AUFRAEUMEN-Liste desselben Fensters
-        // stehen (2026-08-15: wie kann etwas zugleich als obsolet und als herzustellen gelistet sein - ist
-        // das nicht ein grundlegender Fehler?). Ja - und zwar genau die Fehlerklasse, die dieser Mod am haeufigsten
-        // produziert: zwei unabhaengige Rechnungen ueber dieselbe Frage, die einander nicht kennen.
+        // A def must never be in a PRODUCE list and a CLEANUP list of the same window at the same time (how can
+        // something be listed as obsolete and as to-be-produced at once - isn't that a fundamental bug?). Yes -
+        // and exactly the class of bug this mod produces most often: two independent calculations of the same
+        // question that don't know about each other.
         //
-        // Warum die AUFRAEUMEN-Seite gewinnt und nicht die Herstellen-Seite: "ueberfluessig" heisst, dass die
-        // Bedarfsrechnung ueber alle Kolonisten bzw. alle Vorlagen NICHTS mehr findet, was das Ding verlangt.
-        // Die Herstellen-Zahl dagegen kann ein stehengebliebener Wert aus der Zeile des Munitions-Reiters
-        // sein - im beobachteten Fall war genau das so: die Zweitwaffe war gerade abgenommen,
-        // der Bedarf war weg, die Stapelzahl in der Zeile stand noch. Etwas zu produzieren, das im selben
-        // Fenster als "niemand braucht das" gelistet ist, kann nie richtig sein.
+        // Why the CLEANUP side wins and not the produce side: "superfluous" means the demand calculation across
+        // all colonists or all templates finds NOTHING anymore that asks for the thing. The produce number, by
+        // contrast, can be a stale value from the ammo tab's row - in the observed case that is exactly what
+        // happened: the sidearm had just been removed, the demand was gone, the stack count in the row was
+        // still there. Producing something that the same window lists as "nobody needs this" can never be
+        // right.
         //
-        // HIER und nicht an den Aufrufern: es gibt fuenf Baustellen, die so eine Anfrage zusammensetzen
-        // (AttachObsoleteCleanup und die vier Aufrufer daneben), und eine davon baut ihre Listen bewusst
-        // selbst. Eine Pruefung pro Aufrufer waere beim naechsten neuen Einstieg still unvollstaendig -
-        // dieselbe Falle, in die der Fix vom 14.08. gelaufen ist (er sass in EINER der zwei
-        // Kandidatenlisten; die Waffen-Haelfte daneben widersprach der Munitions-Zeile weiterhin).
+        // HERE and not at the callers: there are five places that assemble such a request
+        // (AttachObsoleteCleanup and the four callers next to it), and one of them deliberately builds its
+        // lists itself. A check per caller would be silently incomplete at the next new entry point - the same
+        // trap an earlier fix fell into (it sat in ONE of the two candidate lists; the weapon half next to it
+        // still contradicted the ammo row).
         //
-        // Generische Munition braucht nichts davon: UnneededAmmoBillCandidates nimmt ueber
-        // CollectGenericAmmoFamilies alles heraus, was ein generischer Platz abdeckt - ein generisch
-        // verlangter Def landet also gar nicht erst in der Aufraeumliste.
+        // Generic ammo needs none of this: UnneededAmmoBillCandidates removes via CollectGenericAmmoFamilies
+        // everything a generic slot covers - so a generically demanded def never ends up in the cleanup list.
         private static void DropObsoleteFromProduceLists(Request req)
         {
             bool anyAmmo = req.obsoleteAmmoCandidates != null && req.obsoleteAmmoCandidates.Count > 0;
@@ -594,30 +580,28 @@ namespace CEReloaded
             if (anyAmmo) foreach (ThingDef d in req.obsoleteAmmoCandidates) if (d != null) obsolete.Add(d);
             if (anyWeapon) foreach (ThingDef d in req.obsoleteWeaponCandidates) if (d != null) obsolete.Add(d);
 
-            // RICHTUNG GEDREHT (2026-08-16: im neuen Fenster fehlten Posten, z.B. die Satchel Charge -
-            // der Bedarf wurde nicht richtig berechnet).
+            // DIRECTION REVERSED (the new window was missing items, e.g. the satchel charge - the demand was not
+            // calculated correctly).
             //
-            // Heute Vormittag habe ich hier entschieden, dass "ueberfluessig" gewinnt und der Gegenstand aus
-            // der Herstellen-Liste faellt. Die Begruendung stimmt weiterhin fuer den Fall, aus dem sie kam
-            // (Waffe gerade abgenommen, Bedarf wirklich weg) - aber sie hat eine Nebenwirkung, die schwerer
-            // wiegt als der Widerspruch selbst: steht der Gegenstand in BEIDEN Listen, weil zwei
-            // Bedarfsrechnungen sich uneinig sind, verschwand ein ECHTER Bedarf lautlos aus dem Fenster.
+            // The first version decided here that "superfluous" wins and the item drops out of the produce list.
+            // That reasoning still holds for the case it came from (weapon just removed, demand really gone) -
+            // but it has a side effect that weighs more than the contradiction itself: when the item is in BOTH
+            // lists because two demand calculations disagree, a REAL demand silently vanished from the window.
             //
-            // Die zwei Ausgaenge sind nicht gleich schlimm:
-            //   Bedarf verstecken  -> der Spieler produziert zu wenig und sieht nicht, warum. Still.
-            //   Auftrag stehenlassen -> ein Auftrag zu viel, sichtbar im Munitions-Reiter, ein Klick weg.
-            // Also gewinnt ab jetzt die Herstellen-Seite, und der Gegenstand faellt aus der AUFRAEUM-Liste.
-            // Die Regel "nie in beiden Listen" bleibt damit unveraendert - nur die Seite, die nachgibt.
+            // The two outcomes are not equally bad:
+            //   hide demand        -> the player produces too little and doesn't see why. Silent.
+            //   leave a bill alone -> one bill too many, visible in the ammo tab, one click away.
+            // So the produce side now wins, and the item drops out of the CLEANUP list. The rule "never in both
+            // lists" stays unchanged - only the side that gives way changed.
             //
-            // Die eigentliche Ursache ist damit NICHT behoben: zwei Rechnungen widersprechen sich beim
-            // Wurfsprengstoff (die Waffen-Bedarfsrechnung uebersieht Wurfwaffen). Dort ist
-            // das wirklich zu reparieren.
+            // The actual cause is NOT fixed by this: two calculations disagree on throwables (the weapon demand
+            // calculation overlooks throwing weapons). That is where it really needs repairing.
             StripObsolete(req.obsoleteAmmoCandidates, req);
             StripObsolete(req.obsoleteWeaponCandidates, req);
         }
 
-        // Nimmt aus einer Aufraeumliste alles heraus, was dieses Fenster gleichzeitig HERSTELLEN will.
-        // Rueckwaerts zur ersten Fassung von heute Vormittag - die Begruendung steht oben.
+        // Removes from a cleanup list everything this window wants to PRODUCE at the same time.
+        // The reverse of the first version - the reasoning is above.
         private static void StripObsolete(List<ThingDef> candidates, Request req)
         {
             if (candidates == null || candidates.Count == 0) return;
@@ -698,23 +682,20 @@ namespace CEReloaded
                 }
             }
 
-            // Wer auf "Any ammo for X" steht, steht in diesen beiden Buechern NUR unter dem GENERISCHEN Def -
-            // nie unter einer konkreten Sorte (ComputeAmmoNeedForLoadouts legt den Slot so ab, wie er im
-            // Loadout steht). Bis zum 2026-08-14 wurde er hier nur ueber `e.sourceGeneric` gefunden, und das
-            // Feld ist genau dann gesetzt, wenn die Zeile aus `req.genericAmmo` entstanden ist. Zwei der vier
-            // Einstiege in dieses Fenster fuellen `genericAmmo` aber gar nicht (Bill Overview -> Auto-generate
-            // reicht nur `specificAmmo` durch, die Bedarfszahl ist dort schon aufgeloest) - dort war
-            // sourceGeneric null, die Suche lief nur ueber den konkreten Def, und die Raute fiel auf 0 mit dem
-            // Tooltip "kein Kolonist hat ein Loadout, das diese Munition benutzt", obwohl zwei Kolonisten die
-            // passende Waffe trugen. Im Test am 14.08. gemessen; schwer, weil die Raute die Frage
-            // "braucht das ueberhaupt noch jemand" beantwortet und ihre Antwort in die Nachschubplanung
-            // durchschlaegt.
-            // Aufgeloest auf die ganze FAMILIE, nicht auf die eine Vorgabesorte: das ist dieselbe Antwort auf
-            // dieselbe Frage, die CollectGenericAmmoFamilies fuer den Obsolet-Test gibt (siehe dessen
-            // Kommentar - "wird das noch gebraucht" darf nicht mit "wie viel soll ich herstellen" verwechselt
-            // werden). Sonst widersprechen sich beide im selben Fenster: eine Zeile gilt als nicht
-            // ueberfluessig, weil ein generischer Slot sie deckt, und die Raute daneben sagt, niemand
-            // brauche sie.
+            // Anyone on "Any ammo for X" appears in these two books ONLY under the GENERIC def - never under a
+            // concrete type (ComputeAmmoNeedForLoadouts files the slot the way it is in the loadout). It used to
+            // be found here only via `e.sourceGeneric`, and that field is set exactly when the row came from
+            // `req.genericAmmo`. Two of the four entry points into this window don't fill `genericAmmo` at all
+            // (Bill Overview -> Auto-generate only passes `specificAmmo`, the demand number is already resolved
+            // there) - there sourceGeneric was null, the lookup only went through the concrete def, and the
+            // diamond fell to 0 with the tooltip "no colonist has a loadout that uses this ammo", although two
+            // colonists carried the matching weapon. Serious, because the diamond answers the question "does
+            // anyone still need this" and its answer feeds into resupply planning.
+            // Resolved to the whole FAMILY, not the one default type: that is the same answer to the same
+            // question CollectGenericAmmoFamilies gives for the obsolete test (see its comment - "is this still
+            // needed" must not be confused with "how much should I produce"). Otherwise the two contradict each
+            // other in the same window: a row counts as not superfluous because a generic slot covers it, and
+            // the diamond next to it says nobody needs it.
             Dictionary<ThingDef, List<string>> ExpandGenerics(Dictionary<Def, List<string>> map)
             {
                 var byVariant = new Dictionary<ThingDef, List<string>>();
@@ -750,34 +731,30 @@ namespace CEReloaded
             FillNames(req.assignedUsedBy, (e, names) => e.assignedNames = names);
             FillNames(req.templateUsedBy, (e, names) => e.templateNames = names);
 
-            // ============ WURFSPRENGSTOFF HOLT SEINE NAMEN VON DER WAFFENSEITE (2026-08-18) ============
+            // ============ THROWABLES GET THEIR NAMES FROM THE WEAPON SIDE ============
             //
-            // Vierte Ausgabe derselben Frage in zwei Wochen, und diesmal war sie mit zwei
-            // widersprechenden Tooltips im SELBEN Fenster belegt: die Assig.-Spalte der Satchel charge sagte
-            // "No colonist is assigned a loadout that uses this ammo", waehrend der Verfuegbarkeits-Tooltip
-            // derselben Zeile "Assigned to: Mack x4, Ryder x8, Sammy x4" auflistete. Mack und Sammy trugen
-            // sie wirklich als Zweitwaffe.
+            // The fourth occurrence of the same question, this time with two contradicting tooltips in the SAME
+            // window: the satchel charge's Assig. column said "No colonist is assigned a loadout that uses this
+            // ammo", while the availability tooltip of the same row listed "Assigned to: <three colonists>". Two
+            // of them really carried it as a sidearm.
             //
-            // Die Ursache ist keine Fehlrechnung, sondern eine Zustaendigkeitsluecke. Ein Wurfsprengstoff IST
-            // technisch Munition (AmmoThing) und landet deshalb in der Munitions-LISTE - seinen Bedarf
-            // rechnet aber ausdruecklich die WAFFENSEITE (ComputeAmmoNeedForLoadouts ueberspringt
-            // IsSelfAmmoWeapon per Design, mit guter Begruendung: sonst wird derselbe Gegenstand in zwei
-            // Systemen doppelt gebucht). Die Zeile fragte also die eine Rechnung, waehrend die andere
-            // zustaendig war - und bekam verlaesslich "niemand" zurueck.
+            // The cause is not a miscalculation but a gap in responsibility. A throwable IS technically ammo
+            // (AmmoThing) and therefore lands in the ammo LIST - but its demand is explicitly calculated by the
+            // WEAPON SIDE (ComputeAmmoNeedForLoadouts skips IsSelfAmmoWeapon by design, for good reason:
+            // otherwise the same item gets booked twice in two systems). So the row asked one calculation while
+            // the other was responsible - and reliably got "nobody" back.
             //
-            // Deshalb holt sie ihre Namen jetzt von dort, wo ihr Bedarf wirklich gerechnet wird. Alles
-            // andere in der Liste bleibt unveraendert bei der Munitionsseite.
-            // 2026-08-31, erneut aufgetreten: mindestens Mack hatte eine Satchel Charge zugeteilt, die
-            // Assigned-Spalte sagte aber, dass kein Loadout sie nutzt und sie niemandem zugeteilt ist -
-            // beides falsch. Und
-            // der Fix vom 18.08. war nicht unvollstaendig, sondern WIRKUNGSLOS: die Schleife lief ueber
-            // `ammoEntries` - und diese Liste wird erst am Ende dieser Methode gefuellt (AddRange aus
-            // byResolved.Values, rund 30 Zeilen weiter unten). Sie war hier IMMER leer, der Rumpf ist seit
-            // dem 18.08. kein einziges Mal gelaufen. Deshalb jetzt dieselbe Quelle wie die Zeile darueber:
-            // byResolved.Values, die Sammlung, die es an dieser Stelle wirklich schon gibt.
-            // Zusammengefuehrt statt ersetzt: die Munitionsseite laesst Wurfsprengstoff zwar per Design aus
-            // (ComputeAmmoNeedForLoadouts ueberspringt IsSelfAmmoWeapon, sonst wird derselbe Gegenstand
-            // doppelt gebucht), aber ein Ersetzen wuerde einen Namen verlieren, sobald das je anders wird.
+            // So it now gets its names from where its demand is really calculated. Everything else in the list
+            // stays with the ammo side unchanged.
+            // It happened again later: a colonist had a satchel charge assigned, but the Assigned column said no
+            // loadout uses it and it is assigned to nobody - both wrong. And the previous fix was not incomplete
+            // but INEFFECTIVE: the loop ran over `ammoEntries` - and that list is only filled at the end of this
+            // method (AddRange from byResolved.Values, about 30 lines further down). It was ALWAYS empty here, so
+            // the body never ran once. Hence now the same source as the line above: byResolved.Values, the
+            // collection that really exists at this point.
+            // Merged instead of replaced: the ammo side does skip throwables by design (ComputeAmmoNeedForLoadouts
+            // skips IsSelfAmmoWeapon, otherwise the same item gets booked twice), but replacing would lose a name
+            // as soon as that ever changes.
             if (req.weaponAssignedUsedBy != null || req.weaponTemplateUsedBy != null)
             {
                 foreach (AmmoEntry e in byResolved.Values)
@@ -792,16 +769,16 @@ namespace CEReloaded
                 }
             }
 
-            // "Reicht der vorhandene Auftrag?" statt "gibt es irgendeinen?" (2026-08-09).
-            // Muss HIER stehen und nicht in GetOrCreate: dort ist der Bedarf noch 0, er wird erst durch die
-            // AddCount-Schleifen oben aufsummiert. Vorher genuegte ein alter Auftrag ueber 100 Schuss, damit
-            // eine Zeile mit 500 Bedarf als erledigt galt - und weil "nur Fehlendes zeigen" standardmaessig an
-            // ist, verschwand die Zeile dann ganz und der Nachschub-Popup ging unter Umstaenden gar nicht auf.
-            // Mitten im Spiel meldete der Mod also "nichts fehlt", waehrend im Gefecht Leute leer ausgingen.
-            // Verglichen wird gegen das ZIEL des Auftrags, nicht gegen dessen Restmenge: countStr ist hier ein
-            // Lagerziel ("stelle her bis X"), kein Fehlbetrag - deshalb bleibt die Zahl unangetastet und nur
-            // das Kennzeichen "schon abgedeckt" wird ehrlich. Fuer WAFFEN gibt es dieselbe mengengenaue
-            // Rechnung seit 2026-07-31 zwoelf Zeilen weiter oben; Munition hatte sie nie bekommen.
+            // "Is the existing bill enough?" instead of "is there any?".
+            // Must be HERE and not in GetOrCreate: there the demand is still 0, it is only summed up by the
+            // AddCount loops above. Previously an old bill for 100 rounds was enough for a row with 500 demand to
+            // count as done - and because "show only what's missing" is on by default, the row then disappeared
+            // entirely and the supply popup might not open at all. Mid-game the mod thus reported "nothing
+            // missing" while people ran dry in combat.
+            // Compared against the bill's TARGET, not its remaining amount: countStr is a stock target here
+            // ("produce until X"), not a shortfall - so the number stays untouched and only the "already
+            // covered" flag becomes honest. WEAPONS have had the same quantity-exact calculation twelve lines
+            // further up all along; ammo never got it.
             foreach (AmmoEntry e in byResolved.Values)
             {
                 if (!int.TryParse(e.countStr, out int needed) || needed <= 0) continue;
@@ -824,8 +801,8 @@ namespace CEReloaded
             e.resolved = newChoice;
             e.recipe = LoadoutUtility.GetRecipeFor(newChoice);
             e.ings = e.recipe != null ? LoadoutUtility.GetRecipeIngredients(e.recipe) : new List<ThingDefCountClass>();
-            // Mengengenau wie beim Aufbau der Zeilen (2026-08-09) - sonst wechselt man die Sorte und bekommt
-            // fuer die neue wieder das alte "irgendein Auftrag genuegt"-Urteil.
+            // Quantity-exact as when building the rows - otherwise switching the type gets the new one the old
+            // "any bill is enough" verdict again.
             int switchNeeded = int.TryParse(e.countStr, out int sn) ? sn : 0;
             e.alreadyInProduction = switchNeeded > 0
                 ? LoadoutUtility.HighestBillTargetFor(newChoice) >= switchNeeded
@@ -841,9 +818,9 @@ namespace CEReloaded
         // All benches whose def is a recipeUser of this ammo recipe, in stable id order. Built once per entry
         // (and again on a variant switch) - the draw loop reads the cached list every frame.
         private static List<Building_WorkTable> AmmoBenchesFor(RecipeDef recipe)
-            // Ueber die gemeinsame Fassung (2026-09-04): hier stand eine zweite Kopie derselben Formel,
-            // und sie kannte nur den recipeUsers-Weg - ein Rezept, das ueber die recipes-Liste der Bank
-            // haengt, war fuer sie unsichtbar. Siehe LoadoutUtility.BenchCanRun.
+            // Via the shared version: a second copy of the same formula used to be here, and it only knew the
+            // recipeUsers path - a recipe attached via the bench's recipes list was invisible to it. See
+            // LoadoutUtility.BenchCanRun.
             => LoadoutUtility.BenchesForRecipe(recipe);
 
         // ================================================================================================
@@ -858,30 +835,29 @@ namespace CEReloaded
             AnythingToProduce
             || obsoleteAmmoCandidates.Count > 0 || obsoleteWeaponCandidates.Count > 0;
 
-        // Dasselbe OHNE die Aufraeumliste (2026-08-13). Der Unterschied ist
-        // kein Detail: "es gibt hier etwas zu tun" und "es fehlt etwas" sind zwei verschiedene Aussagen, und
-        // wer aus einer WARNUNG heraus hierher geschickt wird, hat die zweite gemeint. Im Test stand in
-        // dem Fenster, das die Warnung "Low on ammo" geoeffnet hat, ausschliesslich ein Vorschlag,
-        // Sprengsatz-Auftraege abzubrechen - fuer AnythingToSupply reicht das, fuer eine Antwort auf
-        // "mir fehlt Munition" nicht.
-        // Ein Knopf wie "Auftraege aufraeumen" darf weiterhin AnythingToSupply benutzen; ein Weg, der aus
-        // einem Mangel kommt, nimmt diese Eigenschaft hier.
+        // The same WITHOUT the cleanup list. The difference is not a detail: "there is something to do here" and
+        // "something is missing" are two different statements, and whoever is sent here from a WARNING means
+        // the second one. Observed: the window opened by the "Low on ammo" warning contained nothing but a
+        // suggestion to cancel explosive bills - good enough for AnythingToSupply, not an answer to "I'm out of
+        // ammo".
+        // A button like "Clean up bills" may keep using AnythingToSupply; a path that comes from a shortage
+        // uses this property instead.
         public bool AnythingToProduce =>
             mainEntries.Concat(secEntries).Concat(shieldEntries).Concat(packEntries).Any(e => !e.craftable || e.countStr != "0")
             || ammoEntries.Any(e => !e.alreadyInProduction);
 
-        // Wie viele ZEILEN dieses Fenster zum Produzieren zeigt - dieselbe Bedingung wie AnythingToProduce, nur
-        // gezaehlt (2026-08-30: 'Colony problems' meldete (4) production gaps, am Ende gab es aber nur
-        // einen). Die Bereitschaftsanzeige zaehlte KOLONISTEN, das Fenster zeigt POSTEN - vier
-        // Kolonisten mit derselben fehlenden Munition sind eine Zeile. Der Knopf nennt jetzt diese Zahl.
+        // How many ROWS this window shows for production - the same condition as AnythingToProduce, just counted
+        // ('Colony problems' reported (4) production gaps, but in the end there was only one). The readiness
+        // display counted COLONISTS, the window shows ITEMS - four colonists with the same missing ammo are one
+        // row. The button now shows this number.
         public int ProduceRowCount =>
             mainEntries.Concat(secEntries).Concat(shieldEntries).Concat(packEntries).Count(e => !e.craftable || e.countStr != "0")
             + ammoEntries.Count(e => !e.alreadyInProduction);
 
         public override void DoWindowContents(Rect inRect)
         {
-            // Spaltenschiebung fuer diese Sichtbreite (viewRect.width = inRect.width - 16, siehe unten) - VOR
-            // der Kopfzeile, die dieselben Spaltenwerte liest.
+            // Column shift for this view width (viewRect.width = inRect.width - 16, see below) - BEFORE the header
+            // row, which reads the same column values.
             UpdateColumnShift(inRect.width - 16f);
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(0, 0, inRect.width, 35f), "CER_SupplyLoadouts_Title".Translate());
@@ -913,28 +889,28 @@ namespace CEReloaded
             LoadoutUtility.ColumnHeader(new Rect(IngX, listY, 150f, 24f), "CER_SupplyLoadouts_ColIngredients".Translate(), false, false, false);
             LoadoutUtility.ColumnHeader(new Rect(MaterialX, listY, 120f, 24f), "CER_SupplyLoadouts_ColMaterial".Translate(), false, false, false);
             LoadoutUtility.ColumnHeader(new Rect(BatchX, listY, CountX - BatchX - 4f, 24f), "CER_SupplyLoadouts_ColBatches".Translate(), false, false, false);
-            // "Stock"/"Lager", nicht mehr "Count" (2026-08-09): dasselbe Wort stand im Loadout-Editor fuer
-            // "Schuss, die EIN Kolonist traegt" und hier fuer "Lagerziel der ganzen Kolonie" - bei acht Leuten
-            // ein Faktor acht, und nichts auf dem Bildschirm sagte, welches von beiden gemeint ist. Die Spalte
-            // ist nur 50px breit (CountX 768 bis ProdX 832), deshalb kurzes Wort plus Tooltip statt langem Kopf.
+            // "Stock", no longer "Count": the same word meant "rounds ONE colonist carries" in the loadout editor
+            // and "stock target for the whole colony" here - a factor of eight with eight people, and nothing on
+            // screen said which of the two was meant. The column is only 50px wide (CountX 768 to ProdX 832), so a
+            // short word plus tooltip instead of a long header.
             Rect countHeaderRect = new Rect(CountX, listY, 50f, 24f);
             if (LoadoutUtility.ColumnHeader(countHeaderRect, "CER_SupplyLoadouts_ColCount".Translate(),
                 currentSortMode == SortMode.Count, sortDescending, true)) SetSort(SortMode.Count);
             TooltipHandler.TipRegion(countHeaderRect, "CER_SupplyLoadouts_ColCountTip".Translate());
             LoadoutUtility.ColumnHeader(new Rect(ProdX, listY, 155f, 24f), "CER_SupplyLoadouts_ColAvailability".Translate(), false, false, false);
-            // Bis zur rechten Zeilenkante statt fester 130 (2026-08-25): 130 ragte schon bei voller Breite
-            // 8 px ueber das Info-Symbol hinaus und bei jeder Schiebung ueber die Sicht (Renderer-Befund).
+            // Up to the row's right edge instead of a fixed 130: 130 already stuck out 8 px past the info icon at
+            // full width, and past the view at any shift (found with the layout renderer).
             LoadoutUtility.ColumnHeader(new Rect(BenchX, listY, InfoX + 18f - BenchX, 24f), "CER_SupplyLoadouts_ColWorkbench".Translate(), false, false, false);
             listY += 28f;
 
-            // Sichtbarer Abstand zwischen Liste und 'Total cost' (2026-08-30, grosse Kolonie: die letzte,
-            // halb abgeschnittene Zeile las sich wie von der Fusszeile ueberdeckt). Die Liste endet an einer Trennlinie,
-            // die Kosten stehen 12 Punkte darunter - eine angeschnittene Zeile ist damit als 'geht weiter' zu lesen.
+            // Visible gap between the list and 'Total cost' (in a large colony the last, half-clipped row read as
+            // if covered by the footer). The list ends at a divider line, the cost sits 12 points below it - a
+            // clipped row thus reads as 'continues'.
             Rect outRect = new Rect(0, listY, inRect.width, inRect.height - listY - 50f - 36f);
-            // Rueckfall (b): ist die Zeile trotz Schiebung breiter als die Sicht, wird viewRect so breit wie
-            // die Zeile - die ScrollView zeigt dann einen waagrechten Balken statt Bedienelemente abzuschneiden.
+            // Fallback (b): if the row is wider than the view despite the shift, viewRect becomes as wide as the
+            // row - the ScrollView then shows a horizontal bar instead of clipping controls.
             Rect viewRect = new Rect(0, 0, Mathf.Max(outRect.width - 16f, RowWidth + 2f), ContentHeight());
-            // Hoehe des sichtbaren Ausschnitts fuer die Scroll-Kulisse merken (2026-08-14) - siehe RowCulled.
+            // Remember the height of the visible area for scroll culling - see RowCulled.
             visibleListH = outRect.height;
             Widgets.BeginScrollView(outRect, ref scroll, viewRect);
 
@@ -944,18 +920,16 @@ namespace CEReloaded
             DrawWeaponSection(viewRect, ref y, "CER_SupplyLoadouts_SectionShields".Translate(), shieldEntries);
             DrawWeaponSection(viewRect, ref y, "CER_SupplyLoadouts_SectionPackItems".Translate(), packEntries);
             DrawAmmoSection(viewRect, ref y);
-            // Der Abschnitt "Not producible - superior loadouts skipped" ist am 2026-08-25 ersatzlos entfallen
-            // (er ergab keinen Sinn und passte nicht zu Assign Loadouts). Mit ihm der Schattenlauf im Loeser,
-            // der ihn befuellt hat.
-            // Nichts zu zeigen heisst: Abschnitt weg (2026-08-31: statt "nothing to cancel" zu sagen, wird
-            // der ganze Abschnitt weggelassen, wenn es nichts gibt).
+            // The "Not producible - superior loadouts skipped" section was removed without replacement (it made no
+            // sense and didn't fit Assign Loadouts). With it went the shadow run in the solver that filled it.
+            // Nothing to show means: no section (instead of saying "nothing to cancel", the whole section is
+            // omitted when there is nothing).
             if (obsoleteAmmoCandidates.Count > 0 || obsoleteWeaponCandidates.Count > 0)
             {
                 if (y > 0.5f) y += 6f;
-                // Ueberschrift traegt die Begruendung selbst, die eigene Erklaerzeile darunter ist weg
-                // (2026-09-02, Begruendung in die Ueberschrift). Links im Eck der Master-Haken:
-                // er schaltet ALLE Zeilen hart um - dieselbe Konvention wie das Master-Symbol im
-                // Zuweisungs-Reiter (Entscheidung master-toggle-include-pins: "Master schaltet ALLES um").
+                // The heading carries the reason itself, the separate explanation line below it is gone. In the
+                // left corner the master checkbox: it hard-toggles ALL rows - the same convention as the master
+                // icon in the assignment tab ("master toggles EVERYTHING").
                 int totalObs = obsoleteWeaponCandidates.Count + obsoleteAmmoCandidates.Count;
                 bool allObsOn = obsoleteWeaponChecked.Count + obsoleteAmmoChecked.Count >= totalObs;
                 bool obsToggle = allObsOn;
@@ -992,9 +966,9 @@ namespace CEReloaded
             }
 
             Widgets.EndScrollView();
-            // Direkt unter dieser Liste steht die Kostenzeile, und dazwischen ist kein Millimeter Luft - ohne
-            // Hinweis liest sich ein Ausschnitt wie die ganze Liste (2026-08-13, an "Obsolete bills"
-            // aufgefallen: 3 von 7 Zeilen sichtbar). RowH, damit dort eine Zeilenzahl steht.
+            // The cost line sits directly below this list with not a millimeter of space in between - without a
+            // hint a clipped view reads as the whole list (noticed on "Obsolete bills": 3 of 7 rows visible).
+            // RowH, so a row count shows there.
             LoadoutUtility.DrawScrollMoreHint(outRect, viewRect, scroll, RowH);
 
             // Aggregated bill: what everything currently selected will consume, so the real material hit is visible
@@ -1006,9 +980,9 @@ namespace CEReloaded
 
             // A Back button only when there is somewhere to go back to (e.g. the assign preview) - matches the
             // same Back+Cancel layout as Dialog_SquadSetup so the whole chain reads consistently.
-            // EINE Schriftstufe fuer die GANZE Fussleiste (2026-09-04, dieselbe Fundstellenklasse wie in der
-            // Auftragsuebersicht): Back und Cancel wurden gezeichnet, BEVOR BottomBarFont ueberhaupt lief,
-            // und waren an seiner Rechnung nicht beteiligt. Deshalb alle vier Zellen vorab anmelden.
+            // ONE font size for the WHOLE footer (same class of issue as in the bill overview): Back and Cancel
+            // were drawn BEFORE BottomBarFont even ran and took no part in its calculation. So all four cells are
+            // registered up front.
             string backLbl = "CER_SupplyLoadouts_BackButton".Translate().ToString();
             string cancelLbl = "CER_SupplyLoadouts_CancelButton".Translate().ToString();
             bool deferredForLabel = onConfirm != null;
@@ -1042,15 +1016,15 @@ namespace CEReloaded
             else if (LoadoutUtility.BottomCloseButton(inRect, cancelLbl)) Close();
 
             bool deferred = onConfirm != null;
-            // Munitionszeilen zaehlen nur, wenn sie wirklich anwaehlbar sind (2026-08-25: drei gesperrte
-            // Zeilen - keine Forschung, kein Rezept, keine Ladebank -, und "Supply selected" war trotzdem
-            // aktiv; in solchen Faellen ausgegraut, nicht durchgestrichen, "Supply nothing" bleibt aktiv).
-            // Vorher genuegte `ammoEntries.Count > 0`, also auch eine Zeile,
-            // die DrawAmmoEntry selbst als gesperrt zeichnet (nicht erforscht oder ohne Werkbank). Dieselben
-            // zwei Bedingungen wie dort. Der Knopf wird ueber BottomActionButton gedimmt, nie durchgestrichen.
-            // Waffen-, Schild- und Pack-Zeilen ebenso (2026-08-25, zweite Fundstelle desselben
-            // Musters): DrawWeaponEntry zeichnet den Haken nur bei craftable UND bench != null - eine erforschte
-            // Waffe ohne passende Werkbank ist eine gesperrte Zeile und darf den Knopf nicht aktiv halten.
+            // Ammo rows only count if they are really selectable (three blocked rows - no research, no recipe,
+            // no loading bench - and "Supply selected" was still active; in such cases it is greyed out, not
+            // struck through, and "Supply nothing" stays active).
+            // Previously `ammoEntries.Count > 0` was enough, so even a row that DrawAmmoEntry itself draws as
+            // blocked (not researched or no workbench) counted. The same two conditions as there. The button is
+            // dimmed via BottomActionButton, never struck through.
+            // Weapon, shield and pack rows likewise (second occurrence of the same pattern): DrawWeaponEntry only
+            // draws the checkbox for craftable AND bench != null - a researched weapon without a suitable
+            // workbench is a blocked row and must not keep the button active.
             bool Selectable(WeaponEntry e) => e.craftable && e.bench != null;
             bool anyProducible = mainEntries.Any(Selectable) || secEntries.Any(Selectable) || shieldEntries.Any(Selectable)
                 || packEntries.Any(Selectable)
@@ -1071,16 +1045,15 @@ namespace CEReloaded
                 Close();
             }
 
-            // "Nichts herstellen" LINKS vom Herstellen-Knopf (2026-08-16): "Supply nothing" verhaelt sich
-            // wie Cancel, ist aber sprechender.
+            // "Supply nothing" to the LEFT of the produce button: "Supply nothing" behaves like Cancel but is more
+            // descriptive.
             //
-            // Er hat richtig vermutet, und nachgesehen ist es sogar exakt dasselbe: Close() ohne confirmed
-            // laesst PostClose onCancel ausloesen, und onCancel heisst in dieser Kette bereits "Produktion
-            // uebersprungen, Lauf sauber beendet" (Dialog_AssignLoadouts setzt dort ausdruecklich
-            // armReport.cancelled = false und schreibt den Bericht fertig). Der Knopf ist also kein neues
-            // Verhalten, sondern der fehlende NAME dafuer - "Cancel" liest sich wie "alles abbrechen",
-            // obwohl nichts abgebrochen wird.
-            // Cancel bleibt daneben stehen: wer es gewohnt ist, soll sich nicht umgewoehnen muessen.
+            // On inspection it is in fact exactly the same: Close() without confirmed lets PostClose fire
+            // onCancel, and in this chain onCancel already means "production skipped, run finished cleanly"
+            // (Dialog_AssignLoadouts explicitly sets armReport.cancelled = false there and completes the report).
+            // So the button is not new behavior but the missing NAME for it - "Cancel" reads like "abort
+            // everything", although nothing is aborted.
+            // Cancel stays next to it: anyone used to it shouldn't have to relearn.
             if (LoadoutUtility.BottomActionButton(inRect, ref xr, LoadoutUtility.PrimaryBtnW,
                     supplyNothingLabel, true,
                     "CER_SupplyLoadouts_SupplyNothingTip".Translate()))
@@ -1107,8 +1080,8 @@ namespace CEReloaded
             Section(Visible(shieldEntries).Count, RowH);
             Section(Visible(packEntries).Count, RowH);
             Section(VisibleAmmo().Count, RowH);
-            // Keine Erklaer-Zeile mehr unter der Ueberschrift (2026-09-02 spaet: Begruendung steckt in
-            // der Ueberschrift selbst) - das extraHeaderH von 20 ist mit ihr entfallen.
+            // No explanation line below the heading anymore (the reason is in the heading itself) - the
+            // extraHeaderH of 20 went away with it.
             Section(obsoleteWeaponCandidates.Count + obsoleteAmmoCandidates.Count, 26f);   // one shared header
             return h;
         }
@@ -1198,13 +1171,13 @@ namespace CEReloaded
         // label itself, and only while still checked - same "this is going away" visual language every other
         // delete-preview in this popup uses, but it must disappear the instant the player opts an item out,
         // otherwise an unchecked (kept) row would still visually look like it's being deleted.
-        // Woher kommt der Auftrag - von unserem Assistenten oder von Hand? (2026-08-14: optisch klar
-        // machen, was der Mod angelegt hat und was manuell.)
-        // Ohne diese Marke waere der einzige Unterschied zwischen den beiden Sorten der vorbelegte Haken,
-        // und der ist genau das, was man beim Ueberfliegen nicht bemerkt. Die Farbe trennt zusaetzlich:
-        // gedaempft fuer unsere eigenen (Routine), warm fuer die handgesetzten (hier bitte hinsehen).
-        // Rechtsbuendig direkt links vom Lupensymbol, damit sie in beiden Zeilenarten an derselben Stelle
-        // steht und nicht mit der Produktionsspalte um Platz streitet.
+        // Where does the bill come from - our wizard or by hand? (Make it visually clear what the mod created and
+        // what was manual.)
+        // Without this mark the only difference between the two kinds would be the pre-checked box, and that is
+        // exactly what goes unnoticed when skimming. The color separates them further: muted for our own
+        // (routine), warm for the hand-set ones (look here).
+        // Right-aligned directly left of the magnifier icon, so it sits in the same place in both row kinds and
+        // doesn't compete with the production column for space.
         private static void DrawObsoleteOriginTag(Rect row, float y, ThingDef d)
         {
             bool ours = LoadoutUtility.AllBillsForDefAreOurs(d);
@@ -1240,7 +1213,7 @@ namespace CEReloaded
             Widgets.ThingIcon(new Rect(IconX + 22f, y + 1f, 20f, 20f), ammo);
             Text.Anchor = TextAnchor.MiddleLeft;
             string label = ammo.LabelCap.ToString();
-            Rect nameRect = new Rect(NameX + 22f, y, 260f + colShift, 24f);   // gibt bei Schiebung Breite ab, siehe IconX
+            Rect nameRect = new Rect(NameX + 22f, y, 260f + colShift, 24f);   // gives up width when shifted, see IconX
             // Real strikethrough, not the old <s></s> tag (2026-08-01: Unity's legacy rich
             // text has no strikethrough tag support at all, so it showed the raw "<s>Uzi</s>" characters
             // instead of a line through the text) - see LoadoutUtility.DrawStrikethroughLabel's own comment.
@@ -1298,7 +1271,7 @@ namespace CEReloaded
             Widgets.ThingIcon(new Rect(IconX + 22f, y + 1f, 20f, 20f), weapon);
             Text.Anchor = TextAnchor.MiddleLeft;
             string label = weapon.LabelCap.ToString();
-            Rect nameRect = new Rect(NameX + 22f, y, 260f + colShift, 24f);   // gibt bei Schiebung Breite ab, siehe IconX
+            Rect nameRect = new Rect(NameX + 22f, y, 260f + colShift, 24f);   // gives up width when shifted, see IconX
             if (isChecked) LoadoutUtility.DrawStrikethroughLabel(nameRect, label);
             else Widgets.Label(nameRect, label);
             GUI.color = Color.white;
@@ -1341,8 +1314,8 @@ namespace CEReloaded
             DrawIndicatorCell(UsedX + 32f, y, templateNames, templateNoneTip, diamond: false);
         }
 
-        // Rumpf lebt seit 2026-09-01 in LoadoutUtility.DrawUsedByIndicator (samt dem Weiss-statt-ColGood-
-        // Kommentar von 2026-08-02) - der Packs-Reiter zeichnet seine Traeger-Raute ueber dieselbe Funktion.
+        // The body lives in LoadoutUtility.DrawUsedByIndicator (including the white-instead-of-ColGood comment) -
+        // the Packs tab draws its carrier diamond through the same function.
         private static void DrawIndicatorCell(float x, float y, List<string> names, string noneTip, bool diamond)
             => LoadoutUtility.DrawUsedByIndicator(x, y, names, noneTip, diamond);
 
@@ -1365,17 +1338,14 @@ namespace CEReloaded
             TooltipHandler.TipRegion(countRect, "CER_SupplyLoadouts_ExactCountTip".Translate());
         }
 
-        // Scroll-Kulisse (2026-08-14, Befund 5 der ersten Performance-Runde). Dieses Fenster war das
-        // EINZIGE der drei Listenfenster ohne - Dialog_AssignLoadouts und Dialog_SquadSetup haben sie
-        // laengst, mit derselben Form: eine Zeile ausserhalb des sichtbaren Ausschnitts schiebt nur den
-        // Cursor weiter und zeichnet nichts. Das ist hier kein Schoenheitsfehler, sondern spuerbar: eine
-        // Waffenzeile ruft GetWeaponScore, baut zwei Tooltips, zeichnet die Verfuegbarkeitsleiste und
-        // fragt die Werkbaenke ab, eine Munitionszeile dasselbe - und das Fenster listet regelmaessig
-        // mehr Zeilen, als hineinpassen.
-        // Sicher, weil in diesen beiden Methoden NICHTS gesetzt wird, das nicht aus einem Klick kommt
-        // (geprueft: nur `e.selected` aus der Kaestchen-Zeile und `e.stuff`/`e.bench` aus Menue-Rueckrufen).
-        // Eine uebersprungene Zeile behaelt damit exakt ihren Zustand - das Bestaetigen unten liest alle
-        // Eintraege, nicht nur die gezeichneten.
+        // Scroll culling. This window was the ONLY one of the three list windows without it -
+        // Dialog_AssignLoadouts and Dialog_SquadSetup have long had it, in the same form: a row outside the
+        // visible area only advances the cursor and draws nothing. That is not cosmetic here but noticeable: a
+        // weapon row calls GetWeaponScore, builds two tooltips, draws the availability bar and queries the
+        // workbenches, an ammo row the same - and the window regularly lists more rows than fit.
+        // Safe because these two methods set NOTHING that doesn't come from a click (checked: only
+        // `e.selected` from the checkbox row and `e.stuff`/`e.bench` from menu callbacks). A skipped row thus
+        // keeps exactly its state - the confirm below reads all entries, not just the drawn ones.
         private float visibleListH;
 
         private bool RowCulled(ref float y, float h)
@@ -1400,22 +1370,20 @@ namespace CEReloaded
 
             if (!e.craftable)
             {
-                // EINEN Grund nennen, nicht zwei zur Auswahl (2026-08-13, im Test gegenuebergestellt:
-                // die Munitions-Zeile sagt "Needs research: Advanced ammunition", die
-                // Waffen-Zeile daneben sagte weiter "can't be crafted (no recipe / not researched)" - zwei
-                // Moeglichkeiten in einem Satz, und man weiss hinterher nicht, welche zutrifft).
-                // Die Unterscheidung ist billig und die Funktion dafuer gibt es laengst - die Munitionsseite
-                // benutzt MissingResearchFor seit dem 09.08., die Waffenseite hatte es nie bekommen.
-                // Kein Rezept ist der endgueltige Fall (Handelsware, Relikt); fehlende Forschung ist der
-                // behebbare, und dann gehoert der Name des Projekts dazu.
+                // Name ONE reason, not two to choose from (side by side, the ammo row said "Needs research:
+                // Advanced ammunition", while the weapon row next to it still said "can't be crafted (no recipe /
+                // not researched)" - two possibilities in one sentence, and afterwards nobody knows which applies).
+                // The distinction is cheap and the function for it has long existed - the ammo side has used
+                // MissingResearchFor for a while, the weapon side never got it.
+                // No recipe is the final case (trade goods, relic); missing research is the fixable one, and then
+                // the project's name belongs with it.
                 GUI.color = Color.gray;
                 string missingResW = LoadoutUtility.GetRecipeFor(e.weapon) == null ? null : LoadoutUtility.MissingResearchFor(e.weapon);
-                // Auf ReasonCellW begrenzt statt fester 400 (2026-08-19): 400 reichten von 546 bis 946 und
-                // damit 114 Punkte WEIT in die Balkenspalte bei 832 hinein. Solange diese Zeile gar keinen
-                // Balken hatte, ist das niemandem aufgefallen; seit sie einen hat, waere es eine
-                // Ueberlappung gewesen - von mir im selben Durchgang eingebaut und beim Nachrechnen der
-                // Spaltenpositionen aufgefallen. ReasonCellW ist ProdX - MaterialX - 8 und genau dafuer da;
-                // der Zwilling darunter (keine Werkbank) benutzt es ueber DrawBlockedReasonCell laengst.
+                // Limited to ReasonCellW instead of a fixed 400: 400 reached from 546 to 946 and thus 114 points
+                // DEEP into the bar column at 832. As long as this row had no bar at all, nobody noticed; since it
+                // has one, it would have been an overlap - introduced in the same pass and caught when
+                // recalculating the column positions. ReasonCellW is ProdX - MaterialX - 8 and exists exactly for
+                // this; the twin below (no workbench) has long used it via DrawBlockedReasonCell.
                 Rect reasonRect = new Rect(MaterialX, y, ReasonCellW, 24f);
                 if (!string.IsNullOrEmpty(missingResW))
                 {
@@ -1429,13 +1397,11 @@ namespace CEReloaded
                     GUI.color = Color.white;
                     TooltipHandler.TipRegion(reasonRect, "CER_SupplyLoadouts_ItemNoRecipeTip".Translate());
                 }
-                // Auch dieser Ausstieg bekommt den Bestandsbalken (2026-08-19): dass sich etwas nicht
-                // herstellen laesst, heisst nicht, dass nichts da ist - Kraeutermedizin waechst, Handelsware
-                // liegt im Regal. Ohne Balken stand die Zeile ohne jede Zahl da, und der Spieler musste in
-                // einen anderen Reiter wechseln, um zu sehen, ob ihm ueberhaupt etwas fehlt.
-                // Dieselbe Luecke wie in den Munitions-Zweigen, per Suche vom Symptom aus gefunden
-                // (2026-08-23): auch dieser Balken zeigte seine Zahlen ohne die
-                // "wo liegt es / wer traegt es"-Aufstellung, die jede nicht blockierte Zeile hat.
+                // This exit gets the stock bar too: that something can't be produced doesn't mean nothing is
+                // there - healroot grows, trade goods sit on the shelf. Without a bar the row stood there without
+                // any number, and the player had to switch to another tab to see whether anything is missing.
+                // The same gap as in the ammo branches, found by searching from the symptom: this bar too showed
+                // its numbers without the "where is it / who carries it" breakdown every unblocked row has.
                 Rect noRecipeAvailRect = new Rect(ProdX, y + 1f, 155f, 22f);
                 LoadoutUtility.DrawAvailabilityBar(noRecipeAvailRect, RowAvailability(e, 0), horizontal: true,
                     LoadoutUtility.TipWanted(noRecipeAvailRect) ? RowLocationTip(e) : null);
@@ -1460,15 +1426,15 @@ namespace CEReloaded
                 Rect noBenchIconR = BenchWarnRect(y);
                 LoadoutUtility.DrawWarningBadge(noBenchIconR, LoadoutUtility.ColBad);
                 TooltipHandler.TipRegion(new Rect(BenchX, y, 200f, 24f), "CER_SupplyLoadouts_NoBenchWithTypeLabel".Translate(LoadoutUtility.BenchTypeNames(e.weapon)));
-                // Der Grund jetzt auch sichtbar in der Zeile - siehe DrawBlockedReasonCell.
+                // The reason is now visible in the row too - see DrawBlockedReasonCell.
                 DrawBlockedReasonCell(y, "CER_SupplyLoadouts_NoBenchRowLabel".Translate(LoadoutUtility.BenchTypeNames(e.weapon)),
                     "CER_SupplyLoadouts_NoBenchWithTypeLabel".Translate(LoadoutUtility.BenchTypeNames(e.weapon)));
 
-                // Derselbe Balken wie in einer Zeile MIT Werkbank (2026-08-19) - siehe RowAvailability.
-                // Vorher stand hier eine eigene Rechnung aus GetWeaponInventory, die fuer einen Pack-Inhalt
-                // null liefert: ohne Drug lab sagte die Medizin-Zeile Total 0, waehrend der
-                // Equipment-Packs-Reiter im selben Moment 77 zeigte. Die Werkbank entscheidet, ob sich etwas
-                // HERSTELLEN laesst - nicht, wieviel die Kolonie davon hat.
+                // The same bar as in a row WITH a workbench - see RowAvailability.
+                // Previously this had its own calculation from GetWeaponInventory, which returns zero for pack
+                // contents: without a drug lab the medicine row said Total 0, while the Equipment Packs tab showed
+                // 77 at the same moment. The workbench decides whether something can be PRODUCED - not how much of
+                // it the colony has.
                 Rect noBenchAvailRect = new Rect(ProdX, y + 1f, 155f, 22f);
                 LoadoutUtility.DrawAvailabilityBar(noBenchAvailRect, RowAvailability(e, 0), horizontal: true,
                     LoadoutUtility.TipWanted(noBenchAvailRect) ? RowLocationTip(e) : null);
@@ -1533,12 +1499,12 @@ namespace CEReloaded
 
             DrawBatchCountPair(y, e.yield, ref e.countStr);
 
-            // Die SUMME kommt aus der gemeinsamen Regel (LoadoutUtility.QueuedFromBills), nicht mehr aus dem
-            // Aufaddieren der einzelnen Auftragszahlen: zwei "bis 50"-Auftraege machen zusammen nicht 100,
-            // und was schon im Lager liegt, wird nicht noch einmal hergestellt. Diese Zahl faerbt den
-            // Balken - genau da war die Zeile bisher zu optimistisch (2026-08-15, Review-Befund).
-            // Die Aufstellung darunter nennt weiter, worauf JEDE Werkbank eingestellt ist; das ist eine
-            // andere Frage als "wie viel kommt noch" und bleibt absichtlich, wie sie ist.
+            // The SUM comes from the shared rule (LoadoutUtility.QueuedFromBills), no longer from adding up the
+            // individual bill counts: two "until 50" bills don't make 100 together, and what is already in
+            // storage is not produced again. This number colors the bar - exactly where the row used to be too
+            // optimistic.
+            // The breakdown below still names what EACH workbench is set to; that is a different question from
+            // "how much is still coming" and deliberately stays as it is.
             List<Bill_Production> prodBills = new List<Bill_Production>();
             List<string> prodDetail = new List<string>();
             foreach (Building_WorkTable b in e.benches)
@@ -1560,9 +1526,9 @@ namespace CEReloaded
             // Where-is-it/who-has-it breakdown (2026-08-01: this bar's "Available" used to show
             // no location detail at all, unlike every sibling Availability bar in the mod) + the existing
             // in-production detail, joined the same "\n\n" way BuildAvailabilityTooltip itself sections things.
-            // TipWanted: die Orts-Aufstellung laeuft ueber alle Karten und alle Kolonisten - siehe
-            // LoadoutUtility.TipWanted. Das war die SIEBTE Fundstelle desselben Musters; sechs sind heute
-            // abgesichert worden, diese eine ist durchgerutscht (nachgereicht).
+            // TipWanted: the location breakdown runs over all maps and all colonists - see
+            // LoadoutUtility.TipWanted. This was the SEVENTH occurrence of the same pattern; the other six had
+            // been guarded already, this one slipped through and was added later.
             Rect prodRect = new Rect(ProdX, y + 1f, 155f, 22f);
             string combinedTip = null;
             if (LoadoutUtility.TipWanted(prodRect))
@@ -1632,9 +1598,9 @@ namespace CEReloaded
             if (!researched)
             {
                 GUI.color = LoadoutUtility.ColWarn;
-                // Nennt jetzt das fehlende Forschungsprojekt beim Namen (2026-08-09) - "nicht erforscht"
-                // allein sagte nicht, WAS man erforschen muss, und genau daran ist der Neulings-Durchlauf
-                // haengengeblieben. Faellt auf den alten Text zurueck, wenn sich kein Projekt ermitteln laesst.
+                // Now names the missing research project - "not researched" alone didn't say WHAT has to be
+                // researched, and that is exactly where a first-time playthrough got stuck. Falls back to the old
+                // text when no project can be determined.
                 string missingRes = LoadoutUtility.MissingResearchFor(e.resolved);
                 Rect notResRect = new Rect(MaterialX, y, 220f, 24f);
                 LoadoutUtility.LabelCell(notResRect, string.IsNullOrEmpty(missingRes)
@@ -1647,23 +1613,21 @@ namespace CEReloaded
                 // Can't make MORE, but whatever's already in storage still matters - a blocked row used to
                 // show no stock info at all, reading as "there is definitely none" when the colony might
                 // already own plenty (bought/looted, or crafted before the bench was lost/dismantled).
-                // DIESELBE Rechnung wie die normale Zeile weiter unten (2026-08-16): solange keine passende
-                // Werkbank stand, zeigte der Nachschub-Bildschirm in den Spalten Batches / Stock / Availability
-                // GAR NICHTS an - der reine BEDARF haengt aber nicht an der Werkbank. Das war ein Denkfehler:
-                // eine fehlende
-                // Werkbank (oder Forschung) blockiert das HERSTELLEN, nicht das Wissen. Ausgerechnet in
-                // dieser Lage will man am dringendsten wissen, WIE VIEL fehlt - das ist ja der Grund, die
-                // Werkbank ueberhaupt zu bauen. Vorher stand hier nur ein Lagerbestand ohne jeden Bedarf,
-                // der Balken war also immer "voll" und sagte das Gegenteil dessen, was los war.
-                // ComputeAmmoAvailability kennt keine Werkbank - dieselbe Quelle, aus der jeder andere
-                // Balken des Mods seine Zahlen zieht. Beide blockierten Zweige (keine Forschung / keine
-                // Werkbank) bekommen es, nicht nur der zuerst gesehene.
-                // MIT der Orts-Aufstellung (2026-08-23): der Balken hatte hier
-                // dieselben Zahlen wie im Auftrags-Reiter, aber sein Mouseover liess "Getragen von:" und
-                // "Zugewiesen an:" weg - zwei Bildschirme, dieselbe Zeile, unterschiedlich viel Auskunft.
-                // Die Werkbank entscheidet, ob sich etwas HERSTELLEN laesst; wer die Munition gerade am
-                // Guertel hat, hat damit nichts zu tun. TipWanted wie ueberall, die Aufstellung laeuft
-                // ueber alle Karten und wird sonst pro Bild umsonst gebaut.
+                // The SAME calculation as the normal row further down: as long as no suitable workbench existed,
+                // the supply screen showed NOTHING AT ALL in the Batches / Stock / Availability columns - but the
+                // pure DEMAND doesn't depend on the workbench. That was a reasoning error: a missing workbench (or
+                // research) blocks PRODUCING, not knowing. Precisely in this situation you most urgently want to
+                // know HOW MUCH is missing - that is the reason to build the workbench in the first place.
+                // Previously this showed only a stock figure without any demand, so the bar was always "full" and
+                // said the opposite of what was going on.
+                // ComputeAmmoAvailability knows nothing about workbenches - the same source every other bar in the
+                // mod takes its numbers from. Both blocked branches (no research / no workbench) get it, not just
+                // the one seen first.
+                // WITH the location breakdown: the bar here had the same numbers as in the bills tab, but its
+                // mouseover left out "Carried by:" and "Assigned to:" - two screens, the same row, different
+                // amounts of information. The workbench decides whether something can be PRODUCED; who has the
+                // ammo on their belt right now has nothing to do with it. TipWanted as everywhere, the breakdown
+                // runs over all maps and would otherwise be built for nothing every frame.
                 Rect availRect = new Rect(ProdX, y + 1f, 155f, 22f);
                 LoadoutUtility.DrawAvailabilityBar(availRect, AmmoRowAvailability(e.resolved), horizontal: true,
                     LoadoutUtility.TipWanted(availRect) ? LoadoutUtility.BuildAmmoLocationTooltip(e.resolved) : null);
@@ -1674,33 +1638,30 @@ namespace CEReloaded
             if (!hasBench)
             {
                 // Icon + tooltip, no inline text - see DrawWeaponEntry's identical fix above.
-                // ROT, nicht orange (2026-08-12): "keine passende Werkbank vorhanden" ist in
-                // dieser Spalte kein Hinweis, sondern ein harter Riegel - es kann kein Auftrag entstehen.
-                // Das deckt sich mit der Farbregel, die fuer dauerhafte Gegenstaende schon gilt: unmoeglich
-                // ist rot, knapp ist orange.
+                // RED, not orange: "no suitable workbench available" is not a hint in this column but a hard
+                // block - no bill can be created. This matches the color rule that already applies to durable
+                // items: impossible is red, scarce is orange.
                 LoadoutUtility.DrawWarningBadge(BenchWarnRect(y), LoadoutUtility.ColBad);
                 TooltipHandler.TipRegion(new Rect(BenchX, y, 200f, 24f), "CER_SupplyLoadouts_NoBenchWithTypeLabel".Translate(LoadoutUtility.BenchTypeNames(e.resolved)));
-                // Der Grund jetzt auch sichtbar in der Zeile - siehe DrawBlockedReasonCell.
+                // The reason is now visible in the row too - see DrawBlockedReasonCell.
                 DrawBlockedReasonCell(y, "CER_SupplyLoadouts_NoBenchRowLabel".Translate(LoadoutUtility.BenchTypeNames(e.resolved)),
                     "CER_SupplyLoadouts_NoBenchWithTypeLabel".Translate(LoadoutUtility.BenchTypeNames(e.resolved)));
 
-                // DIESELBE Rechnung wie die normale Zeile weiter unten (2026-08-16): solange keine passende
-                // Werkbank stand, zeigte der Nachschub-Bildschirm in den Spalten Batches / Stock / Availability
-                // GAR NICHTS an - der reine BEDARF haengt aber nicht an der Werkbank. Das war ein Denkfehler:
-                // eine fehlende
-                // Werkbank (oder Forschung) blockiert das HERSTELLEN, nicht das Wissen. Ausgerechnet in
-                // dieser Lage will man am dringendsten wissen, WIE VIEL fehlt - das ist ja der Grund, die
-                // Werkbank ueberhaupt zu bauen. Vorher stand hier nur ein Lagerbestand ohne jeden Bedarf,
-                // der Balken war also immer "voll" und sagte das Gegenteil dessen, was los war.
-                // ComputeAmmoAvailability kennt keine Werkbank - dieselbe Quelle, aus der jeder andere
-                // Balken des Mods seine Zahlen zieht. Beide blockierten Zweige (keine Forschung / keine
-                // Werkbank) bekommen es, nicht nur der zuerst gesehene.
-                // MIT der Orts-Aufstellung (2026-08-23): der Balken hatte hier
-                // dieselben Zahlen wie im Auftrags-Reiter, aber sein Mouseover liess "Getragen von:" und
-                // "Zugewiesen an:" weg - zwei Bildschirme, dieselbe Zeile, unterschiedlich viel Auskunft.
-                // Die Werkbank entscheidet, ob sich etwas HERSTELLEN laesst; wer die Munition gerade am
-                // Guertel hat, hat damit nichts zu tun. TipWanted wie ueberall, die Aufstellung laeuft
-                // ueber alle Karten und wird sonst pro Bild umsonst gebaut.
+                // The SAME calculation as the normal row further down: as long as no suitable workbench existed,
+                // the supply screen showed NOTHING AT ALL in the Batches / Stock / Availability columns - but the
+                // pure DEMAND doesn't depend on the workbench. That was a reasoning error: a missing workbench (or
+                // research) blocks PRODUCING, not knowing. Precisely in this situation you most urgently want to
+                // know HOW MUCH is missing - that is the reason to build the workbench in the first place.
+                // Previously this showed only a stock figure without any demand, so the bar was always "full" and
+                // said the opposite of what was going on.
+                // ComputeAmmoAvailability knows nothing about workbenches - the same source every other bar in the
+                // mod takes its numbers from. Both blocked branches (no research / no workbench) get it, not just
+                // the one seen first.
+                // WITH the location breakdown: the bar here had the same numbers as in the bills tab, but its
+                // mouseover left out "Carried by:" and "Assigned to:" - two screens, the same row, different
+                // amounts of information. The workbench decides whether something can be PRODUCED; who has the
+                // ammo on their belt right now has nothing to do with it. TipWanted as everywhere, the breakdown
+                // runs over all maps and would otherwise be built for nothing every frame.
                 Rect availRect = new Rect(ProdX, y + 1f, 155f, 22f);
                 LoadoutUtility.DrawAvailabilityBar(availRect, AmmoRowAvailability(e.resolved), horizontal: true,
                     LoadoutUtility.TipWanted(availRect) ? LoadoutUtility.BuildAmmoLocationTooltip(e.resolved) : null);
@@ -1775,7 +1736,7 @@ namespace CEReloaded
             // shortfall, matching this same file's WEAPON row (a few lines up) which already does this.
             var ammoSeg = AmmoRowAvailability(e.resolved);
             Rect prodRect = new Rect(ProdX, y + 1f, 155f, 22f);
-            // TipWanted: der Orts-Tooltip laeuft ueber alle Karten - nur bauen, wenn er auch gezeigt wird.
+            // TipWanted: the location tooltip runs over all maps - only build it when it is actually shown.
             LoadoutUtility.DrawAvailabilityBar(prodRect, ammoSeg, horizontal: true,
                 LoadoutUtility.TipWanted(prodRect) ? LoadoutUtility.BuildAmmoLocationTooltip(e.resolved) : null);
 
@@ -1810,10 +1771,9 @@ namespace CEReloaded
             else
             {
                 // Icon + tooltip, no inline text - see DrawWeaponEntry's identical fix above.
-                // ROT, nicht orange (2026-08-12): "keine passende Werkbank vorhanden" ist in
-                // dieser Spalte kein Hinweis, sondern ein harter Riegel - es kann kein Auftrag entstehen.
-                // Das deckt sich mit der Farbregel, die fuer dauerhafte Gegenstaende schon gilt: unmoeglich
-                // ist rot, knapp ist orange.
+                // RED, not orange: "no suitable workbench available" is not a hint in this column but a hard
+                // block - no bill can be created. This matches the color rule that already applies to durable
+                // items: impossible is red, scarce is orange.
                 LoadoutUtility.DrawWarningBadge(BenchWarnRect(y), LoadoutUtility.ColBad);
                 TooltipHandler.TipRegion(new Rect(BenchX, y, 200f, 24f), "CER_SupplyLoadouts_NoBenchWithTypeLabel".Translate(LoadoutUtility.BenchTypeNames(e.resolved)));
             }
@@ -1833,15 +1793,14 @@ namespace CEReloaded
                     if (ing != null && ing.thingDef != null)
                         costs[ing.thingDef] = (costs.TryGetValue(ing.thingDef, out int c) ? c : 0) + ing.count * batches;
             }
-            // Die Bedingungen hier muessen ZEICHENGENAU dieselben sein wie in GenerateAll - das war die
-            // Ursache eines alten "Total cost"-Falls (2026-08-09 endlich auf die Ursache zurueckgefuehrt,
-            // nach langer Ratlosigkeit).
-            // Es fehlte die Werkbank-Pruefung: die Kostenleiste zaehlte jede erforschte Zeile mit, GenerateAll
-            // ueberspringt aber jede ohne gebaute (oder inzwischen abgerissene) Bank. Eine erforschte Munition
-            // ohne passende Bank ging also in die angezeigte Summe ein und wurde danach still uebersprungen -
-            // die Vorschau versprach Material, das nie verbraucht wurde. Betraf beide Seiten, Waffen wie
-            // Munition, weil GenerateAll auf beiden e.bench prueft und diese Rechnung auf keiner.
-            // Wenn hier je wieder eine Bedingung dazukommt, muss sie an beiden Stellen dazukommen.
+            // The conditions here must be EXACTLY the same as in GenerateAll - that was the cause of an old
+            // "Total cost" bug (finally traced to its cause after a long time of puzzlement).
+            // The workbench check was missing: the cost bar counted every researched row, but GenerateAll skips
+            // any row without a built (or since demolished) bench. A researched ammo without a suitable bench thus
+            // went into the displayed sum and was then silently skipped - the preview promised material that was
+            // never consumed. It affected both sides, weapons and ammo, because GenerateAll checks e.bench on both
+            // and this calculation on neither.
+            // If a condition is ever added here again, it must be added in both places.
             foreach (WeaponEntry e in mainEntries.Concat(secEntries).Concat(shieldEntries).Concat(packEntries))
             {
                 if (!e.selected || !e.craftable || e.recipe == null) continue;
@@ -1919,11 +1878,10 @@ namespace CEReloaded
                     armReport.ammoQueued[e.resolved] = (armReport.ammoQueued.TryGetValue(e.resolved, out int prev) ? prev : 0) + want;
             }
 
-            // Was gar nicht in einen Auftrag gehen KONNTE (keine passende Werkbank, kein Rezept, nicht
-            // erforscht) - getrennt von "der Spieler hat es abgewaehlt". Der Arm-my-Colony-Bericht kannte
-            // bisher nur zwei Faelle, abgebrochen und "- nichts noetig -", und behauptete deshalb in einer
-            // Kolonie ohne jede Werkbank "nichts noetig", waehrend genau der Schritt davor 3 Pavise und
-            // 28 Mahlzeiten als fehlend auflistete (2026-08-28, im Selbsttest gefunden).
+            // What could NOT go into a bill at all (no suitable workbench, no recipe, not researched) - separate
+            // from "the player deselected it". The Arm-my-Colony report used to know only two cases, cancelled
+            // and "- nothing needed -", and therefore claimed "nothing needed" in a colony without any
+            // workbench, while the step right before listed 3 pavises and 28 meals as missing.
             if (armReport != null)
                 armReport.prodBlocked =
                     mainEntries.Concat(secEntries).Concat(shieldEntries).Concat(packEntries)

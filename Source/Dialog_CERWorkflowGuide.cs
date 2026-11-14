@@ -9,23 +9,23 @@ namespace CEReloaded
     // that only from Mod Settings -> Tools ("Show crash course" / "Reset first-start guide"). The "?" that used to
     // sit in the tab window's header is gone (2026-08-30: no other mod does that).
     //
-    // EIN-SEITER (2026-08-30): der Crash-Kurs ist eine Seite ohne Scrollen, "Good to know" ist entfallen,
-    // das Fenster wurde groesser. Aufbau: DREI ZEILEN mit Bild links und Text rechts:
-    //   1. Schnellster Weg   - Bild: das Arm-my-Colony-Startfenster (Cautious / Normal / Aggressive)
-    //   2. Reiter            - Bild: der Loadout Planner mit seiner Reiterleiste und den Kolonistenkarten
-    //   3. Wichtige Funktionen - Bild: die Bereitschaftsanzeige mit geoeffnetem Klick-Menue
-    // Die Bilder sind Texturen `UI/Guide/FastestPath|Tabs|KeyFeatures` (Textures/UI/Guide/*.png, 16:9). Liegt eine
-    // nicht da, nimmt der Text die ganze Breite - das Layout haengt nicht an den Bildern. Sie kommen aus dem
-    // Screenshot-Lauf im Spiel. Kein Scrollen: passt der Text einer Sprache nicht
-    // in die Hoehe (Deutsch, Franzoesisch), faellt der ganze Textkoerper eine Schriftstufe kleiner. "Gut zu wissen"
-    // ist weg; der Hinweis, wo der Kurs wieder zu finden ist, steht klein in der Fusszeile.
-    // Animationen waeren Bildfolgen (eine Textur je Frame, nach Zeit gewechselt) - moeglich, aber ohne Material
-    // erst einmal nicht gebaut.
+    // ONE PAGE: the crash course is a single page without scrolling, "Good to know" was dropped and
+    // the window grew. Layout: THREE ROWS with an image on the left and text on the right:
+    //   1. Fastest path    - image: the Arm my Colony start window (Cautious / Normal / Aggressive)
+    //   2. Tabs            - image: the Loadout Planner with its tab bar and the colonist cards
+    //   3. Key features    - image: the readiness display with its click menu open
+    // The images are textures `UI/Guide/FastestPath|Tabs|KeyFeatures` (Textures/UI/Guide/*.png, 16:9). If one is
+    // missing, the text takes the full width - the layout does not depend on the images. They were captured
+    // in-game. No scrolling: if a language's text does not fit the height
+    // (German, French), the whole text body drops one font size. "Good to know" is gone;
+    // the hint where to find the course again sits small in the footer.
+    // Animations would be image sequences (one texture per frame, switched over time) - possible, but not
+    // built for now since there is no material for them.
     public class Dialog_CERWorkflowGuide : Window
     {
-        // EINE Stelle fuer "beim allerersten Mal einmal zeigen" - vorher stand derselbe Block zweimal (Tabs-Fenster
-        // und Arm-my-Colony-Knopf im Zuweisungs-Reiter). seenGuide wird sofort geschrieben, damit ein Absturz
-        // dazwischen den Kurs nicht bei jedem Start wiederholt.
+        // ONE place for "show once on the very first run" - previously the same block existed twice (tabs window
+        // and the Arm my Colony button in the Assign tab). seenGuide is written immediately so a crash
+        // in between doesn't repeat the course on every start.
         public static void OpenIfFirstTime()
         {
             if (CEReloadedMod.settings == null || CEReloadedMod.settings.seenGuide) return;
@@ -35,8 +35,8 @@ namespace CEReloaded
         }
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1060f, UI.screenWidth - 40f), Mathf.Min(700f, UI.screenHeight - 60f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -51,7 +51,7 @@ namespace CEReloaded
             closeOnClickedOutside = true;
         }
 
-        // Einmal je Prozess aufgeloest, nicht je Durchgang: ContentFinder sucht sonst 3x je Bild auf der Platte.
+        // Resolved once per process, not per pass: ContentFinder would otherwise hit the disk 3x per frame.
         private static Texture2D[] images;
         private static readonly string[] ImageNames = { "UI/Guide/FastestPath", "UI/Guide/Tabs", "UI/Guide/KeyFeatures" };
         private static Texture2D ImageFor(int i)
@@ -74,8 +74,8 @@ namespace CEReloaded
         }
 
         private const float ImageMaxW = 330f, RowGap = 16f, LineGap = 4f, HeadH = 24f, ImageTextGap = 18f;
-        // Stufen fuer die Bildbreite, wenn auch Tiny nicht reicht. 1.0 steht als erste Stufe mit drin, damit
-        // der Fall "Tiny allein genuegt" nicht als Sonderfall daneben laufen muss.
+        // Steps for the image width when even Tiny is not enough. 1.0 is included as the first step so
+        // the "Tiny alone is enough" case doesn't need to run as a separate special case.
         private static readonly float[] ImageScaleSteps = { 1f, 0.85f, 0.7f, 0.55f, 0.4f };
 
         public override void DoWindowContents(Rect inRect)
@@ -91,9 +91,9 @@ namespace CEReloaded
             var sections = new List<Section>
             {
                 Make("CER_WorkflowGuide_HeadFastestPath", 0, "CER_WorkflowGuide_FastestPathLine"),
-                // Rollen VOR "Beladungen zuweisen" (2026-08-14): im Spiel ist Roles Reiter 3 und Assign Loadouts Reiter 4.
-                // TabsLine2 (Weapon Loadouts) entfiel mit dem Lazy-Umbau (2026-09-01) - der Reiter existiert
-                // nicht mehr; die Nummern in den Schluesseltexten der Folgezeilen sind mitgezogen.
+                // Roles BEFORE "Assign Loadouts": in the game Roles is tab 3 and Assign Loadouts tab 4.
+                // TabsLine2 (Weapon Loadouts) was dropped with the lazy-template rework - the tab no longer
+                // exists; the numbers in the key texts of the following lines were updated accordingly.
                 Make("CER_WorkflowGuide_HeadTabs", 1, "CER_WorkflowGuide_TabsLine1", "CER_WorkflowGuide_TabsLineRoles",
                     "CER_WorkflowGuide_TabsLine3", "CER_WorkflowGuide_TabsLineBills"),
                 Make("CER_WorkflowGuide_HeadKeyFeatures", 2, "CER_WorkflowGuide_KeyFeatureOpen", "CER_WorkflowGuide_KeyFeatureReadiness",
@@ -101,22 +101,22 @@ namespace CEReloaded
                     "CER_WorkflowGuide_KeyFeatureFetchGear", "CER_WorkflowGuide_KeyFeatureModSettings"),
             };
 
-            // Schriftstufe UND Bildgroesse, mit denen alles in die Hoehe passt. Gemessen, nicht geraten -
-            // dieselbe Lehre wie beim alten Scroll-Layout (2026-08-14: eine feste Zeilenhoehe schnitt Saetze ab).
+            // Font size AND image size at which everything fits the height. Measured, not guessed -
+            // same lesson as with the old scroll layout (a fixed row height cut sentences off).
             //
-            // Zweite Stufe seit 2026-09-04 (Befund im Test): "Tiny oder gar nichts" war eine
-            // Sackgasse. Passte der Text auch in Tiny nicht, wurde er trotzdem gezeichnet und lief unten aus
-            // dem Textkoerper heraus - die letzte Zeile des Abschnitts "Key features" verschwand hinter dem
-            // deckenden "Got it"-Knopf, und das dritte Bild ragte in die Fussleiste, wo die graue Zeile
-            // "Reopen it any time..." quer darueber lag und am Fensterrand halb abgeschnitten wurde. Beides
-            // ist dieselbe Ursache: nichts hat den Koerper auf seine Hoehe verpflichtet.
+            // Second step: "Tiny or nothing" was a dead end. If the text did not fit
+            // even in Tiny, it was drawn anyway and ran out of the bottom of the text body - the last
+            // line of the "Key features" section disappeared behind the opaque "Got it" button, and the
+            // third image reached into the footer, where the grey "Reopen it any time..." line lay
+            // across it and was half cut off at the window edge. Both have the same cause: nothing
+            // constrained the body to its height.
             //
-            // Scrollen scheidet aus (der Crash-Kurs ist bewusst eine Seite ohne Scrollen), also muss der
-            // Inhalt kleiner werden. Der groesste Posten je Zeile ist das
-            // Bild: es bestimmt die Zeilenhoehe UND nimmt dem Text die Breite. Schrumpft es, sinkt die
-            // Zeilenhoehe und der Text braucht weniger Zeilen - zwei Wirkungen aus einem Regler. Deshalb
-            // erst Small/Tiny, dann das Bild in Stufen bis 40 %, und der zuletzt geprueste Wert wird auch
-            // gezeichnet: gemessen wird mit genau der Kombination, mit der danach gezeichnet wird.
+            // Scrolling is out (the crash course is deliberately one page without scrolling), so the
+            // content has to shrink. The biggest item per row is the
+            // image: it determines the row height AND takes width away from the text. Shrinking it lowers
+            // the row height and the text needs fewer lines - two effects from one knob. So first
+            // Small/Tiny, then the image in steps down to 40 %, and the last value checked is also the one
+            // drawn: measuring uses exactly the combination that is drawn afterwards.
             GameFont font = GameFont.Small;
             float imgScale = 1f;
             if (MeasureAll(sections, body.width, font, imgScale) > body.height)
@@ -129,10 +129,10 @@ namespace CEReloaded
                 }
             }
 
-            // Und als letzte Sicherung eine Gruppe: sie SCHNEIDET am Textkoerper ab. Reicht auch die
-            // kleinste Stufe einer sehr langen Uebersetzung nicht, wird der Rest abgeschnitten statt ueber
-            // die Fussleiste gezeichnet - ein abgeschnittener Satz ist sichtbar zu wenig Platz, ein Satz
-            // hinter dem "Got it"-Knopf sieht aus wie ein fehlender Satz.
+            // And as a last safeguard a group: it CLIPS at the text body. If even the smallest step is not
+            // enough for a very long translation, the rest is cut off instead of drawn over the footer -
+            // a clipped sentence visibly shows too little space, a sentence behind the "Got it" button
+            // looks like a missing sentence.
             Text.Font = font;
             Widgets.BeginGroup(body);
             float y = 0f;
@@ -144,7 +144,7 @@ namespace CEReloaded
             Widgets.EndGroup();
             Text.Font = GameFont.Small;
 
-            // Fusszeile: wo der Kurs wiederkommt (klein, grau), rechts der Knopf.
+            // Footer: where to find the course again (small, grey), button on the right.
             Text.Font = GameFont.Tiny;
             GUI.color = new Color(1f, 1f, 1f, 0.55f);
             Text.Anchor = TextAnchor.MiddleLeft;
@@ -156,7 +156,7 @@ namespace CEReloaded
                 Close();
         }
 
-        // Bildgroesse fuer eine Zeile: links, feste Breite, Hoehe nach Seitenverhaeltnis der Textur (16:9 erwartet).
+        // Image size for a row: on the left, fixed width, height from the texture's aspect ratio (16:9 expected).
         private static Vector2 ImageSize(Texture2D tex, float bodyW, float scale)
         {
             if (tex == null) return Vector2.zero;
@@ -187,7 +187,7 @@ namespace CEReloaded
             return total;
         }
 
-        // Zeichnet eine Zeile (Bild links, Ueberschrift + Zeilen rechts) und gibt ihre Hoehe zurueck.
+        // Draws one row (image left, heading + lines right) and returns its height.
         private static float DrawSection(Rect area, Section s, GameFont font, float imgScale)
         {
             Texture2D tex = ImageFor(s.imageIndex);

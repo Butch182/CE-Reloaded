@@ -54,7 +54,7 @@ namespace CEReloaded
             }
             Loadout leaf = AmmoAssignmentUtility.EnsureAmmoLink(pawn, template);
             MultiParentUtility.SetExtraParents(leaf, combined);
-            // Erst die abgenommenen aufraeumen, dann die neuen saeen - siehe UnseedOwnAmmoForDetached.
+            // First clean up the detached ones, then seed the new ones - see UnseedOwnAmmoForDetached.
             AmmoAssignmentUtility.UnseedOwnAmmoForDetached(leaf, currentSidearms.Except(newSidearms));
             // Ammo-starvation-on-attach fix (2026-08-01) - see AmmoAssignmentUtility.
             // SeedOwnAmmoForNewlyAttached's own comment for the full mechanism. Scoped to just the sidearm(s)
@@ -68,11 +68,11 @@ namespace CEReloaded
             CombatReadiness.Invalidate();
         }
 
-        // Gates the whole Sidearm column/cell. Seit dem Lazy-Umbau (2026-09-01) immer wahr: der Picker
-        // bietet jede WAFFE an (die Vorlage entsteht beim Anhaken), nicht mehr nur existierende
-        // Weapon-Loadout-Objekte - eine Kolonie ohne einzige Vorlage hat trotzdem Zweitwaffen zur Wahl.
-        // Vorher haette genau dieser Rueckgabewert nach dem Wegfall der Massenerzeugung die ganze
-        // Zweitwaffen-Spalte still ausgeblendet.
+        // Gates the whole Sidearm column/cell. Always true since the lazy-template rework: the picker
+        // offers every WEAPON (the template is created when it is ticked), no longer only existing
+        // Weapon Loadout objects - a colony without a single template still has sidearms to choose from.
+        // Before that, this exact return value would have silently hidden the whole sidearm column once
+        // bulk generation was removed.
         public static bool HasSidearmOptions()
         {
             return true;
@@ -98,13 +98,13 @@ namespace CEReloaded
         // group-header support) - a real backup weapon, a grenade-type explosive, or a shield. Mirrors
         // exactly how AssignPlanner's three auto-assign pools (PickSidearm/PickGrenade/PickShield) already
         // classify the same three categories, just read back from a loadout's own slot instead of a ThingDef.
-        // "Backup weapons" gibt bewusst NULL zurueck (2026-08-15): die Spalten haben schon Ueberschriften,
-        // eine zusaetzliche Zwischenzeile "Backup weapons" war doppelt. Null
-        // heisst in Dialog_PickPacks "keine Zwischenzeile" - die gewoehnlichen Zweitwaffen sind der
-        // Normalfall und stehen direkt unter der Spaltenueberschrift, die ohnehin "Sidearms" heisst.
-        // Explosives und Shields behalten ihre Zeile: die sagt etwas, das in keiner Spalte steht.
-        // Der Schluessel CER_SidearmAssignment_CategoryBackupWeapons bleibt in allen 13 Sprachen liegen,
-        // damit ein Zurueckdrehen eine Zeile ist und keine 13 Dateien.
+        // "Backup weapons" deliberately returns NULL: the columns already have headers, so an extra
+        // "Backup weapons" separator row was redundant. In Dialog_PickPacks null means "no separator
+        // row" - ordinary sidearms are the normal case and sit directly under the column header, which
+        // is "Sidearms" anyway.
+        // Explosives and Shields keep their row: it says something no column says.
+        // The key CER_SidearmAssignment_CategoryBackupWeapons stays in all 13 languages,
+        // so reverting this is one line rather than 13 files.
         public static string CategoryLabel(Loadout lo)
         {
             string kind = CategoryKind(lo);
@@ -113,9 +113,9 @@ namespace CEReloaded
             return null;
         }
 
-        // Die Grenze "Max sidearm bulk" aus den Mod-Einstellungen als Zahl - EINE Stelle fuer Loeser und
-        // Auswahlfenster (2026-08-25). Vorher parste AssignPlanner den String selbst, und das Fenster kannte
-        // nur den String und tat nichts damit.
+        // The "Max sidearm bulk" limit from the mod settings as a number - ONE place for the solver and
+        // the picker window. Previously AssignPlanner parsed the string itself, and the window only knew
+        // the string and did nothing with it.
         public static float MaxSidearmBulk()
         {
             string bulkSetting = CEReloadedMod.settings?.sidearmMaxBulk ?? "5.0";
@@ -124,16 +124,16 @@ namespace CEReloaded
             return v;
         }
 
-        // Die Sperrigkeit, gegen die diese Grenze gilt: die WAFFE des Loadouts (WeaponBulk, exakt wie
-        // PickSidearm im Loeser), nicht das ganze Loadout samt Munition. Sprengmittel und Schilde: 0 - fuer
-        // die gilt die Grenze im Loeser nicht (PickGrenade kennt keine), also auch nicht im Fenster.
+        // The bulk this limit applies to: the loadout's WEAPON (WeaponBulk, exactly like PickSidearm in
+        // the solver), not the whole loadout including ammo. Explosives and shields: 0 - the solver does
+        // not apply the limit to them (PickGrenade has none), so the window doesn't either.
         public static float CapRelevantBulk(Loadout lo)
         {
-            // Dieselbe Waffe wie der Loeser (2026-08-25): PickSidearm misst c.mainWeapon aus
-            // AnalyzeLoadout/LoadoutMainAndSide - namensgleiche Waffe, sonst bestbewertete Fernkampf-, sonst
-            // beste Nahkampfwaffe, nie Granate oder Hilfswaffe. Der "erste Waffenslot" hatte bei einem
-            // Mehr-Waffen-Loadout eine andere Waffe gemessen als der Loeser. Ohne Hauptwaffe (reines Granaten-
-            // oder Schild-Loadout) 0: dort kennt der Loeser keine Grenze.
+            // Same weapon as the solver: PickSidearm measures c.mainWeapon from
+            // AnalyzeLoadout/LoadoutMainAndSide - the weapon matching the name, else the best-rated ranged,
+            // else the best melee weapon, never a grenade or utility. The "first weapon slot" used to measure
+            // a different weapon than the solver for multi-weapon loadouts. Without a main weapon (pure
+            // grenade or shield loadout) 0: the solver has no limit there.
             if (lo == null) return 0f;
             LoadoutUtility.LoadoutMainAndSide(lo, out ThingDef main, out _);
             if (main == null || Dialog_GenerateLoadouts.IsGrenade(main) || LoadoutUtility.IsShieldApparel(main)) return 0f;

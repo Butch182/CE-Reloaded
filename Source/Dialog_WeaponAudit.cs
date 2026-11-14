@@ -65,7 +65,7 @@ namespace CEReloaded
                     else if ((realGun || realMelee) && score <= 0f && HasRealDamage(w))
                         Add(Severity.Medium, "CER_WeaponAudit_CatScoreZero".Translate(), "CER_WeaponAudit_DetailScoreZero".Translate());
 
-                    // 2. Ranged weapon flagged non-CE although it carries an ammoSet or a projectile → likely misdetected.
+                    // 2. Ranged weapon flagged non-CE although it carries an ammoSet or a projectile -> likely misdetected.
                     if (w.IsRangedWeapon && !ce)
                     {
                         bool armed = LoadoutUtility.GetAmmoSet(w) != null ||
@@ -74,7 +74,7 @@ namespace CEReloaded
                             Add(Severity.Medium, "CER_WeaponAudit_CatNotCeButArmed".Translate(), "CER_WeaponAudit_DetailNotCeButArmed".Translate());
                     }
 
-                    // 3. Normal CE ranged weapon whose ammo picker comes back empty → ammo bills can't be generated.
+                    // 3. Normal CE ranged weapon whose ammo picker comes back empty -> ammo bills can't be generated.
                     if (w.IsRangedWeapon && ce && !selfAmmo && LoadoutUtility.GetAmmoSet(w) != null)
                     {
                         if (LoadoutUtility.GetLoadoutAmmoDefs(w, false).Count == 0)
@@ -92,7 +92,7 @@ namespace CEReloaded
                         && LoadoutUtility.GetAmmoSet(w) == null)
                         Add(Severity.High, "CER_WeaponAudit_CatAmmoSetUnresolved".Translate(), "CER_WeaponAudit_DetailAmmoSetUnresolved".Translate());
 
-                    // 4. Self-ammo weapon (grenade/javelin) that has no crafting recipe → can't be produced anywhere.
+                    // 4. Self-ammo weapon (grenade/javelin) that has no crafting recipe -> can't be produced anywhere.
                     if (selfAmmo && LoadoutUtility.GetRecipeFor(w) == null)
                         Add(Severity.Low, "CER_WeaponAudit_CatSelfAmmoNoRecipe".Translate(), "CER_WeaponAudit_DetailSelfAmmoNoRecipe".Translate());
                 }
@@ -158,8 +158,8 @@ namespace CEReloaded
         private Vector2 scroll;
 
         public override Vector2 InitialSize => new Vector2(920f, 720f);
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -211,10 +211,10 @@ namespace CEReloaded
                 Rect viewRect = new Rect(0, 0, outRect.width - 16f, findings.Count * 46f + 4f);
                 Widgets.BeginScrollView(outRect, ref scroll, viewRect);
                 float y = 0f;
-                // Zeilenindex statt Rechnung aus y (2026-08-09): die Zeilen ruecken um 46px vor, die
-                // Alternation rechnete aber mit 44 - floor(46n/44) laeuft gegen n aus, ab Zeile 22 waren zwei
-                // Zeilen hintereinander ungestreift und danach wiederholte sich der Versatz. Rein kosmetisch,
-                // aber der Index kann per Definition nicht auslaufen, die Division schon.
+                // Use the row index instead of deriving it from y: rows advance by 46px, but the alternation
+                // used 44 - floor(46n/44) drifts away from n, so from row 22 on two consecutive rows were
+                // unstriped and the offset then repeated. Purely cosmetic, but the index cannot drift by
+                // definition, the division can.
                 int rowIndex = 0;
                 foreach (WeaponAudit.Finding f in findings)
                 {

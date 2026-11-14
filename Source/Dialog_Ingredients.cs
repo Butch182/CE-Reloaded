@@ -23,22 +23,22 @@ namespace CEReloaded
         private string nameBuffer = "";
         private Vector2 listScroll, editorScroll;
         private readonly Dictionary<string, string> countBuffers = new Dictionary<string, string>();
-        // Zu welchem Wert wurde der Puffer zuletzt befuellt (2026-08-13: Menge von 30 auf 8 geaendert und
-        // uebernommen - Masse, Sperrigkeit und Kosten folgten der 8, das Mengenfeld zeigte aber weiter 30,
-        // auch nach Auswahlwechsel).
-        // Der Puffer wurde nur befuellt, wenn der SCHLUESSEL fehlte. Wer die Zeile einmal gesehen hatte, sah
-        // seinen Text danach fuer immer - auch wenn die Menge von aussen geaendert wurde (Auto-generate
-        // schreibt direkt in den Pack).
-        // Das war nicht nur eine falsche Anzeige: Widgets.TextFieldNumeric liest den PUFFER und schreibt das
-        // Ergebnis nach `val` zurueck, und der Aufrufer setzt damit `slot.count`. Die veraltete 30 haette die
-        // echte 8 im naechsten Frame ueberschrieben - die Aenderung waere beim blossen Ansehen des Editors
-        // wieder verschwunden.
+        // The value the buffer was last filled from (changing a quantity from 30 to 8 and applying it made
+        // mass, bulk and cost follow the 8, but the quantity field kept showing 30, even after switching
+        // the selection).
+        // The buffer was only filled when the KEY was missing. Once a row had been seen, its text stayed
+        // forever - even when the quantity was changed from outside (Auto-generate writes directly into
+        // the pack).
+        // That was not just a wrong display: Widgets.TextFieldNumeric reads the BUFFER and writes the
+        // result back to `val`, and the caller sets `slot.count` from it. The stale 30 would have
+        // overwritten the real 8 on the next frame - the change would have vanished just by looking at
+        // the editor.
         private readonly Dictionary<string, int> countBufferFor = new Dictionary<string, int>();
 
-        // Mengenfeld mit selbst-ungueltig-werdendem Puffer. Der Puffer gilt nur so lange, wie der Wert
-        // dahinter derselbe ist, zu dem er befuellt wurde; sonst wird er frisch aus dem Slot gesetzt.
-        // Waehrend des Tippens bleibt er erhalten (der Aufrufer schreibt den getippten Wert sofort in den
-        // Slot, seeded und slot.count laufen also mit).
+        // Quantity field with a self-invalidating buffer. The buffer is only valid as long as the value
+        // behind it is the same one it was filled from; otherwise it is reset from the slot.
+        // It survives while typing (the caller writes the typed value into the slot immediately, so
+        // seeded and slot.count stay in step).
         private void DrawCountField(Rect r, string key, int current, ref int val)
         {
             if (!countBuffers.TryGetValue(key, out string buf)
@@ -76,9 +76,9 @@ namespace CEReloaded
             Widgets.Label(new Rect(0, 0, inRect.width, 30f), "CER_Ingredients_Title".Translate());
             Text.Font = GameFont.Small;
             GUI.color = new Color(1f, 1f, 1f, 0.6f);
-            // Hoehe gemessen statt 22f fest (2026-08-26: der deutsche Einleitungssatz ist
-            // laenger als eine Zeile und brach mitten im Satz ab - alles unterhalb des 22f-Rects war weg).
-            // Der Inhalt darunter rueckt mit, sonst laege die zweite Zeile auf den Panels.
+            // Height measured instead of a fixed 22f (in longer translations the intro sentence is longer
+            // than one line and was cut off mid-sentence - everything below the 22f rect was gone).
+            // The content below moves down with it, otherwise the second line would lie on the panels.
             string subtitle = "CER_Ingredients_Subtitle".Translate();
             float subtitleH = Text.CalcHeight(subtitle, inRect.width);
             Widgets.Label(new Rect(0, 30f, inRect.width, subtitleH), subtitle);
@@ -112,8 +112,8 @@ namespace CEReloaded
         // Same "(2)", "(3)", ... uniqueness convention Dialog_GenerateLoadouts' own Role-copy naming already
         // uses (2026-08-01 fix) - repeated clicks on "New" used to spam identically-named packs, indistinguishable
         // in this list or in Dialog_PickPacks except by opening each one.
-        // Wie UniquePackName, aber das Pack, das gerade umbenannt wird, zaehlt nicht als Kollision mit
-        // sich selbst - sonst waechst der Name bei jedem Tastendruck um ein "(2)".
+        // Like UniquePackName, but the pack currently being renamed does not count as a collision with
+        // itself - otherwise the name would grow by a "(2)" with every keystroke.
         private static string UniquePackNameExcept(string baseName, Loadout self)
         {
             string b = (baseName ?? "").Trim();
@@ -157,8 +157,8 @@ namespace CEReloaded
                 // Dialog_GenerateLoadouts' own Role-copy naming already uses.
                 Loadout pack = new Loadout { defaultLoadout = false, label = EquipmentPackUtility.PackMarkerPrefix + " " + UniquePackName("CER_Ingredients_NewPackDefaultName".Translate()) };
                 LoadoutManager.AddLoadout(pack);
-                // Kennung setzen (2026-08-17): ein Pack wird ab jetzt ueber die Identitaet erkannt, nicht
-                // ueber den "[Pack]"-Marker im Namen. NACH AddLoadout, weil die UniqueID erst dort entsteht.
+                // Set the identity marker: a pack is now recognized by identity, not by the "[Pack]" marker
+                // in its name. AFTER AddLoadout, because the UniqueID is only created there.
                 EquipmentPackUtility.MarkAsPack(pack);
                 selectedPack = pack;
                 nameBuffer = EquipmentPackUtility.BareName(pack.label);
@@ -226,32 +226,31 @@ namespace CEReloaded
             if (newName != nameBuffer)
             {
                 nameBuffer = newName;
-                // Duplikatschutz auch beim UMBENENNEN (2026-08-09). Das Anlegen hatte ihn ueber
-                // UniquePackName laengst, das Umbenennen nicht - man konnte einem Pack den Namen eines
-                // anderen geben und hatte danach zwei gleichnamige, die weder in Auswahlmenues noch fuer
-                // den Generator unterscheidbar sind.
-                // Bewusst still korrigierend statt blockierend: waehrend des Tippens waere jede Meldung
-                // eine Belaestigung, und ein blockiertes Feld fuehlt sich kaputt an. Ein angehaengtes
-                // "(2)" ist sichtbar genug und dieselbe Loesung, die das Anlegen schon benutzt.
+                // Duplicate protection on RENAME too. Creating already had it via UniquePackName, renaming
+                // did not - a pack could be given another pack's name, leaving two packs with the same name
+                // that could not be told apart in pickers or by the generator.
+                // Deliberately corrects silently instead of blocking: while typing, any message would be a
+                // nuisance, and a blocked field feels broken. An appended "(2)" is visible enough and the
+                // same solution creation already uses.
                 string wanted = nameBuffer.Trim();
                 string unique = UniquePackNameExcept(wanted, selectedPack);
                 selectedPack.label = EquipmentPackUtility.PackMarkerPrefix + " " + unique;
-                // Beim Umbenennen die Kennung nachziehen (2026-08-17) - das ist die Selbstheilung fuer
-                // Packs, die es vor der Umstellung schon gab: sobald eines einmal angefasst wird, haengt
-                // seine Erkennung an der Identitaet und nicht mehr am Marker im Namen.
+                // Update the identity marker on rename - this is the self-healing for packs that existed
+                // before the switch: as soon as one is touched once, its detection depends on identity and
+                // no longer on the marker in its name.
                 EquipmentPackUtility.MarkAsPack(selectedPack);
             }
             y += 32f;
 
-            // Masse/Sperrigkeit + WER es traegt + was es WIRKLICH kostet (2026-09-01, beides mit vorhandenen
-            // Bausteinen statt neu erfunden):
-            // Traeger: die Raute ist DIESELBE Anzeige wie die Assig.-Spalte in Supply Loadouts
-            // (LoadoutUtility.DrawUsedByIndicator, samt deren Mouseover-Keys; zaehlt Anker-Traeger UND
-            // Rollen-Traeger, siehe EquipmentPackUtility.PackWearerNames).
-            // Kosten: die abstrakte Silberzahl ist ersetzt durch DIESELBE Material-Chip-Leiste, die der
-            // Pack-Assistent und die Nachschub-Fenster benutzen (DrawTotalCostLine ueber
-            // GetLoadoutProductionCosts - Rohstoffe je Rezept, rot wo das Lager nicht deckt; generische
-            // Posten wie "Any Medicine" haben kein eigenes Rezept und fallen wie dort bewusst heraus).
+            // Mass/bulk + WHO carries it + what it REALLY costs (both built from existing building blocks
+            // instead of reinventing them):
+            // Carriers: the diamond is the SAME display as the Assig. column in Supply Loadouts
+            // (LoadoutUtility.DrawUsedByIndicator, including its tooltip keys; counts anchor carriers AND
+            // role carriers, see EquipmentPackUtility.PackWearerNames).
+            // Cost: the abstract silver number is replaced by the SAME material chip bar the pack
+            // assistant and the supply windows use (DrawTotalCostLine via GetLoadoutProductionCosts - raw
+            // materials per recipe, red where stock falls short; generic items such as "Any Medicine" have
+            // no recipe of their own and are deliberately left out, as there).
             LoadoutUtility.GetLoadoutMassBulk(selectedPack, out float packMass, out float packBulk);
             LoadoutUtility.DrawMassBulkBars(new Rect(inner.x, y, inner.width - 90f, 48f), packMass, packBulk);
             LoadoutUtility.DrawUsedByIndicator(inner.xMax - 44f, y + 12f,
@@ -357,15 +356,14 @@ namespace CEReloaded
         // insists - not something this tab's own pickers offer, since weapons belong in Weapon Loadouts).
         private float DrawOtherSection(float y, float width)
         {
-            // Der Abschnitt LISTET jetzt, was drinsteht (2026-08-13): was ueber den "Other"-Knopf / CEs
-            // Editor hinzugefuegt wurde, steht unten wie in den anderen Bereichen, mit Symbol und Beschreibung.
-            // Vorher stand hier nur ein Hinweis und ein Knopf: alles, was ueber CEs eigenen Editor
-            // hineinkam und in keine der vier Kategorien faellt, war in diesem Fenster unsichtbar - es
-            // zaehlte in Masse und Sperrigkeit mit, ohne dass irgendwo stand, warum (so geschehen mit
-            // einer Lizard skin).
-            // Gezeichnet wird dieselbe Zeile wie in DrawMultiItemSection: Symbol, Name, Bestandsbalken,
-            // Mengenfeld, Loeschknopf. Bewusst KEIN eigener "+ Hinzufuegen"-Knopf - das Hinzufuegen bleibt
-            // CEs Editor, weil hier per Definition alles landet, wofuer dieser Tab keine eigene Auswahl hat.
+            // The section now LISTS what it contains: whatever was added via the "Other" button / CE's
+            // editor appears below, as in the other sections, with icon and description.
+            // Previously only a hint and a button sat here: anything that came in through CE's own editor
+            // and fits none of the four categories was invisible in this window - it counted towards mass
+            // and bulk without any indication why (as happened with a lizard skin).
+            // The row drawn is the same as in DrawMultiItemSection: icon, name, stock bar, quantity field,
+            // delete button. Deliberately NO "+ Add" button of its own - adding stays with CE's editor,
+            // because by definition everything lands here that this tab has no dedicated picker for.
             List<LoadoutSlot> slots = OtherSlots();
             DrawSectionCard(y, width, MeasureOtherSection(slots.Count), PackCategory.Other, "CER_Ingredients_SectionOther".Translate(), slots.Count);
             y += SectionHeaderH;
@@ -391,7 +389,7 @@ namespace CEReloaded
                 Widgets.Label(new Rect(row.x + 28f, row.y + 3f, labelW, 22f), def.LabelCap.ToString().Truncate(labelW - 4f));
                 LoadoutUtility.ComputeItemOwnership(def, out int carriedOnly, out int carriedAndAssigned, out int assignedInStore, out int freeStored, out int inProduction);
                 var ownedSeg = LoadoutUtility.BuildAvailabilitySegments(carriedOnly, carriedAndAssigned, assignedInStore, freeStored, inProduction, def: def);
-                // TipWanted: der Orts-Tooltip laeuft ueber alle Karten - nur bauen, wenn er auch gezeigt wird.
+                // TipWanted: the location tooltip iterates all maps - only build it when it is actually shown.
                 LoadoutUtility.DrawAvailabilityBar(ownedBarRect, ownedSeg, horizontal: true,
                     LoadoutUtility.TipWanted(ownedBarRect) ? LoadoutUtility.BuildPackItemLocationTooltip(def) : null);
 
@@ -416,9 +414,9 @@ namespace CEReloaded
             return y;
         }
 
-        // Alles, was in keine der vier Kategorien faellt - dieselbe Einteilung, die auch die Abschnitte
-        // darueber benutzen (EquipmentPackUtility.CategoryOf), damit ein Gegenstand nie in zwei Abschnitten
-        // steht und nie in keinem.
+        // Everything that fits none of the four categories - the same split the sections above use
+        // (EquipmentPackUtility.CategoryOf), so an item never appears in two sections
+        // and never in none.
         private List<LoadoutSlot> OtherSlots()
             => selectedPack?.OwnSlots?.Where(s => SlotInCategory(s, PackCategory.Other)).ToList() ?? new List<LoadoutSlot>();
 
@@ -484,7 +482,7 @@ namespace CEReloaded
                 // Same "In storage:/Carried by:/Assigned to:" breakdown as Weapon Loadouts' own availability
                 // bar, not just a bare Total/Available count (2026-07-31, first noticed in the Auto-Generate
                 // Equipment Packs popup - this editor shares the exact same bar/ownership call, same gap).
-                // TipWanted: der Orts-Tooltip laeuft ueber alle Karten - nur bauen, wenn er auch gezeigt wird.
+                // TipWanted: the location tooltip iterates all maps - only build it when it is actually shown.
                 LoadoutUtility.DrawAvailabilityBar(ownedBarRect, ownedSeg, horizontal: true,
                     LoadoutUtility.TipWanted(ownedBarRect) ? LoadoutUtility.BuildPackItemLocationTooltip(def) : null);
 

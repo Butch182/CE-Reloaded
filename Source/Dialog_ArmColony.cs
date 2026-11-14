@@ -105,8 +105,8 @@ namespace CEReloaded
         }
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(992f, UI.screenWidth - 40f), Mathf.Min(912f, UI.screenHeight - 40f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -130,9 +130,9 @@ namespace CEReloaded
             unarmed = assignDialog != null ? assignDialog.CountUnarmedColonists() : 0;
             // Plain templates only now - used to count EVERYTHING non-default (Packs, Roles, hidden per-
             // pawn anchors included), which made this number mean nothing next to the new, precise Packs count.
-            // Nur die von Hand gebauten (2026-09-06): seit dem Lazy-Umbau erzeugt der Mod je benutzter Waffe
-            // eine unsichtbare Vorlage. Die hier mitzuzaehlen hiesse, dem Spieler "9 Loadouts" zu melden, die
-            // er nirgends sehen kann.
+            // Only hand-built ones: since the lazy-template rework the mod creates an invisible template per
+            // weapon in use. Counting those here would mean telling the player about "9 loadouts" they cannot
+            // see anywhere.
             existingLoadouts = LoadoutManager.Loadouts.Count(l => LoadoutUtility.IsPlainWeaponLoadout(l) && !LoadoutUtility.IsGeneratedTemplate(l));
             existingPacks = EquipmentPackUtility.AllEquipmentPacks().Count;
             ammoBillsManagedCount = LoadoutUtility.CountAmmoBillsForScope(LoadoutUtility.BillDeleteScope.ManagedOnly);
@@ -277,14 +277,14 @@ namespace CEReloaded
                 return Widgets.ButtonInvisible(new Rect(x, y, w, h));
             }
 
-            // 2-state rows: FESTE Aufteilung (2026-09-07): die Schritte "delete hand-built weapon loadouts"
-            // und "ammo bills" bekommen unter Cautious eine Aus- und unter Normal/Aggressive eine An-Option,
-            // damit niemand erst den Haken setzen muss. Bis dahin
-            // richteten sich die Zellen nach den Preset-Werten (2026-08-01): stand ein Schritt in allen drei
-            // Presets gleich, gab es EINE Zelle ueber die ganze Breite - und die einzige Bedienung war der
-            // Haken links, weil der Rueckgabewert von Cell hier ignoriert wurde. Jetzt: links (unter
-            // Cautious) immer die Aus-Zelle, rechts (unter Normal und Aggressive) immer die An-Zelle, beide
-            // klickbar. Die Vorgaben der Presets bleiben, wie sie sind - nur die Anzeige ist fest.
+            // 2-state rows: FIXED split: the steps "delete hand-built weapon loadouts" and "ammo bills" get
+            // an Off option under Cautious and an On option under Normal/Aggressive, so nobody has to tick
+            // the checkbox first. Before that,
+            // the cells followed the preset values: if a step was the same in all three presets, there was
+            // ONE cell across the full width - and the only control was the checkbox on the left, because
+            // Cell's return value was ignored here. Now: on the left (under Cautious) always the Off cell,
+            // on the right (under Normal and Aggressive) always the On cell, both clickable. The preset
+            // defaults stay as they are - only the display is fixed.
             void SwitchRow(string step, ref bool val, string offText, string onText, float h, string tip)
             {
                 Text.Font = GameFont.Tiny;
@@ -325,13 +325,13 @@ namespace CEReloaded
                     val = LoadoutUtility.BillDeleteScope.None;
                 if (Cell(col1 + modeW, gw, managedText.Translate(managedCount.ToString()), val == LoadoutUtility.BillDeleteScope.ManagedOnly, h))
                     val = LoadoutUtility.BillDeleteScope.ManagedOnly;
-                // "(7+0)" statt "(7)" in der Alles-Spalte (2026-08-25): gab es keine handgebauten Loadouts
-                // oder Packs, stand in der Aggressive-Spalte trotzdem (7) und (1) - "(7+0)" und "(1+0)" macht
-                // es deutlich. Die Summe allein
-                // sah aus wie ein Widerspruch zum Text "including hand-built ones", wenn beide Spalten
-                // dieselbe Zahl zeigten. Jetzt: vom Assistenten erzeugte + handgebaute, in dieser
-                // Reihenfolge - die Spalte links daneben zeigt genau den ersten Summanden. Gilt fuer alle
-                // vier Zeilen, die durch diese Funktion laufen (Munitions-/Waffenauftraege, Loadouts, Packs).
+                // "(7+0)" instead of "(7)" in the everything column: when there were no hand-built loadouts
+                // or packs, the Aggressive column still showed (7) and (1) - "(7+0)" and "(1+0)" make that
+                // clear. The sum alone
+                // looked like a contradiction to the text "including hand-built ones" when both columns
+                // showed the same number. Now: assistant-generated + hand-built, in that order - the
+                // column to the left shows exactly the first summand. Applies to all four rows that go
+                // through this function (ammo/weapon bills, loadouts, packs).
                 int handBuiltCount = Mathf.Max(0, allCount - managedCount);
                 if (Cell(col1 + modeW * 2f, gw, allText.Translate(managedCount + "+" + handBuiltCount), val == LoadoutUtility.BillDeleteScope.All, h))
                     val = LoadoutUtility.BillDeleteScope.All;
@@ -353,13 +353,13 @@ namespace CEReloaded
                 "CER_ArmColony_DeleteWeaponBillsManaged",
                 "CER_ArmColony_DeleteWeaponBillsAll", weaponBillsManagedCount, weaponBillsAllCount, 34f,
                 "CER_ArmColony_DeleteWeaponBillsTip".Translate());
-            // ZWEISTUFIG seit 2026-09-06: "Delete weapon loadouts" ergab nur noch fuer von Hand gebaute
-            // Loadouts Sinn. Die mittlere Stufe loeschte
-            // genau die unsichtbaren Vorlagen, die der Mod seit dem Lazy-Umbau je Waffe selbst anlegt - und
-            // derselbe Lauf legte sie Sekunden spaeter wieder an; Rollen verloren dabei ihre Bausteine. Uebrig
-            // bleibt das Einzige, was der Spieler sehen und verlieren kann: von Hand in CEs Editor gebaute
-            // Loadouts. Die Vorlagen des Mods fasst dieser Schritt nicht mehr an.
-            // Gespeichert bleibt das alte Feld (None/All); ein altes ManagedOnly liest sich als "aus".
+            // TWO STATES: "Delete weapon loadouts" only still made sense for hand-built loadouts. The middle
+            // state deleted
+            // exactly the invisible templates the mod creates per weapon since the lazy-template rework - and
+            // the same run recreated them seconds later; roles lost their building blocks in the process.
+            // What remains is the only thing the player can see and lose: loadouts built by hand in CE's
+            // editor. This step no longer touches the mod's templates.
+            // The old field (None/All) is still what gets saved; an old ManagedOnly reads as "off".
             bool deleteHandBuilt = deleteWeaponLoadouts == LoadoutUtility.BillDeleteScope.All;
             int handBuiltLoadouts = Mathf.Max(0, weaponLoadoutsAllCount - weaponLoadoutsManagedCount);
             SwitchRow("CER_ArmColony_StepDeleteWeaponLoadouts".Translate(), ref deleteHandBuilt,
@@ -431,25 +431,24 @@ namespace CEReloaded
                 // touch what this button's own name says" principle Equipment Packs already got.
                 // ManagedOnly (2026-08-01) only touches templates THIS mod's own wizard generated
                 // (IsGeneratedTemplate) - a template built by hand in CE's native loadout editor survives.
-                // Der Marker zusaetzlich zur Identitaetspruefung (2026-08-18) - hier waere ein Irrtum am
-                // teuersten, denn das hier LOESCHT. IsPlainWeaponLoadout fragt IsRoleLoadout, und die
-                // Antwort haengt daran, dass die Rolle ihr Loadout gerade kennt. Verliert sie die
-                // Verknuepfung (Zuruecksetzen im Rollen-Reiter war so ein Fall), gilt ihr Loadout einen
-                // Moment lang als gewoehnliche Vorlage - und dieser Knopf haette sie mitgeloescht. Die
-                // Ursache ist repariert (RoleUtility.AdoptRoleLoadoutsByName), das hier ist das Netz
-                // darunter: es kann nur MEHR verschonen, nie etwas falsch loeschen.
-                // NUR von Hand gebaute (2026-09-06, zweistufig): die vom Mod erzeugten Vorlagen werden hier nie
-                // mehr angefasst - der Lauf legt sie ohnehin je vergebener Waffe neu an, und Rollen haengen mit
-                // ihren Bausteinen daran.
+                // The marker in addition to the identity check - a mistake would be most expensive here,
+                // because this DELETES. IsPlainWeaponLoadout asks IsRoleLoadout, and the answer depends on
+                // the role currently knowing its loadout. If it loses the link (resetting in the Roles tab
+                // was one such case), its loadout briefly counts as an ordinary template - and this button
+                // would have deleted it too. The cause is fixed (RoleUtility.AdoptRoleLoadoutsByName); this
+                // is the safety net beneath it: it can only spare MORE, never delete anything wrongly.
+                // ONLY hand-built ones (two states): templates created by the mod are never touched here
+                // anymore - the run recreates them per assigned weapon anyway, and roles depend on them
+                // for their building blocks.
                 List<Loadout> doomed = LoadoutManager.Loadouts
                     .Where(x => x != null && !x.defaultLoadout && !EquipmentPackUtility.IsEquipmentPackLoadout(x)
                         && LoadoutUtility.IsPlainWeaponLoadout(x) && !RoleUtility.IsRoleLabel(x.label)
                         && !LoadoutUtility.IsGeneratedTemplate(x)).ToList();
-                // Sagen, was der Loeschvorgang nebenbei anrichtet (2026-08-18): Rollen behalten ihren Inhalt,
-                // verlieren aber die Bausteine, aus denen
-                // sie zusammengesetzt waren. Bewusst als Zeile im Endbericht und nicht als zweite
-                // Rueckfrage - dieser Ablauf hat seine Bestaetigung schon, und eine weitere fuer einen
-                // Sonderfall waere genau das Nachfragen, das hier ausdruecklich unerwuenscht ist.
+                // Say what the deletion does as a side effect: roles keep their content but lose the
+                // building blocks they were
+                // composed of. Deliberately a line in the final report and not a second confirmation -
+                // this flow already has its confirmation, and another one for an edge case would be
+                // exactly the kind of extra prompting this flow avoids.
                 int rolesLosingParts = RoleUtility.CountRolesComposedOf(doomed);
                 if (rolesLosingParts > 0)
                     rep.notes.Add("CER_ArmColony_NoteRolesLoseComposition".Translate(rolesLosingParts.ToString()));
@@ -494,19 +493,19 @@ namespace CEReloaded
             loadoutsDialog.RoleMode = useRoles;
 
             // Step 0 (Equipment Packs) -> [step 1 Roles, only if "Use roles"] -> ammo bills -> Assign
-            // ("Roles only" if "Use roles"). Der fruehere Erzeugen-Schritt (Massen-Generierung der Waffen-
-            // Vorlagen) entfiel mit dem Lazy-Umbau (2026-09-01): der Assign-Schritt waehlt Waffen direkt,
-            // die Vorlage entsteht unsichtbar beim Uebernehmen. Step 0 has no Cancel/abort of its own -
+            // ("Roles only" if "Use roles"). The former generate step (bulk generation of weapon
+            // templates) was dropped with the lazy-template rework: the Assign step picks weapons directly,
+            // and the template is created invisibly on apply. Step 0 has no Cancel/abort of its own -
             // Equipment Packs are optional supply, so closing that popup (X, or its own Generate button with
             // nothing checked) just continues. Every step carries a Back button to the previous one
             // (navigation only - applied steps stay applied); step 0's Back reopens this same config screen.
-            Action openPacksBack = null;   // fuer den Back-Knopf des Assign-Schritts (ohne Rollen)
+            Action openPacksBack = null;   // for the Back button of the Assign step (without roles)
             Action openRoles = null;
             Action afterGenerate = () =>
             {
-                // Kein resetPawns-Argument mehr (2026-08-09): dieser Schritt LEGT nur noch an und loescht
-                // gar nichts, also gibt es auch keinen Fall mehr, in dem das Loeschen unterdrueckt werden
-                // muesste. Veraltete Auftraege bietet der Nachschub-Dialog zum Abhaken an.
+                // No resetPawns argument anymore: this step now only CREATES and deletes nothing at all, so
+                // there is no case left in which deletion would have to be suppressed. The supply dialog
+                // offers outdated bills for unticking.
                 if (makeAmmoBills && billsDialog != null) billsDialog.ArmAutoGenerateMissing(rep);
                 else if (!makeAmmoBills) rep.notes.Add("CER_ArmColony_NoteAmmoSkipped".Translate());
                 if (assignDialog != null)
@@ -522,10 +521,9 @@ namespace CEReloaded
                     // opposite. resetPawns tracks the same on/off shape the removed toggle always had (true
                     // for Normal/Aggressive, false for Cautious/most custom presets), so passing it through
                     // directly restores the intended behavior on every pass, not just the first.
-                    // Beide Zweige sagen jetzt, was sie meinen (2026-08-19). Vorher hiess "Ad-Hoc Loadouts
-                    // per Pawn" im Code `rolesOnly = false`, also "keine Einschraenkung" - und der Assistent
-                    // teilte weiter Rollen aus, obwohl sein eigener Mouseover "plain per-weapon loadouts"
-                    // versprach.
+                    // Both branches now say what they mean. "Ad-Hoc Loadouts per Pawn" used to be
+                    // `rolesOnly = false` in code, i.e. "no restriction" - and the assistant kept handing out
+                    // roles, although its own tooltip promised "plain per-weapon loadouts".
                     assignDialog.ArmAutoAssignAndProduce(resetPawns, rep, onBack: useRoles ? openRoles : openPacksBack,
                         roleModeOverride: useRoles ? RoleAssignMode.RolesOnly : RoleAssignMode.NoRoles);
                 else Find.WindowStack.Add(new Dialog_ArmReport(rep));
@@ -533,8 +531,8 @@ namespace CEReloaded
 
             if (loadoutsDialog != null)
             {
-                // Back aus Packs fuehrt auf diesen Konfigurationsschirm zurueck; der fruehere Zwischenschritt
-                // "Weapon Loadouts erzeugen" existiert nicht mehr (Lazy-Umbau 2026-09-01).
+                // Back from Packs returns to this config screen; the former intermediate step
+                // "Generate Weapon Loadouts" no longer exists (lazy-template rework).
                 Action openPacks = () => Find.WindowStack.Add(new Dialog_GenerateEquipmentPack(loadoutsDialog,
                     onClosed: n => { rep.packsGenerated = n; if (useRoles) openRoles(); else afterGenerate(); },
                     // Always non-destructive here - only "Delete equipment packs" above ever overwrites/
@@ -543,8 +541,8 @@ namespace CEReloaded
                     // to refresh it in place, same as the popup already allows standalone).
                     skipExisting: true,
                     onBack: () => Find.WindowStack.Add(new Dialog_ArmColony(loadoutsDialog, billsDialog, assignDialog))));
-                // Role Mode as its own wizard step - Rollen bauen ihre Bausteine seit dem Lazy-Umbau direkt
-                // aus Waffen, nicht mehr aus vorab erzeugten Vorlagen.
+                // Role Mode as its own wizard step - since the lazy-template rework roles build their
+                // building blocks directly from weapons, no longer from pre-generated templates.
                 openRoles = () => Find.WindowStack.Add(new Dialog_ArmRolesStep(loadoutsDialog, onDone: afterGenerate, onBack: openPacks));
                 openPacksBack = openPacks;
                 openPacks();
@@ -578,8 +576,8 @@ namespace CEReloaded
         // drag-and-drop panels need real room, and a noticeably smaller popup than every other step in the
         // same wizard read as a mistake, not a deliberate choice.
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1208f, UI.screenWidth - 40f), Mathf.Min(1080f, UI.screenHeight - 30f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -648,8 +646,8 @@ namespace CEReloaded
         public int packsGenerated;
         public int ammoBillsCreated;
         public int pawnsLeftUnassigned;
-        // Wieviele Posten im Nachschub-Schritt gar nicht baubar waren (keine Werkbank / kein Rezept).
-        // Trennt "es war nichts noetig" von "es ging nichts" - siehe Dialog_SupplyLoadouts.GenerateAll.
+        // How many items in the supply step could not be built at all (no workbench / no recipe).
+        // Separates "nothing was needed" from "nothing was possible" - see Dialog_SupplyLoadouts.GenerateAll.
         public int prodBlocked;
         public List<ArmAssignment> assignments = new List<ArmAssignment>();
         public Dictionary<ThingDef, int> weaponsQueued = new Dictionary<ThingDef, int>();   // def -> copies queued
@@ -667,8 +665,8 @@ namespace CEReloaded
         private Vector2 scroll;
 
         public override Vector2 InitialSize => new Vector2(700f, Mathf.Min(760f, UI.screenHeight - 60f));
-        // Nicht unter RimWorlds Lernhilfe schieben (2026-08-19) - siehe
-        // LoadoutUtility.KeepClearOfLearningReadout. Ohne Kollision aendert das nichts.
+        // Keep clear of RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
+        // Without an overlap this changes nothing.
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -852,8 +850,8 @@ namespace CEReloaded
 
             int prodRows = r.weaponsQueued.Count + r.ammoQueued.Count;
             Header("CER_ArmColony_ReportProductionHeader".Translate(prodRows.ToString()), "CER_ArmColony_ReportProductionTip".Translate());
-            // Drei Faelle, nicht zwei: abgebrochen, nichts baubar, nichts noetig. Der mittlere fehlte und
-            // wurde als "- nichts noetig -" gelesen (2026-08-28) - genau umgekehrt zur Wahrheit.
+            // Three cases, not two: cancelled, nothing buildable, nothing needed. The middle one was missing
+            // and was read as "- nothing needed -" - the exact opposite of the truth.
             if (prodRows == 0)
                 Item(r.cancelled ? "CER_ArmColony_ReportNoneAbortedProd".Translate()
                     : r.prodBlocked > 0 ? "CER_ArmColony_ReportNoneBlockedProd".Translate(r.prodBlocked.ToString())
