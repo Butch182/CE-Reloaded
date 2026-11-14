@@ -6,22 +6,31 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>CE Reloaded is a loadout, ammo and equipment automation add-on for Combat Extended. It does CE's bookkeeping for you - as much or as little of it as you want.
+  <description>CE Reloaded takes the micromanagement out of Combat Extended.
 
-Three ways to use it:
-- Full auto: press "Arm my Colony" in the Assign tab, pick Cautious / Normal / Aggressive, press Arm. Equipment packs, a weapon per colonist by skill, ammo bills and the crafting of what is missing - one button, plus a report of what happened.
-- Assisted: the same steps one at a time in the Loadout Planner - Equipment Packs, Roles (optional), Equip Colonists (pick each colonist's weapon from a list with score, stock and cost; drag and drop; an auto-assign preview with presets) - plus a Bill Overview that keeps production sized to demand.
-- All manual: keep using Combat Extended's own loadout editor and assign column. Nothing there changed. Take only the extras you like: the combat-readiness light, the gear-tab panel, the per-colonist "Ammo Loadouts" gizmo.
+CE is great, but every colonist needs the right gun, the right ammo and enough of it - and someone has to craft all of that. CE Reloaded handles it for you.
 
-Also in the box: a "Fetch gear now" button (everyone collects their loadout immediately), weapon scores, sidearms (backup weapons, explosives, shields), weapon locks, a Supply Loadouts table (assigned / stored / in production / missing), mass-replace ammo, special-effect icons (EMP, flame, tox, smoke, stun, AP, ...), mass and bulk bars everywhere, 13 languages, and every default configurable in Mod Settings.
+LAZY? ONE BUTTON
+"Arm my Colony" in the Assign tab picks a weapon for every colonist based on their skills, sets up their ammo and gear, and queues crafting bills for whatever is missing.
 
-Adds to Combat Extended, replaces nothing: no new items, ammo or defs, CE's balance and windows untouched. Everything the mod creates is an ordinary CE loadout or bill you can edit in CE's own editor. Safe to add to an existing save; before removing it, use "Prepare save for uninstall" in Mod Settings and colonists keep their gear as plain CE loadouts.
+WANT TO KEEP CONTROL? DO IT YOURSELF
+The Loadout Planner shows every colonist as a card. Pick a weapon from a ranked list and the matching ammo comes with it. Preview the automatic assignment before anything changes.
 
-Source code: github.com/Butch182/CE-Reloaded
+ALSO INCLUDED
+- Fetch gear now: colonists collect their loadout right away instead of one item every 30 seconds
+- Readiness light: see at a glance who is missing a weapon or ammo
+- Equipment packs: reusable kits for medicine, food, drugs and shields
+- Sidearms, weapon locks, weapon scores, icons for special ammo
+- Ammo bills that follow what your colonists actually need
+- 13 languages
 
-Requires Harmony and Combat Extended. Load after Combat Extended.
+SAFE TO USE
+No new items and no balance changes. The mod only creates normal CE loadouts and bills, which you can still edit by hand. Works in existing saves. Before removing it, use "Prepare save for uninstall" in the mod settings.
 
-Like it? Support on Ko-fi: ko-fi.com/butch182</description>
+Requires Harmony and Combat Extended (load after CE).
+
+Source: github.com/Butch182/CE-Reloaded
+Support: ko-fi.com/butch182</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>
