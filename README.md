@@ -21,7 +21,7 @@ Everything the mod creates is an ordinary CE loadout or bill you can still edit 
 
 ## Installation
 
-Subscribe on the Steam Workshop, or copy this folder into `RimWorld/Mods/` and build the assembly (see below).
+Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3839877928), or copy this folder into `RimWorld/Mods/` and build the assembly (see below).
 
 ## Building from source
 
