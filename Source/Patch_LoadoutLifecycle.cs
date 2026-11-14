@@ -85,8 +85,8 @@ namespace CEReloaded
         {
             if (LoadoutManager.GetLoadoutById(loadoutId) != null) return true;
             Log.ErrorOnce("[CE Reloaded] SetLoadoutById(" + (pawn?.LabelShort ?? "?") + ", #" + loadoutId
-                + "): es gibt kein Loadout mit dieser Nummer - Aufruf ignoriert statt Ausnahme."
-                + " Aufrufer: " + LoadoutLifecycleDiag.Caller(), 0x5E7B1D ^ loadoutId);
+                + "): no loadout with this id - call ignored instead of throwing."
+                + " Caller: " + LoadoutLifecycleDiag.Caller(), 0x5E7B1D ^ loadoutId);
             return false;
         }
     }

@@ -8902,8 +8902,8 @@ namespace CEReloaded
             // Raetsel.
             if (!BenchCanRun(bench, recipe))
             {
-                Log.Warning("[CE Reloaded] Auftrag abgelehnt: " + (recipe?.defName ?? "?") + " laeuft nicht an "
-                    + (bench?.def?.defName ?? "?") + " - Bank uebersprungen statt einen Absturz zu erzeugen.");
+                Log.Warning("[CE Reloaded] Bill skipped: " + (recipe?.defName ?? "?") + " cannot run at "
+                    + (bench?.def?.defName ?? "?") + " - workbench skipped instead of throwing.");
                 return BillChange.Unchanged;
             }
             Bill_Production existing = bench.billStack.Bills.OfType<Bill_Production>()
@@ -8945,8 +8945,8 @@ namespace CEReloaded
             // Dritte Anlegestelle, gleicher Riegel (Regel-7-Grep 2026-09-04).
             if (!BenchCanRun(bench, recipe))
             {
-                Log.Warning("[CE Reloaded] Auftrag abgelehnt: " + (recipe?.defName ?? "?") + " laeuft nicht an "
-                    + (bench?.def?.defName ?? "?") + " - Bank uebersprungen statt einen Absturz zu erzeugen.");
+                Log.Warning("[CE Reloaded] Bill skipped: " + (recipe?.defName ?? "?") + " cannot run at "
+                    + (bench?.def?.defName ?? "?") + " - workbench skipped instead of throwing.");
                 return null;
             }
             runs = Mathf.Max(1, runs);
@@ -8967,8 +8967,8 @@ namespace CEReloaded
             // ist der beobachtete Satchel-charge-Auftrag an der Munitionsbank entstanden.
             if (!BenchCanRun(bench, recipe))
             {
-                Log.Warning("[CE Reloaded] Auftrag abgelehnt: " + (recipe?.defName ?? "?") + " laeuft nicht an "
-                    + (bench?.def?.defName ?? "?") + " - Bank uebersprungen statt einen Absturz zu erzeugen.");
+                Log.Warning("[CE Reloaded] Bill skipped: " + (recipe?.defName ?? "?") + " cannot run at "
+                    + (bench?.def?.defName ?? "?") + " - workbench skipped instead of throwing.");
                 return null;
             }
             int minSkill = CEReloadedMod.settings != null ? CEReloadedMod.settings.weaponBillMinSkill : 0;

@@ -68,8 +68,8 @@ namespace CEReloaded
             {
                 // Lieber das gemalte Symbol als gar keins - ein Fehler hier ist ein Schoenheitsproblem,
                 // kein Grund, die Zeile leer zu lassen.
-                Log.Warning("[CE Reloaded] " + pngName + " konnte nicht uebernommen werden, benutze das "
-                    + "gezeichnete Symbol.\n" + e);
+                Log.Warning("[CE Reloaded] " + pngName + " could not be loaded, using the "
+                    + "drawn icon instead.\n" + e);
                 return Build(fallbackPaint, accent);
             }
             finally

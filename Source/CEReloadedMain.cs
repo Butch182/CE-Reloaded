@@ -14,7 +14,6 @@ namespace CEReloaded
     {
         static CEReloadedMain()
         {
-            Log.Message("[CE Reloaded] Initializing Auto-Loadout Generator and Tooltip...");
             var harmony = new Harmony("Butch.CEReloaded");
 
             // Jede Patch-Klasse EINZELN, nicht per PatchAll() (2026-08-09).
@@ -39,16 +38,16 @@ namespace CEReloaded
                 catch (Exception e)
                 {
                     failed.Add(t.Name);
-                    Log.Error("[CE Reloaded] Patch-Klasse " + t.Name + " konnte nicht angewendet werden - dieser "
-                        + "Teil des Mods bleibt inaktiv, der Rest laeuft weiter. Meist bedeutet das, dass Combat "
-                        + "Extended eine Methode umbenannt oder ihre Signatur geaendert hat.\n" + e);
+                    Log.Error("[CE Reloaded] Patch class " + t.Name + " could not be applied - this part of the mod "
+                        + "stays inactive, the rest keeps working. Usually this means Combat Extended renamed a "
+                        + "method or changed its signature.\n" + e);
                 }
             }
             if (failed.Count > 0)
-                Log.Warning("[CE Reloaded] " + patched + " Patch-Klassen aktiv, " + failed.Count
-                    + " fehlgeschlagen: " + string.Join(", ", failed.ToArray()));
+                Log.Warning("[CE Reloaded] " + patched + " patch classes active, " + failed.Count
+                    + " failed: " + string.Join(", ", failed.ToArray()));
             else
-                Log.Message("[CE Reloaded] Harmony patches applied successfully! (" + patched + " Klassen)");
+                Log.Message("[CE Reloaded] Loaded - " + patched + " patch classes applied.");
 
             // CEs generische Loadout-Defs ("Any Meal", "Any Medicine", "Any ammo for <Waffe>") bekommen einen
             // echten Hash (2026-08-25: die Verfuegbarkeit der NAHRUNG wurde fuer viele Kolonisten rot, sobald
@@ -78,8 +77,8 @@ namespace CEReloaded
                 gd.ResolveDefNameHash();
                 hashed++;
             }
-            if (hashed > 0)
-                Log.Message("[CE Reloaded] " + hashed + " generische Loadout-Defs von Combat Extended hatten keinen Hash (Def.ResolveDefNameHash nachgeholt).");
+            if (hashed > 0 && Prefs.DevMode)
+                Log.Message("[CE Reloaded] Resolved missing hashes for " + hashed + " generic loadout defs from Combat Extended.");
         }
     }
 

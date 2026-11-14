@@ -489,7 +489,7 @@ namespace CEReloaded
             ResetButton(ls, "CER_ModSettings_ResetAlertsButton".Translate(), "showReadinessAlerts", "alertNoLoadout", "alertWeaponWithoutAmmo", "alertWeaponUnavailable", "alertAmmoNotProduced", "alertAmmoStockThreshold", "alertLowAmmo", "alertLowAmmoMags", "alertOverloaded", "alertCapacityBlocked", "alertAssignedNotCarried");
         }
 
-        // --- TOOLS TAB: read-only diagnostics that never change gameplay. ---
+        // --- TOOLS TAB: weapon audit, resetting the save to the mod settings, the guide, and preparing a save for uninstall. ---
         private void DoToolsTab(Listing_Standard ls)
         {
             Text.Font = GameFont.Medium;
@@ -566,6 +566,34 @@ namespace CEReloaded
                 settings.Write();
                 if (Current.Game != null) Messages.Message("CER_ModSettings_GuideResetMsg".Translate(), MessageTypeDefOf.TaskCompletion, false);
             }
+
+            // Run before removing the mod (see SaveCleanseUtility). Lives here rather than in the Debug tab because
+            // players look for it when uninstalling. Asks for confirmation because it cannot be undone.
+            ls.Gap(16f);
+            ls.GapLine();
+            ls.Gap(6f);
+            ls.Label("CER_ModSettings_CleanseSaveTip".Translate());
+            ls.Gap(10f);
+            string cleanseLabel = "CER_ModSettings_CleanseSaveButton".Translate();
+            Rect r5 = ls.GetRect(38f);
+            r5.width = Mathf.Max(280f, Text.CalcSize(cleanseLabel).x + 24f);
+            bool cleanseInGame = Current.Game != null && Current.ProgramState == ProgramState.Playing;
+            GUI.color = cleanseInGame ? Color.white : new Color(1f, 1f, 1f, 0.45f);
+            bool cleanseClicked = Widgets.ButtonText(r5, cleanseLabel);
+            GUI.color = Color.white;
+            if (!cleanseInGame) TooltipHandler.TipRegion(r5, "CER_ModSettings_ResetGameTipInactive".Translate());
+            if (cleanseClicked && cleanseInGame)
+            {
+                Find.WindowStack.Add(LoadoutUtility.CompactConfirmation(
+                    "CER_ModSettings_CleanseSaveConfirm".Translate(),
+                    () =>
+                    {
+                        SaveCleanseUtility.Result res = SaveCleanseUtility.Run();
+                        Messages.Message("CER_ModSettings_CleanseSaveDone".Translate(res.unwrapped.ToString(), res.baked.ToString(),
+                            res.flattened.ToString(), res.anchorsDeleted.ToString()), MessageTypeDefOf.TaskCompletion, false);
+                    },
+                    destructive: true));
+            }
         }
 
         // --- DEBUG TAB: every Loadout object CE's own LoadoutManager knows about, unfiltered - including
@@ -609,21 +637,6 @@ namespace CEReloaded
             GUI.enabled = true;
             TooltipHandler.TipRegion(cleanupRect, "CER_ModSettings_CleanupOrphanedAnchorsTip".Translate());
 
-            // Vor dem Entfernen des Mods (2026-09-17) - siehe SaveCleanseUtility. Nachfrage, weil nicht umkehrbar.
-            Rect cleanseRect = new Rect(cleanupRect.xMax + 10f, bar.y, 260f, 30f);
-            if (LoadoutUtility.ButtonTextFit(cleanseRect, "CER_ModSettings_CleanseSaveButton".Translate()))
-            {
-                Find.WindowStack.Add(LoadoutUtility.CompactConfirmation(
-                    "CER_ModSettings_CleanseSaveConfirm".Translate(),
-                    () =>
-                    {
-                        SaveCleanseUtility.Result res = SaveCleanseUtility.Run();
-                        Messages.Message("CER_ModSettings_CleanseSaveDone".Translate(res.unwrapped.ToString(), res.baked.ToString(),
-                            res.flattened.ToString(), res.anchorsDeleted.ToString()), MessageTypeDefOf.TaskCompletion, false);
-                    },
-                    destructive: true));
-            }
-            TooltipHandler.TipRegion(cleanseRect, "CER_ModSettings_CleanseSaveTip".Translate());
             ls.Gap(6f);
 
             float top = body.y + ls.CurHeight;
