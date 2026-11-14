@@ -37,6 +37,11 @@ The assembly is written to `1.6/Assemblies/CEReloaded.dll`.
 
 Bug reports and pull requests are welcome. The mod is maintained in spare time, so answers may take a while.
 
+## Made with AI assistance
+
+In case you care: CE Reloaded was made with AI assistance. For those unaware - used the right way and with enough time invested, AI can help build great things. This one took months of design, testing and polishing.
+Spot a clumsy translation? Open an issue or send a pull request.
+
 ## License
 
 [CC BY-NC-SA 4.0](LICENSE), the same license as Combat Extended. CE Reloaded is an independent add-on and not affiliated with the Combat Extended team.
