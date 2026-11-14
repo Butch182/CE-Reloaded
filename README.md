@@ -40,7 +40,6 @@ Bug reports and pull requests are welcome. The mod is maintained in spare time, 
 ## Made with AI assistance
 
 In case you care: CE Reloaded was made with AI assistance. For those unaware - used the right way and with enough time invested, AI can help build great things. This one took months of design, testing and polishing.
-Spot a clumsy translation? Open an issue or send a pull request.
 
 ## License
 
