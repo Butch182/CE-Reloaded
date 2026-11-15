@@ -322,8 +322,17 @@ namespace CEReloaded
                     : val == LoadoutUtility.BillDeleteScope.All ? Widgets.CheckboxOnTex : Widgets.CheckboxPartialTex;
                 GUI.DrawTexture(stateR, stateTex);
                 GUI.color = new Color(0.75f, 0.85f, 1f);
-                Widgets.Label(new Rect(26f, y + 3f, stepColW - 26f, h), step);
+                Rect stepLabel = new Rect(26f, y + 3f, stepColW - 26f, h);
+                Widgets.Label(stepLabel, step);
                 GUI.color = Color.white;
+                // State icon and step name cycle through the three choices (None -> Managed -> All -> None),
+                // the same way the 2-state rows above toggle on their name - otherwise only some step names
+                // in this list reacted to a click.
+                Widgets.DrawHighlightIfMouseover(stepLabel);
+                if (Widgets.ButtonInvisible(stateR) || Widgets.ButtonInvisible(stepLabel))
+                    val = val == LoadoutUtility.BillDeleteScope.None ? LoadoutUtility.BillDeleteScope.ManagedOnly
+                        : val == LoadoutUtility.BillDeleteScope.ManagedOnly ? LoadoutUtility.BillDeleteScope.All
+                        : LoadoutUtility.BillDeleteScope.None;
                 TooltipHandler.TipRegion(new Rect(0f, y, stepColW, 22f), tip);
                 float gw = modeW - colGap;
                 if (Cell(col1, gw, noneText.Translate("0"), val == LoadoutUtility.BillDeleteScope.None, h))
