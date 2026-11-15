@@ -44,4 +44,6 @@
 	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
 
 	<CER_PickPacks_NoneOfThisType>이 종류는 여기에 없습니다. 위의 "종류" 목록에서 다른 항목을 고르세요.</CER_PickPacks_NoneOfThisType>
+	<CER_PickPacks_GroupUnarmed>비무장</CER_PickPacks_GroupUnarmed>
+	<CER_PickPacks_GroupAuto>자동</CER_PickPacks_GroupAuto>
 </LanguageData>

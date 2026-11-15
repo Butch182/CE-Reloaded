@@ -44,4 +44,6 @@
 	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
 
 	<CER_PickPacks_NoneOfThisType>Inget av den typen har. Valj en annan post i listan "Typ" ovan.</CER_PickPacks_NoneOfThisType>
+	<CER_PickPacks_GroupUnarmed>Obeväpnad</CER_PickPacks_GroupUnarmed>
+	<CER_PickPacks_GroupAuto>Automatiskt</CER_PickPacks_GroupAuto>
 </LanguageData>

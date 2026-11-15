@@ -768,10 +768,14 @@ namespace CEReloaded
                 }
             }
 
-            // The none row is followed by a divider line and a small gap so it reads as its own choice,
-            // not as an unlabeled stray row above the first group.
-            const float NoneDividerGap = 6f;
-            float noneH = singleSelect && onNonePicked != null ? RowH + NoneDividerGap : 0f;
+            // The none row gets its own group bar like 'Roles' / 'Ranged' / 'Melee' below, so it reads as one
+            // of the choices instead of a stray row above the first group.
+            bool hasNoneRow = singleSelect && onNonePicked != null;
+            string noneHeader = !hasNoneRow ? null
+                : noneLabel == null ? "CER_PickPacks_GroupUnarmed".Translate().ToString()
+                : "CER_PickPacks_GroupAuto".Translate().ToString();
+            bool noneCollapsed = hasNoneRow && collapsedGroups.Contains(noneHeader);
+            float noneH = hasNoneRow ? groupHeaderH + (noneCollapsed ? 0f : RowH) : 0f;
             float viewH = noneH + 4f;
             foreach (var seg in segments)
             {
@@ -784,9 +788,8 @@ namespace CEReloaded
             List<Loadout> current = getCurrent() ?? new List<Loadout>();
             Widgets.BeginScrollView(listArea, ref scroll, viewRect);
             float ry = 0f;
-            // "None"/"Auto" row of single-select mode, at the very top - the same radio look as the rows below,
-            // so it reads as an equal choice.
-            if (singleSelect && onNonePicked != null)
+            // "No weapon"/"Auto" row of single-select mode, at the very top under its own group bar.
+            if (hasNoneRow && DrawGroupBar(new Rect(0, ry, viewRect.width, groupHeaderH - 3f), noneHeader, 1, ref ry))
             {
                 // No more radios: the whole row is the click target, the current choice carries the selection
                 // highlight.
@@ -807,10 +810,6 @@ namespace CEReloaded
                 Text.Anchor = TextAnchor.UpperLeft;
                 if (Widgets.ButtonInvisible(noneRow)) { onNonePicked(); Close(); }
                 ry += RowH;
-                GUI.color = new Color(1f, 1f, 1f, 0.25f);
-                Widgets.DrawLineHorizontal(0f, ry + NoneDividerGap / 2f, viewRect.width);
-                GUI.color = Color.white;
-                ry += NoneDividerGap;
             }
             foreach (var seg in segments)
             {
@@ -818,28 +817,8 @@ namespace CEReloaded
                 bool open = true;
                 if (hasHeader)
                 {
-                    // Styled, clickable group bar: subtle bar, open/closed arrow, name + row count. The whole bar
-                    // is the click area.
-                    Rect bar = new Rect(0, ry, viewRect.width, groupHeaderH - 3f);
-                    bool segCollapsed = collapsedGroups.Contains(seg.header);
-                    Widgets.DrawBoxSolid(bar, new Color(1f, 1f, 1f, segCollapsed ? 0.05f : 0.08f));
-                    if (Mouse.IsOver(bar)) Widgets.DrawHighlight(bar);
-                    GUI.color = new Color(1f, 1f, 1f, 0.85f);
-                    GUI.DrawTexture(new Rect(bar.x + 5f, bar.y + (bar.height - 14f) / 2f, 14f, 14f),
-                        segCollapsed ? TexButton.Reveal : TexButton.Collapse);
-                    Text.Anchor = TextAnchor.MiddleLeft;
                     int segCount = seg.los != null ? seg.los.Count : seg.defs.Count;
-                    Widgets.Label(new Rect(bar.x + 26f, bar.y, bar.width - 30f, bar.height),
-                        seg.header + "  (" + segCount + ")");
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    GUI.color = Color.white;
-                    if (Widgets.ButtonInvisible(bar))
-                    {
-                        if (segCollapsed) collapsedGroups.Remove(seg.header);
-                        else collapsedGroups.Add(seg.header);
-                    }
-                    ry += groupHeaderH;
-                    open = !segCollapsed;
+                    open = DrawGroupBar(new Rect(0, ry, viewRect.width, groupHeaderH - 3f), seg.header, segCount, ref ry);
                 }
                 if (!open) continue;
                 if (seg.los != null)
@@ -856,6 +835,30 @@ namespace CEReloaded
                     }
             }
             Widgets.EndScrollView();
+        }
+
+        // Styled, clickable group bar: subtle bar, open/closed arrow, name + row count. The whole bar is the
+        // click area; the header text is the collapse key. Advances ry past the bar and returns whether the
+        // group is open (its rows should be drawn).
+        private bool DrawGroupBar(Rect bar, string header, int count, ref float ry)
+        {
+            bool collapsed = collapsedGroups.Contains(header);
+            Widgets.DrawBoxSolid(bar, new Color(1f, 1f, 1f, collapsed ? 0.05f : 0.08f));
+            if (Mouse.IsOver(bar)) Widgets.DrawHighlight(bar);
+            GUI.color = new Color(1f, 1f, 1f, 0.85f);
+            GUI.DrawTexture(new Rect(bar.x + 5f, bar.y + (bar.height - 14f) / 2f, 14f, 14f),
+                collapsed ? TexButton.Reveal : TexButton.Collapse);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(new Rect(bar.x + 26f, bar.y, bar.width - 30f, bar.height), header + "  (" + count + ")");
+            Text.Anchor = TextAnchor.UpperLeft;
+            GUI.color = Color.white;
+            if (Widgets.ButtonInvisible(bar))
+            {
+                if (collapsed) collapsedGroups.Remove(header);
+                else collapsedGroups.Add(header);
+            }
+            ry += bar.height + 3f;   // callers pass a bar of groupHeaderH - 3
+            return !collapsed;
         }
 
         // A weapon row of the weapon section: same columns as a loadout row, just computed from the defaults

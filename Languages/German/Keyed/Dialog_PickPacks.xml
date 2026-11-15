@@ -44,4 +44,6 @@
 	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
 
 	<CER_PickPacks_NoneOfThisType>Von dieser Sorte gibt es hier nichts. Nimm oben in der Liste "Typ" einen anderen Eintrag.</CER_PickPacks_NoneOfThisType>
+	<CER_PickPacks_GroupUnarmed>Unbewaffnet</CER_PickPacks_GroupUnarmed>
+	<CER_PickPacks_GroupAuto>Automatisch</CER_PickPacks_GroupAuto>
 </LanguageData>

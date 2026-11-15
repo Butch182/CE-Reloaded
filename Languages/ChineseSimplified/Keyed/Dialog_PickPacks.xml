@@ -44,4 +44,6 @@
 	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
 
 	<CER_PickPacks_NoneOfThisType>这里没有此类型的条目。请在上方的“类型”列表中选择其他项。</CER_PickPacks_NoneOfThisType>
+	<CER_PickPacks_GroupUnarmed>徒手</CER_PickPacks_GroupUnarmed>
+	<CER_PickPacks_GroupAuto>自动</CER_PickPacks_GroupAuto>
 </LanguageData>

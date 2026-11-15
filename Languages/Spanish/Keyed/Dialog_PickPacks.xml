@@ -44,4 +44,6 @@
 	<CER_PickPacks_UnknownItemLabel>?</CER_PickPacks_UnknownItemLabel>
 
 	<CER_PickPacks_NoneOfThisType>Aqui no hay nada de este tipo. Elige otra entrada en la lista «Tipo» de arriba.</CER_PickPacks_NoneOfThisType>
+	<CER_PickPacks_GroupUnarmed>Desarmado</CER_PickPacks_GroupUnarmed>
+	<CER_PickPacks_GroupAuto>Automático</CER_PickPacks_GroupAuto>
 </LanguageData>
