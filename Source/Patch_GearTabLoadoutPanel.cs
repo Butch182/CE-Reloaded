@@ -297,6 +297,13 @@ namespace CEReloaded
                         else Widgets.ThingIcon(gearIcon, st.iconDef);
                         GUI.color = Color.white;
                     }
+                    else if (st.def is LoadoutGenericDef gd)
+                    {
+                        // Non-ammo generics ("Any Medicine", "Any Perishable Meal") have no weapon to stand in
+                        // for them; they get the same hand-drawn category badge as everywhere else in the mod.
+                        Texture2D badge = GenericIcons.For(gd);
+                        if (badge != null) GUI.DrawTexture(new Rect(0f, ry + 1f, 22f, 22f), badge);
+                    }
                     Widgets.Label(new Rect(28f, ry + 3f, view.width - 28f - 150f, 22f),
                         (st.def != null ? st.def.label : "CER_GearTabLoadoutPanel_UnknownItem".Translate().ToString()).Truncate(view.width - 28f - 154f));
 
@@ -352,6 +359,24 @@ namespace CEReloaded
             // Weapon Loadouts tab, which no longer exists - weapons are picked when assigning.
             float bw = (inRect.width - 6f) / 2f;
             float by = inRect.yMax - 28f;
+
+            // A colonist managed by us has three layers (shared weapon template, personal ammo amounts,
+            // packs); CE's editor only knows the first one and showed e.g. '.30-06 150' with no packs for a
+            // colonist that really carries 40 rounds plus two packs - and editing that number there changes
+            // it for every colonist with this weapon. Such colonists get ONE button into our planner,
+            // filtered to them (the same target CE's own pencil button jumps to, Patch_LoadoutEditButton):
+            // 'Edit' and 'Assign' would both lead there, and two buttons doing the same thing read as if
+            // they did different things. A hand-built CE loadout keeps both - CE's editor is right for it.
+            if (Patch_LoadoutTooltip.GetCellInfo(pawn).managedByUs)
+            {
+                Rect one = new Rect(inRect.x, by, inRect.width, 28f);
+                if (LoadoutUtility.ButtonTextFit(one, "CER_LoadoutTooltip_OpenPlannerButton".Translate().ToString()))
+                    OpenTabs(pawn.LabelShort);
+                if (LoadoutUtility.TipWanted(one))
+                    TooltipHandler.TipRegion(one, "CER_GearTabLoadoutPanel_EditTooltipPlanner".Translate().ToString());
+                return;
+            }
+
             Rect b1 = new Rect(inRect.x, by, bw, 28f);
             Rect b2 = new Rect(inRect.x + bw + 6f, by, bw, 28f);
 
@@ -373,18 +398,7 @@ namespace CEReloaded
             // same answer as everywhere else.
             Loadout editTarget = AmmoAssignmentUtility.DisplayLoadout(lo);
             if (editTarget != null && editTarget.defaultLoadout) editTarget = null;
-            // A colonist managed by us has three layers (shared weapon template, personal ammo amounts,
-            // packs); CE's editor only knows the first one and showed e.g. '.30-06 150' with no packs for a
-            // colonist that really carries 40 rounds plus two packs - and editing that number there changes
-            // it for every colonist with this weapon. Such colonists go to our planner, filtered to them,
-            // the same target CE's own pencil button already jumps to (Patch_LoadoutEditButton). A
-            // hand-built CE loadout keeps CE's editor - there is nothing of ours to show for it.
-            bool managedByUs = Patch_LoadoutTooltip.GetCellInfo(pawn).managedByUs;
-            if (managedByUs)
-            {
-                if (LoadoutUtility.ButtonTextFit(b1, editLbl)) OpenTabs(pawn.LabelShort);
-            }
-            else if (editTarget != null)
+            if (editTarget != null)
             {
                 if (LoadoutUtility.ButtonTextFit(b1, editLbl)) Find.WindowStack.Add(new Dialog_ManageLoadouts(editTarget));
             }
@@ -397,11 +411,9 @@ namespace CEReloaded
             if (LoadoutUtility.TipWanted(b1))
                 // Depend on editTarget, no longer on the raw anchor - otherwise the explanation text
                 // promises "edit" on a greyed-out button.
-                TooltipHandler.TipRegion(b1, managedByUs ? "CER_GearTabLoadoutPanel_EditTooltipPlanner".Translate().ToString()
-                    : editTarget != null ? "CER_GearTabLoadoutPanel_EditTooltipHasLoadout".Translate().ToString()
-                    : "CER_GearTabLoadoutPanel_EditTooltipNoLoadout".Translate().ToString());
+                TooltipHandler.TipRegion(b1, editTarget != null ? "CER_GearTabLoadoutPanel_EditTooltipHasLoadout".Translate().ToString() : "CER_GearTabLoadoutPanel_EditTooltipNoLoadout".Translate().ToString());
 
-            if (LoadoutUtility.ButtonTextFit(b2, assignLbl)) OpenTabs();
+            if (LoadoutUtility.ButtonTextFit(b2, assignLbl)) OpenTabs(pawn.LabelShort);
             if (LoadoutUtility.TipWanted(b2)) TooltipHandler.TipRegion(b2, "CER_GearTabLoadoutPanel_AssignTooltip".Translate());
             Text.Font = prevRowFont;
         }
