@@ -37,8 +37,12 @@ namespace CEReloaded
 
         // 600f used to clip the bottom bar - Close/Clear/Reset/"Produce missing ammo..." add up to 614f wide
         // (2026-07-30: the button's own label was cut off at the window edge).
+        // 800 wide since the three comparison bars (240) moved into the rows: at 700 the per-colonist rows
+        // kept only 140px for the name after the window margins and the scrollbar, AmmoRoleCell's minimum
+        // (150) dropped the bars entirely, and the grouped rows truncated "(AP-HE)"-style names. 800 leaves
+        // ~240px for the name in both row kinds.
         public override Vector2 InitialSize =>
-            new Vector2(700f, Mathf.Min(pawns.Count > 1 ? 760f : 520f, UI.screenHeight - 60f));
+            new Vector2(Mathf.Min(800f, UI.screenWidth - 40f), Mathf.Min(pawns.Count > 1 ? 760f : 520f, UI.screenHeight - 60f));
         // Do not slide under RimWorld's learning readout - see LoadoutUtility.KeepClearOfLearningReadout.
         // Without a collision this changes nothing.
         protected override void SetInitialSizeAndPosition()
@@ -344,12 +348,18 @@ namespace CEReloaded
                 // Physical carried-ammo summary (2026-07-31) - what this pawn
                 // ACTUALLY has on them right now, distinct from the loadout spec rows below. Truncated with
                 // "+N" past 3 types so a pawn hauling a dozen odd rounds doesn't blow out the header.
+                // Column headers for the three comparison bars, on the second header line right above them -
+                // the grouped view has a header row, this view had none, so the bars were unlabeled here. Same
+                // cell as the rows below (AmmoRoleCell, icon edge 210); no cell means no bars, so no headers.
+                Rect statCell = AmmoRoleCell(new Rect(0f, y, viewRect.width, rowH), 210f);
+                float carriedW = (statCell.width > 0f ? statCell.x - 8f : viewRect.width) - (header.x + 34f);
+                if (statCell.width > 0f) LoadoutUtility.DrawAmmoStatHeaders(statCell.x, header.y + 24f);
                 string carried = BuildCarriedAmmoSummary(s.pawn);
                 if (!string.IsNullOrEmpty(carried))
                 {
                     Text.Font = GameFont.Tiny;
                     GUI.color = new Color(1f, 1f, 1f, 0.55f);
-                    Widgets.Label(new Rect(header.x + 34f, header.y + 24f, viewRect.width - 34f, 20f), carried.Truncate(viewRect.width - 34f - 4f));
+                    Widgets.Label(new Rect(header.x + 34f, header.y + 24f, carriedW, 20f), carried.Truncate(carriedW - 4f));
                     GUI.color = Color.white;
                     Text.Font = GameFont.Small;
                 }

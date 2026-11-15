@@ -290,8 +290,13 @@ namespace CEReloaded
                 Text.Font = GameFont.Tiny;
                 Widgets.Checkbox(new Vector2(0f, y), ref val, 20f);
                 GUI.color = new Color(0.75f, 0.85f, 1f);
-                Widgets.Label(new Rect(26f, y + 3f, stepColW - 26f, h), step);
+                Rect stepLabel = new Rect(26f, y + 3f, stepColW - 26f, h);
+                Widgets.Label(stepLabel, step);
                 GUI.color = Color.white;
+                // The step name toggles too, like every labeled checkbox in vanilla. A click on the text used
+                // to do nothing, only the 20px box reacted.
+                Widgets.DrawHighlightIfMouseover(stepLabel);
+                if (Widgets.ButtonInvisible(stepLabel)) val = !val;
                 TooltipHandler.TipRegion(new Rect(0f, y, stepColW, 22f), tip);
 
                 if (Cell(col1, modeW - colGap, offText, !val, h)) val = false;

@@ -135,6 +135,12 @@ namespace CEReloaded
 
                 foreach (LoadoutSlot s in lo.Slots)
                 {
+                    // Two packs that both bring "Any Medicine" are two slots of the same def. As two rows each
+                    // compared the SAME carried count against its own share (9/3 and 9/6); one row with the
+                    // summed need (9/9) is what the colonist actually has to carry.
+                    Def slotDef = (Def)s.thingDef ?? s.genericDef;
+                    SlotStatus same = slotDef == null ? null : newSlots.FirstOrDefault(x => x.def == slotDef);
+                    if (same != null) { same.need += s.count; continue; }
                     var st = new SlotStatus { need = s.count };
                     if (s.thingDef != null)
                     {

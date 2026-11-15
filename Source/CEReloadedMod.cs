@@ -1099,17 +1099,17 @@ namespace CEReloaded
             Widgets.Label(ammoBatchRect.LeftHalf(), "CER_ModSettings_DefaultAmmoBatchesLabel".Translate());
             settings.defAmmoBatches = Widgets.TextField(new Rect(ammoBatchRect.x + ammoBatchRect.width / 2, ammoBatchRect.y, textWidth, 24f), settings.defAmmoBatches);
 
-            ls.Label("CER_ModSettings_SkillRequirementsLabel".Translate());
-            IntRange skillRange = new IntRange(settings.ammoBillMinSkill, settings.ammoBillMaxSkill);
-            Rect rangeRect = ls.GetRect(28f);
-            Widgets.IntRange(rangeRect, 1, ref skillRange, 0, SkillRecord.MaxLevel, "CER_ModSettings_SkillRangeFormat");
-            settings.ammoBillMinSkill = skillRange.min;
-            settings.ammoBillMaxSkill = skillRange.max;
+            SkillRangeRow(ls, "CER_ModSettings_SkillRequirementsLabel".Translate(), 1, ref settings.ammoBillMinSkill, ref settings.ammoBillMaxSkill);
 
-            ls.Gap(10f);
+            // A group heading in the same style as "Default ammo counts" on the Loadouts tab (rule + medium
+            // font). In body font at the label edge it read like a setting whose control was missing.
+            ls.GapLine(12f);
             // The tooltip hangs on the header's OWN rect. Previously on `ls.GetRect(0f)` - a rect of height 0
             // the cursor is never over: the text that explains the two sliders below was therefore dead.
+            Text.Font = GameFont.Medium;
             Rect ammoReserveHdr = ls.Label("CER_ModSettings_AmmoReserveHeader".Translate());
+            Text.Font = GameFont.Small;
+            ls.Gap(6f);
             TooltipHandler.TipRegion(ammoReserveHdr, "CER_ModSettings_AmmoReserveHeaderTip".Translate());
             Rect fullWeightRect = ls.GetRect(24f);
             Widgets.Label(fullWeightRect.LeftHalf(), "CER_ModSettings_AmmoReserveFullWeightLabel".Translate(settings.ammoReserveFullWeightPawns.ToString()));
@@ -1158,14 +1158,23 @@ namespace CEReloaded
             EnumDropdown(ls, "CER_ModSettings_RoleModeLabel".Translate(), settings.autoAssignRoleMode, v => settings.autoAssignRoleMode = v);
 
             ls.GapLine(12f);
-            ls.Label("CER_ModSettings_WeaponSkillRequirementsLabel".Translate());
-            IntRange wSkill = new IntRange(settings.weaponBillMinSkill, settings.weaponBillMaxSkill);
-            Rect wRangeRect = ls.GetRect(28f);
-            Widgets.IntRange(wRangeRect, 2, ref wSkill, 0, SkillRecord.MaxLevel, "CER_ModSettings_SkillRangeFormat");
-            settings.weaponBillMinSkill = wSkill.min;
-            settings.weaponBillMaxSkill = wSkill.max;
+            SkillRangeRow(ls, "CER_ModSettings_WeaponSkillRequirementsLabel".Translate(), 2, ref settings.weaponBillMinSkill, ref settings.weaponBillMaxSkill);
 
             ResetButton(ls, "CER_ModSettings_ResetAutoAssignButton".Translate(), "autoAssignLoadoutFilter", "autoAssignRoleMode", "weaponBillMinSkill", "weaponBillMaxSkill");
+        }
+
+        // A skill range in the same two-column layout as every other setting on these tabs: label in the left
+        // half, control in the right half. The range slider used to span the whole window width with its value
+        // floating above the middle, which read like a control from another dialog. IntRange draws its value
+        // above the bar inside its own rect, so the row is taller than a text row.
+        private static void SkillRangeRow(Listing_Standard ls, string label, int id, ref int min, ref int max)
+        {
+            Rect row = ls.GetRect(32f);
+            Widgets.Label(new Rect(row.x, row.y + 4f, row.width / 2f, 24f), label);
+            IntRange range = new IntRange(min, max);
+            Widgets.IntRange(row.RightHalf(), id, ref range, 0, SkillRecord.MaxLevel, "CER_ModSettings_SkillRangeFormat");
+            min = range.min;
+            max = range.max;
         }
 
         private static string LoadoutFilterLabel(AssignLoadoutFilter m)
