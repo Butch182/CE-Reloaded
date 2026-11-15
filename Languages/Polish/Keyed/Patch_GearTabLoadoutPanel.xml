@@ -29,4 +29,5 @@ Nie pokryte - kontrolka gotowości i proces Zaopatrzenia mogą to zakolejkować.
 	<CER_GearTabLoadoutPanel_AssignButton>Przypisz...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Otwórz zakładkę Wyposaż kolonistów w CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Otwiera planer CE Reloaded z filtrem na tego kolonistę. Broń, osobiste ilości amunicji i pakiety ustawia się tam.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

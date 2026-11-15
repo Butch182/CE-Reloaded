@@ -14,4 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} en production, {1} encore manquant(s)</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} marqué "ne pas ramasser")</CER_LoadoutTooltip_ForbiddenNearby>
 
+	<CER_LoadoutTooltip_SharedTemplateHint>Modèle partagé CE Reloaded : les modifications ici s'appliquent à chaque colon qui l'utilise. Munitions personnelles et packs se règlent par colon dans le planificateur.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_OpenPlannerButton>Ouvrir le planificateur</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

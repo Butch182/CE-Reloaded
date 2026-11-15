@@ -14,4 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} in Produktion, {1} noch fehlend</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} als "nicht aufsammeln" markiert)</CER_LoadoutTooltip_ForbiddenNearby>
 
+	<CER_LoadoutTooltip_SharedTemplateHint>Gemeinsame CE-Reloaded-Vorlage: Änderungen hier gelten für jeden Kolonisten, der sie nutzt. Persönliche Munition und Packs stellt man im Planer pro Kolonist ein.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_OpenPlannerButton>Planer öffnen</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

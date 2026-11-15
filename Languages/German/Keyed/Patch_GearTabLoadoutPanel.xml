@@ -29,4 +29,5 @@ Nicht abgedeckt - die Bereitschaftsampel und der Versorgungsablauf können es ei
 	<CER_GearTabLoadoutPanel_AssignButton>Zuweisen...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Öffnet den Reiter Kolonisten ausruesten von CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Öffnet den CE-Reloaded-Planer, gefiltert auf diesen Kolonisten. Waffe, persönliche Munitionsmengen und Packs werden dort eingestellt.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

@@ -14,4 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} w produkcji, wciąż brakuje {1}</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} oznaczone jako "nie podnosić")</CER_LoadoutTooltip_ForbiddenNearby>
 
+	<CER_LoadoutTooltip_SharedTemplateHint>Wspólny szablon CE Reloaded: zmiany tutaj dotyczą każdego kolonisty, który go używa. Osobistą amunicję i pakiety ustawia się dla każdego kolonisty w planerze.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_OpenPlannerButton>Otwórz planer</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

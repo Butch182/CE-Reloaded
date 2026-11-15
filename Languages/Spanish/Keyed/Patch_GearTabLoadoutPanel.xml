@@ -29,4 +29,5 @@ No cubierto - la luz de preparación y el flujo de Suministro pueden ponerlo en 
 	<CER_GearTabLoadoutPanel_AssignButton>Asignar...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Abre la pestaña Equipar colonos de CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Abre el planificador de CE Reloaded, filtrado a este colono. Arma, cantidades de munición personales y packs se ajustan allí.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

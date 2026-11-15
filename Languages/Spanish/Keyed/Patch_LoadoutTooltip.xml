@@ -14,4 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} en producción, {1} aún faltan</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} marcado como "no recoger")</CER_LoadoutTooltip_ForbiddenNearby>
 
+	<CER_LoadoutTooltip_SharedTemplateHint>Plantilla compartida de CE Reloaded: los cambios aquí afectan a todos los colonos que la usan. Munición personal y packs se ajustan por colono en el planificador.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_OpenPlannerButton>Abrir planificador</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

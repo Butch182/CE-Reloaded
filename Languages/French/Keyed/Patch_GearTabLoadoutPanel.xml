@@ -29,4 +29,5 @@ Non couvert - le voyant de préparation et le flux Approvisionnement peuvent le 
 	<CER_GearTabLoadoutPanel_AssignButton>Assigner...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Ouvrir l'onglet Équiper les colons de CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Ouvre le planificateur CE Reloaded, filtré sur ce colon. Arme, quantités de munitions personnelles et packs s'y règlent.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

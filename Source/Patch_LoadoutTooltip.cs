@@ -623,16 +623,80 @@ namespace CEReloaded
     [HarmonyPatch(typeof(CombatExtended.Dialog_ManageLoadouts), "DoWindowContents")]
     public static class Patch_ManageLoadoutsDialog
     {
-        public static void Prefix() => Patch_LoadoutTooltip.InsideVanillaLoadoutEditor = true;
-        public static void Postfix() => Patch_LoadoutTooltip.InsideVanillaLoadoutEditor = false;
+        // Hint strip above CE's own content while one of our shared templates (weapon template or role) is
+        // selected. CE's editor shows only that shared layer: for a colonist who carries 40 rounds and two
+        // packs it shows '.30-06 150' and nothing else, and a change made there applies to every colonist
+        // using the template. Packs are left out on purpose: our own pack editor sends the player here to
+        // edit a pack, so a "go elsewhere" hint would contradict that.
+        //
+        // CE lays its window out in absolute coordinates from (0,0) with no free row anywhere, so the
+        // strip is made room for structurally: everything CE draws goes into a group shifted down by the
+        // strip height, and CE gets a canvas that is that much shorter.
+        private const float HintH = 30f;
+        private static bool groupOpen;
+
+        public static void Prefix(CombatExtended.Dialog_ManageLoadouts __instance, ref Rect canvas)
+        {
+            Patch_LoadoutTooltip.InsideVanillaLoadoutEditor = true;
+            groupOpen = false;
+            Loadout lo = __instance.CurrentLoadout;
+            if (lo == null || EquipmentPackUtility.IsEquipmentPackLoadout(lo)) return;
+            if (!LoadoutUtility.IsGeneratedTemplate(lo) && !RoleUtility.IsRoleLoadout(lo)) return;
+
+            DrawHint(__instance, new Rect(canvas.x, canvas.y, canvas.width, HintH - 6f));
+            GUI.BeginGroup(new Rect(canvas.x, canvas.y + HintH, canvas.width, canvas.height - HintH));
+            groupOpen = true;
+            canvas = new Rect(0f, 0f, canvas.width, canvas.height - HintH);
+        }
+
+        public static void Postfix()
+        {
+            Patch_LoadoutTooltip.InsideVanillaLoadoutEditor = false;
+            CloseGroup();
+        }
 
         // Same stuck-flag risk as Patch_LoadoutTooltip's own CurrentDoCellPawn (2026-08-01) - if
         // DoWindowContents throws, Postfix never runs and InsideVanillaLoadoutEditor stays true forever,
         // permanently suppressing availability coloring/tooltips in every OTHER FloatMenu this mod builds.
+        // The GUI group opened in Prefix has the same problem: left open, it would shift every later
+        // window of the frame.
         public static Exception Finalizer(Exception __exception)
         {
             Patch_LoadoutTooltip.InsideVanillaLoadoutEditor = false;
+            CloseGroup();
             return __exception;
+        }
+
+        private static void CloseGroup()
+        {
+            if (!groupOpen) return;
+            groupOpen = false;
+            GUI.EndGroup();
+        }
+
+        private static void DrawHint(CombatExtended.Dialog_ManageLoadouts dialog, Rect strip)
+        {
+            Widgets.DrawBoxSolid(strip, new Color(0.45f, 0.75f, 1f, 0.12f));
+            GameFont prevFont = Text.Font;
+            Text.Font = GameFont.Small;
+            string btnLbl = "CER_LoadoutTooltip_OpenPlannerButton".Translate().ToString();
+            float btnW = Mathf.Min(Text.CalcSize(btnLbl).x + 24f, strip.width * 0.35f);
+            Rect btn = new Rect(strip.xMax - btnW - 3f, strip.y + 2f, btnW, strip.height - 4f);
+            Rect textRect = new Rect(strip.x + 8f, strip.y, btn.x - strip.x - 16f, strip.height);
+            string hint = "CER_LoadoutTooltip_SharedTemplateHint".Translate().ToString();
+            Text.Anchor = TextAnchor.MiddleLeft;
+            GUI.color = new Color(0.75f, 0.88f, 1f);
+            Widgets.Label(textRect, hint.Truncate(textRect.width));
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            // The full sentence as a tooltip in case a long translation got truncated.
+            if (LoadoutUtility.TipWanted(textRect)) TooltipHandler.TipRegion(textRect, hint);
+            if (Widgets.ButtonText(btn, btnLbl))
+            {
+                dialog.Close();
+                Patch_GearTabLoadoutPanel.OpenTabs();
+            }
+            Text.Font = prevFont;
         }
     }
 }

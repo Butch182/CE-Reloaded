@@ -29,4 +29,5 @@ Não coberto - a luz de prontidão e o fluxo de Abastecimento podem colocá-lo n
 	<CER_GearTabLoadoutPanel_AssignButton>Atribuir...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Abrir a aba Equipar colonos do CE Reloaded.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Abre o planejador do CE Reloaded, filtrado para este colono. Arma, quantidades de munição pessoais e packs são definidos lá.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

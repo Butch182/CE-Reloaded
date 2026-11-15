@@ -29,4 +29,5 @@ Not covered - the readiness light and Supply flow can queue it.</CER_GearTabLoad
 	<CER_GearTabLoadoutPanel_AssignButton>Assign...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Open CE Reloaded's Equip Colonists tab.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Open the CE Reloaded planner, filtered to this colonist. Weapon, personal ammo amounts and packs are all set there.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

@@ -29,4 +29,5 @@
 	<CER_GearTabLoadoutPanel_AssignButton>Призначити...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Відкрити вкладку CE Reloaded "Спорядити колоністів".</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Відкриває планувальник CE Reloaded з фільтром на цього колоніста. Зброя, особиста кількість боєприпасів і набори налаштовуються там.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

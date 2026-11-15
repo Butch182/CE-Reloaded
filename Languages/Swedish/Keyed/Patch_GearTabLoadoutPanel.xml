@@ -29,4 +29,5 @@ Inte täckt - beredskapslampan och tillgångsflödet kan köa det.</CER_GearTabL
 	<CER_GearTabLoadoutPanel_AssignButton>Tilldela...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>Öppna CE Reloadeds flik Utrusta kolonister.</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>Öppnar CE Reloaded-planeraren, filtrerad på den här kolonisten. Vapen, personliga ammunitionsmängder och paket ställs in där.</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>

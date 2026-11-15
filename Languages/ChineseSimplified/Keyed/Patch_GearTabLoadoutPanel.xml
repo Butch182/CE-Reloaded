@@ -29,4 +29,5 @@
 	<CER_GearTabLoadoutPanel_AssignButton>分配...</CER_GearTabLoadoutPanel_AssignButton>
 	<CER_GearTabLoadoutPanel_AssignTooltip>打开 CE Reloaded 的装备殖民者标签页。</CER_GearTabLoadoutPanel_AssignTooltip>
 
+	<CER_GearTabLoadoutPanel_EditTooltipPlanner>打开 CE Reloaded 规划器,并筛选到该殖民者。武器、个人弹药数量和装备包都在那里设置。</CER_GearTabLoadoutPanel_EditTooltipPlanner>
 </LanguageData>
