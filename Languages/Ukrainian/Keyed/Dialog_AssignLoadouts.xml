@@ -57,7 +57,7 @@
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Об'єм&lt;/b&gt;
 Об'єм комплекту порівняно з об'ємом ноші цього персонажа (CE). Перевищення шкодить руху й прицілюванню.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Немає</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Без зброї</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} не може битися (нездатний до насильства або немовля): можна призначити лише спорядження без зброї.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} не може нічого нести.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} на ролі - набори, запасна зброя та інші предмети задаються самою роллю (вкладка Roles). Нічого не вставлено.</CER_AssignLoadouts_PasteRoleRejectMsg>

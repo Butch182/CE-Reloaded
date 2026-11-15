@@ -57,7 +57,7 @@ Loadout weight vs. this pawn's Carry Weight (CE). Going over slows the pawn down
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Bulk&lt;/b&gt;
 Loadout volume vs. this pawn's Carry Bulk (CE). Exceeding it hurts movement and aim.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>None</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>No weapon</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} cannot fight (incapable of violence, or a baby), so only gear without a weapon can be assigned.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} can't carry anything.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} is on a Role - packs, sidearms and other items come from the Role itself (Roles tab). Nothing was pasted.</CER_AssignLoadouts_PasteRoleRejectMsg>

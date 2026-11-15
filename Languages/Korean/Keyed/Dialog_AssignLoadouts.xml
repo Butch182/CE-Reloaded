@@ -57,7 +57,7 @@
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;부피&lt;/b&gt;
 로드아웃 부피 대 이 주민의 휴대 부피(CE)입니다. 초과하면 이동과 조준에 영향을 줍니다.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>없음</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>무기 없음</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0}은(는) 전투가 불가능합니다(폭력 불가 또는 아기). 무기가 없는 장비만 배정할 수 있습니다.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0}은(는) 아무것도 지닐 수 없습니다.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0}은(는) 역할에 배정되어 있습니다. 팩, 보조무기, 기타 아이템은 역할 자체에서 정해집니다(Roles 탭). 아무것도 붙여넣지 않았습니다.</CER_AssignLoadouts_PasteRoleRejectMsg>

@@ -57,7 +57,7 @@ Peso da configuração vs. a Capacidade de Carga deste colono. Passar do limite 
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Volume&lt;/b&gt;
 Volume da configuração vs. o Volume de Carga deste colono (CE). Ultrapassá-lo prejudica movimento e mira.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Nenhuma</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Sem arma</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} não pode lutar (incapaz de violência, ou um bebê): só é possível atribuir equipamento sem arma.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} não pode carregar nada.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} está em uma função - packs, armas secundárias e outros itens vêm da própria função (aba Roles). Nada foi colado.</CER_AssignLoadouts_PasteRoleRejectMsg>

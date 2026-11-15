@@ -57,7 +57,7 @@ Lastningens vikt jämfört med denna kolonists bärkapacitet. Att gå över sakt
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Volym&lt;/b&gt;
 Lastningens volym jämfört med denna kolonists bärvolym (CE). Att överskrida den försämrar rörelse och sikte.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Ingen</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Inget vapen</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} kan inte strida (oförmögen till våld, eller ett spädbarn): endast utrustning utan vapen kan tilldelas.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} kan inte bära något.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} har en roll - paket, sidovapen och övriga föremål kommer från själva rollen (fliken Roles). Inget klistrades in.</CER_AssignLoadouts_PasteRoleRejectMsg>

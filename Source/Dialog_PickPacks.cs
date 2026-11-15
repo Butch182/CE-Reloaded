@@ -768,7 +768,10 @@ namespace CEReloaded
                 }
             }
 
-            float noneH = singleSelect && onNonePicked != null ? RowH : 0f;
+            // The none row is followed by a divider line and a small gap so it reads as its own choice,
+            // not as an unlabeled stray row above the first group.
+            const float NoneDividerGap = 6f;
+            float noneH = singleSelect && onNonePicked != null ? RowH + NoneDividerGap : 0f;
             float viewH = noneH + 4f;
             foreach (var seg in segments)
             {
@@ -791,14 +794,23 @@ namespace CEReloaded
                 bool noneOn = currentSingle == null && currentWeaponSingle == null;
                 if (noneOn) Widgets.DrawHighlightSelected(noneRow);
                 else if (Mouse.IsOver(noneRow)) Widgets.DrawHighlight(noneRow);
+                // Same icon column and full brightness as the weapon rows below; the default ("no weapon")
+                // case gets the red X in the icon slot so the row is recognizable at a glance. A custom
+                // label (e.g. 'Auto' in the squad planner) is not an unarm action and keeps the slot empty.
+                float iconX = noneRow.x + 8f;
+                if (noneLabel == null)
+                    GUI.DrawTexture(new Rect(iconX + 2f, noneRow.y + (RowH - 20f) / 2f, 20f, 20f), Widgets.CheckboxOffTex);
+                Rect noneNameRect = new Rect(iconX + 30f, noneRow.y, NameColX - (iconX + 30f), RowH);
                 Text.Anchor = TextAnchor.MiddleLeft;
-                GUI.color = new Color(1f, 1f, 1f, 0.75f);
-                Widgets.Label(new Rect(noneRow.x + 8f, noneRow.y, NameColX - 12f, RowH),
-                    (noneLabel ?? "CER_AssignLoadouts_NoneMenuOption".Translate().ToString()).Truncate(NameColX - 16f));
-                GUI.color = Color.white;
+                Widgets.Label(noneNameRect,
+                    (noneLabel ?? "CER_AssignLoadouts_NoneMenuOption".Translate().ToString()).Truncate(noneNameRect.width - 4f));
                 Text.Anchor = TextAnchor.UpperLeft;
                 if (Widgets.ButtonInvisible(noneRow)) { onNonePicked(); Close(); }
                 ry += RowH;
+                GUI.color = new Color(1f, 1f, 1f, 0.25f);
+                Widgets.DrawLineHorizontal(0f, ry + NoneDividerGap / 2f, viewRect.width);
+                GUI.color = Color.white;
+                ry += NoneDividerGap;
             }
             foreach (var seg in segments)
             {

@@ -57,7 +57,7 @@ Waga zestawu w porównaniu do Udźwigu tej postaci. Przekroczenie spowalnia post
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Objętość&lt;/b&gt;
 Objętość zestawu w porównaniu do Objętości niesionej tej postaci (CE). Przekroczenie pogarsza ruch i celność.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Brak</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Bez broni</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} nie może walczyć (niezdolny do przemocy lub niemowlę): można przypisać tylko wyposażenie bez broni.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} nie może niczego nosić.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} ma rolę - pakiety, broń boczna i pozostałe przedmioty pochodzą z samej roli (zakładka Roles). Nic nie wklejono.</CER_AssignLoadouts_PasteRoleRejectMsg>

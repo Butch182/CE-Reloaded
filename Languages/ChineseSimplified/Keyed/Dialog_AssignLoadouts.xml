@@ -57,7 +57,7 @@
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;体积&lt;/b&gt;
 配装体积相对于该殖民者的携带体积（CE）。超出会损害移动和瞄准。</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>无</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>无武器</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0}无法战斗（无法使用暴力，或是婴儿），只能分配不含武器的装备。</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} 无法携带任何东西。</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} 担任着角色——装备包、副武器和其他物品由角色本身决定（Roles 页签）。未粘贴任何内容。</CER_AssignLoadouts_PasteRoleRejectMsg>

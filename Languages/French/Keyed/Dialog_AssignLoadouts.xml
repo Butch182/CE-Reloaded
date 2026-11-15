@@ -57,7 +57,7 @@ Poids de la dotation par rapport à la Capacité de charge de ce personnage. Dé
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Encombrement&lt;/b&gt;
 Volume de la dotation par rapport à l'Encombrement transporté de ce personnage (CE). Le dépasser nuit au déplacement et à la précision.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Aucune</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Aucune arme</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} ne peut pas combattre (incapable de violence, ou un bébé) : seul un équipement sans arme peut lui être attribué.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} ne peut rien porter.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} a un rôle - les packs, armes secondaires et autres objets viennent du rôle lui-même (onglet Roles). Rien n'a été collé.</CER_AssignLoadouts_PasteRoleRejectMsg>

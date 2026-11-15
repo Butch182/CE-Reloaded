@@ -57,7 +57,7 @@ Beladungsgewicht im Vergleich zum Tragegewicht (CE) dieses Kolonisten. Überschr
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Sperrigkeit&lt;/b&gt;
 Beladungsvolumen im Vergleich zur Trage-Sperrigkeit (CE) dieses Kolonisten. Überschreiten schadet Bewegung und Zielgenauigkeit.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Keine</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Keine Waffe</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} kann nicht kämpfen (gewaltunfähig oder ein Baby) - zuweisen lässt sich nur Ausrüstung ohne Waffe.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} kann nichts tragen.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} hat eine Rolle - Packs, Zweitwaffen und sonstige Gegenstände kommen aus der Rolle selbst (Reiter Roles). Nichts eingefügt.</CER_AssignLoadouts_PasteRoleRejectMsg>

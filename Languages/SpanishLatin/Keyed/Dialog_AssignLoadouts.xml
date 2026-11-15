@@ -57,7 +57,7 @@ Peso de la carga frente a la Capacidad de Carga de este personaje. Excederla ral
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Volumen&lt;/b&gt;
 Volumen de la carga frente al Volumen de Carga de este personaje (CE). Excederlo perjudica el movimiento y la puntería.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Ninguna</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Sin arma</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} no puede combatir (incapaz de violencia, o un bebé): solo se le puede asignar equipo sin arma.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} no puede llevar nada.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} tiene un rol: los packs, armas secundarias y otros objetos vienen del propio rol (pestaña Roles). No se pegó nada.</CER_AssignLoadouts_PasteRoleRejectMsg>

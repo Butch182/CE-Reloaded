@@ -57,7 +57,7 @@
 	<CER_AssignLoadouts_BulkTipCompact>&lt;b&gt;Объём&lt;/b&gt;
 Объём комплекта относительно Переносимого объёма поселенца (CE). Превышение вредит движению и точности.</CER_AssignLoadouts_BulkTipCompact>
 
-	<CER_AssignLoadouts_NoneMenuOption>Нет</CER_AssignLoadouts_NoneMenuOption>
+	<CER_AssignLoadouts_NoneMenuOption>Без оружия</CER_AssignLoadouts_NoneMenuOption>
 	<CER_AssignLoadouts_CannotFightMsg>{0} не может сражаться (неспособен к насилию или младенец): можно назначить только снаряжение без оружия.</CER_AssignLoadouts_CannotFightMsg>
 	<CER_AssignLoadouts_CannotCarryMsg>{0} не может ничего нести.</CER_AssignLoadouts_CannotCarryMsg>
 	<CER_AssignLoadouts_PasteRoleRejectMsg>{0} на роли - наборы, запасное оружие и прочие предметы задаются самой ролью (вкладка Roles). Ничего не вставлено.</CER_AssignLoadouts_PasteRoleRejectMsg>
