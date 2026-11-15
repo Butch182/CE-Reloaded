@@ -14,6 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - в производстве: {0}, всё ещё не хватает: {1}</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} помечено «не подбирать»)</CER_LoadoutTooltip_ForbiddenNearby>
 
-	<CER_LoadoutTooltip_SharedTemplateHint>Общий шаблон CE Reloaded: изменения здесь касаются каждого колониста, который его использует. Личные боеприпасы и наборы задаются для каждого колониста в планировщике.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_SharedTemplateHint>Общий шаблон: изменения касаются всех его колонистов. Личные боеприпасы и наборы задаются в планировщике.</CER_LoadoutTooltip_SharedTemplateHint>
 	<CER_LoadoutTooltip_OpenPlannerButton>Открыть планировщик</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

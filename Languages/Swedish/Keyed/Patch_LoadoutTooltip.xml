@@ -14,6 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} under tillverkning, {1} saknas fortfarande</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} markerat "plocka inte upp")</CER_LoadoutTooltip_ForbiddenNearby>
 
-	<CER_LoadoutTooltip_SharedTemplateHint>Delad CE Reloaded-mall: ändringar här gäller alla kolonister som använder den. Personlig ammunition och paket ställs in per kolonist i planeraren.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_SharedTemplateHint>Delad mall: ändringar gäller alla kolonister som använder den. Personlig ammunition och paket ställs in i planeraren.</CER_LoadoutTooltip_SharedTemplateHint>
 	<CER_LoadoutTooltip_OpenPlannerButton>Öppna planeraren</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

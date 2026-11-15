@@ -14,6 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} in production, {1} still missing</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0} marked "do not pick up")</CER_LoadoutTooltip_ForbiddenNearby>
 
-	<CER_LoadoutTooltip_SharedTemplateHint>Shared CE Reloaded template: changes here apply to every colonist using it. Personal ammo and packs are set per colonist in the planner.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_SharedTemplateHint>Shared template: edits here affect every colonist using it. Personal ammo and packs are set in the planner.</CER_LoadoutTooltip_SharedTemplateHint>
 	<CER_LoadoutTooltip_OpenPlannerButton>Open planner</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

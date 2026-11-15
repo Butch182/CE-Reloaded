@@ -14,6 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0} 生產中，仍缺少 {1}</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>（其中 {0} 標記為「禁止拾取」）</CER_LoadoutTooltip_ForbiddenNearby>
 
-	<CER_LoadoutTooltip_SharedTemplateHint>CE Reloaded 共用範本:此處的修改會作用於所有使用它的殖民者。個人彈藥和裝備包請在規劃器中按殖民者設定。</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_SharedTemplateHint>共用範本:此處修改會作用於所有使用它的殖民者。個人彈藥和裝備包請在規劃器中設定。</CER_LoadoutTooltip_SharedTemplateHint>
 	<CER_LoadoutTooltip_OpenPlannerButton>開啟規劃器</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>

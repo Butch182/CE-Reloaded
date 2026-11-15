@@ -14,6 +14,6 @@
 	<CER_LoadoutTooltip_InProductionMissing> - {0}개 생산 중, {1}개 여전히 부족</CER_LoadoutTooltip_InProductionMissing>
 	<CER_LoadoutTooltip_ForbiddenNearby>({0}개는 "줍지 않음" 표시)</CER_LoadoutTooltip_ForbiddenNearby>
 
-	<CER_LoadoutTooltip_SharedTemplateHint>공유 CE Reloaded 템플릿: 여기서 바꾸면 이를 쓰는 모든 정착민에게 적용됩니다. 개인 탄약과 팩은 플래너에서 정착민별로 설정합니다.</CER_LoadoutTooltip_SharedTemplateHint>
+	<CER_LoadoutTooltip_SharedTemplateHint>공유 템플릿: 여기서 바꾸면 이를 쓰는 모든 정착민에게 적용됩니다. 개인 탄약과 팩은 플래너에서 설정합니다.</CER_LoadoutTooltip_SharedTemplateHint>
 	<CER_LoadoutTooltip_OpenPlannerButton>플래너 열기</CER_LoadoutTooltip_OpenPlannerButton>
 </LanguageData>
