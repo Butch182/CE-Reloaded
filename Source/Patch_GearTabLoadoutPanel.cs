@@ -127,6 +127,9 @@ namespace CEReloaded
                     if (pawn.inventory != null && pawn.inventory.innerContainer != null)
                         foreach (Thing t in pawn.inventory.innerContainer)
                             if (match(t.def)) n += t.stackCount;
+                    // Loaded rounds count as carried, as everywhere else (CE counts them the same way). Without this
+                    // a pawn with 40 rounds, 10 of them in the rifle, showed 30/40 here.
+                    n += LoadoutUtility.MagazineAmmoCount(pawn, d => match(d));
                     return n;
                 }
 
