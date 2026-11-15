@@ -5849,6 +5849,19 @@ namespace CEReloaded
         public static string LoadoutDisplayName(Loadout lo, bool markerShownElsewhere = false)
             => lo == null ? "" : LoadoutDisplayName(lo.label, markerShownElsewhere);
 
+        // The name with NO kind prefix at all, not even the role prefix that LoadoutDisplayName always keeps.
+        // Only for lists that already sort by kind under their own group header ('Roles', 'Vanilla
+        // loadouts'): there the header says what the row is, and '[Role]' in front of every row under
+        // 'Roles' is pure repetition.
+        public static string LoadoutBareName(Loadout lo)
+        {
+            if (lo == null || string.IsNullOrEmpty(lo.label)) return lo?.label ?? "";
+            string raw = lo.label;
+            if (RoleUtility.IsRoleLabel(raw)) return StripKindPrefix(raw.Substring(RoleUtility.RoleMarker.Length).TrimStart());
+            if (EquipmentPackUtility.IsEquipmentPackLabel(raw)) return StripKindPrefix(EquipmentPackUtility.BareName(raw));
+            return StripKindPrefix(raw);
+        }
+
         // The name as it belongs in a CELL: an icon or a color sits next to it, so the prefix would be
         // repetition. Kept as its own name so the call sites stay readable.
         public static string CellLabel(Loadout lo) => LoadoutDisplayName(lo, markerShownElsewhere: true);

@@ -2534,7 +2534,8 @@ namespace CEReloaded
                 itemColumnLabel: "CER_GenerateLoadouts_WeaponBlocksHeader".Translate().ToString(),
                 allOptions: loadoutOptions,
                 emptyMessage: "CER_PickWeapon_NothingMatches".Translate().ToString(),
-                displayLabel: lo => RoleUtility.DisplayLabel(lo) ?? "?",
+                // Bare name: the group header ('Roles' / 'Vanilla loadouts') already says what the row is.
+                displayLabel: lo => LoadoutUtility.LoadoutBareName(lo) ?? "?",
                 // Separate "Vanilla loadouts" and "Roles" sections instead of one combined header.
                 groupLabel: lo => (RoleUtility.IsRoleLoadout(lo)
                     ? "CER_PickPacks_GroupRoles".Translate().ToString()
