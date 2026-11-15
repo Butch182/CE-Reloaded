@@ -1004,8 +1004,13 @@ namespace CEReloaded
                 }
                 GUI.color = Color.white;
                 TooltipHandler.TipRegion(loLockRect, loLocked ? "CER_PickPacks_UnlockLoadoutTip".Translate() : "CER_PickPacks_LockLoadoutTip".Translate());
-                Rect singleName = new Rect(row.x + 8f, row.y, NameColX - 36f, RowH);
+                // Same icon column as the weapon rows and the 'No weapon' row (icon at +8, name at +38): the
+                // loadout's main weapon stands in the slot, so role names line up with every other name in the
+                // list instead of starting one icon further left. A loadout without a weapon keeps the slot empty.
                 if (loLocked) GUI.color = new Color(1f, 1f, 1f, 0.4f);
+                LoadoutUtility.LoadoutMainAndSide(pack, out ThingDef packMain, out _);
+                if (packMain != null) Widgets.ThingIcon(new Rect(row.x + 8f, row.y + (RowH - 24f) / 2f, 24f, 24f), packMain);
+                Rect singleName = new Rect(row.x + 38f, row.y, NameColX - 68f, RowH);
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(singleName, displayLabel(pack).Truncate(singleName.width - 4f));
                 Text.Anchor = TextAnchor.UpperLeft;
